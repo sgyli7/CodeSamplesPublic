@@ -33,6 +33,7 @@ package {
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.events.Event;
 	import starling.textures.SubTexture;
 	import starling.textures.TextureAtlas;
 	
@@ -68,16 +69,42 @@ package {
 			// SUPER
 			super();
 			
+			
+			
+			// EVENTS
+			addEventListener(Event.ADDED_TO_STAGE, _onAddedToStage);
+			
+			
+		}
+		
+		
+		// --------------------------------------
+		// Events
+		// --------------------------------------
+		/**
+		 * Handles the Event: <code>Event.ADDED_TO_STAGE</code>.
+		 * 
+		 * @param aEvent <code>Event</code> The incoming aEvent payload.
+		 *  
+		 * @return void
+		 * 
+		 */	
+		private function _onAddedToStage (aEvent : Event) : void
+		{
 			// Method 1 - Feels more like traditional Flash (good!)
 			_doDynamicTextureAtlas__FromEmbeddedSWFSymbol();
 			
 			// Method 2 - Puts several 'MovieClips' of graphics into one atlas. This is good for GPU.
 			_doDyanmicTextureAtlas__FromEmbeddedSWFSpriteSheet();
 			
-			
 		}
 		
 		
+			
+		
+		// --------------------------------------
+		// Methods
+		// --------------------------------------
 		/**
 		 * Dynamic Atlas From Source: An Embedded MovieClip Symbol From SWF
 		 * 
