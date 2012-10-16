@@ -1,22 +1,25 @@
-package
+package 
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.system.MessageChannel;
 	import flash.system.Worker;
 	import flash.system.WorkerDomain;
-
-	public class WorkersDemo extends Sprite
+	
+	public class SuperWorker extends Sprite
 	{
-
+		
 		private var worker:Worker;
-		private var wtm:MessageChannel;
-
-		private var mtw:MessageChannel;
-		public function WorkersDemo()
+		public var wtm:MessageChannel;
+		
+		public var mtw:MessageChannel;
+		public var state:String;
+		
+		//
+		public function SuperWorker()
 		{
 			
-			worker = WorkerDomain.current.createWorker(Workers.CustomWorker);
+			worker = WorkerDomain.current.createWorker(Worker.current);
 			
 			wtm = worker.createMessageChannel(Worker.current);
 			mtw = Worker.current.createMessageChannel(worker);
@@ -25,7 +28,7 @@ package
 			worker.setSharedProperty("mtw", mtw);
 			
 			wtm.addEventListener(Event.CHANNEL_MESSAGE, onMessage)
-				
+			
 			trace ("s: " + worker.state);
 			worker.start();
 			trace ("s: " + worker.state);
@@ -33,8 +36,14 @@ package
 		
 		protected function onMessage(aEvent:Event):void
 		{
-			trace ("onMessage : " + wtm.receive());
+			trace ("onMessage2 : " + wtm.receive());
 			
+		}
+		
+		
+		public function start():void
+		{
+			// TODO Auto Generated method stub
 			
 		}
 	}
