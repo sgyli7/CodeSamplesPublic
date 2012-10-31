@@ -7,7 +7,7 @@ package
 	[SWF(frameRate="1")]
 	public class MemoryLeakDemo extends Sprite
 	{
-
+		
 		private var listOfDots_vector:Vector.<CustomDot>;
 		public function MemoryLeakDemo()
 		{
