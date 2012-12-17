@@ -51,15 +51,12 @@ package com.rmc.utils
 		*/		
         public static function get isFileOnline () : Boolean { 
         	
-        	trace ("Environment HARDCODING 'IF ONLINE' STILL");
-        	return true ;     
-        	   
         	//USE STAGE 
         	if (_stage) {
         		//this check fails in some cases online, not sure why
         		return !(new RegExp("file://").test(Environment.stage.loaderInfo.url)) ; 
         	} else {
-        		throw new Error ("Environment. Must set stage (" + _stage + ") before calling isFileOnline.");
+        		throw new Error ("Environment.isFileOnline() Must set stage (" + _stage + ") before calling.");
         	}
         
         //
