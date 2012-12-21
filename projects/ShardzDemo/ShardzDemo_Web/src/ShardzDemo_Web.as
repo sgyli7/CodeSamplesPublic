@@ -24,7 +24,7 @@
 //Marks the right margin of code *******************************************************************
 package 
 {
-
+	
 	// --------------------------------------
 	// Imports
 	// --------------------------------------
@@ -38,8 +38,8 @@ package
 	 * <p>The <code>ShardzDemo_Mobile</code> class defines the Mobile version.</p>
 	 * 
 	 */
-	[SWF(width="800", height="600", frameRate="60", backgroundColor="#333333")]
-	public class ShardzDemo_Mobile extends AbstractShardzDemo
+	[SWF(width="300", height="500", frameRate="60", backgroundColor="#333333")]
+	public class ShardzDemo_Web extends AbstractShardzDemo
 	{
 		// --------------------------------------
 		// Properties
@@ -57,7 +57,7 @@ package
 		 * This is the constructor.
 		 * 
 		 */
-		public function ShardzDemo_Mobile()
+		public function ShardzDemo_Web()
 		{
 			// SUPER
 			super();
@@ -71,6 +71,6 @@ package
 			// METHODS
 			
 		}
-
+		
 	}
 }
