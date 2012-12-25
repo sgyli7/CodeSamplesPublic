@@ -38,7 +38,7 @@ package
 	 * <p>The <code>ShardzDemo_Mobile</code> class defines the Mobile version.</p>
 	 * 
 	 */
-	[SWF(width="800", height="600", frameRate="60", backgroundColor="#333333")]
+	[SWF(frameRate="60", backgroundColor="#333344")]
 	public class ShardzDemo_Mobile extends AbstractShardzDemo
 	{
 		// --------------------------------------
