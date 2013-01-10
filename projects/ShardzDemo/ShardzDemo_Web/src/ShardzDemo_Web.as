@@ -28,7 +28,7 @@ package
 	// --------------------------------------
 	// Imports
 	// --------------------------------------
-	import com.rmc.projects.shardzdemo.AbstractShardzDemo;
+	import com.rmc.projects.shardzdemo.AbstractShardzDemoSetup;
 	
 	
 	// --------------------------------------
@@ -39,7 +39,7 @@ package
 	 * 
 	 */
 	[SWF(width="300", height="500", frameRate="60", backgroundColor="#333333")]
-	public class ShardzDemo_Web extends AbstractShardzDemo
+	public class ShardzDemo_Web extends AbstractShardzDemoSetup
 	{
 		// --------------------------------------
 		// Properties
