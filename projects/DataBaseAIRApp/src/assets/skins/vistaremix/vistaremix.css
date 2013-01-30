@@ -8,6 +8,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 */
 
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace s "library://ns.adobe.com/flex/spark";
 @font-face 
 {
     src:url(arial.swf);
@@ -42,7 +44,7 @@ global
 //------------------------------
 */
 
-Application
+mx|Application
 {
 	background-color:#000000;
 }
@@ -53,7 +55,7 @@ Application
 //------------------------------
 */
 
-MenuBar
+mx|MenuBar
 {
 	backgroundSkin: Embed(source="vistaremix.swf", symbol="MenuBar_backgroundSkin");
 	itemUpSkin: Embed(source="vistaremix.swf", symbol="MenuBar_itemUpSkin");
@@ -93,14 +95,10 @@ MenuBar
 //------------------------------
 */
 
-Panel
+mx|Panel
 {
 	border-color:#D9E2EB;
 	border-alpha:1;
-	borderThicknessLeft: 8;
-	borderThicknessRight: 8;
-	borderThicknessTop: 0;
-	borderThicknessBottom: 8;
 	headerHeight: 30;
 	cornerRadius:6;
 	titleStyleName: "panelTitle";
@@ -118,7 +116,7 @@ Panel
 //------------------------------
 */
 
-ControlBar
+mx|ControlBar
 {
 	color:#000000;
 }
@@ -129,7 +127,7 @@ ControlBar
 //------------------------------
 */
 
-TabBar
+mx|TabBar
 {
 	tabStyleName: "tabStyle";
 	selectedTabTextStyleName: "selectedTabText";
@@ -170,11 +168,9 @@ TabBar
 //------------------------------
 */
 
-TabNavigator
+mx|TabNavigator
 {
 	borderStyle:solid;
-	borderColor:#898C95;
-	borderThickness:1;
 	backgroundColor:#ffffff;
 	fontWeight:normal;
 }
@@ -185,7 +181,7 @@ TabNavigator
 //------------------------------
 */
 
-Button
+mx|Button
 {
 	upSkin: Embed(source="vistaremix.swf", symbol="Button_upSkin");
 	overSkin: Embed(source="vistaremix.swf", symbol="Button_overSkin");
@@ -209,7 +205,7 @@ Button
 //------------------------------
 */
 
-CheckBox
+mx|CheckBox
 {
 	upIcon: Embed(source="vistaremix.swf", symbol="CheckBox_upIcon");
 	overIcon: Embed(source="vistaremix.swf", symbol="CheckBox_overIcon");
@@ -233,7 +229,7 @@ CheckBox
 //------------------------------
 */
 
-RadioButton
+mx|RadioButton
 {
 	upIcon: Embed(source="vistaremix.swf", symbol="RadioButton_upIcon");
 	downIcon: Embed(source="vistaremix.swf", symbol="RadioButton_downIcon");
@@ -251,7 +247,7 @@ RadioButton
 //------------------------------
 */
 
-ColorPicker
+mx|ColorPicker
 {
 	upSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_upSkin");
 	disabledSkin: Embed(source="vistaremix.swf", symbol="ColorPicker_disabledSkin");
@@ -270,7 +266,7 @@ ColorPicker
 //------------------------------
 */
 
-TextInput
+mx|TextInput
 {
 	color:#000000;
 	fontFamily:"Arial";
@@ -283,7 +279,7 @@ TextInput
 //------------------------------
 */
 
-TextArea
+mx|TextArea
 {
 	color: #000000;
 	fontFamily:"Arial";
@@ -295,7 +291,7 @@ TextArea
 //------------------------------
 */
 
-DateField
+mx|DateField
 {
 	disabledSkin: Embed(source="vistaremix.swf",symbol="DateField_disabledSkin"); 
 	downSkin: Embed(source="vistaremix.swf",symbol="DateField_downSkin"); 
@@ -310,7 +306,7 @@ DateField
 //------------------------------
 */
 
-DateChooser
+mx|DateChooser
 {
 	cornerRadius:4;
 	borderStyle:solid;
@@ -349,7 +345,7 @@ DateChooser
 //------------------------------
 */
 
-NumericStepper
+mx|NumericStepper
 {
 	upArrowUpSkin: Embed(source="vistaremix.swf", symbol="NumericStepperUpArrow_upSkin");
 	upArrowDisabledSkin: Embed(source="vistaremix.swf", symbol="NumericStepperUpArrow_disabledSkin");
@@ -367,7 +363,7 @@ NumericStepper
 //------------------------------
 */
 
-PopUpButton
+mx|PopUpButton
 {
 	upSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_upSkin");
  	disabledSkin: Embed(source="vistaremix.swf", symbol="PopUpButton_disabledSkin");
@@ -383,7 +379,7 @@ PopUpButton
 //------------------------------
 */
 
-ComboBox
+mx|ComboBox
 {
 	upSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_upSkin");
 	disabledSkin: Embed(source="vistaremix.swf", symbol="ComboBoxArrow_disabledSkin");
@@ -414,7 +410,7 @@ ComboBox
 //------------------------------
 */
 
-List
+mx|List
 {
 	borderStyle:solid;
 	borderColor:#898C95;
@@ -429,7 +425,7 @@ List
 //------------------------------
 */
 
-TileList
+mx|TileList
 {
 	borderStyle:solid;
 	borderColor:#898C95;
@@ -444,7 +440,7 @@ TileList
 //------------------------------
 */
 
-HorizontalList
+mx|HorizontalList
 {
 	borderStyle:solid;
 	borderColor:#898C95;
@@ -459,7 +455,7 @@ HorizontalList
 //------------------------------
 */
 
-LinkButton
+mx|LinkButton
 {
 	selection-color:#3399FF;
 	corner-radius:4;
@@ -474,7 +470,7 @@ LinkButton
 //------------------------------
 */
 
-HSlider, VSlider
+mx|HSlider, mx|VSlider
 {
 	trackSkin: Embed(source="vistaremix.swf", symbol="SliderTrack_Skin");
 	thumbUpSkin: Embed(source="vistaremix.swf", symbol="SliderThumb_upSkin");
@@ -489,13 +485,13 @@ HSlider, VSlider
 //------------------------------
 */
 
-HRule
+mx|HRule
 {
 	strokeColor:#898C95;
 	shadowColor:#EEEEEE;
 }
 
-VRule
+mx|VRule
 {
 	strokeColor:#898C95;
 	shadowColor:#EEEEEE;
@@ -507,7 +503,7 @@ VRule
 //------------------------------
 */
 
-ProgressBar
+mx|ProgressBar
 {
 	trackSkin: Embed(source="vistaremix.swf", symbol="ProgressTrackSkin");
 	barSkin: Embed(source="vistaremix.swf", symbol="ProgressBarSkin");
@@ -520,7 +516,7 @@ ProgressBar
 //------------------------------
 */
 
-Accordion
+mx|Accordion
 {
 	borderStyle:solid;
 	borderColor:#898C95;
@@ -533,7 +529,7 @@ Accordion
 //------------------------------
 */
 
-AccordionHeader
+mx|AccordionHeader
 {
 	fontWeight:normal;
 	font-family:"Arial";
@@ -558,7 +554,7 @@ AccordionHeader
 //------------------------------ 
 */ 
 
-ButtonBar 
+mx|ButtonBar
 { 
     buttonStyleName: "buttonBarButton"; 
     firstButtonStyleName: "firstButtonBarButton"; 
@@ -607,7 +603,7 @@ ButtonBar
 //------------------------------ 
 */ 
 
-ToggleButtonBar 
+mx|ToggleButtonBar
 { 
     buttonStyleName: "buttonBarButton"; 
     firstButtonStyleName: "firstButtonBarButton"; 
@@ -620,7 +616,7 @@ ToggleButtonBar
 //------------------------------
 */
 
-Tree
+mx|Tree
 {
 	disclosureClosedIcon:Embed(source="vistaremix.swf", symbol="Tree_disclosureClosedIcon");  
 	disclosureOpenIcon:Embed(source="vistaremix.swf", symbol="Tree_disclosureOpenIcon");  
@@ -632,12 +628,11 @@ Tree
 //------------------------------
 */
 
-DataGrid
+mx|DataGrid
 {
 	headerBackgroundSkin:Embed(source="vistaremix.swf", symbol="DataGrid_headerSkin"); 
 	borderStyle:solid;
 	borderColor:#898C95;
-	borderThickness:1;
 	selection-color:#3399FF;
 	textSelectedColor:#ffffff;
 	headerStyleName: "dataGridHeader"; 
@@ -660,7 +655,7 @@ DataGrid
 //------------------------------
 */
 
-ScrollBar
+mx|ScrollBar
 {
 	downArrowUpSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowDown_upSkin");
 	downArrowDisabledSkin: Embed(source="vistaremix.swf", symbol="ScrollArrowDown_disabledSkin");
@@ -683,7 +678,7 @@ ScrollBar
 //------------------------------
 */
 
-Label
+mx|Label
 {
 	color:#000000;
 }
@@ -694,7 +689,7 @@ Label
 //------------------------------
 */
 
-Text
+mx|Text
 {
 	color:#000000;
 }
@@ -705,21 +700,16 @@ Text
 //------------------------------
 */
 
-Alert
+mx|Alert
 {
 	borderColor:#D9E2EB;
 	borderAlpha:1;
-	borderThicknessLeft: 6;
-	borderThicknessRight: 6;
-	borderThicknessTop: 0;
-	borderThicknessBottom: 6;
 	headerHeight: 28;
 	cornerRadius:4;
 	titleStyleName: "panelTitle";
 	backgroundColor:#F0F0F0;
 	backgroundAlpha:1; 
 	color:#000000; 
-	shadowDistance:0;
 }
 
 /*
@@ -728,7 +718,7 @@ Alert
 //------------------------------
 */
 
-TitleWindow
+mx|TitleWindow
 {
 	shadowDistance:0; 
 	closeButtonUpSkin: Embed(source="vistaremix.swf", symbol="Panel_closeButtonUpSkin");  
@@ -743,7 +733,7 @@ TitleWindow
 //------------------------------
 */
 
-ToolTip
+mx|ToolTip
 {
 	borderSkin: Embed(source="vistaremix.swf", symbol="ToolTip_borderSkin");
 	color:#000000;
@@ -756,7 +746,7 @@ ToolTip
 //------------------------------
 */
 
-ApplicationControlBar
+mx|ApplicationControlBar
 {
 	borderSkin: Embed(source="vistaremix.swf", symbol="ApplicationControlBar_borderSkin");
 }
