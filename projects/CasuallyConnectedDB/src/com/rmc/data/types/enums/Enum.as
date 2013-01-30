@@ -22,75 +22,68 @@
  * OTHER DEALINGS IN THE SOFTWARE.                                      
  */
 //Marks the right margin of code *******************************************************************
-package com.rmc.utils
+package com.rmc.data.types.enums
 {
-	
-	// --------------------------------------
-	// Imports
-	// --------------------------------------
-	import flash.display.Sprite;
+	//--------------------------------------
+	//  Imports
+	//--------------------------------------
 	
 	
-	// --------------------------------------
-	// Metadata
-	// --------------------------------------
-	
-	
-	// --------------------------------------
-	// Class
-	// --------------------------------------
+	//--------------------------------------
+	//  Special Instructions
+	//--------------------------------------
 	/**
-	 * <p>The <code>NetworkUtility</code> class is ...</p>
+	 * Subclasses of <code>Enum<code> automatically get injected with a 'name' property within each Enum property below matching its 
+	 * reference name to assist debugging through Flex Builder's 'Variables' Panel - samr
+	 * It is solely to help debugging.  Set a breakpoint and introspect an instance of this class to see.
 	 * 
+	 * REQUIRED: In every subclass, but not in superclass.
+	 */	
+	//{CStringUtils.InitEnumConstants(GameState);} //keep commented out in this class, use only in subclasses
+	
+	
+	//--------------------------------------
+	//  Class
+	//--------------------------------------
+	/**
+	 * <p>The <code>Enum</code> is a strong type used for 'state' checking.</p>
+	 *
 	 */
-	public class NetworkUtility extends Sprite
-	{
+	public class Enum extends Object
+	{		
 		
-		// --------------------------------------
-		// Properties
-		// --------------------------------------
-		// PUBLIC GETTER/SETTERS
+		//--------------------------------------
+		//  Properties
+		//--------------------------------------
+		//PUBLIC GETTER/SETTERS
 		
-		// PUBLIC CONST
+		//PUBLIC
+		public var Text :String;
 		
-		// PRIVATE
+		//PUBLIC CONST
 		
-		// --------------------------------------
-		// Constructor
-		// --------------------------------------
+		//PRIVATE
+		
+		//--------------------------------------
+		//  Constructor
+		//--------------------------------------
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------		
+		//PUBLIC	
 		/**
-		 * This is the constructor.
-		 * 
+		 * Aids output panel statements on the object references to show the name.
+		 *
+		 * @return String
 		 */
-		public function NetworkUtility()
+		public function toString () : String
 		{
-			// SUPER
-			super();
-			
-			// EVENTS
-			
-			// VARIABLES
-			
-			// PROPERTIES
-			
-			// METHODS
-			
+			return Text;
 		}
 		
-		
-		// --------------------------------------
-		// Methods
-		// --------------------------------------
-		// PUBLIC
-		
-		// PRIVATE
-		
-		// --------------------------------------
-		// Event Handlers
-		// --------------------------------------
-
+		//PRIVATE	
 		
 		
 	}
 }
-
