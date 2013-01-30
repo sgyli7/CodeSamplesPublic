@@ -10,9 +10,9 @@
  //			using SQLite. The UX is rough, but functional and stable.  
  
  //	PROJECT SETUP DETAILS
- //		TYPE			: FLEX LIBRARY PROJECT (This is not a publish-able project)
+ //		TYPE			: FLEX PROJECT (This is a publish-able project)
  //		IDE			: FLASH BUILDER 4.6.1
- //		TARGET			: Computer Desktop using AIR 3.2 USING FLEX 4.6.1
+ //		TARGET			: Computer Desktop using AIR 3.1 USING FLEX 4.6.1
  //		DEPENDENCIES		: Go to Project Properties -> Flex Build Path -> Library Path -> 'Add SWC Folder...' for folder 'libs' 	
  //		COMPILER ARGS   	: -locale en_US 	
 
