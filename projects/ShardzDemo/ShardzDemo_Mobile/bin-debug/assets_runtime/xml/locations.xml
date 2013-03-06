@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locations>
+	<continents>
+		<continent name="Africa" data="AFRICA">
+			<country name="Egypt" />
+			<country name="Morocco" />
+		</continent>
+	</continents>
+	<continents>
+		<continent name="North America" data="NORTH_AMERICA">
+			<country name="America" />
+			<country name="Canada" />
+			<country name="Mexico" />
+		</continent>
+	</continents>
+</locations>

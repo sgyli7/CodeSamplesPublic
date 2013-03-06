@@ -7,6 +7,11 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.thirdparty.data.types.ImageClass;
+			import com.thirdparty.data.types.Mp3Class;
+			import com.thirdparty.data.types.MultimediaClass;
+			import com.thirdparty.data.types.VideoClass;
+			
 			import flash.display.Loader;
 			import flash.display.LoaderInfo;
 			import flash.events.Event;
@@ -23,11 +28,6 @@
 			import mx.events.FlexEvent;
 			import mx.events.IndexChangedEvent;
 			import mx.events.ListEvent;
-			
-			import com.thirdparty.data.types.ImageClass;
-			import com.thirdparty.data.types.Mp3Class;
-			import com.thirdparty.data.types.MultimediaClass;
-			import com.thirdparty.data.types.VideoClass;
 			
 			protected var conn:SQLConnection = new SQLConnection();
 			protected var dbFile:File = File.applicationStorageDirectory.resolvePath("MultimediaCollection.db");
@@ -275,6 +275,15 @@
 				}
 			}
 			
+			protected function textAdder (event: MouseEvent) : void
+			{
+				
+			}
+			
+			protected function textRemover (event: MouseEvent) : void
+			{
+				
+			}
 			protected var imagesFilter:FileFilter = new FileFilter("Images", "*.jpg;*.gif;*.png");
 			protected function imageAdder(event:MouseEvent):void
 			{
@@ -482,77 +491,156 @@
 		
 		<mx:TabNavigator id="tabNavigator" x="25" y="74" width="819" height="567" change="tabnavigatorChangeHandler(event)"  creationPolicy="all">
 			<mx:Canvas label="Add Media" width="100%" height="100%">
-				<mx:TextInput x="325" y="33" id="enteredName"/>
-				<mx:Text x="244" y="34" text="Name:" width="67" height="21"/>
-				<mx:Text x="130" y="81" text="Images" width="67" height="21" textAlign="center"/>
-				<mx:Text x="370" y="81" text="Videos" width="67" height="21" textAlign="center"/>
-				<mx:Text x="609" y="81" text="Mp3s" width="67" height="21" textAlign="center"/>
-				<mx:DataGrid id="ImageAddList" x="90" y="107" height="158"  dataProvider="{MediaCollection.ImagesArray}" width="152" >
-					<mx:columns>
-						<mx:DataGridColumn headerText=""  dataField="name"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:DataGrid id="VideoAddList" x="328" y="107" height="158"  dataProvider="{MediaCollection.VideosArray}" width="152">
-					<mx:columns>
-						<mx:DataGridColumn headerText=""  dataField="name"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:DataGrid id="Mp3AddList" x="565" y="107" height="158"  dataProvider="{MediaCollection.SongsArray}" width="152">
-					<mx:columns>
-						<mx:DataGridColumn headerText=""  dataField="name"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:Button x="90" y="275" label="+" width="38" click="imageAdder(event)"/>
-				
-				<mx:Button x="204" y="275" label="-" width="38" click="imageRemover(event)"/>
-				<mx:Button x="442" y="275" label="-" width="38" click="videoRemover(event)"/>
-				<mx:Button x="679" y="275" label="-" width="38" click="songRemover(event)"/>
-				<mx:Button x="328" y="275" label="+" width="38" click="videoAdder(event)"/>
-				<mx:Button x="565" y="275" label="+" width="38" click="mp3Adder(event)"/>
-				<mx:Button x="585" y="25" label="Add to DB" click="insertClickHandler(event)" width="116" cornerRadius="8" height="34"/>
+				<mx:VBox>
+					<mx:HBox>
+						<mx:TextInput id="enteredName"/>
+						<mx:Button label="Add to DB" click="insertClickHandler(event)" width="116" cornerRadius="8" height="34"/>
+					</mx:HBox>
+					
+					<mx:HBox width="100%">
+						<mx:VBox height="100%" >
+							<mx:Text x="130" y="81" text="Texts" width="67" height="21" textAlign="center"/>
+							<mx:DataGrid id="TextAddList" x="90" y="107" height="158"  dataProvider="{MediaCollection.TextsArray}" width="152" >
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+							<mx:HBox>
+								<mx:Button label="+" width="38" click="textAdder(event)"/>
+								<mx:Button label="-" width="38" click="textRemover(event)"/>
+							</mx:HBox>
+						</mx:VBox>
+						<mx:VBox height="100%" >
+							<mx:Text x="130" y="81" text="Images" width="67" height="21" textAlign="center"/>
+							<mx:DataGrid id="ImageAddList" x="90" y="107" height="158"  dataProvider="{MediaCollection.ImagesArray}" width="152" >
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+							<mx:HBox>
+								<mx:Button x="90" y="275" label="+" width="38" click="imageAdder(event)"/>
+								<mx:Button x="204" y="275" label="-" width="38" click="imageRemover(event)"/>
+							</mx:HBox>
+						</mx:VBox>
+						<mx:VBox height="100%" >
+							<mx:Text x="370" y="81" text="Videos" width="67" height="21" textAlign="center"/>
+							<mx:DataGrid id="VideoAddList" x="328" y="107" height="158"  dataProvider="{MediaCollection.VideosArray}" width="152">
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+							<mx:HBox>
+								<mx:Button x="442" y="275" label="-" width="38" click="videoRemover(event)"/>
+								<mx:Button x="679" y="275" label="-" width="38" click="songRemover(event)"/>
+							</mx:HBox>
+						</mx:VBox>
+						
+						<mx:VBox height="100%" >
+							<mx:Text x="609" y="81" text="Mp3s" width="67" height="21" textAlign="center"/>
+							<mx:DataGrid id="Mp3AddList" x="565" y="107" height="158"  dataProvider="{MediaCollection.SongsArray}" width="152">
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+							<mx:HBox>
+								<mx:Button x="328" y="275" label="+" width="38" click="videoAdder(event)"/>
+								<mx:Button x="565" y="275" label="+" width="38" click="mp3Adder(event)"/>
+							</mx:HBox>
+						</mx:VBox>
+					</mx:HBox>
+					
+				</mx:VBox>
 			</mx:Canvas>
 			<mx:Canvas label="Update Media" width="100%" height="100%" >
-				<mx:TextInput x="325" y="33" id="NameforUpdation"/>
-				<mx:Text x="244" y="34" text="Name:" width="67" height="21"/>
-				<mx:Text x="130" y="81" text="Images" width="67" height="21" textAlign="center"/>
-				<mx:Text x="370" y="81" text="Videos" width="67" height="21" textAlign="center"/>
-				<mx:Text x="609" y="81" text="Mp3s" width="67" height="21" textAlign="center"/>
-				<mx:DataGrid id="ImageUpdateList" x="90" y="107" height="158"  dataProvider="{MediaCollection.ImagesArray}" width="152">
-					<mx:columns>
-						<mx:DataGridColumn headerText=""  dataField="name"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:DataGrid id="VideoUpdateList" x="328" y="107" height="158"  dataProvider="{MediaCollection.VideosArray}" width="152">
-					<mx:columns>
-						<mx:DataGridColumn headerText=""  dataField="name"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:DataGrid id="Mp3UpdateList" x="565" y="107" height="158"  dataProvider="{MediaCollection.SongsArray}" width="152">
-					<mx:columns>
-						<mx:DataGridColumn headerText=""  dataField="name"/>
-					</mx:columns>
-				</mx:DataGrid>
-				<mx:Button x="90" y="275" label="+" width="38" click="imageAdder(event)"/>
-				
-				<mx:Button x="204" y="275" label="-" width="38" click="imageRemover(event)"/>
-				<mx:Button x="442" y="275" label="-" width="38" click="videoRemover(event)"/>
-				<mx:Button x="679" y="275" label="-" width="38" click="songRemover(event)"/>
-				<mx:Button x="328" y="275" label="+" width="38" click="videoAdder(event)"/>
-				<mx:Button x="565" y="275" label="+" width="38" click="mp3Adder(event)"/>
-				<mx:Button x="513" y="21" label="Retrieve Media" click="retrieveClickHandler(event)" width="116" cornerRadius="8" height="34"/>
-				<mx:Button x="657" y="21" label="Update in DB" click="updateClickHandler(event)" width="116" cornerRadius="8" height="34"/>
+				<mx:VBox width="100%">
+					<mx:HBox>
+						<mx:TextInput id="NameforUpdation"/>
+						<mx:Button  label="Retrieve Media" click="retrieveClickHandler(event)" width="116" cornerRadius="8" height="34"/>
+						<mx:Button  label="Update in DB" click="updateClickHandler(event)" width="116" cornerRadius="8" height="34"/>
+					</mx:HBox>
+					
+					<mx:HBox width="100%">
+						<mx:VBox>
+							<mx:Text  text="Images" width="67" height="21" textAlign="center"/>
+							<mx:DataGrid id="ImageUpdateList" height="158"  dataProvider="{MediaCollection.ImagesArray}" width="152">
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+							<mx:HBox>
+								<mx:Button label="+" width="38" click="imageAdder(event)"/>
+								<mx:Button label="-" width="38" click="imageRemover(event)"/>
+							</mx:HBox>
+						</mx:VBox>
+						<mx:VBox>
+							<mx:Text text="Videos" width="67" height="21" textAlign="center"/>
+							
+							<mx:DataGrid id="VideoUpdateList"  height="158"  dataProvider="{MediaCollection.VideosArray}" width="152">
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+							<mx:HBox>
+								<mx:Button  label="-" width="38" click="videoRemover(event)"/>
+								<mx:Button  label="-" width="38" click="songRemover(event)"/>
+							</mx:HBox>
+						</mx:VBox>
+						<mx:VBox>
+							<mx:Text text="Mp3s" width="67" height="21" textAlign="center"/>
+							<mx:DataGrid id="Mp3UpdateList" height="158"  dataProvider="{MediaCollection.SongsArray}" width="152">
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+							<mx:HBox>
+								<mx:Button label="+" width="38" click="videoAdder(event)"/>
+								<mx:Button label="+" width="38" click="mp3Adder(event)"/>
+							</mx:HBox>
+						</mx:VBox>
+					</mx:HBox>
+				</mx:VBox>
 			</mx:Canvas>
+			
+			
+			
+			
+			
+			
+			
+			
 			<mx:Canvas label="Preview Media" width="100%" height="100%">
-				<mx:TextInput x="325" y="33" id="NameforPreview"/>
-				<mx:Text x="244" y="34" text="Name:" width="67" height="21"/>
-				<mx:Text x="130" y="81" text="Images" width="67" height="21" textAlign="center"/>
-				<mx:Text x="370" y="81" text="Videos" width="67" height="21" textAlign="center"/>
-				<mx:Text x="609" y="81" text="Mp3s" width="67" height="21" textAlign="center"/>
-				<mx:DataGrid id="ImagePreviewList" x="90" y="107" height="158"  dataProvider="{MediaCollection.ImagesArray}" width="152" itemClick="ImagePreviewList_itemClickHandler(event)">
-					<mx:columns>
-						<mx:DataGridColumn headerText=""  dataField="name"/>
-					</mx:columns>
-				</mx:DataGrid>
+				<mx:VBox width="100%">
+					<mx:HBox>
+						
+						<mx:TextInput id="NameforPreview"/>
+						<mx:Button label="Retrieve Media" click="retrieveClickHandler(event)" width="116" cornerRadius="8" height="34"/>
+					</mx:HBox>
+					<mx:HBox width="100%" >
+						<mx:VBox>
+							<mx:Text text="Images" width="67" height="21" textAlign="center"/>
+							<mx:DataGrid id="ImagePreviewList" height="158"  dataProvider="{MediaCollection.ImagesArray}" width="152" itemClick="ImagePreviewList_itemClickHandler(event)">
+								<mx:columns>
+									<mx:DataGridColumn headerText=""  dataField="name"/>
+								</mx:columns>
+							</mx:DataGrid>
+						</mx:VBox>
+						<mx:VBox>
+							<mx:Text x="370" y="81" text="Videos" width="67" height="21" textAlign="center"/>
+						</mx:VBox>
+						
+						<mx:VBox>
+							<mx:Text x="609" y="81" text="Mp3s" width="67" height="21" textAlign="center"/>
+						</mx:VBox>
+						
+					</mx:HBox>
+				</mx:VBox>
+				<mx:Image id="PreviewedImage" x="250.5" y="291" width="316" height="207" visible="false"/>
+				<mx:VideoDisplay id="PreviewedVideo" x="250.5" y="291" width="316" height="207" visible="false"/>
+				
+				
+				
+				
+				
 				<mx:DataGrid id="VideoPreviewList" x="328" y="107" height="158"  dataProvider="{MediaCollection.VideosArray}" width="152" itemClick="VideoPreviewList_itemClickHandler(event)">
 					<mx:columns>
 						<mx:DataGridColumn headerText=""  dataField="name"/>
@@ -563,9 +651,6 @@
 						<mx:DataGridColumn headerText=""  dataField="name"/>
 					</mx:columns>
 				</mx:DataGrid>
-				<mx:Button x="513" y="21" label="Retrieve Media" click="retrieveClickHandler(event)" width="116" cornerRadius="8" height="34"/>
-				<mx:Image id="PreviewedImage" x="250.5" y="291" width="316" height="207" visible="false"/>
-				<mx:VideoDisplay id="PreviewedVideo" x="250.5" y="291" width="316" height="207" visible="false"/>
 			</mx:Canvas>
 		</mx:TabNavigator>
 	</mx:VBox>
