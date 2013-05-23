@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Lessons/Lesson3_CSharp/Lesson3_CSharp.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Lessons/Lesson3_CSharp/Lesson3_CSharp.cs" Line="152" Column="2" />
+      <File FileName="Assets/Scripts/Lessons/Lesson3_CSharp/CustomCSharpClass.cs" Line="118" Column="17" />
+      <File FileName="Assets/Scripts/Lessons/Lesson3_CSharp/CustomSingleton.cs" Line="59" Column="25" />
+      <File FileName="Assets/Scripts/Lessons/Lesson3_CSharp/CustomGenericClass.cs" Line="62" Column="15" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
