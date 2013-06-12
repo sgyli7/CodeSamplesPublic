@@ -99,13 +99,17 @@ public class Lesson3_CSharp : MonoBehaviour
 		_customCSharpClass.onInitialized += onInitialized;
 		_customCSharpClass.initialize();
 		
-		//	ACTIONS
+		//	ACTIONS 
+		//		(with Lamda)
 		_customCSharpClass.doLongProcess(
 			() => 
 			{
 				Debug.Log("doLongProcess Complete");
 			}
 			);
+		
+		//		(with Callback)
+		_customCSharpClass.doLongProcess(_onLongProcessComplete);
 		
 		//	METHOD OVERLOADING
 		_customCSharpClass.overloadedMethod();
@@ -187,9 +191,14 @@ public class Lesson3_CSharp : MonoBehaviour
 		//STOP OBSERVING
 		_customCSharpClass.onInitialized -= onInitialized;
 		
+		
 	}
 	
 	///<summary>
 	///	Handles "doLongProcess" completion
 	///</summary>
+	public void _onLongProcessComplete() 
+	{
+		Debug.Log ("_onLongProcessComplete()");
+	}
 }
