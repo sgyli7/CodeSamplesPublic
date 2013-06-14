@@ -69,6 +69,10 @@ public class GameManagerComponent : MonoBehaviour
 	///</summary>
 	private List<GameObject> _model_list_gameobject = new List<GameObject>(10);
 	
+	///<summary>
+	///	 Selected Item
+	///</summary>
+	private int _modelListSelectedItem_int;
 	
 	// PRIVATE STATIC
 	///<summary>
@@ -98,9 +102,14 @@ public class GameManagerComponent : MonoBehaviour
 	///</summary>
 	void Awake ()
 	{
+		
+		//MOVE THIS INTO CONSTRUCTOR OF SINGELTON???
+		
+		
+		
 		DontDestroyOnLoad (gameObject);
 		
-				
+
 		_model_list_gameobject.Add (GameObject.Find ("HousePrefab"));
 		_model_list_gameobject.Add(GameObject.Find ("SmallBuildingPrefab"));
 		_model_list_gameobject.Add(GameObject.Find ("TallBuildingPrefab"));
@@ -135,29 +144,70 @@ public class GameManagerComponent : MonoBehaviour
 	///</summary>
 	public void loadPreviousModel ()
 	{
-		ModelComponent modelComponent0 = _model_list_gameobject[0].GetComponent<ModelComponent>();
-		ModelComponent modelComponent1 = _model_list_gameobject[1].GetComponent<ModelComponent>();
-		ModelComponent modelComponent2 = _model_list_gameobject[2].GetComponent<ModelComponent>();
+		_modelListSelectedItem_int --;
+		_doCorrectIndex();
+		_loadCurrentModel();
 		
-		modelComponent0.wayPoint = GameObject.Find ("Waypoint3");
-		modelComponent1.wayPoint = GameObject.Find ("Waypoint1");
-		modelComponent2.wayPoint = GameObject.Find ("Waypoint2");
 	}
-
-	
+		
 	///<summary>
 	///	 Level
 	///</summary>
 	public void loadNextModel ()
 	{
+		_modelListSelectedItem_int ++;
+		_doCorrectIndex();
+		_loadCurrentModel();
+
+	}
+	
+	///<summary>
+	///	 Level
+	///</summary>
+	private void _doCorrectIndex ()
+	{
+		if (_modelListSelectedItem_int < 0) {
+			_modelListSelectedItem_int = _model_list_gameobject.Count -1;
+		} else if (_modelListSelectedItem_int > _model_list_gameobject.Count -1) {
+			_modelListSelectedItem_int = 0;
+		}
+	}
+	
+	
+	///<summary>
+	///	 Level
+	///</summary>
+	private void _loadCurrentModel ()
+	{
+		
+		Debug.Log ("NOW: " + _modelListSelectedItem_int);
+		
 		ModelComponent modelComponent0 = _model_list_gameobject[0].GetComponent<ModelComponent>();
 		ModelComponent modelComponent1 = _model_list_gameobject[1].GetComponent<ModelComponent>();
 		ModelComponent modelComponent2 = _model_list_gameobject[2].GetComponent<ModelComponent>();
 		
-		modelComponent0.wayPoint = GameObject.Find ("Waypoint1");
-		modelComponent1.wayPoint = GameObject.Find ("Waypoint2");
-		modelComponent2.wayPoint = GameObject.Find ("Waypoint3");
+		switch (_modelListSelectedItem_int) {
+			case (0):
+				modelComponent0.wayPoint = GameObject.Find ("Waypoint1");
+				modelComponent1.wayPoint = GameObject.Find ("Waypoint2");
+				modelComponent2.wayPoint = GameObject.Find ("Waypoint0");
+				break;
+			case (1):
+				modelComponent0.wayPoint = GameObject.Find ("Waypoint0");
+				modelComponent1.wayPoint = GameObject.Find ("Waypoint1");
+				modelComponent2.wayPoint = GameObject.Find ("Waypoint2");
+				break;
+			case (2):
+				modelComponent0.wayPoint = GameObject.Find ("Waypoint2");
+				modelComponent1.wayPoint = GameObject.Find ("Waypoint0");
+				modelComponent2.wayPoint = GameObject.Find ("Waypoint1");
+				break;
+		}
+
+
 	}
+		
+
 	
 	///<summary>
 	///	 Level
