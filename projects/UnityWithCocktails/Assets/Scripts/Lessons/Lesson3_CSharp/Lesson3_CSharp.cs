@@ -95,21 +95,45 @@ public class Lesson3_CSharp : MonoBehaviour
 		// 	@-QUOTING
 		Debug.Log("customCSharpClass.sampleAtQuoting : "+ _customCSharpClass.sampleAtQuoting);
 		
+		
 		//	DELEGATES
 		_customCSharpClass.onInitialized += onInitialized;
 		_customCSharpClass.initialize();
 		
-		//	ACTIONS 
-		//		(with Lamda)
+		
+		//	1. IN-LINE METHOD DECLARATION
+		//		(with Lamda) - write inline function
 		_customCSharpClass.doLongProcess(
 			() => 
 			{
 				Debug.Log("doLongProcess Complete");
 			}
 			);
-		
-		//		(with Callback)
+		//
 		_customCSharpClass.doLongProcess(_onLongProcessComplete);
+		
+		
+		//	2. IN-LINE METHOD DECLARATION
+		//		(with Func) - write inline function, with return value
+		Func <int, int, float> addAndDivideThem = (my1_int, my2_int) => (my1_int + my2_int)/2;
+		float resultOfFunc_float = addAndDivideThem (11, 22);
+		Debug.Log("Func<>: " + resultOfFunc_float);
+		
+		
+		//	3. IN-LINE METHOD DECLARATION
+		//		(with Predicate) - write inline functionn, (like Func but ALWAYS RETURNS BOOLEAN)
+		Predicate <float> isGreaterThan5 = (my_float) => my_float > 5;
+		bool resultOfPredicate_float = isGreaterThan5 (3);
+		Debug.Log("Predicate<>: " + resultOfPredicate_float);
+		
+		
+		//	4. IN-LINE METHOD DECLARATION
+		//		(with Action) - write inline function, NEVER A RETURN VALUE
+		Action<string, string> concatAndOutput = (my1_string, my2_string) => Debug.Log ("Action: " + my1_string + "," + my2_string);
+		concatAndOutput ("Hello", "World");
+		
+		
+		
 		
 		//	METHOD OVERLOADING
 		_customCSharpClass.overloadedMethod();

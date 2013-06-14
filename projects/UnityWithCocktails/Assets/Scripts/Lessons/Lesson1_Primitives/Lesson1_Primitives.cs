@@ -47,8 +47,14 @@ public class Lesson1_Primitives : MonoBehaviour
 		
 	// PUBLIC
 	///<summary>
-	///	This is a sample public property.
+	///	An enum is used for storing and checking the category/ilk of things.
 	///</summary>
+	public enum DrinkType
+	{
+		BEER,
+		WINE,
+		COCKTAIL
+	}
 	
 	// PUBLIC STATIC
 	///<summary>
@@ -88,6 +94,9 @@ public class Lesson1_Primitives : MonoBehaviour
 		float 		sample_float 		= 1.1f;
 		double      sample_double   	= 1.2;
 		//
+		DrinkType   hisDrinkType = DrinkType.BEER;
+		DrinkType   herDrinkType = DrinkType.COCKTAIL;
+		//
 		object      sample_object       = new Object();
 		//
 		string[]    sampleArray1_str     = new string[2];
@@ -110,6 +119,8 @@ public class Lesson1_Primitives : MonoBehaviour
 		Debug.Log ("sample_object: " 		+ sample_object);
 		Debug.Log ("sampleArray1_str: " 	+ sampleArray1_str.ToString());
 		Debug.Log ("sampleArray2_str: " 	+ sampleArray2_str.ToString());
+		//
+		Debug.Log ("same drinktype?: " 	+ (hisDrinkType == herDrinkType));
 		
 		//	REFLECTION
 		Debug.Log ("--------------");
