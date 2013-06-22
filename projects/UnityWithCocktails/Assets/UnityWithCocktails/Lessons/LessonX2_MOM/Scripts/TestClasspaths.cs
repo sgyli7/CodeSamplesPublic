@@ -1,19 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class TestClasspaths : MonoBehaviour
+namespace lessonX2_MOM
 {
-
-	// Use this for initialization
-	void Start ()
-	{
+	public class TestClassPaths : MonoBehaviour {
 	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
+		public static void what ()
+		{
+			
+		}
 	}
 }
-
