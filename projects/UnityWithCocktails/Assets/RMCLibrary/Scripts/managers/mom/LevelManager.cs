@@ -29,8 +29,9 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections;
+using UnityEditor;
 using System.Collections.Generic;
+using com.rmc.utilities;
 
 //--------------------------------------
 //  Namespace
@@ -44,12 +45,44 @@ namespace com.rmc.managers.mom
 	/// <summary>
 	/// Abstract manager.
 	/// </summary>
-	public class AbstractManager : ScriptableObject, IManager
+	public class LevelManager : AbstractManager
 	{
 	
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
+		// GETTER / SETTER
+		///<summary>
+		///	 Current Level
+		///</summary>
+		private string _currentLevel;
+		public string currentLevel 
+		{
+			get 
+			{
+				return _currentLevel;
+			}
+			set 
+			{
+				_currentLevel = value;
+				Application.LoadLevel (_currentLevel);
+			}
+		}
+		
+		// PUBLIC
+		
+		// PUBLIC STATIC
+		
+		// PRIVATE
+		///<summary>
+		///	 Put a list of all the scene names that you'd like to navigate to. Don't list the current scene
+		///</summary>
+		public List<string> _listOtherScenes = new List<string>()
+	    {
+	        "TestLevel1",
+			"TestLevel2"
+	    };
+		
 		// PUBLIC
 		
 		// PUBLIC STATIC
@@ -64,26 +97,97 @@ namespace com.rmc.managers.mom
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public AbstractManager ( )
+		public LevelManager ( )
 		{
-			//Debug.Log ("AbstractManager.constructor()");
+			//Debug.Log ("LevelManager.constructor()");
 			
 		}
 		
 		/// <summary>
 		/// Deconstructor
 		/// </summary>
-		~AbstractManager ( )
+		~LevelManager ( )
 		{
-			//Debug.Log ("AbstractManager.constructor()");
+			//Debug.Log ("LevelManager.deconstructor()");
 			
 		}
 		
 		// PUBLIC
+
+		/// <summary>
+		/// Loads the previous level.
+		/// </summary>
+		public void loadPreviousLevel ()
+		{
+			if (_currentLevel == null) {
+				currentLevel = _listOtherScenes[0];
+			} else {
+				//CURRENT
+				int currentIndex_int = _listOtherScenes.IndexOf (currentLevel);
+				//NEXT
+				currentIndex_int--;
+				//CORRECT
+				currentLevel = _getCorrectedLevelNameByIndex(currentIndex_int);
+			}
+		}
+	
+		
+		/// <summary>
+		/// Loads the next level.
+		/// </summary>
+		public void loadNextLevel ()
+		{
+			if (_currentLevel == null) {
+				currentLevel = _listOtherScenes[0];
+			} else {
+				//CURRENT
+				int currentIndex_int = _listOtherScenes.IndexOf (currentLevel);
+				//NEXT
+				currentIndex_int++;
+				//CORRECT
+				currentLevel = _getCorrectedLevelNameByIndex(currentIndex_int);
+			}
+		}
+		
+		// PUBLIC STATIC
+		/// <summary>
+		/// Creates the asset.
+		/// </summary>
+		[MenuItem("Assets/Create/MOM/LevelManager")]
+		public static void CreateAsset ()
+		{
+			ScriptableObjectUtility.CreateAsset<LevelManager> ();
+		}
+		
+
 		
 		// PRIVATE
 		
+		/// <summary>
+		/// _gets the index of the corrected level name by.
+		/// </summary>
+		/// <returns>
+		/// The corrected level name by index.
+		/// </returns>
+		/// <param name='aDesiredIndex_int'>
+		/// A desired index_int.
+		/// </param>
+		private string _getCorrectedLevelNameByIndex (int aDesiredIndex_int)
+		{
+			int correctedIndex_int;
+			//
+			if (aDesiredIndex_int < 0) {
+				correctedIndex_int = _listOtherScenes.Count-1;
+			} else if (aDesiredIndex_int >= _listOtherScenes.Count) {
+				correctedIndex_int = 0;
+			} else {
+				correctedIndex_int = aDesiredIndex_int;
+			}
+			return _listOtherScenes[correctedIndex_int];
+		}
+		
 		// PRIVATE STATIC
+		
 		
 		// PRIVATE COROUTINE
 		
@@ -92,17 +196,7 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		public void onAddManager()
-		{
-			Debug.Log ("AbstractManager.onAddManager() - remove this soon");
-			
-		}
-		
-		public void onRemoveManager()
-		{
-			Debug.Log ("AbstractManager.onRemoveManager() - remove this soon");
-			
-		}
+
 	}
 }
 

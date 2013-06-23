@@ -48,7 +48,11 @@
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\ManagerComponent.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\AbstractManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\IManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\LevelManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\MOM.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson1_Primitives\Lesson1_Primitives.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Beer.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Beverage.cs" />

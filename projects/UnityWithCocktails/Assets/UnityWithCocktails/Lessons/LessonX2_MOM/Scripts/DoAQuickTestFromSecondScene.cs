@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using com.rmc.managers.mom;
 
 namespace lessonX2_MOM
 {
@@ -12,7 +13,7 @@ namespace lessonX2_MOM
 			//that if the 'SimpleGameManagerComponent' instance...
 			//doesn't exist in the next THEN it is created
 			//DOES exist, then it is accessed
-			Debug.Log ("Test1 ("+ name+") : " + SimpleGameManagerComponent.Instance);
+			Debug.Log ("MOM Test1 ("+ name+") : " + MOM.Instance);
 		}
 		
 		// Update is called once per frame

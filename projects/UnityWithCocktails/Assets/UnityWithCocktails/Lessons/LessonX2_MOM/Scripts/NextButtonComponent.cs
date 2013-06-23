@@ -29,6 +29,7 @@
 //--------------------------------------
 using UnityEngine;
 using System.Collections;
+using com.rmc.managers.mom;
 
 //--------------------------------------
 //  Class
@@ -73,8 +74,7 @@ namespace lessonX2_MOM
 		///</summary>
 		void OnMouseDown () 
 		{
-			//
-			SimpleGameManagerComponent.Instance.loadNextLevel();
+			MOM.Instance.getManager<LevelManager>().loadNextLevel();
 		}
 	}
 }

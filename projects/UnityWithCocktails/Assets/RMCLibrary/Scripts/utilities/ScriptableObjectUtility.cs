@@ -29,27 +29,28 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
+using System.IO;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.managers.mom
+namespace com.rmc.utilities
 {
 	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
 	/// <summary>
-	/// Abstract manager.
+	/// Scriptable object utility.
 	/// </summary>
-	public class AbstractManager : ScriptableObject, IManager
+	public class ScriptableObjectUtility
 	{
 	
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
+		
 		// PUBLIC
 		
 		// PUBLIC STATIC
@@ -57,52 +58,52 @@ namespace com.rmc.managers.mom
 		// PRIVATE
 		
 		// PRIVATE STATIC
+	
 		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		///<summary>
-		///	 Constructor
-		///</summary>
-		public AbstractManager ( )
-		{
-			//Debug.Log ("AbstractManager.constructor()");
-			
-		}
-		
-		/// <summary>
-		/// Deconstructor
-		/// </summary>
-		~AbstractManager ( )
-		{
-			//Debug.Log ("AbstractManager.constructor()");
-			
-		}
 		
 		// PUBLIC
+		
+		// PUBLIC STATIC
+		
+		/// <summary>
+		//	This makes it easy to create, name and place unique new ScriptableObject asset files.
+		/// </summary>
+		public static void CreateAsset<T> () where T : ScriptableObject
+		{
+			T asset = ScriptableObject.CreateInstance<T> ();
+	 
+			string path = AssetDatabase.GetAssetPath (Selection.activeObject);
+			if (path == "") 
+			{
+				path = "Assets";
+			} 
+			else if (Path.GetExtension (path) != "") 
+			{
+				path = path.Replace (Path.GetFileName (AssetDatabase.GetAssetPath (Selection.activeObject)), "");
+			}
+	 
+			string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath (path + "/" + typeof(T).Name + ".asset");
+	 
+			AssetDatabase.CreateAsset (asset, assetPathAndName);
+	 
+			AssetDatabase.SaveAssets ();
+			EditorUtility.FocusProjectWindow ();
+			Selection.activeObject = asset;
+		}
 		
 		// PRIVATE
 		
 		// PRIVATE STATIC
 		
-		// PRIVATE COROUTINE
-		
-		// PRIVATE INVOKE
-		
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		public void onAddManager()
-		{
-			Debug.Log ("AbstractManager.onAddManager() - remove this soon");
-			
-		}
 		
-		public void onRemoveManager()
-		{
-			Debug.Log ("AbstractManager.onRemoveManager() - remove this soon");
-			
-		}
+		
+		
 	}
 }
 
