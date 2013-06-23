@@ -35,7 +35,7 @@ using System.Collections.Generic;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace lessonX2_MOM
+namespace com.rmc.managers.mom
 {
 	
 	//--------------------------------------
@@ -50,38 +50,6 @@ namespace lessonX2_MOM
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
-		// GETTER / SETTER
-		///<summary>
-		///	 Current Level
-		///</summary>
-		private string _currentLevel;
-		public string currentLevel 
-		{
-			get 
-			{
-				return _currentLevel;
-			}
-			set 
-			{
-				_currentLevel = value;
-				Application.LoadLevel (_currentLevel);
-			}
-		}
-		
-		// PUBLIC
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		///<summary>
-		///	 Put a list of all the scene names that you'd like to navigate to. Don't list the current scene
-		///</summary>
-		public List<string> _listOtherScenes = new List<string>()
-	    {
-	        "TestLevel1",
-			"TestLevel2"
-	    };
-		
 		
 		// PRIVATE STATIC
 		///<summary>
@@ -113,6 +81,12 @@ namespace lessonX2_MOM
 		{ 
 			//
 			DontDestroyOnLoad (this);
+			
+			if (_Instance == null) {
+				#pragma warning disable 0219
+				MOM dummy_mom = MOM.Instance; //trick singleton into instantiating if it doesn't exist yet.
+				#pragma warning restore 0219
+			}
 		}
 		
 		
@@ -157,63 +131,85 @@ namespace lessonX2_MOM
 			DestroyImmediate (gameObject);	
 		}
 		
-	
+		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///			LEVEL FUNCTIONALITY
+		///			MANAGERS FUNCTIONALITY
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		
-		///<summary>
-		///	 Level
-		///</summary>
-		public void loadPreviousLevel ()
-		{
-			if (_currentLevel == null) {
-				currentLevel = _listOtherScenes[0];
-			} else {
-				//CURRENT
-				int currentIndex_int = _listOtherScenes.IndexOf (currentLevel);
-				//NEXT
-				currentIndex_int--;
-				//CORRECT
-				currentLevel = _getCorrectedLevelNameByIndex(currentIndex_int);
-			}
-		}
-	
+		/// <summary>
+		/// The I managers.
+		/// </summary>
+		public List<AbstractManager> IManagers = new List<AbstractManager>();
 		
-		///<summary>
-		///	 Level
-		///</summary>
-		public void loadNextLevel ()
-		{
-			if (_currentLevel == null) {
-				currentLevel = _listOtherScenes[0];
-			} else {
-				//CURRENT
-				int currentIndex_int = _listOtherScenes.IndexOf (currentLevel);
-				//NEXT
-				currentIndex_int++;
-				//CORRECT
-				currentLevel = _getCorrectedLevelNameByIndex(currentIndex_int);
-			}
-		}
+		public ArrayList arrayList;
 		
-		///<summary>
-		///	 Level
-		///</summary>
-		public string _getCorrectedLevelNameByIndex (int aDesiredIndex_int)
+		public AbstractManager[] man;
+		
+		
+		
+		/// <summary>
+		/// Adds the manager.
+		/// </summary>
+		/// <returns>
+		/// The manager.
+		/// </returns>
+		/// <typeparam name='T'>
+		/// The 1st type parameter.
+		/// </typeparam>
+		public T addManager <T> () where T : IManager
 		{
-			int correctedIndex_int;
+			Component component = gameObject.GetComponent (typeof (T));
+			IManager existing_imanager = component as IManager;
+			
 			//
-			if (aDesiredIndex_int < 0) {
-				correctedIndex_int = _listOtherScenes.Count-1;
-			} else if (aDesiredIndex_int >= _listOtherScenes.Count) {
-				correctedIndex_int = 0;
-			} else {
-				correctedIndex_int = aDesiredIndex_int;
+			if (existing_imanager == null) {
+				component = gameObject.AddComponent ( typeof (T));
+				existing_imanager = component as IManager;
+				existing_imanager.onAddManager();
 			}
-			return _listOtherScenes[correctedIndex_int];
+			return (T) existing_imanager;
+		}
+		
+		/// <summary>
+		/// Gets the manager.
+		/// </summary>
+		/// <returns>
+		/// The manager.
+		/// </returns>
+		/// <typeparam name='T'>
+		/// The 1st type parameter.
+		/// </typeparam>
+		public bool removeManager <T> () where T : IManager
+		{
+			Component component = gameObject.GetComponent (typeof (T));
+			IManager existing_imanager = component as IManager;
+			
+			if (existing_imanager == null) {
+				return false; //failed
+				
+			} else {
+				existing_imanager.onRemoveManager();
+				return true;
+			}
+			
+		}
+		
+		
+		/// <summary>
+		/// Gets the manager.
+		/// </summary>
+		/// <returns>
+		/// The manager.
+		/// </returns>
+		/// <typeparam name='T'>
+		/// The 1st type parameter.
+		/// </typeparam>
+		public T getManager <T> () where T : IManager
+		{
+			IManager existing_imanager = addManager<T>();
+			return (T) existing_imanager;
 		}
 		
 		///////////////////////////////////////////////////////////////////////////
@@ -345,20 +341,30 @@ namespace lessonX2_MOM
 						MOM_gameobject = new GameObject (MOM._NAME_MOM);
 					
 						//2. ADD FLAGS TO HIDE EVERYTHING FROM HIERARCHY (OPTIONAL)
-						MOM_gameobject.hideFlags = HideFlags.HideInHierarchy;
+						//MOM_gameobject.hideFlags = HideFlags.HideInHierarchy;
 					}
 					
 					//3. CREATE A COMPONENT ON THE GAME OBJECT
 					_Instance = MOM_gameobject.GetComponent<MOM>();
 					if (_Instance == null) {
 						_Instance = MOM_gameobject.AddComponent<MOM>(); 	
+						
+						//XXXXX. TEMPORARY***** ADD MANAGERS (SHOULD BE DONE FROM OUTSIDE)
+						Debug.Log("1");
+						_Instance.addManager<LevelManager>();
+						Debug.Log("2");
+						LevelManager levelManager = _Instance.getManager<LevelManager>();
+						levelManager.loadNextLevel();
+						Debug.Log("3");
+						_Instance.removeManager<LevelManager>();
+						
 					}
-					
 					
 					
 					//4. INITIALIZE A FEW CHILDREN TO ACT LIKE FOLDERS FOR FUTURE GO'S
 					MOM._CreateChildGameObjectIfNotAlreadyCreated(_Instance.gameObject, MOM._NAME_DYNAMIC_GAME_OBJECTS);
 					MOM._CreateChildGameObjectIfNotAlreadyCreated(_Instance.gameObject, MOM._NAME_STATIC_GAME_OBJECTS);
+					
 					
 					
 				} 
