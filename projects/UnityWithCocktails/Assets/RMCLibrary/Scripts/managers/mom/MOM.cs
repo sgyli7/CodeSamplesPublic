@@ -72,7 +72,7 @@ namespace com.rmc.managers.mom
 		/// 	NOTE: I TRIED PRIVATE WITH SERIALIZED, ALL THAT WORKS GREAT *BUT* THE GETTER/SETTER ISN'T CALLED FROM THE EDITOR, SO GETTER/SETTER HAS LIMITED VALUE WITH THIS EDITOR-CENTRIC PROPERTY
 		/// 
 		[SerializeField] 
-		public bool isVisibleInHierarchy = true;
+		public bool isHiddenInHierarchy = true;
 		
 		// PRIVATE STATIC
 		///<summary>
@@ -517,23 +517,26 @@ namespace com.rmc.managers.mom
 		/// </param>
 		private static void _doUpdateHideFlagsForGameObject(GameObject aGameObject)
 		{
-			if (_Instance.isVisibleInHierarchy) {
-				aGameObject.hideFlags = aGameObject.hideFlags ^ HideFlags.HideInHierarchy;
+			//Debug.Log ("VISIBLE: " + _Instance.isVisibleInHierarchy);
+			if (_Instance.isHiddenInHierarchy) {
+				
+				// | IS WITH
+				aGameObject.hideFlags = 0;
+				aGameObject.hideFlags |= HideFlags.HideInHierarchy;
 			} else {
-				aGameObject.hideFlags = HideFlags.HideInHierarchy;
+				
+				// ^ IS WITHOUT
+				aGameObject.hideFlags = 0;
 			}
-			/*
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
-			*/
+			
+						
+			//TODO: COMMENT-IN THIS LINE TO DISABLE 100% OF THE TIME
+			//aGameObject.hideFlags |= HideFlags.HideInInspector;
+			
+			
+			
+			//show
+			//Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
 		}
 		
 		

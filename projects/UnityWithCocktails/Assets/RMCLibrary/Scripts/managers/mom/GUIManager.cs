@@ -106,40 +106,21 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		override public void onAddManager()
 		{
-			Debug.Log ("onAddManager(): " + this);
-			
-			//I KNOW 'I' AM ADDED SO SET MY PROPERTIES
-			canReceiveUpdate = false;
 			
 		}
 		
 		override public void onReset(IManager iManager)
 		{
-			Debug.Log ("	onReset(): " + this);
-			
-			//YET ONE MORE MANAGER IS ADDED (NOT ME) SO STORE REFERENCES
-			if (MOM.Instance.getManager<LevelManager>()) {
-				
-				//demo: store as private var to call this just once, ever
-				LevelManager levelManager = MOM.Instance.getManager<LevelManager>();
-				levelManager.loadNextLevel();
-			}
 			
 		}
 		
 		override public void onUpdate()
 		{
 			
-			//USE MY PROPS AND ALL OTHER MANAGERS AS NEEDED
-			Debug.Log ("onUpdate(): " + this);
-			
 		}
 		
 		override public void onRemoveManager()
 		{
-			
-			//I WILL BE REMOVED AFTER THIS
-			Debug.Log ("onRemoveManager(): " + this);
 			
 		}
 

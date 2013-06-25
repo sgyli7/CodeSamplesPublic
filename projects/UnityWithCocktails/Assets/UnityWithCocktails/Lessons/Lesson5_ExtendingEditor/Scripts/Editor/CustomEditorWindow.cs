@@ -57,7 +57,7 @@ public class CustomEditorWindow : EditorWindow
 	/// <summary>
 	/// The _my custom_string.
 	/// </summary>
-	private string 	_myCustom_string 		= "Hello World";
+	private string 	_myCustom_string 		= "onHello World";
 	
 	/// <summary>
 	/// The _is group enabled_boolean.

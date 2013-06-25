@@ -106,13 +106,13 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		override public void onAddManager()
 		{
-			Debug.Log ("onAddManager(): " + this);
+			//Debug.Log ("onAddManager(): " + this);
 			
 		}
 		
 		override public void onReset(IManager iManager)
 		{
-			Debug.Log ("	onReset(): " + this);
+			//Debug.Log ("	onReset(): " + this);
 			
 		}
 		
@@ -120,7 +120,7 @@ namespace com.rmc.managers.mom
 		{
 			
 			//USE MY PROPS AND ALL OTHER MANAGERS AS NEEDED
-			Debug.Log ("onUpdate(): " + this);
+			//Debug.Log ("onUpdate(): " + this);
 			
 		}
 		
@@ -128,7 +128,7 @@ namespace com.rmc.managers.mom
 		{
 			
 			//I WILL BE REMOVED AFTER THIS
-			Debug.Log ("onRemoveManager(): " + this);
+			//Debug.Log ("onRemoveManager(): " + this);
 			
 		}
 

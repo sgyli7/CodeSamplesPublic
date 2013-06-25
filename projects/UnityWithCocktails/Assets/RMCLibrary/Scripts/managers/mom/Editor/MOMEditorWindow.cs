@@ -84,9 +84,9 @@ namespace com.rmc.managers.mom
 		private SerializedProperty _isEnabled_serializedproperty;
 		
 		/// <summary>
-		/// The is visible in hierarchy_serializedproperty.
+		/// The _is hidden in hierarchy_serializedproperty.
 		/// </summary>
-		private SerializedProperty _isVisibleInHierarchy_serializedproperty;
+		private SerializedProperty _isHiddenInHierarchy_serializedproperty;
 		
 		/// <summary>
 		/// The managers list_serializedproperty.
@@ -106,7 +106,7 @@ namespace com.rmc.managers.mom
 		///</summary>
 		void Start () 
 		{
-			
+
 				
 		}
 		
@@ -135,14 +135,14 @@ namespace com.rmc.managers.mom
 			_mom_serializedObject 						= new SerializedObject(MOM.Instance);
 			//
 			_isEnabled_serializedproperty 				= _mom_serializedObject.FindProperty ("isEnabled");
-			_isVisibleInHierarchy_serializedproperty 	= _mom_serializedObject.FindProperty ("isVisibleInHierarchy");
+			_isHiddenInHierarchy_serializedproperty 	= _mom_serializedObject.FindProperty ("isHiddenInHierarchy");
 			//
 			_managersList_serializedproperty 			= _mom_serializedObject.FindProperty ("managersList");
-			
 		}
 		
-		private Texture2D tabIcon_texture2D 	= Resources.Load("MOMEditorWindowTabIcon") as Texture2D;
-		private Texture2D bannerImage_texture2D = Resources.Load("MOMEditorWindowBannerImage") as Texture2D;
+		private Texture2D tabIcon_texture2D 		= Resources.Load("MOMEditorWindowTabIcon") as Texture2D;
+		private Texture2D hierarchyItem_texture2D 	= Resources.Load("MOMHierarchyItemIcon") as Texture2D;
+		private Texture2D bannerImage_texture2D 	= Resources.Load("MOMEditorWindowBannerImage") as Texture2D;
  
 		
 			
@@ -162,6 +162,8 @@ namespace com.rmc.managers.mom
 			//
 			EditorWindowUtility.SetEditorWindowTabIcon (this, tabIcon_texture2D);
 			
+			EditorApplication.hierarchyWindowItemOnGUI += _onHierarchyWindowItemOnGUI;
+			EditorApplication.hierarchyWindowChanged += _onHierarchyWindowChanged;
 				
 			
 		}
@@ -181,12 +183,13 @@ namespace com.rmc.managers.mom
 			//LOAD CHANGES
 			_mom_serializedObject.Update();
 			
+			EditorGUIUtility.LookLikeControls();
 			
 			GUI.enabled = true; //FOR THE TOP OF THE PAGE HERE...
 			
 				
-			//
-			EditorWindowUtility.DebugLogAllPropertiesForSerializedProperty(_mom_serializedObject);
+			//DEBUG.LOG() ALL PROPERTIES OF 'MOM'
+			//EditorWindowUtility.DebugLogAllPropertiesForSerializedProperty(_mom_serializedObject);
 			
 			
 			//STYLE INFO
@@ -201,6 +204,24 @@ namespace com.rmc.managers.mom
 			GUILayout.Box(bannerImage_texture2D,GUILayout.Width(position.width - _bannerPaddingRight_int),GUILayout.Height(40)); 
 			//GUILayout.Label(bannerImage_texture2D,GUILayout.Width(position.width - 7),GUILayout.Height(50)); 
 			
+			//OPTIONS
+			GUILayoutOption[] wideToggleGUILayoutOptions = new GUILayoutOption[1];
+			wideToggleGUILayoutOptions[0] = GUILayout.MaxWidth (30);
+			
+			//OPTIONS
+			GUILayoutOption[] skinnyToggleGUILayoutOptions = new GUILayoutOption[2];
+			skinnyToggleGUILayoutOptions[0] = GUILayout.MaxWidth (14);
+			skinnyToggleGUILayoutOptions[1] = GUILayout.MinWidth (14);
+			
+			//OPTIONS
+			GUILayoutOption[] buttonGUILayoutOptions = new GUILayoutOption[2];
+			buttonGUILayoutOptions[0] = GUILayout.MaxWidth (60);
+			buttonGUILayoutOptions[1] = GUILayout.MinWidth (60);
+			
+			//OPTIONS
+			GUILayoutOption[] scriptableObjectFieldOptions = new GUILayoutOption[2];
+			scriptableObjectFieldOptions[0] = GUILayout.MaxWidth (250);
+			scriptableObjectFieldOptions[1] = GUILayout.MinWidth (250);
 			
 			//
 			GUILayoutOption[] scrollViewMenu_options = new GUILayoutOption[1];
@@ -220,10 +241,11 @@ namespace com.rmc.managers.mom
 				EditorGUI.indentLevel++;
 				EditorGUILayout.BeginVertical();
 				{
+					
 					//
 					EditorGUILayout.BeginHorizontal();
 					EditorGUILayout.PrefixLabel ("Enabled?");
-					_isEnabled_serializedproperty.boolValue = EditorGUILayout.Toggle (_isEnabled_serializedproperty.boolValue);	
+					_isEnabled_serializedproperty.boolValue = EditorGUILayout.Toggle (_isEnabled_serializedproperty.boolValue, wideToggleGUILayoutOptions);	
 					EditorGUILayout.EndHorizontal();
 					
 					//TOGGLE FOR THE PAGE BELOW
@@ -231,8 +253,9 @@ namespace com.rmc.managers.mom
 					
 					//
 					EditorGUILayout.BeginHorizontal();
-					EditorGUILayout.PrefixLabel ("Visible In Hierarchy?");
-					_isVisibleInHierarchy_serializedproperty.boolValue = EditorGUILayout.Toggle (_isVisibleInHierarchy_serializedproperty.boolValue);	
+					EditorGUILayout.PrefixLabel ("Hide In Hierarchy?");
+					_isHiddenInHierarchy_serializedproperty.boolValue = EditorGUILayout.Toggle (_isHiddenInHierarchy_serializedproperty.boolValue, wideToggleGUILayoutOptions);	
+					EditorGUILayout.PrefixLabel ("(Must Hit Play then Pause)");
 					EditorGUILayout.EndHorizontal();
 					
 				}
@@ -250,7 +273,6 @@ namespace com.rmc.managers.mom
 				//
 				string manager_string = "Managers";
 				EditorGUILayout.LabelField (manager_string, bold_guistyle );
-				EditorGUI.indentLevel++;
 				if (MOM.Instance.managersList.Count == 0) {
 					
 					//NO MANAGERS
@@ -258,44 +280,59 @@ namespace com.rmc.managers.mom
 					
 						
 				} else {
-						
+					
 					//
-					IEnumerator managersList_ienumerator = _managersList_serializedproperty.GetEnumerator();
+					EditorGUI.indentLevel++;
+					_managersList_serializedproperty.isExpanded = EditorGUILayout.Foldout(_managersList_serializedproperty.isExpanded, new GUIContent ("Expand"));
+				
+					EditorGUI.indentLevel++;
+					if (_managersList_serializedproperty.isExpanded) {
 						
-					SerializedProperty 	managerListItem_serializedproperty;
-					ScriptableObject 	scriptableObject;
-					string 				scriptableObjectName_string;
-					string				scriptableObjectTooltip_string;
-					while (managersList_ienumerator.MoveNext()) {
-					
-						//
-						EditorGUILayout.BeginHorizontal();
-						{
-							managerListItem_serializedproperty = managersList_ienumerator.Current as SerializedProperty;
-							scriptableObject = managerListItem_serializedproperty.objectReferenceValue as ScriptableObject;
-							//
-							if (scriptableObject.name != "") {
-								scriptableObjectName_string 	= scriptableObject.name;
-								scriptableObjectTooltip_string 	= scriptableObject.name;
-							} else {
-								scriptableObjectName_string 	= "Drag Asset ->";	
-								scriptableObjectTooltip_string 	= "Drag Asset Here.";
-							}
+						IEnumerator managersList_ienumerator = _managersList_serializedproperty.GetEnumerator();
 							
-							managerListItem_serializedproperty.objectReferenceValue = (ScriptableObject)EditorGUILayout.ObjectField(new GUIContent (scriptableObjectName_string, scriptableObjectTooltip_string), scriptableObject, typeof(MonoScript), false);
-
+						SerializedProperty 	managerListItem_serializedproperty;
+						ScriptableObject 	scriptableObject;
+						string 				scriptableObjectName_string;
+						string				scriptableObjectTooltip_string;
+						while (managersList_ienumerator.MoveNext()) {
+						
+							//
+							EditorGUILayout.BeginHorizontal();
+							{
+								
+								managerListItem_serializedproperty = managersList_ienumerator.Current as SerializedProperty;
+								scriptableObject = managerListItem_serializedproperty.objectReferenceValue as ScriptableObject;
+								//
+								if (scriptableObject.name != "") {
+									scriptableObjectName_string 	= scriptableObject.name;
+									scriptableObjectTooltip_string 	= scriptableObject.name;
+								} else {
+									scriptableObjectName_string 	= "Drag Asset ->";	
+									scriptableObjectTooltip_string 	= "Drag Asset Here.";
+								}
+								
+								EditorGUILayout.Toggle (false, skinnyToggleGUILayoutOptions);
+								
+								//
+								managerListItem_serializedproperty.objectReferenceValue = (ScriptableObject) EditorGUILayout.ObjectField(new GUIContent (scriptableObjectName_string, scriptableObjectTooltip_string), scriptableObject, typeof(ScriptableObject), false, scriptableObjectFieldOptions);
 	
-							if (GUILayout.Button (new GUIContent("Delete", "Delete This Manager"))) {
-								_onManagerListItemDeleteClick (managerListItem_serializedproperty);
+								
+									
+					
+		
+								if (GUILayout.Button (new GUIContent("Delete", "Delete This Manager"), buttonGUILayoutOptions)) {
+									_onManagerListItemDeleteClick (managerListItem_serializedproperty);
+								}
+							EditorGUILayout.EndHorizontal();
+						
 							}
-						EditorGUILayout.EndHorizontal();
-					
 						}
-					}
-					
-					
+						
+					}///////////					
 
 				}
+				
+				EditorGUI.indentLevel--;
 				
 				//GUILayoutOption[] buttonMenu_options = new GUILayoutOption[2]; //NEEDED?
 				EditorGUILayout.BeginHorizontal();
@@ -332,24 +369,27 @@ namespace com.rmc.managers.mom
 			EditorGUI.indentLevel ++;
 			EditorGUILayout.BeginHorizontal();
 			{
-				if (GUILayout.Button (new GUIContent("?", "?"))) {
+				EditorGUILayout.Space();
+				if (GUILayout.Button (new GUIContent("What", "?"))) {
 					
 				}
 			}
-			EditorGUI.indentLevel --;
+			
 			EditorGUILayout.EndHorizontal();
+			EditorGUI.indentLevel --;
 			
 			
 			
-			//
-			EditorGUILayout.LabelField ("Scripts", bold_guistyle);
+			EditorGUI.indentLevel ++;
+			EditorGUILayout.LabelField ("Scripts");
 			EditorGUI.indentLevel ++;
 			_getEditorPopupForIManagerScripts();
 			EditorGUI.indentLevel --;
 			//
-			EditorGUILayout.LabelField ("Assets", bold_guistyle);
+			EditorGUILayout.LabelField ("Assets");
 			EditorGUI.indentLevel ++;
 			_getEditorPopupForIManagerAssets();
+			EditorGUI.indentLevel --;
 			EditorGUI.indentLevel --;
 
 			
@@ -379,13 +419,18 @@ namespace com.rmc.managers.mom
 			EditorGUILayout.EndScrollView();
 			
 			
-			//SAVE CHANGES
-			_mom_serializedObject.ApplyModifiedProperties();
-			
 			//SAVE TO DISK - WHICH PARAMETER?
 			if (GUI.changed) {
+				_mom_serializedObject.ApplyModifiedProperties();
+				_mom_serializedObject.UpdateIfDirtyOrScript();
 				EditorUtility.SetDirty( MOM.Instance);
+				
 			}
+			
+			
+			//DOESN'T SEEM TO WORK--
+			//Debug.Log ("calling repaint hier");
+			//EditorApplication.RepaintHierarchyWindow();
 			
 			//OTHER THINGS?
 			//_mom_serializedObject.UpdateIfDirtyOrScript ();
@@ -394,6 +439,8 @@ namespace com.rmc.managers.mom
 			//REPAINT THIS WINDOW (NEEDED?)
 			//Repaint();
 			//autoRepaintOnSceneChange = true;
+			
+			
 			
 		}
 		
@@ -422,7 +469,6 @@ namespace com.rmc.managers.mom
 			
 				managerListItem_serializedproperty = managersList_ienumerator.Current as SerializedProperty;
 				scriptableObject = managerListItem_serializedproperty.objectReferenceValue as ScriptableObject;
-				//
 				if ((scriptableObject.name.Length == 0)) {
 					//IF JUST ONE LACKS A TITLE THEN YOU CAN'T ADD MORE	
 					isAddNewManagerEnabled_boolean = false;
@@ -444,25 +490,18 @@ namespace com.rmc.managers.mom
 			//TODO CHANGE TO IMANANGER TYPE
 			System.Type type = typeof (AbstractManager);
 			List<Object> resourcesFound = Object.FindObjectsOfTypeIncludingAssets(type).Cast<Object>().Where ( (item) => (item.GetType().Name.Contains("Manager") )).ToList();
-			//
 			
-			EditorGUILayout.LabelField ("C: " + resourcesFound.Count);
+			//EditorGUILayout ("C: " + resourcesFound.Count());
 			string[] popupListOfScriptableObjects = new string[resourcesFound.Count];
-			string nextName_string;
-			
-			//
-			for (int count_int = 0; count_int < resourcesFound.Count; count_int ++) {
+			int count_int = 0;
+			foreach (Object scriptableObject in resourcesFound) {
 				
-				nextName_string = resourcesFound[count_int].GetType().FullName; 
-				//
-				if (!popupListOfScriptableObjects.Contains (nextName_string) ) {
-					popupListOfScriptableObjects[count_int] = nextName_string;
-				}
+				popupListOfScriptableObjects[count_int] = scriptableObject.GetType().FullName.ToString();
+				count_int++;
+				
 			}
 			
-			//
 			EditorGUILayout.Popup (0, popupListOfScriptableObjects);
-			
 		}
 
 		/// <summary>
@@ -475,11 +514,10 @@ namespace com.rmc.managers.mom
 			List<AbstractManager> resourcesFound = Resources.FindObjectsOfTypeAll(type).Cast<AbstractManager>().Where ( (item) => (item.GetType() != typeof (AbstractManager) )).ToList();
 			
 			string[] popupListOfScriptableObjects = new string[resourcesFound.Count];
-			EditorGUILayout.LabelField ("C: " + resourcesFound.Count);
 			int count_int = 0;
 			foreach (AbstractManager scriptableObject in resourcesFound) {
 				
-				popupListOfScriptableObjects[count_int] = scriptableObject.GetType().FullName.ToString() + count_int;
+				popupListOfScriptableObjects[count_int] = scriptableObject.GetType().FullName.ToString();
 				count_int++;
 				
 			}
@@ -527,6 +565,74 @@ namespace com.rmc.managers.mom
 		{
 			MOM.Instance.addManager<AbstractManager>();
 			//EditorUtility.DisplayDialog ("blah", "what", "yes", "Cancel");
+		}
+		
+		/// <summary>
+		/// _ons the hierarchy window item on GU.
+		/// </summary>
+		/// <param name='instanceID'>
+		/// Instance I.
+		/// </param>
+		/// <param name='selectionRect'>
+		/// Selection rect.
+		/// </param>
+		private void _onHierarchyWindowItemOnGUI (int aInstanceID_int, Rect aSelection_rect)
+		{
+			GameObject gameObject = EditorUtility.InstanceIDToObject(aInstanceID_int) as GameObject;
+			
+			//
+			if (_isMOMGameObjectOrChildOfMOMGameObject(gameObject) ) {
+				
+				Rect icon_rect = aSelection_rect;
+				icon_rect.x = aSelection_rect.x + aSelection_rect.width - 22;
+				icon_rect.y--;
+				icon_rect.width = 22;
+				icon_rect.height = 22;
+				
+				GUI.Label (icon_rect, hierarchyItem_texture2D);	
+			}
+			
+		}
+		
+		/// <summary>
+		/// _ises the MOM game object or child of MOM game object.
+		/// </summary>
+		/// <param name='gameObject'>
+		/// Game object.
+		/// </param>
+		private bool _isMOMGameObjectOrChildOfMOMGameObject (GameObject aGameObject)
+		{
+			bool isMOMGameObjectOrChildOfMOMGameObject_boolean = false;
+			
+			if (aGameObject != null) {
+				
+				
+				if (aGameObject == MOM.Instance.gameObject) {
+					
+					//IS THE MOM
+					return true;
+				} else if (aGameObject.transform.parent != null ) {
+					
+					if (aGameObject.transform.parent.gameObject == MOM.Instance.gameObject) {
+						//ITS PARENT IS THE MOM
+						return true;	
+					}
+				}
+				
+			} 
+			
+			return isMOMGameObjectOrChildOfMOMGameObject_boolean;
+			
+		}
+		
+		
+		/// <summary>
+		/// _ons the hierarchy window changed.
+		/// </summary>
+		private void _onHierarchyWindowChanged ()
+		{
+			Debug.Log ("_onHierarchyWindowChanged()");
+			
 		}
 		
 	}

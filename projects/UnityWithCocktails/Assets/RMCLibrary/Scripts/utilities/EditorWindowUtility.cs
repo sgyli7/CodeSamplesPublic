@@ -99,7 +99,7 @@ namespace com.rmc.utilities
 	            if (titleContent != null) {
 	
 	                titleContent.image = tabIcon_texture2D;
-	                titleContent.text = "Super Cool3"; // <= here goes the title of your window
+	                //titleContent.text = "Super Cool3"; // <= here goes the title of your window
 	
 	            }
 	

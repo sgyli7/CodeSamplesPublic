@@ -106,7 +106,7 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		override public void onAddManager()
 		{
-			Debug.Log ("onAddManager(): " + this);
+			//Debug.Log ("onAddManager(): " + this);
 			
 			//I KNOW 'I' AM ADDED SO SET MY PROPERTIES
 			canReceiveUpdate = false;
@@ -115,7 +115,7 @@ namespace com.rmc.managers.mom
 		
 		override public void onReset(IManager iManager)
 		{
-			Debug.Log ("	onReset(): " + this);
+			//Debug.Log ("	onReset(): " + this);
 			
 			//YET ONE MORE MANAGER IS ADDED (NOT ME) SO STORE REFERENCES
 			if (MOM.Instance.getManager<LevelManager>()) {
@@ -131,7 +131,7 @@ namespace com.rmc.managers.mom
 		{
 			
 			//USE MY PROPS AND ALL OTHER MANAGERS AS NEEDED
-			Debug.Log ("onUpdate(): " + this);
+			//Debug.Log ("onUpdate(): " + this);
 			
 		}
 		
@@ -139,7 +139,7 @@ namespace com.rmc.managers.mom
 		{
 			
 			//I WILL BE REMOVED AFTER THIS
-			Debug.Log ("onRemoveManager(): " + this);
+			//Debug.Log ("onRemoveManager(): " + this);
 			
 		}
 

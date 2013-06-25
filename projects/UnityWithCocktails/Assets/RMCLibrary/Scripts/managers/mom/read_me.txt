@@ -30,6 +30,7 @@
 
 1. allow MULTIPLE selection in project to convert to scriptable assets
 
+consider adding "[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]"
 
 
 

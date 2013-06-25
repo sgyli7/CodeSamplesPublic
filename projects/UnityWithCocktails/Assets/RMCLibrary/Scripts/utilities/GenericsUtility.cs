@@ -87,9 +87,6 @@ namespace com.rmc.utilities
 		public static Object invokeGenericMethodByType (Object aHost, string aMethodName, System.Type aType)
 		{
 			//CUSTOM WAY
-			Debug.Log ("aHost: " + aHost);
-			Debug.Log ("aMethodName: " + aMethodName);
-			Debug.Log ("aType: " + aType);
 			MethodInfo method = aHost.GetType().GetMethod(aMethodName);
 			MethodInfo methodGeneric = method.MakeGenericMethod ( aType);
 			methodGeneric.Invoke(aHost, null);

@@ -126,29 +126,28 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		virtual public void onAddManager()
-		{
-			Debug.Log ("AbstractManager.onAddManager() - remove this soon");
-			
-		}
+		/// <summary>
+		/// Ons the add manager.
+		/// </summary>
+		virtual public void onAddManager(){}
 		
-		virtual public void onReset(IManager iManager)
-		{
-			Debug.Log ("AbstractManager.onReset("+iManager+") - remove this soon");
-			
-		}
+		/// <summary>
+		/// Ons the reset.
+		/// </summary>
+		/// <param name='iManager'>
+		/// I manager.
+		/// </param>
+		virtual public void onReset(IManager iManager){}
 		
-		virtual public void onUpdate()
-		{
-			//Debug.Log ("AbstractManager.onUpdate() - remove this soon");
-			
-		}
+		/// <summary>
+		/// Ons the update.
+		/// </summary>
+		virtual public void onUpdate(){}
 		
-		virtual public void onRemoveManager()
-		{
-			Debug.Log ("AbstractManager.onRemoveManager() - remove this soon");
-			
-		}
+		/// <summary>
+		/// Ons the remove manager.
+		/// </summary>
+		virtual public void onRemoveManager(){}
 		
 
 		
