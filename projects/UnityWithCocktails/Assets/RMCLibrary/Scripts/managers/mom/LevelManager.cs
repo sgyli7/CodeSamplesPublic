@@ -150,16 +150,6 @@ namespace com.rmc.managers.mom
 		}
 		
 		// PUBLIC STATIC
-		/// <summary>
-		/// Creates the asset.
-		/// </summary>
-		[MenuItem("Assets/Create/MOM/LevelManager")]
-		public static void CreateAsset ()
-		{
-			ScriptableObjectUtility.CreateAsset<LevelManager> ();
-		}
-		
-
 		
 		// PRIVATE
 		
@@ -196,7 +186,29 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-
+		override public void onAddManager()
+		{
+			Debug.Log ("onAddManager(): " + this);
+			
+		}
+		
+		override public void onReset(IManager iManager)
+		{
+			Debug.Log ("	onReset(): " + this);
+			
+		}
+		
+		override public void onUpdate()
+		{
+			//Debug.Log ("onUpdate(): " + this);
+			
+		}
+		
+		override public void onRemoveManager()
+		{
+			Debug.Log ("onRemoveManager(): " + this);
+			
+		}
 	}
 }
 

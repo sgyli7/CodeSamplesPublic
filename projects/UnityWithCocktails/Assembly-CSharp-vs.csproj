@@ -47,11 +47,16 @@
      <Compile Include="Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\ManagerComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\AbstractManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\CustomManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\EventManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\GUIManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\IManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\LevelManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\MOM.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\SoundManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\utilities\EditorWindowUtility.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson1_Primitives\Lesson1_Primitives.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Beer.cs" />
@@ -79,7 +84,6 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\PreviousButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\RemoveAllGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\SimpleGameManagerComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Fun.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AbstractButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AddGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\DoAQuickTestFromSecondScene.cs" />
@@ -87,6 +91,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\PreviousButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\TestClasspaths.cs" />
+     <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />
   </ItemGroup>

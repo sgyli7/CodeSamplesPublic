@@ -29,8 +29,10 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using UnityEngineInternal;
 using System.Collections;
 using System.Collections.Generic;
+using com.rmc.utilities;
 
 //--------------------------------------
 //  Namespace
@@ -44,12 +46,33 @@ namespace com.rmc.managers.mom
 	/// <summary>
 	/// MOM = Manager of Managers. One singleton to rule them all.
 	/// </summary>
+	[ExecuteInEditMode()] 
 	public class MOM : MonoBehaviour
 	{
 	
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
+			
+		// SETTER / GETTER
+		
+		/// <summary>
+		/// The _is visible in hierarchy_boolean.
+		/// </summary>
+		/// 
+		/// 	NOTE: I TRIED PRIVATE WITH SERIALIZED, ALL THAT WORKS GREAT *BUT* THE GETTER/SETTER ISN'T CALLED FROM THE EDITOR, SO GETTER/SETTER HAS LIMITED VALUE WITH THIS EDITOR-CENTRIC PROPERTY
+		/// 
+		[SerializeField] 
+		public bool isEnabled = true;
+		
+		/// <summary>
+		/// The _is visible in hierarchy_boolean.
+		/// </summary>
+		/// 
+		/// 	NOTE: I TRIED PRIVATE WITH SERIALIZED, ALL THAT WORKS GREAT *BUT* THE GETTER/SETTER ISN'T CALLED FROM THE EDITOR, SO GETTER/SETTER HAS LIMITED VALUE WITH THIS EDITOR-CENTRIC PROPERTY
+		/// 
+		[SerializeField] 
+		public bool isVisibleInHierarchy = true;
 		
 		// PRIVATE STATIC
 		///<summary>
@@ -108,7 +131,23 @@ namespace com.rmc.managers.mom
 		/// </summary>
 		public void Update() 
 		{ 
-			//Debug.Log ("Update");
+			//DO MOM STUFF
+			//Debug.Log("updateMOM");
+			_doUpdateHideFlagsForGameObject(gameObject);
+			
+			
+			/*
+			 * 
+			 * NOTE: 	WE ARE CALLING UPDATE ON IMANAGERS DURING PLAY (GOOD) AND ALSO 
+			 * 			DURING EDIT (OVERKILL?????) DUE TO 	[ExecuteInEditMode()]  ABOVE
+			 * 
+			 */
+			//THEN DO MANAGER STUFF
+			foreach (IManager iManager in _Instance.managersList) {
+				if (iManager.canReceiveUpdate) {
+					iManager.onUpdate();
+				}
+			}
 		}
 		
 		///////////////////////////////////////////////////////////////////////////
@@ -138,15 +177,8 @@ namespace com.rmc.managers.mom
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		
-		/// <summary>
-		/// The I managers.
-		/// </summary>
-		public List<AbstractManager> IManagers = new List<AbstractManager>();
-		
-		public ArrayList arrayList;
-		
-		public AbstractManager[] man;
-		
+		[SerializeField]
+		public List<AbstractManager> managersList = new List<AbstractManager>();
 		
 		
 		/// <summary>
@@ -160,20 +192,73 @@ namespace com.rmc.managers.mom
 		/// </typeparam>
 		public T addManager <T> () where T : IManager
 		{
-			Component component = gameObject.GetComponent (typeof (T));
-			IManager existing_imanager = component as IManager;
 			
 			//
-			if (existing_imanager == null) {
-				component = gameObject.AddComponent ( typeof (T));
-				existing_imanager = component as IManager;
-				existing_imanager.onAddManager();
-			}
-			return (T) existing_imanager;
+			IManager found_imanager;
+			
+			//NOTE: LIMIT - ONLY 1 MANAGER OF EACH TYPE MAY EXIST.
+			if (hasManager<T>()) {
+				
+				found_imanager = getManager<T>();
+				
+			} else {
+				
+				found_imanager = _addManagerByForce<T>();
+				
+			} 
+				
+			
+			//RETURN
+			return (T) found_imanager;
 		}
 		
 		/// <summary>
-		/// Gets the manager.
+		/// _adds the manager by force.
+		/// </summary>
+		/// <returns>
+		/// The manager by force.
+		/// </returns>
+		/// <typeparam name='T'>
+		/// The 1st type parameter.
+		/// </typeparam>
+		public T _addManagerByForce <T> () where T : IManager
+		{
+			//REMOVE IF EXISTS
+			if (hasManager<T>()) {
+				removeManager<T>();
+			} 
+			
+			//
+			IManager found_imanager;
+			
+				
+			//CREATE
+			var newInstance = ScriptableObject.CreateInstance(typeof(T));
+			found_imanager = (IManager) newInstance;
+			
+			//ADD
+			managersList.Add ((AbstractManager)found_imanager);
+			
+			//DISPATCH 'I' WAS ADDED
+			found_imanager.onAddManager();
+			
+			
+			//DISPATCH 'ANOTHER MANAGER' WAS ADDED
+			foreach (IManager iManager in _Instance.managersList) {
+				
+				//TODO: DECIDE IF A MANAGER SHOULD GET ONRESET() WHEN ITSELF IS ADDED. FOR NOW, YES!
+				//if (iManager != found_imanager) {
+					iManager.onReset(found_imanager);	
+				//}
+			}
+			
+			//RETURN
+			return (T) found_imanager;
+		}
+
+	
+		/// <summary>
+		/// Hases the manager.
 		/// </summary>
 		/// <returns>
 		/// The manager.
@@ -181,21 +266,12 @@ namespace com.rmc.managers.mom
 		/// <typeparam name='T'>
 		/// The 1st type parameter.
 		/// </typeparam>
-		public bool removeManager <T> () where T : IManager
+		public bool hasManager <T> () where T : IManager
 		{
-			Component component = gameObject.GetComponent (typeof (T));
-			IManager existing_imanager = component as IManager;
-			
-			if (existing_imanager == null) {
-				return false; //failed
-				
-			} else {
-				existing_imanager.onRemoveManager();
-				return true;
-			}
-			
+			ScriptableObject scriptableObject = managersList.Find ( man => (man.GetType() == typeof(T))	);
+			IManager found_imanager = (IManager) scriptableObject;
+			return (found_imanager != null);
 		}
-		
 		
 		/// <summary>
 		/// Gets the manager.
@@ -208,9 +284,71 @@ namespace com.rmc.managers.mom
 		/// </typeparam>
 		public T getManager <T> () where T : IManager
 		{
-			IManager existing_imanager = addManager<T>();
-			return (T) existing_imanager;
+			ScriptableObject scriptableObject = managersList.Find ( man => (man.GetType() == typeof(T))	);
+			IManager found_imanager = (IManager) scriptableObject;
+			return (T) found_imanager;
 		}
+
+		
+		/// <summary>
+		/// ReAdd all managers.
+		/// </summary>
+		public void reAddAllManagersFromInspector ()
+		{
+			
+			//COPY FROM MASTER LIST (FROM INSPECTOR)
+			List <AbstractManager> copyOFManagersList = new List<AbstractManager>(managersList);
+			
+			//CLEAR MASTER LIST
+			managersList.RemoveAll ( (abstractManager) => true); //remove 'all'
+			
+			//ADD FROM COPY TO MASTER LIST
+			//	NOTE: THIS PROPERLY CALLS THE ADD EVENTS WITHOUT THE DELETE EVENTS
+			
+			
+			IManager iManager;
+			for (int index_int = copyOFManagersList.Count -1; index_int >= 0 ; index_int --) {
+				
+				//
+				iManager = copyOFManagersList[index_int];
+				//
+				System.Type type = iManager.GetType();
+				GenericsUtility.invokeGenericMethodByType (MOM.Instance, "_addManagerByForce", type);
+			
+			}
+			
+		}
+		
+		
+		/// <summary>
+		/// Gets the manager.
+		/// </summary>
+		/// <returns>
+		/// The manager.
+		/// </returns>
+		/// <typeparam name='T'>
+		/// The 1st type parameter.
+		/// </typeparam>
+		public bool removeManager <T> () where T : IManager
+		{
+			IManager existing_imanager = getManager<T>();
+			bool wasSuccessful_boolean = false;
+			
+			if (existing_imanager == null) {
+				wasSuccessful_boolean = false; //failed
+				
+			} else {
+				
+				existing_imanager.onRemoveManager();
+				wasSuccessful_boolean = managersList.Remove ((AbstractManager)existing_imanager);
+			}
+			
+			//
+			return wasSuccessful_boolean;
+			
+		}
+		
+		
 		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
@@ -340,28 +478,21 @@ namespace com.rmc.managers.mom
 					if (MOM_gameobject == null) {
 						MOM_gameobject = new GameObject (MOM._NAME_MOM);
 					
-						//2. ADD FLAGS TO HIDE EVERYTHING FROM HIERARCHY (OPTIONAL)
-						//MOM_gameobject.hideFlags = HideFlags.HideInHierarchy;
 					}
 					
 					//3. CREATE A COMPONENT ON THE GAME OBJECT
 					_Instance = MOM_gameobject.GetComponent<MOM>();
 					if (_Instance == null) {
-						_Instance = MOM_gameobject.AddComponent<MOM>(); 	
-						
-						//XXXXX. TEMPORARY***** ADD MANAGERS (SHOULD BE DONE FROM OUTSIDE)
-						Debug.Log("1");
-						_Instance.addManager<LevelManager>();
-						Debug.Log("2");
-						LevelManager levelManager = _Instance.getManager<LevelManager>();
-						levelManager.loadNextLevel();
-						Debug.Log("3");
-						_Instance.removeManager<LevelManager>();
+						_Instance = MOM_gameobject.AddComponent<MOM>(); 
 						
 					}
+						
 					
+					//5. TEMPORARY***** ADD MANAGERS (SHOULD BE DONE FROM OUTSIDE)
+					_Instance.reAddAllManagersFromInspector();
+						
 					
-					//4. INITIALIZE A FEW CHILDREN TO ACT LIKE FOLDERS FOR FUTURE GO'S
+					//6. INITIALIZE A FEW CHILDREN TO ACT LIKE FOLDERS FOR FUTURE GO'S
 					MOM._CreateChildGameObjectIfNotAlreadyCreated(_Instance.gameObject, MOM._NAME_DYNAMIC_GAME_OBJECTS);
 					MOM._CreateChildGameObjectIfNotAlreadyCreated(_Instance.gameObject, MOM._NAME_STATIC_GAME_OBJECTS);
 					
@@ -369,9 +500,43 @@ namespace com.rmc.managers.mom
 					
 				} 
 				
+									
+				//4. ADD FLAGS TO HIDE EVERYTHING FROM HIERARCHY (OPTIONAL)
+				_doUpdateHideFlagsForGameObject(_Instance.gameObject);
+					
+				
 				return _Instance;
 			}
 		}
+		
+		/// <summary>
+		/// _dos the update hide flags for game object.
+		/// </summary>
+		/// <param name='aGameObject'>
+		/// A game object.
+		/// </param>
+		private static void _doUpdateHideFlagsForGameObject(GameObject aGameObject)
+		{
+			if (_Instance.isVisibleInHierarchy) {
+				aGameObject.hideFlags = aGameObject.hideFlags ^ HideFlags.HideInHierarchy;
+			} else {
+				aGameObject.hideFlags = HideFlags.HideInHierarchy;
+			}
+			/*
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			Debug.Log ("aGameObject.hideFlags: " + aGameObject.hideFlags);
+			*/
+		}
+		
+		
 		
 		/// <summary>
 		///  debug log game object count.

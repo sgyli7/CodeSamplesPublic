@@ -58,8 +58,12 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		bool canReceiveUpdate { get;set;}
 		void onAddManager();
+		void onReset(IManager iManager);
+		void onUpdate();
 		void onRemoveManager();
+		
 	}
 }
 

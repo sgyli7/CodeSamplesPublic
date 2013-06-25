@@ -31,6 +31,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using com.rmc.managers.mom;
 
 //--------------------------------------
 //  Namespace
@@ -85,13 +86,68 @@ namespace com.rmc.utilities
 				path = path.Replace (Path.GetFileName (AssetDatabase.GetAssetPath (Selection.activeObject)), "");
 			}
 	 
-			string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath (path + "/" + typeof(T).Name + ".asset");
+			string uniquePath_string = path + "/" + typeof(T).Name + ".asset";
+			Debug.Log ("u: " + uniquePath_string);
+			string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath (uniquePath_string);
 	 
 			AssetDatabase.CreateAsset (asset, assetPathAndName);
 	 
 			AssetDatabase.SaveAssets ();
 			EditorUtility.FocusProjectWindow ();
 			Selection.activeObject = asset;
+		}
+		
+		/// <summary>
+		/// Creates the asset from project selection.
+		/// </summary>
+		//DISABLE MENU [MenuItem("Assets/Create/MOM/Create ScriptableObject From Selected")]
+		public static void CreateAssetFromProjectSelection ()
+		{
+			string selectedScriptPath_string;
+			string selectedScriptName_string;
+			ScriptableObject scriptableObject;
+			string desiredScriptableObject_path;
+			
+			//
+			if (ScriptableObjectUtility.hasValidProjectSelection()) {
+				
+				//	FIND SELECTED
+				selectedScriptName_string = Selection.activeObject.name;
+				selectedScriptPath_string = AssetDatabase.GetAssetPath (Selection.activeObject);
+				desiredScriptableObject_path = selectedScriptPath_string.Replace (".cs",".asset");
+				
+				//	CREATE NEW OBJECT
+				scriptableObject = ScriptableObject.CreateInstance (selectedScriptName_string);
+				desiredScriptableObject_path = AssetDatabase.GenerateUniqueAssetPath (desiredScriptableObject_path);
+				AssetDatabase.CreateAsset (scriptableObject, desiredScriptableObject_path);
+		 
+				//	STORE ASSET
+				AssetDatabase.SaveAssets ();
+				EditorUtility.FocusProjectWindow ();
+				Selection.activeObject = scriptableObject;
+				
+			} else {
+				Debug.Log ("Show ERROR Window: Must select ScriptableObject");	
+			}
+		}
+		
+		
+		/// <summary>
+		/// Hases the valid project selection.
+		/// </summary>
+		/// <returns>
+		/// The valid project selection.
+		/// </returns>
+		public static bool hasValidProjectSelection ()
+		{
+			//TODO, CHECK THAT IT EXTENDS 'scriptableObject'
+			if (Selection.activeObject != null) {
+				return true;	
+			} else {
+				return false;
+			}
+			
+			
 		}
 		
 		// PRIVATE

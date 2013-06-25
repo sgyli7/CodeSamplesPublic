@@ -31,6 +31,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 //--------------------------------------
 //  Namespace
@@ -47,9 +48,42 @@ namespace com.rmc.managers.mom
 	public class AbstractManager : ScriptableObject, IManager
 	{
 	
+		
+		//TRIED TO REMOVE 'ELEMENT 0', FAILED
+		public string Name = "hello";
+		
+		public override string ToString ()
+		{
+			 return Name;
+		}
+		
+		
+		
+		
+		
+		
+		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
+		// GETTER / SETTER
+		/// <summary>
+		/// The _can receive update.
+		/// </summary>
+		private bool _canReceiveUpdate = true;
+		public bool canReceiveUpdate
+		{
+			set {
+				_canReceiveUpdate = value;
+			}
+			get {
+				
+				return _canReceiveUpdate;	
+			}
+			
+		}
+		
+		
 		// PUBLIC
 		
 		// PUBLIC STATIC
@@ -92,17 +126,33 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		public void onAddManager()
+		virtual public void onAddManager()
 		{
 			Debug.Log ("AbstractManager.onAddManager() - remove this soon");
 			
 		}
 		
-		public void onRemoveManager()
+		virtual public void onReset(IManager iManager)
+		{
+			Debug.Log ("AbstractManager.onReset("+iManager+") - remove this soon");
+			
+		}
+		
+		virtual public void onUpdate()
+		{
+			//Debug.Log ("AbstractManager.onUpdate() - remove this soon");
+			
+		}
+		
+		virtual public void onRemoveManager()
 		{
 			Debug.Log ("AbstractManager.onRemoveManager() - remove this soon");
 			
 		}
+		
+
+		
+		
 	}
 }
 
