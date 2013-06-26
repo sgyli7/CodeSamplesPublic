@@ -34,6 +34,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using com.rmc.utilities;
+using System.IO;
 
 //--------------------------------------
 //  Namespace
@@ -162,8 +163,10 @@ namespace com.rmc.managers.mom
 			//
 			EditorWindowUtility.SetEditorWindowTabIcon (this, tabIcon_texture2D);
 			
-			EditorApplication.hierarchyWindowItemOnGUI += _onHierarchyWindowItemOnGUI;
-			EditorApplication.hierarchyWindowChanged += _onHierarchyWindowChanged;
+			//listen
+			EditorApplication.hierarchyWindowItemOnGUI 	+= _onHierarchyWindowItemOnGUI;
+			EditorApplication.hierarchyWindowChanged 	+= _onHierarchyWindowChanged;
+			EditorApplication.projectWindowItemOnGUI    += _onProjectWindowItemOnGUI;
 				
 			
 		}
@@ -408,8 +411,12 @@ namespace com.rmc.managers.mom
 				"2. Convert script to asset using Menu -> MOM -> Convert.\n" +
 				"3. Click 'Add Manager' above.\n" +
 				"4. Drag script from project to above.\n" + 
+				"\n" +
+				"Click for more <a href='http://www.google.com'>info</a>.\n" +
 				"\n";
 			EditorGUILayout.TextArea (textArea_string);
+			EditorGUILayout.Space();
+			EditorGUILayout.Space();
 			EditorGUI.indentLevel--;
 			
 			
@@ -593,6 +600,82 @@ namespace com.rmc.managers.mom
 			}
 			
 		}
+		
+		/// <summary>
+		/// _ons the project window item on GU.
+		/// </summary>
+		/// <param name='aInstanceID_int'>
+		/// A instance I d_int.
+		/// </param>
+		/// <param name='aSelection_rect'>
+		/// A selection_rect.
+		/// </param>
+		private void _onProjectWindowItemOnGUI (string aGUID_string, Rect aSelection_rect)
+		{
+			Debug.Log ("_onProjectWindowItemOnGUI()" + aGUID_string );
+			string path = AssetDatabase.GUIDToAssetPath(aGUID_string);
+            string extension = Path.GetExtension(path);
+            string filename = Path.GetFileNameWithoutExtension(path);
+			
+			
+			System.Type type = typeof (AbstractManager);
+			List<Object> resourcesFound = Resources.FindObjectsOfTypeAll(type).Cast<Object>().Where ( (item) => (item.GetType() != typeof (AbstractManager) )).ToList();
+			
+			bool isMOMRelated_boolean = false;
+			//System.Guid guid = new System.Guid (aGUID_string);
+			foreach (Object scriptableObject in resourcesFound) {
+				
+				Debug.Log ("	p: " + path);
+				Debug.Log ("	t: " + AssetDatabase.GetAssetPath(scriptableObject));
+				
+				//if (scriptableObject.GetType() == guid) {
+			//		isMOMRelated_boolean = true;
+		//			break;
+	//			}
+				
+			}
+			
+			if (isMOMRelated_boolean) {
+				
+				//
+				bool icons = aSelection_rect.width > 170;
+				GUIStyle labelstyle = icons ? EditorStyles.miniLabel : EditorStyles.label;
+				
+				if (path.Length == 0) {
+				        return;
+				}
+				
+				path = Path.GetDirectoryName(path);
+				
+				if (extension.Length == 0 || filename.Length == 0) {
+				        return;
+				}
+				
+				//TODO: CALL JUST ONCE?
+				string _basePath = Application.dataPath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+				
+				//
+				string searchpath = _basePath + path.Substring(6).Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+				
+				if (icons) {
+					Rect icon_rect = aSelection_rect;
+					icon_rect.x = aSelection_rect.x + aSelection_rect.width - 22;
+					icon_rect.y--;
+					icon_rect.width = 22;
+					icon_rect.height = 22;
+					
+					//BACKGROUND?
+					//GUI.DrawTexture(icon_rect, EditorGUIUtility.whiteTexture);
+					
+					//ICON
+					GUI.Label (icon_rect, hierarchyItem_texture2D);	
+				}
+					
+			}
+		}
+		
+		
+		
 		
 		/// <summary>
 		/// _ises the MOM game object or child of MOM game object.

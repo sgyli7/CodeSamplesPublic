@@ -73,6 +73,9 @@ public class Lesson3_CSharp : MonoBehaviour
 		Debug.Log ("/////////////////////////");
 		Debug.Log ("/////////////////////////");
 		_doDemoOfSingleton();
+		Debug.Log ("/////////////////////////");
+		Debug.Log ("/////////////////////////");
+		_doDemoOfStruct();
 	}
 	
 	
@@ -145,6 +148,13 @@ public class Lesson3_CSharp : MonoBehaviour
 	
 	}
 	
+	
+	//******************************************************
+	//******************************************************
+	//**	PARTIAL CLASS
+	//******************************************************
+	//******************************************************
+	
 	// PRIVATE
 	///<summary>
 	///	DEMO
@@ -163,6 +173,12 @@ public class Lesson3_CSharp : MonoBehaviour
 	}
 	
 	
+	//******************************************************
+	//******************************************************
+	//**	GENERICS
+	//******************************************************
+	//******************************************************
+	
 	// PRIVATE
 	///<summary>
 	///	DEMO
@@ -180,6 +196,14 @@ public class Lesson3_CSharp : MonoBehaviour
 		
 	}
 	
+	
+	
+	//******************************************************
+	//******************************************************
+	//**	SINGLETON
+	//******************************************************
+	//******************************************************
+	
 	// PRIVATE
 	///<summary>
 	///	DEMO
@@ -193,6 +217,71 @@ public class Lesson3_CSharp : MonoBehaviour
 		Debug.Log ("CustomSingleton.getCount()" + CustomSingleton.Instance.getCount());
 		
 	}
+	
+	
+	//******************************************************
+	//******************************************************
+	//**	STRUCT
+	//******************************************************
+	//******************************************************
+	
+	/// <summary>
+	/// Demo struct.
+	///  NOTE: These are like classes but meant for more 'temporary?' data structures without 'functionality' (methods)
+	/// 
+	///  NOTE: Seems to have a few differences from a class here on the 'inside' when declaring it
+	/// 
+	///  OPINION ONLINE: 	The only difference between a class and a struct in C++ is that structs have default public members 
+	/// 					and bases and classes have default private members and bases. Both classes and structs can have a 
+	/// 					mixture of public and private members, can use inheritance, and can have member functions.
+	/// 					I would recommend using structs as plain-old-data structures without any class-like features, 
+	/// 					and using classes as aggregate data structures with private data and member functions.
+
+	/// 
+	/// </summary>
+	public struct DemoStruct
+	{
+		// PROPERTIES
+		public int sample_int;
+		public float sample_float;
+		
+		// CONSTRUCTORS
+		public DemoStruct (int aSample_int)
+	    {
+			//INTERESTINGLY, COMPILER REQUIRES THAT *ALL* PROPERTIES MUST BE DECLARED IN CONSTRUCTOR
+			sample_float  	= 10.1f;
+	        sample_int 		= aSample_int;
+			
+			//
+			_doInit();
+	    }
+		
+		// METHODS
+		private void _doInit()
+		{
+			//do something else...
+		}
+		
+	}
+	
+	
+	
+	
+	/// <summary>
+	/// _dos the demo of struct.
+	/// </summary>
+	private void _doDemoOfStruct () 
+	{
+		
+		//SEEMS TO BEHAVE VERY MUCH LIKE A CLASS FROM THE 'OUTSIDE'
+		DemoStruct myDemoStruct = new DemoStruct ();
+		myDemoStruct.sample_int = 10;
+		
+		Debug.Log ("_doDemoOfStruct() myDemoStruct: " + myDemoStruct);
+		
+	}
+	
+	
 	
 	// PRIVATE STATIC
 	

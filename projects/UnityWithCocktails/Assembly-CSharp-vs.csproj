@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\AbstractManager.cs" />

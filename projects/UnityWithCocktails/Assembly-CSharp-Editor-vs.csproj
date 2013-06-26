@@ -44,7 +44,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\Editor\MOMEditor.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\Editor\MOMEditorWindow.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\Editor\MOMInitializeOnLoad.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\Editor\MOMMenu.cs" />
