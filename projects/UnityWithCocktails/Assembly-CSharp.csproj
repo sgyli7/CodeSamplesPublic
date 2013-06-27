@@ -1,108 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{E3E761F0-330B-1988-02B0-6C75793C6066}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3E761F0-330B-1988-02B0-6C75793C6066}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AssemblyCSharp</RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_5;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_5;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
-    <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\events\EventDispatcher.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\events\IEvent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\events\IEventDispatcher.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\events\IEventListener.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\events\TestEvent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\eventmanager\EventManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\AbstractManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\CustomManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\EventManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\GUIManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\IManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\LevelManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\MOM.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\SoundManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\utilities\EditorWindowUtility.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson1_Primitives\Lesson1_Primitives.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Beer.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Beverage.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Lesson2_OOP.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomCSharpClass.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomGenericClass.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomSingleton.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\Lesson3_CSharp.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\NamespaceClass.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\PartialClass.More.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\PartialClass.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson4_MonoBehavior\Lesson4_MonoBehavior.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson5_ExtendingEditor\Scripts\MyCustomComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson5_ExtendingEditor\Scripts\MyCustomObject.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson6_Threads\Scripts\MoveRightComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson6_Threads\Scripts\RotateComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson7_Debugging\Scripts\DebuggingDemoComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson7_Debugging\Scripts\Test.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson8_ExtensionMethods\GameObjectExtensions.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson8_ExtensionMethods\Lesson8_ExtensionMethods.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\AbstractButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\AddGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\DoAQuickTestFromSecondScene.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\NextButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\PreviousButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\RemoveAllGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\SimpleGameManagerComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AbstractButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AddGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\DoAQuickTestFromSecondScene.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\NextButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\PreviousButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\TestClasspaths.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\TestEventDispatcherComponent.cs" />
-     <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
-     <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
-     <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />
+    <Compile Include="Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\events\EventDispatcher.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\events\IEvent.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\events\TestEvent.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\eventmanager\EventManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\AbstractManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\CustomManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\EventManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\GUIManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\IManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\LevelManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\MOM.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\SoundManager.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\utilities\EditorWindowUtility.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson1_Primitives\Lesson1_Primitives.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Beer.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Beverage.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Lesson2_OOP.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomCSharpClass.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomGenericClass.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomSingleton.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\Lesson3_CSharp.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\NamespaceClass.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\PartialClass.More.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\PartialClass.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson4_MonoBehavior\Lesson4_MonoBehavior.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson5_ExtendingEditor\Scripts\MyCustomComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson5_ExtendingEditor\Scripts\MyCustomObject.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson6_Threads\Scripts\MoveRightComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson6_Threads\Scripts\RotateComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson7_Debugging\Scripts\DebuggingDemoComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson7_Debugging\Scripts\Test.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson8_ExtensionMethods\GameObjectExtensions.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson8_ExtensionMethods\Lesson8_ExtensionMethods.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\AbstractButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\AddGOButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\DoAQuickTestFromSecondScene.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\NextButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\PreviousButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\RemoveAllGOButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\SimpleGameManagerComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AbstractButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AddGOButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\DoAQuickTestFromSecondScene.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\NextButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\PreviousButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\TestClasspaths.cs" />
+    <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\TestEventDispatcherComponent.cs" />
+    <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
+    <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
+    <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />
+    <Compile Include="Assets\RMCLibrary\Scripts\events\IEventDispatcher.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\events\IEventListener.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\templates2\TemplateComponent.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\templates2\TemplateManagerComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -112,5 +112,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>
