@@ -101,8 +101,8 @@
     <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />
     <Compile Include="Assets\RMCLibrary\Scripts\events\IEventDispatcher.cs" />
     <Compile Include="Assets\RMCLibrary\Scripts\events\IEventListener.cs" />
-    <Compile Include="Assets\RMCLibrary\Scripts\templates2\TemplateComponent.cs" />
-    <Compile Include="Assets\RMCLibrary\Scripts\templates2\TemplateManagerComponent.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\templates\TemplateComponent.cs" />
+    <Compile Include="Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
