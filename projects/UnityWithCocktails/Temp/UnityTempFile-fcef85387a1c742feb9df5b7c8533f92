@@ -30,7 +30,6 @@
 -define:UNITY_4_1
 -define:ENABLE_PROFILER
 -define:UNITY_EDITOR
-'Assets/RMCLibrary/Scripts/managers/mom/Editor/MOMEditor.cs'
 'Assets/RMCLibrary/Scripts/managers/mom/Editor/MOMEditorWindow.cs'
 'Assets/RMCLibrary/Scripts/managers/mom/Editor/MOMInitializeOnLoad.cs'
 'Assets/RMCLibrary/Scripts/managers/mom/Editor/MOMMenu.cs'

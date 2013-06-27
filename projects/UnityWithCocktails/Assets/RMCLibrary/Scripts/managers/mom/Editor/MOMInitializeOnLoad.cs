@@ -97,7 +97,7 @@ namespace com.rmc.managers.mom
 		static MOMInitializeOnLoad()
 		{
 			//
-			Debug.Log ("MOMInitializeOnLoad.constructor()");
+			//Debug.Log ("MOMInitializeOnLoad.constructor()");
 			EditorApplication.playmodeStateChanged += onPlaymodeStateChanged;
 			
 			
@@ -106,7 +106,7 @@ namespace com.rmc.managers.mom
 		
 		// PRIVATE
 		
-		// PRIVATE STATIC
+		// PRIVATE STATIC*
 		/// <summary>
 		/// _ises the play mode stopping.
 		/// </summary>

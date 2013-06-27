@@ -612,6 +612,7 @@ namespace com.rmc.managers.mom
 		/// </param>
 		private void _onProjectWindowItemOnGUI (string aGUID_string, Rect aSelection_rect)
 		{
+			return;
 			Debug.Log ("_onProjectWindowItemOnGUI()" + aGUID_string );
 			string path = AssetDatabase.GUIDToAssetPath(aGUID_string);
             string extension = Path.GetExtension(path);
@@ -625,8 +626,8 @@ namespace com.rmc.managers.mom
 			//System.Guid guid = new System.Guid (aGUID_string);
 			foreach (Object scriptableObject in resourcesFound) {
 				
-				Debug.Log ("	p: " + path);
-				Debug.Log ("	t: " + AssetDatabase.GetAssetPath(scriptableObject));
+				//Debug.Log ("	p: " + path);
+				//Debug.Log ("	t: " + AssetDatabase.GetAssetPath(scriptableObject));
 				
 				//if (scriptableObject.GetType() == guid) {
 			//		isMOMRelated_boolean = true;
@@ -714,7 +715,7 @@ namespace com.rmc.managers.mom
 		/// </summary>
 		private void _onHierarchyWindowChanged ()
 		{
-			Debug.Log ("_onHierarchyWindowChanged()");
+			//Debug.Log ("_onHierarchyWindowChanged()");
 			
 		}
 		

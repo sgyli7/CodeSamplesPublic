@@ -48,6 +48,12 @@
      <Compile Include="Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\events\EventDispatcher.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\events\IEvent.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\events\IEventDispatcher.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\events\IEventListener.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\events\TestEvent.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\eventmanager\EventManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\AbstractManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\CustomManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\EventManager.cs" />
@@ -67,6 +73,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomGenericClass.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\CustomSingleton.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\Lesson3_CSharp.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\NamespaceClass.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\PartialClass.More.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3_CSharp\PartialClass.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson4_MonoBehavior\Lesson4_MonoBehavior.cs" />
@@ -92,6 +99,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\PreviousButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\TestClasspaths.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\TestEventDispatcherComponent.cs" />
      <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />

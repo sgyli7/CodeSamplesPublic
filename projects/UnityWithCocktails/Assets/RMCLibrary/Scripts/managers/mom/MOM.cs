@@ -107,7 +107,9 @@ namespace com.rmc.managers.mom
 			
 			if (_Instance == null) {
 				#pragma warning disable 0219
-				MOM dummy_mom = MOM.Instance; //trick singleton into instantiating if it doesn't exist yet.
+				
+				//TODO, RESPECT Mom.Instance.IsEnabled() somewhow WITHOUT creating the instance - (static prop?)
+				//MOM dummy_mom = MOM.Instance; //trick singleton into instantiating if it doesn't exist yet.
 				#pragma warning restore 0219
 			}
 		}
@@ -143,9 +145,12 @@ namespace com.rmc.managers.mom
 			 * 
 			 */
 			//THEN DO MANAGER STUFF
-			foreach (IManager iManager in _Instance.managersList) {
-				if (iManager.canReceiveUpdate) {
-					iManager.onUpdate();
+			if (_Instance && _Instance.isEnabled) {
+				Debug.Log ("MOM.update()");
+				foreach (IManager iManager in _Instance.managersList) {
+					if (iManager.canReceiveUpdate) {
+						iManager.onUpdate();
+					}
 				}
 			}
 		}
@@ -518,7 +523,7 @@ namespace com.rmc.managers.mom
 		private static void _doUpdateHideFlagsForGameObject(GameObject aGameObject)
 		{
 			//Debug.Log ("VISIBLE: " + _Instance.isVisibleInHierarchy);
-			if (_Instance.isHiddenInHierarchy) {
+			if (_Instance && _Instance.isHiddenInHierarchy) {
 				
 				// | IS WITH
 				aGameObject.hideFlags = 0;

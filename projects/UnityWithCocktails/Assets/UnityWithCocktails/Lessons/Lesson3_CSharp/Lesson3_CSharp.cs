@@ -30,6 +30,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using custom_namespace;
 
 //--------------------------------------
 //  Class
@@ -76,6 +77,12 @@ public class Lesson3_CSharp : MonoBehaviour
 		Debug.Log ("/////////////////////////");
 		Debug.Log ("/////////////////////////");
 		_doDemoOfStruct();
+		Debug.Log ("/////////////////////////");
+		Debug.Log ("/////////////////////////");
+		_doDemoOfNamespacing();
+	
+	
+	
 	}
 	
 	
@@ -282,6 +289,26 @@ public class Lesson3_CSharp : MonoBehaviour
 	}
 	
 	
+	
+	//******************************************************
+	//******************************************************
+	//**	NAMESPACING
+	//******************************************************
+	//******************************************************
+	
+	// PRIVATE
+	///<summary>
+	///	DEMO
+	///</summary>
+	private void _doDemoOfNamespacing () 
+	{
+		// SIMPLY TO ORGANIZE YOUR CODE AND PREVENT CLASS NAME COLLISIONS YOU
+		//		CAN **OPTIONALLY** PUT 'namespace blah' atop a class declaration and then 'using blah;' 
+		//		atop the class which wants to use blah
+		NamespaceClass namespaceClass = new NamespaceClass();
+		Debug.Log ("namespaceClass: " + namespaceClass);
+		
+	}
 	
 	// PRIVATE STATIC
 	

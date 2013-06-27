@@ -45,7 +45,6 @@ namespace com.rmc.editors
 	/// <summary>
 	/// Create default folders menu.
 	/// </summary>
-	[InitializeOnLoad]
 	public class CreateDefaultFoldersMenu
 	{
 	
@@ -67,32 +66,48 @@ namespace com.rmc.editors
 		//--------------------------------------
 		
 		// PUBLIC
-		static CreateDefaultFoldersMenu()
-		{
+		//static CreateDefaultFoldersMenu()
+		//{
 			//
-			Debug.Log ("CreateDefaultFoldersMenu.constructor()");
+		//	Debug.Log ("CreateDefaultFoldersMenu.constructor()");
 			//CreateDefaultFoldersMenu.CreateDefaultFolders();
 			
 			
-		}
+		//}
 		
 		
 		// PUBLIC STATIC
 		/// <summary>
 		/// Creates the default folders.
 		/// </summary>
-		[MenuItem("RMC/Create Default Folders")]
+		[MenuItem("RMC/Create Default Folders", false, 10)]
 		public static void CreateDefaultFolders ()
 		{
-			_createFoldersIfNew("Assets", 				"Standard Assets");
-			_createFoldersIfNew("Assets", 				"3rdParty Assets");
-			_createFoldersIfNew("Assets", 				"[ProjectName]");
-			_createFoldersIfNew("Assets/[ProjectName]", 	"Components");
-			_createFoldersIfNew("Assets/[ProjectName]", 	"Images");
-			_createFoldersIfNew("Assets/[ProjectName]", 	"Materials");
-			_createFoldersIfNew("Assets/[ProjectName]", 	"Prefabs");
-			_createFoldersIfNew("Assets/[ProjectName]", 	"Scripts");
-			_createFoldersIfNew("Assets/[ProjectName]", 	"Scenes");
+			
+			//
+			_createFoldersUnderParent("Assets", 						"Standard Assets");
+			_createFoldersUnderParent("Assets", 						"3rdParty Assets");
+			//
+			_createFoldersUnderParent("Assets", 						"[ProjectName]");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Materials");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Prefabs");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Resources");
+			//
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Scripts");
+			_createFoldersUnderParent("Assets/[ProjectName]/Scripts", 	"Components");
+			_createFoldersUnderParent("Assets/[ProjectName]/Scripts", 	"Editor");
+			//
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Scenes");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Fonts");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"GUISkins");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Shaders");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Textures");
+			//
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Audio");
+			_createFoldersUnderParent("Assets/[ProjectName]/Audio", 	"SFX");
+			_createFoldersUnderParent("Assets/[ProjectName]/Audio", 	"Music");
+			
+			
 			
 		}
 		
@@ -102,11 +117,14 @@ namespace com.rmc.editors
 		/// <summary>
 		/// Creates the folders if new.
 		/// </summary>
-		public static void _createFoldersIfNew (string aParentFolderPath_string, string aFolderName_string)
+		public static void _createFoldersUnderParent (string aParentFolderPath_string, string aFolderName_string)
 		{
-			if (!System.IO.Directory.Exists(Application.dataPath + System.IO.Path.GetDirectoryName(aParentFolderPath_string).TrimStart("Assets".ToCharArray()) + "/" + aFolderName_string)) {
-        		AssetDatabase.CreateFolder(System.IO.Path.GetDirectoryName(aParentFolderPath_string), aFolderName_string);
+			string desiredFolderName_string = aParentFolderPath_string + "/" + aFolderName_string;
+			if (!System.IO.Directory.Exists(desiredFolderName_string) ) {
+        		AssetDatabase.CreateFolder(aParentFolderPath_string, aFolderName_string);
     		}
+			
+			AssetDatabase.Refresh();
 			
 		}
 		

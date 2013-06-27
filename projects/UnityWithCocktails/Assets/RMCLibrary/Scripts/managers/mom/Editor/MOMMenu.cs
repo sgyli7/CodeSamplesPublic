@@ -74,7 +74,7 @@ namespace com.rmc.managers.mom
 		/// <summary>
 		/// Shows the window.
 		/// </summary>
-		[MenuItem("MOM/Show Editor")]
+		[MenuItem("RMC/MOM/Show Editor", false, 50)]
 		public static void ShowEditorWindow()
 		{
 			//Show existing window instance. If one doesn't exist, make one.
@@ -86,7 +86,7 @@ namespace com.rmc.managers.mom
 		/// <summary>
 		/// Creates the asset from selected.
 		/// </summary>
-		[MenuItem("MOM/Create ScriptableObject From Project Selection")]
+		[MenuItem("RMC/MOM/Create ScriptableObject From Project Selection", false, 50)]
 		public static void CreateAssetFromSelected ()
 		{
 			ScriptableObjectUtility.CreateAssetFromProjectSelection ();
@@ -100,7 +100,7 @@ namespace com.rmc.managers.mom
 		/// <returns>
 		/// The asset from selected validate function.
 		/// </returns>
-		[MenuItem("MOM/Create ScriptableObject From Project Selection", true)]
+		[MenuItem("RMC/MOM/Create ScriptableObject From Project Selection", true, 50)]
 		public static bool CreateAssetFromSelectedValidateFunction ()
 		{
 			return ScriptableObjectUtility.hasValidProjectSelection ();
