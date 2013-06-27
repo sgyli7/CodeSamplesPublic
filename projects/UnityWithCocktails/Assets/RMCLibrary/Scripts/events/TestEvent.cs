@@ -48,10 +48,46 @@ namespace com.rmc.events
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		/// <summary>
+		/// The _type_string.
+		/// </summary>
+		private string _type_string;
+		string IEvent.type { 
+			get
+			{
+				return _type_string;
+			}
+			set
+			{
+				_type_string = value;
+				
+			}
+		}
+		
+		/// <summary>
+		/// The _target_object.
+		/// </summary>
+		private IEventListener _target_object;
+		IEventListener IEvent.target { 
+			get
+			{
+				return _target_object;
+			}
+			set
+			{
+				_target_object = value;
+				
+			}
+		}
 		
 		// PUBLIC
 		
+		
 		// PUBLIC STATIC
+		/// <summary>
+		/// EVENT_NAME
+		/// </summary>
+		public static string EVENT_NAME  = "EVENT_NAME";
 		
 		// PRIVATE
 		
@@ -69,9 +105,11 @@ namespace com.rmc.events
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TestEvent ( )
+		public TestEvent (string aType_str )
 		{
 			Debug.Log ("TestEvent.constructor()");
+			_type_string = aType_str;
+			
 			
 		}
 		
@@ -80,32 +118,9 @@ namespace com.rmc.events
 		/// </summary>
 		~TestEvent ( )
 		{
-			//Debug.Log ("TestEvent.deconstructor()");
+			Debug.Log ("TestEvent.deconstructor()");
 			
 		}
-		
-		// PUBLIC
-		/// <summary>
-		/// Gets the name.
-		/// </summary>
-		/// <returns>
-		/// The name.
-		/// </returns>
-	    string IEvent.GetName()
-	    {
-	        return this.GetType().ToString();
-	    }
-	 
-		/// <summary>
-		/// Gets the data.
-		/// </summary>
-		/// <returns>
-		/// The data.
-		/// </returns>
-	    object IEvent.GetData()
-	    {
-	        return "TestEvent Data goes here!";
-	    }
 		
 		
 		// PUBLIC STATIC

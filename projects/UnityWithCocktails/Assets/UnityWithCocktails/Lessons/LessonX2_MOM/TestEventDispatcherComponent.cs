@@ -40,7 +40,7 @@ using com.rmc.events;
 	//  Class
 	//--------------------------------------
 	
-	public class TestEventDispatcherComponent : MonoBehaviour, IEventListener 
+	public class TestEventDispatcherComponent : MonoBehaviour, IEventListener, IEventDispatcher
 	{
 	
 		//--------------------------------------
@@ -55,6 +55,10 @@ using com.rmc.events;
 		
 		// PRIVATE
 		private EventDispatcher eventDispatcher;
+	
+		private EventDelegate onEventDelegate;
+		
+	TestFromOtherScope testFromOtherScope;
 		
 		// PRIVATE STATIC
 		
@@ -63,24 +67,116 @@ using com.rmc.events;
 		//--------------------------------------		
 		
 		// PUBLIC
-			void Start () {
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		void Start () {
+		
+		
+			//TEST FROM OTHER CLASS
+			 testFromOtherScope = new TestFromOtherScope();
+		
+			//TEST FROM THIS CLASS (BELOW)...
+		
 		
 			eventDispatcher = new EventDispatcher ();
-			eventDispatcher.AddListener (this as IEventListener, "com.rmc.events.TestEvent");
-			eventDispatcher.TriggerEvent (new TestEvent ());
+		
+			IEventListener target = this as IEventListener;
+
+		
+		
+		/*
+		 * 
+		 * 
+		 * 		NEXT
+		 * 
+		 * 			1) see if we can NOT pass in target, but instead determine it in the ED.cs class
+		 * 			2) see if we can make both _onCustomEvent1 and _onCustomEvent2 fire properly. (Currently only first is called due to non-unique key issue in ED.cs)
+		 * 			3) cleanup
+		 * 			4) test on iphone (try in standalone project to be sure its not one of these other crazy classes causing issue
+		 * 			5) post USAGE API (not internals in blog post) twitter and ask for feedback.
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			eventDispatcher.addEventListener 			(target, TestEvent.EVENT_NAME, _onCustomEvent1);
+			eventDispatcher.addEventListener 			(target, TestEvent.EVENT_NAME, _onCustomEvent2);
+			//Debug.Log ("	hasEventListener(): " + 	eventDispatcher.hasEventListener 	(target, TestEvent.EVENT_NAME, _onCustomEvent1));
+			
+			//Debug.Log ("	removeEventListener(): " + 	eventDispatcher.removeEventListener (target, TestEvent.EVENT_NAME, _onCustomEvent1));
+			//Debug.Log ("	hasEventListener(): " + 	eventDispatcher.hasEventListener 	(target, TestEvent.EVENT_NAME, _onCustomEvent1));
 			
 			/*
 				+ void dispatchEventListener(IEvent aIEvent)
 				
-				+ void addEventListener               (string aEventName, IEvent aIEvent, Delegate aDelegate)
-				+ bool removeEventListener         (string aEventName, IEvent aIEvent, Delegate aDelegate)
-				+ bool hasEventListener               (string aEventName, IEvent aIEvent, Delegate aDelegate)
+				+ void addEventListener          (string aEventName, IEvent aIEvent, Delegate aDelegate)
+				+ bool removeEventListener       (string aEventName, IEvent aIEvent, Delegate aDelegate)
+				+ bool hasEventListener          (string aEventName, IEvent aIEvent, Delegate aDelegate)
 				+ void removeAllEventListeners   (string aEventName, IEvent aIEvent)
 				+ void removeAllEventListeners   (); //100% are removed
 				
 			*/
+			//_callListenerDelegate (_onCustomEvent );
+		
+			
 		}
 		
+		public void dispatchIt()
+		{
+			eventDispatcher.dispatchEvent (new TestEvent (TestEvent.EVENT_NAME));	
+			
+		}
+	
+	
+		void Update ()
+		{
+			
+			if (Input.GetMouseButtonDown(0)) {
+				Debug.Log ("downnnnn");	
+				dispatchIt();
+				testFromOtherScope.dispatchIt();
+			}
+			
+		}
+		
+	
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -100,12 +196,25 @@ using com.rmc.events;
 		/// <param name='iEvent'>
 		/// If set to <c>true</c> i event.
 		/// </param>
-		bool IEventListener.HandleEvent (IEvent iEvent) 
+		bool HandleEvent (IEvent iEvent) 
 		{
-		
 			Debug.Log ("iEvent: " + iEvent);
 			return true;
 		}
+	
+	
+		public void _onCustomEvent1 (IEvent iEvent) 
+		{
+			Debug.Log ("	1. _onCustomEvent1(): " + iEvent);
+		}
+	
+	
+	
+		public void _onCustomEvent2 (IEvent iEvent) 
+		{
+			Debug.Log ("	1. _onCustomEvent2(): " + iEvent);
+		}
+	
 	
 	}
 

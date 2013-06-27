@@ -36,6 +36,9 @@
 
 * do really good cleanup on OnApplicationQuit. Since (some) RAM persists from play/edit mode, its FAR MORE important than flash to clean up.
 
+* currently the MOM editor is really coupled to PROJECT (i.e. enabled?) not each scene. I think that is good. Right?
+
+* add unit testing (and learn unit testing for unity)
 
 ************************
 ** POSSIBLE MANAGERS TO CREATE (ME OR OTHER PEOPLE)

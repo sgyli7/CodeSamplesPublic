@@ -39,7 +39,7 @@ namespace com.rmc.events
 	//  Class
 	//--------------------------------------
 	/// <summary>
-	/// Test event.
+	/// IEvent
 	/// </summary>
 	public interface IEvent
 	{
@@ -48,52 +48,24 @@ namespace com.rmc.events
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		/// <summary>
+		/// Gets or sets the type.
+		/// </summary>
+		/// <value>
+		/// The type.
+		/// </value>
+		string type { get; set;}
 		
-		// PUBLIC
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PUBLIC
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
+		/// <summary>
+		/// Gets or sets the target.
+		/// </summary>
+		/// <value>
+		/// The target.
+		/// </value>
+		IEventListener target { get; set; }
 		
 		//--------------------------------------
 		//  Methods
-		//--------------------------------------
-		
-		// PUBLIC
-		/// <summary>
-		/// Gets the name.
-		/// </summary>
-		/// <returns>
-		/// The name.
-		/// </returns>
-	    string GetName();
-		
-		
-		/// <summary>
-		/// Gets the data.
-		/// </summary>
-		/// <returns>
-		/// The data.
-		/// </returns>
-	    object GetData();
-		
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
-		
-		//--------------------------------------
-		//  Events
 		//--------------------------------------
 		
 
