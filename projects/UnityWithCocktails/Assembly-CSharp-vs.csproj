@@ -46,9 +46,8 @@
   <ItemGroup>
      <Compile Include="Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\EventDispatcher.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\events\EventListenerData.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\IEvent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\IEventDispatcher.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\IEventListener.cs" />
@@ -62,6 +61,8 @@
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\LevelManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\MOM.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\SoundManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\utilities\EditorWindowUtility.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
@@ -100,6 +101,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\TestClasspaths.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\TestEventDispatcherComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\TestFromOtherScope.cs" />
      <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />
