@@ -5,6 +5,8 @@ using UnityEngine;
 using System.Collections;
 using com.rmc.events;
 using System.Linq.Expressions;
+using System.Reflection;
+using System.Collections.Generic;
  
 
 //--------------------------------------
@@ -17,7 +19,21 @@ namespace com.rmc.events
 	//--------------------------------------
 	//  PACKAGE PROPERTIES
 	//--------------------------------------
+	/// <summary>
+	/// Event delegate.
+	/// </summary>
 	public delegate void EventDelegate (IEvent iEvent);
+	
+	
+	/// <summary>
+	/// Event listening mode.
+	/// </summary>
+	public enum EventDispatcherAddMode
+	{
+		DEFAULT,
+		SINGLE_SHOT
+		
+	}
 	
 	
 	
@@ -30,54 +46,86 @@ namespace com.rmc.events
 					
 	    private Hashtable _eventListenerDatas_hashtable = new Hashtable();
 	 
-	 
+		
+		
 		/// <summary>
 		/// Adds the event listener.
 		/// </summary>
 		/// <returns>
 		/// The event listener.
 		/// </returns>
-		/// <param name='aEventListener'>
-		/// If set to <c>true</c> a event listener.
-		/// </param>
-		/// <param name='aEventType_string'>
+		/// <param name='aEventName_string'>
 		/// If set to <c>true</c> a event name_string.
 		/// </param>
 		/// <param name='aEventDelegate'>
 		/// If set to <c>true</c> a event delegate.
 		/// </param>
-	    public bool addEventListener(IEventListener aIEventListener, string aEventType_string, EventDelegate aEventDelegate)
+	    public bool addEventListener(string aEventName_string, EventDelegate aEventDelegate)
 	    {
+			return addEventListener (aEventName_string, aEventDelegate, EventDispatcherAddMode.DEFAULT);	
+		}
 			
 			
-	        if (aIEventListener == null || aEventType_string == null) {
-	            Debug.Log("Event Manager: addEventListener failed due to no listener or event name specified.");
-	            return false;
-	        }
-	 
+	    public bool addEventListener( EventDelegate aEventDelegate, string aEventName_string)
+	    {
+			return addEventListener (aEventName_string, aEventDelegate, EventDispatcherAddMode.DEFAULT);	
+		}
 			
-			//	OUTER
-			string keyForOuterHashTable_string = _getKeyForOuterHashTable (aEventType_string);
-	        if (!_eventListenerDatas_hashtable.ContainsKey(keyForOuterHashTable_string) ) {
-	            _eventListenerDatas_hashtable.Add(keyForOuterHashTable_string, new Hashtable());
-			}
-	 
-			//	INNER
-	        Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
-			EventListenerData eventListenerData = new EventListenerData (aIEventListener, aEventType_string, aEventDelegate);
+		
+		/// <summary>
+		/// Adds the event listener.
+		/// </summary>
+		/// <returns>
+		/// The event listener.
+		/// </returns>
+		/// <param name='aEventName_string'>
+		/// If set to <c>true</c> a event type_string.
+		/// </param>
+		/// <param name='aEventDelegate'>
+		/// If set to <c>true</c> a event delegate.
+		/// </param>
+		/// <param name='aEventDispatcherAddMode'>
+		/// If set to <c>true</c> event listening mode.
+		/// </param>
+	    public bool addEventListener(string aEventName_string, EventDelegate aEventDelegate, EventDispatcherAddMode aEventDispatcherAddMode)
+	    {
 			//
-			string keyForInnerHashTable_string = _getKeyForInnerHashTable (eventListenerData);
-	        if (inner_hashtable.Contains(keyForInnerHashTable_string)) {
-	            Debug.Log("Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
-	            return false; //listener already in list
-	        }
-	 
-			//	ADD
-	        inner_hashtable.Add(keyForInnerHashTable_string, eventListenerData);
-			Debug.Log ("	ADDED AT: " + keyForInnerHashTable_string + " = " +  eventListenerData);
+			bool wasSuccessful_boolean = false;
 			
+			//
+			object aIEventListener = _getArgumentsCallee(aEventDelegate);			
 			
-	        return true;
+			//
+	        if (aIEventListener != null && aEventName_string != null) {
+				
+				//	OUTER
+				string keyForOuterHashTable_string = _getKeyForOuterHashTable (aEventName_string);
+		        if (!_eventListenerDatas_hashtable.ContainsKey(keyForOuterHashTable_string) ) {
+		            _eventListenerDatas_hashtable.Add(keyForOuterHashTable_string, new Hashtable());
+				}
+		 
+				//	INNER
+		        Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
+				EventListenerData eventListenerData = new EventListenerData (aIEventListener, aEventName_string, aEventDelegate, aEventDispatcherAddMode);
+				//
+				string keyForInnerHashTable_string = _getKeyForInnerHashTable (eventListenerData);
+		        if (inner_hashtable.Contains(keyForInnerHashTable_string)) {
+					
+					//THIS SHOULD *NEVER* HAPPEN - REMOVE AFTER TESTED WELL
+		            Debug.Log("Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
+		            Debug.Log("Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
+		            Debug.Log("Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
+
+				} else {
+		 
+					//	ADD
+		        	inner_hashtable.Add(keyForInnerHashTable_string, eventListenerData);
+					wasSuccessful_boolean = true;
+					//Debug.Log ("	ADDED AT: " + keyForInnerHashTable_string + " = " +  eventListenerData);
+				}
+				
+			}
+	        return wasSuccessful_boolean;
 	    }
 		
 		
@@ -90,30 +138,34 @@ namespace com.rmc.events
 	    /// <param name='aIEventListener'>
 	    /// If set to <c>true</c> a I event listener.
 	    /// </param>
-	    /// <param name='aEventType_string'>
+	    /// <param name='aEventName_string'>
 	    /// If set to <c>true</c> a event name_string.
 	    /// </param>
 	    /// <param name='aEventDelegate'>
 	    /// If set to <c>true</c> a event delegate.
 	    /// </param>
-	    public bool hasEventListener(IEventListener aIEventListener, string aEventType_string, EventDelegate aEventDelegate)
+	    public bool hasEventListener(string aEventName_string, EventDelegate aEventDelegate)
 	    {
+			//
+			bool hasEventListener_boolean = false;
+			
+			//
+			object aIEventListener = _getArgumentsCallee(aEventDelegate);			
 			
 			//	OUTER
-			string keyForOuterHashTable_string = _getKeyForOuterHashTable (aEventType_string);
-	        if (!_eventListenerDatas_hashtable.ContainsKey(keyForOuterHashTable_string)) {
-	            return false;
-			}
+			string keyForOuterHashTable_string = _getKeyForOuterHashTable (aEventName_string);
+	        if (_eventListenerDatas_hashtable.ContainsKey(keyForOuterHashTable_string)) {
 	        
-			//	INNER
-			Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
-			string keyForInnerHashTable_string = _getKeyForInnerHashTable (new EventListenerData (aIEventListener, aEventType_string, aEventDelegate));
-			//
-			if (!inner_hashtable.Contains(keyForInnerHashTable_string)) {
-	            return false;
+				//	INNER
+				Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
+				string keyForInnerHashTable_string = _getKeyForInnerHashTable (new EventListenerData (aIEventListener, aEventName_string, aEventDelegate, EventDispatcherAddMode.DEFAULT));
+				//
+				if (inner_hashtable.Contains(keyForInnerHashTable_string)) {
+		            hasEventListener_boolean = true;
+				}
 			}
 	 
-	        return true;
+	        return hasEventListener_boolean;
 	    }
 		
 	    /// <summary>
@@ -125,38 +177,51 @@ namespace com.rmc.events
 	    /// <param name='aIEventListener'>
 	    /// If set to <c>true</c> a I event listener.
 	    /// </param>
-	    /// <param name='aEventType_string'>
+	    /// <param name='aEventName_string'>
 	    /// If set to <c>true</c> a event name_string.
 	    /// </param>
 	    /// <param name='aEventDelegate'>
 	    /// If set to <c>true</c> a event delegate.
 	    /// </param>
-	    public bool removeEventListener(IEventListener aIEventListener, string aEventType_string, EventDelegate aEventDelegate)
+	    public bool removeEventListener(string aEventName_string, EventDelegate aEventDelegate)
 	    {
-			/*
-			 * 
-			 * 	TODO - SHOULD REUSE 'HAS-A' METHOD IN HERE, RIGHT?
-			 * 
-			 * */
+			//
+			bool wasSuccessful_boolean = false;
 			
-			//	OUTER
-			string keyForOuterHashTable_string = _getKeyForOuterHashTable (aEventType_string);
-	        if (!_eventListenerDatas_hashtable.ContainsKey(keyForOuterHashTable_string)) {
-	            return false;
-			}
-	 
+			//
+			if (hasEventListener (aEventName_string, aEventDelegate)) {
+				//	OUTER
+				string keyForOuterHashTable_string = _getKeyForOuterHashTable (aEventName_string);
+				Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
+				//
+				object aIEventListener = _getArgumentsCallee(aEventDelegate);	
+				//  INNER
+				string keyForInnerHashTable_string = _getKeyForInnerHashTable (new EventListenerData (aIEventListener, aEventName_string, aEventDelegate, EventDispatcherAddMode.DEFAULT));
+				inner_hashtable.Remove(keyForInnerHashTable_string);
+	        	wasSuccessful_boolean = true;
+			} 
 			
-			//	INNER
-			Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
-			string keyForInnerHashTable_string = _getKeyForInnerHashTable (new EventListenerData (aIEventListener, aEventType_string, aEventDelegate));
-	        if (!inner_hashtable.Contains(keyForInnerHashTable_string)) {
-	            return false;
-			}
-	 
+			return wasSuccessful_boolean;
 			
-	        inner_hashtable.Remove(aIEventListener);
-	        return true;
 	    }
+		
+		/// <summary>
+		/// Removes all event listeners.
+		/// </summary>
+		/// <returns>
+		/// The all event listeners.
+		/// </returns>
+	    public bool removeAllEventListeners()
+	    {
+			//
+			bool wasSuccessful_boolean = false;
+			
+			//TODO, IS IT A MEMORY LEAK TO JUST RE-CREATE THE TABLE? ARE THE INNER HASHTABLES LEAKING?
+			_eventListenerDatas_hashtable = new Hashtable();
+			
+			return wasSuccessful_boolean;
+	    }
+		
 	 
 	    /// <summary>
 	    /// Dispatchs the event.
@@ -169,48 +234,80 @@ namespace com.rmc.events
 	    /// </param>
 	    public bool dispatchEvent(IEvent aIEvent)
 	    {
+			//
+			bool wasSuccessful_boolean = false;
 			
 			//	OUTER
 	        string keyForOuterHashTable_string = _getKeyForOuterHashTable (aIEvent.type);
-	        if (!_eventListenerDatas_hashtable.ContainsKey(keyForOuterHashTable_string))
-	        {
-	            Debug.Log("Event Manager: Event \"" + keyForOuterHashTable_string + "\" triggered has no listeners!");
-	            return false; //No listeners for event so ignore it
-	        }
+			int dispatchedCount_int = 0;
+	        if (_eventListenerDatas_hashtable.ContainsKey(keyForOuterHashTable_string)) {
 	 
-			//	INNER
-			Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
-			IEnumerator i = inner_hashtable.GetEnumerator();
-			DictionaryEntry dictionaryEntry;
-			EventListenerData eventListenerData;
-	        while (i.MoveNext()) {
+				//	INNER
+				Hashtable inner_hashtable = _eventListenerDatas_hashtable[keyForOuterHashTable_string] as Hashtable;
+				IEnumerator innerHashTable_ienumerator = inner_hashtable.GetEnumerator();
+				DictionaryEntry dictionaryEntry;
+				EventListenerData eventListenerData;
+				ArrayList toBeRemoved_arraylist = new ArrayList ();
+				//
+		        while (innerHashTable_ienumerator.MoveNext()) {
+					
+					dictionaryEntry = (DictionaryEntry)innerHashTable_ienumerator.Current;
+					eventListenerData = dictionaryEntry.Value as EventListenerData;
+					
+					//***DO THE DISPATCH***
+					eventListenerData.eventDelegate (aIEvent);
+					
+					//REMOVE IF ONESHOT
+					if (eventListenerData.eventListeningMode == EventDispatcherAddMode.SINGLE_SHOT) {
+						
+						toBeRemoved_arraylist.Add (eventListenerData);
+					}
+					
+					
+					//MARK SUCCESS, BUT ALSO CONTINUE LOOPING TOO
+					wasSuccessful_boolean = true;
+					dispatchedCount_int++;
+		        }
 				
-				dictionaryEntry = (DictionaryEntry)i.Current;
-				eventListenerData = dictionaryEntry.Value as EventListenerData;
-				Debug.Log ("find: " + eventListenerData );
-				eventListenerData.eventDelegate (aIEvent);
-				//eventListenerData.eventDelegate (aIEvent);
-	        }
+				
+				//CLEANUP ANY ONE-SHOT, SINGLE-USE 
+				EventListenerData toBeRemoved_eventlistenerdata;
+				for (int count_int = toBeRemoved_arraylist.Count -1; count_int >= 0; count_int --) {
+					toBeRemoved_eventlistenerdata = toBeRemoved_arraylist[count_int] as EventListenerData;
+					removeEventListener (toBeRemoved_eventlistenerdata.eventName, toBeRemoved_eventlistenerdata.eventDelegate);
+				}
 	 
-	        return true;
+	        	
+			}
+			
+			
+			return wasSuccessful_boolean;
 	    }
 
 		
 	    public void OnApplicationQuit()
 	    {
+			//TODO, DO THIS CLEANUP HERE, OR OBLIGATE API-USER TO DO IT??
 	        _eventListenerDatas_hashtable.Clear();
 	    }
 		
 		
-		private string _getKeyForOuterHashTable (string aEventType_string)
+		private string _getKeyForOuterHashTable (string aEventName_string)
 		{
-			return aEventType_string;
+			//SIMPLY USING THE EVENT NAME - METHOD USED HERE, IN CASE I WANT TO TWEAK THIS MORE...
+			return aEventName_string;
 		}
 		
-		private string _getKeyForInnerHashTable (EventListenerData eventListenerData)
+		private string _getKeyForInnerHashTable (EventListenerData aEventListenerData)
 		{
-			//TODO: MAKE THIS MORE UNIQUE SO YOU CAN LISTEN TO THE SAME EVENT 2 TIMES FROM THE SAME SCOPE (FRINGE CASE)
-			return eventListenerData.eventListener.GetType().FullName + eventListenerData.eventName + eventListenerData.eventDelegate.ToString();
+			//VERY UNIQUE - NICE!
+			return aEventListenerData.eventListener.GetType().FullName + "_" + aEventListenerData.eventListener.GetType().GUID + "_" + aEventListenerData.eventName + "_" + (aEventListenerData.eventDelegate as System.Delegate).Method.Name.ToString();
+		
+		}
+
+		public object _getArgumentsCallee (EventDelegate aEventDelegate)
+		{
+			return (aEventDelegate as System.Delegate).Target;
 		}
 	}
 }

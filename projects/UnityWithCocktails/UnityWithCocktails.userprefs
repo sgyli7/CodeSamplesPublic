@@ -1,13 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/LessonX2_MOM/TestEventDispatcherComponent.cs">
-    <Files>
-      <File FileName="Assets/UnityWithCocktails/Lessons/LessonX2_MOM/TestEventDispatcherComponent.cs" Line="43" Column="38" />
-      <File FileName="Assets/RMCLibrary/Scripts/events/EventDispatcher.cs" Line="77" Column="6" />
-      <File FileName="Assets/RMCLibrary/Scripts/events/IEvent.cs" Line="65" Column="17" />
-      <File FileName="Assets/RMCLibrary/Scripts/events/EventListenerData.cs" Line="91" Column="10" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
