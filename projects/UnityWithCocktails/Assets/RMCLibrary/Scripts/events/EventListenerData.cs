@@ -52,8 +52,8 @@ namespace com.rmc.events
 		/// <summary>
 		/// The _event listener.
 		/// </summary>
-		private IEventListener _eventListener;
-		public IEventListener eventListener 
+		private object _eventListener;
+		public object eventListener 
 		{ 
 			get
 			{
@@ -70,7 +70,8 @@ namespace com.rmc.events
 		/// The _event name_string.
 		/// </summary>
 		private string _eventName_string;
-		public string eventName { 
+		public string eventName 
+		{ 
 			get
 			{
 				return _eventName_string;
@@ -88,7 +89,8 @@ namespace com.rmc.events
 		/// The _event delegate.
 		/// </summary>
 		private EventDelegate _eventDelegate;
-		public EventDelegate eventDelegate { 
+		public EventDelegate eventDelegate 
+		{ 
 			get
 			{
 				return _eventDelegate;
@@ -96,6 +98,20 @@ namespace com.rmc.events
 			set
 			{
 				_eventDelegate = value;
+				
+			}
+		}
+		
+		private EventDispatcherAddMode _eventListeningMode;
+		public EventDispatcherAddMode eventListeningMode 
+		{ 
+			get
+			{
+				return _eventListeningMode;
+			}
+			set
+			{
+				_eventListeningMode = value;
 				
 			}
 		}
@@ -123,11 +139,12 @@ namespace com.rmc.events
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public EventListenerData (IEventListener aEventListener, string aEventName_string, EventDelegate aEventDelegate )
+		public EventListenerData (object aEventListener, string aEventName_string, EventDelegate aEventDelegate, EventDispatcherAddMode aEventListeningMode )
 		{
 			_eventListener 		= aEventListener;
 			_eventName_string 	= aEventName_string;
 			_eventDelegate		= aEventDelegate;
+			_eventListeningMode	= aEventListeningMode;
 			
 			
 			
@@ -136,11 +153,11 @@ namespace com.rmc.events
 		/// <summary>
 		/// Deconstructor
 		/// </summary>
-		~EventListenerData ( )
-		{
-			Debug.Log ("EventListenerData.deconstructor()");
+		//~EventListenerData ( )
+		//{
+			//Debug.Log ("EventListenerData.deconstructor()");
 			
-		}
+		//}
 		
 		
 		// PUBLIC STATIC

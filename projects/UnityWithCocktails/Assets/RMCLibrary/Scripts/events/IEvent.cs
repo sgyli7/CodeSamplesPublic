@@ -62,7 +62,7 @@ namespace com.rmc.events
 		/// <value>
 		/// The target.
 		/// </value>
-		IEventListener target { get; set; }
+		object target { get; set; }
 		
 		//--------------------------------------
 		//  Methods

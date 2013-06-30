@@ -46,13 +46,12 @@
   <ItemGroup>
      <Compile Include="Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\events\Event.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\EventDispatcher.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\EventListenerData.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\IEvent.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\events\IEventDispatcher.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\events\IEventListener.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\events\TestEvent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\eventmanager\EventManager.cs" />
+     <Compile Include="Assets\RMCLibrary\Scripts\managers\event_manager\EventManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\AbstractManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\CustomManager.cs" />
      <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\EventManager.cs" />
@@ -93,18 +92,19 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\PreviousButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\RemoveAllGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scripts\SimpleGameManagerComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AbstractButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\AddGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\DoAQuickTestFromSecondScene.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\NextButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\PreviousButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scripts\TestClasspaths.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\TestEventDispatcherComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\TestFromOtherScope.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_EventDispatcher\Scripts\Events\TestEvent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_EventDispatcher\TestEventDispatcherComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX2_EventDispatcher\TestFromOtherScope.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\AbstractButtonComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\AddGOButtonComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\DoAQuickTestFromSecondScene.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\NextButtonComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\PreviousButtonComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\TestClasspaths.cs" />
      <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
+     <None Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scenes\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
-     <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

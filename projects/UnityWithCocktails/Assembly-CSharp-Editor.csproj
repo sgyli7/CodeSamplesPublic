@@ -52,8 +52,8 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson5_ExtendingEditor\Scripts\Editor\CustomMenu.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson5_ExtendingEditor\Scripts\Editor\MyCustomComponentEditor.cs" />
      <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
+     <None Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scenes\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
-     <None Include="Assets\UnityWithCocktails\Lessons\LessonX2_MOM\Scenes\read_me.txt" />
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>

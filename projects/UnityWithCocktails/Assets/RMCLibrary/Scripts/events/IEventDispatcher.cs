@@ -41,7 +41,7 @@ namespace com.rmc.events
 	/// <summary>
 	/// IEventDispatcher
 	/// </summary>
-	public interface IEventDispatcher
+	interface IEventDispatcher
 	{
 	
 		//--------------------------------------
@@ -51,30 +51,21 @@ namespace com.rmc.events
 		
 		// PUBLIC
 		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PUBLIC
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
-		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
 		
 		// PUBLIC
+	    bool addEventListener(string aEventType_string, EventDelegate aEventDelegate);
+		bool addEventListener(string aEventType_string, EventDelegate aEventDelegate, EventDispatcherAddMode eventDispatcherAddMode);
+		//
+	    bool hasEventListener(string aEventType_string, EventDelegate aEventDelegate);
+	    bool removeEventListener(string aEventType_string, EventDelegate aEventDelegate);
+	    bool removeAllEventListeners();
+	    bool dispatchEvent(IEvent aIEvent);
 		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
-		
+		// STATIC
+
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
@@ -82,4 +73,3 @@ namespace com.rmc.events
 
 	}
 }
-

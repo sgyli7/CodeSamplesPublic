@@ -86,26 +86,35 @@ namespace com.rmc.editors
 			
 			//
 			_createFoldersUnderParent("Assets", 						"Standard Assets");
-			_createFoldersUnderParent("Assets", 						"3rdParty Assets");
+			_createFoldersUnderParent("Assets", 						"Community Assets");
 			//
 			_createFoldersUnderParent("Assets", 						"[ProjectName]");
-			_createFoldersUnderParent("Assets/[ProjectName]", 			"Materials");
-			_createFoldersUnderParent("Assets/[ProjectName]", 			"Prefabs");
-			_createFoldersUnderParent("Assets/[ProjectName]", 			"Resources");
 			//
-			_createFoldersUnderParent("Assets/[ProjectName]", 			"Scripts");
-			_createFoldersUnderParent("Assets/[ProjectName]/Scripts", 	"Components");
-			_createFoldersUnderParent("Assets/[ProjectName]/Scripts", 	"Editor");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Animations");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Animators");
 			//
-			_createFoldersUnderParent("Assets/[ProjectName]", 			"Scenes");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Audio");
+			_createFoldersUnderParent("Assets/[ProjectName]/Audio", 	"SoundEffects");
+			_createFoldersUnderParent("Assets/[ProjectName]/Audio", 	"Music");
+			//
+			
 			_createFoldersUnderParent("Assets/[ProjectName]", 			"Fonts");
 			_createFoldersUnderParent("Assets/[ProjectName]", 			"GUISkins");
+			//
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Materials");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Models");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Prefabs");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Resources");
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Scenes");
+			//
+			_createFoldersUnderParent("Assets/[ProjectName]", 			"Scripts");
+			_createFoldersUnderParent("Assets/[ProjectName]/Scripts", 	"Editor");
+			_createFoldersUnderParent("Assets/[ProjectName]/Scripts", 	"Components");
+			//
 			_createFoldersUnderParent("Assets/[ProjectName]", 			"Shaders");
 			_createFoldersUnderParent("Assets/[ProjectName]", 			"Textures");
 			//
-			_createFoldersUnderParent("Assets/[ProjectName]", 			"Audio");
-			_createFoldersUnderParent("Assets/[ProjectName]/Audio", 	"SFX");
-			_createFoldersUnderParent("Assets/[ProjectName]/Audio", 	"Music");
+
 			
 			
 			
