@@ -47,6 +47,7 @@ namespace com.rmc.managers.mom
 	/// MOM = Manager of Managers. One singleton to rule them all.
 	/// </summary>
 	[ExecuteInEditMode()] 
+	[System.Serializable]
 	public class MOM : MonoBehaviour
 	{
 	
@@ -89,6 +90,13 @@ namespace com.rmc.managers.mom
 		///	 NAME: GameObject containing any dynamically children (dynamically placed via code)
 		///</summary>
 		private static string _NAME_DYNAMIC_GAME_OBJECTS = "_DynamicGameObjects";
+		
+				
+		/// <summary>
+		/// The managers list.
+		/// </summary>
+		[SerializeField]
+		public List<BaseManager> managers = new List<BaseManager>();
 			
 	
 	
@@ -109,21 +117,19 @@ namespace com.rmc.managers.mom
 				#pragma warning disable 0219
 				
 				//TODO, RESPECT Mom.Instance.IsEnabled() somewhow WITHOUT creating the instance - (static prop?)
-				//MOM dummy_mom = MOM.Instance; //trick singleton into instantiating if it doesn't exist yet.
+				MOM dummy_mom = MOM.Instance; //trick singleton into instantiating if it doesn't exist yet.
 				#pragma warning restore 0219
 			}
+
 		}
 		
 		
-		///<summary>
-		///	 Destroy Instance
-		///</summary>
+		/// <summary>
+		/// Raises the application quit event.
+		/// </summary>
 		public void OnApplicationQuit() 
 		{ 
-			//
-			_Instance = null; //NOTE, ITS STILL SITTING IN HIERARCHY?
-			
-			//TODO, SHOULD IT DELETE FROM HIERARCHY?
+			// DO NOTHING, KEEP _instance ALIVE!
 		}
 	
 		
@@ -145,9 +151,10 @@ namespace com.rmc.managers.mom
 			 * 
 			 */
 			//THEN DO MANAGER STUFF
+			//Debug.Log ("MOM.update()1");
 			if (_Instance && _Instance.isEnabled) {
-				Debug.Log ("MOM.update()");
-				foreach (IManager iManager in _Instance.managersList) {
+				//Debug.Log ("MOM.update() _Instance.manager" + _Instance.managers.Count);
+				foreach (IManager iManager in _Instance.managers) {
 					if (iManager.canReceiveUpdate) {
 						iManager.onUpdate();
 					}
@@ -160,12 +167,16 @@ namespace com.rmc.managers.mom
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
+		private int _tempRandom_float;
 		///<summary>
 		///	 Constructor
 		///</summary>
 		private MOM ( )
 		{
-			//Debug.Log ("MOM.constructor()");
+			System.Random r = new System.Random ();
+			
+			_tempRandom_float = 33; // r.Next(100);
+			Debug.Log ("MOM.constructor() " + _tempRandom_float);
 			
 		}
 		
@@ -181,10 +192,6 @@ namespace com.rmc.managers.mom
 		///			MANAGERS FUNCTIONALITY
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		
-		[SerializeField]
-		public List<AbstractManager> managersList = new List<AbstractManager>();
-		
 		
 		/// <summary>
 		/// Adds the manager.
@@ -228,11 +235,15 @@ namespace com.rmc.managers.mom
 		/// </typeparam>
 		public T _addManagerByForce <T> () where T : IManager
 		{
+			
+			//Debug.Log ("	_addManagerByForce: TOTAL1:    " + managers.Count + " AND " + typeof (T));
 			//REMOVE IF EXISTS
 			if (hasManager<T>()) {
+				//Debug.Log ("	already has! " + typeof (T));
 				removeManager<T>();
 			} 
 			
+			//Debug.Log ("	_addManagerByForce: TOTAL2:    " + managers.Count + " AND " + typeof (T));
 			//
 			IManager found_imanager;
 			
@@ -242,20 +253,27 @@ namespace com.rmc.managers.mom
 			found_imanager = (IManager) newInstance;
 			
 			//ADD
-			managersList.Add ((AbstractManager)found_imanager);
+			managers.Add ((BaseManager)found_imanager);
 			
-			//DISPATCH 'I' WAS ADDED
+			//DISPATCH TO 'ME' THAT 'I' WAS ADDED
 			found_imanager.onAddManager();
 			
 			
-			//DISPATCH 'ANOTHER MANAGER' WAS ADDED
-			foreach (IManager iManager in _Instance.managersList) {
+			//DISPATCH TO 'ALL BUT ME?' THAT 'ANOTHER MANAGER' WAS ADDED
+			foreach (IManager iManager in _Instance.managers) {
 				
 				//TODO: DECIDE IF A MANAGER SHOULD GET ONRESET() WHEN ITSELF IS ADDED. FOR NOW, YES!
 				//if (iManager != found_imanager) {
 					iManager.onReset(found_imanager);	
 				//}
 			}
+			
+			//Debug.Log ("	_addManagerByForce: TOTAL3:    " + managers.Count + " AND " + typeof (T));
+			//foreach (IManager iManager in _Instance.managers) {
+				//Debug.Log ("		now has : " + iManager);
+			//}
+			
+			
 			
 			//RETURN
 			return (T) found_imanager;
@@ -273,7 +291,7 @@ namespace com.rmc.managers.mom
 		/// </typeparam>
 		public bool hasManager <T> () where T : IManager
 		{
-			ScriptableObject scriptableObject = managersList.Find ( man => (man.GetType() == typeof(T))	);
+			ScriptableObject scriptableObject = managers.Find ( man => (man.GetType() == typeof(T))	);
 			IManager found_imanager = (IManager) scriptableObject;
 			return (found_imanager != null);
 		}
@@ -289,7 +307,7 @@ namespace com.rmc.managers.mom
 		/// </typeparam>
 		public T getManager <T> () where T : IManager
 		{
-			ScriptableObject scriptableObject = managersList.Find ( man => (man.GetType() == typeof(T))	);
+			ScriptableObject scriptableObject = managers.Find ( man => (man.GetType() == typeof(T))	);
 			IManager found_imanager = (IManager) scriptableObject;
 			return (T) found_imanager;
 		}
@@ -298,27 +316,30 @@ namespace com.rmc.managers.mom
 		/// <summary>
 		/// ReAdd all managers.
 		/// </summary>
-		public void reAddAllManagersFromInspector ()
+		private void _reAddAllManagersFromInspector ()
 		{
 			
 			//COPY FROM MASTER LIST (FROM INSPECTOR)
-			List <AbstractManager> copyOFManagersList = new List<AbstractManager>(managersList);
+			List <BaseManager> copyOfManagersList = new List<BaseManager>(managers);
 			
 			//CLEAR MASTER LIST
-			managersList.RemoveAll ( (abstractManager) => true); //remove 'all'
+			managers.RemoveAll ( (abstractManager) => true); //remove 'all'
 			
 			//ADD FROM COPY TO MASTER LIST
 			//	NOTE: THIS PROPERLY CALLS THE ADD EVENTS WITHOUT THE DELETE EVENTS
 			
 			
 			IManager iManager;
-			for (int index_int = copyOFManagersList.Count -1; index_int >= 0 ; index_int --) {
+			for (int index_int = copyOfManagersList.Count -1; index_int >= 0 ; index_int --) {
 				
 				//
-				iManager = copyOFManagersList[index_int];
+				iManager = copyOfManagersList[index_int];
 				//
-				System.Type type = iManager.GetType();
-				GenericsUtility.invokeGenericMethodByType (MOM.Instance, "_addManagerByForce", type);
+				//WHY WOULD IT BE NULL? I THINK THERE IS A BLANK ADDED IN THE EDITORWINDOW, AND UNTIL WE DRAG SOMETHING THERE ITS BLANK (BLANKISH)
+				if (iManager != null) {
+					System.Type type = iManager.GetType();
+					GenericsUtility.invokeGenericMethodByType (MOM.Instance, "_addManagerByForce", type);
+				}
 			
 			}
 			
@@ -337,21 +358,49 @@ namespace com.rmc.managers.mom
 		public bool removeManager <T> () where T : IManager
 		{
 			IManager existing_imanager = getManager<T>();
-			bool wasSuccessful_boolean = false;
+			bool wasSuccessful_boolean;
 			
+			Debug.Log ("removeManager(): " + existing_imanager);
 			if (existing_imanager == null) {
 				wasSuccessful_boolean = false; //failed
 				
 			} else {
 				
 				existing_imanager.onRemoveManager();
-				wasSuccessful_boolean = managersList.Remove ((AbstractManager)existing_imanager);
+				wasSuccessful_boolean = managers.Remove ((BaseManager)existing_imanager);
+				Debug.Log ("1remove???? " + wasSuccessful_boolean);
+				wasSuccessful_boolean = true;
 			}
 			
 			//
+			//Debug.Log ("2remove???? " + wasSuccessful_boolean);
 			return wasSuccessful_boolean;
 			
 		}
+		
+		/// <summary>
+		/// Removes all managers.
+		/// </summary>
+		/// <returns>
+		/// The all managers.
+		/// </returns>
+		public bool removeAllManagers ()
+		{
+			bool wasSuccessful_boolean = true;
+			System.Type toBeDestroyed_type;
+			
+			for (int count_int = managers.Count -1; count_int >=0; count_int--) {
+				
+				IManager iManager = managers[count_int];
+				toBeDestroyed_type = iManager.GetType();
+				Debug.Log ("REMO: " + iManager);
+				GenericsUtility.invokeGenericMethodByType (MOM.Instance, "removeManager", toBeDestroyed_type);
+			}
+			
+			return wasSuccessful_boolean;
+			
+		}
+		
 		
 		
 		
@@ -494,7 +543,7 @@ namespace com.rmc.managers.mom
 						
 					
 					//5. TEMPORARY***** ADD MANAGERS (SHOULD BE DONE FROM OUTSIDE)
-					_Instance.reAddAllManagersFromInspector();
+					_Instance._reAddAllManagersFromInspector();
 						
 					
 					//6. INITIALIZE A FEW CHILDREN TO ACT LIKE FOLDERS FOR FUTURE GO'S
@@ -567,6 +616,14 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		void OnDestroy() {
+			//I DON'T EXPECT THIS EVER
+			removeAllManagers();
+    		Debug.Log("	Mom.OnDestroy() " + _tempRandom_float);
+		}
 	}
 }
 

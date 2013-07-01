@@ -38,6 +38,8 @@ using System.Reflection;
 namespace com.rmc.utilities
 {
 	
+	
+	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
@@ -107,17 +109,7 @@ namespace com.rmc.utilities
 			
 		}
 		
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
-		
-		//--------------------------------------
-		//  Events
-		//--------------------------------------
-		
-		
-		/// <summary>
+				/// <summary>
 		/// Debugs the log all properties for serialized property.
 		/// </summary>
 		/// <param name='aSerializedObject'>
@@ -134,6 +126,19 @@ namespace com.rmc.utilities
 			     Debug.Log("	" + property.name + " = " + property);
 			}
 		}
+		
+		
+		
+		// PRIVATE
+		
+		// PRIVATE STATIC
+		
+		//--------------------------------------
+		//  Events
+		//--------------------------------------
+		
+		
+
 	}
 }
 

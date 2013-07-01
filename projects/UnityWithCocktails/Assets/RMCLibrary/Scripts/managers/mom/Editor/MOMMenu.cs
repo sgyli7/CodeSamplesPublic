@@ -35,7 +35,7 @@ using com.rmc.utilities;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.managers.mom
+namespace com.rmc.managers.mom.Editor
 {
 	
 	//--------------------------------------

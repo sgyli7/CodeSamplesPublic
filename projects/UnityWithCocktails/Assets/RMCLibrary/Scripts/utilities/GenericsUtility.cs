@@ -84,14 +84,13 @@ namespace com.rmc.utilities
 		/// <param name='aType'>
 		/// A type.
 		/// </param>
-		public static Object invokeGenericMethodByType (Object aHost, string aMethodName, System.Type aType)
+		public static object invokeGenericMethodByType (Object aHost, string aMethodName, System.Type aType)
 		{
 			//CUSTOM WAY
 			MethodInfo method = aHost.GetType().GetMethod(aMethodName);
 			MethodInfo methodGeneric = method.MakeGenericMethod ( aType);
-			methodGeneric.Invoke(aHost, null);
 			
-			return new Object(); //TODO, return a real data when needed.
+			return methodGeneric.Invoke(aHost, null);
 		}
 		
 		

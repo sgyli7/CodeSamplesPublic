@@ -35,15 +35,17 @@ using System.Collections.Generic;
 using System.Reflection;
 using com.rmc.utilities;
 using System.IO;
+using com.rmc.managers.eventmanager;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.managers.mom
+namespace com.rmc.managers.mom.Editor
 {
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	[System.Serializable]
 	[ExecuteInEditMode()]  
 	public class MOMEditorWindow : EditorWindow 
 	{
@@ -92,7 +94,7 @@ namespace com.rmc.managers.mom
 		/// <summary>
 		/// The managers list_serializedproperty.
 		/// </summary>
-		private SerializedProperty _managersList_serializedproperty;
+		private SerializedProperty _managers_serializedproperty;
 					
 		
 		
@@ -123,6 +125,38 @@ namespace com.rmc.managers.mom
 		
 		
 		// PUBLIC
+		/// <summary>
+		/// _ises the MOM game object or child of MOM game object.
+		/// </summary>
+		/// <param name='gameObject'>
+		/// Game object.
+		/// </param>
+		private bool _isMOMGameObjectOrChildOfMOMGameObject (GameObject aGameObject)
+		{
+			bool isMOMGameObjectOrChildOfMOMGameObject_boolean = false;
+			
+			if (aGameObject != null) {
+				
+				
+				if (aGameObject == MOM.Instance.gameObject) {
+					
+					//IS THE MOM
+					return true;
+				} else if (aGameObject.transform.parent != null ) {
+					
+					if (aGameObject.transform.parent.gameObject == MOM.Instance.gameObject) {
+						//ITS PARENT IS THE MOM
+						return true;	
+					}
+				}
+				
+			} 
+			
+			return isMOMGameObjectOrChildOfMOMGameObject_boolean;
+			
+		}
+		
+		
 		
 		// PUBLIC STATIC
 		
@@ -134,19 +168,47 @@ namespace com.rmc.managers.mom
 		{
 			//
 			_mom_serializedObject 						= new SerializedObject(MOM.Instance);
-			//
 			_isEnabled_serializedproperty 				= _mom_serializedObject.FindProperty ("isEnabled");
 			_isHiddenInHierarchy_serializedproperty 	= _mom_serializedObject.FindProperty ("isHiddenInHierarchy");
-			//
-			_managersList_serializedproperty 			= _mom_serializedObject.FindProperty ("managersList");
+			_managers_serializedproperty 				= _mom_serializedObject.FindProperty ("managers");
+			
+			if (_mom_serializedObject == null) {
+				Debug.Log ("_mom_serializedObject: " + _mom_serializedObject);
+			}
+			
+			if (_isEnabled_serializedproperty == null) {
+				Debug.Log ("_isEnabled_serializedproperty: " + _isEnabled_serializedproperty);
+			}
+			
+			if (_isHiddenInHierarchy_serializedproperty == null) {
+				Debug.Log ("_isHiddenInHierarchy_serializedproperty: " + _isHiddenInHierarchy_serializedproperty);
+			}
+			
+			if (_managers_serializedproperty == null) {
+				Debug.Log ("_managersList_serializedproperty: " + _managers_serializedproperty);
+			}
+			
+			
+			//throw new UnityException();
+			
 		}
 		
+		/// <summary>
+		/// The tab icon_texture2 d.
+		/// </summary>
 		private Texture2D tabIcon_texture2D 		= Resources.Load("MOMEditorWindowTabIcon") as Texture2D;
+		
+		/// <summary>
+		/// The hierarchy item_texture2 d.
+		/// </summary>
 		private Texture2D hierarchyItem_texture2D 	= Resources.Load("MOMHierarchyItemIcon") as Texture2D;
+		
+		/// <summary>
+		/// The banner image_texture2 d.
+		/// </summary>
 		private Texture2D bannerImage_texture2D 	= Resources.Load("MOMEditorWindowBannerImage") as Texture2D;
  
 		
-			
 		
 		// PRIVATE STATIC
 		
@@ -160,6 +222,9 @@ namespace com.rmc.managers.mom
 		{
 			//GRAB FRESH
 			_getTargetReferences();
+			
+			//
+			autoRepaintOnSceneChange = true;
 			//
 			EditorWindowUtility.SetEditorWindowTabIcon (this, tabIcon_texture2D);
 			
@@ -171,6 +236,13 @@ namespace com.rmc.managers.mom
 			
 		}
 	
+		/// <summary>
+		/// Raises the inspector update event.
+		/// </summary>
+		public void OnInspectorUpdate () 
+		{
+            Repaint();
+        }
 		
 		/// <summary>
 		/// Raises the GU event.
@@ -178,13 +250,21 @@ namespace com.rmc.managers.mom
 		public void OnGUI()
 		{
 			
-			//RARELY, THIS IS NULL
-			if (_mom_serializedObject == null) {
-				_getTargetReferences();
-			}
+			//Debug.Log ("OnGUI: ");
+			
 			
 			//LOAD CHANGES
+			_getTargetReferences();
 			_mom_serializedObject.Update();
+			
+			//RARELY, THIS IS NULL
+			if (_mom_serializedObject == null) {
+				Debug.Log ("PROBLEM1!!!!!!!!!!!("+_managers_serializedproperty+")");
+			}
+			if (_managers_serializedproperty == null) {
+				Debug.Log ("PROBLEM2!!!!!!!!!!! ("+_mom_serializedObject+")" + MOM.Instance);
+			}
+
 			
 			EditorGUIUtility.LookLikeControls();
 			
@@ -217,14 +297,19 @@ namespace com.rmc.managers.mom
 			skinnyToggleGUILayoutOptions[1] = GUILayout.MinWidth (14);
 			
 			//OPTIONS
+			GUILayoutOption[] skinnyPrefixLabelGUILayoutOption = new GUILayoutOption[2];
+			skinnyPrefixLabelGUILayoutOption[0] = GUILayout.MaxWidth (14);
+			skinnyPrefixLabelGUILayoutOption[1] = GUILayout.MinWidth (14);
+			
+			//OPTIONS
 			GUILayoutOption[] buttonGUILayoutOptions = new GUILayoutOption[2];
 			buttonGUILayoutOptions[0] = GUILayout.MaxWidth (60);
 			buttonGUILayoutOptions[1] = GUILayout.MinWidth (60);
 			
 			//OPTIONS
 			GUILayoutOption[] scriptableObjectFieldOptions = new GUILayoutOption[2];
-			scriptableObjectFieldOptions[0] = GUILayout.MaxWidth (250);
-			scriptableObjectFieldOptions[1] = GUILayout.MinWidth (250);
+			scriptableObjectFieldOptions[0] = GUILayout.MaxWidth (300);
+			scriptableObjectFieldOptions[1] = GUILayout.MinWidth (300);
 			
 			//
 			GUILayoutOption[] scrollViewMenu_options = new GUILayoutOption[1];
@@ -261,6 +346,16 @@ namespace com.rmc.managers.mom
 					EditorGUILayout.PrefixLabel ("(Must Hit Play then Pause)");
 					EditorGUILayout.EndHorizontal();
 					
+					//
+					EditorGUILayout.BeginHorizontal();
+					{
+						EditorGUILayout.Space ();
+						if (GUILayout.Button (new GUIContent ("Destroy/Recreate", "Destroy/Recreate"))) {
+							_onDestroyRecreateButtonClick();
+						}
+					}
+					EditorGUILayout.EndHorizontal();
+					
 				}
 				EditorGUILayout.EndVertical();
 				EditorGUI.indentLevel--;
@@ -276,7 +371,7 @@ namespace com.rmc.managers.mom
 				//
 				string manager_string = "Managers";
 				EditorGUILayout.LabelField (manager_string, bold_guistyle );
-				if (MOM.Instance.managersList.Count == 0) {
+				if (MOM.Instance.managers.Count == 0) {
 					
 					//NO MANAGERS
 					EditorGUILayout.HelpBox ("Add Managers", MessageType.Info);
@@ -286,46 +381,63 @@ namespace com.rmc.managers.mom
 					
 					//
 					EditorGUI.indentLevel++;
-					_managersList_serializedproperty.isExpanded = EditorGUILayout.Foldout(_managersList_serializedproperty.isExpanded, new GUIContent ("Expand"));
+					IEnumerator temp = _managers_serializedproperty.GetEnumerator();
+					int count_int = 0;
+					while (temp.MoveNext()) {
+						count_int++;
+					}
+					_managers_serializedproperty.isExpanded = EditorGUILayout.Foldout(_managers_serializedproperty.isExpanded, new GUIContent ("Expand (real " + MOM.Instance.managers.Count +  ", iterator" + count_int +")"));
 				
 					EditorGUI.indentLevel++;
-					if (_managersList_serializedproperty.isExpanded) {
+					if (_managers_serializedproperty.isExpanded) {
 						
-						IEnumerator managersList_ienumerator = _managersList_serializedproperty.GetEnumerator();
+						IEnumerator managersList_ienumerator = _managers_serializedproperty.GetEnumerator();
 							
 						SerializedProperty 	managerListItem_serializedproperty;
 						ScriptableObject 	scriptableObject;
 						string 				scriptableObjectName_string;
 						string				scriptableObjectTooltip_string;
+						//
+						//
+						//
 						while (managersList_ienumerator.MoveNext()) {
 						
 							//
 							EditorGUILayout.BeginHorizontal();
 							{
 								
-								managerListItem_serializedproperty = managersList_ienumerator.Current as SerializedProperty;
-								scriptableObject = managerListItem_serializedproperty.objectReferenceValue as ScriptableObject;
+								GUILayout.FlexibleSpace();
 								//
-								if (scriptableObject.name != "") {
-									scriptableObjectName_string 	= scriptableObject.name;
-									scriptableObjectTooltip_string 	= scriptableObject.name;
-								} else {
-									scriptableObjectName_string 	= "Drag Asset ->";	
-									scriptableObjectTooltip_string 	= "Drag Asset Here.";
-								}
+								managerListItem_serializedproperty 			= managersList_ienumerator.Current as SerializedProperty;
+								scriptableObject 							= managerListItem_serializedproperty.objectReferenceValue as ScriptableObject;
 								
-								EditorGUILayout.Toggle (false, skinnyToggleGUILayoutOptions);
 								
-								//
-								managerListItem_serializedproperty.objectReferenceValue = (ScriptableObject) EditorGUILayout.ObjectField(new GUIContent (scriptableObjectName_string, scriptableObjectTooltip_string), scriptableObject, typeof(ScriptableObject), false, scriptableObjectFieldOptions);
-	
 								
+								//Debug.Log ("epand loop: scriptableObject: " + scriptableObject + " (" + _managers_serializedproperty.arraySize + ")");
+								
+								
+								if (scriptableObject != null) {
+									//NAME DISPLAY 1: THIS SETS THE LABEL FIELD TEXT
+									if (scriptableObject.GetType().IsSubclassOf (typeof (BaseManager) ) ) {
+										scriptableObjectName_string 	= scriptableObject.GetType().Name;
+										scriptableObjectTooltip_string 	= "Tip: " + scriptableObjectName_string;
+									} else {
+										scriptableObjectName_string 	= "Drag Asset ->";	
+										scriptableObjectTooltip_string 	= "Tip: Drag Asset Here.";
+									}
 									
-					
-		
-								if (GUILayout.Button (new GUIContent("Delete", "Delete This Manager"), buttonGUILayoutOptions)) {
-									_onManagerListItemDeleteClick (managerListItem_serializedproperty);
-								}
+									//NAME DISPLAY 2: THIS SETS THE OBJECT FIELD TEXT
+									scriptableObject.name = scriptableObjectName_string;
+									
+									//
+									managerListItem_serializedproperty.objectReferenceValue = (ScriptableObject) EditorGUILayout.ObjectField(new GUIContent (scriptableObjectName_string, scriptableObjectTooltip_string), scriptableObject, typeof (ScriptableObject), false, scriptableObjectFieldOptions);
+						
+			
+									if (GUILayout.Button (new GUIContent("Delete", "Delete This Manager"), buttonGUILayoutOptions)) {
+										_onDeleteManagerClick (managerListItem_serializedproperty);
+									}
+								} // end if scriptable exists
+								
 							EditorGUILayout.EndHorizontal();
 						
 							}
@@ -428,9 +540,7 @@ namespace com.rmc.managers.mom
 			
 			//SAVE TO DISK - WHICH PARAMETER?
 			if (GUI.changed) {
-				_mom_serializedObject.ApplyModifiedProperties();
-				_mom_serializedObject.UpdateIfDirtyOrScript();
-				EditorUtility.SetDirty( MOM.Instance);
+				_setEditorWindowDirty();
 				
 			}
 			
@@ -460,6 +570,9 @@ namespace com.rmc.managers.mom
 		
 		/// <summary>
 		/// _ises the add new manager enabled.
+		/// 	NOTE: There *Was?* a problem where you'd click 'add' drag in a manager of type WHICH already is int he list and it leaves a blank. 
+		/// 			This helps that issue. - KEEP for now.
+		/// 
 		/// </summary>
 		/// <returns>
 		/// The add new manager enabled.
@@ -467,8 +580,40 @@ namespace com.rmc.managers.mom
 		private bool _isAddNewManagerEnabled ()
 		{
 			bool isAddNewManagerEnabled_boolean = true;
-			//
-			IEnumerator managersList_ienumerator = _managersList_serializedproperty.GetEnumerator();
+			
+			if (_managers_serializedproperty != null) {
+				//
+				IEnumerator managersList_ienumerator = _managers_serializedproperty.GetEnumerator();
+							
+				SerializedProperty 	managerListItem_serializedproperty;
+				ScriptableObject 	scriptableObject;
+				while (managersList_ienumerator.MoveNext()) {
+				
+					managerListItem_serializedproperty = managersList_ienumerator.Current as SerializedProperty;
+					scriptableObject = managerListItem_serializedproperty.objectReferenceValue as ScriptableObject;
+					if (scriptableObject == null || (scriptableObject.name.Length == 0)) {
+						//IF JUST ONE LACKS A TITLE THEN YOU CAN'T ADD MORE	
+						isAddNewManagerEnabled_boolean = false;
+						break;
+					}
+					
+				}
+			}
+			return isAddNewManagerEnabled_boolean;
+		}
+		
+		/// <summary>
+		/// _managerses the list has no exactly abstract manager item.
+		/// </summary>
+		/// <returns>
+		/// The list has no exactly abstract manager item.
+		/// </returns>
+		private bool _hasManagersListAnyBaseManagers ()
+		{
+			
+			bool hasManagersListAnyBaseManagers_boolean = false;
+			
+			IEnumerator managersList_ienumerator = _managers_serializedproperty.GetEnumerator();
 						
 			SerializedProperty 	managerListItem_serializedproperty;
 			ScriptableObject 	scriptableObject;
@@ -476,15 +621,14 @@ namespace com.rmc.managers.mom
 			
 				managerListItem_serializedproperty = managersList_ienumerator.Current as SerializedProperty;
 				scriptableObject = managerListItem_serializedproperty.objectReferenceValue as ScriptableObject;
-				if ((scriptableObject.name.Length == 0)) {
+				if ((typeof (ScriptableObject) == typeof(BaseManager))) {
 					//IF JUST ONE LACKS A TITLE THEN YOU CAN'T ADD MORE	
-					isAddNewManagerEnabled_boolean = false;
+					hasManagersListAnyBaseManagers_boolean = true;
 					break;
 				}
-				
 			}
 			
-			return isAddNewManagerEnabled_boolean;
+			return hasManagersListAnyBaseManagers_boolean;
 		}
 		
 		
@@ -495,7 +639,7 @@ namespace com.rmc.managers.mom
 		{
 			
 			//TODO CHANGE TO IMANANGER TYPE
-			System.Type type = typeof (AbstractManager);
+			System.Type type = typeof (BaseManager);
 			List<Object> resourcesFound = Object.FindObjectsOfTypeIncludingAssets(type).Cast<Object>().Where ( (item) => (item.GetType().Name.Contains("Manager") )).ToList();
 			
 			//EditorGUILayout ("C: " + resourcesFound.Count());
@@ -517,12 +661,12 @@ namespace com.rmc.managers.mom
 		public static void _getEditorPopupForIManagerAssets ()
 		{
 			//TODO CHANGE TO IMANANGER TYPE
-			System.Type type = typeof (AbstractManager);
-			List<AbstractManager> resourcesFound = Resources.FindObjectsOfTypeAll(type).Cast<AbstractManager>().Where ( (item) => (item.GetType() != typeof (AbstractManager) )).ToList();
+			System.Type type = typeof (BaseManager);
+			List<BaseManager> resourcesFound = Resources.FindObjectsOfTypeAll(type).Cast<BaseManager>().Where ( (item) => (item.GetType() != typeof (BaseManager) )).ToList();
 			
 			string[] popupListOfScriptableObjects = new string[resourcesFound.Count];
 			int count_int = 0;
-			foreach (AbstractManager scriptableObject in resourcesFound) {
+			foreach (BaseManager scriptableObject in resourcesFound) {
 				
 				popupListOfScriptableObjects[count_int] = scriptableObject.GetType().FullName.ToString();
 				count_int++;
@@ -551,29 +695,102 @@ namespace com.rmc.managers.mom
 	    }
 		
 		/// <summary>
-		/// _ons the manager list item delete click.
+		/// _sets the editor window dirty.
 		/// </summary>
-		/// <param name='managerListItem_serializedproperty'>
-		/// Manager list item_serializedproperty.
-		/// </param>
-		private void _onManagerListItemDeleteClick (SerializedProperty managerListItem_serializedproperty)
+		private void _setEditorWindowDirty ()
 		{
 			
-			System.Type type = managerListItem_serializedproperty.objectReferenceValue.GetType();
-			GenericsUtility.invokeGenericMethodByType (MOM.Instance, "removeManager", type);
-			
+			//STILL HAVING ISSUES
+			if (_mom_serializedObject.targetObject != null && _mom_serializedObject != null && MOM.Instance != null) {
 				
+				_mom_serializedObject.SetIsDifferentCacheDirty();
+				_mom_serializedObject.ApplyModifiedProperties();
+				_mom_serializedObject.Update();
+				EditorUtility.SetDirty( MOM.Instance);
+			}
+			Repaint();
 		}
+		
 		
 		/// <summary>
 		/// _ons the add new manager click.
 		/// </summary>
 		private void _onAddNewManagerClick ()
 		{
-			MOM.Instance.addManager<AbstractManager>();
-			//EditorUtility.DisplayDialog ("blah", "what", "yes", "Cancel");
+			if (!_hasManagersListAnyBaseManagers()) {
+				
+				_mom_serializedObject.Update();
+				MOM.Instance.addManager<BaseManager>();
+				_getTargetReferences();
+				_setEditorWindowDirty();
+			} else {
+				EditorUtility.DisplayDialog ("blah", "Drag ScriptableObject to blank item first.", "OK", "Cancel");	
+			}
+		
 		}
 		
+		
+		/// <summary>
+		/// _ons the manager list item delete click.
+		/// </summary>
+		/// <param name='aToBeDeletedManagerListItem_serializedproperty'>
+		/// Manager list item_serializedproperty.
+		/// </param>
+		private void _onDeleteManagerClick (SerializedProperty aToBeDeletedManagerListItem_serializedproperty)
+		{
+			//
+						
+			bool isSuccessful_boolean = false;
+			
+			//
+			
+			Debug.Log ("MEW. _onDeleteManagerClick()");
+			
+			IEnumerator managersList_ienumerator = _managers_serializedproperty.GetEnumerator();
+							
+			SerializedProperty 	managerListItem_serializedproperty;
+			ScriptableObject 	scriptableObject;
+			int toBeDeletedIndex_int = 0;
+			while (managersList_ienumerator.MoveNext()) {
+				managerListItem_serializedproperty = managersList_ienumerator.Current as SerializedProperty;
+				if (managerListItem_serializedproperty.objectReferenceValue == aToBeDeletedManagerListItem_serializedproperty.objectReferenceValue) {
+					Debug.Log	("	found!!! " + toBeDeletedIndex_int);
+					break;
+				}
+				toBeDeletedIndex_int++;
+			}
+
+			//
+			_mom_serializedObject.Update();
+			if (_managers_serializedproperty.arraySize > 0) {
+				Debug.Log ("1CURRENT COUNT: " + _managers_serializedproperty.arraySize);
+				Debug.Log ("	NOW DELETE at " + toBeDeletedIndex_int);
+				_managers_serializedproperty.DeleteArrayElementAtIndex(toBeDeletedIndex_int);
+				Debug.Log ("2CURRENT COUNT: " + _managers_serializedproperty.arraySize);
+				isSuccessful_boolean = true;
+			}
+			//
+			if (isSuccessful_boolean) {
+				_setEditorWindowDirty();
+			} else {
+				EditorUtility.DisplayDialog ("blah", "_onDeleteManagerClick", "OK", "Cancel");	
+			}
+			
+				
+		}
+		
+		/// <summary>
+		/// _ons the destroy recreate button click.
+		/// </summary>
+		private void _onDestroyRecreateButtonClick ()
+		{
+			DestroyImmediate (MOM.Instance);
+			MOM dummy_mom = MOM.Instance;
+		
+		}
+		
+
+				
 		/// <summary>
 		/// _ons the hierarchy window item on GU.
 		/// </summary>
@@ -619,8 +836,8 @@ namespace com.rmc.managers.mom
             string filename = Path.GetFileNameWithoutExtension(path);
 			
 			
-			System.Type type = typeof (AbstractManager);
-			List<Object> resourcesFound = Resources.FindObjectsOfTypeAll(type).Cast<Object>().Where ( (item) => (item.GetType() != typeof (AbstractManager) )).ToList();
+			System.Type type = typeof (BaseManager);
+			List<Object> resourcesFound = Resources.FindObjectsOfTypeAll(type).Cast<Object>().Where ( (item) => (item.GetType() != typeof (BaseManager) )).ToList();
 			
 			bool isMOMRelated_boolean = false;
 			//System.Guid guid = new System.Guid (aGUID_string);
@@ -678,37 +895,6 @@ namespace com.rmc.managers.mom
 		
 		
 		
-		/// <summary>
-		/// _ises the MOM game object or child of MOM game object.
-		/// </summary>
-		/// <param name='gameObject'>
-		/// Game object.
-		/// </param>
-		private bool _isMOMGameObjectOrChildOfMOMGameObject (GameObject aGameObject)
-		{
-			bool isMOMGameObjectOrChildOfMOMGameObject_boolean = false;
-			
-			if (aGameObject != null) {
-				
-				
-				if (aGameObject == MOM.Instance.gameObject) {
-					
-					//IS THE MOM
-					return true;
-				} else if (aGameObject.transform.parent != null ) {
-					
-					if (aGameObject.transform.parent.gameObject == MOM.Instance.gameObject) {
-						//ITS PARENT IS THE MOM
-						return true;	
-					}
-				}
-				
-			} 
-			
-			return isMOMGameObjectOrChildOfMOMGameObject_boolean;
-			
-		}
-		
 		
 		/// <summary>
 		/// _ons the hierarchy window changed.
@@ -718,6 +904,17 @@ namespace com.rmc.managers.mom
 			//Debug.Log ("_onHierarchyWindowChanged()");
 			
 		}
+		
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		void OnDestroy() {
+			//I DON'T EXPECT THIS EVER
+    		Debug.Log("1&&&&&&&&&&&&&&&&&&Script was destroyed");
+			Debug.Log("1&&&&&&&&&&&&&&&&&&Script was destroyed");
+		}  
+		
+		
 		
 	}
 }

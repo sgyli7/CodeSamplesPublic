@@ -32,6 +32,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using com.rmc.managers.mom;
+using com.rmc.events;
 
 //--------------------------------------
 //  Namespace
@@ -45,7 +46,7 @@ namespace com.rmc.managers.eventmanager
 	/// <summary>
 	/// Abstract manager.
 	/// </summary>
-	public class EventManager : AbstractManager
+	public class EventManager : BaseManager, IEventDispatcher
 	{
 	
 		//--------------------------------------
@@ -73,9 +74,9 @@ namespace com.rmc.managers.eventmanager
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public EventManager ( )
+		public EventManager ( ) : base ()
 		{
-			//Debug.Log ("CustomManager.constructor()");
+			Debug.Log ("EventManager.constructor()");
 			
 		}
 		
@@ -84,53 +85,41 @@ namespace com.rmc.managers.eventmanager
 		/// </summary>
 		~EventManager ( )
 		{
-			//Debug.Log ("CustomManager.deconstructor()");
+			//Debug.Log ("EventManager.deconstructor()");
 			
 		}
 		
-		// PUBLIC
-
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
 		
 		
-		// PRIVATE COROUTINE
 		
-		// PRIVATE INVOKE
-		
-		//--------------------------------------
-		//  Events
-		//--------------------------------------
+		/// <summary>
+		/// Ons the add manager.
+		/// </summary>//
+		/// 
+		/// 
+		/// 
+		/// 
 		override public void onAddManager()
 		{
-			//Debug.Log ("onAddManager(): " + this);
 			
 		}
 		
-		override public void onReset(IManager iManager)
+		override public void onReset(IManager aIManager)
 		{
-			//Debug.Log ("	onReset(): " + this);
-			
+			Debug.Log ("game manager");
 		}
 		
 		override public void onUpdate()
 		{
-			
-			//USE MY PROPS AND ALL OTHER MANAGERS AS NEEDED
-			//Debug.Log ("onUpdate(): " + this);
 			
 		}
 		
 		override public void onRemoveManager()
 		{
 			
-			//I WILL BE REMOVED AFTER THIS
-			//Debug.Log ("onRemoveManager(): " + this);
-			
 		}
+		
+		
 
 	}
 }

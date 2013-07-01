@@ -45,7 +45,7 @@ namespace com.rmc.managers.mom
 	/// <summary>
 	/// Abstract manager.
 	/// </summary>
-	public class SoundManager : AbstractManager
+	public class SoundManager : BaseManager
 	{
 	
 		//--------------------------------------
@@ -113,7 +113,7 @@ namespace com.rmc.managers.mom
 			
 		}
 		
-		override public void onReset(IManager iManager)
+		override public void onReset(IManager aIManager)
 		{
 			//Debug.Log ("	onReset(): " + this);
 			

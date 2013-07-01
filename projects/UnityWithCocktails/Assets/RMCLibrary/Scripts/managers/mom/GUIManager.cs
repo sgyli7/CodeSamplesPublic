@@ -32,6 +32,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using com.rmc.utilities;
+using com.rmc.events;
 
 //--------------------------------------
 //  Namespace
@@ -45,7 +46,7 @@ namespace com.rmc.managers.mom
 	/// <summary>
 	/// Abstract manager.
 	/// </summary>
-	public class GUIManager : AbstractManager
+	public class GUIManager : BaseManager
 	{
 	
 		//--------------------------------------
@@ -58,6 +59,7 @@ namespace com.rmc.managers.mom
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		GameManager _gameManager;
 		
 		// PUBLIC
 		
@@ -104,13 +106,22 @@ namespace com.rmc.managers.mom
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		override public void onAddManager()
+
+		override public void onReset(IManager aIManager)
 		{
 			
-		}
-		
-		override public void onReset(IManager iManager)
-		{
+			//JUST RE-GET THIS OFTEN
+			_gameManager = MOM.Instance.getManager<GameManager>();
+			
+			//
+			if (_gameManager != null) {
+				
+				if (!_gameManager.hasEventListener (GameManager.SCORE_CHANGED, _onScoreChanged) ) {
+					_gameManager.addEventListener (GameManager.SCORE_CHANGED, _onScoreChanged);
+				} else {
+					_gameManager.removeEventListener (GameManager.SCORE_CHANGED, _onScoreChanged);
+				}
+			}
 			
 		}
 		
@@ -119,10 +130,31 @@ namespace com.rmc.managers.mom
 			
 		}
 		
+		
 		override public void onRemoveManager()
 		{
-			
+			if (_gameManager == null) {
+				if (_gameManager.hasEventListener (GameManager.SCORE_CHANGED, _onScoreChanged) ) {
+					_gameManager.removeEventListener (GameManager.SCORE_CHANGED, _onScoreChanged);
+				}
+				_gameManager = null;
+			}
 		}
+		
+		
+		
+		
+		/// <summary>
+		/// _ons the score changed.
+		/// </summary>
+		/// <param name='aIEvent'>
+		/// A I event.
+		/// </param>
+		public void _onScoreChanged(IEvent aIEvent)
+		{
+			Debug.Log ("GUIManager._onScoreChanged()");
+		}
+		
 
 	}
 }

@@ -92,7 +92,7 @@ using com.rmc.events;
 		 	testFromOtherScope2 = new TestFromOtherScope("blah2");	//PASS SIMPLE STRING FOR DEBUGGING
 		
 			//TODO, PASS INSTANCE IN OF 'this'? why?
-			eventDispatcher = new EventDispatcher ();
+			eventDispatcher = new EventDispatcher (this);
 			eventDispatcher.addEventListener 			(TestEvent.TEST_EVENT_NAME, _onCustomEvent1);
 			eventDispatcher.addEventListener 			(TestEvent.TEST_EVENT_NAME, _onCustomEvent2, EventDispatcherAddMode.SINGLE_SHOT);
 		

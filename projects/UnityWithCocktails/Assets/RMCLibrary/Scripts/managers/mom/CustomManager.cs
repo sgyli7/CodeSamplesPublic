@@ -45,7 +45,7 @@ namespace com.rmc.managers.mom
 	/// <summary>
 	/// Abstract manager.
 	/// </summary>
-	public class CustomManager : AbstractManager
+	public class CustomManager : BaseManager
 	{
 	
 		//--------------------------------------
@@ -110,7 +110,7 @@ namespace com.rmc.managers.mom
 			
 		}
 		
-		override public void onReset(IManager iManager)
+		override public void onReset(IManager aIManager)
 		{
 			//Debug.Log ("	onReset(): " + this);
 			

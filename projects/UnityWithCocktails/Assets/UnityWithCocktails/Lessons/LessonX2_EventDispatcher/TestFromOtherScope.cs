@@ -83,7 +83,7 @@ using com.rmc.events;
 		{
 			name_string = aName_string;
 		
-			eventDispatcher = new EventDispatcher ();
+			eventDispatcher = new EventDispatcher (this);
 			eventDispatcher.addEventListener 			(TestEvent.TEST_EVENT_NAME, _onCustomEvent1);
 			eventDispatcher.addEventListener 			(TestEvent.TEST_EVENT_NAME, _onCustomEvent2);
 
