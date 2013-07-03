@@ -30,181 +30,249 @@
 using UnityEngine;
 using System.Collections;
 
+
 //--------------------------------------
-//  Class
+//  Namespace
 //--------------------------------------
-public class TemplateComponent : MonoBehaviour 
+namespace com.rmc.templates
 {
 	
 	//--------------------------------------
-	//  Attributes
+	//  Namespace Properties
 	//--------------------------------------
 	
 	
 	//--------------------------------------
-	//  Properties
+	//  Class Attributes
 	//--------------------------------------
+		
 	
-	// GETTER / SETTER
-	///<summary>
-	///	This is a sample getter/setter property.
-	///</summary>
-	private string samplePublic2_str;
-	public string samplePublic2 { 
-		get 
-		{ 
-			//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-			return samplePublic2_str; 
+	//--------------------------------------
+	//  Class
+	//--------------------------------------
+	public class TemplateComponent : MonoBehaviour 
+	{
+		
+
+		//--------------------------------------
+		//  Properties
+		//--------------------------------------
+		
+		// GETTER / SETTER
+		///<summary>
+		///	This is a sample getter/setter property.
+		///</summary>
+		private string samplePublic2_str;
+		public string samplePublic2 { 
+			get 
+			{ 
+				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
+				return samplePublic2_str; 
+			}
+			set 
+			{ 
+				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
+				samplePublic2_str = value; 
+			}
 		}
-		set 
-		{ 
-			//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-			samplePublic2_str = value; 
+			
+		
+		// PUBLIC
+		///<summary>
+		///	This is a sample public property.
+		///</summary>
+		public string samplePublic_str;
+		
+		// PUBLIC STATIC
+		///<summary>
+		///	This is a sample public static property.
+		///</summary>
+		public static string SamplePublicStatic_str;
+		
+		// PRIVATE
+		///<summary>
+		///	This is a sample private property.
+		///</summary>
+		private string _samplePrivate_str;
+		
+		// PRIVATE STATIC
+		///<summary>
+		///	This is a sample private static property.
+		///</summary>
+		private static string _SamplePrivateStatic_str;
+		
+		
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------	
+		// PUBLIC
+		
+		///<summary>
+		///	 Constructor
+		///</summary>
+		public TemplateComponent ()
+		{
+			//
+			Debug.Log ("TemplateComponent.constructor()");
+			
 		}
-	}
 		
-	
-	// PUBLIC
-	///<summary>
-	///	This is a sample public property.
-	///</summary>
-	public string samplePublic_str;
-	
-	// PUBLIC STATIC
-	///<summary>
-	///	This is a sample public static property.
-	///</summary>
-	public static string SamplePublicStatic_str;
-	
-	// PRIVATE
-	///<summary>
-	///	This is a sample private property.
-	///</summary>
-	private string _samplePrivate_str;
-	
-	// PRIVATE STATIC
-	///<summary>
-	///	This is a sample private static property.
-	///</summary>
-	private static string SamplePrivateStatic_str;
-	
-	
-	//--------------------------------------
-	//  Methods
-	//--------------------------------------		
-	///<summary>
-	///	Use this for initialization
-	///</summary>
-	void Start () 
-	{
+		/// <summary>
+		/// Deconstructor
+		/// </summary>
+		~TemplateComponent ( )
+		{
+			Debug.Log ("TemplateComponent.deconstructor()");
+			
+		}
 		
-		// TEST PRIVATE
-		samplePrivateMethod ("test6");
+		///<summary>
+		///	Use this for initialization
+		///</summary>
+		void Start () 
+		{
+			
+			// TEST PRIVATE
+			samplePrivateMethod ("test6");
+			
+			// TEST PRIVATE STATIC
+			TemplateComponent._SamplePrivateStaticMethod ("test7");
+			
+			// TEST EVENT HANDLER (SEND MESSAGE TO ITSELF AS A SILLY TEST)
+			gameObject.SendMessage ("onSampleEvent", "test8", SendMessageOptions.RequireReceiver);
+			
+			// COROUTINE
+			StartCoroutine ("_samplePrivateCoroutine", "test9");
+			
+			// INVOKE
+			//Invoke ("_sampleInvokeMethod", 10f);
+			InvokeRepeating ("_sampleInvokeMethod", 1, 10);
+			
+		}
 		
-		// TEST PRIVATE STATIC
-		TemplateComponent.SamplePrivateStaticMethod ("test7");
 		
-		// TEST EVENT HANDLER (SEND MESSAGE TO ITSELF AS A SILLY TEST)
-		gameObject.SendMessage ("onSampleEvent", "test8", SendMessageOptions.RequireReceiver);
+		///<summary>
+		///	Called once per frame
+		///</summary>
+		void Update () 
+		{
+			
+			//Debug.Log("Update ()");
+			
+		}
 		
-		// COROUTINE
-		StartCoroutine ("_samplePrivateCoroutine", "test9");
+		// PUBLIC
+	
+		/// <summary>
+		/// Samples the public method.
+		/// </summary>
+		/// <returns>
+		/// The public method.
+		/// </returns>
+		/// <param name='aMessage_str'>
+		/// A message_str.
+		/// </param>
+		public string samplePublicMethod (string aMessage_str) 
+		{
+			return aMessage_str;
+			
+		}
 		
-		// INVOKE
-		//Invoke ("_sampleInvokeMethod", 10f);
-		InvokeRepeating ("_sampleInvokeMethod", 1, 10);
+		// PUBLIC STATIC
 		
-	}
-	
-	
-	///<summary>
-	///	Called once per frame
-	///</summary>
-	void Update () 
-	{
+		/// <summary>
+		/// Samples the public static method.
+		/// </summary>
+		/// <returns>
+		/// The public static method.
+		/// </returns>
+		/// <param name='aMessage_str'>
+		/// A message_str.
+		/// </param>
+		public static string SamplePublicStaticMethod (string aMessage_str) 
+		{
+			return aMessage_str;
+			
+		}
 		
-		//Debug.Log("Update ()");
+		// PRIVATE
 		
-	}
-	
-	// PUBLIC
-	
-	///<summary>
-	///	This is a public method.
-	///</summary>
-	public string samplePublicMethod (string aMessage_str) 
-	{
-		return aMessage_str;
+		/// <summary>
+		/// Samples the private method.
+		/// </summary>
+		/// <returns>
+		/// The private method.
+		/// </returns>
+		/// <param name='aMessage_str'>
+		/// A message_str.
+		/// </param>
+		private string samplePrivateMethod (string aMessage_str) 
+		{
+			return aMessage_str;
+			
+		}
 		
-	}
-	
-	// PUBLIC STATIC
-	
-	///<summary>
-	///	This is a public static method.
-	///</summary>
-	public static string SamplePublicStaticMethod (string aMessage_str) 
-	{
-		return aMessage_str;
+		// PRIVATE STATIC
 		
-	}
-	
-	// PRIVATE
-	
-	///<summary>
-	///	This is a private method.
-	///</summary>
-	private string samplePrivateMethod (string aMessage_str) 
-	{
-		return aMessage_str;
+		/// <summary>
+		/// Samples the private static method.
+		/// </summary>
+		/// <returns>
+		/// The private static method.
+		/// </returns>
+		/// <param name='aMessage_str'>
+		/// A message_str.
+		/// </param>
+		private static string _SamplePrivateStaticMethod (string aMessage_str) 
+		{
+			return aMessage_str;
+			
+		}
 		
-	}
-	
-	// PRIVATE STATIC
-	
-	///<summary>
-	///	This is a private static method.
-	///</summary>
-	static string SamplePrivateStaticMethod (string aMessage_str) 
-	{
-		return aMessage_str;
 		
-	}
-	
-	
-	// PRIVATE COROUTINE
-	///<summary>
-	///	This is a private coroutine.
-	///</summary>
-	private IEnumerator _samplePrivateCoroutine (string aMessage_str) 
-	{
-	    Debug.Log("_samplePrivateCoroutine (): " + aMessage_str);
-	    
-	     yield return new WaitForSeconds(3);
-	
-	    Debug.Log("_samplePrivateCoroutine (): " + aMessage_str);
-	}
-	
-	
-	// PRIVATE INVOKE
-	///<summary>
-	///	This is a private Invoke Method.
-	///</summary>
-	private void _sampleInvokeMethod () 
-	{
-	    Debug.Log("_sampleInvokeMethod ()");
-	}
-	
-	
-	//--------------------------------------
-	//  Events
-	//--------------------------------------
-	///<summary>
-	///	This is a public method.
-	///</summary>
-	public void onSampleEvent (string aMessage_str) 
-	{
-		Debug.Log ("onSampleEvent(): " + aMessage_str);
+		// PRIVATE COROUTINE
+		/// <summary>
+		/// _samples the private coroutine.
+		/// </summary>
+		/// <returns>
+		/// The private coroutine.
+		/// </returns>
+		/// <param name='aMessage_str'>
+		/// A message_str.
+		/// </param>
+		private IEnumerator _samplePrivateCoroutine (string aMessage_str) 
+		{
+		    Debug.Log("_samplePrivateCoroutine (): " + aMessage_str);
+		    
+		     yield return new WaitForSeconds(3);
 		
+		    Debug.Log("_samplePrivateCoroutine (): " + aMessage_str);
+		}
+		
+		
+		// PRIVATE INVOKE
+		/// <summary>
+		/// _samples the invoke method.
+		/// </summary>
+		private void _sampleInvokeMethod () 
+		{
+		    Debug.Log("_sampleInvokeMethod ()");
+		}
+		
+		
+		//--------------------------------------
+		//  Events
+		//--------------------------------------
+		/// <summary>
+		/// Ons the sample event.
+		/// </summary>
+		/// <param name='aMessage_str'>
+		/// A message_str.
+		/// </param>
+		public void onSampleEvent (string aMessage_str) 
+		{
+			Debug.Log ("onSampleEvent(): " + aMessage_str);
+			
+		}
 	}
 }

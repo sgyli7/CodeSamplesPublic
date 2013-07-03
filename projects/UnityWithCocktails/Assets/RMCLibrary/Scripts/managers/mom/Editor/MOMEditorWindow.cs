@@ -42,6 +42,17 @@ using com.rmc.managers.eventmanager;
 //--------------------------------------
 namespace com.rmc.managers.mom.Editor
 {
+	
+	//--------------------------------------
+	//  Namespace Properties
+	//--------------------------------------
+	
+	
+	//--------------------------------------
+	//  Class Attributes
+	//--------------------------------------
+		
+	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
@@ -49,11 +60,6 @@ namespace com.rmc.managers.mom.Editor
 	[ExecuteInEditMode()]  
 	public class MOMEditorWindow : EditorWindow 
 	{
-			
-	
-		//--------------------------------------
-		//  Attributes
-		//--------------------------------------
 	
 		//--------------------------------------
 		//  Properties
@@ -243,6 +249,58 @@ namespace com.rmc.managers.mom.Editor
 		{
             Repaint();
         }
+
+		public void _doLayoutScriptablesTable ()
+		{
+			EditorGUILayout.LabelField ("Scripts");
+			EditorGUI.indentLevel ++;
+			
+			
+			
+			//TODO CHANGE TO IMANANGER TYPE
+			System.Type type = typeof (BaseManager);
+			List<ScriptableObject> resourcesFound = Object.FindObjectsOfTypeIncludingAssets(type).Cast<ScriptableObject>().Where ( (item) => (item.GetType().Name.Contains("Manager") )).ToList();
+			
+			//EditorGUILayout ("C: " + resourcesFound.Count());
+			ScriptableTableItem[] scriptableTableItems = new ScriptableTableItem[resourcesFound.Count];
+			int count_int = 0;
+			foreach (ScriptableObject scriptableObject in resourcesFound) {
+				
+				scriptableTableItems[count_int] = new ScriptableTableItem ( scriptableObject, _managers_serializedproperty);
+				count_int++;
+				
+			}
+			
+			foreach (ScriptableTableItem scriptableTableItem in scriptableTableItems) 
+			{
+				if (scriptableTableItem != null) {
+					scriptableTableItem.doLayoutGUI();
+				}
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//_getEditorPopupForIManagerScripts();
+			//EditorGUI.indentLevel --;
+			//
+			//EditorGUILayout.LabelField ("Assets");
+			//EditorGUI.indentLevel ++;
+			//_getEditorPopupForIManagerAssets();
+			EditorGUI.indentLevel --;
+		}
 		
 		/// <summary>
 		/// Raises the GU event.
@@ -496,15 +554,7 @@ namespace com.rmc.managers.mom.Editor
 			
 			
 			EditorGUI.indentLevel ++;
-			EditorGUILayout.LabelField ("Scripts");
-			EditorGUI.indentLevel ++;
-			_getEditorPopupForIManagerScripts();
-			EditorGUI.indentLevel --;
-			//
-			EditorGUILayout.LabelField ("Assets");
-			EditorGUI.indentLevel ++;
-			_getEditorPopupForIManagerAssets();
-			EditorGUI.indentLevel --;
+			_doLayoutScriptablesTable();
 			EditorGUI.indentLevel --;
 
 			

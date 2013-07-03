@@ -35,12 +35,6 @@ using System.Collections;
 //--------------------------------------
 public class DebuggingDemoComponent : MonoBehaviour 
 {
-		
-
-	//--------------------------------------
-	//  Attributes
-	//--------------------------------------
-		
 
 	//--------------------------------------
 	//  Properties

@@ -98,6 +98,8 @@ namespace com.rmc.events
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+		// PUBLIC
+		
 		///<summary>
 		///	 Constructor
 		///</summary>

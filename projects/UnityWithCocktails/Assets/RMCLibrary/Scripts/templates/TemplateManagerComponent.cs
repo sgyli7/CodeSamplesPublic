@@ -30,66 +30,85 @@
 using UnityEngine;
 using System.Collections;
 
+
 //--------------------------------------
-//  Class
+//  Namespace
 //--------------------------------------
-public class TemplateManagerComponent : MonoBehaviour 
+namespace com.rmc.templates
 {
-
-	//--------------------------------------
-	//  Properties
-	//--------------------------------------
-	TemplateComponent templateComponent;
 	
 	//--------------------------------------
-	//  Methods
-	//--------------------------------------		
-	///<summary>
-	///	Use this for initialization
-	///</summary>
-	void Start () 
+	//  Namespace Properties
+	//--------------------------------------
+	
+	
+	//--------------------------------------
+	//  Class Attributes
+	//--------------------------------------
+		
+	
+	//--------------------------------------
+	//  Class
+	//--------------------------------------
+	public class TemplateManagerComponent : MonoBehaviour 
 	{
+	
+		//--------------------------------------
+		//  Properties
+		//--------------------------------------
+		TemplateComponent templateComponent;
 		
-		// MAKE AN INSTANCE AND TEST IT.
-		templateComponent = GetComponents<TemplateComponent>()[0];
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------		
+		///<summary>
+		///	Use this for initialization
+		///</summary>
+		void Start () 
+		{
 			
-		// VARIABLES......
-		
-		// PUBLIC
-		templateComponent.samplePublic_str = "test1";
-		
-		// GETTER / SETTER
-		templateComponent.samplePublic2 = "test2";
-		Debug.Log("samplePublic2: " + templateComponent.samplePublic2);
+			// MAKE AN INSTANCE AND TEST IT.
+			templateComponent = GetComponents<TemplateComponent>()[0];
+				
+			// VARIABLES......
 			
-		// PUBLIC STATIC
-		TemplateComponent.SamplePublicStatic_str = "test3";
-		
-		// METHODS......
-		
-		// PUBLIC
-		templateComponent.samplePublicMethod("test4");
+			// PUBLIC
+			templateComponent.samplePublic_str = "test1";
 			
-		// PUBLIC STATIC
-		TemplateComponent.SamplePublicStaticMethod("test5");
-		
+			// GETTER / SETTER
+			templateComponent.samplePublic2 = "test2";
+			Debug.Log("samplePublic2: " + templateComponent.samplePublic2);
+				
+			// PUBLIC STATIC
+			TemplateComponent.SamplePublicStatic_str = "test3";
 			
+			// METHODS......
+			
+			// PUBLIC
+			templateComponent.samplePublicMethod("test4");
+				
+			// PUBLIC STATIC
+			TemplateComponent.SamplePublicStaticMethod("test5");
+			
+				
+		}
+		
+		
+		///<summary>
+		///	Called once per frame
+		///</summary>
+		void Update () 
+		{
+			
+			
+		}
+	
+		
+		//--------------------------------------
+		//  Events
+		//--------------------------------------
+		
+		
 	}
-	
-	
-	///<summary>
-	///	Called once per frame
-	///</summary>
-	void Update () 
-	{
-		
-		
-	}
-
-	
-	//--------------------------------------
-	//  Events
-	//--------------------------------------
-	
-	
 }
+	

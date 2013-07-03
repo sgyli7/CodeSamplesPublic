@@ -54,12 +54,6 @@ using System.Collections;
 
 public class MoveRightComponent : MonoBehaviour 
 {
-		
-
-	//--------------------------------------
-	//  Attributes
-	//--------------------------------------
-		
 
 	//--------------------------------------
 	//  Properties

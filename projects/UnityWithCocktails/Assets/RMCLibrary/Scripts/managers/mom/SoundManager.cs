@@ -117,14 +117,6 @@ namespace com.rmc.managers.mom
 		{
 			//Debug.Log ("	onReset(): " + this);
 			
-			//YET ONE MORE MANAGER IS ADDED (NOT ME) SO STORE REFERENCES
-			if (MOM.Instance.getManager<LevelManager>()) {
-				
-				//demo: store as private var to call this just once, ever
-				LevelManager levelManager = MOM.Instance.getManager<LevelManager>();
-				levelManager.loadNextLevel();
-			}
-			
 		}
 		
 		override public void onUpdate()

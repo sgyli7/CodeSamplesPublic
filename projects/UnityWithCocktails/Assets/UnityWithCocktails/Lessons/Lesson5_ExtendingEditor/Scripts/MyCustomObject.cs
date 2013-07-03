@@ -36,12 +36,7 @@ using System.Collections;
 [System.Serializable]
 public class MyCustomObject 
 {
-		
 
-	//--------------------------------------
-	//  Attributes
-	//--------------------------------------
-		
 
 	//--------------------------------------
 	//  Properties
