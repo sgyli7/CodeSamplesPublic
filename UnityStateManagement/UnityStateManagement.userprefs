@@ -1,0 +1,11 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../projects/UnityWithCocktails/Assets/RMCLibrary/Scripts/managers/mom/MOM.cs" line="156" offsetX="581" offsetY="2335" expression="_Instance" liveUpdate="False" />
+    <Watch file="../projects/UnityWithCocktails/Assets/RMCLibrary/Scripts/managers/mom/Editor/MOMEditorWindow.cs" line="262" offsetX="167" offsetY="3915" expression="scriptableObject" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
