@@ -37,7 +37,7 @@ using System.Collections.Generic;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.managers.mom
+namespace com.rmc.managers.mom.Editor
 {
 	
 	enum ManagerCandidateType
@@ -65,7 +65,7 @@ namespace com.rmc.managers.mom
 		
 		// PUBLIC
 		MonoScript   		_monoScript;
-		ScriptableObject  	_scriptableObject;
+		ScriptableObject  	_inUse_scriptableobject;
 		SerializedProperty 	_managers_serializedproperty;
 		ManagerCandidateType _scriptableTableItemType;
 		
@@ -91,10 +91,17 @@ namespace com.rmc.managers.mom
 		public ManagerCandidate (MonoScript aMonoScript, ScriptableObject aScriptableObject, SerializedProperty aManagers_serializedproperty)
 		{
 			_monoScript		 = aMonoScript;
-			_scriptableObject = aScriptableObject;
+			_inUse_scriptableobject = aScriptableObject;
 			
-			if (_scriptableObject == null) {
-				_scriptableTableItemType = ManagerCandidateType.INVALID;
+			if (_inUse_scriptableobject == null) {
+				
+				bool isAMOMCompatibleManagerMonoScript_boolean = MOMEditorWindow.IsAMOMCompatibleManagerMonoScript(_monoScript);
+				
+				if (isAMOMCompatibleManagerMonoScript_boolean) {
+					_scriptableTableItemType = ManagerCandidateType.SCRIPTABLE_UNUSED;
+				} else {
+					_scriptableTableItemType = ManagerCandidateType.INVALID;
+				}
 				
 			} else {
 				//Debug.Log ("	script: " + _scriptableObject.name);
@@ -110,7 +117,7 @@ namespace com.rmc.managers.mom
 					
 					iManager = ((iEnumerator.Current as SerializedProperty).objectReferenceValue as IManager);
 					//
-					if ( iManager == _scriptableObject) {
+					if ( iManager == _inUse_scriptableobject) {
 						isFound_boolean = true;
 						break;
 					} else {
@@ -121,7 +128,7 @@ namespace com.rmc.managers.mom
 				}
 				
 				//Debug.Log ("is : " + scriptableObject.GetType() + " =? " +  typeof (BaseManager));
-				if (_scriptableObject.GetType() == typeof (BaseManager)) {
+				if (_inUse_scriptableobject.GetType() == typeof (BaseManager)) {
 					_scriptableTableItemType = ManagerCandidateType.INVALID;
 	
 				} else {

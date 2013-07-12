@@ -59,7 +59,6 @@
      <Compile Include="Assets\Community Assets\uMOM\Scripts\BaseManager.cs" />
      <Compile Include="Assets\Community Assets\uMOM\Scripts\IManager.cs" />
      <Compile Include="Assets\Community Assets\uMOM\Scripts\MOM.cs" />
-     <Compile Include="Assets\Community Assets\uMOM\Scripts\ManagerCandidate.cs" />
      <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\CustomManager.cs" />
      <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\EventManager\EventManager.cs" />
      <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\GUIManager.cs" />

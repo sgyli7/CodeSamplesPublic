@@ -165,6 +165,37 @@ namespace com.rmc.managers.mom.Editor
 		
 		
 		// PUBLIC STATIC
+		/// <summary>
+		/// Determines whether this instance is AMOM compatible manager mono script the specified aMonoScript.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if this instance is AMOM compatible manager mono script the specified aMonoScript; otherwise, <c>false</c>.
+		/// </returns>
+		/// <param name='aMonoScript'>
+		/// If set to <c>true</c> a mono script.
+		/// </param>
+		public static bool IsAMOMCompatibleManagerMonoScript (MonoScript aMonoScript) 
+		{
+			
+			Object[] allValidScriptableObjects = EditorWindowUtility.GetAllProjectWindowScriptsBySuperClassAndInterface (typeof (BaseManager), typeof (IManager));
+			
+			Debug.Log ("TOTAL VALID " + allValidScriptableObjects.Length);
+			//
+			MonoScript scriptableObject_monoscript;
+					
+			//FIND THE SCRIPTABLE OBJECT THAT MATCHES THE MONOSCRIPT
+			foreach (ScriptableObject scriptableObject in allValidScriptableObjects) {
+				Debug.Log ("	valid: " + scriptableObject);
+				scriptableObject_monoscript  = MonoScript.FromScriptableObject (scriptableObject);
+				//Debug.Log ("	CHECKING2 : " + scriptableObject_monoscript.GetClass().FullName + " , " +  aMonoScript.GetClass().FullName);
+				if (scriptableObject_monoscript.GetClass().FullName == aMonoScript.GetClass().FullName) {
+				//	Debug.Log ("	FOUND: " + aMonoScript);
+					break;
+				}
+			}
+			return aMonoScript.name.StartsWith("M") == true;
+			
+		}
 		
 		// PRIVATE
 		/// <summary>
@@ -637,12 +668,13 @@ namespace com.rmc.managers.mom.Editor
 			EditorGUI.indentLevel++;
 			string textArea_string = "" +
 				"\n" +
-				"1. Create a script which extends AbstractManager.\n" + 
-				"2. Convert script to asset using Menu -> MOM -> Convert.\n" +
-				"3. Click 'Add Manager' above.\n" +
-				"4. Drag script from project to above.\n" + 
+				"1. Create a script which derives AbstractManager, IManager.\n" + 
+				"2. Select script in Project Window.\n" +
+				"3. Convert script to asset using Menu -> MOM -> Convert.\n" +
+				"4. Script will appear in panel above.\n" +
+				"5. Toggle enabled/disabled & update? in panel above.\n" + 
 				"\n" +
-				"Click for more <a href='http://www.google.com'>info</a>.\n" +
+				"Click for more <a href='http://forum/post/on/this/package/'>info</a>.\n" +
 				"\n";
 			EditorGUILayout.TextArea (textArea_string);
 			EditorGUILayout.Space();
