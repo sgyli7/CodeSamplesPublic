@@ -44,29 +44,29 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Events\Event.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Events\EventDispatcher.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Events\EventListenerData.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Events\IEvent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\Events\IEventDispatcher.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\event_manager\EventManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\BaseManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\CustomManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\GUIManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\GameManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\IManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\LevelManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\MOM.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\ScriptableTableItem.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\SoundManager.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\managers\mom\TestManagerWithNoAsset.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\templates\TemplateComponent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\utilities\EditorWindowUtility.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
-     <Compile Include="Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\Event.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\EventDispatcher.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\EventListenerData.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\IEvent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\IEventDispatcher.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\EditorWindowUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
+     <Compile Include="Assets\Community Assets\uMOM\Scripts\BaseManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOM\Scripts\IManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOM\Scripts\MOM.cs" />
+     <Compile Include="Assets\Community Assets\uMOM\Scripts\ManagerCandidate.cs" />
+     <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\CustomManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\EventManager\EventManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\GUIManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\LevelManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\SoundManager.cs" />
+     <Compile Include="Assets\Community Assets\uMOMManagers\Scripts\Managers\TestManagerWithNoAsset.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson1_Primitives\Scripts\Lesson1_Primitives.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Scripts\Beer.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2_OOP\Scripts\Beverage.cs" />
@@ -107,7 +107,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\PreviousButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\RemoveAllGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scripts\TestClasspaths.cs" />
-     <None Include="Assets\RMCLibrary\Scripts\managers\mom\read_me.txt" />
+     <None Include="Assets\Community Assets\uMOM\Scripts\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX3_MOM\Scenes\read_me.txt" />
      <None Include="Assets\UnityWithCocktails\Lessons\LessonX1_SimpleGameManager\Scenes\read_me.txt" />
   </ItemGroup>

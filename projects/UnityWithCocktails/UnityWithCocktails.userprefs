@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson8_NamingConventions/Scripts/Lesson8_NamingConventions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs">
     <Files>
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson8_NamingConventions/Scripts/Lesson8_NamingConventions.cs" Line="79" Column="1" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson8_NamingConventions/Scripts/ClassWithRMCConventions.cs" Line="141" Column="37" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson8_NamingConventions/Scripts/ClassWithCSharpConventions.cs" Line="141" Column="30" />
-      <File FileName="Assets/RMCLibrary/Scripts/templates/TemplateManagerComponent.cs" Line="25" Column="1" />
-      <File FileName="Assets/RMCLibrary/Scripts/templates/TemplateComponent.cs" Line="139" Column="23" />
-      <File FileName="Assets/RMCLibrary/Scripts/managers/mom/ScriptableTableItem.cs" Line="147" Column="1" />
+      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs" Line="215" Column="31" />
+      <File FileName="Assets/Community Assets/uMOM/Scripts/Editor/MOMEditorWindow.cs" Line="327" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
