@@ -100,7 +100,11 @@ namespace sample_namespace
 			//1.4
 			classWithRMCConventions.samplePublicMethod("foo string1");							
 			//1.5
-			classWithRMCConventions.samplePublicVariable = "foo blah string1";					
+			classWithRMCConventions.samplePublicVariable = "foo blah string1";	
+			
+			
+			// DEBUG
+			Debug.Log ("s1: " + s1);
 			
 			
 			
@@ -127,6 +131,10 @@ namespace sample_namespace
 			classWithCSharpConventions.SamplePublicMethod("foo string2");								
 			//2.5
 			classWithCSharpConventions.SamplePublicVariable = "foo blah string2";						
+			
+			// DEBUG
+			Debug.Log ("s2: " + s2);
+			
 			
 			//-----------------------------------------------------------------
 			//  A. Analysis of Naming Convention - Class External (Referring ONLY to outside of a class, its API, as shown above)	

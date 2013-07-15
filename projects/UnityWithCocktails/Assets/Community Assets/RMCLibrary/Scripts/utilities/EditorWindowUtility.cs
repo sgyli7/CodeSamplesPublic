@@ -32,7 +32,6 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 using System.Linq;
-using com.rmc.managers.mom;
 using System.Collections.Generic;
 
 //--------------------------------------
@@ -211,9 +210,9 @@ namespace com.rmc.utilities
 		public static Object[] GetAllHierarchyScriptsBySuperClassAndInterface (System.Type aSuperClassType, System.Type aInterfaceType)
 		{
 			
-			
+			//DO NOT SHOW A HARMLESS SMALL WARNING IN CONSOLE
+			#pragma warning disable 0162
 			throw new UnityException();
-			
 		    Object[] foundGameObjects_array = GameObject.FindObjectsOfType (typeof (GameObject));
 		    
 			//
@@ -222,6 +221,7 @@ namespace com.rmc.utilities
 			}
 			//
 			return foundGameObjects_array;
+			#pragma warning restore 0162
 		}
 		
 		

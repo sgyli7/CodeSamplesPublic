@@ -74,14 +74,23 @@ public class Lesson2_OOP : MonoBehaviour
 	///</summary>
 	void Start () 
 	{
+		
+				
+		//*********************************************************************
+		//
+		//	UNITY WITH COCKTAILS THEME: BEER
+		//
+		//*********************************************************************
+			
+		
 		//	DECLARE 
 		Beer		budweiser_beer   	= new Beer ("budweiser", Beer.CONTAINER_TYPE_BOTTLE);
 		
 		//	USE
 		Debug.Log ("--------------");
 		Debug.Log ("budweiser_beer" 		+ budweiser_beer);
-		Beer.SamplePublicStaticMethod("calling public static method");
-		budweiser_beer.samplePublicMethod("calling public method");
+		Beer.SamplePublicStaticMethod		("calling public static method");
+		budweiser_beer.samplePublicMethod	("calling public method");
 		
 		//	REFLECTION
 		Debug.Log ("	type 	: " + budweiser_beer.GetType());

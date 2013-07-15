@@ -47,13 +47,13 @@ public class Lesson1_Primitives : MonoBehaviour
 		
 	// PUBLIC
 	///<summary>
-	///	An enum is used for storing and checking the category/ilk of things.
+	///	An enum is often used for storing and checking the category/type of things.
 	///</summary>
-	public enum DrinkType
+	public enum DrinkTemperatureType
 	{
-		BEER,
-		WINE,
-		COCKTAIL
+		COLD,
+		HOT,
+		ROOM_TEMPERATURE
 	}
 	
 	// PUBLIC STATIC
@@ -86,53 +86,65 @@ public class Lesson1_Primitives : MonoBehaviour
 		//		http://msdn.microsoft.com/en-us/library/exx3b86w%28VS.80%29.aspx
 		//		http://msdn.microsoft.com/en-us/library/ya5y69ds%28v=VS.80%29.aspx
 		
+		
+		
+		//*********************************************************************
+		//
+		//	UNITY WITH COCKTAILS THEME: WINE
+		//
+		//*********************************************************************
+				
+		
 		//	DECLARE 
-		string		sample_string   	= "sample_string";
-		bool		isSample_boolean 	= true;
-		uint		sample_uint     	= 1;
-		int 		sample_int 			= -1;
-		float 		sample_float 		= 1.1f;
-		double      sample_double   	= 1.2;
+		string		ourTheme_string   					= "wine";
+		bool		isARedWine_boolean 					= true;
+		uint		totalMillilitersPerBottle_uint  	= 750;
+		int 		myRatingForMerlot_int 				= -10;
+		float 		totalOuncesPerBottle_float 			= 25.4f; //the 'f' forces 'float' (accurate) instead of default 'double' (more accurate, more memory needed)
+		double      averageGrapesPerBottleOfWine_double = 550.3;
+		
+		//	Enums
+		DrinkTemperatureType   hisDrinkType = DrinkTemperatureType.COLD;
+		DrinkTemperatureType   herDrinkType = DrinkTemperatureType.HOT;
+
+		//	Arrays
+		string[]    favoriteRedWines_array     	= new string[2];
+		favoriteRedWines_array[0]				= "Malbec";
+		favoriteRedWines_array[1]				= "Merlot";
 		//
-		DrinkType   hisDrinkType = DrinkType.BEER;
-		DrinkType   herDrinkType = DrinkType.COCKTAIL;
-		//
-		object      sample_object       = new Object();
-		//
-		string[]    sampleArray1_str     = new string[2];
-		sampleArray1_str[0]				= "sampleArray1Index0_string";
-		sampleArray1_str[1]				= "sampleArray1Index1_string";
-		//
-		string[]    sampleArray2_str     = new string[2];
-		sampleArray2_str[0]				= "sampleArray2Index0_string";
-		sampleArray2_str[1]				= "sampleArray2Index1_string";
+		string[]    favoriteWhiteWines_array    = new string[2];
+		favoriteWhiteWines_array[0]				= "Chardonnay";
+		favoriteWhiteWines_array[1]				= "Pinot Grigio";
+		
+		//	Anonymous Object Creation (quick & easy, for prototyping)
+		var      emptyBottleOfWine_object       = new { color = "red", isFlavorful_boolean = true};
+		
 		
 		//	USE
 		Debug.Log ("--------------");
-		Debug.Log ("sample_string: " 		+ sample_string);
-		Debug.Log ("isSample_boolean: " 	+ isSample_boolean);
-		Debug.Log ("sample_uint: "	 		+ sample_uint);
-		Debug.Log ("sample_int: " 			+ sample_int);
-		Debug.Log ("sample_float: " 		+ sample_float);
-		Debug.Log ("sample_double: " 		+ sample_double);
+		Debug.Log ("ourTheme_string: 						" 	+ ourTheme_string);
+		Debug.Log ("isARedWine_boolean: 					" 	+ isARedWine_boolean);
+		Debug.Log ("totalMillilitersPerBottle_uint: 		" 	+ totalMillilitersPerBottle_uint);
+		Debug.Log ("myRatingForMerlot_int: 							" 	+ myRatingForMerlot_int);
+		Debug.Log ("totalOuncesPerBottle_float: 			" 	+ totalOuncesPerBottle_float);
+		Debug.Log ("averageGrapesPerBottleOfWine_double: 	" 	+ averageGrapesPerBottleOfWine_double);
 		//
-		Debug.Log ("sample_object: " 		+ sample_object);
-		Debug.Log ("sampleArray1_str: " 	+ sampleArray1_str.ToString());
-		Debug.Log ("sampleArray2_str: " 	+ sampleArray2_str.ToString());
+		Debug.Log ("favoriteRedWines_array: 				" 	+ favoriteRedWines_array[0]);
+		Debug.Log ("favoriteWhiteWines_array: 				" 	+ favoriteWhiteWines_array.ToString());
+		Debug.Log ("emptyBottleOfWine_object.color: 		" 	+ emptyBottleOfWine_object.color);
 		//
 		Debug.Log ("same drinktype?: " 	+ (hisDrinkType == herDrinkType));
 		
-		//	REFLECTION
+		//	REFLECTION - WHAT INFORMATION IS IS AVAILABLE ABOUT EACH VARIABLE? 
 		Debug.Log ("--------------");
-		Debug.Log ("sample_string" 		+ sample_string			);
-		Debug.Log ("	type 	: " + sample_string.GetType()	);
-		Debug.Log ("	typeof 	: " + typeof(string)			);
-		Debug.Log ("	is 		: " + (sample_string is string)	);
-		Debug.Log ("	as 		: " + (sample_string as string)	);
+		Debug.Log ("ourTheme_string:" 	+ ourTheme_string			);
+		Debug.Log ("	type 	: " + ourTheme_string.GetType()		);
+		Debug.Log ("	typeof 	: " + typeof(string)		);
+		Debug.Log ("	is 		: " + (ourTheme_string is string)	);
+		Debug.Log ("	as 		: " + (ourTheme_string as string)	);
 		
 		
 	}
-	
 	
 	///<summary>
 	///	Called once per frame

@@ -105,7 +105,10 @@ using com.rmc.events;
 			//Debug.Log ("	hasEventListener(): " + 	eventDispatcher.hasEventListener 	(TestEvent.TEST_EVENT_NAME, _onCustomEvent1));
 		
 		
-			
+			//TEST EVENT SETUP FROM 3 DIFFERENT SCOPES
+			dispatchIt();
+			testFromOtherScope.dispatchIt();
+			testFromOtherScope2.dispatchIt();
 		}
 
 		/// <summary>
@@ -115,9 +118,7 @@ using com.rmc.events;
 		{
 			
 			if (Input.GetMouseButtonDown(0)) {
-				dispatchIt();
-				testFromOtherScope.dispatchIt();
-				testFromOtherScope2.dispatchIt();
+
 			}
 			
 		}

@@ -52,7 +52,7 @@ public class Lesson3_CSharp : MonoBehaviour
 	///<summary>
 	///	Store instance of testing class
 	///</summary>
-	private CustomCSharpClass _customCSharpClass;
+	private Cocktail _cocktail;
 	
 	// PRIVATE STATIC
 	
@@ -64,25 +64,35 @@ public class Lesson3_CSharp : MonoBehaviour
 	///</summary>
 	void Start () 
 	{
-		_doDemoOfCustomCSharpClass();
-		Debug.Log ("/////////////////////////");
-		Debug.Log ("/////////////////////////");
+		
+		//*********************************************************************
+		//
+		//	UNITY WITH COCKTAILS THEME: COCKTAILS
+		//
+		//*********************************************************************
+		
+		Debug.Log ("//	CUSTOM	///////////////////////");
+		_doDemoCustomCocktailClass();
+		Debug.Log ("\n");
+		Debug.Log ("//	PARTIAL	///////////////////////");
 		_doDemoOfPartialClass();
-		Debug.Log ("/////////////////////////");
-		Debug.Log ("/////////////////////////");
+		Debug.Log ("\n");
+		Debug.Log ("//	GENERIC	///////////////////////");
 		_doDemoOfGenericClass();
-		Debug.Log ("/////////////////////////");
-		Debug.Log ("/////////////////////////");
+		Debug.Log ("\n");
+		Debug.Log ("//	SINGLETON	///////////////////////");
 		_doDemoOfSingleton();
-		Debug.Log ("/////////////////////////");
-		Debug.Log ("/////////////////////////");
+		Debug.Log ("\n");
+		Debug.Log ("//	STRUCT	///////////////////////");
 		_doDemoOfStruct();
-		Debug.Log ("/////////////////////////");
-		Debug.Log ("/////////////////////////");
+		Debug.Log ("\n");
+		Debug.Log ("//	NAMESPACE	///////////////////////");
 		_doDemoOfNamespacing();
+		Debug.Log ("\n");
 	
 	
-	
+		Debug.Log ("//	DESTRUCTOR	///////////////////////");
+		//DESTRUCTOR FOR '_customCSharpClass' IS AUTOMATICALLY CALLED AT THE END OF THIS METHOD (I.E. THE VERY NEXT LINE)
 	}
 	
 	
@@ -94,33 +104,34 @@ public class Lesson3_CSharp : MonoBehaviour
 	///<summary>
 	///	DEMO
 	///</summary>
-	private void _doDemoOfCustomCSharpClass () 
+	private void _doDemoCustomCocktailClass () 
 	{
 		// DECLARE
-		_customCSharpClass = new CustomCSharpClass ();
+		_cocktail = new Cocktail ();
 		
 		// USE
-		Debug.Log ("customCSharpClass: " + _customCSharpClass);
+		Debug.Log ("_cocktail: " + _cocktail);
 		
 		// 	@-QUOTING
-		Debug.Log("customCSharpClass.sampleAtQuoting : "+ _customCSharpClass.sampleAtQuoting);
+		Debug.Log("_cocktail.sampleAtQuoting : "+ _cocktail.sampleAtQuoting);
 		
 		
 		//	DELEGATES
-		_customCSharpClass.onInitialized += onInitialized;
-		_customCSharpClass.initialize();
+		//		Delegates are useful when you want to execute code AFTER a process is complete.
+		_cocktail.onInitialized += onInitialized;
+		_cocktail.initialize();
 		
 		
 		//	1. IN-LINE METHOD DECLARATION
 		//		(with Lamda) - write inline function
-		_customCSharpClass.doLongProcess(
+		_cocktail.doLongProcess(
 			() => 
 			{
-				Debug.Log("doLongProcess Complete");
+				Debug.Log("doLongProcess Complete1");
 			}
 			);
 		//
-		_customCSharpClass.doLongProcess(_onLongProcessComplete);
+		_cocktail.doLongProcess(_onLongProcessComplete);
 		
 		
 		//	2. IN-LINE METHOD DECLARATION
@@ -146,12 +157,12 @@ public class Lesson3_CSharp : MonoBehaviour
 		
 		
 		//	METHOD OVERLOADING
-		_customCSharpClass.overloadedMethod();
-		_customCSharpClass.overloadedMethod(10);
+		_cocktail.overloadedMethod();
+		_cocktail.overloadedMethod(10);
 		
 			
 		//DESTRUCTOR
-		_customCSharpClass = null;
+		_cocktail = null;
 	
 	}
 	
@@ -165,6 +176,8 @@ public class Lesson3_CSharp : MonoBehaviour
 	// PRIVATE
 	///<summary>
 	///	DEMO
+	//
+	//	REFERENCE: URL (http://msdn.microsoft.com/en-us/library/vstudio/wa80x488.aspx);
 	///</summary>
 	private void _doDemoOfPartialClass () 
 	{
@@ -189,6 +202,8 @@ public class Lesson3_CSharp : MonoBehaviour
 	// PRIVATE
 	///<summary>
 	///	DEMO
+	//
+	//	REFERENCE: URL (http://msdn.microsoft.com/en-us/library/512aeb7t%28v=VS.80%29.aspx);
 	///</summary>
 	private void _doDemoOfGenericClass () 
 	{
@@ -214,6 +229,8 @@ public class Lesson3_CSharp : MonoBehaviour
 	// PRIVATE
 	///<summary>
 	///	DEMO
+	//
+	//	REFERENCE: URL (http://msdn.microsoft.com/en-us/library/ff650316.aspx);
 	///</summary>
 	private void _doDemoOfSingleton () 
 	{
@@ -243,8 +260,8 @@ public class Lesson3_CSharp : MonoBehaviour
 	/// 					mixture of public and private members, can use inheritance, and can have member functions.
 	/// 					I would recommend using structs as plain-old-data structures without any class-like features, 
 	/// 					and using classes as aggregate data structures with private data and member functions.
-
-	/// 
+	//
+	//	REFERENCE: URL (http://msdn.microsoft.com/en-us/library/ah19swz4%28v=VS.71%29.aspx);
 	/// </summary>
 	public struct DemoStruct
 	{
@@ -299,6 +316,8 @@ public class Lesson3_CSharp : MonoBehaviour
 	// PRIVATE
 	///<summary>
 	///	DEMO
+	//
+	//	REFERENCE: URL (http://msdn.microsoft.com/en-us/library/0d941h9d.aspx);
 	///</summary>
 	private void _doDemoOfNamespacing () 
 	{
@@ -329,7 +348,7 @@ public class Lesson3_CSharp : MonoBehaviour
 		Debug.Log ("onInitialized() : " + aMessage_str);
 		
 		//STOP OBSERVING
-		_customCSharpClass.onInitialized -= onInitialized;
+		_cocktail.onInitialized -= onInitialized;
 		
 		
 	}
@@ -339,6 +358,6 @@ public class Lesson3_CSharp : MonoBehaviour
 	///</summary>
 	public void _onLongProcessComplete() 
 	{
-		Debug.Log ("_onLongProcessComplete()");
+		Debug.Log ("_onLongProcessComplete()2");
 	}
 }

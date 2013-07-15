@@ -170,9 +170,7 @@ namespace com.rmc.events
 		        if (inner_hashtable.Contains(keyForInnerHashTable_string)) {
 					
 					//THIS SHOULD *NEVER* HAPPEN - REMOVE AFTER TESTED WELL
-		            Debug.Log("Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
-		            Debug.Log("Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
-		            Debug.Log("Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
+		            Debug.Log("TODO (FIX THIS): Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
 
 				} else {
 		 
@@ -317,11 +315,11 @@ namespace com.rmc.events
 					eventListenerData = dictionaryEntry.Value as EventListenerData;
 					
 					//***DO THE DISPATCH***
-					Debug.Log ("DISPATCH : ");
-					Debug.Log ("	n    : " + eventListenerData.eventName );
-					Debug.Log ("	from : " + aIEvent.target );
-					Debug.Log ("	to   : " + eventListenerData.eventListener );
-					Debug.Log ("	del  : " + eventListenerData.eventDelegate + " " + (eventListenerData.eventDelegate as System.Delegate).Method.DeclaringType.Name + " " + (eventListenerData.eventDelegate as System.Delegate).Method.Name.ToString());
+					//Debug.Log ("DISPATCH : ");
+					//Debug.Log ("	n    : " + eventListenerData.eventName );
+					//Debug.Log ("	from : " + aIEvent.target );
+					//Debug.Log ("	to   : " + eventListenerData.eventListener );
+					//Debug.Log ("	del  : " + eventListenerData.eventDelegate + " " + (eventListenerData.eventDelegate as System.Delegate).Method.DeclaringType.Name + " " + (eventListenerData.eventDelegate as System.Delegate).Method.Name.ToString());
 					eventListenerData.eventDelegate (aIEvent);
 					
 					

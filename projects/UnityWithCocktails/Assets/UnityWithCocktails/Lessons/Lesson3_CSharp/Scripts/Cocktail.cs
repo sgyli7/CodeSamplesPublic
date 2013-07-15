@@ -33,7 +33,7 @@ using System;
 //--------------------------------------
 //  Class
 //--------------------------------------
-public class CustomCSharpClass 
+public class Cocktail 
 {
 
 	//--------------------------------------
@@ -79,22 +79,22 @@ public class CustomCSharpClass
 	//--------------------------------------		
 	///<summary>
 	///	Constructor
-	//		This runs when "CustomCSHarpClass customCSHarpClass = new CustomCSHarpClass();" is called
+	//		This runs when "Cocktail cocktail = new Cocktail();" is called
 	///</summary>
-	public CustomCSharpClass () 
+	public Cocktail () 
 	{
-		Debug.Log ("CustomCSharpClass.constructor()");
+		Debug.Log ("Cocktail.constructor()");
 		
 	}
 	
 	///<summary>
 	///	Destructor
-	//		This runs when "customCSharpClass = null;" is called
+	//		This runs when "cocktail = null;" is called
 	///</summary>
-	~CustomCSharpClass () 
+	~Cocktail () 
 	{
-		Debug.Log ("CustomCSharpClass.destructor()");
-		onInitialized("CustomCSharpClass has been destructed.");
+		Debug.Log ("Cocktail.destructor()");
+		onInitialized("Cocktail has been destructed.");
 		
 	}
 	
@@ -104,7 +104,7 @@ public class CustomCSharpClass
 	///</summary>
 	public void initialize () 
 	{
-		onInitialized("CustomCSharpClass has been initialized.");
+		onInitialized("Cocktail has been initialized.");
 		
 	}
 	
@@ -112,6 +112,8 @@ public class CustomCSharpClass
 	
 	///<summary>
 	///	Do some long process
+	//		NOTE: An 'Action' cannot return a value. 
+	//
 	///</summary>
 	public void doLongProcess (Action aDoLongProcessComplete ) 
 	{
@@ -128,8 +130,8 @@ public class CustomCSharpClass
 	// PUBLIC
 	///<summary>
 	//	Overloading
-	//
 	//		Declare one method name, but accept unique (and unlimited) combinations of arguments
+	//
 	///</summary>
 	public void overloadedMethod () 
 	{
@@ -139,8 +141,8 @@ public class CustomCSharpClass
 	
 	///<summary>
 	//	Overloading
-	//
 	//		Declare one method name, but accept unique (and unlimited) combinations of arguments
+	//
 	///</summary>
 	public void overloadedMethod (uint count_uint) 
 	{

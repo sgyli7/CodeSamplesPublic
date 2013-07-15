@@ -33,12 +33,13 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngineInternal;
+using System.Diagnostics;
      
 
 //--------------------------------------
 //  Class
 //--------------------------------------
-public static class Debug
+public static class Debug2
 {
 
 	//--------------------------------------
@@ -77,13 +78,17 @@ public static class Debug
 	// PUBLIC
 	
 	// PUBLIC STATIC
+	
+	//*************************************************************************
+	//  THESE METHODS EXIST JUST TO MAKE THE TRACES IN THE CONSOLE WINDOW HAVE EXACTLY ONE LINE (NOT 2 LIKE DEFAULT BEHAVIOR), PURELY COSMETIC
+	//*************************************************************************
 	public static void Log (object message)
 	{
 		if (isDebugBuild)
 			UnityEngine.Debug.Log (message + hr);
 		//UnityEngine.Debug.Log (message.ToString ());
 	}
-     
+	
 	public static void Log (object message, UnityEngine.Object context)
 	{
 		if (isDebugBuild)
@@ -116,6 +121,46 @@ public static class Debug
 		if (isDebugBuild)
 			UnityEngine.Debug.LogWarning (message.ToString (), context);
 	}
+	
+	
+	//*************************************************************************
+	//  MORE CUSTOM DEBUGGING
+	//*************************************************************************
+	/// <summary>
+	/// Logs the stack trace.
+	/// </summary>
+	public static void LogStackTrace ()
+	{
+		//Debug.Log (	_GetMethodStackTrace("LogStackTrace()\n[CLICK TO EXPAND]")	);			
+	}
+	
+	/// <summary>
+	/// _s the get method stack trace.
+	/// </summary>
+	/// <returns>
+	/// The get method stack trace.
+	/// </returns>
+	/// <param name='aMessage_string'>
+	/// A message_string.
+	/// </param>
+	private static string _GetMethodStackTrace (string aMessage_string)
+	{
+		StackTrace stackTrace = new StackTrace();
+		StackFrame[] stackFrames = stackTrace.GetFrames();
+		string output_string = "";
+		output_string += aMessage_string;
+		string spaces_string = "  ";
+		StackFrame stackFrame;
+		for (int count_int = 2 ; count_int < stackFrames.Length; count_int ++ ) {
+			
+			stackFrame = stackFrames[count_int];
+			output_string += "\n" + (spaces_string + stackFrame.GetMethod());
+			spaces_string += "  ";
+		}
+		return output_string;			
+	}
+	
+	
 	
 	// PRIVATE
 	
