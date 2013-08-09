@@ -70,6 +70,7 @@ public class MyCustomComponent : MonoBehaviour
 	/// </summary>
 	public MyCustomComponent ()
 	{
+		Debug.Log ("MyCustomComponent.constructor()");
 		reset();
 		
 	}

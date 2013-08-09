@@ -1,23 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs">
-    <Files>
-<<<<<<< HEAD
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3_CSharp/Scripts/Cocktail.cs" Line="144" Column="31" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3_CSharp/Scripts/Lesson3_CSharp.cs" Line="121" Column="24" />
-=======
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs" Line="41" Column="2" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/utilities/ScriptableObjectUtility.cs" Line="1" Column="1" />
->>>>>>> 14f9913212e87f4c53bc839ab30489fff1df8a7e
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Catchpoint exceptionName="System.NullReferenceException" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="Assets/RMCLibrary/Scripts/managers/mom/MOM.cs" line="156" offsetX="581" offsetY="2335" expression="_Instance" liveUpdate="False" />
-    <Watch file="Assets/RMCLibrary/Scripts/managers/mom/Editor/MOMEditorWindow.cs" line="262" offsetX="167" offsetY="3915" expression="scriptableObject" liveUpdate="False" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
