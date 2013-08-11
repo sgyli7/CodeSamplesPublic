@@ -60,6 +60,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.2_OOP\Lesson22_OOP.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.2_OOP\Scripts\Beer.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.2_OOP\Scripts\Beverage.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.2_OOP\Scripts\Soda.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.3_UnityEngine_1\Lesson23_UnityEngine_1.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\Topic_Classes&amp;Generics\Lesson31_CSharp_1_Classes_And_Generics.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\Topic_Classes&amp;Generics\Scripts\Cocktail.cs" />

@@ -121,6 +121,7 @@ public class Lesson21_Primitives : MonoBehaviour
 		
 		
 		//	USE
+
 		Debug.Log ("--------------");
 		Debug.Log ("ourTheme_string: 						" 	+ ourTheme_string);
 		Debug.Log ("isARedWine_boolean: 					" 	+ isARedWine_boolean);
@@ -134,7 +135,7 @@ public class Lesson21_Primitives : MonoBehaviour
 		Debug.Log ("emptyBottleOfWine_object.color: 		" 	+ emptyBottleOfWine_object.color);
 		//
 		Debug.Log ("same drinktype?: " 	+ (hisDrinkType == herDrinkType));
-		
+
 		//	REFLECTION - WHAT INFORMATION IS IS AVAILABLE ABOUT EACH VARIABLE? 
 		Debug.Log ("--------------");
 		Debug.Log ("ourTheme_string:" 	+ ourTheme_string			);
@@ -142,6 +143,8 @@ public class Lesson21_Primitives : MonoBehaviour
 		Debug.Log ("	typeof 	: " + typeof(string)		);
 		Debug.Log ("	is 		: " + (ourTheme_string is string)	);
 		Debug.Log ("	as 		: " + (ourTheme_string as string)	);
+
+
 		
 		
 	}

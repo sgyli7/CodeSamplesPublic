@@ -47,6 +47,8 @@ public class Beverage
 	///</summary>
 	public string name;
 	
+	
+	
 	// PUBLIC STATIC
 	
 	// PRIVATE

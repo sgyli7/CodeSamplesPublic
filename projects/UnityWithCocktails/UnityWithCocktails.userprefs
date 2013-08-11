@@ -1,6 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs">
+    <Files>
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.2_OOP/Scripts/Soda.cs" Line="66" Column="1" />
+      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs" Line="181" Column="36" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

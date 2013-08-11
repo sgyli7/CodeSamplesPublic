@@ -149,7 +149,7 @@ namespace com.rmc.utilities
 		/// </param>
 		public static Object[] GetAllProjectWindowItemsSubclassOfType (System.Type aType)
 		{
-			Object[] objects_array = Object.FindObjectsOfTypeIncludingAssets(aType).Where ( (aItem) => (aItem.GetType().IsSubclassOf (aType) )).ToArray();
+			Object[] objects_array = Resources.FindObjectsOfTypeAll(aType).Where ( (aItem) => (aItem.GetType().IsSubclassOf (aType) )).ToArray();
 			return objects_array;
 			
 		}
@@ -167,7 +167,7 @@ namespace com.rmc.utilities
 		{
 			System.Type classType = typeof (Object);
 			System.Type interfaceType = aType;
-			Object[] objects_array = Object.FindObjectsOfTypeIncludingAssets(classType).Where ( (aItem) => (aItem.GetType().GetInterface(interfaceType.Name) == (interfaceType) )).ToArray();
+			Object[] objects_array = Resources.FindObjectsOfTypeAll(classType).Where ( (aItem) => (aItem.GetType().GetInterface(interfaceType.Name) == (interfaceType) )).ToArray();
 			return objects_array;
 			
 		}
@@ -188,7 +188,7 @@ namespace com.rmc.utilities
 		{
 			//SEARCH 'ALL' OBJECTS, THEN FILTER DOWN BEFORE RETURNING
 			System.Type classType = typeof (UnityEngine.Object);
-			Object[] objects_array = Object.FindObjectsOfTypeIncludingAssets(classType).Where ( (aItem) => 
+			Object[] objects_array = Resources.FindObjectsOfTypeAll(classType).Where ( (aItem) => 
 				(
 				
 					aItem.GetType().GetInterface(aInterfaceType.Name) == (aInterfaceType) ) &&

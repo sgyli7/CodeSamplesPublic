@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,12 +28,11 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections;
 
 //--------------------------------------
 //  Class
 //--------------------------------------
-public class Lesson22_OOP : MonoBehaviour 
+public class Soda : Beverage
 {
 
 	//--------------------------------------
@@ -41,30 +40,14 @@ public class Lesson22_OOP : MonoBehaviour
 	//--------------------------------------
 	
 	// GETTER / SETTER
-	///<summary>
-	///	This is a sample getter/setter property.
-	///</summary>
-		
+	
 	// PUBLIC
-	///<summary>
-	///	This is a sample public property.
-	///</summary>
 	
 	// PUBLIC STATIC
-	///<summary>
-	///	This is a sample public static property.
-	///</summary>
-	
+
 	// PRIVATE
-	///<summary>
-	///	This is a sample private property.
-	///</summary>
 	
 	// PRIVATE STATIC
-	///<summary>
-	///	This is a sample private static property.
-	///</summary>
-	
 	
 	//--------------------------------------
 	//  Methods
@@ -72,64 +55,25 @@ public class Lesson22_OOP : MonoBehaviour
 	///<summary>
 	///	Use this for initialization
 	///</summary>
-	void Start () 
+	public Soda (string aName_string)  : base (aName_string)
 	{
-		
-				
-		//*********************************************************************
-		//
-		//	UNITY WITH COCKTAILS THEME: BEER
-		//
-		//*********************************************************************
-			
-		
-		//	DECLARE 
-		Beer		budweiser_beer   	= new Beer ("Budweiser", Beer.CONTAINER_TYPE_BOTTLE);
-		
-		//	USE
-		Debug.Log ("--------------");
-		Debug.Log ("budweiser_beer" 		+ budweiser_beer);
-		Beer.SamplePublicStaticMethod		("calling public static method");
-		budweiser_beer.samplePublicMethod	("calling public method");
-		
-		//	REFLECTION
-		Debug.Log ("	type 	: " + budweiser_beer.GetType());
-		Debug.Log ("	typeof 	: " + typeof(Beer));
-		Debug.Log ("	(budweiser_beer is Beer):  		: " + (budweiser_beer is Beer) );
-		Debug.Log ("	(budweiser_beer is Beverage) 	: " + (budweiser_beer is Beverage) );
-		
-		
-		//  POLYMOPHISM, WE CAN TREAT BEER AND SODA INSTANCES IN A SIMILAR WAY (SOMETIMES)
-		Soda cocaCola_soda = new Soda ("CocaCola");
-		//
-		Debug.Log ("--------------");
-		Debug.Log ("	beer.name 	: " + budweiser_beer.name);
-		Debug.Log ("	soda.name 	: " + cocaCola_soda.name);
+		//	PROPERTIES
 		
 	}
 	
-	
-	///<summary>
-	///	Called once per frame
-	///</summary>
-	void Update () 
-	{
-		
-		
-	}
 	
 	// PUBLIC
+
 	
 	// PUBLIC STATIC
+
 	
 	// PRIVATE
+
 	
 	// PRIVATE STATIC
-	
-	
+
 	//--------------------------------------
 	//  Events
 	//--------------------------------------
-
 }
-
