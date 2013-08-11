@@ -39,6 +39,9 @@ using System.Diagnostics;
 //--------------------------------------
 //  Class
 //--------------------------------------
+
+//NOTE				RENAME AS 'Debug' if you want one-line debugs in the console
+//NOTE				RENAME AS 'Debug2' if you want to click an error and go to the actual issue and NOT to this class
 public static class Debug2
 {
 
