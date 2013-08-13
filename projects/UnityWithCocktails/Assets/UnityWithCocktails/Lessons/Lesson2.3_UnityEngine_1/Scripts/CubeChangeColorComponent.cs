@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,11 +28,12 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using System.Collections;
 
 //--------------------------------------
 //  Class
 //--------------------------------------
-public class Beer : Beverage
+public class CubeChangeColorComponent : MonoBehaviour 
 {
 
 	//--------------------------------------
@@ -40,54 +41,18 @@ public class Beer : Beverage
 	//--------------------------------------
 	
 	// GETTER / SETTER
-	///<summary>
-	///	The number of calories in this particular beer.
-	///</summary>
-	private uint _calories_uint = 200;
-	public uint calories { 
-		get 
-		{ 
-			//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-			return _calories_uint; 
-		}
-		set 
-		{ 
-			//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-			_calories_uint = value; 
-		}
-	}
-		
 	
 	// PUBLIC
 	
-	///<summary>
-	///	This is a sample public property.
-	///</summary>
-	public string containerType = CONTAINER_TYPE_BOTTLE;
-	
 	// PUBLIC STATIC
-	///<summary>
-	///	This is a sample public static property.
-	///</summary>
-	public static string CONTAINER_TYPE_BOTTLE = "CONTAINER_TYPE_BOTTLE";
-	
-	///<summary>
-	///	This is a sample public static property.
-	///</summary>
-	public static string CONTAINER_TYPE_CAN = "CONTAINER_TYPE_CAN";
 	
 	// PRIVATE
-	///<summary>
-	///	This is a sample private property.
-	///</summary>
-	private bool _isHealthy_boolean = false;
+	/// <summary>
+	/// The _cube rotation component.
+	/// </summary>
+	private CubeRotateComponent _cubeRotationComponent = null;
 	
 	// PRIVATE STATIC
-	///<summary>
-	///	This is a sample private static property.
-	///</summary>
-	private static string SamplePrivateStatic_str;
-	
 	
 	//--------------------------------------
 	//  Methods
@@ -95,76 +60,62 @@ public class Beer : Beverage
 	///<summary>
 	///	Use this for initialization
 	///</summary>
-	public Beer (string aName_string, string containerType_string)  : base (aName_string)
+	void Start () 
 	{
-		//	PROPERTIES
-		name = aName_string;
-		containerType = containerType_string;
 		
-		// TEST PROPERTIES
-		Debug.Log ("Beer Constructor ------------");
-		Debug.Log ("_isHealthy_boolean: " + _isHealthy_boolean);
+		//--------------------------------------
+		//  Accessing Components/GameObjects
+		//--------------------------------------	
 			
+		//PERMANENTLY STORE A COMPONENT REFERENCE
+		_cubeRotationComponent = GetComponent<CubeRotateComponent>();
 		
-		// TEST PRIVATE
-		_samplePrivateMethod ("private");
-		
-		// TEST PRIVATE STATIC
-		Beer.SamplePrivateStaticMethod ("private static");
-		
+		//FIND A GAMEOBJECT REFERENCE
+		//GameObject managersGameObject = GameObject.Find ("ManagersGameObject") ;
+		//Debug.Log ("managersGameObject: " + managersGameObject);
 		
 	}
 	
+	
+	///<summary>
+	///	Called once per frame
+	///</summary>
+	void Update () 
+	{
+		//USE THE COMPONENT REFERENCE
+		float rotation_float = _cubeRotationComponent.currentRotationWeCareAbout;
+		
+		//Debug.Log (" rotation_float: " + rotation_float);
+		
+		
+		//CHANGE COLOR DEPEDING ON 4 ANGLES OF ROTATION
+		if (rotation_float >= 0 && rotation_float <= 90) {
+			//
+			renderer.material.color = Color.red;
+
+		} else {
+			//
+			renderer.material.color = Color.green;
+			
+		}
+	}
 	
 	// PUBLIC
 	
-	///<summary>
-	///	This is a public method.
-	///</summary>
-	override public string samplePublicMethod (string aMessage_str) 
-	{
-		Debug.Log ("beer.samplePublicMethod() : " + base.samplePublicMethod(aMessage_str));
-		return aMessage_str;
-		
-	}
-	
 	// PUBLIC STATIC
-	
-	///<summary>
-	///	This is a public static method.
-	///</summary>
-	public static string SamplePublicStaticMethod (string aMessage_str) 
-	{
-		Debug.Log ("SamplePublicStaticMethod: " + aMessage_str);
-		return aMessage_str;
-		
-	}
 	
 	// PRIVATE
 	
-	///<summary>
-	///	This is a private method.
-	///</summary>
-	private string _samplePrivateMethod (string aMessage_str) 
-	{
-		Debug.Log ("_samplePrivateMethod: " + aMessage_str);
-		return aMessage_str;
-		
-	}
-	
 	// PRIVATE STATIC
 	
-	///<summary>
-	///	This is a private static method.
-	///</summary>
-	static string SamplePrivateStaticMethod (string aMessage_str) 
-	{
-		Debug.Log ("SamplePrivateStaticMethod: " + aMessage_str);
-		return aMessage_str;
-		
-	}
+	// PRIVATE COROUTINE
+	
+	// PRIVATE INVOKE
 	
 	//--------------------------------------
-	//  Events
+	//  Events 
+	//		(This is a loose term for -- handling incoming messaging)
+	//
 	//--------------------------------------
+
 }

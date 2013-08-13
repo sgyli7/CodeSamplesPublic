@@ -59,7 +59,7 @@ public class Lesson23_UnityEngine_1 : MonoBehaviour
 	void Start () 
 	{
 		// COROUTINE
-		StartCoroutine ("_samplePrivateCoroutine", "Runs Every X Seconds");
+		StartCoroutine (_samplePrivateCoroutine ("Run Every 3"));
 		
 		// INVOKE
 		//Invoke ("_sampleInvokeMethod", 10f);
@@ -68,7 +68,7 @@ public class Lesson23_UnityEngine_1 : MonoBehaviour
 		//	SEND MESSAGE 
 		//		(THIS VERY CLASS LISTENS FAR BELOW, BUT TYPICALLY A CLASS SENDS 
 		//			TO *ANOTHER* CLASS OR CLASSES
-		SendMessage ("onInitialized", "This message goes to EVERY MonoBehavior in the scene.", SendMessageOptions.RequireReceiver);
+		SendMessage ("onInitialized", "This message goes to EVERY MonoBehavior on this GameObject.", SendMessageOptions.DontRequireReceiver);
 		
 	}
 	
@@ -92,16 +92,23 @@ public class Lesson23_UnityEngine_1 : MonoBehaviour
 	// PRIVATE COROUTINE
 	///<summary>
 	///	This is a private coroutine.
+	///  
+	/// NOTE: http://docs.unity3d.com/Documentation/ScriptReference/Coroutine.html 
+	/// 
 	///</summary>
-	private IEnumerator _samplePrivateCoroutine (string aMessage_str) 
+	public IEnumerator _samplePrivateCoroutine (string aMessage_str) 
 	{
+		
+		//	DO SOMETHING
 	    Debug.Log("_samplePrivateCoroutine (): " + aMessage_str);
 	    
-	     yield return new WaitForSeconds(3);
+		//	WAIT
+	    yield return new WaitForSeconds(3);
 	
-	    Debug.Log("_samplePrivateCoroutine (): " + aMessage_str);
+		//	REPEAT
+	    StartCoroutine (_samplePrivateCoroutine(aMessage_str));
 		
-		//STOP IT (TODO: Find out why this fails to do anything)
+		//	STOP?
 		//StopCoroutine ("_samplePrivateCoroutine");
 	}
 	
@@ -109,10 +116,13 @@ public class Lesson23_UnityEngine_1 : MonoBehaviour
 	// PRIVATE INVOKE
 	///<summary>
 	///	This is a private Invoke Method.
+	///  
+	/// NOTE: http://docs.unity3d.com/Documentation/ScriptReference/MonoBehaviour.Invoke.html
+	/// 
 	///</summary>
 	private void _sampleInvokeMethod () 
 	{
-	    Debug.Log("_sampleInvokeMethod (). Runs Every Y Seconds");
+	    Debug.Log("_sampleInvokeMethod (). Run Every 5 Seconds");
 		
 		//STOP IT (TODO: Find out why this fails to do anything)
 		//CancelInvoke("_samplePrivateCoroutine");
@@ -127,6 +137,9 @@ public class Lesson23_UnityEngine_1 : MonoBehaviour
 	//--------------------------------------
 	///<summary>
 	///	Handles "onInitialized" 
+	///  
+	/// NOTE: http://docs.unity3d.com/Documentation/ScriptReference/GameObject.SendMessage.html
+	/// 
 	///</summary>
 	public void onInitialized (string aMessage_str)
 	{

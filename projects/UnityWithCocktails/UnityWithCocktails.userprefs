@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson2.3_UnityEngine_1/Lesson23_UnityEngine_1.cs">
     <Files>
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.2_OOP/Scripts/Soda.cs" Line="66" Column="1" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/utilities/EditorWindowUtility.cs" Line="181" Column="36" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.2_OOP/Lesson22_OOP.cs" Line="1" Column="1" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.3_UnityEngine_1/Lesson23_UnityEngine_1.cs" Line="1" Column="1" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.3_UnityEngine_1/Scripts/CubeChangeColorComponent.cs" Line="71" Column="63" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.3_UnityEngine_1/Scripts/CubeRotateComponent.cs" Line="89" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

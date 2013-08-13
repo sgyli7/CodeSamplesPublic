@@ -86,6 +86,7 @@ public class Lesson22_OOP : MonoBehaviour
 		//	DECLARE 
 		Beer		budweiser_beer   	= new Beer ("Budweiser", Beer.CONTAINER_TYPE_BOTTLE);
 		
+		
 		//	USE
 		Debug.Log ("--------------");
 		Debug.Log ("budweiser_beer" 		+ budweiser_beer);
@@ -103,7 +104,7 @@ public class Lesson22_OOP : MonoBehaviour
 		Soda cocaCola_soda = new Soda ("CocaCola");
 		//
 		Debug.Log ("--------------");
-		Debug.Log ("	beer.name 	: " + budweiser_beer.name);
+		Debug.Log ("	beer.name 	: " + budweiser_beer.name + " with calories " + budweiser_beer.calories);
 		Debug.Log ("	soda.name 	: " + cocaCola_soda.name);
 		
 	}
