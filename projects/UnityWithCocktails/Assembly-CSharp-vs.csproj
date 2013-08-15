@@ -64,6 +64,11 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.3_UnityEngine_1\Lesson23_UnityEngine_1.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.3_UnityEngine_1\Scripts\CubeChangeColorComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.3_UnityEngine_1\Scripts\CubeRotateComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.4_Physics\Lesson24_Physics.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.4_Physics\Scripts\BallCollisionDetectionComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.4_Physics\Scripts\BlockRaycastComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.5_2D\Lesson25_2D.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.5_2D\Scripts\QuadAnimationComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\Topic_Classes&amp;Generics\Lesson31_CSharp_1_Classes_And_Generics.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\Topic_Classes&amp;Generics\Scripts\Cocktail.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\Topic_Classes&amp;Generics\Scripts\CustomGenericClass.cs" />
