@@ -93,7 +93,7 @@ public class MoveRightComponent : MonoBehaviour
 		//(SIMPLY USE UPDATE BELOW, NO SETUP REQUIRED)
 		
 		//2. REPEAT CODE AT REGULAR (UNCHANGING) INTERVAL, YOU MAY STOP IT AT ANY TIME.
-		InvokeRepeating ("_doMoveRightRepeating", 0, 0.5f);
+		InvokeRepeating ("_doMoveRightRepeating", 0, 1.0f);
 		
 		//3. REPEAT CODE AT (MAYBE) CHANGING INTERVAL, YOU MAY STOP IT AT ANY TIME.
 		StartCoroutine ("_doMoveUpCoroutine");

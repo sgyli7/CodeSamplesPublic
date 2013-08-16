@@ -82,7 +82,7 @@ public class BlockRaycastComponent : MonoBehaviour
 		//	SETUP RAYCASTHIT TO 'RETURN' FROM THE FUNCTION
 		Ray ray = new Ray (rayOrigin_vector3, rayDirection_vector3);
 		RaycastHit raycastHit = new RaycastHit ();
-		
+
 		
 		//	SHOOT A RAY 'DOWN' TO TEST DISTANCE FROM 'BLOCK' TO 'FLOOR'
 		if (Physics.Raycast (ray, out raycastHit, distanceToCheck_float) ) {

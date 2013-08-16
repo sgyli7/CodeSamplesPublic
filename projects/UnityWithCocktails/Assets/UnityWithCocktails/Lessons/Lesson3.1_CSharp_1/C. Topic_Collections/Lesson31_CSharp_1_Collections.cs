@@ -169,6 +169,8 @@ public class Lesson31_CSharp_1_Collections : MonoBehaviour
 			Debug.Log("	VALUE: " +  key_string + " = " + hashtable[key_string]);
 		}
 		
+		//	HASHTABLE BENEFIT: CHECK DIRECTLY, VALUE BY KEY. VERY FAST ACCESS.
+		Debug.Log("	DIRECT VALUE: " +  hashtable["mint"]);
 		
 	}
 	
@@ -178,6 +180,8 @@ public class Lesson31_CSharp_1_Collections : MonoBehaviour
 	///<summary>
 	///	DEMO
 	///
+	/// OPINION: DICTIONARY IS LIKE HASHTABLE, BUT WITH STRONGLY TYPED KEY AND VALUE.
+	///
 	/// NOTE: http://www.dotnetperls.com/dictionary
 	/// 
 	///</summary>
@@ -185,10 +189,10 @@ public class Lesson31_CSharp_1_Collections : MonoBehaviour
 	{
 		//	DEFINE VARIABLES
 		Dictionary<string, int> drinksConsumed_dictionary = new Dictionary<string, int>();
-		//								TYPE			COUNT
-		drinksConsumed_dictionary.Add	("bottles", 	2);
-		drinksConsumed_dictionary.Add	("cans", 		1);
-		drinksConsumed_dictionary.Add	("glasses", 	7);
+		//								TYPE(STRING)    	COUNT(INT)
+		drinksConsumed_dictionary.Add	("bottles", 		2);
+		drinksConsumed_dictionary.Add	("cans", 			1);
+		drinksConsumed_dictionary.Add	("glasses", 		7);
 		
         //	RUN LOOP
 		foreach (KeyValuePair<string, int> keyValuePair in drinksConsumed_dictionary) {
