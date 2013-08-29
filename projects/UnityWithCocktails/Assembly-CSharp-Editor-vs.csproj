@@ -44,10 +44,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_2\Scripts\Scripts\Editor\CustomEditorWindow.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_2\Scripts\Scripts\Editor\CustomInitializeOnLoad.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_2\Scripts\Scripts\Editor\CustomMenu.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_2\Scripts\Scripts\Editor\MyCustomComponentEditor.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\CustomEditorWindow.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\CustomInitializeOnLoad.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\CustomMenu.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\MyCustomComponentEditor.cs" />
      <None Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scenes\read_me.txt" />
  <Reference Include="\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>

@@ -82,8 +82,10 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Threads\Scripts\RotateComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\B. Topic_ExtensionMethods\Lesson32_CSharp_2_Extension_Methods.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\B. Topic_ExtensionMethods\Scripts\GameObjectExtensions.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_2\Scripts\MyCustomComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_2\Scripts\Scripts\MyCustomObject.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\C. Operator Overloading\Lesson32_CSharp_2_Operator_Overloading.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\C. Operator Overloading\Scripts\BarTab.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\MyCustomComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\MyCustomObject.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\AbstractButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\AddGOButtonComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\DoAQuickTestFromSecondScene.cs" />
