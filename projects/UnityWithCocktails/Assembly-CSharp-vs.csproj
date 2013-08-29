@@ -69,6 +69,13 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.4_Physics\Scripts\BlockRaycastComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.5_2D\Lesson25_2D.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.5_2D\Scripts\QuadAnimationComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Lesson26_UnityEngine_2.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingBallPrefabAudioComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingBallPrefabKeyInputComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingBallPrefabMouseInputComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingBallPrefabScoreComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingBallPrefabStateComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingPinPrefabAudioComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Lesson31_CSharp_1_Classes_And_Generics.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\Cocktail.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\CustomGenericClass.cs" />

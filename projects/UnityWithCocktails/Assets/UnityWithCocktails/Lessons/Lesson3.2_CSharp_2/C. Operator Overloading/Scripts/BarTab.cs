@@ -212,6 +212,29 @@ public class BarTab
 		return "[BarTab "+ _totalValue_float.ToString("00.00")+" ]";
 	}
 	
+	/// <summary>
+	/// 	Without this override a warning is shown. I don't really 'do' anything here though.
+	/// 
+	/// 	NOTE: In your usage, you may need to override this function too.
+	/// 
+	/// </summary>
+	public override bool Equals (object obj)
+	{
+		return base.Equals (obj);
+	}
+	
+	
+	/// <summary>
+	/// 	Without this override a warning is shown. I don't really 'do' anything here though.
+	/// 
+	/// 	NOTE: In your usage, you may need to override this function too.
+	/// 
+	/// </summary>
+	public override int GetHashCode ()
+	{
+		return base.GetHashCode ();
+	}
+	
 	// PRIVATE
 	
 	// PRIVATE STATIC

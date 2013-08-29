@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/C. Operator Overloading/Lesson32_CSharp_2_Operator_Overloading.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabStateComponent.cs">
     <Files>
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/C. Operator Overloading/Scripts/BarTab.cs" Line="212" Column="55" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/C. Operator Overloading/Lesson32_CSharp_2_Operator_Overloading.cs" Line="80" Column="62" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabStateComponent.cs" Line="160" Column="5" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabMouseInputComponent.cs" Line="76" Column="3" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabKeyInputComponent.cs" Line="108" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
