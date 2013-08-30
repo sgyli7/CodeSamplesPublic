@@ -33,7 +33,7 @@ using System;
 //--------------------------------------
 //  Class
 //--------------------------------------
-public class Lesson31_CSharp_2_Generics: MonoBehaviour 
+public class Lesson32_CSharp_2_Generics: MonoBehaviour 
 {
 
 	//--------------------------------------
@@ -64,10 +64,15 @@ public class Lesson31_CSharp_2_Generics: MonoBehaviour
 		//	UNITY WITH COCKTAILS THEME: SHOTS
 		//
 		//*********************************************************************
-		Debug.Log ("//	GENERIC	///////////////////////");
+		Debug.Log ("//	NATIVE GENERIC	///////////////////////");
+		_doDemoOfNativeGenerics();
+		Debug.Log ("\n");
+		
+		Debug.Log ("//	CUSTOM GENERIC	///////////////////////");
 		_doDemoOfGenericClass();
 		Debug.Log ("\n");
-		Debug.Log ("//	GENERIC WITH WHERE	///////////////////////");
+		
+		Debug.Log ("//	CUSTOM GENERIC WITH WHERE	///////////////////////");
 		_doDemoOfGenericClassWithWhere();
 		Debug.Log ("\n");
 
@@ -88,6 +93,33 @@ public class Lesson31_CSharp_2_Generics: MonoBehaviour
 	//******************************************************
 	
 	// PRIVATE
+	
+	///	DEMO
+	//
+	//	NOTE: This is Unity-specific
+	//
+	// 	NOTE: 	There are MANY generics methods used in Unity API. 
+	//			All (I think) have non-generic alternatives (one is shown below)
+	//
+	///</summary>
+	private void _doDemoOfNativeGenerics () 
+	{
+		
+		//	GETTING A COMPONENT REFERENCE (WITHOUT USING GENERICS)
+		SampleComponent sampleComponent1 = GetComponent (typeof (SampleComponent) ) as SampleComponent;
+		
+		//	GETTING A COMPONENT REFERENCE (WITH GENERICS)
+		//		NOTE: No need to cast (via 'as') here so syntax is more brief
+		SampleComponent sampleComponent2 = GetComponent<SampleComponent>();
+		
+		//	DEBUG
+		Debug.Log ("	sampleComponent1: " + sampleComponent1);
+		Debug.Log ("	sampleComponent2: " + sampleComponent2);
+	}
+	
+	
+	
+	
 	///<summary>
 	///	DEMO
 	//
