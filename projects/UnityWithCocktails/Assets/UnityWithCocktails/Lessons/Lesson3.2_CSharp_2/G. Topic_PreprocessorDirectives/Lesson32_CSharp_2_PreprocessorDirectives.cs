@@ -38,7 +38,7 @@ using System;
 //--------------------------------------
 //  Class
 //--------------------------------------
-public class Lesson32_CSharp_2_Preprocessor: MonoBehaviour 
+public class Lesson32_CSharp_2_PreprocessorDirectives: MonoBehaviour 
 {
 
 	//--------------------------------------

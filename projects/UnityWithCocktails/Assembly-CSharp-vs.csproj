@@ -104,7 +104,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\F. Topic_Attributes\Lesson32_CSharp_2_Attributes.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\F. Topic_Attributes\Scripts\MyCustomAttribute.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\F. Topic_Attributes\Scripts\ThisComponentIsRequired.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\G. Topic_Preprocessor\Lesson32_CSharp_2_Preprocessor.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\G. Topic_PreprocessorDirectives\Lesson32_CSharp_2_PreprocessorDirectives.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\MyCustomComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\MyCustomObject.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_Debugging\Scripts\DebuggingDemoComponent.cs" />
