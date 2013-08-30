@@ -29,6 +29,7 @@
 //--------------------------------------
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using custom_namespace;
 
 //--------------------------------------
@@ -75,8 +76,12 @@ public class Lesson31_CSharp_1_Scope: MonoBehaviour
 		Debug.Log ("//	NAMESPACE	///////////////////////");
 		_doDemoOfNamespacing();
 		Debug.Log ("\n");
-	
-	
+		Debug.Log ("//	REF	///////////////////////");
+		_doDemoOfRef();
+		Debug.Log ("\n");
+		Debug.Log ("//	OUT	///////////////////////");
+		_doDemoOfOut();
+		Debug.Log ("\n");
 	}
 	
 	
@@ -138,6 +143,93 @@ public class Lesson31_CSharp_1_Scope: MonoBehaviour
 		Debug.Log ("namespaceClass: " + namespaceClass);
 		
 	}
+	
+	//******************************************************
+	//******************************************************
+	//**	REF
+	//
+	//	NOTE: ref & out both allow parameters to be passed by reference
+	//  HOWEVER: ref tells the compiler that the object is initialized before entering the function 
+	//
+	//******************************************************
+	//******************************************************
+	
+	///<summary>
+	///	DEMO
+	//
+	///</summary>
+	private void _doDemoOfRef () 
+	{
+		//	NOTE: MUST BE DELCARED BEFORE THE 'ref' ACCEPTS IT
+		List<string> list_strings = new List<string>();
+		
+		//	USE
+		list_strings.Add("Original Zero Index");
+		
+		//	CALL
+		_acceptInstanceByRef (ref list_strings);
+		
+		//	TEST
+		Debug.Log ("	list_strings: " + list_strings[0]);
+		
+	}
+	
+	/// <summary>
+	/// _accepts the instance by reference.
+	/// 
+	/// NOTE: 'ref' allows you to pass by reference, permanently affecting the 
+	/// 		original instance
+	/// 
+	/// 
+	/// </summary>
+	private void _acceptInstanceByRef (ref List<string> aList_strings) 
+	{
+		aList_strings[0] = "New Zero Index";
+	}
+	
+	
+	//******************************************************
+	//******************************************************
+	//**	OUT
+	//
+	//	NOTE: ref & out both allow parameters to be passed by reference
+	//  HOWEVER: out tells the compiler that the object will be initialized inside the function. 
+	//
+	//******************************************************
+	//******************************************************
+
+	///<summary>
+	///	DEMO
+	//
+	///</summary>
+	private void _doDemoOfOut () 
+	{
+		//	NOTE: DON'T GIVE IT A VALUE HERE, IT WILL BE DONE IN THE 'out' METHOD
+		List<string> list_strings;
+		
+		//	CALL
+		_acceptInstanceByOut (out list_strings);
+		
+		//	TEST
+		Debug.Log ("	list_strings: " + list_strings[0]);
+		
+	}
+	
+	/// <summary>
+	/// _accepts the instance by reference.
+	/// 
+	/// NOTE: 'out' allows you to pass by reference, permanently affecting the 
+	/// 		original instance
+	/// 
+	/// 
+	/// </summary>
+	private void _acceptInstanceByOut (out List<string> aList_strings) 
+	{
+		aList_strings = new List<string>();
+		aList_strings.Add ("New Zero Index");
+	}
+	
+	
 	
 	// PRIVATE STATIC
 	

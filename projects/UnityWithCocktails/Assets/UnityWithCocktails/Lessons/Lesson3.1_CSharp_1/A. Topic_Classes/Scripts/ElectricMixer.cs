@@ -7,7 +7,9 @@
  * "Software"), to deal in the Software without restriction, including  
  * without limitation the rights to use, copy, modify, merge, publish,  
  * distribute, sublicense, and#or sell copies of the Software, and to   
- * permit persons to whom the Software is furnished to do so, subject to
+ * permit persons to whom the Software is furn
+ * 
+ * ished to do so, subject to
  * the following conditions:                                            
  *                                                                      
  * The above copyright notice and this permission notice shall be       
@@ -29,58 +31,95 @@
 using UnityEngine;
 
 //--------------------------------------
-//  Namespace
+//  Class
 //--------------------------------------
-namespace custom_namespace
+/// <summary>
+/// ElectricMixer
+/// </summary>
+public class ElectricMixer : Mixer, IMixer
 {
+
+	//--------------------------------------
+	//  Properties
+	//--------------------------------------
+	// GETTER / SETTER
+	
+	// PUBLIC
+	
+	// PUBLIC STATIC
+	
+	// PRIVATE
+	
+	// PUBLIC
+	
+	// PUBLIC STATIC
+	
+	// PRIVATE
+	
+	// PRIVATE STATIC
 	
 	//--------------------------------------
-	//  Class
+	//  Constructor
 	//--------------------------------------
-	public class NamespaceClass 
+	// PUBLIC
+	
+	///<summary>
+	///	 Constructor
+	///</summary>
+	public ElectricMixer ()
 	{
-	
-		//--------------------------------------
-		//  Properties
-		//--------------------------------------
-		// GETTER / SETTER
 		
-		// PUBLIC
-		public float testNumber_float = 100.00f;
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
-		
-		//--------------------------------------
-		//  Methods
-		//--------------------------------------	
-		///<summary>
-		///	 Constructor
-		//		This demontrates the 'namespace' keyword here and the 'using' keyword on the class which uses 'NamespaceClass'
-		//
-		///</summary>
-		public NamespaceClass ()
-		{
-		}
-		
-		
-		// PUBLIC
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
-		
-		// PRIVATE COROUTINE
-		
-		// PRIVATE INVOKE
-		
-		//--------------------------------------
-		//  Events
-		//--------------------------------------
 	}
+	
+	/// <summary>
+	/// Deconstructor
+	/// </summary>
+	//~Mixer ( )
+	//{
+	//	Debug.Log ("ElectricMixer.deconstructor()");
+		
+	//}
+	
+	//--------------------------------------
+	//  Methods
+	//--------------------------------------
+	// PUBLIC
+	
+	///<summary>
+	///	 Demo
+	///</summary>
+	override public void doMixing ()
+	{
+		//DO SUPER CLASS STUFF
+		base.doMixing();
+		
+		//DO SUBCLASS STUFF
+		Debug.Log ("		ElectricMixer.doMixing()");
+	}
+	
+	
+	///<summary>
+	///	 Demo
+	///</summary>
+	public void washElectricParts ()
+	{
+		Debug.Log ("		ElectricMixer.washElectricParts()");
+	}
+	
+	// PUBLIC STATIC
+	
+	// PRIVATE
+	
+	// PRIVATE STATIC
+	
+	// PRIVATE COROUTINE
+	
+	// PRIVATE INVOKE
+	
+	//--------------------------------------
+	//  Events
+	//--------------------------------------
+	
+
 }
+

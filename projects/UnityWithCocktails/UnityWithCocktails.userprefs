@@ -1,9 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/F. Topic_Attributes/Lesson32_CSharp_2_Attributes.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/A. Topic_Classes/Lesson31_CSharp_1_Classes.cs">
     <Files>
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/F. Topic_Attributes/Lesson32_CSharp_2_Attributes.cs" Line="162" Column="34" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/F. Topic_Attributes/Scripts/MyCustomAttribute.cs" Line="1" Column="1" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/A. Topic_Classes/Lesson31_CSharp_1_Classes.cs" Line="168" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

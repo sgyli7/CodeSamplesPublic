@@ -75,6 +75,10 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingPinPrefabAudioComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Lesson31_CSharp_1_Classes.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\CustomSingleton.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\ElectricMixer.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\HandMixer.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\IMixer.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\Mixer.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\PartialClass.More.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\PartialClass.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\B. Topic_Scope\Lesson31_CSharp_1_Scope.cs" />

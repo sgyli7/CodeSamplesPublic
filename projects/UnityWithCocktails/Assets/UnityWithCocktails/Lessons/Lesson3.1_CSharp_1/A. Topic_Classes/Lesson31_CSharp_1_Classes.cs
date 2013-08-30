@@ -30,7 +30,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using custom_namespace;
 
 //--------------------------------------
 //  Class
@@ -65,11 +64,22 @@ public class Lesson31_CSharp_1_Classes: MonoBehaviour
 		Debug.Log ("//	PARTIAL	///////////////////////");
 		_doDemoOfPartialClass();
 		Debug.Log ("\n");
+		Debug.Log ("//	INTERFACE	///////////////////////");
+		_doDemoOfInterface();
+		Debug.Log ("\n");
+		Debug.Log ("//	DOWN CASTING	///////////////////////");
+		_doDemoOfDownCasting();
+		Debug.Log ("\n");
+		Debug.Log ("//	UP CASTING	///////////////////////");
+		_doDemoOfUpCasting();
+		Debug.Log ("\n");
 		Debug.Log ("//	SINGLETON	///////////////////////");
 		_doDemoOfSingleton();
 		Debug.Log ("\n");
 		Debug.Log ("//	STRUCT	///////////////////////");
 		_doDemoOfStruct();
+		
+		
 
 	}
 	
@@ -104,7 +114,96 @@ public class Lesson31_CSharp_1_Classes: MonoBehaviour
 		
 		
 	}
+
 	
+	//******************************************************
+	//******************************************************
+	//**	INTERFACE CLASS
+	//******************************************************
+	//******************************************************
+	
+	// PRIVATE
+	///<summary>
+	///	DEMO
+	//
+	///</summary>
+	private void _doDemoOfInterface () 
+	{
+		// DECLARE WITH TYPE OF INTERFACE 
+		//	(TYPE 'IMixer' GIVES MORE ARCHITECTURAL FLEXIBLITY THAN TYPE 'HandMixer')
+		IMixer iMixer = new HandMixer ();
+		
+		// USE
+		iMixer.doMixing();
+		Debug.Log ("iMixer: " + iMixer);
+		
+		
+	}
+	
+	
+	
+	//******************************************************
+	//******************************************************
+	//**	CASTING
+	//******************************************************
+	//******************************************************
+	
+	// PRIVATE
+	///<summary>
+	///	DEMO
+	//
+	///</summary>
+	private void _doDemoOfDownCasting () 
+	{
+		// DECLARE WITH TYPE OF SUPERCLASS 
+		//	ADVANCED: YOU MAY SOME DAY HAVE REASONS TO DO THIS
+		Mixer mixer = new ElectricMixer ();
+		
+		// USE
+		mixer.doMixing();
+		Debug.Log ("mixer: " + mixer);
+		
+		//	1. NOTICE: THE INSTANCE HAS THIS METHOD
+		//	BUT THE COMPILER WILL NOW ALLOW
+		//mixer.washElectricParts();
+		
+		//	2. NOTICE: WHEN WE 'DOWNCAST' THIS, THEN IT WORKS.
+		//			DOWNCASTING IS TO MAKE THE TYPE BEHAVE AS A *MORE* SPECIFIC TYPE.
+		//			MORE SPECIFIC MEANS 'LIKE A SUBCLASS' IN THIS CASE
+		(mixer as ElectricMixer).washElectricParts();
+	}
+	
+	
+	
+	// PRIVATE
+	///<summary>
+	///	DEMO
+	//
+	///</summary>
+	private void _doDemoOfUpCasting () 
+	{
+		// DECLARE WITH TYPE OF SUPERCLASS 
+		//	ADVANCED: YOU MAY SOME DAY HAVE REASONS TO DO THIS
+		HandMixer handMixer = new HandMixer ();
+		
+		//	NOTICE: 'UPCASTING' HAPPENS AUTOMATICALLY HERE. THE METHOD WANTS A 'Mixer'
+		//			AND THE COMPILER KNOWS THAT 'HandMixer' CAN BE UPCAST PROPERLY
+		//			'UPCASTING' IS TO MAKE THE TYPE BEHAVE AS A *LESS* SPECIFIC TYPE.
+		//			LESS SPECIFIC MEANS 'LIKE A SUPERCLASS' IN THIS CASE
+		_acceptOnlyAMixer (handMixer);
+		
+		//	YOU CAN MANUALLY UPCAST TOO, AND THERE MAY BE (RARE) REASONS TO DO THAT
+		(handMixer as Mixer).doMixing();
+		
+	}
+	
+	/// <summary>
+	/// _accepts the only a 'Mixer' typed instance
+	/// </summary>
+	private void _acceptOnlyAMixer (Mixer aMixer) 
+	{
+		Debug.Log ("	_acceptOnlyAMixer: " + aMixer);
+	}
 	
 	//******************************************************
 	//******************************************************
