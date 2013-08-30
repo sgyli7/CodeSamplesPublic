@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;UNITY_64;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editors\CreateDefaultFoldersMenu.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\Event.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\EventDispatcher.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\EventListenerData.cs" />
@@ -53,9 +52,7 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\IEventDispatcher.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\EditorWindowUtility.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\ScriptableObjectUtility.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.1_Primitives\Lesson21_Primitives.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.2_OOP\Lesson22_OOP.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.2_OOP\Scripts\Beer.cs" />
@@ -76,30 +73,32 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingBallPrefabScoreComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingBallPrefabStateComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.6_UnityEngine_2\Scripts\BowlingPinPrefabAudioComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Lesson31_CSharp_1_Classes_And_Generics.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\Cocktail.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\CustomGenericClass.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\CustomSingleton.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\NamespaceClass.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\PartialClass.More.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes&amp;Generics\Scripts\PartialClass.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\B. Topic_Loops&amp;More\Lesson31_CSharp_1_Loops_And_More.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\C. Topic_Collections\Lesson31_CSharp_1_Collections.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Threads\Scripts\MoveRightComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Threads\Scripts\RotateComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\B. Topic_ExtensionMethods\Lesson32_CSharp_2_Extension_Methods.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\B. Topic_ExtensionMethods\Scripts\GameObjectExtensions.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\C. Operator Overloading\Lesson32_CSharp_2_Operator_Overloading.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\C. Operator Overloading\Scripts\BarTab.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Lesson31_CSharp_1_Classes.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\CustomSingleton.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\PartialClass.More.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\A. Topic_Classes\Scripts\PartialClass.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\B. Topic_Scope\Lesson31_CSharp_1_Scope.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\B. Topic_Scope\Scripts\NamespaceClass.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\C. Topic_Conditionals\Lesson31_CSharp_1_Conditionals.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\D. Topic_Loops\Lesson31_CSharp_1_Loops.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.1_CSharp_1\E. Topic_Collections\Lesson31_CSharp_1_Collections.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Generics\Lesson32_CSharp_2_Generics.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Generics\Scripts\BigShotAmount.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Generics\Scripts\IAmount.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Generics\Scripts\ShotAmount.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Generics\Scripts\ShotGenericClass.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\A. Topic_Generics\Scripts\ShotGenericClassWithWhere.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\B. Topic_Delegates\Lesson32_CSharp_2_Delegates.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\B. Topic_Delegates\Scripts\Cocktail.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\C. Topic_Threads\Scripts\CubeMoveRightComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\C. Topic_Threads\Scripts\CubeRotateRightComponent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\D. Topic_ExtensionMethods\Lesson32_CSharp_2_Extension_Methods.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\D. Topic_ExtensionMethods\Scripts\GameObjectExtensions.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\E. Topic_OperatorOverloading\Lesson32_CSharp_2_Operator_Overloading.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\E. Topic_OperatorOverloading\Scripts\BarTab.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\F. Topic_Attributes\Lesson32_CSharp_2_Attributes.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\MyCustomComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\MyCustomObject.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\AbstractButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\AddGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\DoAQuickTestFromSecondScene.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\NextButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\PreviousButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\RemoveAllGOButtonComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scripts\SimpleGameManagerComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_Debugging\Scripts\DebuggingDemoComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\Events\TestEvent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\TestEventDispatcherComponent.cs" />
@@ -107,7 +106,6 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_NamingConventions\Scripts\ClassWithCSharpConventions.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_NamingConventions\Scripts\ClassWithRMCConventions.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_NamingConventions\Scripts\Lesson8_NamingConventions.cs" />
-     <None Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architectures_1\Scenes\read_me.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

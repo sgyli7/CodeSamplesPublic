@@ -1,0 +1,99 @@
+-debug
+-target:library
+-nowarn:0169
+-out:'Temp/Assembly-CSharp.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll'
+-define:UNITY_STANDALONE_OSX
+-define:ENABLE_MICROPHONE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
+-define:ENABLE_MONO
+-define:ENABLE_TERRAIN
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_GENERICS
+-define:ENABLE_MOVIES
+-define:ENABLE_WWW
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_WEBCAM
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_NETWORK
+-define:ENABLE_PHYSICS
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_GAMECENTER
+-define:ENABLE_SHADOWS
+-define:ENABLE_AUDIO
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
+-define:UNITY_4_2_0
+-define:UNITY_4_2
+-define:UNITY_64
+-define:ENABLE_PROFILER
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_OSX
+'Assets/Community Assets/RMCLibrary/Scripts/Debug/Debug.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/Events/Event.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/Events/EventDispatcher.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/Events/EventListenerData.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/Events/IEvent.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/Events/IEventDispatcher.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/templates/TemplateComponent.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/templates/TemplateManagerComponent.cs'
+'Assets/Community Assets/RMCLibrary/Scripts/utilities/GenericsUtility.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.1_Primitives/Lesson21_Primitives.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.2_OOP/Lesson22_OOP.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.2_OOP/Scripts/Beer.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.2_OOP/Scripts/Beverage.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.2_OOP/Scripts/Soda.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.3_UnityEngine_1/Lesson23_UnityEngine_1.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.3_UnityEngine_1/Scripts/CubeChangeColorComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.3_UnityEngine_1/Scripts/CubeRotateComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.4_Physics/Lesson24_Physics.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.4_Physics/Scripts/BallCollisionDetectionComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.4_Physics/Scripts/BlockRaycastComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.5_2D/Lesson25_2D.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.5_2D/Scripts/QuadAnimationComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Lesson26_UnityEngine_2.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabAudioComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabKeyInputComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabMouseInputComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabScoreComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingBallPrefabStateComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson2.6_UnityEngine_2/Scripts/BowlingPinPrefabAudioComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/A. Topic_Classes/Lesson31_CSharp_1_Classes.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/A. Topic_Classes/Scripts/Cocktail.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/A. Topic_Classes/Scripts/CustomSingleton.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/A. Topic_Classes/Scripts/PartialClass.More.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/A. Topic_Classes/Scripts/PartialClass.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/B. Topic_Scope/Lesson31_CSharp_1_Scope.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/B. Topic_Scope/Scripts/NamespaceClass.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/C. Topic_Conditionals/Lesson31_CSharp_1_Conditionals.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/D. Topic_Loops/Lesson31_CSharp_1_Loops.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.1_CSharp_1/E. Topic_Collections/Lesson31_CSharp_1_Collections.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/A. Topic_Generics/Lesson32_CSharp_2_Generics.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/A. Topic_Generics/Scripts/BigShotAmount.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/A. Topic_Generics/Scripts/IAmount.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/A. Topic_Generics/Scripts/ShotAmount.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/A. Topic_Generics/Scripts/ShotGenericClass.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/A. Topic_Generics/Scripts/ShotGenericClassWithWhere.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/B. Topic_Delegates/Lesson32_CSharp_2_Delegates.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/C. Topic_Threads/Scripts/CubeMoveRightComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/C. Topic_Threads/Scripts/RotateComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/D. Topic_ExtensionMethods/Lesson32_CSharp_2_Extension_Methods.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/D. Topic_ExtensionMethods/Scripts/GameObjectExtensions.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/E. Topic_OperatorOverloading/Lesson32_CSharp_2_Operator_Overloading.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/E. Topic_OperatorOverloading/Scripts/BarTab.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/F. Topic_Attributes/Lesson32_CSharp_2_Attributes.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.3_UnityEngine_3/Scripts/MyCustomComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Lesson3.3_UnityEngine_3/Scripts/Scripts/MyCustomObject.cs'
+'Assets/UnityWithCocktails/Lessons/Misc/Misc_Debugging/Scripts/DebuggingDemoComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Misc/Misc_EventDispatcher/Scripts/Events/TestEvent.cs'
+'Assets/UnityWithCocktails/Lessons/Misc/Misc_EventDispatcher/Scripts/TestEventDispatcherComponent.cs'
+'Assets/UnityWithCocktails/Lessons/Misc/Misc_EventDispatcher/Scripts/TestFromOtherScope.cs'
+'Assets/UnityWithCocktails/Lessons/Misc/Misc_NamingConventions/Scripts/ClassWithCSharpConventions.cs'
+'Assets/UnityWithCocktails/Lessons/Misc/Misc_NamingConventions/Scripts/ClassWithRMCConventions.cs'
+'Assets/UnityWithCocktails/Lessons/Misc/Misc_NamingConventions/Scripts/Lesson8_NamingConventions.cs'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'
