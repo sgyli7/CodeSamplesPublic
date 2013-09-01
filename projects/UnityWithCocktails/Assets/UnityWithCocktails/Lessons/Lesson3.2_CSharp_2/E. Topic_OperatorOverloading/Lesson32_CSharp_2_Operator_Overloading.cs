@@ -44,7 +44,7 @@ public class Lesson32_CSharp_2_Operator_Overloading : MonoBehaviour
 	///<summary>
 	///	This is a sample getter/setter property.
 	///</summary>
-		
+
 	// PUBLIC
 	///<summary>
 	///	This is a sample public property.
@@ -104,6 +104,9 @@ public class Lesson32_CSharp_2_Operator_Overloading : MonoBehaviour
 		Debug.Log ("mothers_bartab	: " + mothers_bartab);
 		
 		//	TEST OPERATORS
+		//
+		//	NOTE: THE MAGIC HERE IS THAT '+=' (and other operators) IS USING A CUSTOM (NOT NATIVE) IMPLEMENTATION
+		//	EXCELLENT!
 		mothers_bartab		+= sons_bartab;
 		mothers_bartab		+= daughters_bartab;
 		
@@ -119,9 +122,8 @@ public class Lesson32_CSharp_2_Operator_Overloading : MonoBehaviour
 		Debug.Log ("Equals		: " + (sons_bartab == daughters_bartab)	);
 		Debug.Log ("NotEquals	: " + (sons_bartab != daughters_bartab)	);
 		
-		//	NOTE: THE MAGIC HERE IS THAT '+' IS USING A CUSTOM (NOT NATIVE) IMPLEMENTATION
-		//	EXCELLENT!
-		
+
+
 		
 	}
 	
