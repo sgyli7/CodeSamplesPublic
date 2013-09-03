@@ -101,8 +101,7 @@ public class Lesson32_CSharp_2_Delegates: MonoBehaviour
 		//		Delegates are useful when you want to execute code AFTER a process is complete.
 		_cocktail.onInitialized += onInitialized;
 		_cocktail.initialize();
-		
-		
+
 		//	1. IN-LINE METHOD DECLARATION
 		//		(with Lamda) - write inline function
 		_cocktail.doLongProcess(
@@ -138,7 +137,7 @@ public class Lesson32_CSharp_2_Delegates: MonoBehaviour
 		//	METHOD OVERLOADING
 		_cocktail.overloadedMethod();
 		_cocktail.overloadedMethod(10);
-		
+
 			
 		//DESTRUCTOR
 		_cocktail = null;

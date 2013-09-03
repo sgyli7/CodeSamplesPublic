@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -74,7 +74,7 @@ public class BowlingBallPrefabKeyInputComponent : MonoBehaviour
 	void Update () 
 	{
 		
-		if (_bowlingBallPrefabStateComponent.inputMode == InputMode.KEYBBOARD_ONLY) {
+		if (_bowlingBallPrefabStateComponent.inputMode == InputMode.KEYBOARD_ONLY) {
 				
 			if (_bowlingBallPrefabStateComponent.bowlingBallState == BowlingBallState.PRE_GAME_AIM_MODE) {
 				

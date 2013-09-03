@@ -107,8 +107,6 @@ public class Lesson32_CSharp_2_Operator_Overloading : MonoBehaviour
 		//
 		//	NOTE: THE MAGIC HERE IS THAT '+=' (and other operators) IS USING A CUSTOM (NOT NATIVE) IMPLEMENTATION
 		//	EXCELLENT!
-		mothers_bartab		+= sons_bartab;
-		mothers_bartab		+= daughters_bartab;
 		
 		//	TEST OUTPUT
 		Debug.Log ("sons_bartab		: " + sons_bartab);

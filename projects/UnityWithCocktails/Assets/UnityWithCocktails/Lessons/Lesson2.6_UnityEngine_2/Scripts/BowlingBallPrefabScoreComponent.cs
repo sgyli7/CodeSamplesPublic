@@ -95,7 +95,7 @@ public class BowlingBallPrefabScoreComponent : MonoBehaviour
 	///</summary>
 	void Update () 
 	{
-		_score_guitext.text = "PINS HIT: " + _getPinsHit() + "\n\nINSTRUCTIONS:\n" + _getInstructions();
+		_score_guitext.text  = "PINS HIT: " + _getPinsHit() + "\n\nINSTRUCTIONS:\n" + _getInstructions();
 	
 	}
 	

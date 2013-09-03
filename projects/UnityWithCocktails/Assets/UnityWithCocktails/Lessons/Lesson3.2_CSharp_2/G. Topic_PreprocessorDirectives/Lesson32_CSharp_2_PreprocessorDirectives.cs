@@ -1,8 +1,6 @@
 ﻿#define PLEASE_DO_THIS
 //#define AND_MAYBE_DO_THIS
 
-
-
 /**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
