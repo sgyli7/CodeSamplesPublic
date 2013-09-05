@@ -58,7 +58,7 @@ namespace com.rmc.projects.unitywithcocktails.lesson26
 	public enum InputMode
 	{
 		MOUSE_ONLY,
-		KEYBBOARD_ONLY
+		KEYBOARD_ONLY
 	}
 	
 	//--------------------------------------
@@ -153,7 +153,7 @@ namespace com.rmc.projects.unitywithcocktails.lesson26
 				Input.GetKeyDown (KeyCode.UpArrow) 		||
 				Input.GetKeyDown (KeyCode.DownArrow) 	||
 				Input.GetKeyDown (KeyCode.Space)		) {
-				inputMode = InputMode.KEYBBOARD_ONLY;
+				inputMode = InputMode.KEYBOARD_ONLY;
 			}
 			
 			//	TOGGLE BETWEEN KEYBOARD ***OR*** MOUSE MODE
