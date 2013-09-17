@@ -12,13 +12,14 @@
 	<AssemblyName>Assembly-CSharp</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	<DebugSymbols>true</DebugSymbols>
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_0;UNITY_4_2;UNITY_64;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_0;UNITY_4_3;UNITY_64;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -36,11 +37,12 @@
 	<Reference Include="System" />
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity_4.3/Unity4.3.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity_4.3/Unity4.3.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +53,7 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\IEvent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\IEventDispatcher.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateInterface.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson2.1_Primitives\Lesson21_Primitives.cs" />
@@ -107,6 +110,19 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\G. Topic_PreprocessorDirectives\Lesson32_CSharp_2_PreprocessorDirectives.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\MyCustomComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\MyCustomObject.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Lesson_34_Topic_Abstract_Factory.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Scripts\abstract_factory_example\IBar.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Scripts\abstract_factory_example\IBarFactory.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Scripts\abstract_factory_example\WoodenBarWithWine.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Scripts\abstract_factory_example\WoodenBarWithWineFactory.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\05. Topic_Singleton\Lesson_34_Topic_Singleton.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\05. Topic_Singleton\Scripts\singleton_pattern_example\SampleSingleton.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\14. Topic_Command\Lesson_34_Topic_Command.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\14. Topic_Command\Scripts\command_pattern\CommandManager.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\14. Topic_Command\Scripts\command_pattern\ICommand.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\14. Topic_Command\Scripts\command_pattern\IUndoableCommand.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\14. Topic_Command\Scripts\command_pattern_example\SampleCommand.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\AssetSaveProcess.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_Debugging\Scripts\DebuggingDemoComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\Events\TestEvent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\TestEventDispatcherComponent.cs" />

@@ -1,25 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson2.1_Primitives/Lesson21_Primitives.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson3.4_Architecture_1/01. Topic_Abstract_Factory/Scripts/abstract_factory_example/WoodenBarWithWineFactory.cs">
     <Files>
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson2.1_Primitives/Lesson21_Primitives.cs" Line="1" Column="1" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/E. Topic_OperatorOverloading/Lesson32_CSharp_2_Operator_Overloading.cs" Line="47" Column="1" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Events/EventDispatcher.cs" Line="1" Column="1" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/G. Topic_PreprocessorDirectives/Lesson32_CSharp_2_PreprocessorDirectives.cs">
-    <Files>
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/B. Topic_Delegates/Lesson32_CSharp_2_Delegates.cs" Line="140" Column="1" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/B. Topic_Delegates/Scripts/Cocktail.cs" Line="152" Column="2" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/C. Topic_Threads/Scripts/CubeMoveRightComponent.cs" Line="146" Column="10" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/C. Topic_Threads/Scripts/CubeRotateRightComponent.cs" Line="87" Column="11" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/D. Topic_ExtensionMethods/Lesson32_CSharp_2_Extension_Methods.cs" Line="82" Column="62" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/D. Topic_ExtensionMethods/Scripts/GameObjectExtensions.cs" Line="99" Column="42" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/E. Topic_OperatorOverloading/Lesson32_CSharp_2_Operator_Overloading.cs" Line="97" Column="32" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/E. Topic_OperatorOverloading/Scripts/BarTab.cs" Line="108" Column="33" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/F. Topic_Attributes/Lesson32_CSharp_2_Attributes.cs" Line="70" Column="48" />
-      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.2_CSharp_2/G. Topic_PreprocessorDirectives/Lesson32_CSharp_2_PreprocessorDirectives.cs" Line="204" Column="4" />
->>>>>>> e90d21a0cd7df8f5568d641acb0d40b907991376
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.4_Architecture_1/01. Topic_Abstract_Factory/Lesson_34_Topic_Abstract_Factory.cs" Line="94" Column="41" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.4_Architecture_1/01. Topic_Abstract_Factory/Scripts/abstract_factory_example/WoodenBarWithWineFactory.cs" Line="112" Column="4" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.4_Architecture_1/01. Topic_Abstract_Factory/Scripts/abstract_factory_example/WoodenBarWithWine.cs" Line="121" Column="5" />
+      <File FileName="Assets/UnityWithCocktails/Lessons/Lesson3.4_Architecture_1/01. Topic_Abstract_Factory/Scripts/abstract_factory_example/IBar.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
