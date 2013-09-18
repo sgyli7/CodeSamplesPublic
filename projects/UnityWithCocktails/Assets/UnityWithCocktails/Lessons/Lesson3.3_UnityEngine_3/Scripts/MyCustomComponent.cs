@@ -30,13 +30,26 @@
 using UnityEngine;
 using System.Collections;
 
+
+
+
+//--------------------------------------
+//  Namespace Properties
+//--------------------------------------
+
+
+//--------------------------------------
+//  Class Attributes
+//--------------------------------------
+
+
 //--------------------------------------
 //  Class
 //--------------------------------------
 public class MyCustomComponent : MonoBehaviour 
 {
-		
-
+	
+	
 	//--------------------------------------
 	//  Properties
 	//--------------------------------------
@@ -48,7 +61,7 @@ public class MyCustomComponent : MonoBehaviour
 	/// My custom string.
 	/// </summary>
 	public string myCustomString;
-	
+
 	/// <summary>
 	/// My custom object.
 	/// </summary>
@@ -60,28 +73,60 @@ public class MyCustomComponent : MonoBehaviour
 	
 	// PRIVATE STATIC
 	
-	
 	//--------------------------------------
 	//  Methods
-	//--------------------------------------		
+	//--------------------------------------	
 	// PUBLIC
-	/// <summary>
-	/// Initializes a new instance of the <see cref="MyCustomComponent"/> class.
-	/// </summary>
+	
+	///<summary>
+	///	 Constructor
+	///</summary>
 	public MyCustomComponent ()
 	{
+		//
 		Debug.Log ("MyCustomComponent.constructor()");
 		reset();
 		
 	}
 	
-	public void reset ()
+	/// <summary>
+	/// Deconstructor
+	/// </summary>
+	~MyCustomComponent ( )
 	{
-		myCustomString = "Default";
-		myCustomObject = new MyCustomObject (0, 0, 0);
+		Debug.Log ("MyCustomComponent.deconstructor()");
 		
 	}
 	
+	///<summary>
+	///	Use this for initialization
+	///</summary>
+	void Start () 
+	{
+		
+	}
+	
+	
+	///<summary>
+	///	Called once per frame
+	///</summary>
+	void Update () 
+	{
+		
+		//Debug.Log("Update ()");
+		
+	}
+	
+	// PUBLIC
+	/// <summary>
+	/// Reset this instance.
+	/// </summary>
+	public void reset () 
+	{
+		myCustomString = "";
+		myCustomObject = new MyCustomObject( 11.11f, 12.12f, 13.13f);
+		
+	}
 	
 	// PUBLIC STATIC
 	
@@ -92,5 +137,5 @@ public class MyCustomComponent : MonoBehaviour
 	//--------------------------------------
 	//  Events
 	//--------------------------------------
-	
 }
+

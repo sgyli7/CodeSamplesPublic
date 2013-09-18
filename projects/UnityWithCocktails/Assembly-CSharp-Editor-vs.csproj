@@ -49,10 +49,10 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\CreateDefaultFoldersMenu.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\EditorWindowUtility.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\ScriptableObjectUtility.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\CustomEditorWindow.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\CustomInitializeOnLoad.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\CustomMenu.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\Editor\MyCustomComponentEditor.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Editor\CustomEditorWindow.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Editor\CustomInitializeOnLoad.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Editor\CustomMenu.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Editor\MyCustomComponentEditor.cs" />
  <Reference Include="\Applications\Unity_4.3\Unity4.3.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity_4.3\Unity4.3.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>

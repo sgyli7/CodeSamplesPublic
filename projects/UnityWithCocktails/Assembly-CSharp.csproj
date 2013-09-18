@@ -109,7 +109,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\F. Topic_Attributes\Scripts\ThisComponentIsRequired.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.2_CSharp_2\G. Topic_PreprocessorDirectives\Lesson32_CSharp_2_PreprocessorDirectives.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\MyCustomComponent.cs" />
-     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\Scripts\MyCustomObject.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.3_UnityEngine_3\Scripts\MyCustomObject.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Lesson_34_Topic_Abstract_Factory.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Scripts\abstract_factory_example\IBar.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\01. Topic_Abstract_Factory\Scripts\abstract_factory_example\IBarFactory.cs" />
