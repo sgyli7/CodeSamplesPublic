@@ -125,6 +125,7 @@
      <Compile Include="Assets\UnityWithCocktails\Lessons\Lesson3.4_Architecture_1\AssetSaveProcess.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_Debugging\Scripts\DebuggingDemoComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\Events\TestEvent.cs" />
+     <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\TestEventDispatcher.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\TestEventDispatcherComponent.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_EventDispatcher\Scripts\TestFromOtherScope.cs" />
      <Compile Include="Assets\UnityWithCocktails\Lessons\Misc\Misc_NamingConventions\Scripts\ClassWithCSharpConventions.cs" />
