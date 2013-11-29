@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/uMVCSDemo/Scripts/mcvs/CustomViewComponent.cs">
+    <Files>
+      <File FileName="Assets/uMVCSDemo/Scripts/mcvs/CustomService.cs" Line="130" Column="1" />
+      <File FileName="Assets/uMVCSDemo/Scripts/mcvs/CustomController.cs" Line="215" Column="16" />
+      <File FileName="Assets/uMVCSDemo/Scripts/mcvs/CustomUMVCSContext.cs" Line="93" Column="1" />
+      <File FileName="Assets/uMVCSDemo/Scripts/mcvs/CustomModel.cs" Line="121" Column="34" />
+      <File FileName="Assets/uMVCSDemo/Scripts/mcvs/CustomViewComponent.cs" Line="111" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
