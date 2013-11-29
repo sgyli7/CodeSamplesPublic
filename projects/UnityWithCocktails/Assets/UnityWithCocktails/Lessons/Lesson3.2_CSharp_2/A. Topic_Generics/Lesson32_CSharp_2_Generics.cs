@@ -160,6 +160,7 @@ public class Lesson32_CSharp_2_Generics: MonoBehaviour
 	}
 	
 	
+	///<summary>
 	
 	// PRIVATE STATIC
 	
