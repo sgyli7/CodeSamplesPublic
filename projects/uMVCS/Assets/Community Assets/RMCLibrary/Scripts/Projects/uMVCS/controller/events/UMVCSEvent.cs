@@ -28,43 +28,81 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using com.rmc.projects.umvcs;
 using com.rmc.projects.event_dispatcher;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.umvcs
+namespace com.rmc.projects.umvcs.controller.events
 {
+	
+	//--------------------------------------
+	//  Namespace Properties
+	//--------------------------------------
+	
+	
+	//--------------------------------------
+	//  Class Attributes
+	//--------------------------------------
+	
 	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	/// <summary>
-	/// 
-	/// </summary>
-	public interface IController : IActor
+	public class UMVCSEvent : com.rmc.projects.event_dispatcher.Event, com.rmc.projects.event_dispatcher.IEvent
 	{
-	
+		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		/// <summary>
-		/// The IEventDispatcher.
-		/// </summary>
-		IEventDispatcher eventDispatcher { get; set;} 
-
+		
+		// PUBLIC
+		
+		// PUBLIC STATIC
+		public static string APPLICATION_START = "APPLICATION_START";
+		
+		// PRIVATE
+		
+		// PRIVATE STATIC
 		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-				
-		/// <summary>
-		/// Dos something.
-		/// </summary>
-		//void doSomething();
 		
-
+		
+		///////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
+		///			CONSTRUCTOR / DESTRUCTOR
+		///////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
+		///<summary>
+		///	 Constructor
+		///</summary>
+		public UMVCSEvent (string aType_str ): base (aType_str)
+		{
+			
+		}
+		
+		~UMVCSEvent()
+		{
+			
+		}
+		
+		// PRIVATE
+		
+		// PRIVATE STATIC
+		
+		// PRIVATE COROUTINE
+		
+		// PRIVATE INVOKE
+		
+		//--------------------------------------
+		//  Events
+		//--------------------------------------
 	}
 }
-

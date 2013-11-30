@@ -1,18 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/uMVCSDemo/Scripts/uMVCS_demo/view/CustomView.cs">
-    <Files>
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/view/ui/CustomViewUI.cs" Line="209" Column="118" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/CustomUMVCSContext.cs" Line="95" Column="46" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/controller/events/CustomModelEvent.cs" Line="104" Column="1" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/controller/events/CustomViewUIEvent.cs" Line="103" Column="1" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/controller/CustomController.cs" Line="198" Column="63" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/controller/events/CustomServiceEvent.cs" Line="104" Column="1" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/model/CustomModel.cs" Line="77" Column="102" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/service/CustomService.cs" Line="117" Column="83" />
-      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/view/CustomView.cs" Line="110" Column="85" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

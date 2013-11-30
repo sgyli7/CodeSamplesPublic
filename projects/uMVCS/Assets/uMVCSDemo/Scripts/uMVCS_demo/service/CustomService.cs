@@ -32,6 +32,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using com.rmc.projects.umvcs;
+using com.rmc.projects.umvcs.controller.events;
+using com.rmc.projects.umvcs.service;
 using com.rmc.projects.event_dispatcher;
 
 //--------------------------------------
@@ -98,20 +100,17 @@ namespace com.rmc.projects.umvcs_demo
 		/// </summary>
 		public void doLoadFavoriteVideogames ()
 		{
+			//
+			List<string> favoriteVideogamesList_string = new List<string>();
 
-			// A SERVICE SHOULD LOAD DATA FROM AN EXTERNAL SOURCE (XML OR JSON FOR EXAMPLE)
-			//		BUT HERE I JUST FAKE THAT FOR THE DEMO
+			// A SERVICE SHOULD LOAD DATA FROM AN EXTERNAL SOURCE (see "Resources" folder)
+			TextAsset textAsset = (TextAsset) Resources.Load("FavoriteVideogamesList", typeof(TextAsset));
 
-
-			//LOAD FROM A SERVICE (DECLARE LOCAL AS A FAKE)
-			List<string> favoriteVideogamesList_string = new List<string>{
-				"Tearaway (PSVita)",
-				"Rayman Legends (PSVita)",
-				"Killzone Mercenary (PSVita)",
-				"CastleStorm (PSVita)",
-				"OMG HD Zombies (PSVita)",
-			};
-			
+			//CONVERT ARRAY TO LIST FOR EASIER USAGE
+			string[] favoriteVideogamesArray_string = textAsset.text.Split ("\n"[0]);
+			foreach (string s in favoriteVideogamesArray_string) {
+				favoriteVideogamesList_string.Add (s);
+			}
 			
 			//WHEN IT IS LOADED, SEND AN EVENT
 			UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomServiceEvent (CustomServiceEvent.FAVORITE_VIDEOGAMES_LOADED, favoriteVideogamesList_string)); 

@@ -31,6 +31,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using com.rmc.projects.umvcs.model;
+using com.rmc.projects.umvcs.view;
+using com.rmc.projects.umvcs.controller;
+using com.rmc.projects.umvcs.service;
 
 //--------------------------------------
 //  Namespace

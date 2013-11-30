@@ -1,3 +1,4 @@
+
 /**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
@@ -32,7 +33,7 @@
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.umvcs
+namespace com.rmc.projects.umvcs.core
 {
 	
 	//--------------------------------------
@@ -41,20 +42,13 @@ namespace com.rmc.projects.umvcs
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IService : IActor
+	public interface IActor
 	{
 	
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		/// <summary>
-		/// Gets or sets the type.
-		/// </summary>
-		/// <value>
-		/// The type.
-		/// </value>
-		//string type { get; set;}
 
 		
 		//--------------------------------------
@@ -62,9 +56,9 @@ namespace com.rmc.projects.umvcs
 		//--------------------------------------
 				
 		/// <summary>
-		/// Dos something.
+		/// Actor is added to MCVS
 		/// </summary>
-		//void doSomething();
+		void onRegister();
 		
 
 	}

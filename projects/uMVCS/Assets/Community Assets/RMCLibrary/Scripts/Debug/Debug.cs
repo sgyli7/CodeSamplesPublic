@@ -58,12 +58,12 @@ public static class Debug
 	public static bool isDebugBuild = true;
 	
 	///<summary>
-	///	Extra lines added to every Debug.Log() console output.
+	///	By default Unity's Debug.Log shows extra lines added to every Debug.Log() console output.
 	//    ********
 	//    ********
 	//    ******** The purpose of this class is to reduce console output to ONE line each. Solely for readabilities sake.
 	//    ********
-	//    ********
+	//    ******** THIS IS PURELY COSMETIC
 	///</summary>
 	private static string hr = "\n\n-------------------------------------------------------------------------------";
       

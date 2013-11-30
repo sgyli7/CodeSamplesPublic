@@ -28,11 +28,12 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.umvcs.core;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.umvcs
+namespace com.rmc.projects.umvcs.view
 {
 	
 	//--------------------------------------
@@ -41,7 +42,7 @@ namespace com.rmc.projects.umvcs
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IModel : IActor
+	public interface IView : IActor
 	{
 	
 		//--------------------------------------

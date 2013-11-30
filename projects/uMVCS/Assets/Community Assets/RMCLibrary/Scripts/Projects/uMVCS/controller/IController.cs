@@ -1,4 +1,3 @@
-
 /**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
@@ -29,11 +28,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.event_dispatcher;
+using com.rmc.projects.umvcs.core;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.umvcs
+namespace com.rmc.projects.umvcs.controller
 {
 	
 	//--------------------------------------
@@ -42,13 +43,17 @@ namespace com.rmc.projects.umvcs
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IActor
+	public interface IController : IActor
 	{
 	
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		/// <summary>
+		/// The IEventDispatcher.
+		/// </summary>
+		IEventDispatcher eventDispatcher { get; set;} 
 
 		
 		//--------------------------------------
@@ -56,9 +61,9 @@ namespace com.rmc.projects.umvcs
 		//--------------------------------------
 				
 		/// <summary>
-		/// Actor is added to MCVS
+		/// Dos something.
 		/// </summary>
-		void onRegister();
+		//void doSomething();
 		
 
 	}

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,104 +28,46 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using com.rmc.projects.umvcs;
+using com.rmc.projects.umvcs.core;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.umvcs_demo
+namespace com.rmc.projects.umvcs.service
 {
-	
-	//--------------------------------------
-	//  Namespace Properties
-	//--------------------------------------
-	
-	
-	//--------------------------------------
-	//  Class Attributes
-	//--------------------------------------
-	
 	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class AbstractContext : MonoBehaviour
+	/// <summary>
+	/// 
+	/// </summary>
+	public interface IService : IActor
 	{
-		
+	
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		/// <summary>
+		/// Gets or sets the type.
+		/// </summary>
+		/// <value>
+		/// The type.
+		/// </value>
+		//string type { get; set;}
 
-		// PUBLIC
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		
-		// PRIVATE STATIC
 		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
-		public AbstractContext ( )
-		{
-			//Debug.Log ("AbstractContext.constructor()");
-			
-		}
-
-		~AbstractContext()
-		{
-
-		}
-
+				
 		/// <summary>
-		/// Dos the register all actors.
+		/// Dos something.
 		/// </summary>
-		public void doRegisterAllActors()
-		{
-			UMVCS.Instance.model.onRegister();
-			UMVCS.Instance.view.onRegister();
-			UMVCS.Instance.controller.onRegister();
-			UMVCS.Instance.service.onRegister();
-
-
-		}
-
-		/// <summary>
-		/// Dos the application start.
-		/// </summary>
-		public void doApplicationStart()
-		{
-			//2. START THE APPLICATION'S MCVS *ENGINE*
-			UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new UMVCSEvent (UMVCSEvent.APPLICATION_START));
-		}
-
-
-
-		// PRIVATE
+		//void doSomething();
 		
-		// PRIVATE STATIC
-		
-		// PRIVATE COROUTINE
-		
-		// PRIVATE INVOKE
-		
-		//--------------------------------------
-		//  Events
-		//--------------------------------------
+
 	}
 }
 

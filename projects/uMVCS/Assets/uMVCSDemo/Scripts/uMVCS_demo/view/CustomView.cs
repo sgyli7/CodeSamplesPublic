@@ -32,6 +32,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using com.rmc.projects.umvcs;
+using com.rmc.projects.umvcs.view;
 
 //--------------------------------------
 //  Namespace
@@ -118,8 +119,6 @@ namespace com.rmc.projects.umvcs_demo
 		/// <param name="favoriteVideogamesList">Favorite videogames list.</param>
 		void doRenderLayout (List<string> aFavoriteVideogamesList_string)
 		{
-			Debug.Log ("VIEW: " + aFavoriteVideogamesList_string);
-
 			CustomViewUI customViewUI = GameObject.Find ("CustomViewUI").GetComponent<CustomViewUI>();
 
 			if (customViewUI) {
@@ -149,7 +148,7 @@ namespace com.rmc.projects.umvcs_demo
 			
 			CustomModelEvent customModelEvent = aIEvent as CustomModelEvent;
 			
-			Debug.Log ("CustomController.onFavoriteVideogamesChanged() customModelEvent: " + customModelEvent.favoriteVideogamesList);
+			Debug.Log ("CustomView.onFavoriteVideogamesChanged() list: " + customModelEvent.favoriteVideogamesList);
 			
 			doRenderLayout(customModelEvent.favoriteVideogamesList);
 			

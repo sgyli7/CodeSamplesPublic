@@ -32,6 +32,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using com.rmc.projects.umvcs;
+using com.rmc.projects.umvcs.core;
 
 //--------------------------------------
 //  Namespace

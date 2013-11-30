@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -31,13 +31,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using com.rmc.projects.umvcs;
-using com.rmc.projects.event_dispatcher;
+using com.rmc.projects.umvcs.controller.events;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.umvcs
+namespace com.rmc.projects.umvcs.core
 {
 	
 	//--------------------------------------
@@ -53,18 +52,17 @@ namespace com.rmc.projects.umvcs
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UMVCSEvent : com.rmc.projects.event_dispatcher.Event, com.rmc.projects.event_dispatcher.IEvent
+	public class AbstractContext : MonoBehaviour
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		
+
 		// PUBLIC
 		
 		// PUBLIC STATIC
-		public static string APPLICATION_START = "APPLICATION_START";
 		
 		// PRIVATE
 		
@@ -74,7 +72,6 @@ namespace com.rmc.projects.umvcs
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
@@ -83,16 +80,41 @@ namespace com.rmc.projects.umvcs
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public UMVCSEvent (string aType_str ): base (aType_str)
+		public AbstractContext ( )
 		{
+			//Debug.Log ("AbstractContext.constructor()");
 			
 		}
-		
-		~UMVCSEvent()
+
+		~AbstractContext()
 		{
-			
+
 		}
-		
+
+		/// <summary>
+		/// Dos the register all actors.
+		/// </summary>
+		public void doRegisterAllActors()
+		{
+			UMVCS.Instance.model.onRegister();
+			UMVCS.Instance.view.onRegister();
+			UMVCS.Instance.controller.onRegister();
+			UMVCS.Instance.service.onRegister();
+
+
+		}
+
+		/// <summary>
+		/// Dos the application start.
+		/// </summary>
+		public void doApplicationStart()
+		{
+			//2. START THE APPLICATION'S MCVS *ENGINE*
+			UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new UMVCSEvent (UMVCSEvent.APPLICATION_START));
+		}
+
+
+
 		// PRIVATE
 		
 		// PRIVATE STATIC
@@ -106,3 +128,4 @@ namespace com.rmc.projects.umvcs
 		//--------------------------------------
 	}
 }
+

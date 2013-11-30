@@ -53,14 +53,14 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\EventListenerData.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\IEvent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\IEventDispatcher.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\AbstractContext.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\IActor.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\IController.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\IModel.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\IService.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\IView.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\UMVCS.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\UMVCSEvent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\controller\IController.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\controller\events\UMVCSEvent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\core\AbstractContext.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\core\IActor.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\model\IModel.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\service\IService.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\view\IView.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\CustomUMVCSContext.cs" />
@@ -73,6 +73,7 @@
      <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\view\CustomView.cs" />
      <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\view\ui\CustomViewUI.cs" />
      <None Include="Assets\uMVCSDemo\Scripts\TODO.txt" />
+     <None Include="Assets\uMVCSDemo\Resources\FavoriteVideogamesList.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
