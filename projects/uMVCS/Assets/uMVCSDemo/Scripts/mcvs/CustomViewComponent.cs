@@ -75,19 +75,28 @@ namespace com.rmc.projects.umvcs_demo
 				_favoriteVideogamesList_string = value;
 			}
 		}
-
+		
 		
 		// PUBLIC
 		/// <summary>
 		/// The GUI skin.
 		/// </summary>
 		public GUISkin guiSkin;
-
-
+		
+		
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
+
+		private float _contentsGapHorizontal_float;
+		private float _contentsGapVertical_float;
+		private float _currentY_float;
+		private float _windowWidth_float;
+		private float _windowHeight_float;
+		private float _windowX_float;
+		private float _windowY_float;
+		private float _contentsWidth_float;
 		
 		// PRIVATE STATIC
 		
@@ -114,102 +123,110 @@ namespace com.rmc.projects.umvcs_demo
 		{
 			
 		}
-
-
+		
+		
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
 		public void Start ()
 		{
-
-
+			_contentsGapHorizontal_float 	= 20;
+			_contentsGapVertical_float		= 15;
+			_currentY_float 				= 0;
+			_windowWidth_float 				= 500;
+			_windowHeight_float 			= 300;
+			_windowX_float					= Screen.width/2 - _windowWidth_float/2;
+			_windowY_float					= Screen.height/2 - _windowHeight_float/2;
+			_contentsWidth_float			= _windowWidth_float - 2*_contentsGapHorizontal_float;
+			
 		}
-
+		
 		/// <summary>
 		/// Raises the GU event.
 		/// </summary>
 		public void OnGUI ()
 		{
+
+			//SET SKIN FROM INSPECTOR
 			GUI.skin = guiSkin;
 
-			float width_float = 500;
-			float gapHorizontal_float = 10;
-			float gapVertical_float = 20;
-			float currentY_float = 0;
-
-
-			//
-			//SPACING
-			currentY_float += gapHorizontal_float;
-			
-			//LAYOUT
-			GUI.Label (new Rect  (gapHorizontal_float, currentY_float, width_float, 20), "INSTRUCTIONS");
-			
-			//
-			//SPACING
-			currentY_float += gapHorizontal_float + 20;
-			
-			
-			//LAYOUT
-			GUI.TextArea (new Rect (gapHorizontal_float, currentY_float, width_float, 80), "Use the menu buttons to test a complete, simple use case for the the uMVCS framework. The flow is...\n\nUI(Button)->View->Controller->Service->Model->View->UI(TextArea)");
-
-
-			//
-			//SPACING
-			currentY_float += (gapHorizontal_float*3) + 80;
+			//RESET FOR NEXT FRAME WHEN THIS IS ALL REDRAWN AGAIN (PER UNITY'S GUI LIFECYCLE)
+			_currentY_float = 0;
 
 			//LAYOUT
-			GUI.Label (new Rect  (gapHorizontal_float, currentY_float, width_float, 20), "TEXT OUTPUT");
+			Rect windowRect = new Rect (_windowX_float, _windowY_float, _windowWidth_float, _windowHeight_float);
+			windowRect = GUI.Window (0, windowRect, _windowFunction, "uMVCS Template Demo");
+
+		}
 
 
+
+
+		// PRIVATE
+
+		
+		/// <summary>
+		/// _windows the function.
+		/// </summary>
+		/// <param name="windowID">Window I.</param>
+		private void _windowFunction (int windowID) {
+
+
+			//RESET TO '0' IN THE WINDOW
+			_currentY_float = _contentsGapVertical_float*3;
+			
+			
+			//LAYOUT
+			GUI.Label (new Rect  (_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float, 20), "TEXT OUTPUT");
+			
+			
 			//
 			//SPACING
-			currentY_float += gapHorizontal_float + 20;
-
-
+			_currentY_float += _contentsGapHorizontal_float + 10;
+			
+			
 			//LAYOUT
 			//GUI.BeginScrollView()
-			GUI.TextArea (new Rect (gapHorizontal_float, currentY_float, width_float, 120), "Favorite Videogames Loaded From External Service:\n"+  _getFormattedList (_favoriteVideogamesList_string));
+			GUI.TextArea (new Rect (_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float, 120),  _getFormattedList (_favoriteVideogamesList_string));
 			//GUI.EndScrollView();
-
-
+			
+			
 			//
 			//SPACING
-			currentY_float += (gapHorizontal_float*2) + 120;
+			_currentY_float += (_contentsGapHorizontal_float) + 120;
 			
 			
 			//LAYOUT
-			GUI.Label (new Rect (gapHorizontal_float, currentY_float, width_float, 20), "BUTTON MENU");
-
-
+			GUI.Label (new Rect (_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float, 20), "BUTTON MENU");
+			
+			
 			//
 			//SPACING
-			currentY_float += gapHorizontal_float + 20;
+			_currentY_float += _contentsGapHorizontal_float + 10;
 			
 			
 			//LAYOUT
-			if (GUI.Button(new Rect(gapHorizontal_float, currentY_float, width_float/2, 50), "CLEAR DISPLAY")){
-				//Debug.Log("You clicked the button!");
+			if (GUI.Button(new Rect(_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float/2, 50), "CLEAR DISPLAY")){
+				Debug.Log("User Clicked: CLEAR DISPLAY");
 				UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomEvent (CustomEvent.CLEAR_BUTTON_CLICK)); 
 			}
-
-
+			
+			
 			//
 			//SPACING
 			//(NO VERTICAL CHANGE)
 			
 			
 			//LAYOUT
-			if (GUI.Button(new Rect(gapVertical_float + width_float/2, currentY_float, width_float/2, 50), "RELOAD DISPLAY")){
-				Debug.Log("You clicked the button!" + UMVCS.Instance.controller.eventDispatcher);
+			if (GUI.Button(new Rect(_contentsGapVertical_float + _contentsWidth_float/2, _currentY_float, _contentsWidth_float/2, 50), "RELOAD DISPLAY")){
+				Debug.Log("User Clicked: RELOAD DISPLAY");
 				UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomEvent (CustomEvent.RELOAD_BUTTON_CLICK)); 
 			}
-
-
-
+			
 		}
+
+
 		
-		// PRIVATE
 		/// <summary>
 		/// _gets the formatted list.
 		/// </summary>
@@ -219,14 +236,21 @@ namespace com.rmc.projects.umvcs_demo
 		{
 			string formatted_string = "";
 			if (_favoriteVideogamesList_string != null) {
+				//PRINT FULL INFO
+				formatted_string += "Favorite Videogames Loaded From External Service:\n";
+				//
 				foreach (string s in _favoriteVideogamesList_string) {
 					formatted_string += s + "\n";
 				}
 			} else {
-				formatted_string += "[NO DATA AVAILABLE]";
+				//PRINT NOTHING
+				formatted_string += "";
 			}
 			return formatted_string;
 		}
+
+
+
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE
@@ -236,7 +260,7 @@ namespace com.rmc.projects.umvcs_demo
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-
-
+		
+		
 	}
 }
