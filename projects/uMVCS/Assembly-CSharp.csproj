@@ -63,13 +63,15 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\uMVCS\UMVCSEvent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\uMVCSDemo\Scripts\mcvs\CustomController.cs" />
-     <Compile Include="Assets\uMVCSDemo\Scripts\mcvs\CustomEvent.cs" />
-     <Compile Include="Assets\uMVCSDemo\Scripts\mcvs\CustomModel.cs" />
-     <Compile Include="Assets\uMVCSDemo\Scripts\mcvs\CustomService.cs" />
-     <Compile Include="Assets\uMVCSDemo\Scripts\mcvs\CustomUMVCSContext.cs" />
-     <Compile Include="Assets\uMVCSDemo\Scripts\mcvs\CustomView.cs" />
-     <Compile Include="Assets\uMVCSDemo\Scripts\mcvs\CustomViewComponent.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\CustomUMVCSContext.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\controller\CustomController.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\controller\events\CustomModelEvent.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\controller\events\CustomServiceEvent.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\controller\events\CustomViewUIEvent.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\model\CustomModel.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\service\CustomService.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\view\CustomView.cs" />
+     <Compile Include="Assets\uMVCSDemo\Scripts\uMVCS_demo\view\ui\CustomViewUI.cs" />
      <None Include="Assets\uMVCSDemo\Scripts\TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

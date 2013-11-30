@@ -32,13 +32,11 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using com.rmc.projects.umvcs;
+using com.rmc.projects.event_dispatcher;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.event_dispatcher;
-
-
 namespace com.rmc.projects.umvcs_demo
 {
 	
@@ -55,7 +53,7 @@ namespace com.rmc.projects.umvcs_demo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomView : IView
+	public class CustomViewUIEvent : com.rmc.projects.event_dispatcher.Event, com.rmc.projects.event_dispatcher.IEvent
 	{
 		
 		//--------------------------------------
@@ -66,7 +64,21 @@ namespace com.rmc.projects.umvcs_demo
 		// PUBLIC
 		
 		// PUBLIC STATIC
+		/// <summary>
+		/// RELOAD_BUTTON_CLICK
+		/// </summary>
+		public static string RELOAD_BUTTON_CLICK = "RELOAD_BUTTON_CLICK";
+
+		/// <summary>
+		/// CLEAR_BUTTON_CLICK
+		/// </summary>
+		public static string CLEAR_BUTTON_CLICK = "CLEAR_BUTTON_CLICK";
 		
+
+
+
+
+
 		// PRIVATE
 		
 		// PRIVATE STATIC
@@ -74,7 +86,7 @@ namespace com.rmc.projects.umvcs_demo
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-
+		
 		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
@@ -84,49 +96,14 @@ namespace com.rmc.projects.umvcs_demo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomView( )
+		public CustomViewUIEvent (string aType_str): base (aType_str)
 		{
-			//Debug.Log ("CustomController.constructor()");
-	
+
 		}
-		
-		~CustomView()
+
+		~CustomViewUIEvent()
 		{
 			
-		}
-
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			MCVS LIFECYCLE
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		/// <summary>
-		/// Actor is added to MCVS
-		/// </summary>
-		public void onRegister ()
-		{
-			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomEvent.FAVORITE_VIDEOGAMES_CHANGED, onFavoriteVideogamesChanged); 
-
-			
-		}
-
-		/// <summary>
-		/// Dos the render layout.
-		/// </summary>
-		/// <param name="favoriteVideogamesList">Favorite videogames list.</param>
-		void doRenderLayout (List<string> aFavoriteVideogamesList_string)
-		{
-			Debug.Log ("VIEW: " + aFavoriteVideogamesList_string);
-
-			CustomViewComponent customViewComponent = GameObject.Find ("CustomViewUI").GetComponent<CustomViewComponent>();
-
-			if (customViewComponent) {
-
-				customViewComponent.favoriteVideogamesList = aFavoriteVideogamesList_string;
-
-			}
 		}
 		
 		// PRIVATE
@@ -140,19 +117,5 @@ namespace com.rmc.projects.umvcs_demo
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		/// <summary>
-		/// Ons the favorite videogames changed.
-		/// </summary>
-		/// <param name="aIEvent">A I event.</param>
-		public void onFavoriteVideogamesChanged (IEvent aIEvent)
-		{
-			
-			CustomEvent customEvent = aIEvent as CustomEvent;
-			
-			Debug.Log ("CustomController.onFavoriteVideogamesChanged() customEvent: " + customEvent.favoriteVideogamesList);
-			
-			doRenderLayout(customEvent.favoriteVideogamesList);
-			
-		}
 	}
 }

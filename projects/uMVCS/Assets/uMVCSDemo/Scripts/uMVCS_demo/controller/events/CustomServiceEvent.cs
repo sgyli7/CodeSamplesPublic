@@ -53,7 +53,7 @@ namespace com.rmc.projects.umvcs_demo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomEvent : com.rmc.projects.event_dispatcher.Event, com.rmc.projects.event_dispatcher.IEvent
+	public class CustomServiceEvent : com.rmc.projects.event_dispatcher.Event, com.rmc.projects.event_dispatcher.IEvent
 	{
 		
 		//--------------------------------------
@@ -84,26 +84,6 @@ namespace com.rmc.projects.umvcs_demo
 		/// </summary>
 		public static string FAVORITE_VIDEOGAMES_LOADED = "FAVORITE_VIDEOGAMES_LOADED";
 
-		/// <summary>
-		/// FAVORITE_VIDEOGAMES_CHANGED
-		/// </summary>
-		public static string FAVORITE_VIDEOGAMES_CHANGED = "FAVORITE_VIDEOGAMES_CHANGED";
-
-		/// <summary>
-		/// RELOAD_BUTTON_CLICK
-		/// </summary>
-		public static string RELOAD_BUTTON_CLICK = "RELOAD_BUTTON_CLICK";
-
-		/// <summary>
-		/// CLEAR_BUTTON_CLICK
-		/// </summary>
-		public static string CLEAR_BUTTON_CLICK = "CLEAR_BUTTON_CLICK";
-		
-
-
-
-
-
 		// PRIVATE
 		
 		// PRIVATE STATIC
@@ -121,18 +101,13 @@ namespace com.rmc.projects.umvcs_demo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomEvent (string aType_str): base (aType_str)
-		{
-
-		}
-
-		public CustomEvent (string aType_str, List<string> aFavoriteVideogamesList_strings): base (aType_str)
+		public CustomServiceEvent (string aType_str, List<string> aFavoriteVideogamesList_strings): base (aType_str)
 		{
 			favoriteVideogamesList = aFavoriteVideogamesList_strings;
 		}
 
 
-		~CustomEvent()
+		~CustomServiceEvent()
 		{
 			
 		}

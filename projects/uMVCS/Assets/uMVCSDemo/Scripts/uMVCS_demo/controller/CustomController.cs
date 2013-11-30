@@ -166,9 +166,9 @@ namespace com.rmc.projects.umvcs_demo
 			service = UMVCS.Instance.service as CustomService;
 			
 			//LISTEN
-			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomEvent.FAVORITE_VIDEOGAMES_LOADED, 	onFavoriteVideogamesLoaded); 
-			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomEvent.RELOAD_BUTTON_CLICK, 			onReloadButtonClick); 
-			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomEvent.CLEAR_BUTTON_CLICK, 			onClearButtonClick); 
+			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomServiceEvent.FAVORITE_VIDEOGAMES_LOADED, 	onFavoriteVideogamesLoaded); 
+			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomViewUIEvent.RELOAD_BUTTON_CLICK, 			onReloadButtonClick); 
+			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomViewUIEvent.CLEAR_BUTTON_CLICK, 			onClearButtonClick); 
 
 
 		}
@@ -193,12 +193,12 @@ namespace com.rmc.projects.umvcs_demo
 		public void onFavoriteVideogamesLoaded (IEvent aIEvent)
 		{
 
-			CustomEvent customEvent = aIEvent as CustomEvent;
+			CustomServiceEvent customServiceEvent = aIEvent as CustomServiceEvent;
 
-			Debug.Log ("CustomController.onFavoriteVideogamesLoaded() customEvent: " + customEvent.favoriteVideogamesList);
+			Debug.Log ("CustomController.onFavoriteVideogamesLoaded() customServiceEvent: " + customServiceEvent.favoriteVideogamesList);
 
 			//CONTROLLER IS BOUND TO MODEL
-			model.favoriteVideogamesList = customEvent.favoriteVideogamesList;
+			model.favoriteVideogamesList = customServiceEvent.favoriteVideogamesList;
 			
 		}
 

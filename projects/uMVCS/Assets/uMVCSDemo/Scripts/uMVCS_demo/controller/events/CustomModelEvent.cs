@@ -32,6 +32,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using com.rmc.projects.umvcs;
+using com.rmc.projects.event_dispatcher;
 
 //--------------------------------------
 //  Namespace
@@ -52,7 +53,7 @@ namespace com.rmc.projects.umvcs_demo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomModel : IModel
+	public class CustomModelEvent : com.rmc.projects.event_dispatcher.Event, com.rmc.projects.event_dispatcher.IEvent
 	{
 		
 		//--------------------------------------
@@ -63,7 +64,7 @@ namespace com.rmc.projects.umvcs_demo
 		/// The _favorite videogames list_string.
 		/// </summary>
 		private List<string> _favoriteVideogamesList_string;
-		public List<string> favoriteVideogamesList 
+		public List<string> favoriteVideogamesList
 		{
 			get 
 			{
@@ -71,20 +72,18 @@ namespace com.rmc.projects.umvcs_demo
 			}
 			set 
 			{
-				//TODO, PERHAPS WE NEED A BETTER CHECK THAN "!=" TO JUDGE IF IT IS "NOT THE SAME DATA"
-				if (_favoriteVideogamesList_string != value) {
-					_favoriteVideogamesList_string = value;
-					UMVCS.Instance.controller.eventDispatcher.dispatchEvent ( new CustomEvent (CustomEvent.FAVORITE_VIDEOGAMES_CHANGED, _favoriteVideogamesList_string)); 
-				}
+				_favoriteVideogamesList_string = value;
 			}
 		}
-
-
 		
 		// PUBLIC
 		
 		// PUBLIC STATIC
-		
+		/// <summary>
+		/// FAVORITE_VIDEOGAMES_CHANGED
+		/// </summary>
+		public static string FAVORITE_VIDEOGAMES_CHANGED = "FAVORITE_VIDEOGAMES_CHANGED";
+
 		// PRIVATE
 		
 		// PRIVATE STATIC
@@ -92,7 +91,7 @@ namespace com.rmc.projects.umvcs_demo
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-
+		
 		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
@@ -102,40 +101,17 @@ namespace com.rmc.projects.umvcs_demo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomModel( )
+		public CustomModelEvent (string aType_str, List<string> aFavoriteVideogamesList_strings): base (aType_str)
 		{
-			//Debug.Log ("CustomModel.constructor()");
+			favoriteVideogamesList = aFavoriteVideogamesList_strings;
+		}
+
+
+		~CustomModelEvent()
+		{
 			
 		}
 		
-		~CustomModel()
-		{
-			
-		}
-
-		/// <summary>
-		/// Dos the clear all data.
-		/// </summary>
-		public void doClearAllData ()
-		{
-			favoriteVideogamesList = null;
-		}		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			MCVS LIFECYCLE
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		/// <summary>
-		/// Actor is added to MCVS
-		/// </summary>
-		public void onRegister ()
-		{
-			doClearAllData();
-			
-		}
-
-
 		// PRIVATE
 		
 		// PRIVATE STATIC

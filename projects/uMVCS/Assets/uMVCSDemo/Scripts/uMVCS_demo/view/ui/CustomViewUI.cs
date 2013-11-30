@@ -53,7 +53,7 @@ namespace com.rmc.projects.umvcs_demo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomViewComponent : MonoBehaviour
+	public class CustomViewUI : MonoBehaviour
 	{
 		
 		//--------------------------------------
@@ -113,13 +113,13 @@ namespace com.rmc.projects.umvcs_demo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomViewComponent( )
+		public CustomViewUI( )
 		{
-			//Debug.Log ("CustomViewComponent.constructor()");
+			//Debug.Log ("CustomViewUI.constructor()");
 			
 		}
 		
-		~CustomViewComponent()
+		~CustomViewUI()
 		{
 			
 		}
@@ -155,7 +155,7 @@ namespace com.rmc.projects.umvcs_demo
 
 			//LAYOUT
 			Rect windowRect = new Rect (_windowX_float, _windowY_float, _windowWidth_float, _windowHeight_float);
-			windowRect = GUI.Window (0, windowRect, _windowFunction, "uMVCS Template Demo");
+			windowRect = GUI.Window (0, windowRect, _onWindowContentCreationStart, "uMVCS Template Demo");
 
 		}
 
@@ -169,7 +169,7 @@ namespace com.rmc.projects.umvcs_demo
 		/// _windows the function.
 		/// </summary>
 		/// <param name="windowID">Window I.</param>
-		private void _windowFunction (int windowID) {
+		private void _onWindowContentCreationStart (int aWindowID_int) {
 
 
 			//RESET TO '0' IN THE WINDOW
@@ -206,9 +206,9 @@ namespace com.rmc.projects.umvcs_demo
 			
 			
 			//LAYOUT
-			if (GUI.Button(new Rect(_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float/2, 50), "CLEAR DISPLAY")){
-				Debug.Log("User Clicked: CLEAR DISPLAY");
-				UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomEvent (CustomEvent.CLEAR_BUTTON_CLICK)); 
+			if (GUI.Button(new Rect(_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float/2, 50), "Clear Message")){
+				Debug.Log("User Clicked: Clear Message");
+				UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomViewUIEvent (CustomViewUIEvent.CLEAR_BUTTON_CLICK)); 
 			}
 			
 			
@@ -218,9 +218,9 @@ namespace com.rmc.projects.umvcs_demo
 			
 			
 			//LAYOUT
-			if (GUI.Button(new Rect(_contentsGapVertical_float + _contentsWidth_float/2, _currentY_float, _contentsWidth_float/2, 50), "RELOAD DISPLAY")){
-				Debug.Log("User Clicked: RELOAD DISPLAY");
-				UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomEvent (CustomEvent.RELOAD_BUTTON_CLICK)); 
+			if (GUI.Button(new Rect(_contentsGapVertical_float + _contentsWidth_float/2, _currentY_float, _contentsWidth_float/2, 50), "Load Message")){
+				Debug.Log("User Clicked: Load Message");
+				UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomViewUIEvent (CustomViewUIEvent.RELOAD_BUTTON_CLICK)); 
 			}
 			
 		}

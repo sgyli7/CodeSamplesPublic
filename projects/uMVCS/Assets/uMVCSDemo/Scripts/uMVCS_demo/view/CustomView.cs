@@ -32,11 +32,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using com.rmc.projects.umvcs;
-using com.rmc.projects.event_dispatcher;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.event_dispatcher;
+
+
 namespace com.rmc.projects.umvcs_demo
 {
 	
@@ -53,7 +55,7 @@ namespace com.rmc.projects.umvcs_demo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomService : IService
+	public class CustomView : IView
 	{
 		
 		//--------------------------------------
@@ -82,41 +84,15 @@ namespace com.rmc.projects.umvcs_demo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomService( )
+		public CustomView( )
 		{
-			//Debug.Log ("CustomService.constructor()");
+			//Debug.Log ("CustomController.constructor()");
+	
 		}
 		
-		~CustomService()
+		~CustomView()
 		{
 			
-		}
-
-
-		/// <summary>
-		/// Dos the load favorite videogames.
-		/// </summary>
-		public void doLoadFavoriteVideogames ()
-		{
-
-			// A SERVICE SHOULD LOAD DATA FROM AN EXTERNAL SOURCE (XML OR JSON FOR EXAMPLE)
-			//		BUT HERE I JUST FAKE THAT FOR THE DEMO
-
-
-			//LOAD FROM A SERVICE (DECLARE LOCAL AS A FAKE)
-			List<string> favoriteVideogamesList_string = new List<string>{
-				"Tearaway (PSVita)",
-				"Rayman Legends (PSVita)",
-				"Killzone Mercenary (PSVita)",
-				"CastleStorm (PSVita)",
-				"OMG HD Zombies (PSVita)",
-			};
-			
-			
-			//WHEN IT IS LOADED, SEND AN EVENT
-			UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomEvent (CustomEvent.FAVORITE_VIDEOGAMES_LOADED, favoriteVideogamesList_string)); 
-
-
 		}
 
 		
@@ -131,7 +107,26 @@ namespace com.rmc.projects.umvcs_demo
 		/// </summary>
 		public void onRegister ()
 		{
-			UMVCS.Instance.controller.eventDispatcher.addEventListener (UMVCSEvent.APPLICATION_START, onApplicationStart); 
+			UMVCS.Instance.controller.eventDispatcher.addEventListener (CustomModelEvent.FAVORITE_VIDEOGAMES_CHANGED, onFavoriteVideogamesChanged); 
+
+			
+		}
+
+		/// <summary>
+		/// Dos the render layout.
+		/// </summary>
+		/// <param name="favoriteVideogamesList">Favorite videogames list.</param>
+		void doRenderLayout (List<string> aFavoriteVideogamesList_string)
+		{
+			Debug.Log ("VIEW: " + aFavoriteVideogamesList_string);
+
+			CustomViewUI customViewUI = GameObject.Find ("CustomViewUI").GetComponent<CustomViewUI>();
+
+			if (customViewUI) {
+
+				customViewUI.favoriteVideogamesList = aFavoriteVideogamesList_string;
+
+			}
 		}
 		
 		// PRIVATE
@@ -146,22 +141,18 @@ namespace com.rmc.projects.umvcs_demo
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// Ons the application start.
+		/// Ons the favorite videogames changed.
 		/// </summary>
-		/// <param name="aUMVCSEvent">A UMVCS event.</param>
-		public void onApplicationStart (IEvent aIEvent)
+		/// <param name="aIEvent">A I event.</param>
+		public void onFavoriteVideogamesChanged (IEvent aIEvent)
 		{
-
-			//STRONG TYPE EVENT
-			UMVCSEvent uMVCSEvent = aIEvent as UMVCSEvent;
-
-			Debug.Log ("CustomService.onApplicationStart() uMVCSEvent: " + uMVCSEvent);
-		
-			doLoadFavoriteVideogames();
-
+			
+			CustomModelEvent customModelEvent = aIEvent as CustomModelEvent;
+			
+			Debug.Log ("CustomController.onFavoriteVideogamesChanged() customModelEvent: " + customModelEvent.favoriteVideogamesList);
+			
+			doRenderLayout(customModelEvent.favoriteVideogamesList);
+			
 		}
-
-
-
 	}
 }
