@@ -1,6 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/uMVCSDemo/Scripts/uMVCS_demo/view/CustomView.cs">
+    <Files>
+      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/view/ui/CustomViewUI.cs" Line="172" Column="64" />
+      <File FileName="Assets/uMVCSDemo/Scripts/uMVCS_demo/view/CustomView.cs" Line="151" Column="61" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
