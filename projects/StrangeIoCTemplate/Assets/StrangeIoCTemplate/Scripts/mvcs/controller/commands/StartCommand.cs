@@ -32,16 +32,17 @@ using System;
 using UnityEngine;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
-using com.rmc.projects.strangeioc_template.view;
+using com.rmc.projects.strangeioc_template.mvc.view;
+using com.rmc.projects.strangeioc_template.mvc.view.ui;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using strange.examples.signals.fun;
-using strange.examples.signals.blah;
+using strange.framework.api;
+using strange.extensions.injector.api;
 
 
-namespace com.rmc.projects.strangeioc_template.controller.commands
+namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
 {
 	
 	//--------------------------------------
@@ -95,20 +96,10 @@ namespace com.rmc.projects.strangeioc_template.controller.commands
 			go.transform.parent = contextView.transform;
 
 			//DO SERVICE
+
+			//TODO, CAN I JUST EXECUTE A COMMAND WITHOUT A SIGNAL/EVENT?
+			//new LoadButtonClickCommand().Execute();
 			iService.doLoadFavoriteVideogames();
-
-			//ADD THE VIEW TO THE HIERARCHY
-			GameObject go2 = new GameObject();
-			go2.name = "LittleUI";
-			go2.AddComponent<LittleUI>();
-			go2.transform.parent = contextView.transform;
-
-
-			//ADD THE VIEW TO THE HIERARCHY
-			GameObject go3 = new GameObject();
-			go3.name = "ExampleView2";
-			go3.AddComponent<ExampleView2>();
-			go3.transform.parent = contextView.transform;
 
 		}
 		

@@ -31,14 +31,14 @@
 using System;
 using System.Collections.Generic;
 using strange.extensions.signal.impl;
-using com.rmc.projects.strangeioc_template.model;
+using com.rmc.projects.strangeioc_template.mvc.model;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
 
 
-namespace com.rmc.projects.strangeioc_template.controller.signals
+namespace com.rmc.projects.strangeioc_template.mvc.controller.signals
 {
 	
 	//--------------------------------------

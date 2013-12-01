@@ -33,12 +33,12 @@ using System.Collections;
 using System.Collections.Generic;
 using com.rmc.projects.umvcs;
 using com.rmc.projects.umvcs.model;
-using com.rmc.projects.strangeioc_template.controller.signals;
+using com.rmc.projects.strangeioc_template.mvc.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.model
+namespace com.rmc.projects.strangeioc_template.mvc.model
 {
 	
 	//--------------------------------------
@@ -76,7 +76,6 @@ namespace com.rmc.projects.strangeioc_template.model
 				//TODO, PERHAPS WE NEED A BETTER CHECK THAN "!=" TO JUDGE IF IT IS "NOT THE SAME DATA"
 				if (_favoriteVideogamesList_string != value) {
 					_favoriteVideogamesList_string = value;
-					Debug.Log ("model updated");
 					customModelUpdatedSignal.Dispatch (this);
 				}
 			}

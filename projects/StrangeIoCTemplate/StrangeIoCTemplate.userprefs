@@ -1,18 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/StrangeIoC/examples/Assets/scripts/signalsproject/controller/StartCommand.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/StrangeIoCTemplate/Scripts/mvcs/view/CustomViewUIMediator.cs">
     <Files>
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/StrangeIocTemplateContext.cs" Line="150" Column="56" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/view/ui/CustomViewUI.cs" Line="38" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/controller/commands/StartCommand.cs" Line="100" Column="7" />
-      <File FileName="Assets/Community Assets/StrangeIoC/examples/Assets/scripts/signalsproject/view/ExampleMediator.cs" Line="29" Column="4" />
-      <File FileName="Assets/Community Assets/StrangeIoC/examples/Assets/scripts/signalsproject/view/ExampleView.cs" Line="9" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/view/ui/LittleUI.cs" Line="5" Column="28" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/view/LittleUIMediator.cs" Line="15" Column="3" />
-      <File FileName="Assets/Community Assets/StrangeIoC/examples/Assets/scripts/signalsproject/SignalsContext.cs" Line="55" Column="60" />
-      <File FileName="Assets/Community Assets/StrangeIoC/examples/Assets/scripts/signalsproject/controller/StartCommand.cs" Line="26" Column="33" />
-      <File FileName="Assets/Community Assets/StrangeIoC/examples/Assets/scripts/signalsproject/view/ExampleView2.cs" Line="14" Column="27" />
-      <File FileName="Assets/Community Assets/StrangeIoC/examples/Assets/scripts/signalsproject/view/ExampleMediator2.cs" Line="29" Column="31" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/controller/commands/StartCommand.cs" Line="94" Column="27" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/controller/commands/LoadButtonClickCommand.cs" Line="1" Column="1" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/StrangeIocTemplateContext.cs" Line="150" Column="1" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/view/CustomViewUIMediator.cs" Line="181" Column="35" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/mvcs/model/CustomModel.cs" Line="79" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -32,12 +32,12 @@ using System;
 using UnityEngine;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
-using com.rmc.projects.strangeioc_template.view;
+using com.rmc.projects.strangeioc_template.mvc.view;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.controller.commands
+namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
 {
 	
 	//--------------------------------------

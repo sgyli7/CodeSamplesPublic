@@ -32,12 +32,16 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using strange.extensions.mediation.impl;
-using com.rmc.projects.strangeioc_template.controller.signals;
+using com.rmc.projects.strangeioc_template.mvc.controller.signals;
+using com.rmc.projects.strangeioc_template.mvc.view.ui;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.view
+using com.rmc.projects.strangeioc_template.mvc.model;
+
+
+namespace com.rmc.projects.strangeioc_template.mvc.view
 {
 	
 	//--------------------------------------
@@ -68,11 +72,11 @@ namespace com.rmc.projects.strangeioc_template.view
 		public CustomViewUI view	{ get; set;}
 
 		/// <summary>
-		/// Gets or sets the custom service loaded signal.
+		/// Gets or sets the custom model updated signal.
 		/// </summary>
-		/// <value>The custom service loaded signal.</value>
+		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public CustomServiceLoadedSignal customServiceLoadedSignal {get;set;}
+		public CustomModelUpdatedSignal customModelUpdatedSignal {get;set;}
 
 
 		/// <summary>
@@ -103,49 +107,17 @@ namespace com.rmc.projects.strangeioc_template.view
 		//  Methods
 		//--------------------------------------
 		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
-		public CustomViewUIMediator( )
-		{
-			Debug.Log ("CustomViewUIMediator.constructor()");
-			
-		}
-		
-		~CustomViewUIMediator()
-		{
-			
-		}
 
-
-		///<summary>
-		///	 Constructor
-		///</summary>
-		[PostConstruct]
-		public void PostConstructor ( )
-		{
-			Debug.Log ("CustomViewUIMediator.PostConstructor()");
-
-		}
 
 		/// <summary>
 		/// Raises the register event.
 		/// </summary>
 		public override void OnRegister()
 		{
-
-			Debug.Log ("CustomViewUIMediator.OnRegister()");
-
 			//
 			view.loadMessageClickSignal.AddListener(onLoadMessageClick);
 			view.clearMessageClickSignal.AddListener(onClearMessageClick);
-			customServiceLoadedSignal.AddListener (onFavoriteVideogamesChanged);
+			customModelUpdatedSignal.AddListener (onCustomModelUpdated);
 
 		}
 
@@ -157,7 +129,7 @@ namespace com.rmc.projects.strangeioc_template.view
 			//
 			view.loadMessageClickSignal.RemoveListener(onLoadMessageClick);
 			view.clearMessageClickSignal.RemoveListener(onClearMessageClick);
-			customServiceLoadedSignal.RemoveListener(onFavoriteVideogamesChanged);
+			customModelUpdatedSignal.RemoveListener(onCustomModelUpdated);
 		}
 
 		
@@ -168,7 +140,6 @@ namespace com.rmc.projects.strangeioc_template.view
 		/// <param name="aFavoriteVideogamesList_string">A favorite videogames list_string.</param>
 		void doRenderLayout (List<string> aFavoriteVideogamesList_string)
 		{
-
 			view.favoriteVideogamesList = aFavoriteVideogamesList_string;
 		}
 		
@@ -207,11 +178,11 @@ namespace com.rmc.projects.strangeioc_template.view
 		/// Ons the favorite videogames changed.
 		/// </summary>
 		/// <param name="aIEvent">A I event.</param>
-		public void onFavoriteVideogamesChanged (List<string> aFavoriteVideogamesList)
+		public void onCustomModelUpdated (CustomModel aCustomModel)
 		{
 			
-			Debug.Log ("CustomView.onFavoriteVideogamesChanged() list: " + aFavoriteVideogamesList);
-			doRenderLayout(aFavoriteVideogamesList);
+			Debug.Log ("CustomView.onCustomModelUpdatedSignal() list: " + aCustomModel.favoriteVideogamesList);
+			doRenderLayout(aCustomModel.favoriteVideogamesList);
 			
 		}
 

@@ -32,15 +32,15 @@ using System;
 using UnityEngine;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
-using com.rmc.projects.strangeioc_template.view;
-using com.rmc.projects.strangeioc_template.model;
-using com.rmc.projects.strangeioc_template.controller.signals;
+using com.rmc.projects.strangeioc_template.mvc.view;
+using com.rmc.projects.strangeioc_template.mvc.model;
+using com.rmc.projects.strangeioc_template.mvc.controller.signals;
 using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.controller.commands
+namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
 {
 	
 	//--------------------------------------

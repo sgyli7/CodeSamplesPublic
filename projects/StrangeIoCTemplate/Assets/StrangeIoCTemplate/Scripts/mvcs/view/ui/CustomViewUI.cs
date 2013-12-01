@@ -39,7 +39,7 @@ using strange.extensions.mediation.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.view
+namespace com.rmc.projects.strangeioc_template.mvc.view.ui
 {
 	
 	//--------------------------------------
@@ -143,8 +143,11 @@ namespace com.rmc.projects.strangeioc_template.view
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
-		public void Start ()
+		override protected void Start ()
 		{
+			//
+			base.Start();
+
 
 			//USE A PRETTIER SKIN FREE FROM ASSET STORE
 			guiSkin = (GUISkin)Resources.Load ("Amiga500GuiSkin", typeof(GUISkin));

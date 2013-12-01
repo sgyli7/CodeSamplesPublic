@@ -35,7 +35,7 @@ using com.rmc.projects.umvcs;
 using com.rmc.projects.umvcs.controller.events;
 using com.rmc.projects.umvcs.service;
 using com.rmc.projects.event_dispatcher;
-using com.rmc.projects.strangeioc_template.controller.signals;
+using com.rmc.projects.strangeioc_template.mvc.controller.signals;
 
 //--------------------------------------
 //  Namespace

@@ -36,18 +36,16 @@ using strange.extensions.dispatcher.eventdispatcher.api;
 using strange.extensions.dispatcher.eventdispatcher.impl;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
-using com.rmc.projects.strangeioc_template.controller.signals;
-using com.rmc.projects.strangeioc_template.controller.commands;
-using com.rmc.projects.strangeioc_template.view;
-using com.rmc.projects.strangeioc_template.model;
+using com.rmc.projects.strangeioc_template.mvc.controller.signals;
+using com.rmc.projects.strangeioc_template.mvc.controller.commands;
+using com.rmc.projects.strangeioc_template.mvc.view;
+using com.rmc.projects.strangeioc_template.mvc.model;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using strange.examples.signals.fun;
-using strange.examples.signals.blah;
-
+using com.rmc.projects.strangeioc_template.mvc.view.ui;
 
 namespace com.rmc.projects.strangeioc_template
 {
@@ -135,7 +133,6 @@ namespace com.rmc.projects.strangeioc_template
 			base.Start();
 			StartSignal startSignal = (StartSignal)injectionBinder.GetInstance<StartSignal>();
 			startSignal.Dispatch();
-			Debug.Log ("dis");
 			return this;
 		}
 		
@@ -145,13 +142,11 @@ namespace com.rmc.projects.strangeioc_template
 		/// </summary>
 		protected override void mapBindings()
 		{
-			Debug.Log ("map");
 			//	MODEL
 			injectionBinder.Bind<CustomModel>().ToSingleton();
 
 			//	VIEW
 			mediationBinder.Bind<CustomViewUI>().To<CustomViewUIMediator>();
-			mediationBinder.Bind<LittleUI>().To<LittleUIMediator>();
 
 			//	CONTROLLER 1. (MAPPED COMMANDS) 
 			commandBinder.Bind<StartSignal>().To<StartCommand>().Once ();
@@ -164,19 +159,6 @@ namespace com.rmc.projects.strangeioc_template
 
 			//	SERVICE
 			injectionBinder.Bind<IService>().To<CustomService>().ToSingleton();
-
-			//
-			
-			
-			
-			//commandBinder.Bind<CallWebServiceSignal>().To<CallWebServiceCommand>();
-			
-			//StartSignal is now fired instead of the START event.
-			//Note how we've bound it "Once". This means that the mapping goes away as soon as the command fires.
-			
-			//In MyFirstProject, there's are SCORE_CHANGE and FULFILL_SERVICE_REQUEST Events.
-			//Here we change that to a Signal. The Signal isn't bound to any Command,
-			//so we map it as an injection so a Command can fire it, and a Mediator can receive it
 
 		}
 		
