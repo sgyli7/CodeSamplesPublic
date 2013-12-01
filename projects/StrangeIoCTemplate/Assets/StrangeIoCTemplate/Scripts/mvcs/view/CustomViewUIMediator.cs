@@ -34,13 +34,11 @@ using System.Collections.Generic;
 using strange.extensions.mediation.impl;
 using com.rmc.projects.strangeioc_template.mvc.controller.signals;
 using com.rmc.projects.strangeioc_template.mvc.view.ui;
+using com.rmc.projects.strangeioc_template.mvc.model;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.strangeioc_template.mvc.model;
-
-
 namespace com.rmc.projects.strangeioc_template.mvc.view
 {
 	
@@ -93,6 +91,14 @@ namespace com.rmc.projects.strangeioc_template.mvc.view
 		[Inject]
 		public LoadButtonClickSignal customViewLoadButtonClickSignal {get;set;}
 
+		/// <summary>
+		/// Gets or sets all views initialized signal.
+		/// </summary>
+		/// <value>All views initialized signal.</value>
+		[Inject]
+		public AllViewsInitializedSignal allViewsInitializedSignal {get;set;}
+
+
 
 
 		// PUBLIC
@@ -118,6 +124,8 @@ namespace com.rmc.projects.strangeioc_template.mvc.view
 			view.loadMessageClickSignal.AddListener(onLoadMessageClick);
 			view.clearMessageClickSignal.AddListener(onClearMessageClick);
 			customModelUpdatedSignal.AddListener (onCustomModelUpdated);
+
+			allViewsInitializedSignal.Dispatch ();
 
 		}
 
@@ -180,8 +188,7 @@ namespace com.rmc.projects.strangeioc_template.mvc.view
 		/// <param name="aIEvent">A I event.</param>
 		public void onCustomModelUpdated (CustomModel aCustomModel)
 		{
-			
-			Debug.Log ("CustomView.onCustomModelUpdatedSignal() list: " + aCustomModel.favoriteVideogamesList);
+			Debug.Log ("CustomView.onCustomModelUpdated() list: " + aCustomModel.favoriteVideogamesList);
 			doRenderLayout(aCustomModel.favoriteVideogamesList);
 			
 		}

@@ -95,12 +95,6 @@ namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
 			go.AddComponent<CustomViewUI>();
 			go.transform.parent = contextView.transform;
 
-			//DO SERVICE
-
-			//TODO, CAN I JUST EXECUTE A COMMAND WITHOUT A SIGNAL/EVENT?
-			//new LoadButtonClickCommand().Execute();
-			iService.doLoadFavoriteVideogames();
-
 		}
 		
 		// PRIVATE

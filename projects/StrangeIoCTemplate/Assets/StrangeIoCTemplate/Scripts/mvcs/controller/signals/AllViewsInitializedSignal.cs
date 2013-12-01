@@ -28,17 +28,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using com.rmc.projects.umvcs;
-using com.rmc.projects.umvcs.model;
-using com.rmc.projects.strangeioc_template.mvc.controller.signals;
+using System;
+using strange.extensions.signal.impl;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.mvc.model
+namespace com.rmc.projects.strangeioc_template.mvc.controller.signals
 {
 	
 	//--------------------------------------
@@ -54,43 +50,13 @@ namespace com.rmc.projects.strangeioc_template.mvc.model
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomModel : IModel
+	public class AllViewsInitializedSignal : Signal
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		/// <summary>
-		/// The _favorite videogames list_string.
-		/// </summary>
-		private List<string> _favoriteVideogamesList_string;
-		public List<string> favoriteVideogamesList 
-		{
-			get 
-			{
-				return _favoriteVideogamesList_string;
-			}
-			set 
-			{
-				//TODO, PERHAPS WE NEED A BETTER CHECK THAN "!=" TO JUDGE IF IT IS "NOT THE SAME DATA"
-				if (_favoriteVideogamesList_string != value) {
-					_favoriteVideogamesList_string = value;
-					Debug.Log ("CustomModel Updated");
-					customModelUpdatedSignal.Dispatch (this);
-				}
-			}
-		}
-
-
-		/// <summary>
-		/// Gets or sets the custom model updated signal.
-		/// </summary>
-		/// <value>The custom model updated signal.</value>
-		[Inject]
-		public CustomModelUpdatedSignal customModelUpdatedSignal {set;get;}
-		
-		
 		
 		// PUBLIC
 		
@@ -103,8 +69,8 @@ namespace com.rmc.projects.strangeioc_template.mvc.model
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
+
+
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
@@ -113,40 +79,19 @@ namespace com.rmc.projects.strangeioc_template.mvc.model
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomModel( )
+		public AllViewsInitializedSignal( )
 		{
-			//Debug.Log ("CustomModel.constructor()");
+			//Debug.Log ("AllViewsInitializedSignal.constructor()");
 			
 		}
 		
-		~CustomModel()
+		~AllViewsInitializedSignal()
 		{
 			
 		}
 		
-		/// <summary>
-		/// Dos the clear all data.
-		/// </summary>
-		/// 
-		public void doClearAllData ()
-		{
-			favoriteVideogamesList = null;
-		}		
 		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			MCVS LIFECYCLE
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		/// <summary>
-		/// Actor is added to MCVS
-		/// </summary>
-		public void onRegister ()
-		{
-			doClearAllData();
-			
-		}
-		
+		//	PUBLIC
 		
 		// PRIVATE
 		
@@ -161,3 +106,6 @@ namespace com.rmc.projects.strangeioc_template.mvc.model
 		//--------------------------------------
 	}
 }
+
+
+

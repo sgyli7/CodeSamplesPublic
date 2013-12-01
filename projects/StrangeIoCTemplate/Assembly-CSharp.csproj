@@ -161,10 +161,12 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\StrangeIoCTemplateRoot.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\StrangeIocTemplateContext.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\commands\ClearButtonClickCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\commands\CustomServiceLoadedCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\commands\LoadButtonClickCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\commands\StartCommand.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\signals\ClearButtonClickSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\signals\CustomModelUpdatedSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\mvcs\controller\signals\CustomServiceLoadedSignal.cs" />

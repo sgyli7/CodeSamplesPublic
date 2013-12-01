@@ -150,6 +150,8 @@ namespace com.rmc.projects.strangeioc_template
 
 			//	CONTROLLER 1. (MAPPED COMMANDS) 
 			commandBinder.Bind<StartSignal>().To<StartCommand>().Once ();
+			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>().Once ();
+			//
 			commandBinder.Bind<CustomServiceLoadedSignal>().To<CustomServiceLoadedCommand>();
 			commandBinder.Bind<ClearButtonClickSignal>().To<ClearButtonClickCommand>();
 			commandBinder.Bind<LoadButtonClickSignal>().To<LoadButtonClickCommand>();

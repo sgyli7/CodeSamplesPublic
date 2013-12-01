@@ -28,17 +28,21 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using System;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using com.rmc.projects.umvcs;
-using com.rmc.projects.umvcs.model;
-using com.rmc.projects.strangeioc_template.mvc.controller.signals;
+using strange.extensions.command.impl;
+using strange.extensions.context.api;
+using com.rmc.projects.strangeioc_template.mvc.view;
+using com.rmc.projects.strangeioc_template.mvc.view.ui;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.mvc.model
+using strange.framework.api;
+using strange.extensions.injector.api;
+
+
+namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
 {
 	
 	//--------------------------------------
@@ -54,44 +58,16 @@ namespace com.rmc.projects.strangeioc_template.mvc.model
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomModel : IModel
+	public class AllViewsInitializedCommand : Command
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		/// <summary>
-		/// The _favorite videogames list_string.
-		/// </summary>
-		private List<string> _favoriteVideogamesList_string;
-		public List<string> favoriteVideogamesList 
-		{
-			get 
-			{
-				return _favoriteVideogamesList_string;
-			}
-			set 
-			{
-				//TODO, PERHAPS WE NEED A BETTER CHECK THAN "!=" TO JUDGE IF IT IS "NOT THE SAME DATA"
-				if (_favoriteVideogamesList_string != value) {
-					_favoriteVideogamesList_string = value;
-					Debug.Log ("CustomModel Updated");
-					customModelUpdatedSignal.Dispatch (this);
-				}
-			}
-		}
-
-
-		/// <summary>
-		/// Gets or sets the custom model updated signal.
-		/// </summary>
-		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public CustomModelUpdatedSignal customModelUpdatedSignal {set;get;}
-		
-		
-		
+		public IService iService{get;set;}
+
 		// PUBLIC
 		
 		// PUBLIC STATIC
@@ -103,50 +79,19 @@ namespace com.rmc.projects.strangeioc_template.mvc.model
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
 		///<summary>
-		///	 Constructor
+		///	 Execute
 		///</summary>
-		public CustomModel( )
+		public override void Execute()
 		{
-			//Debug.Log ("CustomModel.constructor()");
-			
+			Debug.Log ("AllViewsInitializedCommand.Execute()");
+
+			//TODO, CAN I JUST EXECUTE A COMMAND WITHOUT A SIGNAL/EVENT?
+			//new LoadButtonClickCommand().Execute();
+			//NOPE, SO I'LL USE THE SERVICE DIRECTLY WHICH IS 'OK'
+			iService.doLoadFavoriteVideogames();
+
 		}
-		
-		~CustomModel()
-		{
-			
-		}
-		
-		/// <summary>
-		/// Dos the clear all data.
-		/// </summary>
-		/// 
-		public void doClearAllData ()
-		{
-			favoriteVideogamesList = null;
-		}		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			MCVS LIFECYCLE
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		/// <summary>
-		/// Actor is added to MCVS
-		/// </summary>
-		public void onRegister ()
-		{
-			doClearAllData();
-			
-		}
-		
 		
 		// PRIVATE
 		
@@ -161,3 +106,4 @@ namespace com.rmc.projects.strangeioc_template.mvc.model
 		//--------------------------------------
 	}
 }
+
