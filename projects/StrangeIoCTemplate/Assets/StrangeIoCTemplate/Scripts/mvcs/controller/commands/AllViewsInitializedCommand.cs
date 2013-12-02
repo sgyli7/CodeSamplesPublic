@@ -34,12 +34,15 @@ using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using com.rmc.projects.strangeioc_template.mvc.view;
 using com.rmc.projects.strangeioc_template.mvc.view.ui;
+using strange.framework.api;
+using strange.extensions.injector.api;
+using com.rmc.projects.strangeioc_template.mvc.controller.signals;
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using strange.framework.api;
-using strange.extensions.injector.api;
+using strange.extensions.command.api;
 
 
 namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
@@ -66,7 +69,7 @@ namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
 		//--------------------------------------
 		// GETTER / SETTER
 		[Inject]
-		public IService iService{get;set;}
+		public LoadButtonClickSignal loadButtonClickSignal{get;set;}
 
 		// PUBLIC
 		
@@ -86,10 +89,20 @@ namespace com.rmc.projects.strangeioc_template.mvc.controller.commands
 		{
 			Debug.Log ("AllViewsInitializedCommand.Execute()");
 
-			//TODO, CAN I JUST EXECUTE A COMMAND WITHOUT A SIGNAL/EVENT?
-			//new LoadButtonClickCommand().Execute();
-			//NOPE, SO I'LL USE THE SERVICE DIRECTLY WHICH IS 'OK'
-			iService.doLoadFavoriteVideogames();
+			//loadButtonClickSignal.Dispatch();
+
+			
+			injectionBinder.Bind<ICommand>().To (typeof (LoadButtonClickCommand));
+			ICommand command = injectionBinder.GetInstance<ICommand>() as ICommand;
+			injectionBinder.Unbind<ICommand>();
+			command.data = null;
+			command.Execute(); //LINE 98
+
+			// COMPILER ERROR ON LINE 98
+			// BinderException: Binder cannot fetch Bindings when the binder is in a conflicted state.
+			//Conflicts: strange.extensions.command.api.ICommand
+			//strange.framework.impl.Binder.GetBinding (System.Object key, System.Object name) 
+			//(at Assets/Community Assets/StrangeIoC/scripts/strange/framework/impl/Binder.cs:101)
 
 		}
 		

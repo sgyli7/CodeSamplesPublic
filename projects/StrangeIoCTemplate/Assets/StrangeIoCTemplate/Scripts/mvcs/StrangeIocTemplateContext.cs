@@ -156,11 +156,17 @@ namespace com.rmc.projects.strangeioc_template
 			commandBinder.Bind<ClearButtonClickSignal>().To<ClearButtonClickCommand>();
 			commandBinder.Bind<LoadButtonClickSignal>().To<LoadButtonClickCommand>();
 
+
+
 			//	CONTROLLER 2. (INJECTED SIGNALS)
 			injectionBinder.Bind<CustomModelUpdatedSignal>().ToSingleton();
 
 			//	SERVICE
 			injectionBinder.Bind<IService>().To<CustomService>().ToSingleton();
+
+
+			
+
 
 		}
 		

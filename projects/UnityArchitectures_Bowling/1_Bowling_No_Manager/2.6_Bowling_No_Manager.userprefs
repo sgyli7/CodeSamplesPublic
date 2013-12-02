@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Bowling_Game_No_Manager/Scripts/BowlingBallPrefabMouseInputComponent.cs">
+    <Files>
+      <File FileName="../../../../../Documents/_Projects_Source_Code/Unity3DSource/UnityTut_Quarternions/Assets/Gravity.cs" Line="10" Column="36" />
+      <File FileName="Assets/Bowling_Game_No_Manager/Scripts/BowlingBallPrefabStateComponent.cs" Line="29" Column="27" />
+      <File FileName="Assets/Bowling_Game_No_Manager/Scripts/BowlingPinPrefabAudioComponent.cs" Line="36" Column="23" />
+      <File FileName="Assets/Bowling_Game_No_Manager/Scripts/BowlingBallPrefabAudioComponent.cs" Line="31" Column="26" />
+      <File FileName="Assets/Bowling_Game_No_Manager/Scripts/BowlingBallPrefabKeyInputComponent.cs" Line="31" Column="26" />
+      <File FileName="Assets/Bowling_Game_No_Manager/Scripts/BowlingBallPrefabMouseInputComponent.cs" Line="42" Column="2" />
+      <File FileName="Assets/Bowling_Game_No_Manager/Scripts/BowlingBallPrefabScoreComponent.cs" Line="31" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
