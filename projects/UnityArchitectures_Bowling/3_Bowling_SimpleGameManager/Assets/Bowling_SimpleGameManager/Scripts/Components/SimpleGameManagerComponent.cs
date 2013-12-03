@@ -76,7 +76,18 @@ namespace com.rmc.projects.bowling_sgmc
 		// PUBLIC
 		
 		// PUBLIC STATIC
-		
+		/// <summary>
+		/// Gets or sets the simple game manager game object.
+		/// </summary>
+		/// <value>The simple game manager game object.</value>
+		public static GameObject SimpleGameManagerGameObject 
+		{
+			get 
+			{
+				return Instance.gameObject;
+			}
+		}
+
 		// PRIVATE
 		///<summary>
 		///	 Put a list of all the scene names that you'd like to navigate to. Don't list the current scene
@@ -87,13 +98,14 @@ namespace com.rmc.projects.bowling_sgmc
 			"TestLevel2"
 	    };
 		
-		
+
+
 		// PRIVATE STATIC
 		///<summary>
 		///	 NAME: GameObject contianing the SimpleGameManagerComponent
 		///</summary>
 		private static string _NAME_SIMPLE_GAME_MANAGER = "_SimpleGameManager";
-		
+
 		///<summary>
 		///	 NAME: GameObject containing any static children (manually placed in heirarchy)
 		///</summary>

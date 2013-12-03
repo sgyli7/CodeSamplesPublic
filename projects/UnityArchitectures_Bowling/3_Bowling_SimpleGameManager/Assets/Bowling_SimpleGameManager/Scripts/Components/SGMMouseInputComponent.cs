@@ -77,6 +77,9 @@ namespace com.rmc.projects.bowling_sgmc
 		void Start () 
 		{
 			_bowlingBallPrefabStateComponent = GetComponent<SGMStateComponent>();
+			Debug.Log ("c: " + _bowlingBallPrefabStateComponent);
+			Debug.Log ("i: " + _bowlingBallPrefabStateComponent.inputMode);
+			Debug.Log ("s: " + _bowlingBallPrefabStateComponent.bowlingBallState);
 		}
 		
 		

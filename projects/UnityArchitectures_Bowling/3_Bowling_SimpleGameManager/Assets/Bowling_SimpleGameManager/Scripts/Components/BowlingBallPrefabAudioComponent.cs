@@ -86,13 +86,14 @@ namespace com.rmc.projects.bowling_sgmc
 		///</summary>
 		void Start () 
 		{
-			
-			GameObject emptyGO				 = GameObject.Find ("_SimpleGameManagerComponent");
-			if (emptyGO) {
-				_bowlingBallPrefabStateComponent = emptyGO.GetComponent<SGMStateComponent>();
-				
+
+			//GRAB REFERENCE, JUST TO TRIGGER INSTANTIATE (IF IT DOESN'T EXIST YET)
+			GameObject simpleGameManagerGameObject	= SimpleGameManagerComponent.SimpleGameManagerGameObject;
+
+			//I ASSUME THIS TO BE TRUE, ALWAYS
+			if (simpleGameManagerGameObject) {
+				_bowlingBallPrefabStateComponent = simpleGameManagerGameObject.GetComponent<SGMStateComponent>();
 				_bowlingBallRolling_audiosource = GetComponent<AudioSource>();
-					
 			}
 			
 			
@@ -161,6 +162,7 @@ namespace com.rmc.projects.bowling_sgmc
 				//PLAY A MAXIMUM OF 1 TIMES
 				if (!_hasCollidedWithWoodFloor_boolean) {
 					_hasCollidedWithWoodFloor_boolean = true;
+
 					_bowlingBallRolling_audiosource.Play ();
 				}
 				
