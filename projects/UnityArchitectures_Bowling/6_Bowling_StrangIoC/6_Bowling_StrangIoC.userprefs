@@ -1,0 +1,72 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingContext.cs">
+    <Files>
+      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingContext.cs" Line="191" Column="7" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Bowling_StrangeIoC" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="mvcs" expanded="True">
+                  <Node name="controller" expanded="True">
+                    <Node name="commands" expanded="True" />
+                    <Node name="signals" expanded="True" />
+                  </Node>
+                  <Node name="model" expanded="True">
+                    <Node name="vo" expanded="True" />
+                  </Node>
+                  <Node name="view" expanded="True">
+                    <Node name="ui" expanded="True" />
+                  </Node>
+                  <Node name="BowlingContext.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+            <Node name="Community Assets" expanded="True">
+              <Node name="RMCLibrary" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Debug" expanded="True" />
+                  <Node name="Exceptions" expanded="True" />
+                  <Node name="Projects" expanded="True" />
+                  <Node name="templates" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="StrangeIoC" expanded="True">
+                <Node name="scripts" expanded="True">
+                  <Node name="strange" expanded="True">
+                    <Node name="extensions" expanded="True">
+                      <Node name="command" expanded="True">
+                        <Node name="impl" expanded="True" />
+                      </Node>
+                      <Node name="injector" expanded="True">
+                        <Node name="impl" expanded="True" />
+                      </Node>
+                    </Node>
+                    <Node name="framework" expanded="True">
+                      <Node name="impl" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>this.bowlingBallPrefab</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
