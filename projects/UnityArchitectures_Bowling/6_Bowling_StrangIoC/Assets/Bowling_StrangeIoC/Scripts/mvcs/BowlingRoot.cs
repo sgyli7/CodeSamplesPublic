@@ -94,12 +94,13 @@ namespace com.rmc.projects.bowling_strangeioc
 		void Awake()
 		{
 
-			Debug.Log ("A. Before Context Creation: " + context);
+			Debug.Log ("----------------------------");
+			//Debug.Log ("A. Before Context Creation: " + context);
 			//
-			context = new BowlingContext(this, true);
+			context = new BowlingContext(this, true); //'true' means call mappings automatically, I think
 			context.Start ();
 			//
-			Debug.Log ("B. Before Context Creation: " + context);
+			//Debug.Log ("B. After Context Creation: " + context);
 
 
 		}

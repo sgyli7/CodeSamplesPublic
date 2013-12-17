@@ -95,6 +95,36 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The state of the __bowling ball.
+		/// </summary>
+		private BowlingBallState __bowlingBallState;
+		private BowlingBallState _bowlingBallState
+		{ 
+			get
+			{
+				return __bowlingBallState;
+			}
+			set
+			{
+				__bowlingBallState = value;
+				//
+				switch (__bowlingBallState) {
+				case BowlingBallState.PRE_GAME_AIM_MODE:
+					rigidbody.isKinematic = true;
+					break;
+				case BowlingBallState.MOVING_GAME_MODE:
+					rigidbody.isKinematic = false;
+					break;
+				default:
+					break;
+				}
+				
+			}
+		}
+
+
+
 		
 		// PRIVATE STATIC
 		
@@ -121,7 +151,7 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 			//
 			//		DOING THE RESET IN THE MODELS 'POSTCONSTRUCT' WAS TOO EARLY FOR THE VIEW.
 			//
-			Debug.Log ("3. BowlingMed CALL allViewsInitializedSignal.Dispatch()");
+			Debug.Log ("3. BowlingMed CALLING     allViewsInitializedSignal.Dispatch()");
 			allViewsInitializedSignal.Dispatch ();
 			Debug.Log ("5. BowlingMed JUST CALLED allViewsInitializedSignal.Dispatch()");
 
@@ -145,9 +175,21 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 		void Update () 
 		{
 			
-			//Debug.Log ("gameStateModel: " + );
+
+			/*
+			 * 3. SPIN THE BALL (TODO: WE COULD MOVE THIS TO BALL MEDIATOR)
+			 * 
+			*/
+			if (_bowlingBallState == BowlingBallState.MOVING_GAME_MODE) {
+				bowlingBallDoMoveSignal.Dispatch (new BowlingBallMoveVO (MoveType.SPIN_LEFT));	
+			}
 			
 			/*
+			 * 
+			 *	OPTIONAL
+			 *
+			 *
+			 *
 			if (gameStateModel.bowlingBallState == BowlingBallState.PRE_GAME_AIM_MODE) {
 				
 				//	HANDLE THROW
@@ -240,16 +282,8 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 		{
 
 			//Debug.Log ("BALLMED. onBowlingState() : " + aBowlingBallState);
-			switch (aBowlingBallState) {
-				case BowlingBallState.PRE_GAME_AIM_MODE:
-					rigidbody.isKinematic = true;
-					break;
-				case BowlingBallState.MOVING_GAME_MODE:
-					rigidbody.isKinematic = false;
-					break;
-				default:
-					break;
-			}
+			_bowlingBallState = aBowlingBallState;
+
 			
 		}
 		

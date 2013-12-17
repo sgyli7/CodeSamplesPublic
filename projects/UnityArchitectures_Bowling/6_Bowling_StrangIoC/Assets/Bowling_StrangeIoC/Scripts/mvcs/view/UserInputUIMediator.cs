@@ -144,6 +144,10 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 		public void Update()
 		{
 
+			/*
+			 * 1. ALLOW USER TO TOGGLE BETWEEN MOUSE AND KEYBOARD
+			 * 
+			*/
 
 			//	TOGGLE BETWEEN KEYBOARD ***OR*** MOUSE MODE
 			if (Input.GetKeyDown (KeyCode.LeftArrow) 	||
@@ -163,16 +167,19 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 				inputModeChangeSignal.Dispatch (InputMode.MOUSE_ONLY);
 			}
 			
-			//WHILE MOVING
-			if (_bowlingBallState == BowlingBallState.MOVING_GAME_MODE) {
-				bowlingBallDoMoveSignal.Dispatch (new BowlingBallMoveVO (MoveType.SPIN_LEFT));	
-			}
 
+			/*
+			 * 2. ACCEPT USER INPUT
+			 * 
+			*/
 			if (_inputMode == InputMode.KEYBOARD_ONLY) {
 				_doUpdateForKeys();
 			} else {
 				_doUpdateForMouse();
 			}
+
+
+
 
 		}
 
@@ -230,7 +237,7 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 		
 		// PRIVATE
 
-
+		
 		
 		/// <summary>
 		/// Dos the update for keys.
@@ -238,7 +245,7 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 		private void _doUpdateForKeys () 
 		{
 			
-			if (_bowlingBallState == BowlingBallState.PRE_GAME_AIM_MODE || true) {
+			if (_bowlingBallState == BowlingBallState.PRE_GAME_AIM_MODE) {
 				
 				//	HANDLE MOVE
 				if (Input.GetKeyDown (KeyCode.LeftArrow) ) {
@@ -272,7 +279,7 @@ namespace com.rmc.projects.bowling_strangeioc.mvc.view
 				
 			} //END IF KEYBOARD MODE
 		}
-
+		
 
 		
 		///<summary>

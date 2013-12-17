@@ -67,7 +67,6 @@
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\IGameScoreModel.cs" />
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\IGameStateModel.cs" />
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\IModel.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\KeepAsATestModel.cs" />
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\vo\BowlingBallMoveVO.cs" />
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\BowlingBallUIMediator.cs" />
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\BowlingPinUIMediator.cs" />
