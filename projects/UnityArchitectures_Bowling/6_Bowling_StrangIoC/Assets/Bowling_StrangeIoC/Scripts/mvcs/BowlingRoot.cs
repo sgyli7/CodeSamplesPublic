@@ -93,8 +93,15 @@ namespace com.rmc.projects.bowling_strangeioc
 		//	PUBLIC
 		void Awake()
 		{
+
+			Debug.Log ("A. Before Context Creation: " + context);
+			//
 			context = new BowlingContext(this, true);
 			context.Start ();
+			//
+			Debug.Log ("B. Before Context Creation: " + context);
+
+
 		}
 
 		// PRIVATE
