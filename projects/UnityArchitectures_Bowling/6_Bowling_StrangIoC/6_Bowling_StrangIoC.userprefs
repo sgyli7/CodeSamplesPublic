@@ -1,40 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Bowling_StrangeIoC/Scripts/mvcs/view/UserInputUIMediator.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/view/ui/CustomViewUI.cs">
     <Files>
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingRoot.cs" Line="100" Column="97" />
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingContext.cs" Line="130" Column="82" />
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/view/UserInputUIMediator.cs" Line="319" Column="6" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/controller/CustomController.cs" Line="174" Column="77" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/CustomUMVCSContext.cs" Line="100" Column="44" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/controller/events/CustomModelEvent.cs" Line="36" Column="41" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/controller/events/CustomServiceEvent.cs" Line="36" Column="59" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/controller/events/CustomViewUIEvent.cs" Line="35" Column="59" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/model/CustomModel.cs" Line="79" Column="75" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/service/CustomService.cs" Line="118" Column="75" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/view/ui/CustomViewUI.cs" Line="224" Column="77" />
+      <File FileName="../../uMVCSTemplate/Assets/uMVCSTemplate/Scripts/umvcstemplate/view/CustomView.cs" Line="112" Column="71" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Bowling_StrangeIoC" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="mvcs" expanded="True">
-                  <Node name="controller" expanded="True">
-                    <Node name="signals" expanded="True" />
-                  </Node>
-                  <Node name="model" expanded="True" />
-                  <Node name="view" expanded="True">
-                    <Node name="UserInputUIMediator.cs" selected="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>this.bowlingBallPrefab</Value>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

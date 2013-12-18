@@ -1,0 +1,6 @@
+
+
+QUESTIONS
+
+1. why can't "public void onApplicationStart (UMVCSEvent aUMVCSEvent)" instead be 
+"public void onApplicationStart (IEvent aUMVCSEvent)"
