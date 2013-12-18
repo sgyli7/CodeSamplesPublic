@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{EA38F44B-0010-2602-D26E-0AC2D8A63C26}") = "StrangeIoCTemplate", "Assembly-CSharp.csproj", "{4A96CA83-5252-822D-688B-2D2A15AE809F}"
+Project("{22B1C77E-A34F-108F-A1C7-7469D5EE40C9}") = "uMVCSTemplate", "Assembly-CSharp-vs.csproj", "{C86B4020-B0C6-3ED4-A63B-A48FC3DC2A13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4A96CA83-5252-822D-688B-2D2A15AE809F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A96CA83-5252-822D-688B-2D2A15AE809F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A96CA83-5252-822D-688B-2D2A15AE809F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A96CA83-5252-822D-688B-2D2A15AE809F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C86B4020-B0C6-3ED4-A63B-A48FC3DC2A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C86B4020-B0C6-3ED4-A63B-A48FC3DC2A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C86B4020-B0C6-3ED4-A63B-A48FC3DC2A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C86B4020-B0C6-3ED4-A63B-A48FC3DC2A13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																					GlobalSection(MonoDevelopProperties) = preSolution
+		GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
