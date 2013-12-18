@@ -29,7 +29,7 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.view.ui;
+using com.rmc.projects.strangeioc_template.mvcs.view.ui;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 
@@ -39,7 +39,7 @@ using strange.extensions.context.api;
 using com.rmc.projects.strangeioc_template.mvcs.service;
 
 
-namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.commands
+namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 {
 	
 	//--------------------------------------

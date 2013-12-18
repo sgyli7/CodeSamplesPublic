@@ -34,7 +34,7 @@ using strange.extensions.signal.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.signals
+namespace com.rmc.projects.strangeioc_template.mvcs.controller.signals
 {
 	
 	//--------------------------------------

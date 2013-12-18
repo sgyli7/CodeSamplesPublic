@@ -30,12 +30,12 @@
 //  Imports
 //--------------------------------------
 using System.Collections.Generic;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.controller.signals;
+using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template2.mvcs.service
+namespace com.rmc.projects.strangeioc_template2.mvcs.model
 {
 	
 	//--------------------------------------
@@ -68,6 +68,10 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.service
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.strangeioc_template2.mvcs.model.ICustomModel"/> interface.
+		/// </summary>
+		void doClearAllData();
 		
 	}
 }

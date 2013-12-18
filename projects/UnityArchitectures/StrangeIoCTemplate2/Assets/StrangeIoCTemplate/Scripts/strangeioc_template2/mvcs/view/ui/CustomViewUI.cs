@@ -36,7 +36,7 @@ using strange.extensions.signal.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template2.mvcs.mvc.view.ui
+namespace com.rmc.projects.strangeioc_template2.mvcs.view.ui
 {
 	
 	//--------------------------------------
@@ -176,7 +176,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.mvc.view.ui
 
 			//LAYOUT
 			Rect windowRect = new Rect (_windowX_float, _windowY_float, _windowWidth_float, _windowHeight_float);
-			windowRect = GUI.Window (0, windowRect, _onWindowContentCreationStart, "uMVCS Template Demo 2");
+			windowRect = GUI.Window (0, windowRect, _onWindowContentCreationStart, "uMVCS Template Demo");
 
 		}
 

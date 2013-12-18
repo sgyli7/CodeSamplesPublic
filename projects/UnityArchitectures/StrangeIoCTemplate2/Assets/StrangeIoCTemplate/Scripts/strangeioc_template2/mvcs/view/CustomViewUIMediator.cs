@@ -29,15 +29,15 @@
 //  Imports
 //--------------------------------------
 using System.Collections.Generic;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.controller.signals;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.model;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.view.ui;
+using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
+using com.rmc.projects.strangeioc_template2.mvcs.model;
+using com.rmc.projects.strangeioc_template2.mvcs.view.ui;
 using strange.extensions.mediation.impl;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template2.mvcs.mvc.view
+namespace com.rmc.projects.strangeioc_template2.mvcs.view
 {
 	
 	//--------------------------------------

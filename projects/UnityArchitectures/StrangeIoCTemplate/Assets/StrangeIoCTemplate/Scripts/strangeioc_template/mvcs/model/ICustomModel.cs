@@ -30,12 +30,12 @@
 //  Imports
 //--------------------------------------
 using System.Collections.Generic;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.controller.signals;
+using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.mvcs.service
+namespace com.rmc.projects.strangeioc_template.mvcs.model
 {
 	
 	//--------------------------------------
@@ -68,6 +68,10 @@ namespace com.rmc.projects.strangeioc_template.mvcs.service
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+		/// <summary>
+		/// Dos the clear all data.
+		/// </summary>
+		void doClearAllData();
 		
 	}
 }

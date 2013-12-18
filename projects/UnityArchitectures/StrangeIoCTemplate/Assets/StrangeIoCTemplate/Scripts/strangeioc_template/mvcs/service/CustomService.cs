@@ -30,7 +30,7 @@
 //--------------------------------------
 using UnityEngine;
 using System.Collections.Generic;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.controller.signals;
+using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace

@@ -29,14 +29,14 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.command.impl;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.controller.signals;
+using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
 using strange.extensions.command.api;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.commands
+namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 {
 	
 	//--------------------------------------

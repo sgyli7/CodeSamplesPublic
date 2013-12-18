@@ -29,17 +29,16 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.controller.commands;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.controller.signals;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.model;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.view;
+using com.rmc.projects.strangeioc_template2.mvcs.controller.commands;
+using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
+using com.rmc.projects.strangeioc_template2.mvcs.model;
+using com.rmc.projects.strangeioc_template2.mvcs.service;
+using com.rmc.projects.strangeioc_template2.mvcs.view;
+using com.rmc.projects.strangeioc_template2.mvcs.view.ui;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
-using com.rmc.projects.strangeioc_template2.mvcs.mvc.view.ui;
-using com.rmc.projects.strangeioc_template2.mvcs.service;
-
 
 
 //--------------------------------------
@@ -141,7 +140,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs
 		protected override void mapBindings()
 		{
 			//	MODEL
-			injectionBinder.Bind<CustomModel>().ToSingleton();
+			injectionBinder.Bind<ICustomModel>().To<CustomModel>();
 
 			//	VIEW
 			mediationBinder.Bind<CustomViewUI>().To<CustomViewUIMediator>();

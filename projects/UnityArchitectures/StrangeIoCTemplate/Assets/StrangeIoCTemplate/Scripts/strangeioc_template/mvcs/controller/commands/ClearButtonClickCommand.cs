@@ -31,12 +31,12 @@
 using UnityEngine;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.model;
+using com.rmc.projects.strangeioc_template.mvcs.model;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.commands
+namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 {
 	
 	//--------------------------------------
@@ -63,7 +63,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.commands
 		public GameObject contextView{get;set;}
 
 		[Inject]
-		public CustomModel customModel {get;set;}
+		public ICustomModel customModel {get;set;}
 
 		// PUBLIC
 		

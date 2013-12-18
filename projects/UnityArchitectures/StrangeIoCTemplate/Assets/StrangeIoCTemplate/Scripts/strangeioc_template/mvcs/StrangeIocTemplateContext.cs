@@ -29,15 +29,15 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.controller.commands;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.controller.signals;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.model;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.view;
+using com.rmc.projects.strangeioc_template.mvcs.controller.commands;
+using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
+using com.rmc.projects.strangeioc_template.mvcs.model;
+using com.rmc.projects.strangeioc_template.mvcs.view;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.view.ui;
+using com.rmc.projects.strangeioc_template.mvcs.view.ui;
 using com.rmc.projects.strangeioc_template.mvcs.service;
 
 
@@ -141,7 +141,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs
 		protected override void mapBindings()
 		{
 			//	MODEL
-			injectionBinder.Bind<CustomModel>().ToSingleton();
+			injectionBinder.Bind<ICustomModel>().To<CustomModel>();
 
 			//	VIEW
 			mediationBinder.Bind<CustomViewUI>().To<CustomViewUIMediator>();

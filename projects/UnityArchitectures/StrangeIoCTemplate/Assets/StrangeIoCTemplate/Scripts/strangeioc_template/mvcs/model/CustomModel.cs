@@ -29,15 +29,13 @@
 //  Imports
 //--------------------------------------
 using System.Collections.Generic;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.controller.signals;
-using com.rmc.projects.strangeioc_template.mvcs.service;
+using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
+using com.rmc.projects.strangeioc_template.mvcs.model;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-
-
-namespace com.rmc.projects.strangeioc_template.mvcs.mvc.model
+namespace com.rmc.projects.strangeioc_template.mvcs.model
 {
 	
 	//--------------------------------------

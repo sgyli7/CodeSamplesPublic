@@ -29,13 +29,13 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.command.impl;
-using com.rmc.projects.strangeioc_template.mvcs.mvc.model;
+using com.rmc.projects.strangeioc_template.mvcs.model;
 using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.commands
+namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 {
 	
 	//--------------------------------------
@@ -63,7 +63,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.commands
 
 
 		[Inject]
-		public CustomModel customModel{get;set;}
+		public ICustomModel customModel{get;set;}
 
 
 		// PUBLIC

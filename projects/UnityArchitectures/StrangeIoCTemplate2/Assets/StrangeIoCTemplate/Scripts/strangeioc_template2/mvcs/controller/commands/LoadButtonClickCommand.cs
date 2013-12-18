@@ -35,7 +35,7 @@ using strange.extensions.command.impl;
 //  Namespace
 //--------------------------------------
 
-namespace com.rmc.projects.strangeioc_template2.mvcs.mvc.controller.commands
+namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 {
 	
 	//--------------------------------------

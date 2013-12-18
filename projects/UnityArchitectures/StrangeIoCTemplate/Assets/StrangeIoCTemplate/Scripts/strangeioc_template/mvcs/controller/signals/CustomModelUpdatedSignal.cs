@@ -28,7 +28,7 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.strangeioc_template.mvcs.mvc.model;
+using com.rmc.projects.strangeioc_template.mvcs.model;
 using strange.extensions.signal.impl;
 
 //--------------------------------------
@@ -36,7 +36,7 @@ using strange.extensions.signal.impl;
 //--------------------------------------
 
 
-namespace com.rmc.projects.strangeioc_template.mvcs.mvc.controller.signals
+namespace com.rmc.projects.strangeioc_template.mvcs.controller.signals
 {
 	
 	//--------------------------------------
