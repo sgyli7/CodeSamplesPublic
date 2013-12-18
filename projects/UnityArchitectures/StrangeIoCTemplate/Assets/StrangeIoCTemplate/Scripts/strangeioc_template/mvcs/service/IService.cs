@@ -1,4 +1,4 @@
-﻿
+
 /**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
@@ -58,7 +58,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.service
 		/// <summary>
 		/// Load!
 		/// </summary>
-		void doLoadFavoriteVideogames();
+		void doLoadGameList();
 		
 		
 	}

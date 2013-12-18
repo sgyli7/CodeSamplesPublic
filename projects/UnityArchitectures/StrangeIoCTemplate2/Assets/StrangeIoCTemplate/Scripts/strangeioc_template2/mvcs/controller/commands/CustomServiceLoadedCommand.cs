@@ -29,8 +29,10 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.command.impl;
-using com.rmc.projects.strangeioc_template2.mvcs.model;
 using System.Collections.Generic;
+using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
+using com.rmc.projects.propertychangesignal.vo;
+
 
 //--------------------------------------
 //  Namespace
@@ -61,9 +63,13 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 		[Inject]
 		public List<string> favoriteVideogamesList {get;set;}
 
-
+		/// <summary>
+		/// Gets or sets the custom model updated signal.
+		/// </summary>
+		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public ICustomModel customModel{get;set;}
+		public GameListPropertyChangeSignal gameListPropertyChangeSignal {set;get;}
+		
 
 
 		// PUBLIC
@@ -82,9 +88,10 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("CustomServiceLoadedCommand.Execute()");
+			Debug.Log ("5. CustomServiceLoadedCommand.Execute()");
 
-			customModel.favoriteVideogamesList = favoriteVideogamesList;
+			//
+			gameListPropertyChangeSignal.Dispatch (new PropertyChangeSignalVO (PropertyChangeType.UPDATE, favoriteVideogamesList));
 
 		}
 		

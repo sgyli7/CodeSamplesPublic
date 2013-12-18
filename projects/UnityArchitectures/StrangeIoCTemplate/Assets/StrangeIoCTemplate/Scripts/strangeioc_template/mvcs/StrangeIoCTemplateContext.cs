@@ -28,15 +28,24 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.strangeioc_template2.mvcs.model;
-using strange.extensions.signal.impl;
+using UnityEngine;
+using com.rmc.projects.strangeioc_template.mvcs.controller.commands;
+using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
+using com.rmc.projects.strangeioc_template.mvcs.model;
+using com.rmc.projects.strangeioc_template.mvcs.view;
+using strange.extensions.command.api;
+using strange.extensions.command.impl;
+using strange.extensions.context.api;
+using strange.extensions.context.impl;
+using com.rmc.projects.strangeioc_template.mvcs.view.ui;
+using com.rmc.projects.strangeioc_template.mvcs.service;
+
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-
-
-namespace com.rmc.projects.strangeioc_template2.mvcs.controller.signals
+namespace com.rmc.projects.strangeioc_template.mvcs
 {
 	
 	//--------------------------------------
@@ -52,7 +61,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomModelUpdatedSignal : Signal <CustomModel>
+	public class StrangeIoCTemplateContext : MVCSContext
 	{
 		
 		//--------------------------------------
@@ -71,6 +80,8 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.signals
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+		
+		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
@@ -79,23 +90,83 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomModelUpdatedSignal( )
+		public StrangeIoCTemplateContext () : base()
 		{
-			//Debug.Log ("CustomModelUpdatedSignal.constructor()");
-			
 		}
 		
-		~CustomModelUpdatedSignal()
+		public StrangeIoCTemplateContext (MonoBehaviour view, bool autoStartup) : base(view, autoStartup)
+		{
+			//Debug.Log ("StrangeIoCTemplateContext.constructor()");
+		}
+		
+		~StrangeIoCTemplateContext()
 		{
 			
 		}
-		
 		
 		//	PUBLIC
 		
 		// PRIVATE
 		
 		// PRIVATE STATIC
+		
+		// PROTECTED
+		
+		/// <summary>
+		/// Unbind the default EventCommandBinder and rebind the SignalCommandBinder
+		/// </summary>
+		protected override void addCoreComponents()
+		{
+			base.addCoreComponents();
+			injectionBinder.Unbind<ICommandBinder>();
+			injectionBinder.Bind<ICommandBinder>().To<SignalCommandBinder>().ToSingleton();
+		}
+		
+		
+		/// <summary>
+		/// Override Start so that we can fire the StartSignal 
+		/// </summary>
+		override public IContext Start()
+		{
+			base.Start();
+			StartSignal startSignal = (StartSignal)injectionBinder.GetInstance<StartSignal>();
+			startSignal.Dispatch();
+			return this;
+		}
+		
+		
+		/// <summary>
+		/// Maps the bindings.
+		/// </summary>
+		protected override void mapBindings()
+		{
+			//	MODEL
+			injectionBinder.Bind<ICustomModel>().To<CustomModel>().ToSingleton();
+
+			//	VIEW
+			mediationBinder.Bind<CustomViewUI>().To<CustomViewUIMediator>();
+
+			//	CONTROLLER 1. (MAPPED COMMANDS) 
+			commandBinder.Bind<StartSignal>().To<StartCommand>().Once ();
+			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>().Once ();
+			//
+			commandBinder.Bind<CustomServiceLoadedSignal>().To<CustomServiceLoadedCommand>();
+			commandBinder.Bind<ClearButtonClickSignal>().To<ClearButtonClickCommand>();
+			commandBinder.Bind<LoadButtonClickSignal>().To<LoadButtonClickCommand>();
+
+
+
+			//	CONTROLLER 2. (INJECTED SIGNALS)
+			injectionBinder.Bind<GameListUpdatedSignal>().ToSingleton();
+
+			//	SERVICE
+			injectionBinder.Bind<IService>().To<CustomService>().ToSingleton();
+
+
+			
+
+
+		}
 		
 		// PRIVATE COROUTINE
 		
@@ -106,6 +177,5 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.signals
 		//--------------------------------------
 	}
 }
-
 
 

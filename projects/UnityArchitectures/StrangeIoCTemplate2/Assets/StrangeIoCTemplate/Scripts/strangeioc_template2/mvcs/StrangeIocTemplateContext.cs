@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -33,7 +33,6 @@ using com.rmc.projects.strangeioc_template2.mvcs.controller.commands;
 using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
 using com.rmc.projects.strangeioc_template2.mvcs.model;
 using com.rmc.projects.strangeioc_template2.mvcs.service;
-using com.rmc.projects.strangeioc_template2.mvcs.view;
 using com.rmc.projects.strangeioc_template2.mvcs.view.ui;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
@@ -44,6 +43,10 @@ using strange.extensions.context.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.strangeioc_template2.mvcs.view;
+using strange.framework.api;
+
+
 namespace com.rmc.projects.strangeioc_template2.mvcs
 {
 	
@@ -140,7 +143,13 @@ namespace com.rmc.projects.strangeioc_template2.mvcs
 		protected override void mapBindings()
 		{
 			//	MODEL
-			injectionBinder.Bind<ICustomModel>().To<CustomModel>();
+			//
+			//	 BECAUSE OF THE LIBERAL (GOOD) USE OF SIGNALS, I DON'T NEED TO 
+			//	 INJECT THIS ANYWHERE. IT IS INJECTED IN THE STARTCOMMAND, BUT 
+			//	 JUST SO ITS POST-CONSTRUCT FIRES
+			//
+			injectionBinder.Bind<ICustomModel>().To<CustomModel>().ToSingleton();
+
 
 			//	VIEW
 			mediationBinder.Bind<CustomViewUI>().To<CustomViewUIMediator>();
@@ -154,9 +163,8 @@ namespace com.rmc.projects.strangeioc_template2.mvcs
 			commandBinder.Bind<LoadButtonClickSignal>().To<LoadButtonClickCommand>();
 
 
-
 			//	CONTROLLER 2. (INJECTED SIGNALS)
-			injectionBinder.Bind<CustomModelUpdatedSignal>().ToSingleton();
+			injectionBinder.Bind<GameListPropertyChangeSignal>().ToSingleton();
 
 			//	SERVICE
 			injectionBinder.Bind<IService>().To<CustomService>().ToSingleton();

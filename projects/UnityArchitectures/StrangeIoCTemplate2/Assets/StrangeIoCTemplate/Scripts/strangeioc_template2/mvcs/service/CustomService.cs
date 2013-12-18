@@ -96,26 +96,18 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.service
 		/// <summary>
 		/// Dos the load favorite videogames.
 		/// </summary>
-		public void doLoadFavoriteVideogames ()
+		public void doLoadGameList ()
 		{
 
-			Debug.Log ("CustomService.doLoadFavoriteVideogames()");
+			Debug.Log ("3. CustomService.doLoadGameList()");
 
-
-			//
-			List<string> favoriteVideogamesList_string = new List<string>();
-			
-			// A SERVICE SHOULD LOAD DATA FROM AN EXTERNAL SOURCE (see "Resources" folder)
-			TextAsset textAsset = (TextAsset) Resources.Load("FavoriteVideogamesList", typeof(TextAsset));
-			
-			//CONVERT ARRAY TO LIST FOR EASIER USAGE
-			string[] favoriteVideogamesArray_string = textAsset.text.Split ("\n"[0]);
-			foreach (string s in favoriteVideogamesArray_string) {
-				favoriteVideogamesList_string.Add (s);
-			}
-			
-			//WHEN IT IS LOADED, SEND AN EVENT
-			customServiceLoadedSignal.Dispatch (favoriteVideogamesList_string);
+			/*
+			 * 
+			 * FAKE A (MORE COMMON) ASYNCH CALL, JUST USE A SYNCH CALL TO LOAD THE TEXT
+			 * 
+			 * 
+			**/
+			_onLoadedGameList();
 			
 			
 		}
@@ -133,6 +125,29 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.service
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// _ons the loaded game list.
+		/// </summary>
+		private void _onLoadedGameList ()
+		{
+
+			Debug.Log ("4. CustomService._onLoadedGameList()");
+
+			//
+			List<string> favoriteVideogamesList_string = new List<string>();
+			
+			// A SERVICE SHOULD LOAD DATA FROM AN EXTERNAL SOURCE (see "Resources" folder)
+			TextAsset textAsset = (TextAsset) Resources.Load("FavoriteVideogamesList", typeof(TextAsset));
+			
+			//CONVERT ARRAY TO LIST FOR EASIER USAGE
+			string[] favoriteVideogamesArray_string = textAsset.text.Split ("\n"[0]);
+			foreach (string s in favoriteVideogamesArray_string) {
+				favoriteVideogamesList_string.Add (s);
+			}
+			
+			//WHEN IT IS LOADED, SEND AN EVENT
+			customServiceLoadedSignal.Dispatch (favoriteVideogamesList_string);
+		}
 		
 		
 	}

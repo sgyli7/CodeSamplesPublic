@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -29,14 +29,16 @@
 //  Imports
 //--------------------------------------
 using System.Collections.Generic;
-using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
-using com.rmc.projects.strangeioc_template2.mvcs.model;
-using com.rmc.projects.strangeioc_template2.mvcs.view.ui;
 using strange.extensions.mediation.impl;
+using com.rmc.projects.strangeioc_template2.mvcs.view.ui;
+using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.propertychangesignal.vo;
+
+
 namespace com.rmc.projects.strangeioc_template2.mvcs.view
 {
 	
@@ -72,7 +74,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 		/// </summary>
 		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public CustomModelUpdatedSignal customModelUpdatedSignal {get;set;}
+		public GameListPropertyChangeSignal gameListPropertyChangeSignal {get;set;}
 
 
 		/// <summary>
@@ -121,7 +123,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 			//
 			view.loadMessageClickSignal.AddListener(onLoadMessageClick);
 			view.clearMessageClickSignal.AddListener(onClearMessageClick);
-			customModelUpdatedSignal.AddListener (onCustomModelUpdated);
+			gameListPropertyChangeSignal.AddListener (onGameListPropertyChangeSignal);
 
 			allViewsInitializedSignal.Dispatch ();
 
@@ -135,7 +137,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 			//
 			view.loadMessageClickSignal.RemoveListener(onLoadMessageClick);
 			view.clearMessageClickSignal.RemoveListener(onClearMessageClick);
-			customModelUpdatedSignal.RemoveListener(onCustomModelUpdated);
+			gameListPropertyChangeSignal.RemoveListener(onGameListPropertyChangeSignal);
 		}
 
 		
@@ -184,10 +186,18 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 		/// Ons the favorite videogames changed.
 		/// </summary>
 		/// <param name="aIEvent">A I event.</param>
-		public void onCustomModelUpdated (CustomModel aCustomModel)
+		public void onGameListPropertyChangeSignal (PropertyChangeSignalVO aPropertyChangeSignalVO)
 		{
-			Debug.Log ("CustomView.onCustomModelUpdated() list: " + aCustomModel.favoriteVideogamesList);
-			doRenderLayout(aCustomModel.favoriteVideogamesList);
+			if (aPropertyChangeSignalVO.propertyChangeType == PropertyChangeType.UPDATED) {
+				//Debug.Log ("CustomViewMed, type: " + aPropertyChangeSignalVO.propertyChangeType );
+				//Debug.Log ("CustomViewMed, new: " + aPropertyChangeSignalVO.value );
+
+				if (aPropertyChangeSignalVO.value != null) {
+					Debug.Log ("7. CustomViewUIMediator, value: " + aPropertyChangeSignalVO.value );
+				}
+				doRenderLayout(aPropertyChangeSignalVO.value as List<string>);
+
+			}
 			
 		}
 

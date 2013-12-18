@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -59,22 +59,24 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		//--------------------------------------
 		// GETTER / SETTER
 		/// <summary>
-		/// The _favorite videogames list_string.
+		/// The _game list.
 		/// </summary>
-		private List<string> _favoriteVideogamesList_string;
-		public List<string> favoriteVideogamesList 
+		private List<string> _gameList;
+		public List<string> gameList 
 		{
 			get 
 			{
-				return _favoriteVideogamesList_string;
+				return _gameList;
 			}
 			set 
 			{
 				//TODO, PERHAPS WE NEED A BETTER CHECK THAN "!=" TO JUDGE IF IT IS "NOT THE SAME DATA"
-				if (_favoriteVideogamesList_string != value) {
-					_favoriteVideogamesList_string = value;
-					Debug.Log ("CustomModel Updated");
-					customModelUpdatedSignal.Dispatch (this);
+				if (_gameList != value) {
+
+					_gameList = value;
+					Debug.Log ("6. CustomModel.gameList = " + _gameList);
+					Debug.Log ("--gameListUpdatedSignal.Dispatch()");
+					gameListUpdatedSignal.Dispatch (_gameList);
 				}
 			}
 		}
@@ -85,7 +87,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		/// </summary>
 		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public CustomModelUpdatedSignal customModelUpdatedSignal {set;get;}
+		public GameListUpdatedSignal gameListUpdatedSignal {set;get;}
 		
 		
 		
@@ -112,7 +114,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		///</summary>
 		public CustomModel( )
 		{
-			//Debug.Log ("CustomModel.constructor()");
+			Debug.Log ("CustomModel.constructor()");
 			
 		}
 		
@@ -127,19 +129,20 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		/// 
 		public void doClearAllData ()
 		{
-			favoriteVideogamesList = null;
+			Debug.Log ("doClearAllData: ");
+			gameList = null;
 		}		
 		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///			MCVS LIFECYCLE
+		///			STRANGEIOC LIFECYCLE
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		/// <summary>
-		/// Actor is added to MCVS
-		/// </summary>
-		public void onRegister ()
+		[PostConstruct]
+		public void postConstruct( )
 		{
+			//Debug.Log ("CustomModel.PostConstruct()");
+			
 			doClearAllData();
 			
 		}

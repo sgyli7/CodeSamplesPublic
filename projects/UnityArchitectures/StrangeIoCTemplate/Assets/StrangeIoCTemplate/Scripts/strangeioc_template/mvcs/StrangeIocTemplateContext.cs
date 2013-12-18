@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -141,7 +141,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs
 		protected override void mapBindings()
 		{
 			//	MODEL
-			injectionBinder.Bind<ICustomModel>().To<CustomModel>();
+			injectionBinder.Bind<ICustomModel>().To<CustomModel>().ToSingleton();
 
 			//	VIEW
 			mediationBinder.Bind<CustomViewUI>().To<CustomViewUIMediator>();
@@ -157,7 +157,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs
 
 
 			//	CONTROLLER 2. (INJECTED SIGNALS)
-			injectionBinder.Bind<CustomModelUpdatedSignal>().ToSingleton();
+			injectionBinder.Bind<GameListUpdatedSignal>().ToSingleton();
 
 			//	SERVICE
 			injectionBinder.Bind<IService>().To<CustomService>().ToSingleton();

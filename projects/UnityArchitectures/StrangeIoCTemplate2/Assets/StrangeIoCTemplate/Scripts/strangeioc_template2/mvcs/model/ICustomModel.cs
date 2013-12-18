@@ -1,4 +1,4 @@
-﻿
+
 /**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
@@ -55,14 +55,14 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// Gets or sets the favorite videogames list.
 		/// </summary>
 		/// <value>The favorite videogames list.</value>
-		List<string> favoriteVideogamesList { get; set;}
+		List<string> gameList { get; set;}
 
 		
 		/// <summary>
 		/// Gets or sets the custom model updated signal.
 		/// </summary>
 		/// <value>The custom model updated signal.</value>
-		CustomModelUpdatedSignal customModelUpdatedSignal {set;get;}
+		GameListPropertyChangeSignal gameListPropertyChangeSignal {set;get;}
 		
 		
 		//--------------------------------------

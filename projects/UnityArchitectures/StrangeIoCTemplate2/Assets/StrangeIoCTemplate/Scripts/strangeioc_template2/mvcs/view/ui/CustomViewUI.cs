@@ -176,7 +176,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view.ui
 
 			//LAYOUT
 			Rect windowRect = new Rect (_windowX_float, _windowY_float, _windowWidth_float, _windowHeight_float);
-			windowRect = GUI.Window (0, windowRect, _onWindowContentCreationStart, "uMVCS Template Demo");
+			windowRect = GUI.Window (0, windowRect, _onWindowContentCreationStart, "StrangeIOC Template 2 Demo");
 
 		}
 
@@ -228,9 +228,8 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view.ui
 			
 			//LAYOUT
 			if (GUI.Button(new Rect(_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float/2, 50), "Clear Message")){
-				Debug.Log("User Clicked: Clear Message");
+				//Debug.Log("1. CustomView.OnGUI(), Clear Message Button Clicked");
 				clearMessageClickSignal.Dispatch ();
-				//UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomViewUIEvent (CustomViewUIEvent.CLEAR_BUTTON_CLICK)); 
 			}
 			
 			
@@ -241,9 +240,8 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view.ui
 			
 			//LAYOUT
 			if (GUI.Button(new Rect(_contentsGapVertical_float + _contentsWidth_float/2, _currentY_float, _contentsWidth_float/2, 50), "Load Message")){
-				Debug.Log("User Clicked: Load Message");
+				Debug.Log("1. CustomView.OnGUI(), Load Message Button Clicked");
 				loadMessageClickSignal.Dispatch();
-				//UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomViewUIEvent (CustomViewUIEvent.RELOAD_BUTTON_CLICK)); 
 			}
 			
 		}

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -59,7 +59,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 		//--------------------------------------
 		// GETTER / SETTER
 		[Inject]
-		public List<string> favoriteVideogamesList {get;set;}
+		public List<string> gameList {get;set;}
 
 
 		[Inject]
@@ -82,9 +82,9 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("CustomServiceLoadedCommand.Execute()");
+			Debug.Log ("5. CustomServiceLoadedCommand.Execute()");
 
-			customModel.favoriteVideogamesList = favoriteVideogamesList;
+			customModel.gameList = gameList;
 
 		}
 		

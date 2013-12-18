@@ -37,6 +37,7 @@ using strange.extensions.context.api;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.strangeioc_template2.mvcs.service;
+using com.rmc.projects.strangeioc_template2.mvcs.model;
 
 
 namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
@@ -62,11 +63,35 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		/// <summary>
+		/// Gets or sets the context view.
+		/// </summary>
+		/// <value>The context view.</value>
 		[Inject(ContextKeys.CONTEXT_VIEW)]
 		public GameObject contextView{get;set;}
 
+
+		/// <summary>
+		/// Gets or sets the i service.
+		/// </summary>
+		/// <value>The i service.</value>
 		[Inject]
 		public IService iService{get;set;}
+
+
+		/*
+		 * 
+		 * 	NOTE: This is not used here, but MUST stay. Its the only injection for model
+		 * 		  and we want postConstruct to fire.
+		 * 
+		 * 
+		 * 
+		 **/
+		[Inject]
+		public ICustomModel iCustomModel{get;set;}
+
+
+
 
 		// PUBLIC
 		
@@ -84,11 +109,11 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("StartCommand.Execute()");
+			//Debug.Log ("StartCommand.Execute()");
 
 			//ADD THE VIEW TO THE HIERARCHY
 			GameObject go = new GameObject();
-			go.name = "CustomViewUI";
+			go.name = "CustomViewGO";
 			go.AddComponent<CustomViewUI>();
 			go.transform.parent = contextView.transform;
 

@@ -151,6 +151,8 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\BinderException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\Binding.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\propertychangesignal\signal\PropertyChangeSignal.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\propertychangesignal\vo\PropertyChangeSignalVO.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\StrangeIoCTemplateRoot.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\StrangeIocTemplateContext.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
@@ -160,8 +162,8 @@
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\commands\StartCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\signals\ClearButtonClickSignal.cs" />
-     <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\signals\CustomModelUpdatedSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\signals\CustomServiceLoadedSignal.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\signals\GameListPropertyChangeSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\signals\LoadButtonClickSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\signals\StartSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\model\CustomModel.cs" />

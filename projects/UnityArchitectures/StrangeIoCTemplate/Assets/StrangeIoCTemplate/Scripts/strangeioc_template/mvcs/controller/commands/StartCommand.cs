@@ -84,11 +84,11 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("StartCommand.Execute()");
+			//Debug.Log ("StartCommand.Execute()");
 
 			//ADD THE VIEW TO THE HIERARCHY
 			GameObject go = new GameObject();
-			go.name = "CustomViewUI";
+			go.name = "CustomViewGO";
 			go.AddComponent<CustomViewUI>();
 			go.transform.parent = contextView.transform;
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -60,18 +60,18 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view.ui
 		//--------------------------------------
 		// GETTER / SETTER
 		/// <summary>
-		/// The _favorite videogames list_string.
+		/// The _game list.
 		/// </summary>
-		private List<string> _favoriteVideogamesList_string;
-		public List<string> favoriteVideogamesList
+		private List<string> _gameList;
+		public List<string> gameList
 		{
 			get 
 			{
-				return _favoriteVideogamesList_string;
+				return _gameList;
 			}
 			set 
 			{
-				_favoriteVideogamesList_string = value;
+				_gameList = value;
 			}
 		}
 		
@@ -176,7 +176,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view.ui
 
 			//LAYOUT
 			Rect windowRect = new Rect (_windowX_float, _windowY_float, _windowWidth_float, _windowHeight_float);
-			windowRect = GUI.Window (0, windowRect, _onWindowContentCreationStart, "uMVCS Template Demo");
+			windowRect = GUI.Window (0, windowRect, _onWindowContentCreationStart, "StrangeIoC Template Demo");
 
 		}
 
@@ -208,7 +208,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view.ui
 			
 			//LAYOUT
 			//GUI.BeginScrollView()
-			GUI.TextArea (new Rect (_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float, 120),  _getFormattedList (_favoriteVideogamesList_string));
+			GUI.TextArea (new Rect (_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float, 120),  _getFormattedList (_gameList));
 			//GUI.EndScrollView();
 			
 			
@@ -228,9 +228,8 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view.ui
 			
 			//LAYOUT
 			if (GUI.Button(new Rect(_contentsGapHorizontal_float, _currentY_float, _contentsWidth_float/2, 50), "Clear Message")){
-				Debug.Log("User Clicked: Clear Message");
+				//Debug.Log("1. CustomView.OnGUI(), Clear Message Button Clicked");
 				clearMessageClickSignal.Dispatch ();
-				//UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomViewUIEvent (CustomViewUIEvent.CLEAR_BUTTON_CLICK)); 
 			}
 			
 			
@@ -241,9 +240,8 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view.ui
 			
 			//LAYOUT
 			if (GUI.Button(new Rect(_contentsGapVertical_float + _contentsWidth_float/2, _currentY_float, _contentsWidth_float/2, 50), "Load Message")){
-				Debug.Log("User Clicked: Load Message");
+				Debug.Log("1. CustomView.OnGUI(), Load Message Button Clicked");
 				loadMessageClickSignal.Dispatch();
-				//UMVCS.Instance.controller.eventDispatcher.dispatchEvent (new CustomViewUIEvent (CustomViewUIEvent.RELOAD_BUTTON_CLICK)); 
 			}
 			
 		}
@@ -251,18 +249,18 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view.ui
 
 		
 		/// <summary>
-		/// _gets the formatted list.
+		/// 
 		/// </summary>
 		/// <returns>The formatted list.</returns>
-		/// <param name="_favoriteVideogamesList_string">_favorite videogames list_string.</param>
-		private string _getFormattedList (List<string> _favoriteVideogamesList_string)
+		/// <param name="aGameList">A game list.</param>
+		private string _getFormattedList (List<string> aGameList)
 		{
 			string formatted_string = "";
-			if (_favoriteVideogamesList_string != null) {
+			if (aGameList != null) {
 				//PRINT FULL INFO
 				formatted_string += "Favorite Videogames Loaded From External Service:\n";
 				//
-				foreach (string s in _favoriteVideogamesList_string) {
+				foreach (string s in aGameList) {
 					formatted_string += s + "\n";
 				}
 			} else {

@@ -28,15 +28,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.strangeioc_template.mvcs.model;
 using strange.extensions.signal.impl;
+using com.rmc.projects.propertychangesignal.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-
-
-namespace com.rmc.projects.strangeioc_template.mvcs.controller.signals
+namespace com.rmc.projects.propertychangesignal.signal
 {
 	
 	//--------------------------------------
@@ -52,7 +50,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CustomModelUpdatedSignal : Signal <CustomModel>
+	public class PropertyChangeSignal : Signal <PropertyChangeSignalVO>
 	{
 		
 		//--------------------------------------
@@ -79,13 +77,13 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CustomModelUpdatedSignal( )
+		public PropertyChangeSignal( )
 		{
-			//Debug.Log ("CustomModelUpdatedSignal.constructor()");
+			//Debug.Log ("PropertyChangeSignal.constructor()");
 			
 		}
 		
-		~CustomModelUpdatedSignal()
+		~PropertyChangeSignal()
 		{
 			
 		}

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -72,7 +72,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view
 		/// </summary>
 		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public CustomModelUpdatedSignal customModelUpdatedSignal {get;set;}
+		public GameListUpdatedSignal gameListUpdatedSignal {get;set;}
 
 
 		/// <summary>
@@ -121,7 +121,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view
 			//
 			view.loadMessageClickSignal.AddListener(onLoadMessageClick);
 			view.clearMessageClickSignal.AddListener(onClearMessageClick);
-			customModelUpdatedSignal.AddListener (onCustomModelUpdated);
+			gameListUpdatedSignal.AddListener (onGameListUpdated);
 
 			allViewsInitializedSignal.Dispatch ();
 
@@ -135,7 +135,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view
 			//
 			view.loadMessageClickSignal.RemoveListener(onLoadMessageClick);
 			view.clearMessageClickSignal.RemoveListener(onClearMessageClick);
-			customModelUpdatedSignal.RemoveListener(onCustomModelUpdated);
+			gameListUpdatedSignal.RemoveListener(onGameListUpdated);
 		}
 
 		
@@ -143,10 +143,10 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view
 		/// <summary>
 		/// Dos the render layout.
 		/// </summary>
-		/// <param name="aFavoriteVideogamesList_string">A favorite videogames list_string.</param>
-		void doRenderLayout (List<string> aFavoriteVideogamesList_string)
+		/// <param name="aGameList">A game list.</param>
+		void doRenderLayout (List<string> aGameList)
 		{
-			view.favoriteVideogamesList = aFavoriteVideogamesList_string;
+			view.gameList = aGameList;
 		}
 		
 		// PRIVATE
@@ -181,13 +181,13 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view
 
 
 		/// <summary>
-		/// Ons the favorite videogames changed.
+		/// Ons the game list updated.
 		/// </summary>
-		/// <param name="aIEvent">A I event.</param>
-		public void onCustomModelUpdated (CustomModel aCustomModel)
+		/// <param name="aGameList">A game list.</param>
+		public void onGameListUpdated (List<string> aGameList)
 		{
-			Debug.Log ("CustomView.onCustomModelUpdated() list: " + aCustomModel.favoriteVideogamesList);
-			doRenderLayout(aCustomModel.favoriteVideogamesList);
+			Debug.Log ("7. CustomViewUIMediator, value: " + aGameList);
+			doRenderLayout(aGameList);
 			
 		}
 

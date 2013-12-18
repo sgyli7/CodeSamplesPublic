@@ -78,23 +78,10 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("AllViewsInitializedCommand.Execute()");
+			//Debug.Log ("AllViewsInitializedCommand.Execute()");
 
-			//loadButtonClickSignal.Dispatch();
 
-			
-			injectionBinder.Bind<ICommand>().To (typeof (LoadButtonClickCommand));
-			ICommand command = injectionBinder.GetInstance<ICommand>() as ICommand;
-			injectionBinder.Unbind<ICommand>();
-			command.data = null;
-			command.Execute(); //LINE 98
-
-			// COMPILER ERROR ON LINE 98
-			// BinderException: Binder cannot fetch Bindings when the binder is in a conflicted state.
-			//Conflicts: strange.extensions.command.api.ICommand
-			//strange.framework.impl.Binder.GetBinding (System.Object key, System.Object name) 
-			//(at Assets/Community Assets/StrangeIoC/scripts/strange/framework/impl/Binder.cs:101)
-
+			loadButtonClickSignal.Dispatch();
 		}
 		
 		// PRIVATE

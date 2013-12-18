@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -94,28 +94,22 @@ namespace com.rmc.projects.strangeioc_template.mvcs.service
 		
 		
 		/// <summary>
-		/// Dos the load favorite videogames.
+		/// Dos the load videogames.
 		/// </summary>
-		public void doLoadFavoriteVideogames ()
+		public void doLoadGameList ()
 		{
 
-			Debug.Log ("CustomService.doLoadFavoriteVideogames()");
+			
+			Debug.Log ("3. CustomService.doLoadGameList()");
+			
+			/*
+			 * 
+			 * FAKE A (MORE COMMON) ASYNCH CALL, JUST USE A SYNCH CALL TO LOAD THE TEXT
+			 * 
+			 * 
+			**/
+			_onLoadedGameList();
 
-
-			//
-			List<string> favoriteVideogamesList_string = new List<string>();
-			
-			// A SERVICE SHOULD LOAD DATA FROM AN EXTERNAL SOURCE (see "Resources" folder)
-			TextAsset textAsset = (TextAsset) Resources.Load("FavoriteVideogamesList", typeof(TextAsset));
-			
-			//CONVERT ARRAY TO LIST FOR EASIER USAGE
-			string[] favoriteVideogamesArray_string = textAsset.text.Split ("\n"[0]);
-			foreach (string s in favoriteVideogamesArray_string) {
-				favoriteVideogamesList_string.Add (s);
-			}
-			
-			//WHEN IT IS LOADED, SEND AN EVENT
-			customServiceLoadedSignal.Dispatch (favoriteVideogamesList_string);
 			
 			
 		}
@@ -133,7 +127,30 @@ namespace com.rmc.projects.strangeioc_template.mvcs.service
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		
+		/// <summary>
+		/// _ons the loaded game list.
+		/// </summary>
+		private void _onLoadedGameList ()
+		{
+			
+			Debug.Log ("4. CustomService._onLoadedGameList()");
+
+			//
+			List<string> gamesList_string = new List<string>();
+			
+			// A SERVICE SHOULD LOAD DATA FROM AN EXTERNAL SOURCE (see "Resources" folder)
+			TextAsset textAsset = (TextAsset) Resources.Load("FavoriteVideogamesList", typeof(TextAsset));
+			
+			//CONVERT ARRAY TO LIST FOR EASIER USAGE
+			string[] favoriteVideogamesArray_string = textAsset.text.Split ("\n"[0]);
+			foreach (string s in favoriteVideogamesArray_string) {
+				gamesList_string.Add (s);
+			}
+			
+			//WHEN IT IS LOADED, SEND AN EVENT
+			customServiceLoadedSignal.Dispatch (gamesList_string);
+		}
+
 		
 	}
 }

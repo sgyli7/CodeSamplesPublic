@@ -31,11 +31,14 @@
 using UnityEngine;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
-using com.rmc.projects.strangeioc_template2.mvcs.model;
+using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
+using com.rmc.projects.propertychangesignal.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+
+
 namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 {
 	
@@ -59,11 +62,13 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		[Inject(ContextKeys.CONTEXT_VIEW)]
-		public GameObject contextView{get;set;}
 
+		/// <summary>
+		/// Gets or sets the custom model updated signal.
+		/// </summary>
+		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public ICustomModel customModel {get;set;}
+		public GameListPropertyChangeSignal gameListPropertyChangeSignal {get;set;}
 
 		// PUBLIC
 		
@@ -81,9 +86,11 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("ClearButtonClickCommand.Execute()");
+			//Debug.Log ("2. ClearButtonClickCommand.Execute()");
 
-			customModel.doClearAllData();
+			gameListPropertyChangeSignal.Dispatch (new PropertyChangeSignalVO (PropertyChangeType.CLEAR));
+
+
 		}
 		
 		// PRIVATE

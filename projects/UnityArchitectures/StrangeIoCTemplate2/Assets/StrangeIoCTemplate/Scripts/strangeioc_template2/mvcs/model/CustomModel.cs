@@ -31,10 +31,13 @@
 using System.Collections.Generic;
 using com.rmc.projects.strangeioc_template2.mvcs.controller.signals;
 using com.rmc.projects.strangeioc_template2.mvcs.model;
+using com.rmc.projects.propertychangesignal.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+
+
 namespace com.rmc.projects.strangeioc_template2.mvcs.model
 {
 	
@@ -61,20 +64,20 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// <summary>
 		/// The _favorite videogames list_string.
 		/// </summary>
-		private List<string> _favoriteVideogamesList_string;
-		public List<string> favoriteVideogamesList 
+		private List<string> _gameList;
+		public List<string> gameList 
 		{
 			get 
 			{
-				return _favoriteVideogamesList_string;
+				return _gameList;
 			}
 			set 
 			{
 				//TODO, PERHAPS WE NEED A BETTER CHECK THAN "!=" TO JUDGE IF IT IS "NOT THE SAME DATA"
-				if (_favoriteVideogamesList_string != value) {
-					_favoriteVideogamesList_string = value;
-					Debug.Log ("CustomModel Updated");
-					customModelUpdatedSignal.Dispatch (this);
+				if (_gameList != value) {
+					_gameList = value;
+					Debug.Log ("6. CustomModel.gameList = " + _gameList );
+					gameListPropertyChangeSignal.Dispatch (new PropertyChangeSignalVO(PropertyChangeType.UPDATED, _gameList) );
 				}
 			}
 		}
@@ -85,7 +88,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// </summary>
 		/// <value>The custom model updated signal.</value>
 		[Inject]
-		public CustomModelUpdatedSignal customModelUpdatedSignal {set;get;}
+		public GameListPropertyChangeSignal gameListPropertyChangeSignal {set;get;}
 		
 		
 		
@@ -113,7 +116,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		public CustomModel( )
 		{
 			//Debug.Log ("CustomModel.constructor()");
-			
+
 		}
 		
 		~CustomModel()
@@ -127,20 +130,22 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// 
 		public void doClearAllData ()
 		{
-			favoriteVideogamesList = null;
+			gameList = null;
 		}		
 		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///			MCVS LIFECYCLE
+		///			STRANGEIOC LIFECYCLE
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		/// <summary>
-		/// Actor is added to MCVS
-		/// </summary>
-		public void onRegister ()
+		[PostConstruct]
+		public void postConstruct( )
 		{
+			//Debug.Log ("CustomModel.PostConstruct()");
+			
 			doClearAllData();
+
+			gameListPropertyChangeSignal.AddListener (onGameListPropertyChangeSignal);
 			
 		}
 		
@@ -156,5 +161,26 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// Ons the game list property change signal.
+		/// </summary>
+		/// <param name="aPropertyChangeSignalVO">A property change signal V.</param>
+		public void onGameListPropertyChangeSignal (PropertyChangeSignalVO aPropertyChangeSignalVO)
+		{
+
+			//Debug.Log ("CustomModel, propertyChangeType: " + aPropertyChangeSignalVO.propertyChangeType );
+			//Debug.Log ("CustomModel, value: " + aPropertyChangeSignalVO.value );
+
+
+			if (aPropertyChangeSignalVO.propertyChangeType == PropertyChangeType.CLEAR) {
+				//
+				doClearAllData(); //sets to null
+
+			} else if (aPropertyChangeSignalVO.propertyChangeType == PropertyChangeType.UPDATE) {
+				//
+				gameList = aPropertyChangeSignalVO.value as List<string>;
+			}
+			
+		}
 	}
 }
