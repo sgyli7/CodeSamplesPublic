@@ -1,13 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Bowling_StrangeIoC/Scripts/mvcs/model/IModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Bowling_StrangeIoC/Scripts/mvcs/view/UserInputUIMediator.cs">
     <Files>
       <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingRoot.cs" Line="100" Column="97" />
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingContext.cs" Line="172" Column="42" />
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/view/BowlingBallUIMediator.cs" Line="120" Column="7" />
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/controller/signals/BowlingBallDoMoveSignal.cs" Line="54" Column="2" />
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/view/UserInputUIMediator.cs" Line="86" Column="39" />
-      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/model/IModel.cs" Line="1" Column="1" />
+      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingContext.cs" Line="130" Column="82" />
+      <File FileName="Assets/Bowling_StrangeIoC/Scripts/mvcs/view/UserInputUIMediator.cs" Line="319" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,17 +16,10 @@
                   <Node name="controller" expanded="True">
                     <Node name="signals" expanded="True" />
                   </Node>
-                  <Node name="model" expanded="True">
-                    <Node name="IModel.cs" selected="True" />
+                  <Node name="model" expanded="True" />
+                  <Node name="view" expanded="True">
+                    <Node name="UserInputUIMediator.cs" selected="True" />
                   </Node>
-                  <Node name="view" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-            <Node name="Community Assets" expanded="True">
-              <Node name="RMCLibrary" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="Debug" expanded="True" />
                 </Node>
               </Node>
             </Node>
