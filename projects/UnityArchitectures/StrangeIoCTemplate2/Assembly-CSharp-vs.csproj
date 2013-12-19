@@ -153,8 +153,8 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\propertychangesignal\signal\PropertyChangeSignal.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\propertychangesignal\vo\PropertyChangeSignalVO.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\StrangeIoCTemplateContext.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\StrangeIoCTemplateRoot.cs" />
-     <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\StrangeIocTemplateContext.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\commands\ClearButtonClickCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template2\mvcs\controller\commands\CustomServiceLoadedCommand.cs" />
