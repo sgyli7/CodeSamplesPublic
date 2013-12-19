@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="Assets/UnityTestToolsDemo/Scenes/UnityTestToolsDemo.unity" total="10" errors="0" failures="2" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-12-19" time="21:32:58">
+  <environment nunit-version="0.0.0.0" clr-version="2.0.50727.1433" os-version="Unix 12.5.0.0" platform="Unix" cwd="/Users/srivello/Documents/workspaces/git/CodeSamplesPublic/UnityTestTools/projects/UnityTestToolsDemo" machine-name="noname" user="srivello" user-domain="noname" />
+  <culture-info current-culture="" current-uiculture="" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.failingTest" executed="True" result="Failure" success="False" time="0.012">
+    <failure>
+      <message><![CDATA[]]></message>
+      <stack-trace><![CDATA[at com.rmc.projects.uttdemo.BeerTest.failingTest () [0x00000] in /Users/srivello/Documents/workspaces/git/CodeSamplesPublic/UnityTestTools/projects/UnityTestToolsDemo/Assets/UnityTestToolsDemo/Scripts/Editor/com/rmc/projects/uttdemo/BeerTest.cs:129
+]]></stack-trace>
+    </failure>
+  </test-case>
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.passingTest" executed="True" result="Success" success="True" time="0.001">
+    <reason>
+      <message><![CDATA[]]></message>
+    </reason>
+  </test-case>
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testBeerContainerType" executed="True" result="Success" success="True" time="0.006" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(0)" executed="True" result="Success" success="True" time="0.005" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(100)" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(10000)" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testNameSetFromConstructor" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testNameSetFromSetter" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.uttdemo.SodaTest.testSodaConstructorWithNull" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testGetMyName" executed="True" result="Failure" success="False" time="0.007">
+    <failure>
+      <message><![CDATA[  Expected string length 7 but was 4. Strings differ at index 0.
+  Expected: "Pilsner"
+  But was:  "name"
+  -----------^
+]]></message>
+      <stack-trace><![CDATA[at com.rmc.projects.uttdemo.BeerTest.testGetMyName () [0x00010] in /Users/srivello/Documents/workspaces/git/CodeSamplesPublic/UnityTestTools/projects/UnityTestToolsDemo/Assets/UnityTestToolsDemo/Scripts/Editor/com/rmc/projects/uttdemo/BeerTest.cs:68
+]]></stack-trace>
+    </failure>
+  </test-case>
+</test-results>
