@@ -57,18 +57,6 @@ namespace com.rmc.projects.uttdemo
 		//  Tests
 		//--------------------------------------
 
-
-		[Test]
-		public void testGetMyName  ()
-		{
-			//SETUP
-			Beer beer = new Beer ("Pilsner", 		Beer.CONTAINER_TYPE_BOTTLE);
-			
-			//ASSERTION
-			Assert.AreEqual(beer.name, beer.getMyName());
-		}
-
-
 		[Test]
 		public void testBeerContainerType  ()
 		{
@@ -117,17 +105,6 @@ namespace com.rmc.projects.uttdemo
 
 
 
-		[Test]
-		public void passingTest ()
-		{
-			Assert.Pass ();
-		}
-
-		[Test]
-		public void failingTest ()
-		{
-			Assert.Fail ();
-		}
 		//--------------------------------------
 		//  Events
 		//--------------------------------------

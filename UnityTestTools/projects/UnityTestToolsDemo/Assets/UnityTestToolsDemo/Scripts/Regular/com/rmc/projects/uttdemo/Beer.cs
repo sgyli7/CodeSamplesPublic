@@ -109,77 +109,22 @@ namespace com.rmc.projects.uttdemo
 		///</summary>
 		public Beer (string aName_string, string containerType_string)  : base (aName_string)
 		{
+
+			//Debug.Log ("Beer Constructor ------------");
+
+
 			//	PROPERTIES
 			name = aName_string;
 			containerType = containerType_string;
 			
-			// TEST PROPERTIES
-			//Debug.Log ("Beer Constructor ------------");
-			//Debug.Log ("_isHealthy_boolean: " + _isHealthy_boolean);
-				
-			
-			// TEST PRIVATE
-			_samplePrivateMethod ("private");
-			
-			// TEST PRIVATE STATIC
-			Beer.SamplePrivateStaticMethod ("private static");
-			
-			
-		}
-		
-		
-		// PUBLIC
-		
-		///<summary>
-		///	This is a public method.
-		///</summary>
-		override public string samplePublicMethod (string aMessage_str) 
-		{
-			//Debug.Log ("beer.samplePublicMethod() : " + base.samplePublicMethod(aMessage_str));
-			return aMessage_str;
-			
 		}
 
-		public string getMyName ()
-		{
-			return "name";
-		}
 		
 		// PUBLIC STATIC
 		
-		///<summary>
-		///	This is a public static method.
-		///</summary>
-		public static string SamplePublicStaticMethod (string aMessage_str) 
-		{
-			//Debug.Log ("SamplePublicStaticMethod: " + aMessage_str);
-			return aMessage_str;
-			
-		}
-		
 		// PRIVATE
 		
-		///<summary>
-		///	This is a private method.
-		///</summary>
-		private string _samplePrivateMethod (string aMessage_str) 
-		{
-			//Debug.Log ("_samplePrivateMethod: " + aMessage_str);
-			return aMessage_str;
-			
-		}
-		
 		// PRIVATE STATIC
-		
-		///<summary>
-		///	This is a private static method.
-		///</summary>
-		static string SamplePrivateStaticMethod (string aMessage_str) 
-		{
-			//Debug.Log ("SamplePrivateStaticMethod: " + aMessage_str);
-			return aMessage_str;
-			
-		}
 		
 		//--------------------------------------
 		//  Events

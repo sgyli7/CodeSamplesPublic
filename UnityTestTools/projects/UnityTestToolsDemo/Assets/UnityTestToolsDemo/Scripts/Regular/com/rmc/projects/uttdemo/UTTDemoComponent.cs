@@ -103,7 +103,6 @@ namespace com.rmc.projects.uttdemo
 
 			//NOTHING SPECIAL HAPPENING HERE...
 			Beer beer = new Beer ("Pilsner", Beer.CONTAINER_TYPE_BOTTLE);
-			beer.getMyName();
 			Debug.Log ("beer: " + beer.calories);
 
 			//NOR HERE...
