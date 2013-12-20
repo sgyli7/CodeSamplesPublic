@@ -23,11 +23,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-<<<<<<< HEAD:UnityTestTools/projects/UnityTestToolsDemo/UnityTestToolsDemo.sln
-											GlobalSection(MonoDevelopProperties) = preSolution
-=======
-										GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> 05e2e9b97abc8e00a2a52bc25d5f1accb8b2cca5:projects/UnityTesting/projects/UnityTestToolsDemo/UnityTestToolsDemo.sln
+							GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
