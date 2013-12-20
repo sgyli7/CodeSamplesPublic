@@ -114,7 +114,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		///</summary>
 		public CustomModel( )
 		{
-			Debug.Log ("CustomModel.constructor()");
+			//Debug.Log ("CustomModel.constructor()");
 			
 		}
 		
@@ -129,7 +129,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		/// 
 		public void doClearAllData ()
 		{
-			Debug.Log ("doClearAllData: ");
+			//Debug.Log ("doClearAllData: ");
 			gameList = null;
 		}		
 		
