@@ -1,15 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/StrangeIoCTemplateContext.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/StrangeIoC/scripts/strange/framework/impl/Binder.cs">
     <Files>
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/model/CustomModel.cs" Line="115" Column="16" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/service/CustomService.cs" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/TODO.txt" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/controller/commands/ClearButtonClickCommand.cs" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/controller/commands/CustomServiceLoadedCommand.cs" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/controller/commands/LoadButtonClickCommand.cs" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/controller/commands/AllViewsInitializedCommand.cs" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/strangeioc_template2/mvcs/StrangeIoCTemplateContext.cs" Line="153" Column="4" />
+      <File FileName="Assets/Community Assets/StrangeIoC/scripts/strange/framework/impl/Binder.cs" Line="13" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

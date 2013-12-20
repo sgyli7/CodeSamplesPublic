@@ -1,13 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="" total="7" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-12-20" time="16:29:54">
+<test-results name="" total="7" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-12-20" time="23:03:59">
   <environment nunit-version="0.0.0.0" clr-version="2.0.50727.1433" os-version="Unix 12.5.0.0" platform="Unix" cwd="/Users/srivello/Documents/workspaces/git/CodeSamplesPublic/projects/UnityTesting/projects/UnityTestToolsDemo" machine-name="noname" user="srivello" user-domain="noname" />
   <culture-info current-culture="" current-uiculture="" />
-  <test-case name="com.rmc.projects.uttdemo.BeerTest.testBeerContainerType" executed="True" result="Success" success="True" time="0.013" />
-  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(0)" executed="True" result="Success" success="True" time="0.004" />
-  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(100)" executed="True" result="Success" success="True" time="0.000" />
-  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(10000)" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testBeerContainerType" executed="True" result="Success" success="True" time="0.000">
+    <reason>
+      <message><![CDATA[]]></message>
+    </reason>
+  </test-case>
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(0)" executed="True" result="Success" success="True" time="0.000">
+    <reason>
+      <message><![CDATA[]]></message>
+    </reason>
+  </test-case>
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(100)" executed="True" result="Success" success="True" time="0.004" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testDefaultCalories(10000)" executed="True" result="Success" success="True" time="0.000">
+    <reason>
+      <message><![CDATA[]]></message>
+    </reason>
+  </test-case>
   <test-case name="com.rmc.projects.uttdemo.BeerTest.testNameSetFromConstructor" executed="True" result="Success" success="True" time="0.000" />
-  <test-case name="com.rmc.projects.uttdemo.BeerTest.testNameSetFromSetter" executed="True" result="Success" success="True" time="0.000" />
-  <test-case name="com.rmc.projects.uttdemo.SodaTest.testSodaConstructorWithNull" executed="True" result="Success" success="True" time="0.001" />
+  <test-case name="com.rmc.projects.uttdemo.BeerTest.testNameSetFromSetter" executed="True" result="Success" success="True" time="0.000">
+    <reason>
+      <message><![CDATA[]]></message>
+    </reason>
+  </test-case>
+  <test-case name="com.rmc.projects.uttdemo.SodaTest.testSodaConstructorWithNull" executed="True" result="Success" success="True" time="0.000" />
 </test-results>

@@ -74,6 +74,7 @@
      <Compile Include="Assets\UnityTestTools\UnitTesting\Editor\TestRunner\UnitTestInfo.cs" />
      <Compile Include="Assets\UnityTestTools\UnitTesting\Editor\TestRunner\UnitTestResult.cs" />
      <Compile Include="Assets\UnityTestTools\UnitTesting\Editor\TestRunner\UnitTestView.cs" />
+     <Compile Include="Assets\UnityTestTools\UnitTesting\Editor\UnityUnitTest.cs" />
      <Compile Include="Assets\UnityTestToolsDemo\Scripts\Editor\com\rmc\projects\uttdemo\BeerTest.cs" />
      <Compile Include="Assets\UnityTestToolsDemo\Scripts\Editor\com\rmc\projects\uttdemo\SodaTest.cs" />
      <Compile Include="Assets\UnityTestToolsDemo\Scripts\Editor\com\rmc\projects\uttdemo\TemplateTest.cs" />

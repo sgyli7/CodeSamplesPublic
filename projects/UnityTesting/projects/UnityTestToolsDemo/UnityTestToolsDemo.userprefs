@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityTestToolsDemo/Scripts/Regular/com/rmc/projects/uttdemo/Beer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../UnityArchitectures/StrangeIoCTemplate2/Assets/Community Assets/StrangeIoC/scripts/strange/framework/impl/Binder.cs">
     <Files>
-      <File FileName="Assets/UnityTestToolsDemo/Scripts/Regular/com/rmc/projects/uttdemo/Beer.cs" Line="13" Column="48" />
+      <File FileName="../../../UnityArchitectures/StrangeIoCTemplate2/Assets/Community Assets/StrangeIoC/scripts/strange/framework/impl/Binder.cs" Line="13" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
