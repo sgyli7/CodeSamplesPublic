@@ -103,6 +103,20 @@ namespace com.rmc.projects.uttdemo
 			Assert.AreEqual ("PilsnerNew", 			beer.name);
 		}
 
+		
+		//--------------------------------------
+		//  New
+		//--------------------------------------
+		[Test]
+		public void testGetMyName  ()
+		{
+			//SETUP
+			Beer beer = new Beer ("Pilsner", 		Beer.CONTAINER_TYPE_BOTTLE);
+
+			
+			//ASSERTION
+			Assert.AreEqual ("Pilsner", 			beer.getMyName());
+		}
 
 
 		//--------------------------------------

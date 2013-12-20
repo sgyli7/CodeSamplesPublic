@@ -129,5 +129,10 @@ namespace com.rmc.projects.uttdemo
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
+		public string getMyName ()
+		{
+			return name;
+		}
 	}
 }
