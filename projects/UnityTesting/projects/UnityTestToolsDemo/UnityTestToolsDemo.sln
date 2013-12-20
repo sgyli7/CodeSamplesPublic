@@ -1,0 +1,49 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{8AA3E1DB-0B1E-7DD4-CAF7-E3B5A4D4922A}") = "UnityTestToolsDemo", "Assembly-CSharp.csproj", "{99FBB0FC-2ADF-C3C0-27EB-B605AA8AB2CD}"
+EndProject
+Project("{8AA3E1DB-0B1E-7DD4-CAF7-E3B5A4D4922A}") = "UnityTestToolsDemo", "Assembly-CSharp-Editor.csproj", "{F28E1DE6-2A9D-9C57-D2E8-B49D8E85F19A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99FBB0FC-2ADF-C3C0-27EB-B605AA8AB2CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FBB0FC-2ADF-C3C0-27EB-B605AA8AB2CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FBB0FC-2ADF-C3C0-27EB-B605AA8AB2CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FBB0FC-2ADF-C3C0-27EB-B605AA8AB2CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F28E1DE6-2A9D-9C57-D2E8-B49D8E85F19A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F28E1DE6-2A9D-9C57-D2E8-B49D8E85F19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F28E1DE6-2A9D-9C57-D2E8-B49D8E85F19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F28E1DE6-2A9D-9C57-D2E8-B49D8E85F19A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+<<<<<<< HEAD:UnityTestTools/projects/UnityTestToolsDemo/UnityTestToolsDemo.sln
+											GlobalSection(MonoDevelopProperties) = preSolution
+=======
+										GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 05e2e9b97abc8e00a2a52bc25d5f1accb8b2cca5:projects/UnityTesting/projects/UnityTestToolsDemo/UnityTestToolsDemo.sln
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
