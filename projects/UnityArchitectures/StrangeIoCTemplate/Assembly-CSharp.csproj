@@ -151,8 +151,8 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\BinderException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\Binding.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template\mvcs\StrangeIoCTemplateContext.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template\mvcs\StrangeIoCTemplateRoot.cs" />
-     <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template\mvcs\StrangeIocTemplateContext.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template\mvcs\controller\commands\ClearButtonClickCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\strangeioc_template\mvcs\controller\commands\CustomServiceLoadedCommand.cs" />
