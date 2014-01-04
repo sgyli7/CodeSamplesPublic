@@ -1,0 +1,20 @@
+
+
+QUESTIONS
+1. 
+
+
+ARTICLE PREPARATION
+
+1. Renamed file to "CustomRoot.cs".
+2. Renamed file to "CustomContext.cs".
+
+PROCESS OF ADDING TESTS TO EXISTING PROJECT
+
+1. import Unity Test Tools Package
+2. Create Tests for 
+** CustomModel
+** CustomService
+** Several Commands
+3. ---
+

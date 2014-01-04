@@ -126,7 +126,7 @@ namespace strange.extensions.context.impl
 			if (context == this && firstContext == this) {
 				firstContext = null;
 			} else {
-
+				
 				//OLD WAY - ALWAYS REMOVE
 				context.OnRemove();
 			}
