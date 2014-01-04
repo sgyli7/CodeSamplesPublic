@@ -122,7 +122,14 @@ namespace strange.extensions.context.impl
 		/// Remove a context from this one.
 		virtual public IContext RemoveContext(IContext context)
 		{
-			context.OnRemove();
+			//NEW WAY - TEST IN CASE OF RESTARTING THE LEVEL
+			if (context == this && firstContext == this) {
+				firstContext = null;
+			} else {
+
+				//OLD WAY - ALWAYS REMOVE
+				context.OnRemove();
+			}
 			return this;
 		}
 
