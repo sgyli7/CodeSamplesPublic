@@ -81,7 +81,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("ClearButtonClickCommand.Execute()");
+			//Debug.Log ("ClearButtonClickCommand.Execute()");
 
 			customModel.doClearAllData();
 		}

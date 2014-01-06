@@ -186,7 +186,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view
 		/// <param name="aGameList">A game list.</param>
 		public void onGameListUpdated (List<string> aGameList)
 		{
-			Debug.Log ("7. CustomViewUIMediator, value: " + aGameList);
+			//Debug.Log ("7. CustomViewUIMediator, value: " + aGameList);
 			doRenderLayout(aGameList);
 			
 		}

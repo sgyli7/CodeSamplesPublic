@@ -112,8 +112,18 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 			_originalTestGameList.Add ("String0");
 			customServiceLoadedCommand.gameList = _originalTestGameList;
 			
-			//3. TEST
-			customServiceLoadedCommand.Execute();
+			//3. CREATE TEST DELEGATE
+			TestDelegate testDelegate = delegate()
+			{
+				//PUT 1 OR MORE LINES OF CODE HERE
+				customServiceLoadedCommand.Execute();
+			};
+			
+
+			//4. RUN TEST DELEGATE
+			Assert.DoesNotThrow (testDelegate);
+
+
 			
 		}
 		
@@ -123,7 +133,8 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 		//--------------------------------------
 		private void onCustomGameListUpdated (List<string> aGameList)
 		{
-			
+
+
 			//CLEANUP
 			_iCustomModel.gameListUpdatedSignal.RemoveListener (onCustomGameListUpdated);
 			

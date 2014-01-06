@@ -27,15 +27,18 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using System;
-using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
-
+using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.uttdemo
+using System;
+using System.Threading;
+
+
+namespace com.rmc
 {
 	
 	//--------------------------------------
@@ -49,16 +52,73 @@ namespace com.rmc.projects.uttdemo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	[TestFixture]
 	public class TemplateTestFull
 	{
 
-
-
+		/*
 		//--------------------------------------
-		//  Tests
+		//  Setup
 		//--------------------------------------
-
 		
+		//PROPERTIES TO REUSE
+
+
+		//CALLED EXACTLY ONCE BEFORE THE FIRST TEST
+		[TestFixtureSetUp] 
+		public void testFixtureSetUp()
+		{ 
+			Debug.Log ("TemplateTestFull.testFixtureSetUp()");
+		}
+
+		//CALLED EXACTLY ONCE AFTER THE LAST TEST
+		[TestFixtureTearDown] 
+		public void testFixtureTearDown()
+		{
+			Debug.Log ("TemplateTestFull.testFixtureTearDown()");
+		}
+
+
+		//CALLED BEFORE EVERY 'TEST' METHOD IN THIS FIXTURE
+		[SetUp] 
+		public void setUp()
+		{
+			Debug.Log ("  -TemplateTestFull.setup()");
+			
+			
+		}
+		
+		
+		//CALLED AFTER EVERY 'TEST' METHOD IN THIS FIXTURE
+		[TearDown] 
+		public void tearDown()
+		{
+			Debug.Log ("  -TemplateTestFull.tearDown()");
+		}
+
+		//--------------------------------------
+		//  SampleTests
+		//--------------------------------------
+		[Test]
+		public void test1 ()
+		{
+			Debug.Log ("     **TemplateTestFull.test1()");
+			Assert.Pass();
+		}
+
+		[Test]
+		public void test2 ()
+		{
+			Debug.Log ("     **TemplateTestFull.test2()");
+			Assert.Pass();
+		}
+
+		*/
+
+
+		//--------------------------------------
+		//  More Tests
+		//--------------------------------------
 		/*
 		[Test]
 		public void ExceptionTest ()
@@ -144,13 +204,8 @@ namespace com.rmc.projects.uttdemo
 			Assert.That (sqrt >= 0.0);
 			Assert.That (sqrt * sqrt, Is.EqualTo (num).Within (0.000001));
 		}
-
+		
 		*/
-		
-
-
-		
-		
 		//--------------------------------------
 		//  Events
 		//--------------------------------------

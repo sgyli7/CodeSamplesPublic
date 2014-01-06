@@ -97,9 +97,19 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 			
 			//2. USE DEPENDENCIES FROM 'SETUP'
 			loadButtonClickCommand.iCustomService = _iCustomService;
+
 			
-			//3. TEST
-			loadButtonClickCommand.Execute();
+			//3. CREATE TEST DELEGATE
+			TestDelegate testDelegate = delegate()
+			{
+				//PUT 1 OR MORE LINES OF CODE HERE
+				loadButtonClickCommand.Execute();
+			};
+			
+			
+			//4. RUN TEST DELEGATE
+			Assert.DoesNotThrow (testDelegate);
+
 			
 		}
 		

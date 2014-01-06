@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="Assets/StrangeIoCTemplate/Scenes/StrangeIoCTemplate.unity" total="9" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-01-04" time="14:18:36">
-  <environment nunit-version="0.0.0.0" clr-version="2.0.50727.1433" os-version="Unix 12.5.0.0" platform="Unix" cwd="/Users/srivello/Dropbox/Clients_On_Dropbox/RMC/Projects/Unity3DSourceDropBox/StrangeIoCTemplateTested" machine-name="new-host-2.home" user="srivello" user-domain="new-host-2.home" />
+<test-results name="Assets/StrangeIoCTemplate/Scenes/StrangeIoCTemplate.unity" total="9" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-01-04" time="18:53:14">
+  <environment nunit-version="0.0.0.0" clr-version="2.0.50727.1433" os-version="Unix 12.5.0.0" platform="Unix" cwd="/Users/srivello/Documents/workspaces/git/CodeSamplesPublic/projects/UnityArchitectures/StrangeIoCTemplateTested" machine-name="new-host-2.home" user="srivello" user-domain="new-host-2.home" />
   <culture-info current-culture="" current-uiculture="" />
-  <test-case name="com.rmc.projects.strangeioc_template.mvcs.controller.commands.CustomServiceLoadedCommandTest.testCommandExecute" executed="True" result="Success" success="True" time="0.028" />
-  <test-case name="com.rmc.projects.strangeioc_template.mvcs.controller.commands.LoadButtonClickCommandTest.testCommandExecute" executed="True" result="Success" success="True" time="0.020" />
-  <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomModelTest.testPropertyGameList_DefaultValue" executed="True" result="Success" success="True" time="0.001" />
+  <test-case name="com.rmc.projects.strangeioc_template.mvcs.controller.commands.CustomServiceLoadedCommandTest.testCommandExecute" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.strangeioc_template.mvcs.controller.commands.LoadButtonClickCommandTest.testCommandExecute" executed="True" result="Success" success="True" time="0.002" />
+  <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomModelTest.testPropertyGameList_DefaultValue" executed="True" result="Success" success="True" time="0.000" />
   <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomModelTest.testPropertyGameList_DoClear" executed="True" result="Success" success="True" time="0.000" />
   <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomModelTest.testPropertyGameList_SetNull" executed="True" result="Success" success="True" time="0.000" />
   <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomModelTest.testPropertyGameList_SetValid" executed="True" result="Success" success="True" time="0.000" />
-  <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomModelTest.testPropertyGameList_SetValidDispatcher" executed="True" result="Success" success="True" time="0.010" />
-  <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomServiceTest.testDoLoadGameList" executed="True" result="Success" success="True" time="0.034" />
-  <test-case name="com.rmc.projects.strangeioc_template.mvcs.view.CustomViewUIMediatorTest.NotSureHowToHandleViewYet" executed="True" result="Success" success="True" time="0.003">
+  <test-case name="com.rmc.projects.strangeioc_template.mvcs.model.CustomModelTest.testPropertyGameList_SetValidDispatcher" executed="True" result="Success" success="True" time="0.000" />
+  <test-case name="com.rmc.projects.strangeioc_template.mvcs.view.CustomViewUIMediatorTest.NotSureHowToHandleViewYet" executed="True" result="Success" success="True" time="0.000">
     <reason>
       <message><![CDATA[]]></message>
     </reason>
   </test-case>
+  <test-case name="com.rmc.projects.strangeioc_template.mvcs.service.CustomServiceTest.testDoLoadGameList" executed="True" result="Success" success="True" time="0.000" />
 </test-results>

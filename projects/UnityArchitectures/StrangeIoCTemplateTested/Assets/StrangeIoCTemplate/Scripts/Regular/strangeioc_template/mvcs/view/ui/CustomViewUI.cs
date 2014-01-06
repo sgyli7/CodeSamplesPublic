@@ -240,7 +240,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.view.ui
 			
 			//LAYOUT
 			if (GUI.Button(new Rect(_contentsGapVertical_float + _contentsWidth_float/2, _currentY_float, _contentsWidth_float/2, 50), "Load Message")){
-				Debug.Log("1. CustomView.OnGUI(), Load Message Button Clicked");
+				//Debug.Log("1. CustomView.OnGUI(), Load Message Button Clicked");
 				loadMessageClickSignal.Dispatch();
 			}
 			

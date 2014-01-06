@@ -100,7 +100,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.service
 		{
 
 			
-			Debug.Log ("3. CustomService.doLoadGameList()");
+			//Debug.Log ("3. CustomService.doLoadGameList()");
 			
 			/*
 			 * 
@@ -133,7 +133,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.service
 		private void _onLoadedGameList ()
 		{
 			
-			Debug.Log ("4. CustomService._onLoadedGameList()");
+			//Debug.Log ("4. CustomService._onLoadedGameList()");
 
 			//
 			List<string> gamesList_string = new List<string>();

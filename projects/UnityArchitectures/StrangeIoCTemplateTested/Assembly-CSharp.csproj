@@ -55,7 +55,6 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\IEventDispatcher.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Templates\TemplateComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\strangeioc\StrangeIoCTestHelper.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\ReadMe.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandExceptionType.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\ICommand.cs" />

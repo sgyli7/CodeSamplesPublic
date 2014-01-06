@@ -1,12 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/StrangeIoCTemplate/Scripts/Regular/strangeioc_template/mvcs/CustomRoot.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/StrangeIoCTemplate/Scripts/TODO.txt">
     <Files>
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/Editor/strangeioc_template/mvcs/controller/commands/CustomServiceLoadedCommandTest.cs" Line="127" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/Editor/strangeioc_template/mvcs/model/CustomModelTest.cs" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/Editor/strangeioc_template/mvcs/controller/commands/LoadButtonClickCommandTest.cs" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/TODO.txt" Line="1" Column="1" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/Regular/strangeioc_template/mvcs/CustomRoot.cs" Line="92" Column="3" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/Editor/strangeioc_template/mvcs/service/CustomServiceTest.cs" Line="35" Column="1" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/Editor/strangeioc_template/mvcs/model/CustomModelTest.cs" Line="36" Column="14" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/TODO.txt" Line="174" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

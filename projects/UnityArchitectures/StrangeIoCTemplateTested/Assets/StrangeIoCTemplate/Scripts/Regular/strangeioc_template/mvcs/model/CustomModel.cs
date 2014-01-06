@@ -74,8 +74,8 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 				if (_gameList != value) {
 
 					_gameList = value;
-					Debug.Log ("6. CustomModel.gameList = " + _gameList);
-					Debug.Log ("--gameListUpdatedSignal.Dispatch()");
+					//Debug.Log ("6. CustomModel.gameList = " + _gameList);
+					//Debug.Log ("--gameListUpdatedSignal.Dispatch()");
 					gameListUpdatedSignal.Dispatch (_gameList);
 				}
 			}

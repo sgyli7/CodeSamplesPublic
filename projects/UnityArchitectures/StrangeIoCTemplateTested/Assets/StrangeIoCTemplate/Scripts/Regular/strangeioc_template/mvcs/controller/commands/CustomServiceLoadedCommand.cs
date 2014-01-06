@@ -82,7 +82,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("5. CustomServiceLoadedCommand.Execute()");
+			//Debug.Log ("5. CustomServiceLoadedCommand.Execute()");
 
 			customModel.gameList = gameList;
 

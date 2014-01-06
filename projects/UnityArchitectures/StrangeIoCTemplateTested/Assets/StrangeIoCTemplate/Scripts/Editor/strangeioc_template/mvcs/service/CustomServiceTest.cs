@@ -27,26 +27,17 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using System;
-using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
-using strange.extensions.injector.api;
-using strange.extensions.injector.impl;
 using com.rmc.projects.strangeioc_template.mvcs.controller.signals;
+using com.rmc.projects.strangeioc_template.mvcs.service;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.strangeioc_template.mvcs.service;
-using strange.extensions.command.api;
-using com.rmc.projects.strangeioc_template.mvcs.controller.commands;
-using strange.extensions.command.impl;
-
-
-namespace com.rmc.projects.strangeioc_template.mvcs.model
+namespace com.rmc.projects.strangeioc_template.mvcs.service
 {
 	
 	//--------------------------------------
@@ -70,32 +61,16 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		//--------------------------------------
 		
 		//PROPERTIES TO REUSE
-		private ICustomService _customService;
-		private IInjectionBinder _injectionBinder;
-		private ICommandBinder _commandBinder;
-		
-		
+		private ICustomService _iCustomService;
+
+
 		//CALLED BEFORE EVERY 'TEST' METHOD IN THIS FIXTURE
 		[SetUp] 
 		public void setUp()
 		{
-			//1. BIND THE CLASS TO BE TESTED
-			//   *AND* ANY INJECTIONS WITHIN THE CLASS TO BE TESTED
-			_injectionBinder = new InjectionBinder ();
-			_injectionBinder.Bind<IInjectionBinder>().ToValue(_injectionBinder);
-			_injectionBinder.Bind<CustomServiceLoadedSignal>().ToSingleton();
-			_injectionBinder.Bind<ICustomService>().To<CustomService>().ToSingleton();
-			_injectionBinder.Bind<ICommandBinder>().To<SignalCommandBinder>().ToSingleton();
-
-			//2. OTHER BINDINGS NEEDED FOR COMMAND TO EXECUTE
-			_injectionBinder.Bind<ICustomModel>().To<CustomModel>().ToSingleton();
-			_injectionBinder.Bind<GameListUpdatedSignal>().ToSingleton();
-			_commandBinder =  _injectionBinder.GetInstance<ICommandBinder>() as ICommandBinder;
-			_commandBinder.Bind<CustomServiceLoadedSignal>().To<CustomServiceLoadedCommand>();
-			
-			//3. GET INSTANCE FROM INJECTOR
-			_customService = _injectionBinder.GetInstance<ICustomService>() as ICustomService;
-			Debug.Log ("_customService: " + _customService);
+			//1. SETUP DEPENDENCIES
+			_iCustomService = new CustomService ();
+			_iCustomService.customServiceLoadedSignal = new CustomServiceLoadedSignal();
 
 
 		}
@@ -105,8 +80,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		[TearDown] 
 		public void tearDown()
 		{
-			_customService = null;
-			_injectionBinder = null; //MUST I CALL .Unbind() before?
+			_iCustomService = null;
 		}
 		
 		//--------------------------------------
@@ -119,10 +93,10 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		{
 
 			//LISTEN
-			_customService.customServiceLoadedSignal.AddListener (onCustomServiceLoadedSignal);
+			_iCustomService.customServiceLoadedSignal.AddListener (onCustomServiceLoadedSignal);
 
 			//SETUP
-			_customService.doLoadGameList();
+			_iCustomService.doLoadGameList();
 			
 		}
 
@@ -134,7 +108,7 @@ namespace com.rmc.projects.strangeioc_template.mvcs.model
 		{
 
 			//CLEANUP
-			_customService.customServiceLoadedSignal.RemoveListener (onCustomServiceLoadedSignal);
+			_iCustomService.customServiceLoadedSignal.RemoveListener (onCustomServiceLoadedSignal);
 
 			//TEST
 			Assert.AreNotEqual (null, aGameList);
