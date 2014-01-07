@@ -106,8 +106,8 @@ namespace com.rmc.projects.unity_scene_test
 		//--------------------------------------
 		private void OnMouseDown() 
 		{
-			Debug.Log ("Cube1InputComponent.OnMouseDown()");
-			simpleControllerComponent.changeCameraMode (CameraMode.CAMERA_MODE_ZOOM);
+			//Debug.Log ("Cube1InputComponent.OnMouseDown()");
+			simpleControllerComponent.doChangeCameraMode (CameraMode.CAMERA_MODE_ZOOM);
 
 		}
 	}

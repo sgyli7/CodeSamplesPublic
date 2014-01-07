@@ -128,7 +128,7 @@ namespace com.rmc.projects.unity_scene_test
 			//Debug.Log ("GUIComponent.OnGUI()");
 			if (_buttonsEnabled_boolean) {
 				if (GUI.Button (new Rect (middleX_float - 50, middleYAdjusted_float - 15, 100, 30), "Go Back")){
-					simpleControllerComponent.changeCameraMode (CameraMode.CAMERA_MODE_MAIN);
+					simpleControllerComponent.doChangeCameraMode (CameraMode.CAMERA_MODE_MAIN);
 				}
 			}
 			

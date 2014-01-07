@@ -50,6 +50,8 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Standard\com\rmc\templates\TemplateComponent.cs" />
      <Compile Include="Assets\UnitySceneTest\Scripts\Standard\com\rmc\projects\unity_scene_test\Cube1InputComponent.cs" />
      <Compile Include="Assets\UnitySceneTest\Scripts\Standard\com\rmc\projects\unity_scene_test\GUIComponent.cs" />
+     <Compile Include="Assets\UnitySceneTest\Scripts\Standard\com\rmc\projects\unity_scene_test\Plane2InputComponent.cs" />
+     <Compile Include="Assets\UnitySceneTest\Scripts\Standard\com\rmc\projects\unity_scene_test\Plane3InputComponent.cs" />
      <Compile Include="Assets\UnitySceneTest\Scripts\Standard\com\rmc\projects\unity_scene_test\SimpleControllerComponent.cs" />
      <Compile Include="Assets\UnitySceneTest\Scripts\Standard\com\rmc\projects\unity_scene_test\SuperMonoBehavior.cs" />
      <None Include="Assets\UnitySceneTest\Documentation\Instructions_1_v1.txt" />

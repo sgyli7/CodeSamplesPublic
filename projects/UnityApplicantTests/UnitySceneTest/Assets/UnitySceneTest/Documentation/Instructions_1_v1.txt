@@ -11,17 +11,17 @@ Include any documentation on how your demo should run.  i.e. what keys or button
 1. Interactive Ð Create 3 interactive objects in 3D world space.
 a. 1st interactive object needs to be a 3D object (primitive shape provided by Unity is fine) [DONE]
 i. Object needs to rotate slowly via an animation and loop continuously. [DONE]
-ii. When clicked upon, camera should show a large view of the 3D object.
-iii. While in this close up view of the object, add UI that allows the user exit this view mode.  (ie back to the default world view)
+ii. When clicked upon, camera should show a large view of the 3D object. [DONE]
+iii. While in this close up view of the object, add UI that allows the user exit this view mode.  (ie back to the default world view) [DONE]
 
-b. 2nd interactive object is static/stationary and does not rotate/animate.  Can be a plane facing the camera or a 3D primitive object.
-i. When clicked upon, this object should open to a webpage.  (www.pixogroup.com).
-ii. When looking at this object in Unity editor, the URL that the user will open to when the object is clicked should be exposed and allow for modification during run-time in editor.
+b. 2nd interactive object is static/stationary and does not rotate/animate.  Can be a plane facing the camera or a 3D primitive object.[DONE]
+i. When clicked upon, this object should open to a webpage.  (www.pixogroup.com). [DONE, with "http://www.pixogroup.com"]
+ii. When looking at this object in Unity editor, the URL that the user will open to when the object is clicked should be exposed and allow for modification during run-time in editor.[DONE, with _simpleController->SimpleControllerComponent->url_string]
 
-c. 3rd interactive object is static/stationary and does not rotate/animate.  This object should be a plane that faces the camera.
-i. When clicked upon, the texture of the object should be swapped out for a different texture.
-ii. Textures can be just a simple color variance, but the object must support at least 3 different texture variations. 
-iii. Loop the variations.
+c. 3rd interactive object is static/stationary and does not rotate/animate.  This object should be a plane that faces the camera. [DONE]
+i. When clicked upon, the texture of the object should be swapped out for a different texture. [DONE]
+ii. Textures can be just a simple color variance, but the object must support at least 3 different texture variations. [DONE, with 4 textures total]
+iii. Loop the variations.[DONE]
 
 
 

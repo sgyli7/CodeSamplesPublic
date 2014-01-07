@@ -33,6 +33,9 @@ using com.rmc.exceptions;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using System.Collections.Generic;
+
+
 namespace com.rmc.projects.unity_scene_test
 {
 	
@@ -85,11 +88,27 @@ namespace com.rmc.projects.unity_scene_test
 		/// </summary>
 		public GUIComponent guiComponent;
 
+		/// <summary>
+		/// The material_list.
+		/// </summary>
+		public List<Material> material_list;
 
+		/// <summary>
+		/// The URL_string.
+		/// </summary>
+		public string url_string;
 
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _material list current index_int.
+		/// </summary>
+		private int _materialListCurrentIndex_int;
+
+
+
+
 		
 		// PRIVATE STATIC
 		
@@ -101,7 +120,8 @@ namespace com.rmc.projects.unity_scene_test
 		///</summary>
 		void Start () 
 		{
-			changeCameraMode (CameraMode.CAMERA_MODE_MAIN);
+			_materialListCurrentIndex_int = -1; //so first loaded will be index 0
+			doChangeCameraMode (CameraMode.CAMERA_MODE_MAIN);
 			
 		}
 		
@@ -121,7 +141,7 @@ namespace com.rmc.projects.unity_scene_test
 		/// Changes the camera mode.
 		/// </summary>
 		/// <param name="aCameraMode">A camera mode.</param>
-		public void changeCameraMode (CameraMode aCameraMode)
+		public void doChangeCameraMode (CameraMode aCameraMode)
 		{
 			switch (aCameraMode) {
 				case CameraMode.CAMERA_MODE_MAIN:
@@ -140,8 +160,31 @@ namespace com.rmc.projects.unity_scene_test
 			}
 
 		}
-		
-		
+
+		/// <summary>
+		/// Dos the open URL.
+		/// </summary>
+		/// <param name="aURL_string">A URL_string.</param>
+		public void doOpenURL ()
+		{
+			Application.OpenURL(url_string);
+		}
+
+		/// <summary>
+		/// Dos the change to random texture for game object.
+		/// </summary>
+		/// <param name="gameObject">Game object.</param>
+		public void doChangeToRandomTextureForGameObject (GameObject gameObject)
+		{
+			//GET NEXT TEXTURE (LOOP TO FIRST AS NEEDED)
+			if (_materialListCurrentIndex_int++ >= material_list.Count - 1) {
+				_materialListCurrentIndex_int = 0;
+			}
+
+			//APPLY TEXTURE
+			gameObject.renderer.material = material_list[_materialListCurrentIndex_int];
+		}
+
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -151,5 +194,7 @@ namespace com.rmc.projects.unity_scene_test
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
+
 	}
 }
