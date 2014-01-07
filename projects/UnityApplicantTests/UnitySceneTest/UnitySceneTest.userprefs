@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/SimpleControllerComponent.cs">
+    <Files>
+      <File FileName="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/Cube1InputComponent.cs" Line="51" Column="54" />
+      <File FileName="Assets/UnitySceneTest/Documentation/Instructions_1_v1.txt" Line="1" Column="1" />
+      <File FileName="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/SimpleControllerComponent.cs" Line="83" Column="3" />
+      <File FileName="Assets/GUIComponent.cs" Line="113" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
