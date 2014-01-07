@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/SimpleControllerComponent.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../UnityQuickNav/Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/Plane2InputComponent.cs">
     <Files>
-      <File FileName="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/Cube1InputComponent.cs" Line="110" Column="1" />
-      <File FileName="Assets/UnitySceneTest/Documentation/Instructions_1_v1.txt" Line="18" Column="63" />
-      <File FileName="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/SimpleControllerComponent.cs" Line="150" Column="35" />
-      <File FileName="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/GUIComponent.cs" Line="126" Column="52" />
-      <File FileName="Assets/UnitySceneTest/Scripts/Standard/com/rmc/projects/unity_scene_test/Plane2InputComponent.cs" Line="113" Column="1" />
+      <File FileName="../UnityQuickNav/Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/Cube1InputComponent.cs" Line="35" Column="43" />
+      <File FileName="../UnityQuickNav/Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/SimpleControllerComponent.cs" Line="162" Column="1" />
+      <File FileName="../UnityQuickNav/Assets/UnityQuickNav/Documentation/Instructions_1_v1.txt" Line="5" Column="100" />
+      <File FileName="../UnityQuickNav/Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/GUIComponent.cs" Line="1" Column="1" />
+      <File FileName="../UnityQuickNav/Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/Plane2InputComponent.cs" Line="110" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

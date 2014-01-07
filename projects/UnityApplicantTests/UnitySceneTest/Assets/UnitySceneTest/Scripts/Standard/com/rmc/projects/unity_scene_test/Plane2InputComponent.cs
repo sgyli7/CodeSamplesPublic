@@ -32,7 +32,7 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.unity_scene_test
+namespace com.rmc.projects.unity_quick_nav
 {
 	
 	//--------------------------------------
