@@ -25,12 +25,12 @@ iii. Loop the variations.
 
 
 [CHOSEN]
-2. Quick nav -  Create a UI that allows a user to transition from a specified location in world space to another specified location in world space.
-a. 4 locations minimum labeled correctly in the UI as buttons.
-b. During the transition from location to location, the UI must hide itself till the user reaches the defined new location. 
-c. UI should not obstruct the user’s view of the world when it is up.
-d. Each location should have a focal point (something to look at – can be just Unity primitive: sphere, cylinder, cube, etc..)
-e. When the user reaches the new location, they should be looking at the focal item.
-f. Each location should be tracked, and the user should be displayed a message once they have viewed all locations.
-g. In the UI of the locations, add a button that resets all viewed location as unviewed.
+2. Quick nav -  Create a UI that allows a user to transition from a specified location in world space to another specified location in world space.[Done]
+a. 4 locations minimum labeled correctly in the UI as buttons. [Done, with 5]
+b. During the transition from location to location, the UI must hide itself till the user reaches the defined new location. [Done]
+c. UI should not obstruct the user’s view of the world when it is up.[Done]
+d. Each location should have a focal point (something to look at – can be just Unity primitive: sphere, cylinder, cube, etc..)[Done]
+e. When the user reaches the new location, they should be looking at the focal item.[Done]
+f. Each location should be tracked, and the user should be displayed a message once they have viewed all locations.[Done]
+g. In the UI of the locations, add a button that resets all viewed location as unviewed.[Done]
 
