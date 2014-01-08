@@ -6,7 +6,7 @@ The following test was completed for application as a full-time Unity Developer.
 
 
 **INSTRUCTIONS PROVIDED**
-* https://github.com/RivelloMultimediaConsulting/CodeSamplesPublic/tree/master/projects/UnityApplicantTests/UnitySceneTest/Assets/UnityQuickNav/Documentation/
+* https://github.com/RivelloMultimediaConsulting/CodeSamplesPublic/tree/master/projects/UnityApplicantTests/UnityQuickNav/Assets/UnityQuickNav/Documentation/
 
 
 **ASSUMPTIONS**
