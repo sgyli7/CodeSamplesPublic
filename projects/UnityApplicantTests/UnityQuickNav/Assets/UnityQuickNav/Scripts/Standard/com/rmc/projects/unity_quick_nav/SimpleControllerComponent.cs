@@ -75,7 +75,7 @@ namespace com.rmc.projects.unity_quick_nav
 		/// <summary>
 		/// The _is in transition_boolean.
 		/// </summary>
-		public bool _isCameraInTransition_boolean;
+		private bool _isCameraInTransition_boolean;
 		public bool isCameraInTransition {
 			set{
 
