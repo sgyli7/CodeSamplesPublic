@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityQuickNav/Documentation/Instructions_1_v1.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/SimpleControllerComponent.cs">
     <Files>
-      <File FileName="Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/SimpleControllerComponent.cs" Line="206" Column="11" />
-      <File FileName="Assets/UnityQuickNav/Documentation/Instructions_1_v1.txt" Line="31" Column="71" />
-      <File FileName="Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/GUIComponent.cs" Line="131" Column="33" />
+      <File FileName="Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/SimpleControllerComponent.cs" Line="78" Column="10" />
+      <File FileName="Assets/UnityQuickNav/Documentation/Instructions_1_v1.txt" Line="1" Column="1" />
+      <File FileName="Assets/UnityQuickNav/Scripts/Standard/com/rmc/projects/unity_quick_nav/GUIComponent.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

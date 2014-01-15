@@ -1,0 +1,36 @@
+Unity Scene Test
+Instructions: Average time 2.5 hrs
+
+
+Select one from the list and complete, though time is a factor, we look for completeness, please do not submit incomplete demos.  Please comment your code so there will be little to no guess of what you’re attempting to accomplish.
+
+Include any documentation on how your demo should run.  i.e. what keys or buttons are mapped to specific functionality. Please return the fully coded project, including all art, code, prefabs, scenes, etc...that is part of your demo.  Please do not send executables.  We will run your demo from the editor.  Please indicate which version of Unity you used during the construction of the submission.  Any submission builds built with a beta version of Unity will not be accepted.
+
+
+[NOT CHOSEN]
+1. Interactive – Create 3 interactive objects in 3D world space.
+a. 1st interactive object needs to be a 3D object (primitive shape provided by Unity is fine)
+i. Object needs to rotate slowly via an animation and loop continuously.  
+ii. When clicked upon, camera should show a large view of the 3D object. 
+iii. While in this close up view of the object, add UI that allows the user exit this view mode.  (ie back to the default world view)  
+
+b. 2nd interactive object is static/stationary and does not rotate/animate.  Can be a plane facing the camera or a 3D primitive object. 
+i. When clicked upon, this object should open to a webpage.  (www.pixogroup.com).  
+ii. When looking at this object in Unity editor, the URL that the user will open to when the object is clicked should be exposed and allow for modification during run-time in editor.
+
+c. 3rd interactive object is static/stationary and does not rotate/animate.  This object should be a plane that faces the camera.
+i. When clicked upon, the texture of the object should be swapped out for a different texture. 
+ii. Textures can be just a simple color variance, but the object must support at least 3 different texture variations. 
+iii. Loop the variations.
+
+
+[CHOSEN]
+2. Quick nav -  Create a UI that allows a user to transition from a specified location in world space to another specified location in world space.[Done]
+a. 4 locations minimum labeled correctly in the UI as buttons. [Done, with 5]
+b. During the transition from location to location, the UI must hide itself till the user reaches the defined new location. [Done]
+c. UI should not obstruct the user’s view of the world when it is up.[Done]
+d. Each location should have a focal point (something to look at – can be just Unity primitive: sphere, cylinder, cube, etc..)[Done]
+e. When the user reaches the new location, they should be looking at the focal item.[Done]
+f. Each location should be tracked, and the user should be displayed a message once they have viewed all locations.[Done]
+g. In the UI of the locations, add a button that resets all viewed location as unviewed.[Done]
+
