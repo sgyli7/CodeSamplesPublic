@@ -46,10 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\ai_enemy_patrol_demo\EnemyAIComponent.cs" />
-     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\ai_enemy_patrol_demo\GameManagerComponent.cs" />
-     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\ai_enemy_patrol_demo\PlayerInputComponent.cs" />
-     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\ai_enemy_patrol_demo\PlayerWayPointComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\CarInputComponent.cs" />
+     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\GUIComponent.cs" />
      <None Include="Assets\UnityCarRacer\Documentation\Instructions_1_v1.txt" />
   </ItemGroup>
   <ItemGroup>

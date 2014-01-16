@@ -5,8 +5,9 @@ Unity Applicant Test: Unity Car Racer
 The following test was completed for application as a full-time Unity Developer. 
 
 
-**INSTRUCTIONS PROVIDED**
-* https://github.com/RivelloMultimediaConsulting/CodeSamplesPublic/tree/master/projects/UnityApplicantTests/UnityCarRacer/Documentation/
+**INSTRUCTIONS**
+
+* https://github.com/RivelloMultimediaConsulting/CodeSamplesPublic/tree/master/projects/UnityApplicantTests/UnityCarRacer/Assets/UnityCarRacer/Documentation
 
 
 **ASSUMPTIONS**

@@ -139,10 +139,10 @@ namespace com.rmc.utilities
 			if (!isOnlyCommonFolders_boolean) {
 
 				_createFoldersUnderParent(aParentFolder_string, 				"Animations");
-				_createFoldersUnderParent(aParentFolder_string, 				"AnimationControllers");
+				_createFoldersUnderParent(aParentFolder_string, 				"Animation Controllers");
 				//
 				_createFoldersUnderParent(aParentFolder_string, 				"Audio");
-				_createFoldersUnderParent(aParentFolder_string + "/Audio", 		"SoundEffects");
+				_createFoldersUnderParent(aParentFolder_string + "/Audio", 		"Sound Effects");
 				_createFoldersUnderParent(aParentFolder_string + "/Audio", 		"Music");
 				//
 				
@@ -153,6 +153,7 @@ namespace com.rmc.utilities
 				_createFoldersUnderParent(aParentFolder_string, 				"Gizmos");
 				_createFoldersUnderParent(aParentFolder_string, 				"Materials");
 				_createFoldersUnderParent(aParentFolder_string, 				"Models");
+				_createFoldersUnderParent(aParentFolder_string, 				"Physic Materials");
 				_createFoldersUnderParent(aParentFolder_string, 				"Prefabs");
 				_createFoldersUnderParent(aParentFolder_string, 				"Resources");
 				_createFoldersUnderParent(aParentFolder_string, 				"Scenes");
