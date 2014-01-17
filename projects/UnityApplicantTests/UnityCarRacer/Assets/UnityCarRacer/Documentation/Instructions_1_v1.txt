@@ -1,28 +1,28 @@
 Unity Scene Test
 
 
-Instructions (Text):
+Instructions (Original Text):
 
 Construct a scene for a car racer. The user controls the car from a third-person view. The car should use physics to interact with the terrain. The camera should follow the car with some sort of smoothing effect. Values for speed, acceleration, turn rate, mass, camera follow distance, speed, etc., should be data driven. Don't worry about models or textures.
  
 Bonus: The car is normally affected by gravity, but if it reaches a wall or incline, it "sticks" to the surface and is able to drive around on it. While attached to a wall, the camera should orient properly with respect to the car. When not attached, the car should return to normal function. 
  
  
-Instructions (As Checklist):
+Instructions (Updated Upon Completion As Checklist):
 
-* Construct a scene for a car racer. 
-* The user controls the car from a third-person view. 
-* The car should use physics to interact with the terrain. 
-* The camera should follow the car with some sort of smoothing effect. 
+* Construct a scene for a car racer. [Done]
+* The user controls the car from a third-person view. [Done]
+* The car should use physics to interact with the terrain.  [Done]
+* The camera should follow the car with some sort of smoothing effect.  [Done]
 * Values should be data driven for:
-*      speed
-*      acceleration
-*      turn rate
-*      mass 
-*      camera follow distance
-*      speed
-*      etc. 
-* Don't worry about models or textures.
-* Bonus: The car is normally affected by gravity, but if it reaches a wall or incline, it "sticks" to the surface and is able to drive around on it. While attached to a wall, the camera should orient properly with respect to the car. When not attached, the car should return to normal function. 
+*      speed  [Done]
+*      acceleration  [Done]
+*      turn rate [Done]
+*      mass  [Done]
+*      camera follow distance  [Done]
+*      speed  [Done]
+*      etc.  [Done. Several others vars used] 
+* Don't worry about models or textures.  [Done]
+* Bonus: The car is normally affected by gravity, but if it reaches a wall or incline, it "sticks" to the surface and is able to drive around on it. While attached to a wall, the camera should orient properly with respect to the car. When not attached, the car should return to normal function.  [Done, see checkbox in GUI] 
  
  
