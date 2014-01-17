@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\AxleComponent.cs" />
      <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\CarInputComponent.cs" />
      <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\GUIComponent.cs" />
      <None Include="Assets\UnityCarRacer\Documentation\Instructions_1_v1.txt" />
@@ -54,8 +55,6 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{0BE9152F-AAB1-5375-B17E-5F07011B4B57}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{800D4757-412A-2AD2-E46C-0ACE2709685F}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

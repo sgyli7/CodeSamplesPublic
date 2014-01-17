@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MyCustomCode.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/RMCLibrary/Scripts/Editor/com/rmc/utilities/CreateDefaultFoldersMenu.cs">
     <Files>
-      <File FileName="Assets/UnityCarRacer/Scripts/Runtime/com/rmc/projects/unity_car_racer/CarInputComponent.cs" Line="370" Column="43" />
+      <File FileName="Assets/UnityCarRacer/Scripts/Runtime/com/rmc/projects/unity_car_racer/AxleComponent.cs" Line="65" Column="7" />
+      <File FileName="Assets/UnityCarRacer/Scripts/Runtime/com/rmc/projects/unity_car_racer/CarInputComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/UnityCarRacer/Scripts/Runtime/com/rmc/projects/unity_car_racer/GUIComponent.cs" Line="31" Column="1" />
       <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Editor/com/rmc/utilities/CreateDefaultFoldersMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/MyCustomCode.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,7 +24,6 @@
                 </Node>
               </Node>
             </Node>
-            <Node name="MyCustomCode.cs" selected="True" />
           </Node>
           <Node name="Assembly-CSharp-Editor" expanded="True">
             <Node name="Community Assets" expanded="True">
@@ -32,25 +32,13 @@
                   <Node name="Editor" expanded="True">
                     <Node name="com" expanded="True">
                       <Node name="rmc" expanded="True">
-                        <Node name="utilities" expanded="True" />
+                        <Node name="utilities" expanded="True">
+                          <Node name="CreateDefaultFoldersMenu.cs" selected="True" />
+                        </Node>
                       </Node>
                     </Node>
                   </Node>
                 </Node>
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Standard Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Camera Scripts" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-UnityScript-firstpass" expanded="True">
-            <Node name="Standard Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Camera Scripts" expanded="True" />
               </Node>
             </Node>
           </Node>

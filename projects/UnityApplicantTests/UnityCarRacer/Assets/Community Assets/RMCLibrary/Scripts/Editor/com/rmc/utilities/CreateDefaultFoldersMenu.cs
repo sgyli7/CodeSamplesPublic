@@ -28,9 +28,7 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using UnityEngine;
 using UnityEditor;
-using System.IO;
 
 //--------------------------------------
 //  Namespace
@@ -157,9 +155,9 @@ namespace com.rmc.utilities
 				_createFoldersUnderParent(aParentFolder_string, 				"Prefabs");
 				_createFoldersUnderParent(aParentFolder_string, 				"Resources");
 				_createFoldersUnderParent(aParentFolder_string, 				"Scenes");
-	;
-				//
 				_createFoldersUnderParent(aParentFolder_string, 				"Shaders");
+				//
+				_createFoldersUnderParent(aParentFolder_string, 				"Terrains");
 				_createFoldersUnderParent(aParentFolder_string, 				"Textures");
 			}
 		}

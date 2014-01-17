@@ -48,9 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\utilities\CreateDefaultFoldersMenu.cs" />
      <None Include="Assets\UnityCarRacer\Documentation\Instructions_1_v1.txt" />
- <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
- <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
  <Reference Include="\Applications\Unity4.3.3_PRODUCTION\Unity4.3.3_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity4.3.3_PRODUCTION\Unity4.3.3_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>

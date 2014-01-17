@@ -47,12 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\AxleComponent.cs" />
      <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\CarInputComponent.cs" />
      <Compile Include="Assets\UnityCarRacer\Scripts\Runtime\com\rmc\projects\unity_car_racer\GUIComponent.cs" />
      <None Include="Assets\UnityCarRacer\Documentation\Instructions_1_v1.txt" />
- <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
- <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

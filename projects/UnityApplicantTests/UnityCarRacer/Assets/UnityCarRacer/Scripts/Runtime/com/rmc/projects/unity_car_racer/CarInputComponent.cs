@@ -28,7 +28,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections;
 
 //--------------------------------------
 //  Namespace
@@ -84,7 +83,7 @@ namespace com.rmc.projects.unity_car_racer
 		/// <summary>
 		/// The turn rate_float.
 		/// </summary>
-		public float turnRate_float = 5;
+		public float turnRate_float = 20;
 
 		/// <summary>
 		/// The mass_float.
@@ -122,12 +121,23 @@ namespace com.rmc.projects.unity_car_racer
 			}
 
 		}
-
+		
 		/////////////////////////////////////////
 		/// 
 		/// OTHER VALUES
 		/// 
 		/////////////////////////////////////////
+
+
+		/// <summary>
+		/// The front axle_gameobject.
+		/// </summary>
+		public GameObject frontAxle_gameobject;
+
+		/// <summary>
+		/// The back axle_gameobject.
+		/// </summary>
+		public GameObject backAxle_gameobject;
 
 		// PUBLIC STATIC
 		/// <summary>
@@ -201,6 +211,11 @@ namespace com.rmc.projects.unity_car_racer
 		/// 
 		/// </summary>
 		private float _gravityRelativeMultiplier_float;
+
+		/// <summary>
+		/// The front_axle component.
+		/// </summary>
+		private AxleComponent _front_axleComponent;
 		
 		// PRIVATE STATIC
 
@@ -218,6 +233,9 @@ namespace com.rmc.projects.unity_car_racer
 
 			//
 			isGravityRelative = false;
+
+			//
+			_front_axleComponent = frontAxle_gameobject.GetComponent<AxleComponent>();
 
 			//STORE CAMERA REFERENCE TO UPDATE PROPERTIES AS NEEDED
 			_smoothFollow_monobehavior = Camera.main.GetComponent<SmoothFollow>();
@@ -278,9 +296,9 @@ namespace com.rmc.projects.unity_car_racer
 		/// </summary>
 		public void doResetCar ()
 		{
-			isInputEnabled = true;
-			transform.position = new Vector3 (transform.position.x, transform.position.y + _positionOnRestartY_float, transform.position.z);
-			transform.rotation = Quaternion.identity;
+			isInputEnabled 			= true;
+			transform.position 		= new Vector3 (transform.position.x, transform.position.y + _positionOnRestartY_float, transform.position.z);
+			transform.localRotation = Quaternion.Euler ( new Vector3 (transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, 0));
 
 		}
 
@@ -321,16 +339,8 @@ namespace com.rmc.projects.unity_car_racer
 			rigidbody.AddForce (transform.forward * currentSpeed_float * _gravityRelativeMultiplier_float);
 			
 			//TURN
-			if (_inputGetAxisVertical_float >= 0) {
-
-				//NORMAL STEERING
-				rigidbody.AddRelativeTorque (new Vector3 (0, _gravityRelativeMultiplier_float* turnRate_float * Input.GetAxis ("Horizontal"), 0));
-			
-			} else {
-				//REVERSE STEERING
-				rigidbody.AddRelativeTorque (new Vector3 (0, -_gravityRelativeMultiplier_float* turnRate_float * Input.GetAxis ("Horizontal"), 0));
-
-			}
+			//NORMAL STEERING
+			_front_axleComponent.steeringRotation = turnRate_float * Input.GetAxis ("Horizontal");
 			
 		}
 
@@ -340,34 +350,22 @@ namespace com.rmc.projects.unity_car_racer
 		private void _doHandleGravity_Relative()
 		{
 
-			//ATTEMPT 1: 	RESET GRAVITY TO CAR-DOWN DIRECTION
-			//			 	NOT BAD, BUT INTRODUCES COMPLEXITIES AND
-			//			 	INTRODUCES SCALABILITY ISSUES FOR A LARGER 
-			//				GAME WITH MORE RIGID BODIES
-			//Physics.gravity = transform.up*_DEFAULT_GRAVITY_Y_FLOAT; 
-
-
-			//ATTEMPT 2: 	ADD CONSTANT FORCE RELATIVELY 'TOWARDS WORLD-DOWN'
-			//				PRETTY GOOD UNTIL INCLINES ARE EXTREME
-			//rigidbody.AddForce (-transform.up * rigidbody.mass*2);
-
-			//ATTEMPT 3: 	ADD CONSTANT FORCE RELATIVELY 'TOWARDS TERRAIN'
+			//SOLUTION: 	ADD CONSTANT FORCE RELATIVELY 'TOWARDS TERRAIN'
 			//				BETTER STILL THAN 1 AND 2
-			/*
-			Physics.gravity = new Vector3 (0,0,0);
 			RaycastHit raycastHit;
-			if(Physics.Raycast(transform.position, -transform.up, out raycastHit, 10)){
+			if(Physics.Raycast(transform.position, -transform.up, out raycastHit, 100)){
 				
 				if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer ("TerrainLayer")) {
 
 					//ADD FORCE
-					//_doHandleTerrainCollision_Relative (transform.position, raycastHit.normal, 1);
+					//	NOTE: IF THE CAR IS AIRBORN, ADD EXTRA FORCE TO STICK TO THE GROUND
+					if (raycastHit.distance < 1.3) {
+						_doHandleTerrainCollision_Relative (transform.position, raycastHit.normal, 1);
+					} else {
+						_doHandleTerrainCollision_Relative (transform.position, raycastHit.normal, 20);
+					}
 				}
 			} 
-			*/
-
-			//ATTEMPT 4: ADD A FORCE WHERE CAR MEETS TERRAIN TO STICK TO TERRAIN
-			//			 NOTE: WE DO NOTHING HERE. INSTEAD SEE "OnCollisionStay"
 
 		}
 
@@ -431,9 +429,6 @@ namespace com.rmc.projects.unity_car_racer
 			}
 		}
 
-
-
-
 		/// <summary>
 		/// do the handle inspector updates.
 		/// </summary>
@@ -459,15 +454,6 @@ namespace com.rmc.projects.unity_car_racer
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		void OnCollisionStay (Collision aCollision)
-		{
-			if (isGravityRelative) {
-				foreach (ContactPoint contactPoint in aCollision.contacts) {
-					_doHandleTerrainCollision_Relative (contactPoint.point, contactPoint.normal, .1f);
-				}
-			}
 
-
-		}
 	}
 }

@@ -28,7 +28,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections;
 
 //--------------------------------------
 //  Namespace
@@ -124,19 +123,19 @@ namespace com.rmc.projects.unity_car_racer
 		{
 			//TEXT
 			if (_carInputComponent.isInputEnabled) {
-				GUI.Label ( new Rect (10, 20, _GUI_WIDTH, 20), "Status: Operational");
+				GUI.Label ( new Rect (10, 35, _GUI_WIDTH, 20), "Status: Operational");
 			} else {
-				GUI.Label ( new Rect (10, 20, _GUI_WIDTH, 20), "Status: Crashed");
+				GUI.Label ( new Rect (10, 35, _GUI_WIDTH, 20), "Status: Crashed");
 			}
-			GUI.Label ( new Rect (10, 45, _GUI_WIDTH, 20), " --");
+			GUI.Label ( new Rect (10, 60, _GUI_WIDTH, 20), " --");
 
 
 			//CHECKBOX
-			_carInputComponent.isGravityRelative =  GUI.Toggle ( new Rect (10, 70, _GUI_WIDTH, 20), _carInputComponent.isGravityRelative,  "  Relative Gravity?");
+			_carInputComponent.isGravityRelative =  GUI.Toggle ( new Rect (10, 85, _GUI_WIDTH, 20), _carInputComponent.isGravityRelative,  "  Relative Gravity?");
 			
 
 			//BUTTONS
-			if (GUI.Button ( new Rect (10, 95, _GUI_WIDTH, 20), "Reset Level")) {
+			if (GUI.Button ( new Rect (10, 110, _GUI_WIDTH, 20), "Reset Level")) {
 
 				//AFTER SOUND COMPLETES, DO THE RESET
 				//THIS WAY THE SOUND DOES NOT CUT OUT PREMATURELY
@@ -145,7 +144,7 @@ namespace com.rmc.projects.unity_car_racer
 
 
 			}
-			if (GUI.Button ( new Rect (10, 115, _GUI_WIDTH, 20), "Reset Car")) {
+			if (GUI.Button ( new Rect (10, 130, _GUI_WIDTH, 20), "Reset Car")) {
 
 				buttonClick_audiosource.Play();
 				_carInputComponent.doResetCar();
