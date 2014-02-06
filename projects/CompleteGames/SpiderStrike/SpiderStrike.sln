@@ -5,6 +5,8 @@ Project("{5068B8D0-A1D3-C1F3-7833-4945FE32EC9B}") = "SpiderStrike", "Assembly-CS
 EndProject
 Project("{5068B8D0-A1D3-C1F3-7833-4945FE32EC9B}") = "SpiderStrike", "Assembly-CSharp-Editor.csproj", "{F465E251-D2E7-C021-4F5D-322DC166076E}"
 EndProject
+Project("{5068B8D0-A1D3-C1F3-7833-4945FE32EC9B}") = "SpiderStrike", "Assembly-UnityScript.unityproj", "{C66E8F63-9D26-022A-08A2-10072DD2B5FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{F465E251-D2E7-C021-4F5D-322DC166076E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F465E251-D2E7-C021-4F5D-322DC166076E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F465E251-D2E7-C021-4F5D-322DC166076E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C66E8F63-9D26-022A-08A2-10072DD2B5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C66E8F63-9D26-022A-08A2-10072DD2B5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C66E8F63-9D26-022A-08A2-10072DD2B5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C66E8F63-9D26-022A-08A2-10072DD2B5FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -41,4 +47,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal

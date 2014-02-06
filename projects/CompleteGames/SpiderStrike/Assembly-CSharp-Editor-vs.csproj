@@ -52,6 +52,10 @@
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\LICENSE-2.0.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\README.txt" />
+     <None Include="Assets\Cartoon Soldier\Readme.txt" />
+ <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+ </Reference>
  <Reference Include="\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
