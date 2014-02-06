@@ -88,6 +88,7 @@
      <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\soldierLOD.js" />
      <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\soldierMovement.js" />
      <Compile Include="Assets\Cartoon Soldier\Scripts\soldier\weaponController.js" />
+     <Compile Include="Assets\fantasySpider\FS_rotateThis.js" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\LICENSE-2.0.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\README.txt" />
