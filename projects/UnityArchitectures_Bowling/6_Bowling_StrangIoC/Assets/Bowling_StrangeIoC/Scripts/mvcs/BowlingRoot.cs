@@ -29,6 +29,7 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.context.impl;
+using UnityEngine;
 
 //--------------------------------------
 //  Namespace

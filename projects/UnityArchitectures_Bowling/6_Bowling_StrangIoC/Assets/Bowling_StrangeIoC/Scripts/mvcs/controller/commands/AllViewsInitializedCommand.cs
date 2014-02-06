@@ -36,6 +36,9 @@ using com.rmc.projects.bowling_strangeioc.mvc.model;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using UnityEngine;
+
+
 namespace com.rmc.projects.bowling_strangeioc.mvc.controller.commands
 {
 	

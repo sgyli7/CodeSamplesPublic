@@ -38,7 +38,7 @@ using UnityEngineInternal;
 //--------------------------------------
 //  Class
 //--------------------------------------
-public static class Debug
+public static class Debug2
 {
 
 	//--------------------------------------

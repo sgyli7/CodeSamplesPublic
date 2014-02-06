@@ -33,6 +33,9 @@ using strange.extensions.signal.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using UnityEngine;
+
+
 namespace com.rmc.projects.bowling_strangeioc.mvc.controller.signals
 {
 	

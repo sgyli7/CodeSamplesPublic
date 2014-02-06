@@ -182,8 +182,6 @@ namespace com.rmc.projects.bowling_strangeioc
 			injectionBinder.Bind<TotalPinsKnockedOverChangedSignal>().ToSingleton();
 
 
-			Debug.Log ("1.5 BowlingContext.mapBindings() ended, so all bindings 'exist'.");
-
 			/**
 			 * SERVICE
 			 * 
