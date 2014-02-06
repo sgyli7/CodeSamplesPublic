@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_2;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity4.3.2_PRODUCTION/Unity4.3.2.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity4.3.2_PRODUCTION/Unity4.3.2.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +95,11 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\ReadMe.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandExceptionType.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandKeys.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\ICommand.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\ICommandBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\ICommandBinding.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\IPooledCommandBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\impl\Command.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\impl\CommandBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\impl\CommandBinding.cs" />
@@ -108,6 +110,7 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\context\api\ContextEvent.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\context\api\ContextExceptionType.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\context\api\ContextKeys.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\context\api\ContextStartupFlags.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\context\api\IContext.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\context\api\IContextView.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\context\api\ICrossContextCapable.cs" />
@@ -131,12 +134,16 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\dispatcher\eventdispatcher\impl\EventDispatcherException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\dispatcher\eventdispatcher\impl\TmEvent.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\dispatcher\impl\DispatcherException.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\implicitBind\ImplementorAttribute.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\implicitBind\api\IImplicitBinder.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\implicitBind\impl\ImplicitBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\InjectAttribute.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\ICrossContextInjectionBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\IInjectionBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\IInjectionBinding.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\IInjector.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\IInjectorFactory.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\InjectionBindingScope.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\InjectionBindingType.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\api\InjectionExceptionType.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\injector\impl\CrossContextInjectionBinder.cs" />
@@ -158,6 +165,13 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\mediation\impl\MediationException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\mediation\impl\Mediator.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\mediation\impl\View.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\pool\api\IPool.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\pool\api\IPoolable.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\pool\api\PoolExceptionType.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\pool\api\PoolInflationType.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\pool\api\PoolOverflowBehavior.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\pool\impl\Pool.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\pool\impl\PoolException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\reflector\api\IReflectedClass.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\reflector\api\IReflectionBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\reflector\api\ReflectionExceptionType.cs" />
@@ -184,14 +198,16 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\api\BindingConstraintType.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\api\IBinder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\api\IBinding.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\api\IInstanceProvider.cs" />
+     <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\api\IManagedList.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\api\ISemiBinding.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\Binder.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\BinderException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\Binding.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
-     <None Include="Assets\Community Assets\StrangeIoC\README.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\LICENSE-2.0.txt" />
+     <None Include="Assets\Community Assets\StrangeIoC\README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

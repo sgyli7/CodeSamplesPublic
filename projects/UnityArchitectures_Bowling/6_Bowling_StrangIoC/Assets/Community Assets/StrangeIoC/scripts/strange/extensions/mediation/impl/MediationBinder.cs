@@ -82,12 +82,12 @@ namespace strange.extensions.mediation.impl
 			Component[] views = mono.GetComponentsInChildren(typeof(IView), true) as Component[];
 			
 			int aa = views.Length;
-			for (int a = 0; a < aa; a++)
+			for (int a = aa - 1; a > -1; a--)
 			{
 				IView iView = views[a] as IView;
 				if (iView != null)
 				{
-					if (iView.registeredWithContext)
+					if (iView.autoRegisterWithContext && iView.registeredWithContext)
 					{
 						continue;
 					}
@@ -102,6 +102,11 @@ namespace strange.extensions.mediation.impl
 		public override IBinding Bind<T> ()
 		{
 			return base.Bind<T> ();
+		}
+
+		public IMediationBinding BindView<T>() where T : MonoBehaviour
+		{
+			return base.Bind<T> () as IMediationBinding;
 		}
 
 		/// Creates and registers one or more Mediators for a specific View instance.
@@ -123,6 +128,8 @@ namespace strange.extensions.mediation.impl
 						throw new MediationException(viewType + "mapped to itself. The result would be a stack overflow.", MediationExceptionType.MEDIATOR_VIEW_STACK_OVERFLOW);
 					}
 					MonoBehaviour mediator = mono.gameObject.AddComponent(mediatorType) as MonoBehaviour;
+					if (mediator == null)
+						throw new MediationException ("The view: " + viewType.ToString() + " is mapped to mediator: " + mediatorType.ToString() + ". AddComponent resulted in null, which probably means " + mediatorType.ToString().Substring(mediatorType.ToString().LastIndexOf(".")+1) + " is not a MonoBehaviour.", MediationExceptionType.NULL_MEDIATOR);
 					if (mediator is IMediator)
 						((IMediator)mediator).PreRegister ();
 					injectionBinder.Bind (viewType).ToValue (view).ToInject(false);

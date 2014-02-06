@@ -34,7 +34,16 @@ namespace strange.extensions.mediation.api
 		/// Exception raised when a View is mapped to itself.
 		/// If a View is accidentally mapped to itself, the result will be an
 		/// infinite loop of Mediation creation.
-		MEDIATOR_VIEW_STACK_OVERFLOW
+		MEDIATOR_VIEW_STACK_OVERFLOW,
+
+		/// Exception raised when AddComponent results in a null Mediator.
+		/// This probably means that the mapped "mediator" wasn't a MonoBehaviour.
+		NULL_MEDIATOR,
+
+		//The mediator type is null on the attribute tag
+		IMPLICIT_BINDING_MEDIATOR_TYPE_IS_NULL,
+		//The view type is null on the attribute tag
+		IMPLICIT_BINDING_VIEW_TYPE_IS_NULL,
 	}
 }
 
