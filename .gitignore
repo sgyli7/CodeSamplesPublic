@@ -41,8 +41,9 @@ Thumbs.db
 .actionScriptProperties
 .settings
 
+# Large Build Files #
+######################
+[Bb]in/
+
 # Premium (For-Pay) Frameworks Not Fit for Distribution #
 ######################
-projects/NativeAdsContainer/src/PrivateConfiguration.as
-
-projects/UnityWithCocktails/UnityWithCocktails.userprefs
