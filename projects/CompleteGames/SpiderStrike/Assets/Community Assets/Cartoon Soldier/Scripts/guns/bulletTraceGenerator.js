@@ -18,12 +18,14 @@ function Update () {
 			newBulletTrace.transform.parent = GameObject.Find ("_Bullets").transform;
 			
 			
-			var bulletVelocity : Vector3 = newBulletTrace.GetComponent("bulletTrace").velocity;
+			var bulletVelocity : Vector3 = (newBulletTrace.GetComponent("bulletTrace") as bulletTrace).velocity;
 			var badAim : float = (1-accuracy);
-			badAim *= newBulletTrace.GetComponent("bulletTrace").bulletSpeed * 0.05;
+			badAim *= (newBulletTrace.GetComponent("bulletTrace") as bulletTrace).bulletSpeed * 0.05;
 			bulletVelocity += newBulletTrace.transform.right * Random.Range(-badAim,badAim);
 			bulletVelocity += newBulletTrace.transform.up * Random.Range(-badAim,badAim);
-			newBulletTrace.GetComponent("bulletTrace").velocity = bulletVelocity;
+			
+			//fixed with 'as'?
+			(newBulletTrace.GetComponent("bulletTrace") as bulletTrace).velocity = bulletVelocity;
 		}
 	}
 }

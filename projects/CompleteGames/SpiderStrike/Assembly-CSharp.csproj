@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;TurretTarget</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -77,6 +77,7 @@
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\ui\BowlingPinUI.cs" />
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\ui\GUIUI.cs" />
      <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\ui\UserInputUI.cs" />
+     <Compile Include="Assets\Community Assets\FPS\Scripts\Components\FPSHUD.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\Event.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\EventDispatcher.cs" />
@@ -205,18 +206,27 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\BinderException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\Binding.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
-     <Compile Include="Assets\Scripts\BarrelLid.cs" />
-     <Compile Include="Assets\Scripts\BillboardMoon.cs" />
-     <Compile Include="Assets\Scripts\DropletImpactAudio.cs" />
-     <Compile Include="Assets\Scripts\FadeInAudio.cs" />
-     <Compile Include="Assets\Scripts\Fire.cs" />
-     <Compile Include="Assets\Scripts\FireAudio.cs" />
-     <Compile Include="Assets\Scripts\ParticleHelper.cs" />
-     <Compile Include="Assets\Scripts\ReticleMovement.cs" />
-     <Compile Include="Assets\Scripts\Sprinkler.cs" />
-     <Compile Include="Assets\Scripts\SprinklerAudio.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\SpiderStrikeContext.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\SpiderStrikeRoot.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\StartCommand.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\TurretDoMoveCommand.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\StartSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\TurretDoMoveSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\UIButtonClickedSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\model\vo\TurretMoveVO.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\EnemyUIMediator.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\KeyboardControllerUIMediator.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\SuperControllerUIMediator.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\TurretUIMediator.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\VirtualControllerUIMediator.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\EnemyUI.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\IControllerUI.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\KeyboardControllerUI.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\SuperControllerUI.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\TurretUI.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\VirtualControllerUI.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />

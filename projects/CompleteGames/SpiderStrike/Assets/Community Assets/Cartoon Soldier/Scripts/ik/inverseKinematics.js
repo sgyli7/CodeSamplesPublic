@@ -1,5 +1,5 @@
-private var target : Vector3;
-private var elbowTarget : Vector3;
+var target : Vector3;
+var elbowTarget : Vector3;
 
 function CalculateIK(){
 	transform.LookAt(target, transform.position - elbowTarget);

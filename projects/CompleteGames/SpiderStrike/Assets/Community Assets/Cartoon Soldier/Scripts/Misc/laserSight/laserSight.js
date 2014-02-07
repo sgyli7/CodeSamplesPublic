@@ -1,6 +1,7 @@
 var laserLinePrefab : GameObject;
 var on : boolean;
 var disableRootCollider : boolean = true;
+var sentryGun : GameObject;
 
 private var laserPointTransform : Transform;
 private var laserPointOrigin : Transform;
@@ -18,8 +19,9 @@ function Update () {
 	var hit : RaycastHit;
 	var maxLength : float = 20.0;
 	if(disableRootCollider){
-		transform.root.collider.enabled = false;
+		sentryGun.collider.enabled = false;
 	}
+	var triggerChildrenColliderScript : triggerChildrenCollider;
 	if(Physics.Raycast(transform.position, transform.forward, hit) && on){
 		triggerChildrenColliderScript = hit.transform.root.GetComponent(triggerChildrenCollider);//Children collider property.
 		var reCheck : boolean; //Re-check if there's a hit for children collider.
@@ -51,7 +53,7 @@ function Update () {
 		laserPointTransform.GetComponent(laserPoint).on = false;
 	}
 	if(disableRootCollider){
-		transform.root.collider.enabled = true;
+		sentryGun.collider.enabled = true;
 	}
 	laserLineRate = maxLength * 0.5;
 	

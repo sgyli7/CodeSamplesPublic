@@ -1,8 +1,8 @@
 var life : float = 2.0;
+var velocity : Vector3;
 
 private var startTime : float;
 private var destroyTime : float;
-private var velocity : Vector3;
 private var gravity : float = 9.8;
 private var angle : float;
 private var startSturnSpeed : float;

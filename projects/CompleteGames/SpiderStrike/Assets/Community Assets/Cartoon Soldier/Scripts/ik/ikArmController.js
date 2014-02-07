@@ -1,7 +1,7 @@
 var target : Transform;
 var elbowTarget : Transform;
 
-private var inverseKinematicsScript : MonoBehaviour;
+private var inverseKinematicsScript : inverseKinematics;
 
 function Start(){
 	inverseKinematicsScript = GetComponent(inverseKinematics);

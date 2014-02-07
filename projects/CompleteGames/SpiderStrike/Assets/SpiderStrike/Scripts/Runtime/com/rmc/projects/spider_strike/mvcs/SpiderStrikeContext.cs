@@ -29,22 +29,22 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.bowling_strangeioc.mvc.controller.commands;
-using com.rmc.projects.bowling_strangeioc.mvc.controller.signals;
-using com.rmc.projects.bowling_strangeioc.mvc.model;
-using com.rmc.projects.bowling_strangeioc.mvc.view;
-using com.rmc.projects.bowling_strangeioc.mvc.view.ui;
-using com.rmc.projects.bowling_strangeioc.mvcs.view.ui;
 using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using com.rmc.projects.spider_strike.mvcs.controller.commands;
+using com.rmc.projects.spider_strike.mvcs.view.ui;
+using com.rmc.projects.spider_strike.mvcs.view;
+
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.spider_strike
+namespace com.rmc.projects.spider_strike.mvcs
 {
 	
 	//--------------------------------------
@@ -143,8 +143,8 @@ namespace com.rmc.projects.spider_strike
 			 * 
 			 * 
 			**/
-			injectionBinder.Bind<IGameStateModel>().To<GameStateModel>().ToSingleton();
-			injectionBinder.Bind<IGameScoreModel>().To<GameScoreModel>().ToSingleton();
+			//injectionBinder.Bind<IGameStateModel>().To<GameStateModel>().ToSingleton();
+			//injectionBinder.Bind<IGameScoreModel>().To<GameScoreModel>().ToSingleton();
 
 
 
@@ -153,10 +153,12 @@ namespace com.rmc.projects.spider_strike
 			 * 
 			 * 
 			**/
-			mediationBinder.Bind<BowlingBallUI>().To<BowlingBallUIMediator>();
-			mediationBinder.Bind<BowlingPinUI>().To<BowlingPinUIMediator>();
-			mediationBinder.Bind<UserInputUI>().To<UserInputUIMediator>();
-			mediationBinder.Bind<GUIUI>().To<GUIUIMediator>();
+			mediationBinder.Bind<TurretUI>().To<TurretUIMediator>();
+			mediationBinder.Bind<EnemyUI>().To<EnemyUIMediator>();
+			//
+			mediationBinder.Bind<VirtualControllerUI>().To<VirtualControllerUIMediator>();
+			mediationBinder.Bind<KeyboardControllerUI>().To<KeyboardControllerUIMediator>();
+			//mediationBinder.Bind<GUIUI>().To<GUIUIMediator>();
 
 
 			/**
@@ -168,18 +170,18 @@ namespace com.rmc.projects.spider_strike
 			commandBinder.Bind<StartSignal>().To<StartCommand>(); //TODO add once()
 			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>();//TODO add once()
 
+
 			//	2. (INJECTED SIGNALS - DIRECTLY OBSERVED)
-			injectionBinder.Bind<BowlingBallDoMoveSignal>().ToSingleton();
+			//injectionBinder.Bind<TurretMoveVO>().ToSingleton();
 
 			//	3. (PAIRS OF MAPPED/INJECTED SIGNALS)
-			commandBinder.Bind<InputModeChangeSignal>().To<InputModeChangeCommand>();
-			injectionBinder.Bind<InputModeChangedSignal>().ToSingleton(); 
+			commandBinder.Bind<TurretDoMoveSignal>().To<TurretDoMoveCommand>();
 			//
-			commandBinder.Bind<BowlingBallStateChangeSignal>().To<BowlingBallStateChangeCommand>();
-			injectionBinder.Bind<BowlingBallStateChangedSignal>().ToSingleton(); 
+			//commandBinder.Bind<BowlingBallStateChangeSignal>().To<BowlingBallStateChangeCommand>();
+			//injectionBinder.Bind<BowlingBallStateChangedSignal>().ToSingleton(); 
 			//
-			commandBinder.Bind<TotalPinsKnockedOverChangeSignal>().To<TotalPinsKnockedOverChangeCommand>();
-			injectionBinder.Bind<TotalPinsKnockedOverChangedSignal>().ToSingleton();
+			//commandBinder.Bind<TotalPinsKnockedOverChangeSignal>().To<TotalPinsKnockedOverChangeCommand>();
+			//injectionBinder.Bind<TotalPinsKnockedOverChangedSignal>().ToSingleton();
 
 
 			/**

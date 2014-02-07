@@ -15,10 +15,10 @@ function Update (){
 function SelectWeapon(index : int){
 	for (var i=0;i<transform.childCount;i++){
 		if (i == index){
-			transform.GetChild(i).gameObject.SetActiveRecursively(true);
+			transform.GetChild(i).gameObject.SetActive(true);
 		}
 		else{
-			transform.GetChild(i).gameObject.SetActiveRecursively(false);
+			transform.GetChild(i).gameObject.SetActive(false);
 		}
 	}
 }

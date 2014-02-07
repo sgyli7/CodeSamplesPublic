@@ -34,7 +34,7 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.spider_strike
+namespace com.rmc.projects.spider_strike.mvcs
 {
 	
 	//--------------------------------------
@@ -95,13 +95,8 @@ namespace com.rmc.projects.spider_strike
 		void Awake()
 		{
 
-			Debug.Log ("----------------------------");
-			//Debug.Log ("A. Before Context Creation: " + context);
-			//
 			context = new SpiderStrikeContext(this, true); //'true' means call mappings automatically, I think
 			context.Start ();
-			//
-			//Debug.Log ("B. After Context Creation: " + context);
 
 
 		}

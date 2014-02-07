@@ -2,9 +2,9 @@ var life : float = 0.5;
 var bulletSpeed : float = 1.0;
 var dustPrefab : GameObject;
 var bulletHolePrefab : GameObject;
+var velocity : Vector3;
 
 private var destroyTime : float;
-private var velocity : Vector3;
 private var gravity : float = 9.8;
 
 function Start(){
@@ -21,7 +21,7 @@ function Update () {
 	ray.direction = transform.forward;
 	var hit : RaycastHit;
 	if (Physics.Raycast(ray,hit,bulletSpeed*Time.deltaTime)){
-		triggerChildrenColliderScript = hit.transform.root.GetComponent(triggerChildrenCollider);
+		var triggerChildrenColliderScript = hit.transform.root.GetComponent(triggerChildrenCollider);
 		var reCheck : boolean; //Re-check if there's a hit for children collider.
 		var mainColliderHit : Collider = hit.collider; //Parent collider. (must be re enabled)
 		if(triggerChildrenColliderScript != null){ //Trigger children property. Enable children collider and disable root collider.
@@ -32,6 +32,8 @@ function Update () {
 			}
 			reCheck = Physics.Raycast(ray,hit,bulletSpeed*Time.deltaTime); //Recheck collision for children collider.
 		}
+		
+		var bulletMaterials : Material[];
 		if(reCheck || triggerChildrenColliderScript == null){ //If children collider or root collider are hit, process the bullet hit.
 			Destroy(gameObject);
 			var makeDust : boolean = true;
@@ -40,6 +42,7 @@ function Update () {
 			var extraPrefab : GameObject;
 			var holeSize : float = 1.0;
 			var differentBulletMaterialArray : Material[];
+			
 			if (bulletHolePropertyScript != null){ //Bullet hole property.
 				makeDust = bulletHolePropertyScript.dust;
 				makeHole = bulletHolePropertyScript.hole;
