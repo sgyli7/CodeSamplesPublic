@@ -29,6 +29,7 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 //--------------------------------------
 //  Namespace
@@ -39,14 +40,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum ButtonType
-	{
-		Reset,
-		Left,
-		Right,
-		Fire
-		
-	}
+
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -56,7 +50,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UIButtonClickedSignal : Signal<ButtonType>
+	public class TurretDoMoveSignal : Signal<TurretMoveVO>
 	{
 		
 		//--------------------------------------
@@ -85,13 +79,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public UIButtonClickedSignal( )
+		public TurretDoMoveSignal( )
 		{
-			//Debug.Log ("UIButtonClickedSignal.constructor()");
+			//Debug.Log ("TurretDoMoveSignal.constructor()");
 			
 		}
 		
-		~UIButtonClickedSignal()
+		~TurretDoMoveSignal()
 		{
 			
 		}
