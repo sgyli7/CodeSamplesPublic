@@ -82,7 +82,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		/// <value>The score changed signal.</value>
 		[Inject]
-		public ScoreChangeSignal scoreChangedSignal { get; set;}
+		public ScoreChangedSignal scoreChangedSignal { get; set;}
 
 		// PUBLIC
 		
@@ -102,6 +102,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRegister()
 		{
 
+			//Debug.Log ("HUD IS READY - WHY AFTER???");
 			turretHealthChangedSignal.AddListener (_onTurretHealthChangedSignal);
 			scoreChangedSignal.AddListener (_onScoreChangedSignal);
 			
@@ -149,7 +150,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onTurretHealthChangedSignal (float aNewValue_float)
 		{
-			view.setHealthText (aNewValue_float + " : Health");
+			view.setHealthText ("Health: " + aNewValue_float);
 
 		}
 
@@ -159,7 +160,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onScoreChangedSignal (float aNewValue_float)
 		{
-			view.setScoreText ("Score : " + aNewValue_float);
+			view.setScoreText ("Score: " + aNewValue_float);
 
 		}
 		

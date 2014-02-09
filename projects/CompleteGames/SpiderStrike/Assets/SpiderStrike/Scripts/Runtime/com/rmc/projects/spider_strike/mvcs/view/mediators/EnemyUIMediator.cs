@@ -119,6 +119,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public void Start ()
 		{
+						
+			/*
+			 * KLUGE: WE CALL BOTH IMMEDIATLY TO MAKE IT 'WALK'
+			 * 
+			 **/
+			view.doPlayAnimation (AnimationType.IDLE);
 			view.doPlayAnimation (AnimationType.WALK);
 
 		}
@@ -146,9 +152,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 					if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
 						view.doPlayAnimation (AnimationType.ATTACK);
-
-						//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
-						_doInflictDamage();
 					}
 				}
 
@@ -190,10 +193,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aAnimationType">A animation type.</param>
 		private void _onUIAnimationCompleteSignal (AnimationType aAnimationType)
 		{
-			Debug.Log ("AnimEnd: " + aAnimationType);
+			//Debug.Log ("AnimEnd: " + aAnimationType);
 			if (aAnimationType == AnimationType.DIE) {
 				enemyDiedSignal.Dispatch (view.gameObject);
+			} else if (aAnimationType == AnimationType.ATTACK) {
+				
+				//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
+				_doInflictDamage();
 			}
+
 		}
 	}
 }

@@ -216,7 +216,7 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\TurretHealthChangeCommand.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\EnemyDiedSignal.cs" />
-     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\RoundStartSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\RoundStartedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\ScoreChangeSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\ScoreChangedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\StartSignal.cs" />
@@ -226,6 +226,7 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\model\GameModel.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\model\IGameModel.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\model\data\LerpTarget.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\model\vo\RoundDataVO.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\model\vo\TurretMoveVO.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\model\vo\UIInputVO.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\EnemyManagerUIMediator.cs" />

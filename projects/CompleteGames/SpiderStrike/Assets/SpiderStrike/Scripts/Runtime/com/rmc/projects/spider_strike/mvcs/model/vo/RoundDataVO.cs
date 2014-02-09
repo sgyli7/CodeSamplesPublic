@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -34,19 +34,15 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using System.Collections.Generic;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.model.vo
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum MoveType
-	{
-		Left,
-		Right,
-		FiringStart,
-		FiringStop
-	}
 
 	//--------------------------------------
 	//  Class Attributes
@@ -56,43 +52,39 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretMoveVO 
+	public class RoundDataVO 
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		private MoveType _moveType;
-		public MoveType moveType { 
-			get
-			{
-				return _moveType;
-			}
-			set
-			{
-				_moveType = value;
-			}
-		}
-		
-		private float _amount_float;
-		public float amount {
-			get
-			{
-				return _amount_float;
-			}
-			set
-			{
-				_amount_float = value;
-			}
-		}
-		
 		
 		// PUBLIC
-		
+		/// <summary>
+		/// The current round_uint.
+		/// </summary>
+		public uint currentRound_uint;
+
+		/// <summary>
+		/// The total enemies to kill_uint.
+		/// </summary>
+		public uint enemiesTotalToCreate;
+
+		/// <summary>
+		/// The enemies created.
+		/// </summary>
+		public uint enemiesCreated;
+
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// Gets or sets the enemies.
+		/// </summary>
+		/// <value>The enemies.</value>
+		private List<GameObject> enemies;
+		
 		
 		// PRIVATE STATIC
 		
@@ -109,19 +101,15 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TurretMoveVO (MoveType aMoveType )
+		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint)
 		{
-			_moveType = aMoveType;
-			
-		}
-		public TurretMoveVO (MoveType aMoveType, float aAmount_float )
-		{
-			_moveType = aMoveType;
-			_amount_float = aAmount_float;
+			currentRound_uint 			= aCurrentRound_uint;
+			enemiesTotalToCreate 	= aTotalEnemiesToKill_uint;
+			//
 			
 		}
 		
-		~TurretMoveVO()
+		~RoundDataVO()
 		{
 			
 		}
@@ -139,6 +127,25 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
+		public void clearEnemies ()
+		{
+			enemies = new List<GameObject>();
+			enemiesCreated = 0;
+		}
+
+		public void addEnemy (GameObject aGameObject)
+		{
+			enemies.Add (aGameObject);
+			//keep this count so even when we remove enemies, 
+			//		we know the total 'ever' created in this round
+			enemiesCreated ++; 
+		}
+
+		public void removeEnemy (GameObject aGameObject)
+		{
+			enemies.Remove (aGameObject);
+		}
 	}
 }
 

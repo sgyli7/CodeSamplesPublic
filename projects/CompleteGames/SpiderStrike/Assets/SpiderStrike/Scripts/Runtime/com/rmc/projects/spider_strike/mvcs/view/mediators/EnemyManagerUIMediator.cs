@@ -37,6 +37,9 @@ using com.rmc.projects.spider_strike.mvcs.view.ui;
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.model;
+using System.Collections.Generic;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -73,7 +76,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		/// <value>The round start signal.</value>
 		[Inject]
-		public RoundStartSignal roundStartSignal {set; get;}
+		public RoundStartedSignal roundStartedSignal {set; get;}
 
 
 		/// <summary>
@@ -81,6 +84,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		[Inject]
 		public EnemyDiedSignal enemyDiedSignal {set; get;}
+
+		// GETTER / SETTER
+		/// <summary>
+		/// MODEL: The main game data
+		/// </summary>
+		[Inject]
+		public IGameModel iGameModel { get; set; } 
 		
 		// PUBLIC
 		
@@ -101,7 +111,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//view.init();
 			enemyDiedSignal.AddListener (_onEnemyDiedSignal);
-			roundStartSignal.AddListener (_onRoundStartSignal);
+			roundStartedSignal.AddListener (_onRoundStartedSignal);
 			
 		}
 		
@@ -111,7 +121,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRemove()
 		{
 			enemyDiedSignal.RemoveListener (_onEnemyDiedSignal);
-			roundStartSignal.RemoveListener (_onRoundStartSignal);
+			roundStartedSignal.RemoveListener (_onRoundStartedSignal);
 		}
 		
 		/// <summary>
@@ -150,10 +160,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <summary>
 		/// _ons the round start signal.
 		/// </summary>
-		/// <param name="aCurrentRound_uint">A current round_uint.</param>
-		private void _onRoundStartSignal (uint aCurrentRound_uint)
+		/// <param name="aRoundDataVO">A round data V.</param>
+		private void _onRoundStartedSignal (RoundDataVO aRoundDataVO)
 		{
-			view.doCreateSpider();
+			//
+			iGameModel.currentRoundDataVO.clearEnemies();
+
+			//
+			iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider() );
 
 		}
 
@@ -163,7 +177,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
 		private void _onEnemyDiedSignal (GameObject aEnemyThatDied_gameobject)
 		{
+
+			iGameModel.currentRoundDataVO.removeEnemy (aEnemyThatDied_gameobject);
 			Destroy (aEnemyThatDied_gameobject);
+
+
+			//
+			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
+			if (iGameModel.currentRoundDataVO.enemiesCreated < iGameModel.currentRoundDataVO.enemiesTotalToCreate) {
+				iGameModel.currentRoundDataVO.addEnemy (	view.doCreateSpider() 	);
+			} else {
+
+				//DONE
+				Debug.Log ("done game");
+			}
 		}
 
 

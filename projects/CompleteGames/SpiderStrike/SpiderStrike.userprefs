@@ -1,8 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyManagerUIMediator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/EnemyManagerUI.cs">
     <Files>
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyManagerUIMediator.cs" Line="151" Column="7" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/model/vo/RoundDataVO.cs" Line="141" Column="8" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyManagerUIMediator.cs" Line="186" Column="41" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/controller/commands/AllViewsInitializedCommand.cs" Line="95" Column="21" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/model/GameModel.cs" Line="127" Column="55" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyUIMediator.cs" Line="104" Column="16" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/EnemyManagerUI.cs" Line="181" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

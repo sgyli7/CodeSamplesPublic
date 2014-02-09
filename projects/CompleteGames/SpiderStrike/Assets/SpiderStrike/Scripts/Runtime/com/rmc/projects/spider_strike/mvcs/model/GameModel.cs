@@ -34,6 +34,7 @@
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.model
@@ -112,19 +113,27 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 
 		/// <summary>
-		/// The _current level_uint.
+		/// The _current round data V.
 		/// </summary>
-		private uint _currentLevel_uint;
-		public uint currentLevel
+		private RoundDataVO _currentRoundDataVO;
+		public RoundDataVO currentRoundDataVO
 		{ 
 			get{
-				return _currentLevel_uint;
+				return _currentRoundDataVO;
 			}
 			set
 			{
-				_currentLevel_uint = value;
+				_currentRoundDataVO = value;
+				roundStartedSignal.Dispatch (_currentRoundDataVO);
 			}
 		}
+
+		/// <summary>
+		/// Gets or sets the round started signal.
+		/// </summary>
+		/// <value>The round started signal.</value>
+		[Inject]
+		public RoundStartedSignal roundStartedSignal { get; set;}
 
 
 		// PUBLIC
@@ -132,6 +141,11 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _current level_uint.
+		/// </summary>
+		private uint _currentLevel_uint;
+
 		
 		// PRIVATE STATIC
 		
@@ -153,7 +167,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		///</summary>
 		public GameModel( )
 		{
-			Debug.Log ("GameModel.constructor()");
+			//Debug.Log ("GameModel.constructor()");
 			
 		}
 		
@@ -174,9 +188,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		[PostConstruct]
 		public void postConstruct ()
 		{
-			
-			Debug.Log ("GameScoreModel.postConstruct()");
-			doResetModel();
+			//Debug.Log ("POST CONST");
 		}
 
 		/// <summary>
@@ -190,10 +202,23 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		/// </summary>
 		public void doResetModel ()
 		{
-			turretHealth = 100;
-			score = 200;
-			_currentLevel_uint = 0;
-			Debug.Log ("GameScoreModel.doResetModel()");
+
+			turretHealth 		= 100;
+			score 				= 0;
+			_currentLevel_uint 	= 0;
+			//Debug.Log ("MODEL RESET FINISHED");
+		}
+
+
+		/// <summary>
+		/// Starts the next round.
+		/// </summary>
+		public void startNextRound ()
+		{
+			_currentLevel_uint++;
+			currentRoundDataVO = new RoundDataVO (_currentLevel_uint,_currentLevel_uint*3);
+
+
 		}
 
 

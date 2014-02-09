@@ -33,6 +33,10 @@ using strange.extensions.mediation.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using System.Collections;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -86,6 +90,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public GameObject attackSphereGameObject;
 
 
+		/// <summary>
+		/// Gets or sets all views initialized signal.
+		/// </summary>
+		/// <value>All views initialized signal.</value>
+		[Inject]
+		public AllViewsInitializedSignal allViewsInitializedSignal {get; set;}
+
+
 
 		// PUBLIC STATIC
 		
@@ -103,6 +115,29 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			base.Start();
+
+			StartCoroutine ( Wait_ThenAllViewsInitializedSignal ());
+
+
+		}
+
+
+		/// <summary>
+		/// Wait_s the then all views initialized signal.
+		/// </summary>
+		/// <returns>The then all views initialized signal.</returns>
+		public IEnumerator Wait_ThenAllViewsInitializedSignal ()
+		{
+
+			yield return new  WaitForEndOfFrame ();
+			/*
+			 * TODO: WHAT IS THE BEST WAY TO NOTIFY THE MVCS SYSTEM THAT THE VIEWS ARE READY?
+			 * 
+			 * THIS IS A FULLY FUNCTIONAL WORKAROUND
+			 * 
+			 * 
+			 **/
+			allViewsInitializedSignal.Dispatch ();
 
 		}
 		
@@ -134,7 +169,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// Dos the create spider.
 		/// </summary>
-		public void doCreateSpider()
+		public GameObject doCreateSpider()
 		{
 
 			//POSITION
@@ -159,13 +194,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			spider_gameobject.transform.parent = enemyParentGameObject.transform;
 
 			//TODO: PACK THIS INTO AN init() call?
-			spider_gameobject.GetComponent<EnemyUI>().target_gameObject = targetGameObject;
-			spider_gameobject.GetComponent<EnemyUI>().attackRadius 		= attackRadius_float;
-			//spider_gameobject.GetComponent<EnemyUI>().doPlayAnimation (AnimationType.WALK);
+			spider_gameobject.GetComponent<EnemyUI>().setParameters (targetGameObject, attackRadius_float, 11, 3);
 
 			//TODO: ENSURE A SPIDER IS NOT SPAWNED ON TOP OF AN OTHER ONE
 			//TODO: ENSURE SPIDERS COME FROM 'ALL AROUND' WITHOUT 'REPEATING TOO MUCH'
 
+
+			//
+			return spider_gameobject;
 		}
 		
 		// PRIVATE

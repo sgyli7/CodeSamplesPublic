@@ -135,12 +135,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		override protected void Start () 
 		{
 			base.Start();
-			turretSpinning_lerptarget 		= new LerpTarget (0, 0, 10, 2f);
-			turretFiringAngle_lerptarget	= new LerpTarget (0, 0, 0, 5f);
-			Debug.Log ("turret start");
 		}
 
-		
+		///<summary>
+		///	Use this for initialization
+		///</summary>
+		public void init () 
+		{
+			turretSpinning_lerptarget 		= new LerpTarget (0, 0, 10, 2f);
+			turretFiringAngle_lerptarget	= new LerpTarget (0, 0, 0, 5f);
+		}
+
 		///<summary>
 		///	Called once per frame
 		///</summary>

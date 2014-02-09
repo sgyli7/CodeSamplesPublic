@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -70,13 +70,6 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		public IGameModel iGameModel { get; set; } 
 
 
-		/// <summary>
-		/// Gets or sets the round start signal.
-		/// </summary>
-		/// <value>The round start signal.</value>
-		[Inject]
-		public RoundStartSignal roundStartSignal { get; set; }
-
 		// PUBLIC
 		
 		// PUBLIC STATIC
@@ -93,13 +86,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("4. AllViewsInitializedCommand.Execute()");
+			//Debug.Log ("4. AllViewsInitializedCommand.Execute()");
 
 			//RESET MODEL(S)
 			iGameModel.doResetModel();
 
 			//
-			roundStartSignal.Dispatch (++iGameModel.currentLevel);
+			iGameModel.startNextRound();
 
 
 

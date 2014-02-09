@@ -33,6 +33,9 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.model
 {
 	
@@ -67,12 +70,11 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		/// <value>The score.</value>
 		float score { set; get;}
 
-
 		/// <summary>
-		/// Gets or sets the current level.
+		/// Gets or sets the current round data V.
 		/// </summary>
-		/// <value>The current level.</value>
-		uint currentLevel { set; get;}
+		/// <value>The current round data V.</value>
+		RoundDataVO currentRoundDataVO { set; get;}
 
 
 
@@ -84,6 +86,10 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		/// </summary>
 		void doResetModel();
 		
+		/// <summary>
+		/// Starts the next round.
+		/// </summary>
+		void startNextRound ();
 		
 	}
 }

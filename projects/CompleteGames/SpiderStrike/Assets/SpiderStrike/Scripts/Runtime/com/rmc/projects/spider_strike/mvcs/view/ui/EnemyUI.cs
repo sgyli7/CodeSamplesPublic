@@ -81,16 +81,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public UIAnimationCompleteSignal uiAnimationCompleteSignal {set; get;}
 
 
-		/// <summary>
-		/// The target_game object.
-		/// </summary>
-		public GameObject target_gameObject;
-
-
-		/// <summary>
-		/// The attack radius.
-		/// </summary>
-		public float attackRadius = 3;
 
 
 		/// <summary>
@@ -104,8 +94,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The LAYE r_ NAM.
 		/// </summary>
 		public static string LAYER_NAME = "EnemyLayer";
-		
+
+
+
 		// PRIVATE
+
+
 		/// <summary>
 		/// The animation.
 		/// </summary>
@@ -118,6 +112,23 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 		
+		/// <summary>
+		/// The target_game object.
+		/// </summary>
+		private GameObject _target_gameObject;
+		
+		
+		/// <summary>
+		/// The attack radius.
+		/// NOTE: SET FROM OUTSIDE
+		/// </summary>
+		private float _attackRadius;
+
+		/// <summary>
+		/// The _move speed_float.
+		/// </summary>
+		float _moveSpeed_float;
+
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -132,6 +143,21 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			uiAnimationCompleteSignal = new UIAnimationCompleteSignal();
 		}
 
+		/// <summary>
+		/// Sets the parameters.
+		/// </summary>
+		/// <param name="aTargetGameObject">A target game object.</param>
+		/// <param name="aAttackRadius_float">A attack radius_float.</param>
+		/// <param name="aHealth_float">A health_float.</param>
+		public void setParameters (GameObject aTargetGameObject, float aAttackRadius_float, float aHealth_float, float aMoveSpeed_float)
+		{
+			_target_gameObject 		= aTargetGameObject;
+			_attackRadius			= aAttackRadius_float;
+			_healthCurrent_float	= aHealth_float;
+			_moveSpeed_float		= aMoveSpeed_float;
+
+
+		}
 
 		///<summary>
 		///	Use this for initialization
@@ -141,18 +167,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			base.Start();
 			animation = GetComponentInChildren<Animation>();
-			
-			//NO ANIMATION -- WAIT FOR MEDIATOR TO PLAY THINGS
-			doPlayAnimation (AnimationType.IDLE);
-			
-			
-			//SHOW ALL ANIMATIONS AVAILABLE
-			//Debug.Log ("-----");
-			foreach (AnimationState clip in animation) {
-				// do initialisation or something on clip
-				//Debug.Log ("clip: " + clip.clip.name);
-			}
 
+			
 			
 		}
 		
@@ -185,7 +201,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <returns><c>true</c>, if at attacking distance was _ised, <c>false</c> otherwise.</returns>
 		public bool isAtAttackingDistance ()
 		{
-			return Vector3.Distance (transform.position, target_gameObject.transform.position) < attackRadius;
+			return Vector3.Distance (transform.position, _target_gameObject.transform.position) < _attackRadius;
 		}
 		
 		/// <summary>
@@ -198,7 +214,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			transform.rotation = Quaternion.Slerp
 				(
 					transform.rotation,
-					Quaternion.LookRotation(target_gameObject.transform.position - transform.position),
+					Quaternion.LookRotation(_target_gameObject.transform.position - transform.position),
 					rotationSpeed
 				);
 		}
@@ -208,9 +224,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void doMoveToTarget ()
 		{
-			float moveSpeed = 1.0f;
-			
-			transform.position += transform.forward * moveSpeed * Time.deltaTime;
+			transform.position += transform.forward * _moveSpeed_float * Time.deltaTime;
 			
 		}
 
@@ -229,7 +243,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 					//_setAnimationIfNotYetSetTo ("walk", WrapMode.ClampForever);
 					break;
 				case AnimationType.ATTACK:
-					_setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {"attack1","attack2"}), WrapMode.Default);
+					_setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {"attack1","attack2"}), WrapMode.Loop);
 					break;
 				case AnimationType.TAKE_HIT:
 					_setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {"hit1","hit2"}), WrapMode.Default);
@@ -283,6 +297,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				animation.clip.name = aAnimationName_string;
 
 				//NOT SURE WHICH TO SET HERE
+				animation.wrapMode = aWrapMode;
 				animation.clip.wrapMode = aWrapMode;
 
 				//
@@ -290,7 +305,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				animation.Play(animation.clip.name);
 
 				//
-				Debug.Log ("AnimStart: " + animationType +  " dur: " + animation.clip.length);
+				//Debug.Log ("AnimStart: " + animationType +  " dur: " + animation.clip.length);
 
 				//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
 				//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
@@ -307,7 +322,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aString_array">A string_array.</param>
 		private string _getRandomStringFrom (string[] aString_array)
 		{
-			return aString_array[Random.Range (0, aString_array.Length-1)];
+			return aString_array[Random.Range (0, aString_array.Length)];
 		}
 
 
@@ -328,6 +343,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void onAnimationComplete ()
 		{
+			//Debug.Log ("ok: " + animation.clip.wrapMode);
 			if (animation.clip.wrapMode != WrapMode.Loop) {
 				CancelInvoke("onAnimationComplete");
 			}

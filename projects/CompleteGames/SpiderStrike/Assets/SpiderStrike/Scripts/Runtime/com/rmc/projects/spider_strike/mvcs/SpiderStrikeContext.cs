@@ -129,7 +129,6 @@ namespace com.rmc.projects.spider_strike.mvcs
 			base.Start();
 			StartSignal startSignal = (StartSignal)injectionBinder.GetInstance<StartSignal>();
 			startSignal.Dispatch();
-			//Debug.Log ("conxt start" + contextView);
 			return this;
 		}
 
@@ -178,7 +177,7 @@ namespace com.rmc.projects.spider_strike.mvcs
 
 
 			//	2. (INJECTED SIGNALS - DIRECTLY OBSERVED)
-			injectionBinder.Bind<RoundStartSignal>().ToSingleton();
+			injectionBinder.Bind<RoundStartedSignal>().ToSingleton();
 
 			//	3. (PAIRS OF MAPPED/INJECTED SIGNALS)
 			//

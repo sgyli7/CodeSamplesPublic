@@ -94,7 +94,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRegister()
 		{
-			
+
+			view.init();
 			turretDoMoveSignal.AddListener (_onTurretDoMoveSignal);
 			
 			

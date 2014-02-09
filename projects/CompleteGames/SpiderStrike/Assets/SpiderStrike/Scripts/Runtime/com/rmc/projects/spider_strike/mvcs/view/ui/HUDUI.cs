@@ -96,7 +96,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 			healthGUIText 	= healthGUIText_gameobject.GetComponent<GUIText>();
 			scoreGUIText 	= scoreGUIText_gameObject.GetComponent<GUIText>();
-			
+			//Debug.Log ("HUD START");
 		}
 		
 		

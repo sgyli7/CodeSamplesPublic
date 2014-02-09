@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -29,6 +29,7 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 //--------------------------------------
 //  Namespace
@@ -49,7 +50,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class RoundStartSignal : Signal<uint>
+	public class RoundStartedSignal : Signal<RoundDataVO>
 	{
 		
 		//--------------------------------------
@@ -78,13 +79,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public RoundStartSignal( )
+		public RoundStartedSignal( )
 		{
 			//Debug.Log ("RoundStartSignal.constructor()");
 			
 		}
 		
-		~RoundStartSignal()
+		~RoundStartedSignal()
 		{
 			
 		}
