@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -29,24 +29,16 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.spider_strike.mvcs.model.vo
+namespace com.rmc.projects.spider_strike.mvcs.model.data
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum MoveType
-	{
-		Left,
-		Right,
-		FiringStart,
-		FiringStop
-	}
 
 	//--------------------------------------
 	//  Class Attributes
@@ -56,39 +48,23 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretMoveVO 
+	/// <summary>
+	/// If you want to smoothly move from current value to target value (and back to a reset value)
+	/// then this is a great class. Currently works for float only.
+	/// </summary>
+	public class LerpTarget
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		private MoveType _moveType;
-		public MoveType moveType { 
-			get
-			{
-				return _moveType;
-			}
-			set
-			{
-				_moveType = value;
-			}
-		}
-		
-		private float _amount_float;
-		public float amount {
-			get
-			{
-				return _amount_float;
-			}
-			set
-			{
-				_amount_float = value;
-			}
-		}
-		
 		
 		// PUBLIC
+		public float current;
+		public float resetValue;
+		public float targetValue;
+		public float acceleration;
 		
 		// PUBLIC STATIC
 		
@@ -109,27 +85,53 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TurretMoveVO (MoveType aMoveType )
+		public LerpTarget (float aCurrent_float, float aMinimum_float, float aMaximum_float, float aAcceleration_float)
 		{
-			_moveType = aMoveType;
-			
-		}
-		public TurretMoveVO (MoveType aMoveType, float aAmount_float )
-		{
-			_moveType = aMoveType;
-			_amount_float = aAmount_float;
+			current 		= aCurrent_float;
+			resetValue 	= aMinimum_float;
+			targetValue 	= aMaximum_float;
+			acceleration  	= aAcceleration_float;
 			
 		}
 		
-		~TurretMoveVO()
+		~LerpTarget()
 		{
 			
 		}
 		
 		// PUBLIC
+		/// <summary>
+		/// Lerps the current to target.
+		/// </summary>
+		/// <param name="deltaTime">Delta time.</param>
+		public void lerpCurrentToTarget (float aDeltaTime_float)
+		{
+			_lerpCurrentTo (targetValue, aDeltaTime_float);
+		}
+
+		/// <summary>
+		/// Lerps the current to reset.
+		/// </summary>
+		/// <param name="deltaTime">Delta time.</param>
+		public void lerpCurrentToReset (float aDeltaTime_float)
+		{
+			_lerpCurrentTo (resetValue, aDeltaTime_float);
+		}
 		
 		// PRIVATE
-		
+		/// <summary>
+		/// _lerps the current to.
+		/// </summary>
+		/// <param name="aDeltaTime_float">A delta time_float.</param>
+		/// <param name="aNextValue">A next value.</param>
+		private void _lerpCurrentTo ( float aNextValue, float aDeltaTime_float)
+		{
+			current =  Mathf.Lerp	(
+										current,
+										aNextValue,
+										aDeltaTime_float*acceleration
+									);
+		}
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE
@@ -139,6 +141,13 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
+
+
+
+
+
+
 	}
 }
 

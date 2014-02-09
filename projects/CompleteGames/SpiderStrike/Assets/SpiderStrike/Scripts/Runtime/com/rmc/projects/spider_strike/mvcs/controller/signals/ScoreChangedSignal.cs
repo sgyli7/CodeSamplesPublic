@@ -49,7 +49,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class ScoreChangeSignal : Signal<float>
+	public class ScoreChangedSignal : Signal<float>
 	{
 		
 		//--------------------------------------
@@ -78,13 +78,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public ScoreChangeSignal( )
+		public ScoreChangedSignal( )
 		{
 			//Debug.Log ("ScoreChangedSignal.constructor()");
 			
 		}
 		
-		~ScoreChangeSignal()
+		~ScoreChangedSignal()
 		{
 			
 		}

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -35,6 +35,7 @@ using strange.extensions.signal.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -115,6 +116,27 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _is firing_boolean.
+		/// </summary>
+		bool _isCurrentlyFiring_boolean = true;
+
+		/// <summary>
+		/// _dos the set is firing.
+		/// </summary>
+		/// <param name="aIsFiring_boolean">If set to <c>true</c> a is firing_boolean.</param>
+		private void _doSetIsCurrentlyFiring (bool aIsCurrentlyFiring_boolean) 
+		{
+			if (_isCurrentlyFiring_boolean != aIsCurrentlyFiring_boolean) {
+				_isCurrentlyFiring_boolean = aIsCurrentlyFiring_boolean;
+				if (_isCurrentlyFiring_boolean) {
+					_doUpdateUIInput (KeyCode.Space, UIInputEventType.Down);
+				} else {
+					_doUpdateUIInput (KeyCode.Space, UIInputEventType.Up);
+				}
+			}
+			
+		}
 		
 		// PRIVATE STATIC
 		
@@ -138,24 +160,31 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			//RESET
 			if (GUI.Button (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
-			    _doPressButton (ButtonType.Reset);
+				_doUpdateUIInput (KeyCode.Return, UIInputEventType.Down);
 			}
 
 			//LEFT
 			if (GUI.Button (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Left")) {
-			    _doPressButton (ButtonType.Left);
+				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.Down);
 			}
 
 			//RIGHT
 			if (GUI.Button (new Rect (_SCREEN_MARGIN + _SCREEN_MARGIN + _BUTTON_WIDTH, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Right")) {
-			    _doPressButton (ButtonType.Right);
+				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.Down);
 			}
 
 			//FIRE
-			if( GUI.Button (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Fire")) {
-			    _doPressButton (ButtonType.Fire);
+			if( GUI.RepeatButton (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Fire")) {
+				_doSetIsCurrentlyFiring (true);
+			} else if (_isCurrentlyFiring_boolean && Event.current.type == EventType.repaint) { 
+				_doSetIsCurrentlyFiring (false);
+
 			}
+
+
 		}
+
+
 	}
 }
 

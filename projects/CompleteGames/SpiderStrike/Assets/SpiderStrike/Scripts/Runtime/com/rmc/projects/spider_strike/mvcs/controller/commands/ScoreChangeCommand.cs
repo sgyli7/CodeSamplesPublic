@@ -53,7 +53,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class ScoreChangedCommand : Command
+	public class ScoreChangeCommand : Command
 	{
 		
 		//--------------------------------------
@@ -92,9 +92,9 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		public override void Execute()
 		{
 			//
-			//Debug.Log ("ScoreChangedCommand.cs.Execute()" + changeAmount);
+			Debug.Log ("ScoreChangeCommand.cs.Execute()" + changeAmount);
 
-			iGameModel.score = iGameModel.score - changeAmount;
+			iGameModel.score = iGameModel.score + changeAmount;
 			
 
 			

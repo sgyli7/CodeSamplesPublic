@@ -274,6 +274,7 @@ namespace strange.extensions.context.impl
 		public override void Launch()
 		{
 			dispatcher.Dispatch(ContextEvent.START);
+			Debug.Log ("Launch");
 		}
 		
 		/// Gets an instance of the provided generic type.

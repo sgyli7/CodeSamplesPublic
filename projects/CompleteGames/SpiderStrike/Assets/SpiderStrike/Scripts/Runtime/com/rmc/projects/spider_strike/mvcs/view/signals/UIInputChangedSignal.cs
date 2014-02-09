@@ -29,14 +29,14 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
-namespace com.rmc.projects.spider_strike.mvcs.controller.signals
+namespace com.rmc.projects.spider_strike.mvcs.view.signals
 {
 	
 	//--------------------------------------

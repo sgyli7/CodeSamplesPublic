@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,11 +28,6 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using UnityEngine;
-using com.rmc.projects.bowling_strangeioc.mvc.controller.signals;
-using com.rmc.projects.bowling_strangeioc.mvc.model;
-using com.rmc.projects.bowling_strangeioc.mvc.model.vo;
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
 
@@ -40,6 +35,10 @@ using com.rmc.projects.spider_strike.mvcs.view.ui;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using UnityEngine;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -71,11 +70,19 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public EnemyUI view 	{ get; set;}
 
 		/// <summary>
-		/// Gets or sets the turret do move signal.
+		/// Gets or sets the turret health change signal.
 		/// </summary>
-		/// <value>The turret do move signal.</value>
-		//[Inject]
-		//public TurretDoMoveSignal turretDoMoveSignal 		{ get; set;}
+		/// <value>The turret health change signal.</value>
+		[Inject]
+		public TurretHealthChangeSignal turretHealthChangeSignal 		{ get; set;}
+
+		
+		
+		/// <summary>
+		/// The enemy died signal.
+		/// </summary>
+		[Inject]
+		public EnemyDiedSignal enemyDiedSignal {set; get;}
 
 		// PUBLIC
 
@@ -94,10 +101,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRegister()
 		{
-
-			//turretDoMoveSignal.AddListener (onInputModeChangedSignal);
-
-
+			view.init();
+			view.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
 
 		}
 
@@ -106,9 +111,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRemove()
 		{
-			//turretDoMoveSignal.RemoveListener (onInputModeChangedSignal);
+			view.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
 		}
 
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public void Start ()
+		{
+			view.doPlayAnimation (AnimationType.WALK);
+
+		}
 
 		/// <summary>
 		/// Update this instance.
@@ -116,14 +129,51 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public void Update()
 		{
 
+			//*************************************************
+			//******* MIGRATE THIS LOGIC TO MEDIATOR **********
+			//*************************************************
+			//************* SO, USE PUBLIC METHODS HERE  ******
+			//*************************************************
+			if (view.animationType == AnimationType.WALK) {
+
+				//
+				if (!view.isAtAttackingDistance()) {
+
+					view.doFaceTarget();
+					view.doMoveToTarget();
+
+				} else {
+
+					if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
+						view.doPlayAnimation (AnimationType.ATTACK);
+
+						//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
+						_doInflictDamage();
+					}
+				}
+
+			}
+			//*************************************************
+			//*************************************************
+			//*************************************************
+			
+
 
 		}
-
 		
 		//	PUBLIC
 		
 		
 		// PRIVATE
+		/// <summary>
+		/// _dos the inflict damage.
+		/// </summary>
+		private void _doInflictDamage ()
+		{
+			turretHealthChangeSignal.Dispatch (-1f);
+
+
+		}
 
 		// PRIVATE STATIC
 		
@@ -134,7 +184,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-
+		/// <summary>
+		/// _ons the user interface animation complete signal.
+		/// </summary>
+		/// <param name="aAnimationType">A animation type.</param>
+		private void _onUIAnimationCompleteSignal (AnimationType aAnimationType)
+		{
+			Debug.Log ("AnimEnd: " + aAnimationType);
+			if (aAnimationType == AnimationType.DIE) {
+				enemyDiedSignal.Dispatch (view.gameObject);
+			}
+		}
 	}
 }
 

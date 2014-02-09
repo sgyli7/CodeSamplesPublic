@@ -92,6 +92,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		// PRIVATE
 		
 		// PRIVATE STATIC
+		/// <summary>
+		/// Spin amount per click
+		/// </summary>
+		private const float _TURRET_ROTATION_PER_CLICK = 30;
 		
 		//--------------------------------------
 		//  Methods
@@ -102,7 +106,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRegister()
 		{
 			view.init();
-			view.uiButtonClickedSignal.AddListener (_onUIButtonClickedSignal);
+			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
 			
 		}
 		
@@ -111,7 +115,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRemove()
 		{
-			view.uiButtonClickedSignal.RemoveListener (_onUIButtonClickedSignal);
+			view.uiInputChangedSignal.RemoveListener (_onUIInputChangedSignal);
 		}
 		
 		
@@ -155,29 +159,48 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// _ons the turret do move signal.
+		/// _ons the user interface input signal.
 		/// </summary>
-		private void _onUIButtonClickedSignal (ButtonType aButtonType)
+		/// <param name="aUIInputType">A user interface input type.</param>
+		private void _onUIInputChangedSignal (UIInputVO aUIInputVO)
 		{
-			
-			switch (aButtonType) {
-			case ButtonType.Left:
-				turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.Left, 10));
-				break;
-			case ButtonType.Right:
-				turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.Right, 10));
-				break;
-			case ButtonType.Fire:
-				turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.Fire));
-				break;
-			case ButtonType.Reset:
-				_doResetGame();
-				break;
-			default:
-				#pragma warning disable 0162
-				throw new SwitchStatementException();
-				break;
-				#pragma warning restore 0162
+
+
+
+			if (aUIInputVO.uiInputEventType == UIInputEventType.Down) {
+
+
+				//KEYDOWN
+				switch (aUIInputVO.keyCode) {
+					case KeyCode.LeftArrow:
+						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.Left, _TURRET_ROTATION_PER_CLICK));
+						break;
+					case KeyCode.RightArrow:
+						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.Right, _TURRET_ROTATION_PER_CLICK));
+						break;
+					case KeyCode.Space:
+						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.FiringStart));
+						break;
+					case KeyCode.Return:
+						_doResetGame();
+						break;
+					default:
+						#pragma warning disable 0162
+						throw new SwitchStatementException();
+						break;
+						#pragma warning restore 0162
+				}
+
+			} else {
+
+				//KEYDOWN
+				switch (aUIInputVO.keyCode) {
+					case KeyCode.Space:
+						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.FiringStop));
+						break;
+				}
+
+
 			}
 			
 			

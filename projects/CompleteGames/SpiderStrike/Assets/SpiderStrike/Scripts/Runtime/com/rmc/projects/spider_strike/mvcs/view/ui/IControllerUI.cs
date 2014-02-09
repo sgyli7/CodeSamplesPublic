@@ -34,6 +34,7 @@ using strange.extensions.mediation.api;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using com.rmc.projects.spider_strike.mvcs.view.signals;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -53,10 +54,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//--------------------------------------
 		// GETTER / SETTER
 		/// <summary>
-		/// Gets or sets the user interface button clicked signal.
+		/// Gets or sets the user interface input changed signal.
 		/// </summary>
-		/// <value>The user interface button clicked signal.</value>
-		UIButtonClickedSignal uiButtonClickedSignal { get; set;}
+		/// <value>The user interface input changed signal.</value>
+		UIInputChangedSignal uiInputChangedSignal { get; set;}
 
 
 		//--------------------------------------

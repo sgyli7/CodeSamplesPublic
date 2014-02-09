@@ -29,11 +29,13 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using UnityEngine;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 {
 	
@@ -50,7 +52,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretDoMoveSignal : Signal<TurretMoveVO>
+	public class EnemyDiedSignal : Signal<GameObject>
 	{
 		
 		//--------------------------------------
@@ -79,13 +81,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TurretDoMoveSignal( )
+		public EnemyDiedSignal( )
 		{
-			//Debug.Log ("TurretDoMoveSignal.constructor()");
+			//Debug.Log ("EnemyDiedSignal.constructor()");
 			
 		}
 		
-		~TurretDoMoveSignal()
+		~EnemyDiedSignal()
 		{
 			
 		}

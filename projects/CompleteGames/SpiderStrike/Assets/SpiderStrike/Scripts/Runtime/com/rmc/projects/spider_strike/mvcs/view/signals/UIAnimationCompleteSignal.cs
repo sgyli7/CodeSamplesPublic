@@ -34,6 +34,7 @@ using com.rmc.projects.spider_strike.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.view.ui;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.signals
@@ -51,7 +52,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UIInputChangedSignal : Signal<UIInputVO>
+	public class UIAnimationCompleteSignal : Signal<AnimationType>
 	{
 		
 		//--------------------------------------
@@ -80,13 +81,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public UIInputChangedSignal( )
+		public UIAnimationCompleteSignal( )
 		{
-			//Debug.Log ("UIInputChangedSignal.constructor()");
+			//Debug.Log ("UIAnimationCompleteSignal.constructor()");
 			
 		}
 		
-		~UIInputChangedSignal()
+		~UIAnimationCompleteSignal()
 		{
 			
 		}

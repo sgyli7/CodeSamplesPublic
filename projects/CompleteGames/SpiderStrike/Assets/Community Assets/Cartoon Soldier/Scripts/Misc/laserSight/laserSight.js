@@ -11,7 +11,7 @@ private var positionBuffer : float = 2.0;//Between the ends.
 
 function Start(){
 	on = true;
-	laserPointTransform = transform.Find("laserPoint");
+	laserPointTransform = transform.Find("TurretTargetingLight");
 	laserPointOrigin = transform.Find("laserPointOrigin");
 }
 

@@ -34,6 +34,7 @@ using strange.extensions.command.impl;
 //  Namespace
 //--------------------------------------
 using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.controller.commands
@@ -52,19 +53,27 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class InflictDamageOnTurretCommand : Command
+	public class TurretHealthChangeCommand : Command
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+
+		/// <summary>
+		/// MODEL: The main game data
+		/// </summary>
+		[Inject]
+		public IGameModel iGameModel { get; set; } 
+
+
 		/// <summary>
 		/// Gets or sets the damage amount.
 		/// </summary>
 		/// <value>The damage amount.</value>
 		[Inject]
-		public float damageAmount {get;set;}
+		public float changeAmount {get;set;}
 		
 		// PUBLIC
 		
@@ -83,9 +92,9 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		public override void Execute()
 		{
 			//
-			Debug.Log ("InflictDamageOnTurretCommand.cs.Execute()" + damageAmount);
+			//Debug.Log ("TurretHealthChangeCommand.cs.Execute()" + damageAmount);
 
-
+			iGameModel.turretHealth = iGameModel.turretHealth + changeAmount;
 			
 
 			

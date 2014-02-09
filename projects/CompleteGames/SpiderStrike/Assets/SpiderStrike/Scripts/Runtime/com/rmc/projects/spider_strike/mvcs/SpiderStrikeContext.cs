@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -33,11 +33,11 @@ using strange.extensions.command.api;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using com.rmc.projects.spider_strike.mvcs.controller.commands;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
 using com.rmc.projects.spider_strike.mvcs.view;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 
@@ -129,9 +129,10 @@ namespace com.rmc.projects.spider_strike.mvcs
 			base.Start();
 			StartSignal startSignal = (StartSignal)injectionBinder.GetInstance<StartSignal>();
 			startSignal.Dispatch();
+			//Debug.Log ("conxt start" + contextView);
 			return this;
 		}
-		
+
 		
 		/// <summary>
 		/// Maps the bindings.
@@ -143,7 +144,7 @@ namespace com.rmc.projects.spider_strike.mvcs
 			 * 
 			 * 
 			**/
-			//injectionBinder.Bind<IGameStateModel>().To<GameStateModel>().ToSingleton();
+			injectionBinder.Bind<IGameModel>().To<GameModel>().ToSingleton();
 			//injectionBinder.Bind<IGameScoreModel>().To<GameScoreModel>().ToSingleton();
 
 
@@ -158,7 +159,10 @@ namespace com.rmc.projects.spider_strike.mvcs
 			//
 			mediationBinder.Bind<VirtualControllerUI>().To<VirtualControllerUIMediator>();
 			mediationBinder.Bind<KeyboardControllerUI>().To<KeyboardControllerUIMediator>();
-			//mediationBinder.Bind<GUIUI>().To<GUIUIMediator>();
+			//
+			mediationBinder.Bind<EnemyManagerUI>().To<EnemyManagerUIMediator>();
+			//
+			mediationBinder.Bind<HUDUI>().To<HUDUIMediator>();
 
 
 			/**
@@ -169,20 +173,20 @@ namespace com.rmc.projects.spider_strike.mvcs
 			//	1. (MAPPED COMMANDS) 
 			commandBinder.Bind<StartSignal>().To<StartCommand>(); //TODO add once()
 			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>();//TODO add once()
+			commandBinder.Bind<EnemyDiedSignal>().To<EnemyDiedCommand>();
+			commandBinder.Bind<TurretDoMoveSignal>().To<TurretDoMoveCommand>();
 
 
 			//	2. (INJECTED SIGNALS - DIRECTLY OBSERVED)
-			//injectionBinder.Bind<TurretMoveVO>().ToSingleton();
+			injectionBinder.Bind<RoundStartSignal>().ToSingleton();
 
 			//	3. (PAIRS OF MAPPED/INJECTED SIGNALS)
-			commandBinder.Bind<TurretDoMoveSignal>().To<TurretDoMoveCommand>();
 			//
-			//commandBinder.Bind<BowlingBallStateChangeSignal>().To<BowlingBallStateChangeCommand>();
-			//injectionBinder.Bind<BowlingBallStateChangedSignal>().ToSingleton(); 
+			commandBinder.Bind<TurretHealthChangeSignal>().To<TurretHealthChangeCommand>();
+			injectionBinder.Bind<TurretHealthChangedSignal>().ToSingleton(); 
 			//
-			//commandBinder.Bind<TotalPinsKnockedOverChangeSignal>().To<TotalPinsKnockedOverChangeCommand>();
-			//injectionBinder.Bind<TotalPinsKnockedOverChangedSignal>().ToSingleton();
-
+			commandBinder.Bind<ScoreChangeSignal>().To<ScoreChangeCommand>();
+			injectionBinder.Bind<ScoreChangedSignal>().ToSingleton();
 
 			/**
 			 * SERVICE

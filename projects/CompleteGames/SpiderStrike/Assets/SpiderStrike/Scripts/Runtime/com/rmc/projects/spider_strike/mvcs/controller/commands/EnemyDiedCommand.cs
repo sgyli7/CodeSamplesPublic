@@ -53,15 +53,27 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class EnemyDiedSignal : Command
+	public class EnemyDiedCommand : Command
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		/// <summary>
+		/// Gets or sets the enemy that died_gameobject.
+		/// </summary>
+		/// <value>The enemy that died_gameobject.</value>
 		[Inject]
 		public GameObject enemyThatDied_gameobject {get;set;}
+
+
+		/// <summary>
+		/// Gets or sets the ecore change signal.
+		/// </summary>
+		/// <value>The ecore change signal.</value>
+		[Inject]
+		public ScoreChangeSignal scoreChangeSignal {get;set;}
 
 
 		// PUBLIC
@@ -81,10 +93,10 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		public override void Execute()
 		{
 			//
-			//Debug.Log ("EnemyDiedSignal.Execute()");
+			Debug.Log ("EnemyDiedCommand.Execute()" + enemyThatDied_gameobject);
 
 
-			
+			scoreChangeSignal.Dispatch (100);
 
 			
 		}

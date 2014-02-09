@@ -29,7 +29,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
@@ -40,12 +39,10 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum MoveType
+	public enum UIInputEventType
 	{
-		Left,
-		Right,
-		FiringStart,
-		FiringStop
+		Down,
+		Up,
 	}
 
 	//--------------------------------------
@@ -56,39 +53,24 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretMoveVO 
+	public class UIInputVO 
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		private MoveType _moveType;
-		public MoveType moveType { 
-			get
-			{
-				return _moveType;
-			}
-			set
-			{
-				_moveType = value;
-			}
-		}
-		
-		private float _amount_float;
-		public float amount {
-			get
-			{
-				return _amount_float;
-			}
-			set
-			{
-				_amount_float = value;
-			}
-		}
-		
 		
 		// PUBLIC
+		/// <summary>
+		/// The key code.
+		/// </summary>
+		public KeyCode keyCode;
+
+		/// <summary>
+		/// The type of the input event.
+		/// </summary>
+		public UIInputEventType uiInputEventType;
 		
 		// PUBLIC STATIC
 		
@@ -109,19 +91,14 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TurretMoveVO (MoveType aMoveType )
+		public UIInputVO (KeyCode aKeyCode, UIInputEventType aUIInputEventType)
 		{
-			_moveType = aMoveType;
-			
-		}
-		public TurretMoveVO (MoveType aMoveType, float aAmount_float )
-		{
-			_moveType = aMoveType;
-			_amount_float = aAmount_float;
+			keyCode 			= aKeyCode;
+			uiInputEventType 	= aUIInputEventType;
 			
 		}
 		
-		~TurretMoveVO()
+		~UIInputVO()
 		{
 			
 		}

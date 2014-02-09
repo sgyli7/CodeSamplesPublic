@@ -34,6 +34,9 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -88,22 +91,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			//RESET
 			if (Input.GetKeyDown (KeyCode.Return)) {
-				_doPressButton (ButtonType.Reset);
+				_doUpdateUIInput (KeyCode.Return, UIInputEventType.Down);
 			}
 			
 			//LEFT
 			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-				_doPressButton (ButtonType.Left);
+				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.Down);
 			}
 			
 			//RIGHT
 			if (Input.GetKeyDown (KeyCode.RightArrow)) {
-				_doPressButton (ButtonType.Right);
+				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.Down);
 			}
 			
 			//FIRE
 			if(Input.GetKeyDown (KeyCode.Space)) { 
-				_doPressButton (ButtonType.Fire);
+				_doUpdateUIInput (KeyCode.Space, UIInputEventType.Down);
+			}
+
+			if(Input.GetKeyUp (KeyCode.Space)) { 
+				_doUpdateUIInput (KeyCode.Space, UIInputEventType.Up);
 			}
 
 		}

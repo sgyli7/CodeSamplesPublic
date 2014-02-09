@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -34,6 +34,10 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.view.signals;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -63,7 +67,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The user interface button clicked signal.
 		/// </summary>
-		public UIButtonClickedSignal uiButtonClickedSignal {set; get;}
+		public UIInputChangedSignal uiInputChangedSignal {set; get;}
 		
 		// PUBLIC STATIC
 		
@@ -89,7 +93,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		virtual public void init()
 		{
-			uiButtonClickedSignal = new UIButtonClickedSignal ();
+			uiInputChangedSignal = new UIInputChangedSignal ();
 			
 		}
 		
@@ -102,7 +106,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			base.OnDestroy();
 			
 			//
-			uiButtonClickedSignal = null; //overkill to existing garbage-collection.
+			uiInputChangedSignal = null; //overkill to existing garbage-collection.
 			
 		}
 		
@@ -113,10 +117,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// _dos the press button.
 		/// </summary>
-		/// <param name="aButtonType">A button type.</param>
-		protected void _doPressButton (ButtonType aButtonType)
+		/// <param name="aUIInputType">A user interface input type.</param>
+		protected void _doUpdateUIInput (KeyCode aKeyCode, UIInputEventType aUIInputEventType )
 		{
-			uiButtonClickedSignal.Dispatch (aButtonType);
+			uiInputChangedSignal.Dispatch (new UIInputVO (aKeyCode, aUIInputEventType));
 			
 		}
 		

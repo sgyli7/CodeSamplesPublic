@@ -29,7 +29,6 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.command.impl;
-using com.rmc.projects.bowling_strangeioc.mvc.model;
 using UnityEngine;
 
 
@@ -37,6 +36,10 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 {
 	
@@ -61,13 +64,18 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		//--------------------------------------
 		// GETTER / SETTER
 		/// <summary>
-		/// Gets or sets the game state model.
+		/// MODEL: The main game data
 		/// </summary>
-		/// <value>The game state model.</value>
-		//[Inject]
-		//public IGameStateModel iGameStateModel {get;set;}
+		[Inject]
+		public IGameModel iGameModel { get; set; } 
 
 
+		/// <summary>
+		/// Gets or sets the round start signal.
+		/// </summary>
+		/// <value>The round start signal.</value>
+		[Inject]
+		public RoundStartSignal roundStartSignal { get; set; }
 
 		// PUBLIC
 		
@@ -87,9 +95,12 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		{
 			Debug.Log ("4. AllViewsInitializedCommand.Execute()");
 
-			//THE VIEW IS READY SO...
-			//WE CAN CALL SERVICES OR 'START THE GAME' HERE OR SOMETHING LIKE THAT NOW.
-			//iGameStateModel.doResetModel();
+			//RESET MODEL(S)
+			iGameModel.doResetModel();
+
+			//
+			roundStartSignal.Dispatch (++iGameModel.currentLevel);
+
 
 
 

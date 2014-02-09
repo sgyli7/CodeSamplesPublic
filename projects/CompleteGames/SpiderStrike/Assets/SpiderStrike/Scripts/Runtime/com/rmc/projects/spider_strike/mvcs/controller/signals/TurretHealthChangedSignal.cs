@@ -49,7 +49,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretHealthChanged : Signal<float>
+	public class TurretHealthChangedSignal : Signal<float>
 	{
 		
 		//--------------------------------------
@@ -78,13 +78,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TurretHealthChanged( )
+		public TurretHealthChangedSignal( )
 		{
-			//Debug.Log ("TurretHealthChanged.constructor()");
+			//Debug.Log ("TurretHealthChangedSignal.constructor()");
 			
 		}
 		
-		~TurretHealthChanged()
+		~TurretHealthChangedSignal()
 		{
 			
 		}

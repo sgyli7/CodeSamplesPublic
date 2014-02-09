@@ -44,7 +44,8 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	{
 		Left,
 		Right,
-		Fire
+		FiringStart,
+		FiringStop
 	}
 
 	//--------------------------------------

@@ -115,18 +115,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public void Update()
 		{
-			/*
-			float rotationSpeed = 1.0f;
-			
-			view.rotationInVector = Quaternion.Slerp
-				(
-					view.rotationInVector,
-					Quaternion.LookRotation(new Vector3 (view.rotationInVector + Vector3 (10,10,10)) - view.rotationInVector),
-					rotationSpeed
-					);
 
-*/
-			
+
 		}
 		
 		
@@ -146,20 +136,25 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		private void _onTurretDoMoveSignal (TurretMoveVO aTurretMoveVO) 
 		{
-			//Debug.Log ("aTurretMoveVO: " + aTurretMoveVO);
+			//Debug.Log ("aTurretMoveVO: " + aTurretMoveVO.moveType);
 			switch (aTurretMoveVO.moveType) {
 				case MoveType.Left:
-					view.turretRotator.transform.Rotate ( new Vector3 (0, 0, -aTurretMoveVO.amount));
+					view.firingAngle -= aTurretMoveVO.amount;
 					break;
 				case MoveType.Right:
-					view.turretRotator.transform.Rotate ( new Vector3 (0, 0, aTurretMoveVO.amount));
+					view.firingAngle += aTurretMoveVO.amount;
 					break;
-				case MoveType.Fire:
+				case MoveType.FiringStart:
 					view.doSetIsFiring (true);
 					break;
+				case MoveType.FiringStop:
+					view.doSetIsFiring (false);
+					break;
 				default:
+					#pragma warning disable 0162
 					throw new SwitchStatementException();
 					break;
+					#pragma warning restore 0162
 			}
 		}
 		
