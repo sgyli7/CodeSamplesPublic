@@ -76,6 +76,11 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		/// <value>The current round data V.</value>
 		RoundDataVO currentRoundDataVO { set; get;}
 
+		/// <summary>
+		/// Gets or sets the state of the game.
+		/// </summary>
+		/// <value>The state of the game.</value>
+		GameState gameState { set; get;}
 
 
 		//--------------------------------------

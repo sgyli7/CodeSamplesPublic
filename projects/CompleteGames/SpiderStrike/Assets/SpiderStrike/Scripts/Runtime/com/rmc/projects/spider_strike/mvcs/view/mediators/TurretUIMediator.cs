@@ -76,7 +76,16 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The turret do move signal.</value>
 		[Inject]
 		public TurretDoMoveSignal turretDoMoveSignal 		{ get; set;}
-		
+
+
+		/// <summary>
+		/// Gets or sets the sound play signal.
+		/// </summary>
+		/// <value>The sound play signal.</value>
+		[Inject]
+		public SoundPlaySignal soundPlaySignal { get; set;}
+
+
 		// PUBLIC
 		
 		
@@ -139,23 +148,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//Debug.Log ("aTurretMoveVO: " + aTurretMoveVO.moveType);
 			switch (aTurretMoveVO.moveType) {
-				case MoveType.Left:
-					view.firingAngle -= aTurretMoveVO.amount;
-					break;
-				case MoveType.Right:
-					view.firingAngle += aTurretMoveVO.amount;
-					break;
-				case MoveType.FiringStart:
-					view.doSetIsFiring (true);
-					break;
-				case MoveType.FiringStop:
-					view.doSetIsFiring (false);
-					break;
-				default:
-					#pragma warning disable 0162
-					throw new SwitchStatementException();
-					break;
-					#pragma warning restore 0162
+			case MoveType.Left:
+				view.firingAngle -= aTurretMoveVO.amount;
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
+				break;
+			case MoveType.Right:
+				view.firingAngle += aTurretMoveVO.amount;
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
+				break;
+			case MoveType.FiringStart:
+				view.doSetIsFiring (true);
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.TURRET_FIRE));
+				break;
+			case MoveType.FiringStop:
+				view.doSetIsFiring (false);
+				break;
+			default:
+				#pragma warning disable 0162
+				throw new SwitchStatementException();
+				break;
+				#pragma warning restore 0162
 			}
 		}
 		

@@ -91,7 +91,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		[Inject]
 		public IGameModel iGameModel { get; set; } 
+
+		/// <summary>
+		/// Gets or sets the prompt start signal.
+		/// </summary>
+		/// <value>The prompt start signal.</value>
+		[Inject]
+		public PromptStartSignal promptStartSignal { get; set;}
 		
+		/// <summary>
+		/// Gets or sets the prompt start signal.
+		/// </summary>
+		/// <value>The prompt start signal.</value>
+		[Inject]
+		public PromptEndedSignal promptEndedSignal { get; set;}
+
+
 		// PUBLIC
 		
 		
@@ -112,6 +127,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//view.init();
 			enemyDiedSignal.AddListener (_onEnemyDiedSignal);
 			roundStartedSignal.AddListener (_onRoundStartedSignal);
+			promptEndedSignal.AddListener (_onPromptEndedSignal);
 			
 		}
 		
@@ -122,6 +138,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			enemyDiedSignal.RemoveListener (_onEnemyDiedSignal);
 			roundStartedSignal.RemoveListener (_onRoundStartedSignal);
+			promptEndedSignal.RemoveListener (_onPromptEndedSignal);
 		}
 		
 		/// <summary>
@@ -166,10 +183,24 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//
 			iGameModel.currentRoundDataVO.clearEnemies();
 
-			//
-			iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider() );
+			promptStartSignal.Dispatch ("Round " + aRoundDataVO.currentRound_uint + " -- Kill " + aRoundDataVO.enemiesTotalToCreate);
+
 
 		}
+
+		/// <summary>
+		/// _ons the prompt ended signal.
+		/// </summary>
+		private void _onPromptEndedSignal ()
+		{
+
+			//
+			if (iGameModel.gameState != GameState.GAME_OVER) {
+				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider() );
+			}
+
+		}
+
 
 		/// <summary>
 		/// _ons the enemy died signal.
@@ -186,10 +217,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
 			if (iGameModel.currentRoundDataVO.enemiesCreated < iGameModel.currentRoundDataVO.enemiesTotalToCreate) {
 				iGameModel.currentRoundDataVO.addEnemy (	view.doCreateSpider() 	);
+				//promptStartSignal.Dispatch ("You Win The Game!");
 			} else {
 
 				//DONE
-				Debug.Log ("done game");
+				iGameModel.gameState = GameState.GAME_OVER;
+				promptStartSignal.Dispatch ("You Win The Game!");
+
 			}
 		}
 

@@ -43,6 +43,16 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum SoundType
+	{
+		BUTTON_CLICK,
+		TURRET_FIRE,
+		ENEMY_FOOSTEP,
+		ENEMY_ATTACK,
+		ENEMY_DAMAGED,
+		ENEMY_DIE
+	}
+
 
 	//--------------------------------------
 	//  Class Attributes
@@ -52,7 +62,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class RoundDataVO 
+	public class SoundPlayVO 
 	{
 		
 		//--------------------------------------
@@ -62,30 +72,10 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		
 		// PUBLIC
 		/// <summary>
-		/// The current round_uint.
+		/// The type of the sound.
 		/// </summary>
-		public uint currentRound_uint;
+		public SoundType soundType;
 
-		/// <summary>
-		/// The total enemies to kill_uint.
-		/// </summary>
-		public uint enemiesTotalToCreate;
-
-		/// <summary>
-		/// The enemies created.
-		/// </summary>
-		public uint enemiesCreated;
-
-		// PUBLIC STATIC
-		
-		// PRIVATE
-		/// <summary>
-		/// Gets or sets the enemies.
-		/// </summary>
-		/// <value>The enemies.</value>
-		private List<GameObject> enemies;
-		
-		
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -101,15 +91,14 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint)
+		public SoundPlayVO (SoundType aSoundType)
 		{
-			currentRound_uint 			= aCurrentRound_uint;
-			enemiesTotalToCreate 	= aTotalEnemiesToKill_uint;
+			soundType = aSoundType;
 			//
 			
 		}
 		
-		~RoundDataVO()
+		~SoundPlayVO()
 		{
 			
 		}
@@ -127,25 +116,6 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-
-		public void clearEnemies ()
-		{
-			enemies = new List<GameObject>();
-			enemiesCreated = 0;
-		}
-
-		public void addEnemy (GameObject aGameObject)
-		{
-			enemies.Add (aGameObject);
-			//keep this count so even when we remove enemies, 
-			//		we know the total 'ever' created in this round
-			enemiesCreated ++; 
-		}
-
-		public void removeEnemy (GameObject aGameObject)
-		{
-			enemies.Remove (aGameObject);
-		}
 	}
 }
 

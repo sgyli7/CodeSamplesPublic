@@ -33,6 +33,9 @@ using strange.extensions.signal.impl;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 {
 	
@@ -49,7 +52,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class ScoreChangeSignal : Signal<float>
+	public class SoundPlaySignal : Signal<SoundPlayVO>
 	{
 		
 		//--------------------------------------
@@ -78,13 +81,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public ScoreChangeSignal( )
+		public SoundPlaySignal( )
 		{
-			//Debug.Log ("ScoreChangeSignal.constructor()");
+			//Debug.Log ("SoundPlaySignal.constructor()");
 			
 		}
 		
-		~ScoreChangeSignal()
+		~SoundPlaySignal()
 		{
 			
 		}

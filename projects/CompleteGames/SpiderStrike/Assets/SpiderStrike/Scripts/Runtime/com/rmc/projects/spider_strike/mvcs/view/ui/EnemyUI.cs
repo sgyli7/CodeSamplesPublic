@@ -310,7 +310,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
 				//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
 				CancelInvoke("onAnimationComplete");
-				InvokeRepeating ("onAnimationComplete", animation.clip.length, animation.clip.length);
+				InvokeRepeating ("onAnimationComplete", animation.clip.length*.7f, animation.clip.length*.7f);
 			}
 		}
 

@@ -84,6 +84,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public ScoreChangedSignal scoreChangedSignal { get; set;}
 
+		/// <summary>
+		/// Gets or sets the prompt start signal.
+		/// </summary>
+		/// <value>The prompt start signal.</value>
+		[Inject]
+		public PromptStartSignal promptStartSignal { get; set;}
+
+		/// <summary>
+		/// Gets or sets the prompt start signal.
+		/// </summary>
+		/// <value>The prompt start signal.</value>
+		[Inject]
+		public PromptEndedSignal promptEndedSignal { get; set;}
+
 		// PUBLIC
 		
 		
@@ -102,11 +116,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRegister()
 		{
 
+			view.init ();
 			//Debug.Log ("HUD IS READY - WHY AFTER???");
 			turretHealthChangedSignal.AddListener (_onTurretHealthChangedSignal);
 			scoreChangedSignal.AddListener (_onScoreChangedSignal);
-			
-			
+			promptStartSignal.AddListener (_onPromptStartSignal);
+			view.uiPromptEndedSignal.AddListener (_onUIPromptEndedSignal);
+
+
 			
 		}
 		
@@ -117,9 +134,21 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			turretHealthChangedSignal.RemoveListener (_onTurretHealthChangedSignal);
 			scoreChangedSignal.RemoveListener (_onScoreChangedSignal);
+			promptStartSignal.RemoveListener (_onPromptStartSignal);
+			view.uiPromptEndedSignal.RemoveListener (_onUIPromptEndedSignal);
 		}
 		
-		
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public void Start()
+		{
+
+			
+		}
+
+
+
 		/// <summary>
 		/// Update this instance.
 		/// </summary>
@@ -163,6 +192,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			view.setScoreText ("Score: " + aNewValue_float);
 
 		}
+
+		/// <summary>
+		/// _ons the prompt start signal.
+		/// </summary>
+		/// <param name="aNewValue_float">A new value_float.</param>
+		private void _onPromptStartSignal (string aMessage_string)
+		{
+			view.doPromptStart (aMessage_string);
+			
+		}
+
+		/// <summary>
+		/// _ons the user interface prompt ended signal.
+		/// </summary>
+		private void _onUIPromptEndedSignal ()
+		{
+			promptEndedSignal.Dispatch ();
+			
+		}
+
 		
 	}
 }

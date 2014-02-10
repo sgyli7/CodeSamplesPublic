@@ -43,7 +43,13 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	public enum GameState
+	{
+		GAME,
+		GAME_OVER
+
+
+	}
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
@@ -102,6 +108,24 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 				
 			}
 		}
+
+		/// <summary>
+		/// The state of the _game.
+		/// </summary>
+		private GameState _gameState;
+		public GameState gameState
+		{ 
+			get{
+				return _gameState;
+			}
+			set
+			{
+				_gameState = value;
+				
+			}
+		}
+
+
 
 		/// <summary>
 		/// Gets or sets the score changed signal.

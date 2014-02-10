@@ -93,7 +93,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		public override void Execute()
 		{
 			//
-			Debug.Log ("EnemyDiedCommand.Execute()" + enemyThatDied_gameobject);
+			//Debug.Log ("EnemyDiedCommand.Execute()" + enemyThatDied_gameobject);
 
 
 			scoreChangeSignal.Dispatch (100);

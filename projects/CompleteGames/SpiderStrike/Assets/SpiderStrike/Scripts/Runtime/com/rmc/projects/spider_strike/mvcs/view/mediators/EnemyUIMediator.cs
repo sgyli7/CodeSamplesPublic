@@ -37,6 +37,7 @@ using com.rmc.projects.spider_strike.mvcs.view.ui;
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -76,7 +77,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public TurretHealthChangeSignal turretHealthChangeSignal 		{ get; set;}
 
-		
+		/// <summary>
+		/// Gets or sets the sound play signal.
+		/// </summary>
+		/// <value>The sound play signal.</value>
+		[Inject]
+		public SoundPlaySignal soundPlaySignal { get; set;}
 		
 		/// <summary>
 		/// The enemy died signal.
@@ -195,11 +201,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//Debug.Log ("AnimEnd: " + aAnimationType);
 			if (aAnimationType == AnimationType.DIE) {
+
+				//DESTROY OBJECT, UPDATE SCORE
 				enemyDiedSignal.Dispatch (view.gameObject);
+
+				//PLAY SOUND
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
+
+			} else if (aAnimationType == AnimationType.WALK) {
+
+				//PLAY SOUND
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+
 			} else if (aAnimationType == AnimationType.ATTACK) {
 				
 				//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
 				_doInflictDamage();
+
+
+				//PLAY SOUND
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));
 			}
 
 		}

@@ -75,7 +75,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		 **/
 		public IControllerUI view 	{ get; set;}
 
-
+		
+		/// <summary>
+		/// Gets or sets the sound play signal.
+		/// </summary>
+		/// <value>The sound play signal.</value>
+		[Inject]
+		public SoundPlaySignal soundPlaySignal { get; set;}
 
 		/// <summary>
 		/// Gets or sets the turret do move signal.
@@ -182,6 +188,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.FiringStart));
 						break;
 					case KeyCode.Return:
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 						_doResetGame();
 						break;
 					default:

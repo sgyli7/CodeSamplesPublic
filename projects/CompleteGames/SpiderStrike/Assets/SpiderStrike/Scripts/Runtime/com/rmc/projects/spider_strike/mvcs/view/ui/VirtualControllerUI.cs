@@ -66,17 +66,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The custom skin.
 		/// </summary>
-		public GUISkin customSkin;
+		#if UNITY_EDITOR
+		public GUISkin guiSkin;
+		#endif 
 
 		// PUBLIC STATIC
 		
 		// PRIVATE
 		
 		// PRIVATE STATIC
-		private float _SCREEN_MARGIN = 10;
-		private float _BUTTON_WIDTH = 100;
-		private float _BUTTON_HEIGHT = 80;
-		private float _BUTTON_HEIGHT_SKINNY = 30;
+		private const float _SCREEN_TOP_MARGIN = 30;
+		private const float _SCREEN_MARGIN = 20;
+		private const float _BUTTON_WIDTH = 120;
+		private const float _BUTTON_HEIGHT = 100;
+		private const float _BUTTON_HEIGHT_SKINNY = 70;
 		
 		//--------------------------------------
 		//  Methods
@@ -154,12 +157,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		void OnGUI () 
 		{
-			
-			GUI.skin = customSkin;
 
+			#if UNITY_EDITOR
+			GUI.skin = guiSkin;
+			#endif 
 			
 			//RESET
-			if (GUI.Button (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
+			if (GUI.Button (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_TOP_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
 				_doUpdateUIInput (KeyCode.Return, UIInputEventType.Down);
 			}
 
