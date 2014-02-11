@@ -29,7 +29,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.bowling_strangeioc.mvc.view.ui;
 using strange.extensions.command.impl;
 using strange.extensions.context.api;
 

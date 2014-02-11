@@ -64,20 +64,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// GETTER / SETTER
 		
 		// PUBLIC
-		/// <summary>
-		/// The audio channel01_gameobject.
-		/// </summary>
-		public GameObject audioChannel01_gameobject;
-
-		/// <summary>
-		/// The audio channel02_gameobject.
-		/// </summary>
-		public GameObject audioChannel02_gameobject;
-
-		/// <summary>
-		/// The audio channel02_gameobject.
-		/// </summary>
-		public GameObject audioChannel03_gameobject;
 
 		
 		/// <summary>
@@ -89,19 +75,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		// PRIVATE
 		/// <summary>
-		/// The audio source01.
+		/// The _audio source game object_list.
 		/// </summary>
-		private AudioSource _audioSource01;
-		
-		/// <summary>
-		/// The audio source02.
-		/// </summary>
-		private AudioSource _audioSource02;
+		private List<GameObject> _audioSourceGameObject_list;
 
 		/// <summary>
-		/// The audio source02.
+		/// The _audio source_list.
 		/// </summary>
-		private AudioSource _audioSource03;
+		private List<AudioSource> _audioSource_list;
 
 		// PRIVATE STATIC
 		
@@ -116,10 +97,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			base.Start();
 
-			//TODO: CHANGE THIS TO A LIST BASED SYSTEM FOR MORE CHANNELS?
-			_audioSource01 = audioChannel01_gameobject.GetComponent<AudioSource>();
-			_audioSource02 = audioChannel02_gameobject.GetComponent<AudioSource>();
-			_audioSource03 = audioChannel03_gameobject.GetComponent<AudioSource>();
+			_doCreateAllAudioSources();
 
 
 		}
@@ -155,20 +133,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			switch (aSoundPlayVO.soundType){
 			case SoundType.BUTTON_CLICK:
-				_audioSource01.clip = _getAudioClipByName ("ButtonClick01");
-				_audioSource01.Play ();
+				_getAudioSourceByIndex(0).clip = _getAudioClipByName ("ButtonClick01");
+				_getAudioSourceByIndex(0).Play ();
 				break;
 			case SoundType.TURRET_FIRE:
-				_audioSource01.clip = _getRandomAudioClipFromNameArray ( new string[] {"TurretFire01","TurretFire02"} );
-				_audioSource01.Play ();
+				_getAudioSourceByIndex(1).clip = _getRandomAudioClipFromNameArray ( new string[] {"TurretFire01","TurretFire02"} );
+				_getAudioSourceByIndex(1).Play ();
 				break;
 			case SoundType.ENEMY_FOOSTEP:
-				_audioSource03.clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyFootstep01","EnemyFootstep02"} );
-				_audioSource03.Play ();
+				_getAudioSourceByIndex(2).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyFootstep01","EnemyFootstep02"} );
+				_getAudioSourceByIndex(2).Play ();
 				break;
 			case SoundType.ENEMY_ATTACK:
-				_audioSource01.clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyAttack01","EnemyAttack02"} );
-				_audioSource01.Play ();
+				_getAudioSourceByIndex(3).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyAttack01","EnemyAttack02"} );
+				_getAudioSourceByIndex(3).Play ();
 				break;
 			case SoundType.ENEMY_DAMAGED:
 
@@ -178,8 +156,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				break;
 
 			case SoundType.ENEMY_DIE:
-				_audioSource03.clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyDie01","EnemyDie02"});
-				_audioSource03.Play ();
+				_getAudioSourceByIndex(4).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyDie01","EnemyDie02"});
+				_getAudioSourceByIndex(4).Play ();
 
 				break;
 			default:
@@ -195,14 +173,48 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void playMusic ()
 		{
-			_audioSource02.clip = _getAudioClipByName ("BackgroundMusic01");
-			_audioSource02.loop = true;
-			_audioSource02.Play ();
+			_getAudioSourceByIndex(5).clip = _getAudioClipByName ("BackgroundMusic01");
+			_getAudioSourceByIndex(5).loop = true;
+			_getAudioSourceByIndex(5).Play ();
 		}
 
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// _dos the create all audio sources.
+		/// </summary>
+		void _doCreateAllAudioSources ()
+		{
+			_audioSourceGameObject_list = new List<GameObject>();
+			_audioSource_list 			= new List<AudioSource>();
+			GameObject nextAudioSource_gameobject;
+			foreach (AudioClip audioClip in audioClip_list) {
+				
+				nextAudioSource_gameobject = new GameObject ();
+				nextAudioSource_gameobject.transform.parent = transform;
+				nextAudioSource_gameobject.AddComponent<AudioSource>();
+				//
+				_audioSourceGameObject_list.Add (nextAudioSource_gameobject);
+				_audioSource_list.Add (nextAudioSource_gameobject.GetComponent<AudioSource>());
+			}
+		}
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.view.ui.SoundManagerUI"/> class.
+		/// </summary>
+		/// <param name="aIndex_int">A index_int.</param>
+		private AudioSource _getAudioSourceByIndex (int aIndex_int)
+		{
+
+			return _audioSource_list[aIndex_int];
+
+		}
+
+
+
+
 		/// <summary>
 		/// _gets the name of the audio clip by.
 		/// </summary>
@@ -212,6 +224,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			return audioClip_list.Where(audioClip => audioClip.name == aName_string).SingleOrDefault();
 		}
+
 
 		/// <summary>
 		/// _gets the random audio clip from name array.

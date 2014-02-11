@@ -177,7 +177,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 			//TOGGLE ON THE RED LIGHTS WHEN ANY TARGET IS 'FOUND'
 			//TODO: OPTIMIZE, DON'T 'SET' ENABLED VALUE IF ALREADY SET
-			if (_getFirstGameObjectInFiringRange() != null) {
+			if (_hasTargetInSights()) {
 				turretTargetingLight.SetActive (true);
 			} else {
 				turretTargetingLight.SetActive (false);
@@ -234,12 +234,52 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			_turretBulletSpawnPointComponent.showMuzzleFlash();
 
 			//Debug.Log ("_doFireOnce");
-			GameObject enemyHit_gameObject = _getFirstGameObjectInFiringRange();
-			if (enemyHit_gameObject) {
-				enemyHit_gameObject.GetComponent<EnemyUI>().doTakeDamage(10);
+			Collider firstCollider = _getFirstColliderInFiringRange();
+			if (firstCollider) {
+				firstCollider.gameObject.GetComponent<EnemyUI>().doTakeDamage(10);
 			}
 
 		}
+
+		/// <summary>
+		/// _hases the target in sights.
+		/// </summary>
+		/// <returns><c>true</c>, if target in sights was _hased, <c>false</c> otherwise.</returns>
+		private bool _hasTargetInSights ()
+		{
+			
+			return _getFirstColliderInFiringRange() != null;
+			
+		}
+		/// <summary>
+		/// _gets the first collider in firing range.
+		/// </summary>
+		/// <returns>The first collider in firing range.</returns>
+		private Collider _getFirstColliderInFiringRange ()
+		{
+			
+			//
+			Debug.DrawRay (turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10);
+			//
+			Collider firstCollider = null;
+			RaycastHit raycastHit;
+			if (Physics.Raycast(turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10, out raycastHit)) {
+				
+				if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer (EnemyUI.LAYER_NAME)) {
+					//TODO, USE STRANGE SIGNAL FOR 'HITTING?'
+					
+					firstCollider = raycastHit.collider;
+					Debug.DrawRay (raycastHit.point, raycastHit.normal);
+					
+				}
+			}
+			
+			return firstCollider;
+			
+		}
+
+
+
 
 		/*
 		 * //THE MATH WORKS HERE, BUT THEN THE ROTATION SPINS COUNTER-WISE SOMETIMES
@@ -267,29 +307,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
-		
-		
-		private GameObject _getFirstGameObjectInFiringRange ()
-		{
 
-			GameObject firstGameObjectInFiringRange = null;
 
-			//
-			Debug.DrawRay (turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10);
-			//
-			RaycastHit raycastHit;
-			if (Physics.Raycast(turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10, out raycastHit)) {
-				
-				if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer (EnemyUI.LAYER_NAME)) {
-					//TODO, USE STRANGE SIGNAL FOR 'HITTING?'
-					firstGameObjectInFiringRange = raycastHit.collider.gameObject;
 
-				}
-			}
 
-			return firstGameObjectInFiringRange;
-
-		}
 	}
 }
 

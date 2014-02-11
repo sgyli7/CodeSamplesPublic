@@ -46,37 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Bowling_StrangeIoC\Extra GUI Skins\SkinTest.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\BowlingContext.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\BowlingRoot.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\commands\BowlingBallStateChangeCommand.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\commands\InputModeChangeCommand.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\commands\StartCommand.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\commands\TotalPinsKnockedOverChangeCommand.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\BowlingBallDoMoveSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\BowlingBallStateChangeSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\BowlingBallStateChangedSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\InputModeChangeSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\InputModeChangedSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\StartSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\TotalPinsKnockedOverChangeSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\controller\signals\TotalPinsKnockedOverChangedSignal.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\GameScoreModel.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\GameStateModel.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\IGameScoreModel.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\IGameStateModel.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\IModel.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\model\vo\BowlingBallMoveVO.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\BowlingBallUIMediator.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\BowlingPinUIMediator.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\GUIUIMediator.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\UserInputUIMediator.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\ui\BowlingBallUI.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\ui\BowlingPinUI.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\ui\GUIUI.cs" />
-     <Compile Include="Assets\Bowling_StrangeIoC\Scripts\mvcs\view\ui\UserInputUI.cs" />
      <Compile Include="Assets\Community Assets\FPS\Scripts\Components\FPSHUD.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\Event.cs" />
