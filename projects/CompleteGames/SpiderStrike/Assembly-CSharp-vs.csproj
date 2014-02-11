@@ -208,6 +208,7 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
      <Compile Include="Assets\Community Assets\iTween\Plugins\iTween.cs" />
      <Compile Include="Assets\Community Assets\iTween\Plugins\iTweenHinting.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\components\effects\TurretBulletSpawnPointComponent.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\SpiderStrikeContext.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\SpiderStrikeRoot.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\AllViewsInitializedCommand.cs" />

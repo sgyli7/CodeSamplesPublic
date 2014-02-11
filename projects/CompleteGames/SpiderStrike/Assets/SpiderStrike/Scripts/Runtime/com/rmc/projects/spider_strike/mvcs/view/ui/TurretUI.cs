@@ -34,6 +34,7 @@ using strange.extensions.mediation.impl;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model.data;
+using com.rmc.projects.spider_strike.components.effects;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -67,12 +68,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 			get{
 
-				return turretFiringAngle_lerptarget.targetValue;
+				return _turretFiringAngle_lerptarget.targetValue;
 
 			}
 			set
 			{
-				turretFiringAngle_lerptarget.targetValue = value;
+				_turretFiringAngle_lerptarget.targetValue = value;
 				//turretFiringAngle_lerptarget.targetValue = _clampAngle (turretFiringAngle_lerptarget.targetValue);
 				//Debug.Log ("NOW: " + turretFiringAngle_lerptarget.targetValue);
 
@@ -111,17 +112,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The is currently firing_boolean.
 		/// </summary>
-		private bool isCurrentlyFiring_boolean = false;
+		private bool _isCurrentlyFiring_boolean = false;
 
 		/// <summary>
 		/// The turret spinning_lerptarget.
 		/// </summary>
-		private LerpTarget turretSpinning_lerptarget;
+		private LerpTarget _turretSpinning_lerptarget;
 		
 		/// <summary>
 		/// The turret firing angle_lerptarget.
 		/// </summary>
-		private LerpTarget turretFiringAngle_lerptarget;
+		private LerpTarget _turretFiringAngle_lerptarget;
+
+		/// <summary>
+		/// The _turret bullet spawn point component.
+		/// </summary>
+		private TurretBulletSpawnPointComponent _turretBulletSpawnPointComponent;
 
 
 		// PRIVATE STATIC
@@ -135,6 +141,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		override protected void Start () 
 		{
 			base.Start();
+			_turretBulletSpawnPointComponent = turretBulletSpawnPoint.GetComponent<TurretBulletSpawnPointComponent>();
 		}
 
 		///<summary>
@@ -142,8 +149,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		///</summary>
 		public void init () 
 		{
-			turretSpinning_lerptarget 		= new LerpTarget (0, 0, 10, 2f);
-			turretFiringAngle_lerptarget	= new LerpTarget (0, 0, 0, 5f);
+			_turretSpinning_lerptarget 		= new LerpTarget (0, 0, 10, 2f);
+			_turretFiringAngle_lerptarget	= new LerpTarget (0, 0, 0, 5f);
 		}
 
 		///<summary>
@@ -153,18 +160,18 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 
 			//ROTATE THE BARREL IF FIRING
-			if (isCurrentlyFiring_boolean) {
-				turretSpinning_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+			if (_isCurrentlyFiring_boolean) {
+				_turretSpinning_lerptarget.lerpCurrentToTarget (Time.deltaTime);
 			} else {
-				turretSpinning_lerptarget.lerpCurrentToReset (Time.deltaTime);
+				_turretSpinning_lerptarget.lerpCurrentToReset (Time.deltaTime);
 			}
-			turretSpinningBarrel.transform.Rotate (new Vector3 (0, turretSpinning_lerptarget.current, 0));
+			turretSpinningBarrel.transform.Rotate (new Vector3 (0, _turretSpinning_lerptarget.current, 0));
 
 
 			//ROTATE THE BASE TO THE DESIRED SHOOTING ANGLE
-			turretFiringAngle_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+			_turretFiringAngle_lerptarget.lerpCurrentToTarget (Time.deltaTime);
 			Vector3 eulerAngles_vector3 = turretRotator.transform.localEulerAngles;
-			eulerAngles_vector3.z = turretFiringAngle_lerptarget.current;
+			eulerAngles_vector3.z = _turretFiringAngle_lerptarget.current;
 			turretRotator.transform.localEulerAngles = eulerAngles_vector3;
 
 
@@ -202,11 +209,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//INSTEAD OF SINGLE SHOTS, I THINK WE'LL NEED TO TURN ON, REPEATEDLY 'FIRE', AND TURN OFF, THE GUN
 			//TO MAKE THE ANIMATION LOOK GOOD
 			//Debug.Log ("is: "+ aIsFiring_boolean);
-			if (isCurrentlyFiring_boolean != aIsFiring_boolean) {
+			if (_isCurrentlyFiring_boolean != aIsFiring_boolean) {
 				//Debug.Log ("doSetIsFiring: "+ aIsFiring_boolean);
-				isCurrentlyFiring_boolean = aIsFiring_boolean;
+				_isCurrentlyFiring_boolean = aIsFiring_boolean;
 
-				if (isCurrentlyFiring_boolean) {
+				if (_isCurrentlyFiring_boolean) {
 					_doFireOnce();
 				}
 			}
@@ -222,6 +229,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		private void _doFireOnce() 
 		{
+
+			//
+			_turretBulletSpawnPointComponent.showMuzzleFlash();
+
 			//Debug.Log ("_doFireOnce");
 			GameObject enemyHit_gameObject = _getFirstGameObjectInFiringRange();
 			if (enemyHit_gameObject) {

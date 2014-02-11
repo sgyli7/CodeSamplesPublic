@@ -2,9 +2,10 @@
 -target:library
 -nowarn:0169
 -out:'Temp/Assembly-CSharp.dll'
--r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/PlaybackEngines/iPhonePlayer/Managed/UnityEngine.dll'
+-r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Managed/UnityEngine.dll'
 -r:'Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll'
 -r:'Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll'
+-r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Managed/UnityEditor.dll'
 -define:UNITY_IPHONE
 -define:ENABLE_MICROPHONE
 -define:ENABLE_TEXTUREID_MAP
@@ -33,6 +34,9 @@
 -define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
 -define:UNITY_4_3_4
 -define:UNITY_4_3
+-define:ENABLE_PROFILER
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_OSX
 'Assets/Bowling_StrangeIoC/Extra GUI Skins/SkinTest.cs'
 'Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingContext.cs'
 'Assets/Bowling_StrangeIoC/Scripts/mvcs/BowlingRoot.cs'
@@ -242,5 +246,6 @@
 'Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/SuperControllerUI.cs'
 'Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/TurretUI.cs'
 'Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/VirtualControllerUI.cs'
+'Assets/TurretBulletSpawnPointComponent.cs'
 -r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'

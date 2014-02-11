@@ -90,7 +90,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 			//input_gameobject.transform.parent = contextView.transform;
 			//input_gameobject.AddComponent<UserInputUI>();
 
-
+			Debug.Log ("StartCommand.execute()");
 
 
 		}

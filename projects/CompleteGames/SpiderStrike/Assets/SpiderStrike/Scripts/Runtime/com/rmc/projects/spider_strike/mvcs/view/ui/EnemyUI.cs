@@ -167,7 +167,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			base.Start();
 			animation = GetComponentInChildren<Animation>();
-
 			
 			
 		}

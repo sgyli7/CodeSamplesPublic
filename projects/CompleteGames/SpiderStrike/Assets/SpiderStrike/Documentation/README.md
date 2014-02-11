@@ -12,3 +12,11 @@ TODO LIST
 OPTIMIZATION
 # put 20 turret/spiders out, check FPS
 # go through the model hierarchy, check that all shaders are set to mobile friendly
+
+
+
+SPECIFIC FEATURES
+# KEYBOARD VS VIRTUAL CONTROLLER
+# STRANGEIOC
+# BILLBOARDING MUZZLE FLASH
+# PARTICLE EFFECT FOR SPIDER HIT

@@ -199,6 +199,7 @@
 'Assets/Community Assets/StrangeIoC/scripts/strange/framework/impl/SemiBinding.cs'
 'Assets/Community Assets/iTween/Plugins/iTween.cs'
 'Assets/Community Assets/iTween/Plugins/iTweenHinting.cs'
+'Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/TurretBulletSpawnPointComponent.cs'
 'Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/SpiderStrikeContext.cs'
 'Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/SpiderStrikeRoot.cs'
 'Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/controller/commands/AllViewsInitializedCommand.cs'

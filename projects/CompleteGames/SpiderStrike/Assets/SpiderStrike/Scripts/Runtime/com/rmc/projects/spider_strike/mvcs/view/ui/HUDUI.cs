@@ -178,7 +178,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//CLEAR PROMPT BEFORE ITS FIRST USE
 			_setPromptText ("");
 
-
+			Debug.Log ("HUDUI.Start()");
 
 		}
 

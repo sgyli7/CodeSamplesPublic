@@ -37,10 +37,14 @@
 -define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
 -define:UNITY_4_3_4
 -define:UNITY_4_3
--r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/PlaybackEngines/iPhonePlayer/Managed/UnityEngine.dll'
+-define:ENABLE_PROFILER
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_OSX
+-r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Managed/UnityEngine.dll'
 -r:'Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll'
 -r:'Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll'
--disable-eval:eval is not supported on the current build target (iPhone).
+-r:'/Applications/Unity4.3.4_PRODUCTION/Unity4.3.4_PRODUCTION.app/Contents/Frameworks/Managed/UnityEditor.dll'
+-i:UnityEditor
 'Assets/Community Assets/Cartoon Soldier/Scripts/Misc/autoDestroy.js'
 'Assets/Community Assets/Cartoon Soldier/Scripts/Misc/bulletHoleProperty.js'
 'Assets/Community Assets/Cartoon Soldier/Scripts/Misc/externalCamera.js'

@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyManagerUIMediator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/HUDUI.cs">
     <Files>
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyManagerUIMediator.cs" Line="188" Column="1" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/HUDUI.cs" Line="181" Column="21" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyManagerUIMediator.cs" Line="219" Column="5" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/controller/commands/StartCommand.cs" Line="93" Column="4" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/EnemyUI.cs" Line="170" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
