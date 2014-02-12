@@ -46,20 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\ik\ikArmController.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\ik\inverseKinematics.js" />
      <Compile Include="Assets\Community Assets\fantasySpider\FS_rotateThis.js" />
-     <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Light.shader" />
      <None Include="Assets\Community Assets\StrangeIoC\LICENSE-2.0.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\README.txt" />
-     <None Include="Assets\Community Assets\Cartoon Soldier\Readme.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{65BF14A1-BEDF-DE94-BCA3-CC1E8093B43B}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

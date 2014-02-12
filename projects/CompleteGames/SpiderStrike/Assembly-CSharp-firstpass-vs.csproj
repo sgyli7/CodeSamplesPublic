@@ -56,7 +56,6 @@
      <Compile Include="Assets\Standard Assets\Scripts\ReticleMovement.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Sprinkler.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\SprinklerAudio.cs" />
-     <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Light.shader" />
