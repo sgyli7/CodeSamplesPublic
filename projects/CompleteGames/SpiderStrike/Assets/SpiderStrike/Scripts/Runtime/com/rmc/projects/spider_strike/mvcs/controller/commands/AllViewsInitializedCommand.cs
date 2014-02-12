@@ -86,10 +86,14 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			//Debug.Log ("4. AllViewsInitializedCommand.Execute()");
+			Debug.Log ("4. AllViewsInitializedCommand.Execute()");
 
-			//RESET MODEL(S)
-			iGameModel.doResetModel();
+
+			//CALL BOTH STATES
+			iGameModel.gameState = GameState.INIT;
+			iGameModel.gameState = GameState.INTRO;
+			iGameModel.gameState = GameState.GAME;
+
 
 			//
 			iGameModel.startNextRound();

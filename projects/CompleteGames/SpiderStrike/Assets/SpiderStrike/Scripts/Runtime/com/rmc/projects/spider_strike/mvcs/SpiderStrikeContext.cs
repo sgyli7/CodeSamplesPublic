@@ -192,7 +192,8 @@ namespace com.rmc.projects.spider_strike.mvcs
 			commandBinder.Bind<ScoreChangeSignal>().To<ScoreChangeCommand>();
 			injectionBinder.Bind<ScoreChangedSignal>().ToSingleton();
 			//
-
+			//commandBinder.Bind<GameStateChangeSignal>().To<GameStateChangeCommand>();
+			injectionBinder.Bind<GameStateChangedSignal>().ToSingleton();
 
 			/**
 			 * SERVICE

@@ -35,6 +35,7 @@
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.exceptions;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.model
@@ -45,9 +46,10 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 	//--------------------------------------
 	public enum GameState
 	{
+		INIT,
+		INTRO,
 		GAME,
 		GAME_OVER
-
 
 	}
 	//--------------------------------------
@@ -65,6 +67,48 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+
+		/// <summary>
+		/// The state of the _game.
+		/// </summary>
+		private GameState _gameState;
+		public GameState gameState
+		{ 
+			get{
+				return _gameState;
+			}
+			set
+			{
+				_gameState = value;
+				switch (_gameState){
+					case GameState.INIT:
+						doResetModel();
+						break;
+					case GameState.INTRO:
+						break;
+					case GameState.GAME:
+						startNextRound();
+						break;
+					case GameState.GAME_OVER:
+					break;
+					default:
+						#pragma warning disable 0162
+						throw new SwitchStatementException();
+						break;
+						#pragma warning restore 0162
+				}
+				gameStateChangedSignal.Dispatch (_gameState);
+				
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal { get; set;}
+
 
 
 		/// <summary>
@@ -105,22 +149,6 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 			{
 				_score_float = value;
 				scoreChangedSignal.Dispatch (_score_float);
-				
-			}
-		}
-
-		/// <summary>
-		/// The state of the _game.
-		/// </summary>
-		private GameState _gameState;
-		public GameState gameState
-		{ 
-			get{
-				return _gameState;
-			}
-			set
-			{
-				_gameState = value;
 				
 			}
 		}
@@ -212,8 +240,12 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		[PostConstruct]
 		public void postConstruct ()
 		{
-			//Debug.Log ("POST CONST");
+			Debug.Log ("POST CONST");
 		}
+
+
+
+
 
 		/// <summary>
 		/// Dos the reset model.

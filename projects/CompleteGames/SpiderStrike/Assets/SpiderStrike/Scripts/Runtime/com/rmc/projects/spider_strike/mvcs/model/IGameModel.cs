@@ -86,11 +86,12 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+
 		/// <summary>
 		/// Dos the reset model.
 		/// </summary>
 		void doResetModel();
-		
+
 		/// <summary>
 		/// Starts the next round.
 		/// </summary>

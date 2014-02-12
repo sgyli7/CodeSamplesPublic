@@ -29,6 +29,7 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 //--------------------------------------
 //  Namespace
@@ -49,7 +50,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretHealthChangedSignal : Signal<float>
+	public class GameStateChangedSignal : Signal<GameState>
 	{
 		
 		//--------------------------------------
@@ -78,13 +79,13 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TurretHealthChangedSignal( )
+		public GameStateChangedSignal( )
 		{
-			//Debug.Log ("TurretHealthChangedSignal.constructor()");
+			//Debug.Log ("GameStateChangedSignal.constructor()");
 			
 		}
 		
-		~TurretHealthChangedSignal()
+		~GameStateChangedSignal()
 		{
 			
 		}

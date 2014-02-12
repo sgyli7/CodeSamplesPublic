@@ -106,11 +106,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		new private Animation animation;
 
 		/// <summary>
+		/// The _particle system.
+		/// </summary>
+		private ParticleSystem _particleSystem;
+
+		/// <summary>
 		/// The _health current_float.
 		/// </summary>
 		private float _healthCurrent_float = 11;
-
-
 		
 		/// <summary>
 		/// The target_game object.
@@ -167,6 +170,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			base.Start();
 			animation = GetComponentInChildren<Animation>();
+			_particleSystem = GetComponentInChildren<ParticleSystem>();
+			Debug.Log ("_particleSystem: " + _particleSystem);
 			
 			
 		}
@@ -270,6 +275,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			//DECREMENT
 			_healthCurrent_float -= aDamageAmount_float;
+
+			//SMOKE
+			_particleSystem.Emit (1);
 
 			//PLAY ANIMATION
 			if (_healthCurrent_float > 0) {
