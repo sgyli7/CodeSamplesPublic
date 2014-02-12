@@ -46,22 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\autoDestroy.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\bulletHoleProperty.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\externalCamera.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\fadeParticles.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\flyingSpark.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\game.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\health.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserDust.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserLine.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserPoint.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\laserSight\laserSight.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\particleAutoDestroy.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\platform.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\shadow.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\spark.js" />
-     <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\Misc\triggerChildrenCollider.js" />
      <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\ik\ikArmController.js" />
      <Compile Include="Assets\Community Assets\Cartoon Soldier\Scripts\ik\inverseKinematics.js" />
      <Compile Include="Assets\Community Assets\fantasySpider\FS_rotateThis.js" />
