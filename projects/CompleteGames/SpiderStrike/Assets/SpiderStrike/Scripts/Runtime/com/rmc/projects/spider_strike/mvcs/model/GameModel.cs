@@ -219,6 +219,10 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 		
 		// PRIVATE STATIC
+		/// <summary>
+		/// The _ ENEMIE s_ PE r_ ROUN.
+		/// </summary>
+		private const int _ENEMIES_PER_ROUND = 5;
 		
 		//--------------------------------------
 		//  Methods
@@ -291,7 +295,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		public void startNextRound ()
 		{
 			_currentLevel_uint++;
-			currentRoundDataVO = new RoundDataVO (_currentLevel_uint,_currentLevel_uint*3);
+			currentRoundDataVO = new RoundDataVO (_currentLevel_uint,_currentLevel_uint*_ENEMIES_PER_ROUND);
 
 
 		}

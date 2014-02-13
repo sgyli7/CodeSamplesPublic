@@ -43,6 +43,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum EnemyPlacement
+	{
+		DEBUG,
+		PRODUCTION
+
+	}
 	
 	
 	//--------------------------------------
@@ -89,6 +95,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public GameObject attackSphereGameObject;
 
+
+		/// <summary>
+		/// The enemy placement. TOGGLED ONLY DURING DEBUGGING
+		/// </summary>
+		public EnemyPlacement enemyPlacement = EnemyPlacement.PRODUCTION;
 
 		/// <summary>
 		/// Gets or sets all views initialized signal.
@@ -176,8 +187,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			float spawnRadius_float 	= _getRadiusFromGameObject(spawnSphereGameObject);
 			float attackRadius_float 	= _getRadiusFromGameObject(attackSphereGameObject);
 			//
-			float spawnAngle_float 		= 90	; //Random.Range (0, 360);
-			//spawnAngle_float 			= Mathf.Round (spawnAngle_float/36)*36; //round to 'space apart' the spawning
+			float spawnAngle_float;
+			if (enemyPlacement == EnemyPlacement.DEBUG) {
+				spawnAngle_float = 90	; 
+			} else {
+				spawnAngle_float = Random.Range (0, 360);
+			}
+
+			spawnAngle_float 			= Mathf.Round (spawnAngle_float/36)*36; //round to 'space apart' the spawning
 			spawnAngle_float			= Mathf.Deg2Rad*spawnAngle_float;
 			//
 			float spawnX_float			= Mathf.Cos (spawnAngle_float)*spawnRadius_float;
