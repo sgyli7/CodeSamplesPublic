@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,75 +28,86 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using strange.extensions.signal.impl;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model.vo;
+using UnityEngine;
 
 
-namespace com.rmc.projects.spider_strike.mvcs.model
+namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 {
+	
+	//--------------------------------------
+	//  Namespace Properties
+	//--------------------------------------
+
+	
+	//--------------------------------------
+	//  Class Attributes
+	//--------------------------------------
+	
 	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	/// <summary>
-	/// 
-	/// </summary>
-	public interface IGameModel
+	public class TurretDiedSignal : Signal
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		/// <summary>
-		/// Gets or sets the turret health changed signal.
-		/// </summary>
-		/// <value>The turret health changed signal.</value>
-		TurretHealthChangedSignal turretHealthChangedSignal { get; set;}
-
-		/// <summary>
-		/// Gets or sets the turret health.
-		/// </summary>
-		/// <value>The turret health.</value>
-		int turretHealth { set; get;}
-
-		/// <summary>
-		/// Gets or sets the score.
-		/// </summary>
-		/// <value>The score.</value>
-		float score { set; get;}
-
-		/// <summary>
-		/// Gets or sets the current round data V.
-		/// </summary>
-		/// <value>The current round data V.</value>
-		RoundDataVO currentRoundDataVO { set; get;}
-
-		/// <summary>
-		/// Gets or sets the state of the game.
-		/// </summary>
-		/// <value>The state of the game.</value>
-		GameState gameState { set; get;}
-
-
+		
+		// PUBLIC
+		
+		// PUBLIC STATIC
+		
+		// PRIVATE
+		
+		// PRIVATE STATIC
+		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-
-		/// <summary>
-		/// Dos the reset model.
-		/// </summary>
-		void doResetModel();
-
-		/// <summary>
-		/// Starts the next round.
-		/// </summary>
-		void startNextRound ();
 		
+		
+		///////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
+		///			CONSTRUCTOR / DESTRUCTOR
+		///////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
+		///<summary>
+		///	 Constructor
+		///</summary>
+		public TurretDiedSignal( )
+		{
+			//Debug.Log ("TurretDiedSignal.constructor()");
+			
+		}
+		
+		~TurretDiedSignal()
+		{
+			
+		}
+		
+		
+		//	PUBLIC
+		
+		// PRIVATE
+		
+		// PRIVATE STATIC
+		
+		// PRIVATE COROUTINE
+		
+		// PRIVATE INVOKE
+		
+		//--------------------------------------
+		//  Events
+		//--------------------------------------
 	}
 }
+
+
 

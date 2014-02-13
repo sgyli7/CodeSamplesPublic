@@ -131,34 +131,44 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aSoundPlayVO">A sound play V.</param>
 		public void playSound (SoundPlayVO aSoundPlayVO)
 		{
+
+			//Debug.Log ("playSound: " + aSoundPlayVO.soundType);
 			switch (aSoundPlayVO.soundType){
 			case SoundType.BUTTON_CLICK:
-				_getAudioSourceByIndex(0).clip = _getAudioClipByName ("ButtonClick01");
-				_getAudioSourceByIndex(0).Play ();
-				break;
-			case SoundType.TURRET_FIRE:
-				_getAudioSourceByIndex(1).clip = _getRandomAudioClipFromNameArray ( new string[] {"TurretFire01","TurretFire02"} );
+				_getAudioSourceByIndex(1).clip = _getAudioClipByName ("ButtonClick01");
 				_getAudioSourceByIndex(1).Play ();
 				break;
-			case SoundType.ENEMY_FOOSTEP:
-				_getAudioSourceByIndex(2).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyFootstep01","EnemyFootstep02"} );
+			case SoundType.TURRET_FIRE:
+				_getAudioSourceByIndex(2).clip = _getRandomAudioClipFromNameArray ( new string[] {"TurretFire01","TurretFire02"} );
 				_getAudioSourceByIndex(2).Play ();
 				break;
-			case SoundType.ENEMY_ATTACK:
-				_getAudioSourceByIndex(3).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyAttack01","EnemyAttack02"} );
+			case SoundType.ENEMY_FOOSTEP:
+				_getAudioSourceByIndex(3).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyFootstep01","EnemyFootstep02"} );
 				_getAudioSourceByIndex(3).Play ();
+				break;
+			case SoundType.ENEMY_ATTACK:
+				_getAudioSourceByIndex(4).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyAttack01","EnemyAttack02"} );
+				_getAudioSourceByIndex(4).Play ();
 				break;
 			case SoundType.ENEMY_DAMAGED:
 
 				//overlaps fire sound, so skip this?
-				//_audioSource01.clip = _getAudioClipByName ("ButtonClick01");
-				//_audioSource01.Play ();
+				//_getAudioSourceByIndex(5).clip = _getAudioClipByName ("ButtonClick01");
+				//_getAudioSourceByIndex(5).Play();
 				break;
 
 			case SoundType.ENEMY_DIE:
-				_getAudioSourceByIndex(4).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyDie01","EnemyDie02"});
-				_getAudioSourceByIndex(4).Play ();
+				_getAudioSourceByIndex(5).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyDie01","EnemyDie02"});
+				_getAudioSourceByIndex(5).Play ();
 
+				break;
+			case SoundType.GAME_OVER_WIN:
+				_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverWin");
+				_getAudioSourceByIndex(6).Play ();
+				break;
+			case SoundType.GAME_OVER_LOSS:
+				_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverLoss");
+				_getAudioSourceByIndex(6).Play ();
 				break;
 			default:
 				#pragma warning disable 0162
@@ -173,9 +183,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void playMusic ()
 		{
-			_getAudioSourceByIndex(5).clip = _getAudioClipByName ("BackgroundMusic01");
-			_getAudioSourceByIndex(5).loop = true;
-			_getAudioSourceByIndex(5).Play ();
+			_getAudioSourceByIndex(0).clip = _getAudioClipByName ("BackgroundMusic01");
+			_getAudioSourceByIndex(0).loop = true;
+			_getAudioSourceByIndex(0).Play ();
 		}
 
 		// PUBLIC STATIC
@@ -192,6 +202,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			foreach (AudioClip audioClip in audioClip_list) {
 				
 				nextAudioSource_gameobject = new GameObject ();
+				nextAudioSource_gameobject.name = "AudioSource";
 				nextAudioSource_gameobject.transform.parent = transform;
 				nextAudioSource_gameobject.AddComponent<AudioSource>();
 				//

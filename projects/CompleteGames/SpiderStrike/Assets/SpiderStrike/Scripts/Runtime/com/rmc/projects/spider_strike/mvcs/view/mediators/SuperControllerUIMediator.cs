@@ -40,6 +40,7 @@ using com.rmc.projects.spider_strike.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model;
 
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
@@ -89,6 +90,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The turret do move signal.</value>
 		[Inject]
 		public TurretDoMoveSignal turretDoMoveSignal 		{ get; set;}
+
+		/// <summary>
+		/// MODEL: The main game data
+		/// </summary>
+		[Inject]
+		public IGameModel iGameModel { get; set; } 
+
 		
 		// PUBLIC
 		
@@ -136,9 +144,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		
 		
 		//	PUBLIC
-		
-		
-		// PRIVATE
 		/// <summary>
 		/// Resets the game.
 		/// 
@@ -153,6 +158,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		
+		
+		// PRIVATE
+		/// <summary>
+		/// _dos the send move.
+		/// </summary>
+		/// <param name="aTurretMoveVO">A turret move V.</param>
+		private void _doSendMove (TurretMoveVO aTurretMoveVO) 
+		{
+
+			if (iGameModel.gameState == GameState.GAME) {
+				turretDoMoveSignal.Dispatch (aTurretMoveVO);
+			}
+		
+		}
 		
 		
 		// PRIVATE STATIC
@@ -179,13 +198,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				//KEYDOWN
 				switch (aUIInputVO.keyCode) {
 					case KeyCode.LeftArrow:
-						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.Left, _TURRET_ROTATION_PER_CLICK));
+						_doSendMove (new TurretMoveVO( MoveType.Left, _TURRET_ROTATION_PER_CLICK));
 						break;
 					case KeyCode.RightArrow:
-						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.Right, _TURRET_ROTATION_PER_CLICK));
+						_doSendMove (new TurretMoveVO( MoveType.Right, _TURRET_ROTATION_PER_CLICK));
 						break;
 					case KeyCode.Space:
-						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.FiringStart));
+						_doSendMove (new TurretMoveVO( MoveType.FiringStart));
 						break;
 					case KeyCode.Return:
 						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));

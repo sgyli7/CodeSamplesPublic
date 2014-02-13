@@ -73,7 +73,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		/// </summary>
 		/// <value>The damage amount.</value>
 		[Inject]
-		public float changeAmount {get;set;}
+		public int changeAmount {get;set;}
 		
 		// PUBLIC
 		

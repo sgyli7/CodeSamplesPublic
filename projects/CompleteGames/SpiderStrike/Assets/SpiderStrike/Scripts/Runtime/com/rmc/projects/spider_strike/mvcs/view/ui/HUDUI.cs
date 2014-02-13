@@ -231,7 +231,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// Dos the prompt start.
 		/// </summary>
 		/// <param name="aMessage_string">A message_string.</param>
-		public void doPromptStart (string aMessage_string) 
+		public void doPromptStart (string aMessage_string, bool aIsToFadeOutToo_boolean) 
 		{
 
 			//
@@ -239,33 +239,33 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 			//SETUP: IMMEDIATLY SET ALPHA TO 0
-			/*
-			iTween.StopByName (promptGUIText_gameObject, "fadeTo", true);
-			iTween.StopByName (promptGUIText2_gameObject, "fadeFrom", true);
-			Hashtable startInvisible_hashtable = new Hashtable();
-			startInvisible_hashtable.Add(iT.FadeTo.delay, 				0);
-			startInvisible_hashtable.Add(iT.FadeTo.alpha,				0);
-			startInvisible_hashtable.Add(iT.FadeTo.time,  				0);
+
+
+			Hashtable fadeTo_hashtable = new Hashtable();
+			fadeTo_hashtable.Add(iT.FadeTo.amount,				0);
+			fadeTo_hashtable.Add(iT.FadeTo.time,  				0);
+			fadeTo_hashtable.Add(iT.FadeTo.easetype, 			iTween.EaseType.linear);
 			//
-			iTween.FadeTo (promptGUIText_gameObject, 0, 0);
-			iTween.FadeTo (promptGUIText2_gameObject, 0, 0);
+			iTween.FadeTo (promptGUIText_gameObject, 			fadeTo_hashtable);
+			iTween.FadeTo (promptGUIText2_gameObject, 			fadeTo_hashtable);
 
-*/
-
+			//_doSetGUITextGameObjectAlpha (promptGUIText_gameObject, 0);
+			//_doSetGUITextGameObjectAlpha (promptGUIText2_gameObject, 0);
 
 			/*********
 			 * 
 			 * SETUP: FADE FROM 0 TO 100
 			 * 
 			 ********/
-			//_promptGUIText.font.material.color.a = 0.5f;
-			Hashtable fadeFrom_hastable = new Hashtable();
-			fadeFrom_hastable.Add("name",						"fadeFrom");
-			fadeFrom_hastable.Add(iT.FadeFrom.alpha,			.1f);
-			fadeFrom_hastable.Add(iT.FadeFrom.time,  			.25);
-			fadeFrom_hastable.Add(iT.FadeFrom.easetype, 		iTween.EaseType.linear);
-			iTween.FadeFrom (promptGUIText_gameObject, 			fadeFrom_hastable);
-			iTween.FadeFrom (promptGUIText2_gameObject, 		fadeFrom_hastable);
+			Hashtable fadeTo2_hashtable = new Hashtable();
+			fadeTo2_hashtable.Add(iT.FadeTo.delay,				.1f);
+			fadeTo2_hashtable.Add(iT.FadeTo.amount,				1);
+			fadeTo2_hashtable.Add(iT.FadeTo.time,  				.5);
+			fadeTo2_hashtable.Add(iT.FadeTo.easetype, 			iTween.EaseType.linear);
+			//
+			iTween.FadeTo (promptGUIText_gameObject, 			fadeTo2_hashtable);
+			iTween.FadeTo (promptGUIText2_gameObject, 			fadeTo2_hashtable);
+
 
 			/*********
 			 * 
@@ -273,18 +273,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			 * 
 			 ********/
 			//_promptGUIText.font.material.color.a = 0.5f;
-			Hashtable fadeTo_hashtable = new Hashtable();
-			fadeTo_hashtable.Add("name",						"fadeTo");
-			fadeTo_hashtable.Add(iT.FadeTo.delay, 				1.5);
-			fadeTo_hashtable.Add(iT.FadeTo.alpha,				0);
-			fadeTo_hashtable.Add(iT.FadeTo.time,  				.25);
-			fadeTo_hashtable.Add(iT.FadeTo.easetype, 			iTween.EaseType.linear);
-			fadeTo_hashtable.Add(iT.FadeTo.oncompletetarget, 	gameObject);
-			//
-			iTween.FadeTo (promptGUIText_gameObject, 			fadeTo_hashtable);
-			//CALL COMPLETE JUST ONCE
-			fadeTo_hashtable.Add(iT.FadeTo.oncomplete, 			"_onPromptRemoved");
-			iTween.FadeTo (promptGUIText2_gameObject, 			fadeTo_hashtable);
+			if (aIsToFadeOutToo_boolean) {
+				Hashtable fadeTo3_hashtable = new Hashtable();
+				fadeTo3_hashtable.Add("name",						"fadeTo2");
+				fadeTo3_hashtable.Add(iT.FadeTo.delay, 				2);
+				fadeTo3_hashtable.Add(iT.FadeTo.alpha,				0);
+				fadeTo3_hashtable.Add(iT.FadeTo.time,  				.5);
+				fadeTo3_hashtable.Add(iT.FadeTo.easetype, 			iTween.EaseType.linear);
+				fadeTo3_hashtable.Add(iT.FadeTo.oncompletetarget, 	gameObject);
+				//
+				iTween.FadeTo (promptGUIText_gameObject, 			fadeTo3_hashtable);
+				//CALL COMPLETE JUST ONCE
+				fadeTo3_hashtable.Add(iT.FadeTo.oncomplete, 			"_onPromptRemoved");
+				iTween.FadeTo (promptGUIText2_gameObject, 			fadeTo3_hashtable);
+			}
 
 		}
 
@@ -303,6 +305,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 		}
 
+		/// <summary>
+		/// _dos the set GUI text game object alpha.
+		/// </summary>
+		/// <param name="aGameObject">A game object.</param>
+		/// <param name="aAlpha_float">A alpha_float.</param>
+		private void _doSetGUITextGameObjectAlpha (GameObject aGameObject, float aAlpha_float)
+		{
+			GUIText guiText = aGameObject.guiText;
+			guiText.color 	= new Color (guiText.color.r, guiText.color.g, guiText.color.b, aAlpha_float);
+
+		}
 		
 		// PRIVATE STATIC
 		
@@ -320,10 +333,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		private void _onPromptRemoved ()
 		{
-			Debug.Log ("_onPromptRemoved!!");
+			//Debug.Log ("_onPromptRemoved!!");
 			uiPromptEndedSignal.Dispatch ();
-			iTween.FadeTo (promptGUIText_gameObject, 0, 0);
-			iTween.FadeTo (promptGUIText2_gameObject, 0, 0);
 			
 		}
 		

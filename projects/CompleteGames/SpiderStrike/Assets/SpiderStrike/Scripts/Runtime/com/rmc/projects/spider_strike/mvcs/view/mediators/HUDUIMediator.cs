@@ -176,10 +176,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <summary>
 		/// _ons the turret health changed signal.
 		/// </summary>
-		/// <param name="aNewValue_float">A new value_float.</param>
-		private void _onTurretHealthChangedSignal (float aNewValue_float)
+		/// <param name="aNewValue_int">A new value_int.</param>
+		private void _onTurretHealthChangedSignal (int aNewValue_int)
 		{
-			view.setHealthText ("Health: " + aNewValue_float);
+			view.setHealthText ("Health: " + aNewValue_int);
 
 		}
 
@@ -197,9 +197,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the prompt start signal.
 		/// </summary>
 		/// <param name="aNewValue_float">A new value_float.</param>
-		private void _onPromptStartSignal (string aMessage_string)
+		private void _onPromptStartSignal (string aMessage_string, bool aIsToFadeOutToo_boolean)
 		{
-			view.doPromptStart (aMessage_string);
+			view.doPromptStart (aMessage_string, aIsToFadeOutToo_boolean);
 			
 		}
 

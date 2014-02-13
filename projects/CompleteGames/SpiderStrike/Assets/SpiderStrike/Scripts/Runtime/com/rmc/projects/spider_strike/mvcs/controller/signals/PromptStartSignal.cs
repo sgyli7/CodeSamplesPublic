@@ -52,7 +52,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class PromptStartSignal : Signal<string>
+	public class PromptStartSignal : Signal<string, bool>
 	{
 		
 		//--------------------------------------

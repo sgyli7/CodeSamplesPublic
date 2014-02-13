@@ -49,7 +49,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretHealthChangeSignal : Signal<float>
+	public class TurretHealthChangeSignal : Signal<int>
 	{
 		
 		//--------------------------------------

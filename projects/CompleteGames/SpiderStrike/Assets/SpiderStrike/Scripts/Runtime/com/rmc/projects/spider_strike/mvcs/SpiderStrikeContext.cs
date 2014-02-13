@@ -159,7 +159,7 @@ namespace com.rmc.projects.spider_strike.mvcs
 			mediationBinder.Bind<VirtualControllerUI>().To<VirtualControllerUIMediator>();
 			mediationBinder.Bind<KeyboardControllerUI>().To<KeyboardControllerUIMediator>();
 			//
-			mediationBinder.Bind<EnemyManagerUI>().To<EnemyManagerUIMediator>();
+			mediationBinder.Bind<GameManagerUI>().To<GameManagerUIMediator>();
 			//
 			mediationBinder.Bind<HUDUI>().To<HUDUIMediator>();
 			mediationBinder.Bind<SoundManagerUI>().To<SoundManagerUIMediator>();
@@ -180,9 +180,14 @@ namespace com.rmc.projects.spider_strike.mvcs
 
 			//	2. (INJECTED SIGNALS - DIRECTLY OBSERVED)
 			injectionBinder.Bind<RoundStartedSignal>().ToSingleton();
+			injectionBinder.Bind<TurretDiedSignal>().ToSingleton();
+			//
 			injectionBinder.Bind<SoundPlaySignal>().ToSingleton();
+			//
 			injectionBinder.Bind<PromptStartSignal>().ToSingleton();
 			injectionBinder.Bind<PromptEndedSignal>().ToSingleton();
+
+
 
 			//	3. (PAIRS OF MAPPED/INJECTED SIGNALS)
 			//

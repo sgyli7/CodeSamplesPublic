@@ -35,6 +35,7 @@ using strange.extensions.mediation.impl;
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model.data;
 using com.rmc.projects.spider_strike.components.effects;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -100,6 +101,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The turret spinning barrel.
 		/// </summary>
 		public GameObject turretSpinningBarrel;
+
+		/// <summary>
+		/// Gets or sets the turret health change signal.
+		/// </summary>
+		/// <value>The turret health change signal.</value>
+		[Inject]
+		public TurretHealthChangeSignal turretHealthChangeSignal 		{ get; set;}
+
 
 
 
@@ -220,6 +229,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 		}
 
+		/// <summary>
+		/// Dos the take damage.
+		/// </summary>
+		/// <param name="i">The index.</param>
+		public void doTakeDamage (int aDamageAmount_int)
+		{
+
+			turretHealthChangeSignal.Dispatch (-aDamageAmount_int);
+		}
 
 		// PUBLIC STATIC
 		

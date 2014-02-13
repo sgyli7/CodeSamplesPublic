@@ -89,14 +89,16 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 			Debug.Log ("4. AllViewsInitializedCommand.Execute()");
 
 
-			//CALL BOTH STATES
+			//THE GAME MODEL HAS A SIMPLIFIED STATE MACHINE
+			//IT IS NOT 'FINITE', BUT WORKS FOR OUR NEEDS HERE
+			//ANYWHERE THAT CAN ACCESS THE MODEL
+			//CAN UPDATE THE STATE (ACCEPTABLY DANGEROUS)
+			//AND CAN CHECK THE STATE (ACCEPTABLE)
 			iGameModel.gameState = GameState.INIT;
 			iGameModel.gameState = GameState.INTRO;
-			iGameModel.gameState = GameState.GAME;
+			iGameModel.gameState = GameState.PREPARING_NEXT_ROUND;
+			//iGameModel.gameState = GameState.GAME; //starts the next round
 
-
-			//
-			iGameModel.startNextRound();
 
 
 

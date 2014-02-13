@@ -29,12 +29,11 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.mediation.api;
+using com.rmc.projects.spider_strike.mvcs.view.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using com.rmc.projects.spider_strike.mvcs.view.signals;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui

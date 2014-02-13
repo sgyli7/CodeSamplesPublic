@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -48,6 +48,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 	{
 		INIT,
 		INTRO,
+		PREPARING_NEXT_ROUND,
 		GAME,
 		GAME_OVER
 
@@ -68,6 +69,8 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		//--------------------------------------
 		// GETTER / SETTER
 
+
+
 		/// <summary>
 		/// The state of the _game.
 		/// </summary>
@@ -86,8 +89,10 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 						break;
 					case GameState.INTRO:
 						break;
-					case GameState.GAME:
+					case GameState.PREPARING_NEXT_ROUND:
 						startNextRound();
+						break;
+					case GameState.GAME:
 						break;
 					case GameState.GAME_OVER:
 					break;
@@ -112,18 +117,23 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 
 		/// <summary>
-		/// The _turret health_float.
+		/// The _turret health_int.
 		/// </summary>
-		private float _turretHealth_float;
-		public float turretHealth
+		private int _turretHealth_int;
+		public int turretHealth
 		{ 
 			get{
-				return _turretHealth_float;
+				return _turretHealth_int;
 			}
 			set
 			{
-				_turretHealth_float = value;
-				turretHealthChangedSignal.Dispatch (_turretHealth_float);
+				_turretHealth_int = value;
+				_turretHealth_int = Mathf.Clamp (_turretHealth_int, 0, 1000);
+				turretHealthChangedSignal.Dispatch (_turretHealth_int);
+
+				if (_turretHealth_int == 0) {
+					turretDiedSignal.Dispatch ();
+				}
 				
 			}
 		}
@@ -188,6 +198,15 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		public RoundStartedSignal roundStartedSignal { get; set;}
 
 
+		/// <summary>
+		/// Gets or sets the player died signal.
+		/// </summary>
+		/// <value>The player died signal.</value>
+		[Inject]
+		public TurretDiedSignal turretDiedSignal {set; get;}
+
+
+
 		// PUBLIC
 		
 		// PUBLIC STATIC
@@ -240,7 +259,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		[PostConstruct]
 		public void postConstruct ()
 		{
-			Debug.Log ("POST CONST");
+			//Debug.Log ("POST CONST");
 		}
 
 

@@ -52,7 +52,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class EnemyManagerUI : View 
+	public class GameManagerUI : View 
 	{
 		
 		//--------------------------------------
@@ -75,7 +75,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The target game object.
 		/// </summary>
-		public GameObject targetGameObject;
+		public TurretUI targetGameObject;
 
 		/// <summary>
 		/// The attack sphere game object. 

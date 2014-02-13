@@ -38,6 +38,7 @@ using com.rmc.projects.spider_strike.mvcs.view.ui;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -70,12 +71,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public EnemyUI view 	{ get; set;}
 
-		/// <summary>
-		/// Gets or sets the turret health change signal.
-		/// </summary>
-		/// <value>The turret health change signal.</value>
-		[Inject]
-		public TurretHealthChangeSignal turretHealthChangeSignal 		{ get; set;}
+
 
 		/// <summary>
 		/// Gets or sets the sound play signal.
@@ -90,6 +86,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public EnemyDiedSignal enemyDiedSignal {set; get;}
 
+		/// <summary>
+		/// MODEL: The main game data
+		/// </summary>
+		[Inject]
+		public IGameModel iGameModel { get; set; } 
+
+
 		// PUBLIC
 
 		
@@ -98,6 +101,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		// PRIVATE
 		
 		// PRIVATE STATIC
+		/// <summary>
+		/// The _ DAMAG e_ GIVE n_ PE r_ HI.
+		/// </summary>
+		private const int _DAMAGE_GIVEN_PER_HIT = 10;
 		
 		//--------------------------------------
 		//  Methods
@@ -142,25 +149,25 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 
 			//*************************************************
-			//******* MIGRATE THIS LOGIC TO MEDIATOR **********
+			//******* CORE LOGIC                     **********
 			//*************************************************
-			//************* SO, USE PUBLIC METHODS HERE  ******
-			//*************************************************
-			if (view.animationType == AnimationType.WALK) {
+			if (iGameModel.gameState == GameState.GAME) {
+				if (view.animationType == AnimationType.WALK) {
 
-				//
-				if (!view.isAtAttackingDistance()) {
+					//
+					if (!view.isAtAttackingDistance()) {
 
-					view.doFaceTarget();
-					view.doMoveToTarget();
+						view.doFaceTarget();
+						view.doMoveToTarget();
 
-				} else {
+					} else {
 
-					if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
-						view.doPlayAnimation (AnimationType.ATTACK);
+						if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
+							view.doPlayAnimation (AnimationType.ATTACK);
+						}
 					}
-				}
 
+				}
 			}
 			//*************************************************
 			//*************************************************
@@ -179,7 +186,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		private void _doInflictDamage ()
 		{
-			turretHealthChangeSignal.Dispatch (-1f);
+			view.targetTurretUI.doTakeDamage (_DAMAGE_GIVEN_PER_HIT);
 
 
 		}
@@ -199,28 +206,34 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aAnimationType">A animation type.</param>
 		private void _onUIAnimationCompleteSignal (AnimationType aAnimationType)
 		{
-			//Debug.Log ("AnimEnd: " + aAnimationType);
-			if (aAnimationType == AnimationType.DIE) {
+			if (iGameModel.gameState == GameState.GAME) {
+				//Debug.Log ("AnimEnd: " + aAnimationType);
+				if (aAnimationType == AnimationType.DIE) {
 
-				//DESTROY OBJECT, UPDATE SCORE
-				enemyDiedSignal.Dispatch (view.gameObject);
+					//DESTROY OBJECT, UPDATE SCORE
+					enemyDiedSignal.Dispatch (view.gameObject);
 
-				//PLAY SOUND
-				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
+					//PLAY SOUND
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
 
-			} else if (aAnimationType == AnimationType.WALK) {
+				} else if (aAnimationType == AnimationType.WALK) {
 
-				//PLAY SOUND
-				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+					//PLAY SOUND
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
 
-			} else if (aAnimationType == AnimationType.ATTACK) {
-				
-				//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
-				_doInflictDamage();
+				} else if (aAnimationType == AnimationType.ATTACK) {
+					
+					//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
+					_doInflictDamage();
 
 
-				//PLAY SOUND
-				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));
+					//PLAY SOUND
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));
+				}
+			} else {
+
+				//view.doPlayAnimation (AnimationType.IDLE);
+				view.doStopAnimation();
 			}
 
 		}

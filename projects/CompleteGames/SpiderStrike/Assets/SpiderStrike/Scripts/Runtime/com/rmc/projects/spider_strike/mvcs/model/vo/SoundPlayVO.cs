@@ -50,7 +50,9 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		ENEMY_FOOSTEP,
 		ENEMY_ATTACK,
 		ENEMY_DAMAGED,
-		ENEMY_DIE
+		ENEMY_DIE,
+		GAME_OVER_WIN,
+		GAME_OVER_LOSS,
 	}
 
 

@@ -58,7 +58,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class EnemyManagerUIMediator : Mediator
+	public class GameManagerUIMediator : Mediator
 	{
 		
 		//--------------------------------------
@@ -69,7 +69,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		/// <value>The view.</value>
 		[Inject]
-		public EnemyManagerUI view 	{ get; set;}
+		public GameManagerUI view 	{ get; set;}
 
 		/// <summary>
 		/// Gets or sets the round start signal.
@@ -85,7 +85,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public EnemyDiedSignal enemyDiedSignal {set; get;}
 
-		// GETTER / SETTER
+		/// <summary>
+		/// Gets or sets the player died signal.
+		/// </summary>
+		/// <value>The player died signal.</value>
+		[Inject]
+		public TurretDiedSignal turretDiedSignal {set; get;}
+
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+
 		/// <summary>
 		/// MODEL: The main game data
 		/// </summary>
@@ -106,7 +119,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public PromptEndedSignal promptEndedSignal { get; set;}
 
+		/// <summary>
+		/// Gets or sets the sound play signal.
+		/// </summary>
+		/// <value>The sound play signal.</value>
+		[Inject]
+		public SoundPlaySignal soundPlaySignal { get; set; }
 
+		
 		// PUBLIC
 		
 		
@@ -126,7 +146,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//view.init();
 			enemyDiedSignal.AddListener (_onEnemyDiedSignal);
+			turretDiedSignal.AddListener (_onTurretDiedSignal);
 			roundStartedSignal.AddListener (_onRoundStartedSignal);
+			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			promptEndedSignal.AddListener (_onPromptEndedSignal);
 			
 		}
@@ -137,7 +159,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRemove()
 		{
 			enemyDiedSignal.RemoveListener (_onEnemyDiedSignal);
+			turretDiedSignal.RemoveListener (_onTurretDiedSignal);
 			roundStartedSignal.RemoveListener (_onRoundStartedSignal);
+			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 			promptEndedSignal.RemoveListener (_onPromptEndedSignal);
 		}
 		
@@ -178,12 +202,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the round start signal.
 		/// </summary>
 		/// <param name="aRoundDataVO">A round data V.</param>
+		//TODO: IS THIS SIGNAL NEEDED, WHY NOT JUST CHECK ONGAMESTATE?
 		private void _onRoundStartedSignal (RoundDataVO aRoundDataVO)
 		{
 			//
 			iGameModel.currentRoundDataVO.clearEnemies();
 
-			promptStartSignal.Dispatch ("Round " + aRoundDataVO.currentRound_uint + " -- Kill " + aRoundDataVO.enemiesTotalToCreate);
+			promptStartSignal.Dispatch ("Round " + aRoundDataVO.currentRound_uint + " -- Kill " + aRoundDataVO.enemiesTotalToCreate, true);
 
 
 		}
@@ -195,7 +220,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 
 			//
-			if (iGameModel.gameState != GameState.GAME_OVER) {
+			if (iGameModel.gameState == GameState.PREPARING_NEXT_ROUND) {
+				iGameModel.gameState = GameState.GAME;
+			}
+
+		}
+
+		/// <summary>
+		/// _ons the game state changed signal.
+		/// </summary>
+		/// <param name="aGameState">A game state.</param>
+		private void _onGameStateChangedSignal (GameState aGameState)
+		{
+			//
+			if (iGameModel.gameState == GameState.GAME) {
 				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider() );
 			}
 
@@ -217,16 +255,28 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
 			if (iGameModel.currentRoundDataVO.enemiesCreated < iGameModel.currentRoundDataVO.enemiesTotalToCreate) {
 				iGameModel.currentRoundDataVO.addEnemy (	view.doCreateSpider() 	);
-				//promptStartSignal.Dispatch ("You Win The Game!");
 			} else {
 
 				//DONE
 				iGameModel.gameState = GameState.GAME_OVER;
-				promptStartSignal.Dispatch ("You Win The Game!");
+				promptStartSignal.Dispatch ("You Won The Game!", false);
+				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
 
 			}
 		}
 
+		/// <summary>
+		/// _ons the turret died signal.
+		/// </summary>
+		private void _onTurretDiedSignal ()
+		{
+			
+			//DONE
+			iGameModel.gameState = GameState.GAME_OVER;
+			promptStartSignal.Dispatch ("You Lost The Game!", false);
+			soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_LOSS));
+				
+		}
 
 
 

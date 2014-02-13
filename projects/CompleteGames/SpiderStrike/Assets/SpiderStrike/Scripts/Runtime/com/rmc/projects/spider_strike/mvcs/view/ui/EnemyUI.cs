@@ -113,13 +113,23 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The _health current_float.
 		/// </summary>
-		private float _healthCurrent_float = 11;
+		private float _healthCurrent_float = _HEALTH_INITIAL;
 		
 		/// <summary>
-		/// The target_game object.
+		/// The _target turret U.
 		/// </summary>
-		private GameObject _target_gameObject;
-		
+		private TurretUI _targetTurretUI;
+		public TurretUI targetTurretUI
+		{ 
+			get{
+				return _targetTurretUI;
+			}
+			set
+			{
+				_targetTurretUI = value;
+			}
+		}
+
 		
 		/// <summary>
 		/// The attack radius.
@@ -133,6 +143,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		float _moveSpeed_float;
 
 		// PRIVATE STATIC
+		/// <summary>
+		/// The _ ROTATIO n_ SPEE.
+		/// </summary>
+		private const float _ROTATION_SPEED = 1.0f;
+
+		private const int _HEALTH_INITIAL = 11;
 		
 		//--------------------------------------
 		//  Methods
@@ -152,9 +168,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aTargetGameObject">A target game object.</param>
 		/// <param name="aAttackRadius_float">A attack radius_float.</param>
 		/// <param name="aHealth_float">A health_float.</param>
-		public void setParameters (GameObject aTargetGameObject, float aAttackRadius_float, float aHealth_float, float aMoveSpeed_float)
+		public void setParameters (TurretUI aTargetGameObject, float aAttackRadius_float, float aHealth_float, float aMoveSpeed_float)
 		{
-			_target_gameObject 		= aTargetGameObject;
+			_targetTurretUI 		= aTargetGameObject;
 			_attackRadius			= aAttackRadius_float;
 			_healthCurrent_float	= aHealth_float;
 			_moveSpeed_float		= aMoveSpeed_float;
@@ -171,7 +187,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			base.Start();
 			animation = GetComponentInChildren<Animation>();
 			_particleSystem = GetComponentInChildren<ParticleSystem>();
-			Debug.Log ("_particleSystem: " + _particleSystem);
 			
 			
 		}
@@ -205,7 +220,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <returns><c>true</c>, if at attacking distance was _ised, <c>false</c> otherwise.</returns>
 		public bool isAtAttackingDistance ()
 		{
-			return Vector3.Distance (transform.position, _target_gameObject.transform.position) < _attackRadius;
+			return Vector3.Distance (transform.position, _targetTurretUI.transform.position) < _attackRadius;
 		}
 		
 		/// <summary>
@@ -213,13 +228,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void doFaceTarget ()
 		{
-			float rotationSpeed = 1.0f;
-			
 			transform.rotation = Quaternion.Slerp
 				(
 					transform.rotation,
-					Quaternion.LookRotation(_target_gameObject.transform.position - transform.position),
-					rotationSpeed
+					Quaternion.LookRotation(_targetTurretUI.transform.position - transform.position),
+					_ROTATION_SPEED
 				);
 		}
 		
@@ -244,7 +257,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//
 			switch (animationType) {
 				case AnimationType.WALK:
-					//_setAnimationIfNotYetSetTo ("walk", WrapMode.ClampForever);
+					_setAnimationIfNotYetSetTo ("walk", WrapMode.Loop);
 					break;
 				case AnimationType.ATTACK:
 					_setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {"attack1","attack2"}), WrapMode.Loop);
@@ -256,7 +269,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 					_setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {"death1","death2"}), WrapMode.ClampForever);
 					break;
 				case AnimationType.IDLE:
-					_setAnimationIfNotYetSetTo ("idle", WrapMode.Loop);
+					_setAnimationIfNotYetSetTo ("idle", WrapMode.Default);
 					break;
 				default:
 					#pragma warning disable 0162
@@ -264,6 +277,16 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 					break;
 					#pragma warning restore 0162
 			}
+
+		}
+
+		/// <summary>
+		/// Dos the stop animation.
+		/// </summary>
+		public void doStopAnimation()
+		{
+			animation.Stop();
+
 
 		}
 
@@ -346,7 +369,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//--------------------------------------
 		/// <summary>
 		/// Ons the animation complete.
-		/// NOTE: Method be public for InvokeRepeating
+		/// 
+		/// 
+		/// NOTE: Method must be ***public*** due to InvokeRepeating
+		/// 
+		/// 
 		/// </summary>
 		public void onAnimationComplete ()
 		{

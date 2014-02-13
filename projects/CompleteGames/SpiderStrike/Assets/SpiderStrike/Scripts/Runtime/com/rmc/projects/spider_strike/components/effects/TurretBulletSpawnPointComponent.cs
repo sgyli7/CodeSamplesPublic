@@ -153,7 +153,7 @@ namespace com.rmc.projects.spider_strike.components.effects
 
 			//
 			int materialIndex_int = Mathf.RoundToInt(Random.Range(0,muzzleFlashMaterials_array.Length));
-			muzzleFlash_gameobject.renderer.material = muzzleFlashMaterials_array[0];
+			muzzleFlash_gameobject.renderer.material = muzzleFlashMaterials_array[materialIndex_int];
 
 			CancelInvoke ("_hideMuzzleFlash");
 			Invoke ("_hideMuzzleFlash", _LIFE_DURATION);

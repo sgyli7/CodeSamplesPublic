@@ -28,15 +28,15 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using strange.extensions.mediation.api;
+using com.rmc.projects.spider_strike.mvcs.view.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
-namespace com.rmc.projects.spider_strike.mvcs.model
+namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
 	//--------------------------------------
@@ -45,57 +45,19 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IGameModel
+	public interface IDamageable : IView 
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		/// <summary>
-		/// Gets or sets the turret health changed signal.
-		/// </summary>
-		/// <value>The turret health changed signal.</value>
-		TurretHealthChangedSignal turretHealthChangedSignal { get; set;}
-
-		/// <summary>
-		/// Gets or sets the turret health.
-		/// </summary>
-		/// <value>The turret health.</value>
-		int turretHealth { set; get;}
-
-		/// <summary>
-		/// Gets or sets the score.
-		/// </summary>
-		/// <value>The score.</value>
-		float score { set; get;}
-
-		/// <summary>
-		/// Gets or sets the current round data V.
-		/// </summary>
-		/// <value>The current round data V.</value>
-		RoundDataVO currentRoundDataVO { set; get;}
-
-		/// <summary>
-		/// Gets or sets the state of the game.
-		/// </summary>
-		/// <value>The state of the game.</value>
-		GameState gameState { set; get;}
 
 
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-
-		/// <summary>
-		/// Dos the reset model.
-		/// </summary>
-		void doResetModel();
-
-		/// <summary>
-		/// Starts the next round.
-		/// </summary>
-		void startNextRound ();
+		void doTakeDamage (float aDamageAmount_float);
 		
 	}
 }
