@@ -323,6 +323,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		private void _setAnimationIfNotYetSetTo (string aAnimationName_string, WrapMode aWrapMode)
 		{
 
+			Debug.Log ("OK: " + aAnimationName_string);
 			if (animation.clip.name != aAnimationName_string) {
 				animation.clip.name = aAnimationName_string;
 

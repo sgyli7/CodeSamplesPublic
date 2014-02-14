@@ -85,32 +85,43 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		///<summary>
 		///	Called once per frame
+		/// 
+		/// 
+		/// 
+		/// 		/// NOTE: This class must know DownEnter vs DownExit. The 'DownStay' is handled in the superclass.
+		/// 
+		/// 
+		/// 
 		///</summary>
 		void Update () 
 		{
 			
 			//RESET
 			if (Input.GetKeyDown (KeyCode.Return)) {
-				_doUpdateUIInput (KeyCode.Return, UIInputEventType.Down);
-			}
+				_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
+			} 
 			
 			//LEFT
 			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.Down);
+				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownEnter);
+			} else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
+				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownExit);
 			}
 			
 			//RIGHT
 			if (Input.GetKeyDown (KeyCode.RightArrow)) {
-				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.Down);
+				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownEnter);
+			} else if (Input.GetKeyUp (KeyCode.RightArrow)) {
+				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownExit);
 			}
 			
 			//FIRE
 			if(Input.GetKeyDown (KeyCode.Space)) { 
-				_doUpdateUIInput (KeyCode.Space, UIInputEventType.Down);
+				_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownEnter);
 			}
 
 			if(Input.GetKeyUp (KeyCode.Space)) { 
-				_doUpdateUIInput (KeyCode.Space, UIInputEventType.Up);
+				_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownExit);
 			}
 
 		}

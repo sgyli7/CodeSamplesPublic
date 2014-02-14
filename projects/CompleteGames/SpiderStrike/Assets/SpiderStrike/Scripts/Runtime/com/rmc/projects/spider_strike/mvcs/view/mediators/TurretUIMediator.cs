@@ -148,13 +148,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//Debug.Log ("aTurretMoveVO: " + aTurretMoveVO.moveType);
 			switch (aTurretMoveVO.moveType) {
-			case MoveType.Left:
+			case MoveType.LeftOneTick:
 				view.firingAngle -= aTurretMoveVO.amount;
-				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 				break;
-			case MoveType.Right:
+			case MoveType.RightOneTick:
 				view.firingAngle += aTurretMoveVO.amount;
-				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 				break;
 			case MoveType.FiringStart:
 				view.doSetIsFiring (true);

@@ -36,6 +36,8 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.projects.spider_strike.mvcs.view.signals;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -72,6 +74,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _last user interface input V os_list.
+		/// </summary>
+		public List<UIInputVO> _lastUIInputVOs_list;
 		
 		// PRIVATE STATIC
 		
@@ -84,6 +90,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		override protected void Start () 
 		{
 			base.Start();
+			_lastUIInputVOs_list = new List<UIInputVO>();
+			_lastUIInputVOs_list.Add (new UIInputVO (KeyCode.LeftArrow, UIInputEventType.DownExit));
+			_lastUIInputVOs_list.Add (new UIInputVO (KeyCode.RightArrow, UIInputEventType.DownExit));
+			
+
+		
+		}
+
+
+		/// <summary>
+		/// Update this instance.
+		/// </summary>
+		void Update ()
+		{
+			_doProcessDownStayEvents();
+
 		}
 		
 		
@@ -115,14 +137,67 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the press button.
+		/// _dos the update user interface input.
+		/// 
+		/// NOTE: We store the state of the last UIInputVO **PER** keycode. This way we can dispatch
+		/// 		if/when the 'DownStay' should be sent every frame.
+		/// 
+		/// 
+		/// 
 		/// </summary>
-		/// <param name="aUIInputType">A user interface input type.</param>
+		/// <param name="aKeyCode">A key code.</param>
+		/// <param name="aUIInputEventType">A user interface input event type.</param>
 		protected void _doUpdateUIInput (KeyCode aKeyCode, UIInputEventType aUIInputEventType )
 		{
-			uiInputChangedSignal.Dispatch (new UIInputVO (aKeyCode, aUIInputEventType));
+			UIInputVO lastFoundUIInputVO 	= _lastUIInputVOs_list.Where(uiInputVO => uiInputVO.keyCode == aKeyCode).SingleOrDefault();
+			UIInputVO toSendUIInputVO 		= new UIInputVO (aKeyCode, aUIInputEventType);
+
+
+			_lastUIInputVOs_list.Remove (lastFoundUIInputVO);
+			//lastFoundUIInputVO.uiInputEventType = aUIInputEventType;
+			//_lastUIInputVOs_list.Add (lastFoundUIInputVO);
+			//Debug.Log ("after" + _lastUIInputVOs_list.Count);
+
+
+			//1. CREATE/STORE THAT INPUTVO
+			if (true) {
+				//Debug.Log ("ADD: " + _lastUIInputVOs_list.Count);
+			} else {
+				//2. OR UPDATE THE INPUTVO
+				Debug.Log ("update ("+aKeyCode+"): " + aUIInputEventType);
+
+				//SENDS #1, DOWN AND #2, UP
+				//_lastUIInputVOs_list.Remove (lastFoundUIInputVO);
+				//lastFoundUIInputVO.uiInputEventType = aUIInputEventType;
+				//_lastUIInputVOs_list.Add (lastFoundUIInputVO);
+			}
+			uiInputChangedSignal.Dispatch (toSendUIInputVO);
 			
 		}
+
+		/// <summary>
+		/// _dos the process down stay events.
+		/// 
+		/// NOTE: We use the state information here to repeatedly send 'yes I'm currently down' events
+		/// 
+		/// 
+		/// 
+		/// </summary>
+		private void _doProcessDownStayEvents ()
+		{
+
+			Debug.Log ("--");
+			foreach (UIInputVO uiInputVO in _lastUIInputVOs_list) {
+				Debug.Log ("check ("+uiInputVO.keyCode+") =" + uiInputVO.uiInputEventType);
+				if (uiInputVO.uiInputEventType == UIInputEventType.DownEnter) {
+
+					//SENDS #3, STAY
+					uiInputChangedSignal.Dispatch (new UIInputVO (uiInputVO.keyCode, UIInputEventType.DownStay));
+				}
+
+			}
+		}
+
 		
 		// PRIVATE STATIC
 		

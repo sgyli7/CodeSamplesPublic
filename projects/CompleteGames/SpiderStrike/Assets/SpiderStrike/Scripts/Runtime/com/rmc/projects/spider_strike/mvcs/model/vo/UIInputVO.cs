@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -41,8 +41,9 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 	//--------------------------------------
 	public enum UIInputEventType
 	{
-		Down,
-		Up,
+		DownEnter,
+		DownStay,
+		DownExit,
 	}
 
 	//--------------------------------------

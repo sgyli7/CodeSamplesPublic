@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -109,7 +109,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <summary>
 		/// Spin amount per click
 		/// </summary>
-		private const float _TURRET_ROTATION_PER_CLICK = 30;
+		private const float _TURRET_ROTATION_PER_CLICK = 5;
 		
 		//--------------------------------------
 		//  Methods
@@ -190,18 +190,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _onUIInputChangedSignal (UIInputVO aUIInputVO)
 		{
 
-
-
-			if (aUIInputVO.uiInputEventType == UIInputEventType.Down) {
+			//Debug.Log ("in: " + aUIInputVO.uiInputEventType);
+			if (aUIInputVO.uiInputEventType == UIInputEventType.DownEnter) {
 
 
 				//KEYDOWN
 				switch (aUIInputVO.keyCode) {
 					case KeyCode.LeftArrow:
-						_doSendMove (new TurretMoveVO( MoveType.Left, _TURRET_ROTATION_PER_CLICK));
-						break;
 					case KeyCode.RightArrow:
-						_doSendMove (new TurretMoveVO( MoveType.Right, _TURRET_ROTATION_PER_CLICK));
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 						break;
 					case KeyCode.Space:
 						_doSendMove (new TurretMoveVO( MoveType.FiringStart));
@@ -210,16 +207,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 						_doResetGame();
 						break;
-					default:
-						#pragma warning disable 0162
-						throw new SwitchStatementException();
-						break;
-						#pragma warning restore 0162
 				}
 
-			} else {
+			} else if (aUIInputVO.uiInputEventType == UIInputEventType.DownExit) {
 
-				//KEYDOWN
+				//KEYUP
 				switch (aUIInputVO.keyCode) {
 					case KeyCode.Space:
 						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.FiringStop));
@@ -227,8 +219,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				}
 
 
+			} else if (aUIInputVO.uiInputEventType == UIInputEventType.DownStay) {
+				
+				//KEYSTAY
+				switch (aUIInputVO.keyCode) {
+					case KeyCode.LeftArrow:
+						_doSendMove (new TurretMoveVO( MoveType.LeftOneTick, _TURRET_ROTATION_PER_CLICK));
+						break;
+					case KeyCode.RightArrow:
+						_doSendMove (new TurretMoveVO( MoveType.RightOneTick, _TURRET_ROTATION_PER_CLICK));
+						break;
+				}
+				
+				
 			}
-			
 			
 			
 		}

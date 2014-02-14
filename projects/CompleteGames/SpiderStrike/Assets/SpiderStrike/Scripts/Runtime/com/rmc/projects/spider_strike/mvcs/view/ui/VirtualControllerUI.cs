@@ -133,13 +133,63 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			if (_isCurrentlyFiring_boolean != aIsCurrentlyFiring_boolean) {
 				_isCurrentlyFiring_boolean = aIsCurrentlyFiring_boolean;
 				if (_isCurrentlyFiring_boolean) {
-					_doUpdateUIInput (KeyCode.Space, UIInputEventType.Down);
+					_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownEnter);
 				} else {
-					_doUpdateUIInput (KeyCode.Space, UIInputEventType.Up);
+					_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownExit);
 				}
 			}
 			
 		}
+
+		// PRIVATE
+		/// <summary>
+		/// The _is currently left_boolean.
+		/// </summary>
+		bool _isCurrentlyLeft_boolean = true;
+		
+		/// <summary>
+		/// _dos the set is currently left.
+		/// </summary>
+		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
+		private void _doSetIsCurrentlyLeft (bool aIsCurrentlyLeft_boolean) 
+		{
+			if (_isCurrentlyLeft_boolean != aIsCurrentlyLeft_boolean) {
+				_isCurrentlyLeft_boolean = aIsCurrentlyLeft_boolean;
+				if (_isCurrentlyLeft_boolean) {
+					_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownEnter);
+				} else {
+					_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownExit);
+				}
+			}
+			
+		}
+
+
+		// PRIVATE
+		/// <summary>
+		/// The _is currently left_boolean.
+		/// </summary>
+		bool _isCurrentlyRight_boolean = true;
+		
+		/// <summary>
+		/// _dos the set is currently left.
+		/// </summary>
+		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
+		private void _doSetIsCurrentlyRight (bool aIsCurrentlyRight_boolean) 
+		{
+			if (_isCurrentlyRight_boolean != aIsCurrentlyRight_boolean) {
+				_isCurrentlyRight_boolean = aIsCurrentlyRight_boolean;
+				if (_isCurrentlyRight_boolean) {
+					_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownEnter);
+				} else {
+					_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownExit);
+				}
+			}
+			
+		}
+
+
+
 		
 		// PRIVATE STATIC
 		
@@ -154,29 +204,41 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//--------------------------------------
 		/// <summary>
 		/// Raises the GUI event.
+		/// 
+		/// 
+		/// 		/// NOTE: This class must know DownEnter vs DownExit. The 'DownStay' is handled in the superclass.
+		/// 
+		/// 
 		/// </summary>
 		void OnGUI () 
 		{
 
+			//TODO: IS THERE A BETTER WAY TO HANDLE THE STATE OF THESE THREE 'CURRENTLY' VALUES?
+
 			#if UNITY_EDITOR
 			GUI.skin = guiSkin;
 			#endif 
-			
+
+			return;
+
 			//RESET
-			if (GUI.Button (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_TOP_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
-				_doUpdateUIInput (KeyCode.Return, UIInputEventType.Down);
-			}
+			if (GUI.RepeatButton (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_TOP_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
+				_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
+			} 
 
 			//LEFT
-			if (GUI.Button (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Left")) {
-				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.Down);
+			if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Left")) {
+				_doSetIsCurrentlyLeft (true);
+			} else if (_isCurrentlyLeft_boolean && Event.current.type == EventType.repaint) { 
+				_doSetIsCurrentlyLeft (false);
 			}
 
 			//RIGHT
-			if (GUI.Button (new Rect (_SCREEN_MARGIN + _SCREEN_MARGIN + _BUTTON_WIDTH, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Right")) {
-				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.Down);
+			if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN + _SCREEN_MARGIN + _BUTTON_WIDTH, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Right")) {
+				_doSetIsCurrentlyRight (true);
+			} else if (_isCurrentlyRight_boolean && Event.current.type == EventType.repaint) { 
+				_doSetIsCurrentlyRight (false);
 			}
-
 			//FIRE
 			if( GUI.RepeatButton (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Fire")) {
 				_doSetIsCurrentlyFiring (true);
