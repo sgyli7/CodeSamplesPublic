@@ -1,0 +1,39 @@
+Unity Scene Test
+
+
+Instructions (Original Text):
+
+The assignment is to make 2 scripts. One runs on the camera, and one runs on gameobjects. The task is to create a camera script that makes sure that certain items is visible in the view port. 
+(Video Link Removed)
+
+The script running on the camera have the following settings:
+Area that the view port will not move outside off (see video)
+Default distance (from z:0)
+Max distance (from z:0)
+The script running on the  gameobjects will calculate a 'bound' including all it's renderers, to make sure the entire gameobject is in view.
+The same script should be running on the 'players', but with an 'important' bool variable. When this is set, the camera will try and keep the gameobject in the view port at all time.
+
+Please send a unity project containing all the necessary code.
+
+
+ 
+Instructions (Updated Upon Completion As Checklist):
+
+* The assignment is to make 2 scripts. [STATUS]
+
+* 1) One runs on the camera, and one runs on gameobjects. [STATUS]
+*** The task is to create a camera script that makes sure that certain items is visible in the view port. [STATUS]
+
+* The script running on the camera have the following settings:[STATUS]
+*** Area that the view port will not move outside off (see video)[STATUS]
+*** Default distance (from z:0)[STATUS]
+*** Max distance (from z:0)[STATUS]
+
+* 2) The script running on the  gameobjects will calculate a 'bound' including all it's renderers[STATUS]
+*** to make sure the entire gameobject is in view.[STATUS]
+*** The same script should be running on the 'players'[STATUS]
+*** but with an 'important' bool variable. [STATUS]
+*** When this is set, the camera will try and keep the gameobject in the view port at all time.[STATUS]
+
+* Please send a unity project containing all the necessary code.[STATUS]
+
