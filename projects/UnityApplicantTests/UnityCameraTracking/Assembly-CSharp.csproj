@@ -47,14 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
-     <Compile Include="Assets\UnityCameraTracking\Scripts\Runtime\com\rmc\projects\unity_car_racer\AxleComponent.cs" />
-     <Compile Include="Assets\UnityCameraTracking\Scripts\Runtime\com\rmc\projects\unity_car_racer\CarInputComponent.cs" />
-     <Compile Include="Assets\UnityCameraTracking\Scripts\Runtime\com\rmc\projects\unity_car_racer\GUIComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\DebugDraw.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\LerpTarget.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\unity3d\wiki\expose_properties\ExposePropertyAttribute.cs" />
+     <Compile Include="Assets\UnityCameraTracking\Scripts\Runtime\com\rmc\projects\unity_camera_tracking\TrackableObjectComponent.cs" />
+     <Compile Include="Assets\UnityCameraTracking\Scripts\Runtime\com\rmc\projects\unity_camera_tracking\TrackingCameraComponent.cs" />
      <None Include="Assets\UnityCameraTracking\Documentation\Instructions_1_v1.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{EB676DCD-A3FF-9007-6EBE-E68B0747EFD9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,39 @@
 Unity Scene Test
 
 
+
+
+
+
+
+
+
+
+TODO
+
+* CLEANUP THE unify classes and make namespaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Instructions (Original Text):
 
 The assignment is to make 2 scripts. One runs on the camera, and one runs on gameobjects. The task is to create a camera script that makes sure that certain items is visible in the view port. 
@@ -17,11 +50,15 @@ Please send a unity project containing all the necessary code.
 
 
  
-Instructions (Updated Upon Completion As Checklist):
+ 
+ 
+ 
+ 
+Instructions (Updated Upon Completion, As Checklist):
 
-* The assignment is to make 2 scripts. [STATUS]
+* The assignment is to make 2 scripts. [DONE]
 
-* 1) One runs on the camera, and one runs on gameobjects. [STATUS]
+* 1) One runs on the camera, and one runs on gameobjects. [DONE]
 *** The task is to create a camera script that makes sure that certain items is visible in the view port. [STATUS]
 
 * The script running on the camera have the following settings:[STATUS]
