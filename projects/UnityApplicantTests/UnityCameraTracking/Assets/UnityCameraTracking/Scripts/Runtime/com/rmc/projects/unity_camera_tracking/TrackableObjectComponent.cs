@@ -132,6 +132,11 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private Camera _camera;
 
+		/// <summary>
+		/// The _ DEBU g_ COLO.
+		/// </summary>
+		private static Color _DEBUG_COLOR = new Color (0, 0, 1);
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -156,7 +161,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		{
 
 			Rect bounds_rect = getBoundsRect(_zPlaneCoordinate_float);
-			DebugDraw.DrawRect (bounds_rect, _zPlaneCoordinate_float);
+			DebugDraw.DrawRect (bounds_rect, _zPlaneCoordinate_float, _DEBUG_COLOR);
 		}
 
 

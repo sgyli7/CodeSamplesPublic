@@ -12,6 +12,8 @@ Unity Scene Test
 TODO
 
 * CLEANUP THE unify classes and make namespaces
+* TEST WITH 0 TRACKABLES, DOES CAMERA FREAK OUT?
+* clean up 100% of comments (the auto comment looks odd)
 
 
 

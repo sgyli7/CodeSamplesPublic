@@ -72,15 +72,15 @@ namespace com.rmc.utilities
 		/// </summary>
 		/// <param name="aRect">A rect.</param>
 		/// <param name="zCoordinate_float">Z coordinate_float.</param>
-		public static void DrawRect (Rect aRect, float aZPlaneCoordinate_float)
+		public static void DrawRect (Rect aRect, float aZPlaneCoordinate_float, Color aColor)
 		{
 	
 			//Debug.Log ("x: " + aRect.x + " ,y= " + aRect.y);
 			//DRAW BOX FROM BOTTOM LEFT AND GO CLOCKWISE
-			Debug.DrawLine (new Vector3 (aRect.x, aRect.y, aZPlaneCoordinate_float), 								new Vector3 (aRect.x, aRect.y + aRect.height, aZPlaneCoordinate_float));
-			Debug.DrawLine (new Vector3 (aRect.x, aRect.y + aRect.height, aZPlaneCoordinate_float), 				new Vector3 (aRect.x + aRect.width, aRect.y + aRect.height, aZPlaneCoordinate_float));
-			Debug.DrawLine (new Vector3 (aRect.x + aRect.width, aRect.y + aRect.height, aZPlaneCoordinate_float), new Vector3 (aRect.x + aRect.width, aRect.y, aZPlaneCoordinate_float)	);
-			Debug.DrawLine (new Vector3 (aRect.x + aRect.width, aRect.y, aZPlaneCoordinate_float), 				new Vector3 (aRect.x, aRect.y, aZPlaneCoordinate_float));
+			Debug.DrawLine (new Vector3 (aRect.x, aRect.y, aZPlaneCoordinate_float), 								new Vector3 (aRect.x, aRect.y + aRect.height, aZPlaneCoordinate_float), aColor);
+			Debug.DrawLine (new Vector3 (aRect.x, aRect.y + aRect.height, aZPlaneCoordinate_float), 				new Vector3 (aRect.x + aRect.width, aRect.y + aRect.height, aZPlaneCoordinate_float), aColor);
+			Debug.DrawLine (new Vector3 (aRect.x + aRect.width, aRect.y + aRect.height, aZPlaneCoordinate_float), new Vector3 (aRect.x + aRect.width, aRect.y, aZPlaneCoordinate_float), aColor	);
+			Debug.DrawLine (new Vector3 (aRect.x + aRect.width, aRect.y, aZPlaneCoordinate_float), 				new Vector3 (aRect.x, aRect.y, aZPlaneCoordinate_float), aColor);
 
 		}
 
@@ -90,7 +90,7 @@ namespace com.rmc.utilities
 		/// </summary>
 		/// <param name="rect">Rect.</param>
 		/// <param name="_zPlaneCoordinate_float">_z plane coordinate_float.</param>
-		public static void DrawCenterPointCrosshairsForRect (Rect aRect, float aZPlaneCoordinate_float)
+		public static void DrawCenterPointCrosshairsForRect (Rect aRect, float aZPlaneCoordinate_float, Color aColor)
 		{
 			//Debug.Log ("DRAW" + aRect);
 			float crossHairLength_float = 1;
@@ -98,13 +98,15 @@ namespace com.rmc.utilities
 			//LOWER LEFT TO UPPER RIGHT
 			Debug.DrawLine 	(
 				new Vector3 (aRect.center.x - crossHairLength_float/2, aRect.center.y - crossHairLength_float/2, aZPlaneCoordinate_float), 								
-				new Vector3 (aRect.center.x + crossHairLength_float/2, aRect.center.y + crossHairLength_float/2, aZPlaneCoordinate_float) 
-			                );
+				new Vector3 (aRect.center.x + crossHairLength_float/2, aRect.center.y + crossHairLength_float/2, aZPlaneCoordinate_float),
+				aColor
+				);
 
 			//UPPER LEFT TO LOWER LEFT
 			Debug.DrawLine 	(
 				new Vector3 (aRect.center.x - crossHairLength_float/2, aRect.center.y + crossHairLength_float/2, aZPlaneCoordinate_float), 								
-				new Vector3 (aRect.center.x + crossHairLength_float/2, aRect.center.y - crossHairLength_float/2, aZPlaneCoordinate_float) 
+				new Vector3 (aRect.center.x + crossHairLength_float/2, aRect.center.y - crossHairLength_float/2, aZPlaneCoordinate_float),
+				aColor
 				);
 
 

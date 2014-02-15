@@ -62,7 +62,8 @@ namespace com.rmc.projects.utilities
 		
 		// PUBLIC
 		public float current;
-		public float resetValue;
+		public float minimum;
+		public float maximum;
 		public float targetValue;
 		public float acceleration;
 		
@@ -85,11 +86,12 @@ namespace com.rmc.projects.utilities
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public LerpTarget (float aCurrent_float, float aMinimum_float, float aMaximum_float, float aAcceleration_float)
+		public LerpTarget (float aCurrent_float, float aTarget_float, float aMinimum_float, float aMaximum_float, float aAcceleration_float)
 		{
 			current 		= aCurrent_float;
-			resetValue 		= aMinimum_float;
-			targetValue 	= aMaximum_float;
+			targetValue 	= aTarget_float;
+			minimum			= aMinimum_float;
+			maximum			= aMaximum_float;
 			acceleration  	= aAcceleration_float;
 			
 		}
@@ -107,17 +109,9 @@ namespace com.rmc.projects.utilities
 		public void lerpCurrentToTarget (float aDeltaTime_float)
 		{
 			_lerpCurrentTo (targetValue, aDeltaTime_float);
+
 		}
 
-		/// <summary>
-		/// Lerps the current to reset.
-		/// </summary>
-		/// <param name="deltaTime">Delta time.</param>
-		public void lerpCurrentToReset (float aDeltaTime_float)
-		{
-			_lerpCurrentTo (resetValue, aDeltaTime_float);
-		}
-		
 		// PRIVATE
 		/// <summary>
 		/// _lerps the current to.
@@ -126,11 +120,15 @@ namespace com.rmc.projects.utilities
 		/// <param name="aNextValue">A next value.</param>
 		private void _lerpCurrentTo ( float aNextValue, float aDeltaTime_float)
 		{
+			//UPDATE
 			current =  Mathf.Lerp	(
 										current,
 										aNextValue,
 										aDeltaTime_float*acceleration
 									);
+
+			//CORRECT
+			current = Mathf.Clamp (current, minimum, maximum); 
 		}
 		// PRIVATE STATIC
 		
