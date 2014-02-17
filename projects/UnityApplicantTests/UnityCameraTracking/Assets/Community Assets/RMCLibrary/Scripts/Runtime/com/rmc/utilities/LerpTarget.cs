@@ -61,10 +61,67 @@ namespace com.rmc.projects.utilities
 		// GETTER / SETTER
 		
 		// PUBLIC
-		public float current;
-		public float minimum;
-		public float maximum;
-		public float targetValue;
+		/// <summary>
+		/// The _current_float.
+		/// </summary>
+		private float _current_float = 8;
+		public float current {
+			get{
+				return _current_float;
+			}
+			set{
+				_current_float = value;
+				_doForceTargetValueWithinLimits();
+			}
+		}
+
+
+		/// <summary>
+		/// The _minimum_float.
+		/// </summary>
+		private float _minimum_float;
+		public float minimum {
+			get{
+				return _minimum_float;
+			}
+			set{
+				_minimum_float = value;
+				_doForceTargetValueWithinLimits();
+			}
+		}
+
+		/// <summary>
+		/// The _maximum_float.
+		/// </summary>
+		private float _maximum_float;
+		public float maximum {
+			get{
+				return _maximum_float;
+			}
+			set{
+				_maximum_float = value;
+				_doForceTargetValueWithinLimits();
+			}
+		}
+
+
+		/// <summary>
+		/// The _target value_float.
+		/// </summary>
+		private float _targetValue_float;
+		public float targetValue {
+			get{
+				return _targetValue_float;
+			}
+			set{
+				_targetValue_float = value;
+				_doForceTargetValueWithinLimits();
+			}
+		}
+
+		/// <summary>
+		/// The acceleration.
+		/// </summary>
 		public float acceleration;
 		
 		// PUBLIC STATIC
@@ -127,9 +184,31 @@ namespace com.rmc.projects.utilities
 										aDeltaTime_float*acceleration
 									);
 
-			//CORRECT
-			current = Mathf.Clamp (current, minimum, maximum); 
+
 		}
+
+		/// <summary>
+		/// _dos the force current value within limits.
+		/// </summary>
+		private void _doForceTargetValueWithinLimits()
+		{
+
+			//DIRECTLY AFFECT THE PRIVATE VARIABLE HERE (OTHERWISE INFINITE LOOP)
+			if (isDebugging_boolean) {
+				//Debug.Log ("keep: " + _targetValue_float + " in ( "+minimum+" & "+maximum+" )");
+			}
+
+			_targetValue_float = Mathf.Clamp (_targetValue_float, minimum, maximum); 
+
+		}
+
+
+		//TODO: REMOVE THIS VARIABLE
+		public bool isDebugging_boolean = false;
+
+
+
+
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE

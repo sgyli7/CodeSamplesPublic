@@ -182,19 +182,18 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <param name="aZCoordinate_float">A Z coordinate_float.</param>
 		public Rect getBoundsRect (float aZCoordinate_float) 
 		{
-
-			Bounds bounds = gameObject.renderer.bounds;
-			//
-			Vector3 localLowerLeft_float = new Vector3 (bounds.center.x - bounds.extents.x , bounds.center.y - bounds.extents.y, bounds.center.z);
-			Vector3 localUpperRight_vector = new Vector3 (bounds.center.x + bounds.extents.x , bounds.center.y + bounds.extents.y, bounds.center.z);
-
-			float localWidth_float   	= localUpperRight_vector.x - localLowerLeft_float.x;
-			float localHeight_float 	= localUpperRight_vector.y - localLowerLeft_float.y;
-			
-			Rect viewportBounds_rect = new Rect (localLowerLeft_float.x, localLowerLeft_float.y, localWidth_float, localHeight_float);
-			
-			return viewportBounds_rect;
+			return BoundsHelper.ConvertBoundsToRect(getBounds(), aZCoordinate_float);
 		}
+
+		/// <summary>
+		/// Gets the bounds.
+		/// </summary>
+		/// <returns>The bounds.</returns>
+		public Bounds getBounds ()
+		{
+			return renderer.bounds;
+		}
+
 
 		//	PRIVATE 
 

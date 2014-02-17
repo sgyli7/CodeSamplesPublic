@@ -109,14 +109,14 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// The _viewport bounds_rect.
 		/// </summary>
 		[SerializeField][HideInInspector] 
-		private Rect _viewportBounds_rect = new Rect (-30, -35, 60, 70);
+		private Rect _viewportBoundary_rect = new Rect (-30, -35, 60, 70);
 		[ExposeProperty]
-		public Rect viewportBounds {
+		public Rect viewportBoundary {
 			get{
-				return _viewportBounds_rect;
+				return _viewportBoundary_rect;
 			}
 			set{
-				_viewportBounds_rect = value;
+				_viewportBoundary_rect = value;
 			}
 		}
 
@@ -177,7 +177,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <summary>
 		/// The _distance acceleration_float.
 		/// </summary>
-		private float _xPositionAcceleration_float = 0.5f;
+		private float _xPositionAcceleration_float = 3.5f;
 
 
 		
@@ -209,7 +209,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <summary>
 		/// The _distance acceleration_float.
 		/// </summary>
-		private float _yPositionAcceleration_float = 1.5f;
+		private float _yPositionAcceleration_float = 3.5f;
 		
 
 
@@ -288,7 +288,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
-		void Start () 
+	 	void Start () 
 		{
 
 			//
@@ -297,17 +297,19 @@ namespace com.rmc.projects.unity_camera_tracking
 
 
 			//X
-			float xPositionTemporaryTarget_float = 10;
+			float xPositionTemporaryTarget_float = 20;
 			_xPosition_lerptarget = new LerpTarget (transform.position.x, xPositionTemporaryTarget_float, _xPositionMin_float, _xPositionMax_float, _xPositionAcceleration_float);
 
 			//
 			//Y
-			float yPositionTemporaryTarget_float = 10;
+			float yPositionTemporaryTarget_float = 20;
 			_yPosition_lerptarget = new LerpTarget (transform.position.y, yPositionTemporaryTarget_float, _yPositionMin_float, _yPositionMax_float, _yPositionAcceleration_float);
+			_yPosition_lerptarget.isDebugging_boolean = true;
 
 			//Z
 			//NOTE: WE USE NEGATIVES BECAUSE THE 'DISTANCE' IS IN THE NEGATIVE QUADRANT (OF CARTESIAN COORDS)
 			_distance_lerptarget = new LerpTarget (transform.position.z, _distanceDefault_float, -_distanceMin_float, -_distanceMax_float, _distanceAcceleration_float);
+		
 		}
 		
 		
@@ -317,7 +319,6 @@ namespace com.rmc.projects.unity_camera_tracking
 		void Update () 
 		{
 
-
 			//UPDATE POSITION
 			_doDollyCamera();
 			_doTrackCameraForOneRectForAllTrackableObjects();
@@ -326,7 +327,7 @@ namespace com.rmc.projects.unity_camera_tracking
 
 			//DRAW RECTS
 			_doDrawRectForViewport();
-			_doDrawRectForViewportBounds();
+			_doDrawRectForViewportBoundary();
 			_doDrawOneRectForAllTrackableObjects();
 			_doDrawCenterPointCrosshairsForRectOfAllTrackableObjects();
 			
@@ -399,22 +400,19 @@ namespace com.rmc.projects.unity_camera_tracking
 		private void _doTrackCameraForOneRectForAllTrackableObjects()
 		{
 
-			Rect allTrackableObjects_rect = _getRectForAllTrackableObjects();
+			Rect allTrackableObjects_rect 	= _getRectForAllTrackableObjects();
+			Rect viewport_rect				= _getViewportRect(_zPlaneCoordinate_float);
 
 			//UPDATE TARGET
-			_xPosition_lerptarget.targetValue = allTrackableObjects_rect.center.x;
-			_yPosition_lerptarget.targetValue = allTrackableObjects_rect.center.y;
+			_xPosition_lerptarget.targetValue = allTrackableObjects_rect.center.x; 
+			_yPosition_lerptarget.targetValue = allTrackableObjects_rect.center.y; 
 
-
-			//LERP
+			//DO LERP
 			_xPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
 			_yPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
 
 			//WITH EASING
 			transform.position = new Vector3 (_xPosition_lerptarget.current, _yPosition_lerptarget.current, transform.position.z);
-
-			//WITHOUT EASING (COMMENT OUT FOR NON-DEBUG USAGE)
-			//transform.position = new Vector3 (allTrackableObjects_rect.center.x, allTrackableObjects_rect.center.y, transform.position.z);
 
 		}
 		
@@ -424,17 +422,16 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private void _doKeepViewportWithinBounds ()
 		{
-			return;
-			//
-			_xPosition_lerptarget.minimum = _viewportBounds_rect.xMin;
-			_xPosition_lerptarget.maximum = _viewportBounds_rect.xMax;
 
-			//
-			_yPosition_lerptarget.minimum = _viewportBounds_rect.yMin;
-			_yPosition_lerptarget.maximum = _viewportBounds_rect.yMax;
+			Rect viewport_rect = _getViewportRect(_zPlaneCoordinate_float);
 
-			//_xPositionMax_float = _viewportBounds_rect.xMax;
-			//Debug.Log ("maxX: " + _xPositionMax_float + " but: " +  _xPosition_lerptarget.current);
+			//HORIZONTAL
+			_xPosition_lerptarget.minimum = _viewportBoundary_rect.xMin + viewport_rect.width/2;
+			_xPosition_lerptarget.maximum = _viewportBoundary_rect.xMax - viewport_rect.width/2;
+
+			//VERTICAL
+			_yPosition_lerptarget.minimum = _viewportBoundary_rect.yMin + viewport_rect.height/2;
+			_yPosition_lerptarget.maximum = _viewportBoundary_rect.yMax - viewport_rect.height/2;
 			
 		}
 
@@ -472,8 +469,8 @@ namespace com.rmc.projects.unity_camera_tracking
 		private void _doDrawRectForViewport ()
 		{
 			
-			Rect viewportBounds_rect = _getViewportBoundsRect(_zPlaneCoordinate_float);
-			DebugDraw.DrawRect (viewportBounds_rect, _zPlaneCoordinate_float, _DEBUG_COLOR_VIEWPORT_RECT);
+			Rect viewport_rect = _getViewportRect(_zPlaneCoordinate_float);
+			DebugDraw.DrawRect (viewport_rect, _zPlaneCoordinate_float, _DEBUG_COLOR_VIEWPORT_RECT);
 			
 		}
 		
@@ -481,9 +478,10 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <summary>
 		/// _dos the draw rect for viewport bounds.
 		/// </summary>
-		private void _doDrawRectForViewportBounds ()
+		private void _doDrawRectForViewportBoundary ()
 		{
-			DebugDraw.DrawRect (_viewportBounds_rect, _zPlaneCoordinate_float, _DEBUG_COLOR_VIEWPORT_BOUNDS_RECT);
+			//_viewportBoundary_rect
+			DebugDraw.DrawRect (_viewportBoundary_rect,  _zPlaneCoordinate_float, _DEBUG_COLOR_VIEWPORT_BOUNDS_RECT);
 			
 		}
 
@@ -494,67 +492,39 @@ namespace com.rmc.projects.unity_camera_tracking
 		//\ OTHER
 		//\ 
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		
+
 		/// <summary>
 		/// _gets the rect for all trackable objects.
 		/// 
-		/// NOTE: 	OPTIMIZATION --STORE THIS RECT AND ONLY 
+		/// NOTE: 	POSSIBLE OPTIMIZATION --STORE THIS RECT AND ONLY 
 		/// 		UPDATE UPON CHANGES TO _trackableObjectComponents_list
+		/// 
+		/// 
+		/// NOTE:   WHEN _trackableObjectComponents_list.Count == 0, THE CAMERA
+		/// 		WILL LOOK AT 0,0 BECAUSE OF ' new Rect();' and that is acceptable
 		/// 
 		/// 
 		/// </summary>
 		/// <returns>The rect for all trackable objects.</returns>
 		private Rect _getRectForAllTrackableObjects ()
 		{
+			//
+			Bounds allTrackableObjects_bounds;
 			Rect allTrackableObjects_rect = new Rect();
-			Rect oneTrackableObject_rect;
-			bool isFirstObject_boolean = true;
-			foreach (TrackableObjectComponent trackableObjectComponent in _trackableObjectComponents_list) {
-				
+			//
+			if (_trackableObjectComponents_list.Count > 0) {
+				allTrackableObjects_bounds = _trackableObjectComponents_list[0].getBounds();
 				//
-				oneTrackableObject_rect = trackableObjectComponent.getBoundsRect (_zPlaneCoordinate_float);
-				
-				//FIRST TIME THROUGH ADOPT THE RECT OF OBJECT #1 AS A STARTING POINT
-				if (isFirstObject_boolean) {
-					//
-					isFirstObject_boolean = false;
-					
-					allTrackableObjects_rect = new Rect (
-						oneTrackableObject_rect.x, 
-						oneTrackableObject_rect.y, 
-						oneTrackableObject_rect.width, 
-						oneTrackableObject_rect.height);
-					
-				} else {
-					
-					//THEN EXPAND THE RECT TO INCLUDE ALL OTHERS
-					
-					//CHECK LOWER LEFT
-					if (oneTrackableObject_rect.xMin < allTrackableObjects_rect.xMin) {
-						allTrackableObjects_rect.x = oneTrackableObject_rect.x;
-					}
-					if (oneTrackableObject_rect.yMin < allTrackableObjects_rect.yMin) {
-						allTrackableObjects_rect.yMin = oneTrackableObject_rect.yMin;
-					}
-					
-					//CHECK UPPER RIGHT
-					if (oneTrackableObject_rect.xMax > allTrackableObjects_rect.xMax) {
-						allTrackableObjects_rect.xMax = oneTrackableObject_rect.xMax;
-					}
-					if (oneTrackableObject_rect.yMax > allTrackableObjects_rect.yMax) {
-						allTrackableObjects_rect.yMax = oneTrackableObject_rect.yMax;
-					}
-					
+				foreach (TrackableObjectComponent trackableObjectComponent in _trackableObjectComponents_list) {
+					allTrackableObjects_bounds.Encapsulate (trackableObjectComponent.renderer.bounds);
 				}
-				//Debug.Log (allTrackableObjects_rect);
-			}
-			
+				allTrackableObjects_rect = BoundsHelper.ConvertBoundsToRect (allTrackableObjects_bounds, _zPlaneCoordinate_float);
+			} 
+
+			//
 			return allTrackableObjects_rect;
 		}
 		
-
-
-
 
 
 		/// <summary>
@@ -562,18 +532,18 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		/// <returns>The viewport bounds rect.</returns>
 		/// <param name="aZCoordinate_float">A Z coordinate_float.</param>
-		private Rect _getViewportBoundsRect (float aZCoordinate_float) 
+		private Rect _getViewportRect (float aZCoordinate_float) 
 		{
 
-			Vector3 p1 = camera.ViewportToWorldPoint(new Vector3(0,0,camera.transform.position.z));// use z or nearPlane?
-			Vector3 p2 = camera.ViewportToWorldPoint(new Vector3(1,0,camera.transform.position.z));
-			Vector3 p3 = camera.ViewportToWorldPoint(new Vector3(1,1,camera.transform.position.z));
+			Vector3 p1_vector3 = camera.ViewportToWorldPoint(new Vector3(0,0,camera.transform.position.z));// use z or nearPlane?
+			Vector3 p2_vector3 = camera.ViewportToWorldPoint(new Vector3(1,0,camera.transform.position.z));
+			Vector3 p3_vector3 = camera.ViewportToWorldPoint(new Vector3(1,1,camera.transform.position.z));
 			//
-			float width   	= (p2 - p1).magnitude;
-			float height 	= (p3 - p2).magnitude;
+			float width_float   = (p2_vector3 - p1_vector3).magnitude;
+			float height_float 	= (p3_vector3 - p2_vector3).magnitude;
 			//
-			Rect viewportBounds_rect = new Rect (p1.x, p1.y, -width, -height);
-			
+			Rect viewportBounds_rect = new Rect (p1_vector3.x - width_float, p1_vector3.y - height_float, width_float, height_float);
+			//
 			return viewportBounds_rect;
 		}
 
