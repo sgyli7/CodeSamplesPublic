@@ -60,6 +60,16 @@ namespace com.rmc.projects.unity_camera_tracking
 		//--------------------------------------
 		//  Attributes
 		//--------------------------------------
+		/// <summary>
+		/// Store the last zoom operation to prevent
+		/// jitter from camera movement
+		/// </summary>
+		public enum ZoomMode
+		{
+			ZoomOut,
+			ZoomIn
+
+		}
 		
 		
 		//--------------------------------------
@@ -71,7 +81,6 @@ namespace com.rmc.projects.unity_camera_tracking
 		//\ REQUIRED VALUES
 		//\ 
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 
 
 		/// <summary>
@@ -226,7 +235,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// NOTE: With easing/acceleration
 		/// 
 		/// </summary>
-		private LerpTarget _distance_lerptarget;
+		private LerpTarget _zPosition_lerptarget;
 		
 		/// <summary>
 		/// The minimum z distance the camera to 0
@@ -279,6 +288,13 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private static Color _DEBUG_COLOR_TRACKABLE_RECT = new Color (.5f, .5f, .5f);
 
+
+		/// <summary>
+		/// Store the last zoom operation to prevent
+		/// jitter from camera movement
+		/// </summary>
+		private ZoomMode _last_zoommode;
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
@@ -304,11 +320,12 @@ namespace com.rmc.projects.unity_camera_tracking
 			//Y
 			float yPositionTemporaryTarget_float = 20;
 			_yPosition_lerptarget = new LerpTarget (transform.position.y, yPositionTemporaryTarget_float, _yPositionMin_float, _yPositionMax_float, _yPositionAcceleration_float);
-			_yPosition_lerptarget.isDebugging_boolean = true;
 
 			//Z
 			//NOTE: WE USE NEGATIVES BECAUSE THE 'DISTANCE' IS IN THE NEGATIVE QUADRANT (OF CARTESIAN COORDS)
-			_distance_lerptarget = new LerpTarget (transform.position.z, _distanceDefault_float, -_distanceMin_float, -_distanceMax_float, _distanceAcceleration_float);
+			//NOTE, WE REVERSE MIN/MAX HERE BY DESIGN BECAUSE OF NEGATIVE VALUES
+			_zPosition_lerptarget = new LerpTarget (transform.position.z, -_distanceDefault_float, -_distanceMax_float, -_distanceMin_float, _distanceAcceleration_float);
+			_zPosition_lerptarget.isDebugging_boolean = true;
 		
 		}
 		
@@ -320,7 +337,6 @@ namespace com.rmc.projects.unity_camera_tracking
 		{
 
 			//UPDATE POSITION
-			_doDollyCamera();
 			_doTrackCameraForOneRectForAllTrackableObjects();
 
 
@@ -330,16 +346,21 @@ namespace com.rmc.projects.unity_camera_tracking
 			_doDrawRectForViewportBoundary();
 			_doDrawOneRectForAllTrackableObjects();
 			_doDrawCenterPointCrosshairsForRectOfAllTrackableObjects();
-			
+
+
 		}
 
 		/// <summary>
 		/// Lates the update.
+		/// 
+		/// NOTE: We 'correct' positioning here
+		/// 
 		/// </summary>
-		void LateUpdate()
+		void LateUpdate ()
 		{
 
 			//CORRECT POSITION
+			_doDollyCamera();
 			_doKeepViewportWithinBounds();
 		}
 
@@ -386,10 +407,26 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private void _doDollyCamera ()
 		{
-			
+			Rect viewport_rect 				= _getViewportRect(_zPlaneCoordinate_float);
+			Rect allTrackableObjects_rect 	= _getRectForAllTrackableObjects();
+			//
+			if (RectHelper.isRectWithinRect (viewport_rect, allTrackableObjects_rect)) {
+				_zPosition_lerptarget.targetValue += 0.1f;
+				//Debug.Log ("IN  : " + _zPosition_lerptarget.targetValue);
+				//_last_zoommode = ZoomMode.ZoomOut;
+			} else {
+				_zPosition_lerptarget.targetValue -= 0.1f;
+				//Debug.Log ("OUT : " + _zPosition_lerptarget.targetValue);
+				//_last_zoommode = ZoomMode.ZoomIn;
+
+		}
+
+
 			//UPDATE POSITION
-			_distance_lerptarget.lerpCurrentToTarget (Time.deltaTime);
-			transform.position = new Vector3 (transform.position.x, transform.position.y, _distance_lerptarget.current);
+			//_zPosition_lerptarget.targetValue = -40 ;
+			_zPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+			transform.position = new Vector3 (transform.position.x, transform.position.y, _zPosition_lerptarget.targetValue);
+			//Debug.Log (transform.position.z);
 
 
 		}
@@ -401,7 +438,6 @@ namespace com.rmc.projects.unity_camera_tracking
 		{
 
 			Rect allTrackableObjects_rect 	= _getRectForAllTrackableObjects();
-			Rect viewport_rect				= _getViewportRect(_zPlaneCoordinate_float);
 
 			//UPDATE TARGET
 			_xPosition_lerptarget.targetValue = allTrackableObjects_rect.center.x; 
@@ -516,9 +552,9 @@ namespace com.rmc.projects.unity_camera_tracking
 				allTrackableObjects_bounds = _trackableObjectComponents_list[0].getBounds();
 				//
 				foreach (TrackableObjectComponent trackableObjectComponent in _trackableObjectComponents_list) {
-					allTrackableObjects_bounds.Encapsulate (trackableObjectComponent.renderer.bounds);
+					allTrackableObjects_bounds.Encapsulate (trackableObjectComponent.getBounds());
 				}
-				allTrackableObjects_rect = BoundsHelper.ConvertBoundsToRect (allTrackableObjects_bounds, _zPlaneCoordinate_float);
+				allTrackableObjects_rect = RectHelper.ConvertBoundsToRect (allTrackableObjects_bounds, _zPlaneCoordinate_float);
 			} 
 
 			//
@@ -564,8 +600,8 @@ namespace com.rmc.projects.unity_camera_tracking
 			//FOR DEBUGGING, ALLOWS TO ENABLE/DISABLE SCRIPT CHECKBOX AT RUNTIME AND 
 			// TO RESUME FUNCTIONALITY
 			//Debug.Log ("ok");
-			if (_distance_lerptarget != null) {
-				_distance_lerptarget.targetValue = -_distanceDefault_float;
+			if (_zPosition_lerptarget != null) {
+				_zPosition_lerptarget.targetValue = -_distanceDefault_float;
 			}
 
 		}

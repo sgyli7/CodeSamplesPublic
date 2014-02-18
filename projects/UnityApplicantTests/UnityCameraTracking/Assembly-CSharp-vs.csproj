@@ -47,9 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\BoundsHelper.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\DebugDraw.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\LerpTarget.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\RectHelper.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\unity3d\wiki\expose_properties\ExposePropertyAttribute.cs" />
      <Compile Include="Assets\UnityCameraTracking\Scripts\Runtime\com\rmc\projects\unity_camera_tracking\TrackableObjectComponent.cs" />
      <Compile Include="Assets\UnityCameraTracking\Scripts\Runtime\com\rmc\projects\unity_camera_tracking\TrackingCameraComponent.cs" />

@@ -64,7 +64,7 @@ namespace com.rmc.projects.utilities
 		/// <summary>
 		/// The _current_float.
 		/// </summary>
-		private float _current_float = 8;
+		private float _current_float;
 		public float current {
 			get{
 				return _current_float;
@@ -177,14 +177,24 @@ namespace com.rmc.projects.utilities
 		/// <param name="aNextValue">A next value.</param>
 		private void _lerpCurrentTo ( float aNextValue, float aDeltaTime_float)
 		{
+
+			if (isDebugging_boolean) {
+				//Debug.Log ("CUR1: " + current + " to " + aNextValue);
+			} 
+
+
 			//UPDATE
-			current =  Mathf.Lerp	(
-										current,
-										aNextValue,
-										aDeltaTime_float*acceleration
-									);
+			current =  Mathf.Lerp	
+				(
+					current,
+					aNextValue,
+					aDeltaTime_float*acceleration
+				);
 
 
+			if (isDebugging_boolean) {
+				//Debug.Log ("CUR2: " + current + " to " + aNextValue);
+			}
 		}
 
 		/// <summary>
@@ -193,11 +203,8 @@ namespace com.rmc.projects.utilities
 		private void _doForceTargetValueWithinLimits()
 		{
 
+			//LIMIT
 			//DIRECTLY AFFECT THE PRIVATE VARIABLE HERE (OTHERWISE INFINITE LOOP)
-			if (isDebugging_boolean) {
-				//Debug.Log ("keep: " + _targetValue_float + " in ( "+minimum+" & "+maximum+" )");
-			}
-
 			_targetValue_float = Mathf.Clamp (_targetValue_float, minimum, maximum); 
 
 		}

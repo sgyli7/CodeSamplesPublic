@@ -58,11 +58,17 @@ namespace com.rmc.projects.unity_camera_tracking
 		//--------------------------------------
 		//  Attributes
 		//--------------------------------------
+		/// <summary>
+		/// Object's Priority for Camera Tracking
+		/// 
+		/// NOTE: Order matters, the first declared is the default when script is reset
+		/// 
+		/// </summary>
 		public enum Priority
 		{
-			None,
+			High,
 			Low,
-			High
+			None
 		}
 		
 		
@@ -101,6 +107,19 @@ namespace com.rmc.projects.unity_camera_tracking
 				if (TrackingCameraComponent.instance) {
 					TrackingCameraComponent.instance.updateTrackableObjectComponentByPriority (this);
 				}
+
+				switch (_priority) {
+					case Priority.None:
+						_debugColor = _DEBUG_COLOR_HIGH;
+						break;
+					case Priority.Low:
+						_debugColor = _DEBUG_COLOR_HIGH;
+						break;
+					case Priority.High:
+						_debugColor = _DEBUG_COLOR_HIGH;
+						break;
+				}
+
 			}
 		}
 		
@@ -110,6 +129,22 @@ namespace com.rmc.projects.unity_camera_tracking
 		//\ BONUS VALUES
 		//\ 
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+		/// <summary>
+		/// The _border padding_float.
+		/// </summary>
+		[SerializeField][HideInInspector]
+		private float _borderPadding_float = 0.2f;
+		[ExposeProperty]
+		public float borderPadding {
+			get{
+				return _borderPadding_float;
+			}
+			set{
+				_borderPadding_float = value;
+			}
+		}
+
 		
 		
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -135,20 +170,34 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <summary>
 		/// The _ DEBU g_ COLO.
 		/// </summary>
-		private static Color _DEBUG_COLOR = new Color (0, 0, 1);
+		private Color _debugColor;
+
+		/// <summary>
+		/// The _ DEBU g_ COLO r_ HIG.
+		/// </summary>
+		private static Color _DEBUG_COLOR_HIGH = new Color (0, 0, 1);
 
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
 
 		//	PUBLIC 
+		/// <summary>
+		/// Awake this instance.
+		/// </summary>
+		void Awake ()
+		{
+			//SET IF NOT SET
+			Debug.Log (priority);
+
+		}
 
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
 		void Start () 
 		{
-			priority = Priority.High;
+			priority = _priority;
 			_camera = Camera.main;
 
 		}
@@ -160,8 +209,8 @@ namespace com.rmc.projects.unity_camera_tracking
 		void Update () 
 		{
 
-			Rect bounds_rect = getBoundsRect(_zPlaneCoordinate_float);
-			DebugDraw.DrawRect (bounds_rect, _zPlaneCoordinate_float, _DEBUG_COLOR);
+			Rect bounds_rect = getBoundaryRect(_zPlaneCoordinate_float);
+			DebugDraw.DrawRect (bounds_rect, _zPlaneCoordinate_float, _debugColor);
 		}
 
 
@@ -180,18 +229,23 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		/// <returns>The bounds rect.</returns>
 		/// <param name="aZCoordinate_float">A Z coordinate_float.</param>
-		public Rect getBoundsRect (float aZCoordinate_float) 
+		public Rect getBoundaryRect (float aZCoordinate_float) 
 		{
-			return BoundsHelper.ConvertBoundsToRect(getBounds(), aZCoordinate_float);
+			//
+			return RectHelper.ConvertBoundsToRect(getBounds(), aZCoordinate_float);
 		}
 
 		/// <summary>
-		/// Gets the bounds.
+		/// Gets the bounds, adjusted with padding.
 		/// </summary>
 		/// <returns>The bounds.</returns>
 		public Bounds getBounds ()
 		{
-			return renderer.bounds;
+			//
+			Bounds expanded_bounds = renderer.bounds;
+			expanded_bounds.Expand (_borderPadding_float);
+			//
+			return expanded_bounds;
 		}
 
 

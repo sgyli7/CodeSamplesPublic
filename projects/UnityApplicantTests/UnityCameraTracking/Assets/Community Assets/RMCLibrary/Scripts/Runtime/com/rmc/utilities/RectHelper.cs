@@ -57,7 +57,7 @@ namespace com.rmc.utilities
 	/// 		Could have been added.
 	/// 
 	/// </summary>
-	public static class BoundsHelper
+	public static class RectHelper
 	{
 		
 		//--------------------------------------
@@ -87,6 +87,29 @@ namespace com.rmc.utilities
 			float localHeight_float 	= localUpperRight_vector.y - localLowerLeft_float.y;
 			
 			return new Rect (localLowerLeft_float.x, localLowerLeft_float.y, localWidth_float, localHeight_float);
+
+
+		}
+
+		/// <summary>
+		/// Ises the aInner_rect completely within aOuter_rect.
+		/// </summary>
+		/// <returns><c>true</c>, if rect within rect was ised, <c>false</c> otherwise.</returns>
+		/// <param name="aOuter_rect">A outer_rect.</param>
+		/// <param name="aInner_rect">A inner_rect.</param>
+		public static bool isRectWithinRect (Rect aOuter_rect, Rect aInner_rect) 
+		{
+
+			if (aOuter_rect.Contains (new Vector2 (aInner_rect.xMin, aInner_rect.yMin)) &&
+			    aOuter_rect.Contains (new Vector2 (aInner_rect.xMax, aInner_rect.yMax)) ){
+
+				return true;
+
+			} else {
+
+				return false;
+			}
+
 
 
 		}
