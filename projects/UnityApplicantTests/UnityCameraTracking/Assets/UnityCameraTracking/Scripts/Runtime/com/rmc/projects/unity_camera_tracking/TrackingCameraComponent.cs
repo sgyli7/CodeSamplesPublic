@@ -62,21 +62,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		//--------------------------------------
 		//  Attributes
 		//--------------------------------------
-		/// <summary>
-		/// Store the last zoom operation to prevent
-		/// jitter from camera movement
-		/// 
-		/// NOTE: I may remove this from usage
-		/// 
-		/// </summary>
-		public enum ZoomMode
-		{
-			ZoomOut,
-			ZoomIn
 
-		}
-		
-		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
@@ -321,13 +307,6 @@ namespace com.rmc.projects.unity_camera_tracking
 
 
 		/// <summary>
-		/// Store the last zoom operation to prevent
-		/// jitter from camera movement
-		/// </summary>
-		private ZoomMode _last_zoommode;
-
-
-		/// <summary>
 		/// The _current camera tracking priority.
 		/// 
 		/// NOTE: !IMPORTANT!. This alone defines the target x,y for the camera
@@ -435,7 +414,6 @@ namespace com.rmc.projects.unity_camera_tracking
 				}
 			}
 
-			//Debug.Log ("and : " + _trackableObjectComponents_list.Count);
 
 
 		}
@@ -456,11 +434,8 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private void _doDollyCamera ()
 		{
-			Rect viewport_rect 						= _getViewportRect(_zPlaneCoordinate_float);
-			Rect highTrackableObjects_rect 			= _getRectForAllTrackableObjects(TrackingPriority.High);
-			Rect highAndLowTrackableObjects_rect 	= _getRectForAllTrackableObjects(TrackingPriority.Low);
-			//
-			//bool canSeeHighTrackableObjects_boolean 		= RectHelper.IsRectWithinRect (viewport_rect, highTrackableObjects_rect);
+			Rect viewport_rect 								= _getViewportRect(_zPlaneCoordinate_float);
+			Rect highAndLowTrackableObjects_rect 			= _getRectForAllTrackableObjects(TrackingPriority.Low);
 			bool canSeeHighAndLowTrackableObjects_boolean 	= RectHelper.IsRectWithinRect (viewport_rect, highAndLowTrackableObjects_rect);
 
 			//
@@ -469,13 +444,11 @@ namespace com.rmc.projects.unity_camera_tracking
 			//********************************
 			if (canSeeHighAndLowTrackableObjects_boolean) {
 				_zPosition_lerptarget.targetValue += 0.05f;
-				//Debug.Log ("IN  : " + _zPosition_lerptarget.targetValue);
-				//_last_zoommode = ZoomMode.ZoomOut;
 				if (_currentCameraTrackingPriority == TrackingPriority.High) {
 					_currentCameraTrackingPriority = TrackingPriority.Low;
 				}
 			} else {
-
+				 
 
 				//********************************
 				//2. IF WE CAN'T SEE LOW+HIGH AND CANNOT ZOOM OUT MORE, THEN CHANGE FOCUS
@@ -487,8 +460,6 @@ namespace com.rmc.projects.unity_camera_tracking
 					}
 				}
 				_zPosition_lerptarget.targetValue -= 0.05f;
-				//Debug.Log ("OUT : " + _zPosition_lerptarget.targetValue);
-				//_last_zoommode = ZoomMode.ZoomIn;
 
 		}
 
@@ -704,7 +675,6 @@ namespace com.rmc.projects.unity_camera_tracking
 
 			//FOR DEBUGGING, ALLOWS TO ENABLE/DISABLE SCRIPT CHECKBOX AT RUNTIME AND 
 			// TO RESUME FUNCTIONALITY
-			//Debug.Log ("ok");
 			if (_zPosition_lerptarget != null) {
 				_zPosition_lerptarget.targetValue = -_distanceDefault_float;
 			}

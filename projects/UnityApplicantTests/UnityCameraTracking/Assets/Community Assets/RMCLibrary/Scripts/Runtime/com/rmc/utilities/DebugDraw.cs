@@ -75,7 +75,6 @@ namespace com.rmc.utilities
 		public static void DrawRect (Rect aRect, float aZPlaneCoordinate_float, Color aColor)
 		{
 	
-			//Debug.Log ("x: " + aRect.x + " ,y= " + aRect.y);
 			//DRAW BOX FROM BOTTOM LEFT AND GO CLOCKWISE
 			Debug.DrawLine (new Vector3 (aRect.x, aRect.y, aZPlaneCoordinate_float), 								new Vector3 (aRect.x, aRect.y + aRect.height, aZPlaneCoordinate_float), aColor);
 			Debug.DrawLine (new Vector3 (aRect.x, aRect.y + aRect.height, aZPlaneCoordinate_float), 				new Vector3 (aRect.x + aRect.width, aRect.y + aRect.height, aZPlaneCoordinate_float), aColor);
@@ -92,7 +91,6 @@ namespace com.rmc.utilities
 		/// <param name="_zPlaneCoordinate_float">_z plane coordinate_float.</param>
 		public static void DrawCenterPointCrosshairsForRect (Rect aRect, float aZPlaneCoordinate_float, Color aColor)
 		{
-			//Debug.Log ("DRAW" + aRect);
 			float crossHairLength_float = 0.5f;
 
 			//LOWER LEFT TO UPPER RIGHT
@@ -138,7 +136,6 @@ namespace com.rmc.utilities
 		/// <param name="aColor">A color.</param>
 		public static void DrawCenterPointCross (Rect aRect, float aZPlaneCoordinate_float, Color aColor)
 		{
-			//Debug.Log ("DRAW" + aRect);
 			float crossHairLength_float = 2;
 			
 			//LOWER LEFT TO UPPER RIGHT

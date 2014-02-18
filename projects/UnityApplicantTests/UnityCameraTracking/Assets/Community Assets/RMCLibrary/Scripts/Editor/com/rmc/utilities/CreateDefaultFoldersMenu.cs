@@ -63,14 +63,6 @@ namespace com.rmc.utilities
 		//--------------------------------------
 		
 		// PUBLIC
-		//static CreateDefaultFoldersMenu()
-		//{
-			//
-		//	Debug.Log ("CreateDefaultFoldersMenu.constructor()");
-			//CreateDefaultFoldersMenu.CreateDefaultFolders();
-			
-			
-		//}
 		
 		
 		// PUBLIC STATIC
