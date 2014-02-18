@@ -28,21 +28,31 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using com.rmc.utilities;
+using com.unity3d.wiki.expose_properties;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.utilities;
-using com.unity3d.wiki.expose_properties;
-
-
 namespace com.rmc.projects.unity_camera_tracking
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	/// <summary>
+	/// Object's Priority for Camera Tracking
+	/// 
+	/// NOTE: Order matters, the first declared is the default when script is reset
+	/// 
+	/// </summary>
+	public enum TrackingPriority
+	{
+		High,
+		Low,
+		None
+	}
+
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -58,19 +68,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		//--------------------------------------
 		//  Attributes
 		//--------------------------------------
-		/// <summary>
-		/// Object's Priority for Camera Tracking
-		/// 
-		/// NOTE: Order matters, the first declared is the default when script is reset
-		/// 
-		/// </summary>
-		public enum Priority
-		{
-			High,
-			Low,
-			None
-		}
-		
+
 		
 		//--------------------------------------
 		//  Properties
@@ -94,31 +92,17 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// 
 		/// </summary>
 		[SerializeField][HideInInspector]
-		private Priority _priority;
+		private TrackingPriority _trackingPriority;
 		[ExposeProperty]
-		public Priority priority {
+		public TrackingPriority trackingPriority {
 			get{
-				return _priority;
+				return _trackingPriority;
 			}
 			set{
-				_priority = value;
+				_trackingPriority = value;
 
-				//on initial enable, the instance is not there yet. thats ok
-				if (TrackingCameraComponent.instance) {
-					TrackingCameraComponent.instance.updateTrackableObjectComponentByPriority (this);
-				}
-
-				switch (_priority) {
-					case Priority.None:
-						_debugColor = _DEBUG_COLOR_HIGH;
-						break;
-					case Priority.Low:
-						_debugColor = _DEBUG_COLOR_HIGH;
-						break;
-					case Priority.High:
-						_debugColor = _DEBUG_COLOR_HIGH;
-						break;
-				}
+				//
+				_doRefreshProperties();
 
 			}
 		}
@@ -131,7 +115,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 		/// <summary>
-		/// The _border padding_float.
+		/// Optional border padding (for debug rendering & all detection)
 		/// </summary>
 		[SerializeField][HideInInspector]
 		private float _borderPadding_float = 0.2f;
@@ -163,42 +147,23 @@ namespace com.rmc.projects.unity_camera_tracking
 		private const float _zPlaneCoordinate_float = 0;
 
 		/// <summary>
-		/// The _camera.
-		/// </summary>
-		private Camera _camera;
-
-		/// <summary>
-		/// The _ DEBU g_ COLO.
+		/// The debug color
 		/// </summary>
 		private Color _debugColor;
 
-		/// <summary>
-		/// The _ DEBU g_ COLO r_ HIG.
-		/// </summary>
-		private static Color _DEBUG_COLOR_HIGH = new Color (0, 0, 1);
 
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
 
 		//	PUBLIC 
-		/// <summary>
-		/// Awake this instance.
-		/// </summary>
-		void Awake ()
-		{
-			//SET IF NOT SET
-			Debug.Log (priority);
-
-		}
 
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
 		void Start () 
 		{
-			priority = _priority;
-			_camera = Camera.main;
+			_doRefreshProperties();
 
 		}
 		
@@ -208,24 +173,24 @@ namespace com.rmc.projects.unity_camera_tracking
 		///</summary>
 		void Update () 
 		{
-
 			Rect bounds_rect = getBoundaryRect(_zPlaneCoordinate_float);
 			DebugDraw.DrawRect (bounds_rect, _zPlaneCoordinate_float, _debugColor);
 		}
 
 
 		/// <summary>
-		/// Ises the trackable.
+		/// Determines if this item is fit for tracking. 
 		/// </summary>
 		/// <returns><c>true</c>, if trackable was ised, <c>false</c> otherwise.</returns>
 		public bool isTrackable() 
 		{
-			return enabled && gameObject.activeInHierarchy && _priority != Priority.None;
+
+			return enabled && gameObject.activeInHierarchy && _trackingPriority != TrackingPriority.None;
 
 		}
 
 		/// <summary>
-		/// _gets the bounds rect.
+		/// The boundary including padding
 		/// </summary>
 		/// <returns>The bounds rect.</returns>
 		/// <param name="aZCoordinate_float">A Z coordinate_float.</param>
@@ -236,7 +201,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		}
 
 		/// <summary>
-		/// Gets the bounds, adjusted with padding.
+		/// The boundary including padding.
 		/// </summary>
 		/// <returns>The bounds.</returns>
 		public Bounds getBounds ()
@@ -246,10 +211,30 @@ namespace com.rmc.projects.unity_camera_tracking
 			expanded_bounds.Expand (_borderPadding_float);
 			//
 			return expanded_bounds;
-		}
+		} 
 
 
 		//	PRIVATE 
+		/// <summary>
+		/// Refresh properties.
+		/// 
+		/// NOTE: This allows for hot-swapping priority in the live via the inspector.
+		/// 
+		/// NOTE: This allows for hot-swapping the enabled checkbox on the GameObject or this script
+		/// 
+		/// </summary>
+		/// <returns><c>true</c>, if refresh properties was _doed, <c>false</c> otherwise.</returns>
+		private void _doRefreshProperties() 
+		{
+			//REFRESH COLOR
+			_debugColor = Constants.GetDebugColorByPriority (_trackingPriority);
+
+			//REFRESH LIST OF OBJECTS
+			if (TrackingCameraComponent.instance) {
+				TrackingCameraComponent.instance.updateTrackableObjectComponentByPriority (this);
+			}
+
+		}
 
 		//--------------------------------------
 		//  Events
@@ -260,7 +245,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		void OnEnable ()
 		{
 			//REFRESH PRIORITY
-			priority = _priority;
+			_doRefreshProperties();
 
 		}
 
@@ -271,7 +256,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		{
 
 			//REFRESH PRIORITY
-			priority = _priority;
+			_doRefreshProperties();
 			
 		}
 		

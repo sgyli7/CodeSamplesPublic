@@ -178,11 +178,6 @@ namespace com.rmc.projects.utilities
 		private void _lerpCurrentTo ( float aNextValue, float aDeltaTime_float)
 		{
 
-			if (isDebugging_boolean) {
-				//Debug.Log ("CUR1: " + current + " to " + aNextValue);
-			} 
-
-
 			//UPDATE
 			current =  Mathf.Lerp	
 				(
@@ -190,11 +185,6 @@ namespace com.rmc.projects.utilities
 					aNextValue,
 					aDeltaTime_float*acceleration
 				);
-
-
-			if (isDebugging_boolean) {
-				//Debug.Log ("CUR2: " + current + " to " + aNextValue);
-			}
 		}
 
 		/// <summary>
@@ -208,10 +198,6 @@ namespace com.rmc.projects.utilities
 			_targetValue_float = Mathf.Clamp (_targetValue_float, minimum, maximum); 
 
 		}
-
-
-		//TODO: REMOVE THIS VARIABLE
-		public bool isDebugging_boolean = false;
 
 
 

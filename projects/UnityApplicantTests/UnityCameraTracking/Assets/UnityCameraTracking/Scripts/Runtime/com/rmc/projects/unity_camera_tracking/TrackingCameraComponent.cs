@@ -30,12 +30,14 @@
 using UnityEngine;
 using com.unity3d.wiki.expose_properties;
 using com.rmc.projects.utilities;
+using com.rmc.utilities;
+using System.Collections.Generic;
+using com.rmc.projects.unity_camera_tracking;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.utilities;
-using System.Collections.Generic;
+using System.Linq;
 
 
 namespace com.rmc.projects.unity_camera_tracking
@@ -63,6 +65,9 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <summary>
 		/// Store the last zoom operation to prevent
 		/// jitter from camera movement
+		/// 
+		/// NOTE: I may remove this from usage
+		/// 
 		/// </summary>
 		public enum ZoomMode
 		{
@@ -153,7 +158,30 @@ namespace com.rmc.projects.unity_camera_tracking
 		//\ BONUS VALUES
 		//\ 
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+		/// <summary>
+		/// Optional border padding (for debug rendering & all detection)
+		/// </summary>
+		[SerializeField][HideInInspector]
+		private float _borderPadding_float = 1f;
+		[ExposeProperty]
+		public float borderPadding {
+			get{
+				return _borderPadding_float;
+			}
+			set{
+				_borderPadding_float = value;
+			}
+		}
+
 		
+
+		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		//\ 
+		//\ OTHER VALUES
+		//\ 
+		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 		
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		//\ 
@@ -164,7 +192,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		//\ 		Which would be desired in a platformer for example.
 		//\ 
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+		
 		/// <summary>
 		/// The target position (X) for camera. 
 		/// 
@@ -172,23 +200,23 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// 
 		/// </summary>
 		private LerpTarget _xPosition_lerptarget;
-
+		
 		/// <summary>
 		/// The minimum position
 		/// </summary>
 		private float _xPositionMin_float = 0; 
-
+		
 		/// <summary>
 		/// The maximum position
 		/// </summary>
 		private float _xPositionMax_float = 100;
-
+		
 		/// <summary>
 		/// The _distance acceleration_float.
 		/// </summary>
 		private float _xPositionAcceleration_float = 3.5f;
-
-
+		
+		
 		
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		//\
@@ -213,15 +241,15 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// The maximum position
 		/// </summary>
 		private float _yPositionMax_float = 0;
-
+		
 		
 		/// <summary>
 		/// The _distance acceleration_float.
 		/// </summary>
 		private float _yPositionAcceleration_float = 3.5f;
 		
-
-
+		
+		
 		
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		//\ 
@@ -246,14 +274,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// The _distance acceleration_float.
 		/// </summary>
 		private float _distanceAcceleration_float = 0;
-
-
-		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		//\ 
-		//\ OTHER VALUES
-		//\ 
-		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+		
 
 		/// <summary>
 		/// The _z plane coordinate_float.
@@ -273,27 +294,25 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private List<TrackableObjectComponent> _trackableObjectComponents_list;
 
-		/// <summary>
-		/// The _ DEBU g_ COLO.
-		/// </summary>
-		private static Color _DEBUG_COLOR_VIEWPORT_RECT = new Color (1, 1, 1);
-
-		/// <summary>
-		/// The _ DEBU g_ COLO.
-		/// </summary>
-		private static Color _DEBUG_COLOR_VIEWPORT_BOUNDS_RECT = new Color (1, 0, 0);
-
-		/// <summary>
-		/// The _ DEBU g_ COLO.
-		/// </summary>
-		private static Color _DEBUG_COLOR_TRACKABLE_RECT = new Color (.5f, .5f, .5f);
-
 
 		/// <summary>
 		/// Store the last zoom operation to prevent
 		/// jitter from camera movement
 		/// </summary>
 		private ZoomMode _last_zoommode;
+
+
+		/// <summary>
+		/// The _current camera tracking priority.
+		/// 
+		/// NOTE: !IMPORTANT!. This alone defines the target x,y for the camera
+		/// 
+		/// NOTE: It is TrackingPriority.Low unless all objects cannot fit,
+		/// 	  Then it defaults to TrackingPriority.High
+		/// 
+		/// 
+		/// </summary>
+		private TrackingPriority _currentCameraTrackingPriority;
 
 		//--------------------------------------
 		//  Methods
@@ -306,6 +325,9 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 	 	void Start () 
 		{
+
+			//DEFAULT
+			_currentCameraTrackingPriority = TrackingPriority.Low;
 
 			//
 			_trackableObjectComponents_list = new List<TrackableObjectComponent>();
@@ -325,7 +347,6 @@ namespace com.rmc.projects.unity_camera_tracking
 			//NOTE: WE USE NEGATIVES BECAUSE THE 'DISTANCE' IS IN THE NEGATIVE QUADRANT (OF CARTESIAN COORDS)
 			//NOTE, WE REVERSE MIN/MAX HERE BY DESIGN BECAUSE OF NEGATIVE VALUES
 			_zPosition_lerptarget = new LerpTarget (transform.position.z, -_distanceDefault_float, -_distanceMax_float, -_distanceMin_float, _distanceAcceleration_float);
-			_zPosition_lerptarget.isDebugging_boolean = true;
 		
 		}
 		
@@ -344,8 +365,11 @@ namespace com.rmc.projects.unity_camera_tracking
 			//DRAW RECTS
 			_doDrawRectForViewport();
 			_doDrawRectForViewportBoundary();
-			_doDrawOneRectForAllTrackableObjects();
-			_doDrawCenterPointCrosshairsForRectOfAllTrackableObjects();
+			_doDrawOneRectForAllTrackableObjects(TrackingPriority.High);
+			_doDrawOneRectForAllTrackableObjects(TrackingPriority.Low);
+			_doDrawCenterPointCrosshairsForRectOfAllTrackableObjects(TrackingPriority.Low);
+			_doDrawCenterPointCrosshairsForRectOfAllTrackableObjects(TrackingPriority.High);
+			_doDrawLineBetweenCrosshairs (TrackingPriority.High, TrackingPriority.Low);
 
 
 		}
@@ -407,15 +431,37 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private void _doDollyCamera ()
 		{
-			Rect viewport_rect 				= _getViewportRect(_zPlaneCoordinate_float);
-			Rect allTrackableObjects_rect 	= _getRectForAllTrackableObjects();
+			Rect viewport_rect 						= _getViewportRect(_zPlaneCoordinate_float);
+			Rect highTrackableObjects_rect 			= _getRectForAllTrackableObjects(TrackingPriority.High);
+			Rect highAndLowTrackableObjects_rect 	= _getRectForAllTrackableObjects(TrackingPriority.Low);
 			//
-			if (RectHelper.isRectWithinRect (viewport_rect, allTrackableObjects_rect)) {
-				_zPosition_lerptarget.targetValue += 0.1f;
+			bool canSeeHighTrackableObjects_boolean 		= RectHelper.IsRectWithinRect (viewport_rect, highTrackableObjects_rect);
+			bool canSeeHighAndLowTrackableObjects_boolean 	= RectHelper.IsRectWithinRect (viewport_rect, highAndLowTrackableObjects_rect);
+
+			//
+			//********************************
+			//1. IF WE CAN SEE LOW+HIGH THEN ALWAYS ZOOM IN MORE
+			//********************************
+			if (canSeeHighAndLowTrackableObjects_boolean) {
+				_zPosition_lerptarget.targetValue += 0.05f;
 				//Debug.Log ("IN  : " + _zPosition_lerptarget.targetValue);
 				//_last_zoommode = ZoomMode.ZoomOut;
+				if (_currentCameraTrackingPriority == TrackingPriority.High) {
+					_currentCameraTrackingPriority = TrackingPriority.Low;
+				}
 			} else {
-				_zPosition_lerptarget.targetValue -= 0.1f;
+
+
+				//********************************
+				//2. IF WE CAN'T SEE LOW+HIGH AND CANNOT ZOOM OUT MORE, THEN CHANGE FOCUS
+				//TO JUST THE HIGH PRIORITY OBJECTS
+				//********************************
+				if (_zPosition_lerptarget.targetValue == _zPosition_lerptarget.minimum) {
+					if (_currentCameraTrackingPriority == TrackingPriority.Low) {
+						_currentCameraTrackingPriority = TrackingPriority.High;
+					}
+				}
+				_zPosition_lerptarget.targetValue -= 0.05f;
 				//Debug.Log ("OUT : " + _zPosition_lerptarget.targetValue);
 				//_last_zoommode = ZoomMode.ZoomIn;
 
@@ -423,10 +469,8 @@ namespace com.rmc.projects.unity_camera_tracking
 
 
 			//UPDATE POSITION
-			//_zPosition_lerptarget.targetValue = -40 ;
 			_zPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
 			transform.position = new Vector3 (transform.position.x, transform.position.y, _zPosition_lerptarget.targetValue);
-			//Debug.Log (transform.position.z);
 
 
 		}
@@ -437,11 +481,14 @@ namespace com.rmc.projects.unity_camera_tracking
 		private void _doTrackCameraForOneRectForAllTrackableObjects()
 		{
 
-			Rect allTrackableObjects_rect 	= _getRectForAllTrackableObjects();
+			//
+			Rect allTrackableObjects_rect 	= _getRectForAllTrackableObjects(_currentCameraTrackingPriority);
 
 			//UPDATE TARGET
 			_xPosition_lerptarget.targetValue = allTrackableObjects_rect.center.x; 
 			_yPosition_lerptarget.targetValue = allTrackableObjects_rect.center.y; 
+			DebugDraw.DrawCenterPointCross (allTrackableObjects_rect, _zPlaneCoordinate_float, Constants.DEBUG_COLOR_VIEWPORT_CENTERPOINT);
+
 
 			//DO LERP
 			_xPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
@@ -480,44 +527,55 @@ namespace com.rmc.projects.unity_camera_tracking
 
 
 		/// <summary>
-		/// _dos the draw one rect for all trackable objects.
+		/// Draw one rect for all trackable objects.
 		/// 
 		/// NOTE: WE LOOP THROUGH OBJECTS OF INTEREST AND DRAW A RECT AROUND ALL
 		/// 
 		/// </summary>
-		private void _doDrawOneRectForAllTrackableObjects ()
+		private void _doDrawOneRectForAllTrackableObjects (TrackingPriority aTrackingPriority)
 		{
-			DebugDraw.DrawRect (_getRectForAllTrackableObjects(), _zPlaneCoordinate_float, _DEBUG_COLOR_TRACKABLE_RECT);
+
+			DebugDraw.DrawRect (_getRectForAllTrackableObjects(aTrackingPriority), _zPlaneCoordinate_float, Constants.GetDebugColorByPriority (aTrackingPriority));
 		}
 
 		/// <summary>
-		/// _dos the draw center point crosshairs for rect of all trackable objects.
+		/// Draw center point crosshairs for rect of all trackable objects.
 		/// </summary>
-		private void _doDrawCenterPointCrosshairsForRectOfAllTrackableObjects ()
+		private void _doDrawCenterPointCrosshairsForRectOfAllTrackableObjects (TrackingPriority aTrackingPriority)
 		{
-			DebugDraw.DrawCenterPointCrosshairsForRect (_getRectForAllTrackableObjects(), _zPlaneCoordinate_float, _DEBUG_COLOR_TRACKABLE_RECT);
+			DebugDraw.DrawCenterPointCrosshairsForRect (_getRectForAllTrackableObjects(aTrackingPriority), _zPlaneCoordinate_float, Constants.GetDebugColorByPriority (aTrackingPriority));
 		}
 
+		/// <summary>
+		/// _dos the draw line between crosshairs.
+		/// </summary>
+		/// <param name="aTrackingPriority1">A tracking priority1.</param>
+		/// <param name="aTrackingPriority2">A tracking priority2.</param>
+		private void _doDrawLineBetweenCrosshairs (TrackingPriority aTrackingPriority1, TrackingPriority aTrackingPriority2)
+		{
+			DebugDraw.DrawLineBetweenCrosshairs (_getRectForAllTrackableObjects(aTrackingPriority1), _getRectForAllTrackableObjects(aTrackingPriority2), _zPlaneCoordinate_float, Constants.DEBUG_COLOR_VIEWPORT_BOUNDARY);
+
+		}
 		
 		/// <summary>
-		/// _dos the draw rect for viewport.
+		/// Draw rect for viewport.
 		/// </summary>
 		private void _doDrawRectForViewport ()
 		{
 			
 			Rect viewport_rect = _getViewportRect(_zPlaneCoordinate_float);
-			DebugDraw.DrawRect (viewport_rect, _zPlaneCoordinate_float, _DEBUG_COLOR_VIEWPORT_RECT);
+			DebugDraw.DrawRect (viewport_rect, _zPlaneCoordinate_float, Constants.DEBUG_COLOR_VIEWPORT);
 			
 		}
 		
 		
 		/// <summary>
-		/// _dos the draw rect for viewport bounds.
+		/// Draw rect for viewport bounds.
 		/// </summary>
 		private void _doDrawRectForViewportBoundary ()
 		{
 			//_viewportBoundary_rect
-			DebugDraw.DrawRect (_viewportBoundary_rect,  _zPlaneCoordinate_float, _DEBUG_COLOR_VIEWPORT_BOUNDS_RECT);
+			DebugDraw.DrawRect (_viewportBoundary_rect,  _zPlaneCoordinate_float, Constants.DEBUG_COLOR_VIEWPORT_BOUNDARY);
 			
 		}
 
@@ -542,23 +600,45 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// 
 		/// </summary>
 		/// <returns>The rect for all trackable objects.</returns>
-		private Rect _getRectForAllTrackableObjects ()
+		private Rect _getRectForAllTrackableObjects (TrackingPriority aMinimumPriority)
 		{
 			//
 			Bounds allTrackableObjects_bounds;
 			Rect allTrackableObjects_rect = new Rect();
-			//
-			if (_trackableObjectComponents_list.Count > 0) {
-				allTrackableObjects_bounds = _trackableObjectComponents_list[0].getBounds();
+
+			//********************************
+			//MAKE A FILTERED LIST (ASSUME PRIORITY = NONE BY DEFAULT)
+			//********************************
+			List<TrackableObjectComponent> _prioritizedTrackableObjectComponents_list  = _trackableObjectComponents_list ;
+
+			switch (aMinimumPriority) {
+			case TrackingPriority.Low:
+				_prioritizedTrackableObjectComponents_list  =	(List<TrackableObjectComponent>)_trackableObjectComponents_list.Where (
+					trackableObjectComponent => trackableObjectComponent.trackingPriority == TrackingPriority.Low || trackableObjectComponent.trackingPriority == TrackingPriority.High).ToList();
+				break;
+			case TrackingPriority.High:
+					_prioritizedTrackableObjectComponents_list  =	(List<TrackableObjectComponent>)_trackableObjectComponents_list.Where (
+						trackableObjectComponent => trackableObjectComponent.trackingPriority == aMinimumPriority).ToList();
+				break;
+			}
+
+			//********************************
+			//CREATE A BOUNDS THAT ENCAPSULATES ALL OBJECTS OF INTEREST
+			//********************************
+			if (_prioritizedTrackableObjectComponents_list.Count > 0) {
+
+				//ENCAPSULATE NEEDS US TO START WITH A NON-'EMPTY' INSTANCE
+				allTrackableObjects_bounds = _prioritizedTrackableObjectComponents_list[0].getBounds();
 				//
-				foreach (TrackableObjectComponent trackableObjectComponent in _trackableObjectComponents_list) {
+				foreach (TrackableObjectComponent trackableObjectComponent in _prioritizedTrackableObjectComponents_list) {
+
 					allTrackableObjects_bounds.Encapsulate (trackableObjectComponent.getBounds());
 				}
 				allTrackableObjects_rect = RectHelper.ConvertBoundsToRect (allTrackableObjects_bounds, _zPlaneCoordinate_float);
 			} 
 
 			//
-			return allTrackableObjects_rect;
+			return RectHelper.Expand (allTrackableObjects_rect, _borderPadding_float );
 		}
 		
 

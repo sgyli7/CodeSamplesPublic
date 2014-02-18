@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\Constants.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\DebugDraw.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\LerpTarget.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\RectHelper.cs" />

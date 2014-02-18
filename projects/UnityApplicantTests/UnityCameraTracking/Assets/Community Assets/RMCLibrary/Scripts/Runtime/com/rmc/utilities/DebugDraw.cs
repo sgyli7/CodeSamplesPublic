@@ -114,9 +114,56 @@ namespace com.rmc.utilities
 		}
 
 
+		/// <summary>
+		/// Dos the draw line between crosshairs.
+		/// </summary>
+		/// <param name="aRect1">A rect1.</param>
+		/// <param name="aRect2">A rect2.</param>
+		/// <param name="aZPlaneCoordinate_float">A Z plane coordinate_float.</param>
+		/// <param name="color">Color.</param>
+		public static void DrawLineBetweenCrosshairs (Rect aRect1, Rect aRect2, float aZPlaneCoordinate_float, Color aColor)
+		{
+			Debug.DrawLine 	(
+				new Vector3 (aRect1.center.x, aRect1.center.y, aZPlaneCoordinate_float), 								
+				new Vector3 (aRect2.center.x, aRect2.center.y, aZPlaneCoordinate_float), 
+				aColor
+				);
+		}
+
+		/// <summary>
+		/// Draws the center point cross.
+		/// </summary>
+		/// <param name="aRect">A rect.</param>
+		/// <param name="aZPlaneCoordinate_float">A Z plane coordinate_float.</param>
+		/// <param name="aColor">A color.</param>
+		public static void DrawCenterPointCross (Rect aRect, float aZPlaneCoordinate_float, Color aColor)
+		{
+			//Debug.Log ("DRAW" + aRect);
+			float crossHairLength_float = 2;
+			
+			//LOWER LEFT TO UPPER RIGHT
+			Debug.DrawLine 	(
+				new Vector3 (aRect.center.x - crossHairLength_float/2, aRect.center.y, aZPlaneCoordinate_float), 								
+				new Vector3 (aRect.center.x + crossHairLength_float/2, aRect.center.y, aZPlaneCoordinate_float),
+				aColor
+				);
+			
+			//UPPER LEFT TO LOWER LEFT
+			Debug.DrawLine 	(
+				new Vector3 (aRect.center.x, aRect.center.y + crossHairLength_float/2, aZPlaneCoordinate_float), 								
+				new Vector3 (aRect.center.x, aRect.center.y - crossHairLength_float/2, aZPlaneCoordinate_float),
+				aColor
+				);
+			
+			
+			
+		}
+
+
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
 
 
 
