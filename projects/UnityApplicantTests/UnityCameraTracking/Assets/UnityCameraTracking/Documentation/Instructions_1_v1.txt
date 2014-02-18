@@ -7,7 +7,7 @@ The assignment is to make 2 scripts. One runs on the camera, and one runs on gam
 (Video Link Removed)
 
 The script running on the camera have the following settings:
-Area that the view port will not move outside off (see video)
+Area that the view port will not move outside off (Video Link Removed)
 Default distance (from z:0)
 Max distance (from z:0)
 The script running on the  gameobjects will calculate a 'bound' including all it's renderers, to make sure the entire gameobject is in view.
@@ -29,7 +29,7 @@ Instructions (Updated Upon Completion, As Checklist):
 *** The task is to create a camera script that makes sure that certain items is visible in the view port. [DONE]
 
 * The script running on the camera have the following settings:[DONE]
-*** Area that the view port will not move outside off (see video)[DONE]
+*** Area that the view port will not move outside off (Video Link Removed)[DONE]
 *** Default distance (from z:0)[DONE]
 *** Max distance (from z:0)[DONE]
 
