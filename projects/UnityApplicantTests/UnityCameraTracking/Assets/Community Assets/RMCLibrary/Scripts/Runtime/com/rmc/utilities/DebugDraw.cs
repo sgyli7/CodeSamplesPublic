@@ -93,7 +93,7 @@ namespace com.rmc.utilities
 		public static void DrawCenterPointCrosshairsForRect (Rect aRect, float aZPlaneCoordinate_float, Color aColor)
 		{
 			//Debug.Log ("DRAW" + aRect);
-			float crossHairLength_float = 1;
+			float crossHairLength_float = 0.5f;
 
 			//LOWER LEFT TO UPPER RIGHT
 			Debug.DrawLine 	(

@@ -36,15 +36,13 @@
 //  Imports
 //--------------------------------------
 using System;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using UnityEditor;
 using System.Reflection;
 using UnityEngine;
 
-
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.unity3d.wiki.expose_properties
 {
 	
@@ -71,7 +69,10 @@ namespace com.unity3d.wiki.expose_properties
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
-
+		/// <summary>
+		/// Gets the type.
+		/// </summary>
+		/// <value>The type.</value>
 		public SerializedPropertyType Type
 		{
 			get
@@ -79,7 +80,11 @@ namespace com.unity3d.wiki.expose_properties
 				return m_Type;	
 			}
 		}
-		
+
+		/// <summary>
+		/// Gets the name.
+		/// </summary>
+		/// <value>The name.</value>
 		public String Name
 		{	
 			get
@@ -92,14 +97,19 @@ namespace com.unity3d.wiki.expose_properties
 		public System.Object m_Instance;
 		public PropertyInfo m_Info;
 		public SerializedPropertyType m_Type;
-		
 		public MethodInfo m_Getter;
 		public MethodInfo m_Setter;
 
 
 		//--------------------------------------
 		//  Methods
-		//--------------------------------------		
+		//--------------------------------------	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.unity3d.wiki.expose_properties.PropertyField"/> class.
+		/// </summary>
+		/// <param name="instance">Instance.</param>
+		/// <param name="info">Info.</param>
+		/// <param name="type">Type.</param>
 		public PropertyField( System.Object instance, PropertyInfo info, SerializedPropertyType type )
 		{	
 			

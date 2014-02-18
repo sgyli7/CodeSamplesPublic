@@ -89,7 +89,7 @@ namespace com.rmc.projects.unity_camera_tracking
 
 
 		/// <summary>
-		/// The maximum z distance the camera to 0
+		/// The maximum z distance the camera can be to z=0
 		/// </summary>
 		[SerializeField][HideInInspector]
 		private float _distanceMax_float = 15;
@@ -99,7 +99,34 @@ namespace com.rmc.projects.unity_camera_tracking
 				return _distanceMax_float;
 			}
 			set{
-				_distanceMax_float = value;
+
+				_distanceMax_float = Mathf.Clamp (value, _distanceMin_float, Mathf.Infinity) ;
+
+				//NOTE: min=max here because we are dealing with negative space.
+				if (_zPosition_lerptarget != null) {
+					_zPosition_lerptarget.minimum = -_distanceMax_float;
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// The minimum z distance the camera can be to z=0
+		/// </summary>
+		[SerializeField][HideInInspector]
+		private float _distanceMin_float = 5;
+		[ExposeProperty]
+		public float distanceMin {
+			get{
+				return _distanceMin_float;
+			}
+			set{
+				_distanceMin_float = Mathf.Clamp (value, 0, _distanceMax_float) ;
+
+				//NOTE: max=min here because we are dealing with negative space.
+				if (_zPosition_lerptarget != null) {
+					_zPosition_lerptarget.maximum = -_distanceMin_float;
+				}
 			}
 		}
 
@@ -115,7 +142,8 @@ namespace com.rmc.projects.unity_camera_tracking
 				return _distanceDefault_float;
 			}
 			set{
-				_distanceDefault_float = value;
+				_distanceDefault_float = Mathf.Clamp (value, _distanceMin_float, _distanceMax_float) ;
+
 			}
 		}
 
@@ -131,6 +159,7 @@ namespace com.rmc.projects.unity_camera_tracking
 			}
 			set{
 				_viewportBoundary_rect = value;
+
 			}
 		}
 
@@ -170,7 +199,7 @@ namespace com.rmc.projects.unity_camera_tracking
 				return _borderPadding_float;
 			}
 			set{
-				_borderPadding_float = value;
+				_borderPadding_float = Mathf.Clamp (value, 0, Mathf.Infinity);
 			}
 		}
 
@@ -264,11 +293,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// 
 		/// </summary>
 		private LerpTarget _zPosition_lerptarget;
-		
-		/// <summary>
-		/// The minimum z distance the camera to 0
-		/// </summary>
-		private float _distanceMin_float = 5;
+
 		
 		/// <summary>
 		/// The _distance acceleration_float.
@@ -435,7 +460,7 @@ namespace com.rmc.projects.unity_camera_tracking
 			Rect highTrackableObjects_rect 			= _getRectForAllTrackableObjects(TrackingPriority.High);
 			Rect highAndLowTrackableObjects_rect 	= _getRectForAllTrackableObjects(TrackingPriority.Low);
 			//
-			bool canSeeHighTrackableObjects_boolean 		= RectHelper.IsRectWithinRect (viewport_rect, highTrackableObjects_rect);
+			//bool canSeeHighTrackableObjects_boolean 		= RectHelper.IsRectWithinRect (viewport_rect, highTrackableObjects_rect);
 			bool canSeeHighAndLowTrackableObjects_boolean 	= RectHelper.IsRectWithinRect (viewport_rect, highAndLowTrackableObjects_rect);
 
 			//
@@ -553,7 +578,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <param name="aTrackingPriority2">A tracking priority2.</param>
 		private void _doDrawLineBetweenCrosshairs (TrackingPriority aTrackingPriority1, TrackingPriority aTrackingPriority2)
 		{
-			DebugDraw.DrawLineBetweenCrosshairs (_getRectForAllTrackableObjects(aTrackingPriority1), _getRectForAllTrackableObjects(aTrackingPriority2), _zPlaneCoordinate_float, Constants.DEBUG_COLOR_VIEWPORT_BOUNDARY);
+			DebugDraw.DrawLineBetweenCrosshairs (_getRectForAllTrackableObjects(aTrackingPriority1), _getRectForAllTrackableObjects(aTrackingPriority2), _zPlaneCoordinate_float, Constants.DEBUG_COLOR_VIEWPORT_CENTERPOINT);
 
 		}
 		

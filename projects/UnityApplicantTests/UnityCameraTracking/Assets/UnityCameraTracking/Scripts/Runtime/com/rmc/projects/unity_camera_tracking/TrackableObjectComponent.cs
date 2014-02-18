@@ -125,7 +125,7 @@ namespace com.rmc.projects.unity_camera_tracking
 				return _borderPadding_float;
 			}
 			set{
-				_borderPadding_float = value;
+				_borderPadding_float = Mathf.Clamp (value, 0, Mathf.Infinity);
 			}
 		}
 

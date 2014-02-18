@@ -1,41 +1,6 @@
 Unity Scene Test
 
 
-
-
-
-
-
-
-
-
-TODO
-
-* CLEANUP THE unify classes and make namespaces
-* TEST WITH 0 TRACKABLES, DOES CAMERA FREAK OUT?
-* clean up 100% of comments (the auto comment looks odd)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Instructions (Original Text):
 
 The assignment is to make 2 scripts. One runs on the camera, and one runs on gameobjects. The task is to create a camera script that makes sure that certain items is visible in the view port. 
@@ -61,18 +26,18 @@ Instructions (Updated Upon Completion, As Checklist):
 * The assignment is to make 2 scripts. [DONE]
 
 * 1) One runs on the camera, and one runs on gameobjects. [DONE]
-*** The task is to create a camera script that makes sure that certain items is visible in the view port. [STATUS]
+*** The task is to create a camera script that makes sure that certain items is visible in the view port. [DONE]
 
-* The script running on the camera have the following settings:[STATUS]
-*** Area that the view port will not move outside off (see video)[STATUS]
-*** Default distance (from z:0)[STATUS]
-*** Max distance (from z:0)[STATUS]
+* The script running on the camera have the following settings:[DONE]
+*** Area that the view port will not move outside off (see video)[DONE]
+*** Default distance (from z:0)[DONE]
+*** Max distance (from z:0)[DONE]
 
-* 2) The script running on the  gameobjects will calculate a 'bound' including all it's renderers[STATUS]
-*** to make sure the entire gameobject is in view.[STATUS]
-*** The same script should be running on the 'players'[STATUS]
-*** but with an 'important' bool variable. [STATUS]
-*** When this is set, the camera will try and keep the gameobject in the view port at all time.[STATUS]
+* 2) The script running on the  gameobjects will calculate a 'bound' including all it's renderers[DONE]
+*** to make sure the entire gameobject is in view.[DONE]
+*** The same script should be running on the 'players'[DONE]
+*** but with an 'important' bool variable. [DONE]
+*** When this is set, the camera will try and keep the gameobject in the view port at all time.[DONE]
 
-* Please send a unity project containing all the necessary code.[STATUS]
+* Please send a unity project containing all the necessary code.[DONE]
 
