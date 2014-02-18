@@ -132,6 +132,21 @@ namespace com.rmc.utilities
 			return aRect;
 		}
 
+
+		/// <summary>
+		/// Gets the area delta between rects.
+		/// </summary>
+		/// <returns>The area delta between rects.</returns>
+		/// <param name="aRect1">A rect1.</param>
+		/// <param name="aRect2">A rect2.</param>
+		public static float GetAreaDeltaBetweenRects (Rect aRect1, Rect aRect2)
+		{
+			return aRect1.width*aRect1.height - aRect2.width*aRect2.height;
+
+
+		}
+
+
 		//--------------------------------------
 		//  Events
 		//--------------------------------------

@@ -29,13 +29,11 @@
 //  Imports
 //--------------------------------------
 using System;
+using UnityEngine;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using UnityEngine;
-
-
 namespace com.rmc.utilities
 {
 	

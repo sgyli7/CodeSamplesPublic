@@ -33,13 +33,11 @@ using com.rmc.projects.utilities;
 using com.rmc.utilities;
 using System.Collections.Generic;
 using com.rmc.projects.unity_camera_tracking;
+using System.Linq;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using System.Linq;
-
-
 namespace com.rmc.projects.unity_camera_tracking
 {
 	
@@ -318,6 +316,18 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private TrackingPriority _currentCameraTrackingPriority;
 
+
+		/// <summary>
+		/// SIZE DELTA: HIGHER TOLERANCE PREVENTS CAMERA 'JITTER'
+		/// </summary>
+		private const float _VIEWPORT_RESIZE_DELTA_MINIMUM_TOLERANCE = 2;
+
+		/// <summary>
+		/// SIZE DELTA: WE COMPARE THE LAST TO CURRENT
+		//	TO SEE IF ITS WORTHY TO ADJUST THE CAMERA
+		/// </summary>
+		private float _lastViewportResizeDelta_float;
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
@@ -363,8 +373,6 @@ namespace com.rmc.projects.unity_camera_tracking
 
 			//UPDATE POSITION
 			_doTrackCameraForOneRectForAllTrackableObjects();
-
-
 
 			//DRAW RECTS
 			_doDrawRectForViewport();
@@ -419,9 +427,6 @@ namespace com.rmc.projects.unity_camera_tracking
 		}
 
 
-		//	PRIVATE 
-
-
 
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		//\ 
@@ -437,32 +442,41 @@ namespace com.rmc.projects.unity_camera_tracking
 			Rect viewport_rect 								= _getViewportRect(_zPlaneCoordinate_float);
 			Rect highAndLowTrackableObjects_rect 			= _getRectForAllTrackableObjects(TrackingPriority.Low);
 			bool canSeeHighAndLowTrackableObjects_boolean 	= RectHelper.IsRectWithinRect (viewport_rect, highAndLowTrackableObjects_rect);
+			float viewportResizeDelta_float					= RectHelper.GetAreaDeltaBetweenRects (viewport_rect, highAndLowTrackableObjects_rect);
 
-			//
-			//********************************
-			//1. IF WE CAN SEE LOW+HIGH THEN ALWAYS ZOOM IN MORE
-			//********************************
-			if (canSeeHighAndLowTrackableObjects_boolean) {
-				_zPosition_lerptarget.targetValue += 0.05f;
-				if (_currentCameraTrackingPriority == TrackingPriority.High) {
-					_currentCameraTrackingPriority = TrackingPriority.Low;
-				}
-			} else {
-				 
 
+			//SIZE DELTA: WE COMPARE THE LAST TO CURRENT
+			//TO SEE IF ITS WORTHY TO ADJUST THE CAMERA
+			if (Mathf.Abs(_lastViewportResizeDelta_float - viewportResizeDelta_float) > _VIEWPORT_RESIZE_DELTA_MINIMUM_TOLERANCE) {
+				//
 				//********************************
-				//2. IF WE CAN'T SEE LOW+HIGH AND CANNOT ZOOM OUT MORE, THEN CHANGE FOCUS
-				//TO JUST THE HIGH PRIORITY OBJECTS
+				//1. IF WE CAN SEE LOW+HIGH THEN ALWAYS ZOOM IN MORE
 				//********************************
-				if (_zPosition_lerptarget.targetValue == _zPosition_lerptarget.minimum) {
-					if (_currentCameraTrackingPriority == TrackingPriority.Low) {
-						_currentCameraTrackingPriority = TrackingPriority.High;
+				if (canSeeHighAndLowTrackableObjects_boolean) {
+					_zPosition_lerptarget.targetValue += 0.05f;
+					if (_currentCameraTrackingPriority == TrackingPriority.High) {
+						_currentCameraTrackingPriority = TrackingPriority.Low;
 					}
+				} else {
+					 
+
+					//********************************
+					//2. IF WE CAN'T SEE LOW+HIGH AND CANNOT ZOOM OUT MORE, THEN CHANGE FOCUS
+					//TO JUST THE HIGH PRIORITY OBJECTS
+					//********************************
+					if (_zPosition_lerptarget.targetValue == _zPosition_lerptarget.minimum) {
+						if (_currentCameraTrackingPriority == TrackingPriority.Low) {
+							_currentCameraTrackingPriority = TrackingPriority.High;
+						}
+					}
+					_zPosition_lerptarget.targetValue -= 0.05f;
+
 				}
-				_zPosition_lerptarget.targetValue -= 0.05f;
+			}
 
-		}
-
+			//STORE LAST RESIZE DELTA -- WE COMPARE THE LAST TO CURRENT
+			//TO SEE IF ITS WORTHY TO ADJUST THE CAMERA
+			_lastViewportResizeDelta_float = viewportResizeDelta_float;
 
 			//UPDATE POSITION
 			_zPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
@@ -624,11 +638,11 @@ namespace com.rmc.projects.unity_camera_tracking
 			if (_prioritizedTrackableObjectComponents_list.Count > 0) {
 
 				//ENCAPSULATE NEEDS US TO START WITH A NON-'EMPTY' INSTANCE
-				allTrackableObjects_bounds = _prioritizedTrackableObjectComponents_list[0].getBounds();
+				allTrackableObjects_bounds = _prioritizedTrackableObjectComponents_list[0].getBoundsWithProjection(camera);
 				//
 				foreach (TrackableObjectComponent trackableObjectComponent in _prioritizedTrackableObjectComponents_list) {
 
-					allTrackableObjects_bounds.Encapsulate (trackableObjectComponent.getBounds());
+					allTrackableObjects_bounds.Encapsulate (trackableObjectComponent.getBoundsWithProjection(camera));
 				}
 				allTrackableObjects_rect = RectHelper.ConvertBoundsToRect (allTrackableObjects_bounds, _zPlaneCoordinate_float);
 			} 

@@ -152,6 +152,12 @@ namespace com.rmc.projects.unity_camera_tracking
 		private Color _debugColor;
 
 
+		/// <summary>
+		/// The _main camera.
+		/// </summary>
+		private Camera _mainCamera;
+
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -164,6 +170,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		void Start () 
 		{
 			_doRefreshProperties();
+			_mainCamera = Camera.main;
 
 		}
 		
@@ -196,20 +203,45 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <param name="aZCoordinate_float">A Z coordinate_float.</param>
 		public Rect getBoundaryRect (float aZCoordinate_float) 
 		{
-			//
-			return RectHelper.ConvertBoundsToRect(getBounds(), aZCoordinate_float);
+			return RectHelper.ConvertBoundsToRect(getBoundsWithProjection(_mainCamera), aZCoordinate_float);
 		}
 
 		/// <summary>
 		/// The boundary including padding.
+		/// 
+		/// NOTE: Does consider camera perspective
+		/// 
 		/// </summary>
 		/// <returns>The bounds.</returns>
-		public Bounds getBounds ()
+		public Bounds getBoundsWithProjection (Camera aCamera)
+		{
+			//
+			Bounds expanded_bounds = renderer.bounds;
+			//expanded_bounds.Expand (_borderPadding_float);
+
+
+			//Debug.Log ("old: " + expanded_bounds.extents);
+			//expanded_bounds = new Bounds (origin_vector3, extents_vector3);
+			//expanded_bounds.extents = extents_vector3;
+			//Debug.Log ("new: " + expanded_bounds.extents);
+			//
+			//return new Bounds (origin_vector3, extents_vector3);
+			return expanded_bounds;
+		} 
+
+
+		/// <summary>
+		/// The boundary including padding.
+		/// 
+		/// NOTE: Does not consider camera perspective
+		/// 
+		/// </summary>
+		/// <returns>The bounds.</returns>
+		public Bounds getBoundsWithoutProjection ()
 		{
 			//
 			Bounds expanded_bounds = renderer.bounds;
 			expanded_bounds.Expand (_borderPadding_float);
-			//
 			return expanded_bounds;
 		} 
 
