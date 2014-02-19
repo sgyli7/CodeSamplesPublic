@@ -219,7 +219,6 @@ namespace com.rmc.projects.unity_camera_tracking
 			Bounds expanded_bounds = renderer.bounds;
 			//expanded_bounds.Expand (_borderPadding_float);
 
-
 			//Debug.Log ("old: " + expanded_bounds.extents);
 			//expanded_bounds = new Bounds (origin_vector3, extents_vector3);
 			//expanded_bounds.extents = extents_vector3;

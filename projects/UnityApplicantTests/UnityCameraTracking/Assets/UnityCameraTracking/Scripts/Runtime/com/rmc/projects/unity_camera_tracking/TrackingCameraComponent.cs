@@ -568,31 +568,27 @@ namespace com.rmc.projects.unity_camera_tracking
 		private void _doUpdateZPositionTargetValue (bool aIsCurrentTargetRectWithinBoundary_boolean, bool aAreAllHighAndLowTrackableObjectsInView_boolean,  float aChangeAmount_float)
 		{
 
-			if (aIsCurrentTargetRectWithinBoundary_boolean) {
-
-				if (Mathf.Sign (aChangeAmount_float) < 0) {
-					_currentZoomMode = ZoomMode.ZoomingOut;
-				} else {
-					_currentZoomMode = ZoomMode.ZoomingIn;
-				}
-
-				//********************************
-				//TEST FLAGS TO PREVENT JITTER 
-				//********************************
-				if (_hasBordingPaddingChanged_boolean ||
-				    _trackingMode == TrackingMode.CurrentlyTracking ||
-				    _lastZoomMode == _currentZoomMode) {
-
-					//if (aIsCurrentTargetRectWithinBoundary_boolean) {
-						_zPosition_lerptarget.targetValue += aChangeAmount_float;
-						_lastZoomMode = _currentZoomMode;
-					//}
-				}
-
-
-				//RESET/UPDATE FLAGS
-				_hasBordingPaddingChanged_boolean = false;
+			Debug.Log (aChangeAmount_float);
+			if (Mathf.Sign (aChangeAmount_float) < 0) {
+				_currentZoomMode = ZoomMode.ZoomingOut;
+			} else {
+				_currentZoomMode = ZoomMode.ZoomingIn;
 			}
+
+			//********************************
+			//IF TARGET IS PROPERLY WITHIN BOUNDS THEN PROCEED TO DOLLY
+			//********************************
+			if (_hasBordingPaddingChanged_boolean ||
+			    _trackingMode == TrackingMode.CurrentlyTracking ||
+			    _lastZoomMode == _currentZoomMode) {
+
+				_zPosition_lerptarget.targetValue += aChangeAmount_float;
+				_lastZoomMode = _currentZoomMode;
+			}
+
+
+			//RESET
+			_hasBordingPaddingChanged_boolean = false;
 		}
 
 
