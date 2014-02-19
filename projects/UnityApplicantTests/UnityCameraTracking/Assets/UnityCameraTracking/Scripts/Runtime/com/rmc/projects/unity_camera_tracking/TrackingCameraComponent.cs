@@ -44,6 +44,19 @@ namespace com.rmc.projects.unity_camera_tracking
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum ZoomMode
+	{
+		ZoomingIn,
+		ZoomingOut,
+		None
+
+	}
+
+	public enum TrackingMode
+	{
+		CurrentlyTracking,
+		CurrentlyNotTracking
+	}
 	
 	
 	//--------------------------------------
@@ -184,6 +197,7 @@ namespace com.rmc.projects.unity_camera_tracking
 			}
 			set{
 				_borderPadding_float = Mathf.Clamp (value, 0, Mathf.Infinity);
+				_hasBordingPaddingChanged_boolean = true;
 			}
 		}
 
@@ -282,7 +296,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// <summary>
 		/// The _distance acceleration_float.
 		/// </summary>
-		private float _distanceAcceleration_float = 0;
+		private float _zPositionAcceleration_float = 1f;
 		
 
 		/// <summary>
@@ -316,17 +330,29 @@ namespace com.rmc.projects.unity_camera_tracking
 		/// </summary>
 		private TrackingPriority _currentCameraTrackingPriority;
 
+		/// <summary>
+		/// The _current zoom mode.
+		/// NOTE: Used to prevent jitter.
+		/// </summary>
+		private ZoomMode _currentZoomMode;
 
 		/// <summary>
-		/// SIZE DELTA: HIGHER TOLERANCE PREVENTS CAMERA 'JITTER'
+		/// The _last zoom mode.
+		/// NOTE: Used to prevent jitter.
 		/// </summary>
-		private const float _VIEWPORT_RESIZE_DELTA_MINIMUM_TOLERANCE = 2;
+		private ZoomMode _lastZoomMode;
+
 
 		/// <summary>
-		/// SIZE DELTA: WE COMPARE THE LAST TO CURRENT
-		//	TO SEE IF ITS WORTHY TO ADJUST THE CAMERA
+		/// The _tracking mode.
+		/// NOTE: Used to prevent jitter.
 		/// </summary>
-		private float _lastViewportResizeDelta_float;
+		private TrackingMode _trackingMode;
+
+		/// <summary>
+		/// The _has bording padding changed_boolean.
+		/// </summary>
+		private bool _hasBordingPaddingChanged_boolean;
 
 		//--------------------------------------
 		//  Methods
@@ -360,7 +386,7 @@ namespace com.rmc.projects.unity_camera_tracking
 			//Z
 			//NOTE: WE USE NEGATIVES BECAUSE THE 'DISTANCE' IS IN THE NEGATIVE QUADRANT (OF CARTESIAN COORDS)
 			//NOTE, WE REVERSE MIN/MAX HERE BY DESIGN BECAUSE OF NEGATIVE VALUES
-			_zPosition_lerptarget = new LerpTarget (transform.position.z, -_distanceDefault_float, -_distanceMax_float, -_distanceMin_float, _distanceAcceleration_float);
+			_zPosition_lerptarget = new LerpTarget (transform.position.z, -_distanceDefault_float, -_distanceMax_float, -_distanceMin_float, _zPositionAcceleration_float);
 		
 		}
 		
@@ -371,8 +397,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		void Update () 
 		{
 
-			//UPDATE POSITION
-			_doTrackCameraForOneRectForAllTrackableObjects();
+
 
 			//DRAW RECTS
 			_doDrawRectForViewport();
@@ -387,13 +412,16 @@ namespace com.rmc.projects.unity_camera_tracking
 		}
 
 		/// <summary>
-		/// Lates the update.
+		/// Update/corrections
 		/// 
 		/// NOTE: We 'correct' positioning here
+		/// NOTE: I'm not positive this is better than using 'Update'. Experimenting...
 		/// 
 		/// </summary>
 		void LateUpdate ()
 		{
+			//UPDATE POSITION
+			_doTrackCameraForOneRectForAllTrackableObjects();
 
 			//CORRECT POSITION
 			_doDollyCamera();
@@ -435,51 +463,46 @@ namespace com.rmc.projects.unity_camera_tracking
 		//\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 		/// <summary>
-		/// _dos the dolly camera.
+		/// Dolly the Camera (Move in Z axis)
 		/// </summary>
 		private void _doDollyCamera ()
 		{
-			Rect viewport_rect 								= _getViewportRect(_zPlaneCoordinate_float);
-			Rect highAndLowTrackableObjects_rect 			= _getRectForAllTrackableObjects(TrackingPriority.Low);
-			bool canSeeHighAndLowTrackableObjects_boolean 	= RectHelper.IsRectWithinRect (viewport_rect, highAndLowTrackableObjects_rect);
-			float viewportResizeDelta_float					= RectHelper.GetAreaDeltaBetweenRects (viewport_rect, highAndLowTrackableObjects_rect);
+			Rect viewport_rect 									= _getViewportRect(_zPlaneCoordinate_float);
+			Rect highAndLowTrackableObjects_rect 				= _getRectForAllTrackableObjects(TrackingPriority.Low);
+			bool areAllHighAndLowTrackableObjectsInView_boolean = RectHelper.IsRectWithinRect (viewport_rect, highAndLowTrackableObjects_rect);
+			//
+			Rect currentTarget_rect 							= _getRectForAllTrackableObjects(_currentCameraTrackingPriority);
+			bool isCurrentTargetRectWithinBoundary_boolean 		= RectHelper.IsRectWithinRect (_viewportBoundary_rect, currentTarget_rect);
 
 
-			//SIZE DELTA: WE COMPARE THE LAST TO CURRENT
-			//TO SEE IF ITS WORTHY TO ADJUST THE CAMERA
-			if (Mathf.Abs(_lastViewportResizeDelta_float - viewportResizeDelta_float) > _VIEWPORT_RESIZE_DELTA_MINIMUM_TOLERANCE) {
-				//
-				//********************************
-				//1. IF WE CAN SEE LOW+HIGH THEN ALWAYS ZOOM IN MORE
-				//********************************
-				if (canSeeHighAndLowTrackableObjects_boolean) {
-					_zPosition_lerptarget.targetValue += 0.05f;
-					if (_currentCameraTrackingPriority == TrackingPriority.High) {
-						_currentCameraTrackingPriority = TrackingPriority.Low;
-					}
-				} else {
-					 
 
-					//********************************
-					//2. IF WE CAN'T SEE LOW+HIGH AND CANNOT ZOOM OUT MORE, THEN CHANGE FOCUS
-					//TO JUST THE HIGH PRIORITY OBJECTS
-					//********************************
-					if (_zPosition_lerptarget.targetValue == _zPosition_lerptarget.minimum) {
-						if (_currentCameraTrackingPriority == TrackingPriority.Low) {
-							_currentCameraTrackingPriority = TrackingPriority.High;
-						}
-					}
-					_zPosition_lerptarget.targetValue -= 0.05f;
-
+			//
+			//********************************
+			//1. IF WE CAN SEE LOW+HIGH THEN ALWAYS ZOOM IN MORE
+			//********************************
+			if (areAllHighAndLowTrackableObjectsInView_boolean) {
+				_doUpdateZPositionTargetValue (isCurrentTargetRectWithinBoundary_boolean, areAllHighAndLowTrackableObjectsInView_boolean, 0.05f);
+				if (_currentCameraTrackingPriority == TrackingPriority.High) {
+					_currentCameraTrackingPriority = TrackingPriority.Low;
 				}
+			} else {
+				 
+
+				//********************************
+				//2. IF WE CAN'T SEE LOW+HIGH AND CANNOT ZOOM OUT MORE, THEN CHANGE FOCUS
+				//TO JUST THE HIGH PRIORITY OBJECTS
+				//********************************
+				if (_zPosition_lerptarget.targetValue == _zPosition_lerptarget.minimum) {
+					if (_currentCameraTrackingPriority == TrackingPriority.Low) {
+						_currentCameraTrackingPriority = TrackingPriority.High;
+					}
+				}
+				_doUpdateZPositionTargetValue (isCurrentTargetRectWithinBoundary_boolean, areAllHighAndLowTrackableObjectsInView_boolean, -0.05f);
+
 			}
 
-			//STORE LAST RESIZE DELTA -- WE COMPARE THE LAST TO CURRENT
-			//TO SEE IF ITS WORTHY TO ADJUST THE CAMERA
-			_lastViewportResizeDelta_float = viewportResizeDelta_float;
-
 			//UPDATE POSITION
-			_zPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+			_zPosition_lerptarget.lerpCurrentToTarget (1);
 			transform.position = new Vector3 (transform.position.x, transform.position.y, _zPosition_lerptarget.targetValue);
 
 
@@ -499,6 +522,13 @@ namespace com.rmc.projects.unity_camera_tracking
 			_yPosition_lerptarget.targetValue = allTrackableObjects_rect.center.y; 
 			DebugDraw.DrawCenterPointCross (allTrackableObjects_rect, _zPlaneCoordinate_float, Constants.DEBUG_COLOR_VIEWPORT_CENTERPOINT);
 
+			//STORE IF ITS TRACKING
+			if (Mathf.Abs (_xPosition_lerptarget.deltaCurrentToTargetValue) < 0.5f && 
+			    Mathf.Abs (_yPosition_lerptarget.deltaCurrentToTargetValue) < 0.5f) {
+				_trackingMode = TrackingMode.CurrentlyNotTracking;
+			} else {
+				_trackingMode = TrackingMode.CurrentlyTracking;
+			}
 
 			//DO LERP
 			_xPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
@@ -526,6 +556,43 @@ namespace com.rmc.projects.unity_camera_tracking
 			_yPosition_lerptarget.minimum = _viewportBoundary_rect.yMin + viewport_rect.height/2;
 			_yPosition_lerptarget.maximum = _viewportBoundary_rect.yMax - viewport_rect.height/2;
 			
+		}
+
+
+		/// <summary>
+		/// _dos the update Z position target value.
+		/// </summary>
+		/// <param name="aViewportResizeDelta_float">A viewport resize delta_float.</param>
+		/// <param name="aLastViewportResizeDelta_float">A last viewport resize delta_float.</param>
+		/// <param name="aChangeAmount_float">A change amount_float.</param>
+		private void _doUpdateZPositionTargetValue (bool aIsCurrentTargetRectWithinBoundary_boolean, bool aAreAllHighAndLowTrackableObjectsInView_boolean,  float aChangeAmount_float)
+		{
+
+			if (aIsCurrentTargetRectWithinBoundary_boolean) {
+
+				if (Mathf.Sign (aChangeAmount_float) < 0) {
+					_currentZoomMode = ZoomMode.ZoomingOut;
+				} else {
+					_currentZoomMode = ZoomMode.ZoomingIn;
+				}
+
+				//********************************
+				//TEST FLAGS TO PREVENT JITTER 
+				//********************************
+				if (_hasBordingPaddingChanged_boolean ||
+				    _trackingMode == TrackingMode.CurrentlyTracking ||
+				    _lastZoomMode == _currentZoomMode) {
+
+					//if (aIsCurrentTargetRectWithinBoundary_boolean) {
+						_zPosition_lerptarget.targetValue += aChangeAmount_float;
+						_lastZoomMode = _currentZoomMode;
+					//}
+				}
+
+
+				//RESET/UPDATE FLAGS
+				_hasBordingPaddingChanged_boolean = false;
+			}
 		}
 
 

@@ -120,6 +120,15 @@ namespace com.rmc.projects.utilities
 		}
 
 		/// <summary>
+		/// The difference between current and targetValue.
+		/// </summary>
+		public float deltaCurrentToTargetValue {
+			get{
+				return _targetValue_float - current;
+			}
+		}
+
+		/// <summary>
 		/// The acceleration.
 		/// </summary>
 		public float acceleration;
@@ -169,6 +178,17 @@ namespace com.rmc.projects.utilities
 
 		}
 
+		/// <summary>
+		/// Returns a <see cref="System.String"/> that represents the current <see cref="com.rmc.projects.utilities.LerpTarget"/>.
+		/// </summary>
+		/// <returns>A <see cref="System.String"/> that represents the current <see cref="com.rmc.projects.utilities.LerpTarget"/>.</returns>
+		public override string ToString()
+		{
+			return "[LerpTarget(c: "+current+" t: "+targetValue+" d: "+deltaCurrentToTargetValue+" min: "+minimum+" max: "+maximum+")]";
+		}
+
+
+
 		// PRIVATE
 		/// <summary>
 		/// _lerps the current to.
@@ -183,7 +203,7 @@ namespace com.rmc.projects.utilities
 				(
 					current,
 					aNextValue,
-					aDeltaTime_float*acceleration
+					acceleration*aDeltaTime_float
 				);
 		}
 
