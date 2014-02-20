@@ -1,13 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/VirtualControllerUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/GameManagerUI.cs">
     <Files>
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/controller/commands/AllViewsInitializedCommand.cs" Line="100" Column="49" />
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/EnemyUIMediator.cs" Line="209" Column="4" />
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/GameManagerUIMediator.cs" Line="245" Column="10" />
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/KeyboardControllerUIMediator.cs" Line="1" Column="1" />
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/VirtualControllerUIMediator.cs" Line="113" Column="11" />
-      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/VirtualControllerUI.cs" Line="70" Column="5" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/IntroUIMediator.cs" Line="192" Column="4" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/IntroUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/EnemyUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/SuperControllerUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/TurretUIMediator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/extension_methods/GameObjectExtensions.cs" Line="1" Column="1" />
+      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/extension_methods/AnimationExtensions.cs" Line="1" Column="1" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/ui/GameManagerUI.cs" Line="210" Column="6" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/view/mediators/GameManagerUIMediator.cs" Line="1" Column="1" />
+      <File FileName="Assets/SpiderStrike/Scripts/Runtime/com/rmc/projects/spider_strike/mvcs/controller/commands/GameStateChangeCommand.cs" Line="94" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

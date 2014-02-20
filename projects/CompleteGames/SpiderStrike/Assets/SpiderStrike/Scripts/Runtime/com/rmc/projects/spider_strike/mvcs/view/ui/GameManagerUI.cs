@@ -216,7 +216,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//TODO: ENSURE A SPIDER IS NOT SPAWNED ON TOP OF AN OTHER ONE
 			//TODO: ENSURE SPIDERS COME FROM 'ALL AROUND' WITHOUT 'REPEATING TOO MUCH'
 
-
+			Debug.Log ("created spider");
 			//
 			return spider_gameobject;
 		}

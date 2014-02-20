@@ -38,6 +38,7 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model;
 using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -70,7 +71,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public IntroUI view 	{ get; set;}
 		
-
+		/// <summary>
+		/// MODEL: The main game data
+		/// </summary>
+		[Inject]
+		public IGameModel iGameModel { get; set; } 
 
 		/// <summary>
 		/// Gets or sets the game state change signal.
@@ -86,6 +91,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The game state changed signal.</value>
 		[Inject]
 		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+
+		
+		/// <summary>
+		/// Gets or sets the sound play signal.
+		/// </summary>
+		/// <value>The sound play signal.</value>
+		[Inject]
+		public SoundPlaySignal soundPlaySignal { get; set;}
 
 
 		// PUBLIC
@@ -107,9 +120,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			
 			view.init ();
-			//Debug.Log ("HUD IS READY - WHY AFTER???");
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			view.uiIntroEndedSignal.AddListener (_onUIIntroEndedSignal);
+			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
 			
 			
 			
@@ -122,6 +135,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 			view.uiIntroEndedSignal.RemoveListener (_onUIIntroEndedSignal);
+			view.uiInputChangedSignal.RemoveListener (_onUIInputChangedSignal);
 
 		}
 		
@@ -160,6 +174,25 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
+		/// <summary>
+		/// _ons the user interface input changed signal.
+		/// </summary>
+		/// <param name="">.</param>
+		private void _onUIInputChangedSignal (UIInputVO aUIInputVO) 
+		{
+
+			if (iGameModel.gameState == GameState.INTRO_START) {
+				if (animation.isPlaying != true) {
+					animation.Play ("IntroUI_End");
+					soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
+					gameStateChangeSignal.Dispatch (GameState.GAME_START);
+				}
+			}
+		}
+
+
+
 		/// <summary>
 		/// _ons the game state changed signal.
 		/// </summary>
@@ -169,8 +202,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//
 			if (aGameState == GameState.INTRO_START) {
 				//
-				Debug.Log ("here1");
-				_onUIIntroEndedSignal();
+				//_onUIIntroEndedSignal();
+				animation.Play ("IntroUI_Start");
 			}
 			
 		}
@@ -180,7 +213,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		private void _onUIIntroEndedSignal ()
 		{
-			Debug.Log ("here2");
 			gameStateChangeSignal.Dispatch (GameState.GAME_START);
 		}
 		

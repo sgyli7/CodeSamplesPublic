@@ -30,18 +30,15 @@
 //--------------------------------------
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using UnityEngine;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
-using com.rmc.projects.spider_strike.mvcs.model;
-using System.Collections.Generic;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -242,7 +239,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
 			//
+			Debug.Log ("changed: " + aGameState);
 			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+				Debug.Log ("about to created spider");
 				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider() );
 			}
 

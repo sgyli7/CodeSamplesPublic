@@ -70,6 +70,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The user interface button clicked signal.
 		/// </summary>
 		public UIInputChangedSignal uiInputChangedSignal {set; get;}
+
 		
 		// PUBLIC STATIC
 		

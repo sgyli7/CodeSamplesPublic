@@ -47,23 +47,20 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\FPS\Scripts\Components\FPSHUD.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Debug\Debug.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\Event.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\EventDispatcher.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\EventListenerData.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\IEvent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Events\IEventDispatcher.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Exceptions\SwitchStatementException.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\Event.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\EventDispatcher.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\EventListenerData.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\IEvent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Projects\EventDispatcher\IEventDispatcher.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateComponent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateInterface.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\RendererUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\debug\Debug.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\exceptions\SwitchStatementException.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\AnimationExtensions.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\GameObjectExtensions.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\Event.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\EventDispatcher.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\EventListenerData.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\IEvent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\IEventDispatcher.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateInterface.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateManagerComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\GenericsUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\RendererUtility.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\ReadMe.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandExceptionType.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandKeys.cs" />

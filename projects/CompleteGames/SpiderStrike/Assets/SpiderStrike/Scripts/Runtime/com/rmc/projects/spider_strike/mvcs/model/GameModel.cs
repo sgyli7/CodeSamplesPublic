@@ -46,6 +46,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 	//--------------------------------------
 	public enum GameState
 	{
+		NULL,
 		INIT,
 		INTRO_START,
 		GAME_START,
@@ -92,44 +93,52 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 			}
 			set
 			{
-				_gameState = value;
-				Debug.Log ("GameState: " + _gameState);
+
+				//**************************
 				//
-				switch (_gameState){
-				case GameState.INIT:
-					doResetModel();
+				// NOTE: new 'Value' must e UNIQUE
+				//
+				//**************************
+
+				if (_gameState != value ) {
+					_gameState = value;
+					Debug.Log ("GameState2: " + _gameState);
+					//
+					switch (_gameState){
+					case GameState.INIT:
+						doResetModel();
+						gameStateChangedSignal.Dispatch (_gameState);
+						gameState = GameState.INTRO_START;
+						break;
+					case GameState.INTRO_START:
+						gameStateChangedSignal.Dispatch (_gameState);
+						//WAIT FOR INTRO TO CHANGE STATE
+						break;
+					case GameState.GAME_START:
+						//NOTE: WE DISPATCH *INSIDE* EACH 'CASE' SO WE CAN 
+						//		IMMEIDATELY CHANGE THE STATE IN RARE CASES
+						gameStateChangedSignal.Dispatch (_gameState);
+						gameState = GameState.ROUND_START;
+						break;
+					case GameState.ROUND_START:
+						startNextRound();
+						gameStateChangedSignal.Dispatch (_gameState);
+						//WAIT FOR PROMPT TO CHANGE STATE
+						break;
+					case GameState.ROUND_DURING_CORE_GAMEPLAY:
+						gameStateChangedSignal.Dispatch (_gameState);
+						break;
+					case GameState.GAME_END:
+						gameStateChangedSignal.Dispatch (_gameState);
+						break;
+					default:
+						#pragma warning disable 0162
+						throw new SwitchStatementException();
+						break;
+						#pragma warning restore 0162
+					}
 					gameStateChangedSignal.Dispatch (_gameState);
-					gameState = GameState.INTRO_START;
-					break;
-				case GameState.INTRO_START:
-					gameStateChangedSignal.Dispatch (_gameState);
-					//WAIT FOR INTRO TO CHANGE STATE
-					break;
-				case GameState.GAME_START:
-					//NOTE: WE DISPATCH *INSIDE* EACH 'CASE' SO WE CAN 
-					//		IMMEIDATELY CHANGE THE STATE IN RARE CASES
-					gameStateChangedSignal.Dispatch (_gameState);
-					gameState = GameState.ROUND_START;
-					break;
-				case GameState.ROUND_START:
-					startNextRound();
-					gameStateChangedSignal.Dispatch (_gameState);
-					//WAIT FOR PROMPT TO CHANGE STATE
-					break;
-				case GameState.ROUND_DURING_CORE_GAMEPLAY:
-					gameStateChangedSignal.Dispatch (_gameState);
-					break;
-				case GameState.GAME_END:
-					gameStateChangedSignal.Dispatch (_gameState);
-					break;
-				default:
-					#pragma warning disable 0162
-					throw new SwitchStatementException();
-					break;
-					#pragma warning restore 0162
 				}
-				gameStateChangedSignal.Dispatch (_gameState);
-				
 			}
 		}
 

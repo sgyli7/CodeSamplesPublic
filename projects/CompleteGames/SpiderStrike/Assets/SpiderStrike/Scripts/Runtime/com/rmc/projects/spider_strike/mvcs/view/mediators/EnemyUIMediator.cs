@@ -115,6 +115,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRegister()
 		{
 			view.init();
+			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
 			view.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
 
 		}

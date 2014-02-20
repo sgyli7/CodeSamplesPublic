@@ -34,6 +34,10 @@ using com.rmc.projects.spider_strike.mvcs.view.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.utilities;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -64,9 +68,40 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public UIIntroEndedSignal uiIntroEndedSignal { set; get; }
 
 		
+		/// <summary>
+		/// The user interface button clicked signal.
+		/// </summary>
+		public UIInputChangedSignal uiInputChangedSignal {set; get;}
+
+		/// <summary>
+		/// The _text alpha_float.
+		/// </summary>
+		float _textAlpha_float = 1.0f;
+		public float textAlpha 
+		{
+			get { 
+				return _textAlpha_float; 
+			}
+			set { 
+				_textAlpha_float = value; 
+
+				//THIS IS NEVER CALLED. WHY?
+				//WORKAROUND: CALL THIS IN 'UPDATE'
+				//RendererUtility.SetMaterialAlpha (_clickGUIText.material, _textAlpha_float);
+				Debug.Log ("a1: " + _textAlpha_float);
+			}
+		}
+
 		// PUBLIC
+		public GameObject clickGUIText_gameobject;
 		
 		// PRIVATE STATIC
+
+		//
+		/// <summary>
+		/// The _click GUI text.
+		/// </summary>
+		private GUIText _clickGUIText;
 		
 		//--------------------------------------
 		//  Methods
@@ -80,6 +115,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public void init ()
 		{
 			uiIntroEndedSignal = new UIIntroEndedSignal ();
+			uiInputChangedSignal = new UIInputChangedSignal();
 			
 		}
 		
@@ -91,6 +127,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			base.Start();
+			_clickGUIText = clickGUIText_gameobject.GetComponent<GUIText>();
 			
 			
 		}
@@ -102,7 +139,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		void Update () 
 		{
 			
-			
+			RendererUtility.SetMaterialAlpha (_clickGUIText.material, _textAlpha_float);
+
+
+			if (Input.GetMouseButton(0) || Input.anyKey) {
+
+				//SEND ANY KEYCODE. ITS NOT IMPORTANT
+				uiInputChangedSignal.Dispatch (new  UIInputVO (KeyCode.A, UIInputEventType.DownEnter));
+
+			}
 			
 		}
 		
