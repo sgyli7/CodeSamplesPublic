@@ -153,6 +153,9 @@ namespace com.rmc.projects.spider_strike.mvcs
 			 * 
 			 * 
 			**/
+			//
+			mediationBinder.Bind<IntroUI>().To<IntroUIMediator>();
+			//
 			mediationBinder.Bind<TurretUI>().To<TurretUIMediator>();
 			mediationBinder.Bind<EnemyUI>().To<EnemyUIMediator>();
 			//
@@ -197,7 +200,7 @@ namespace com.rmc.projects.spider_strike.mvcs
 			commandBinder.Bind<ScoreChangeSignal>().To<ScoreChangeCommand>();
 			injectionBinder.Bind<ScoreChangedSignal>().ToSingleton();
 			//
-			//commandBinder.Bind<GameStateChangeSignal>().To<GameStateChangeCommand>();
+			commandBinder.Bind<GameStateChangeSignal>().To<GameStateChangeCommand>();
 			injectionBinder.Bind<GameStateChangedSignal>().ToSingleton();
 
 			/**

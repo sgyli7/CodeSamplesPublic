@@ -63,6 +63,7 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateInterface.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\GenericsUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\utilities\RendererUtility.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\ReadMe.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandExceptionType.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandKeys.cs" />
@@ -182,12 +183,14 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\SpiderStrikeRoot.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\EnemyDiedCommand.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\GameStateChangeCommand.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\ScoreChangeCommand.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\StartCommand.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\TurretDoMoveCommand.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\commands\TurretHealthChangeCommand.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\EnemyDiedSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\GameStateChangeSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\GameStateChangedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\PromptEndedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\PromptStartSignal.cs" />
@@ -210,6 +213,7 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\EnemyUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\GameManagerUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\HUDUIMediator.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\IntroUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\KeyboardControllerUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\SoundManagerUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\SuperControllerUIMediator.cs" />
@@ -217,12 +221,14 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\VirtualControllerUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIAnimationCompleteSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIInputChangedSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIIntroEndedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIPromptEndedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\EnemyUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\GameManagerUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\HUDUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\IControllerUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\IDamageable.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\IntroUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\KeyboardControllerUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\SoundManagerUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\SuperControllerUI.cs" />

@@ -28,16 +28,11 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using strange.extensions.mediation.impl;
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using strange.extensions.signal.impl;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model.vo;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -61,7 +56,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//--------------------------------------
 		
 		// GETTER / SETTER
-		
+
 		// PUBLIC
 		/// <summary>
 		/// The custom skin.
@@ -73,6 +68,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _is firing_boolean.
+		/// </summary>
+		bool _isCurrentlyFiring_boolean = true;
 		
 		// PRIVATE STATIC
 		private const float _SCREEN_TOP_MARGIN = 30;
@@ -116,13 +115,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 
+
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// The _is firing_boolean.
-		/// </summary>
-		bool _isCurrentlyFiring_boolean = true;
 
 		/// <summary>
 		/// _dos the set is firing.
@@ -213,41 +209,40 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		void OnGUI () 
 		{
 
-			//TODO: IS THERE A BETTER WAY TO HANDLE THE STATE OF THESE THREE 'CURRENTLY' VALUES?
+			if (isVisible) {
+				//TODO: IS THERE A BETTER WAY TO HANDLE THE STATE OF THESE THREE 'CURRENTLY' VALUES?
 
-			#if UNITY_EDITOR
-			GUI.skin = guiSkin;
-			#endif 
+				#if UNITY_EDITOR
+				GUI.skin = guiSkin;
+				#endif 
 
-			return;
+				//RESET
+				if (GUI.RepeatButton (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_TOP_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
+					_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
+				} 
 
-			//RESET
-			if (GUI.RepeatButton (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_TOP_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
-				_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
-			} 
+				//LEFT
+				if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Left")) {
+					_doSetIsCurrentlyLeft (true);
+				} else if (_isCurrentlyLeft_boolean && Event.current.type == EventType.repaint) { 
+					_doSetIsCurrentlyLeft (false);
+				}
 
-			//LEFT
-			if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Left")) {
-				_doSetIsCurrentlyLeft (true);
-			} else if (_isCurrentlyLeft_boolean && Event.current.type == EventType.repaint) { 
-				_doSetIsCurrentlyLeft (false);
+				//RIGHT
+				if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN + _SCREEN_MARGIN + _BUTTON_WIDTH, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Right")) {
+					_doSetIsCurrentlyRight (true);
+				} else if (_isCurrentlyRight_boolean && Event.current.type == EventType.repaint) { 
+					_doSetIsCurrentlyRight (false);
+				}
+				//FIRE
+				if( GUI.RepeatButton (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Fire")) {
+					_doSetIsCurrentlyFiring (true);
+				} else if (_isCurrentlyFiring_boolean && Event.current.type == EventType.repaint) { 
+					_doSetIsCurrentlyFiring (false);
+
+				}
+
 			}
-
-			//RIGHT
-			if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN + _SCREEN_MARGIN + _BUTTON_WIDTH, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Right")) {
-				_doSetIsCurrentlyRight (true);
-			} else if (_isCurrentlyRight_boolean && Event.current.type == EventType.repaint) { 
-				_doSetIsCurrentlyRight (false);
-			}
-			//FIRE
-			if( GUI.RepeatButton (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Fire")) {
-				_doSetIsCurrentlyFiring (true);
-			} else if (_isCurrentlyFiring_boolean && Event.current.type == EventType.repaint) { 
-				_doSetIsCurrentlyFiring (false);
-
-			}
-
-
 		}
 
 

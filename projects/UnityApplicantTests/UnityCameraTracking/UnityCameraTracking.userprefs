@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/UnityCameraTracking/Scripts/Runtime/com/rmc/projects/unity_camera_tracking/TrackableObjectComponent.cs">
     <Files>
-      <File FileName="Assets/UnityCameraTracking/Scripts/Runtime/com/rmc/projects/unity_camera_tracking/TrackableObjectComponent.cs" Line="229" Column="1" />
+      <File FileName="Assets/UnityCameraTracking/Scripts/Runtime/com/rmc/projects/unity_camera_tracking/TrackableObjectComponent.cs" Line="222" Column="1" />
+      <File FileName="Assets/UnityCameraTracking/Scripts/Runtime/com/rmc/projects/unity_camera_tracking/TrackingCameraComponent.cs" Line="591" Column="46" />
+      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/utilities/LerpTarget.cs" Line="202" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

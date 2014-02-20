@@ -59,6 +59,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		UIInputChangedSignal uiInputChangedSignal { get; set;}
 
 
+		/// <summary>
+		/// Gets or sets a value indicating whether this
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.view.ui.IControllerUI"/> is visible.
+		/// </summary>
+		/// <value><c>true</c> if is visible; otherwise, <c>false</c>.</value>
+		bool isVisible { get; set;}
+
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------

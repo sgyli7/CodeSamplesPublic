@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -92,12 +92,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public TurretDiedSignal turretDiedSignal {set; get;}
 
-		/// <summary>
-		/// Gets or sets the game state changed signal.
-		/// </summary>
-		/// <value>The game state changed signal.</value>
-		[Inject]
-		public GameStateChangedSignal gameStateChangedSignal {set; get;}
 
 		/// <summary>
 		/// MODEL: The main game data
@@ -126,7 +120,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public SoundPlaySignal soundPlaySignal { get; set; }
 
-		
+
+		/// <summary>
+		/// Gets or sets the game state change signal.
+		/// </summary>
+		/// <value>The game state change signal.</value>
+		[Inject]
+		public GameStateChangeSignal gameStateChangeSignal {set; get;}
+
+
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+
 		// PUBLIC
 		
 		
@@ -220,8 +229,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 
 			//
-			if (iGameModel.gameState == GameState.PREPARING_NEXT_ROUND) {
-				iGameModel.gameState = GameState.GAME;
+			if (iGameModel.gameState == GameState.ROUND_START) {
+				gameStateChangeSignal.Dispatch (GameState.ROUND_DURING_CORE_GAMEPLAY);
 			}
 
 		}
@@ -233,7 +242,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
 			//
-			if (iGameModel.gameState == GameState.GAME) {
+			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider() );
 			}
 
@@ -258,7 +267,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			} else {
 
 				//DONE
-				iGameModel.gameState = GameState.GAME_OVER;
+				gameStateChangeSignal.Dispatch ( GameState.GAME_END);
+
 				promptStartSignal.Dispatch ("You Won The Game!", false);
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
 
@@ -272,7 +282,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			
 			//DONE
-			iGameModel.gameState = GameState.GAME_OVER;
+			gameStateChangeSignal.Dispatch (GameState.GAME_END);
+			//
 			promptStartSignal.Dispatch ("You Lost The Game!", false);
 			soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_LOSS));
 				

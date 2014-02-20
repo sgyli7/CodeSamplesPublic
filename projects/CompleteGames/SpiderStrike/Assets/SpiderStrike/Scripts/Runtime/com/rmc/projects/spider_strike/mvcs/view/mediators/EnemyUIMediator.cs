@@ -151,7 +151,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//*************************************************
 			//******* CORE LOGIC                     **********
 			//*************************************************
-			if (iGameModel.gameState == GameState.GAME) {
+			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				if (view.animationType == AnimationType.WALK) {
 
 					//
@@ -206,7 +206,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aAnimationType">A animation type.</param>
 		private void _onUIAnimationCompleteSignal (AnimationType aAnimationType)
 		{
-			if (iGameModel.gameState == GameState.GAME) {
+			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				//Debug.Log ("AnimEnd: " + aAnimationType);
 				if (aAnimationType == AnimationType.DIE) {
 

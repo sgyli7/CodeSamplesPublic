@@ -35,6 +35,7 @@ using strange.extensions.mediation.impl;
 //--------------------------------------
 using System.Collections;
 using com.rmc.projects.spider_strike.mvcs.view.signals;
+using com.rmc.utilities;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -103,6 +104,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public GameObject promptGUIText2_gameObject;
 
+		/// <summary>
+		/// The FPS GUI text_game object.
+		/// </summary>
+		public GameObject fpsGUIText_gameObject;
+
 		
 		// PUBLIC STATIC
 		
@@ -139,6 +145,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		private GUIText _promptGUIText2;
 
+		/// <summary>
+		/// The FPS GUI text.
+		/// </summary>
+		private GUIText _fpsGUIText;
+
 
 		// PRIVATE STATIC
 		
@@ -172,13 +183,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			_scoreGUIText2 		= scoreGUIText2_gameObject.GetComponent<GUIText>();
 			_promptGUIText		= promptGUIText_gameObject.GetComponent<GUIText>();
 			_promptGUIText2		= promptGUIText2_gameObject.GetComponent<GUIText>();
+			_fpsGUIText         = fpsGUIText_gameObject.GetComponent<GUIText>();
 			//Debug.Log ("HUD START");
 
 
 			//CLEAR PROMPT BEFORE ITS FIRST USE
 			_setPromptText ("");
-
-			Debug.Log ("HUDUI.Start()");
 
 		}
 
@@ -201,6 +211,21 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//
 			base.OnDestroy();
 			
+		}
+
+		/// <summary>
+		/// Sets the visibility.
+		/// </summary>
+		/// <param name="aIsVisible_boolean">If set to <c>true</c> a is visible_boolean.</param>
+		public void setVisibility (bool aIsVisible_boolean)
+		{
+			RendererUtility.SetMaterialVisibility (_scoreGUIText.guiText.material, 		aIsVisible_boolean);
+			RendererUtility.SetMaterialVisibility (_scoreGUIText2.guiText.material, 	aIsVisible_boolean);
+			RendererUtility.SetMaterialVisibility (_healthGUIText.guiText.material, 	aIsVisible_boolean);
+			RendererUtility.SetMaterialVisibility (_healthGUIText2.guiText.material, 	aIsVisible_boolean);
+			RendererUtility.SetMaterialVisibility (_fpsGUIText.guiText.material, 	aIsVisible_boolean);
+
+
 		}
 		
 		// PUBLIC

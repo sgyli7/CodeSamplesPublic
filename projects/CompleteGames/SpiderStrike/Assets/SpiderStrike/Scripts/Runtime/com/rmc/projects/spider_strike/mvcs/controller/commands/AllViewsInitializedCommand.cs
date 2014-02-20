@@ -28,15 +28,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model;
 using strange.extensions.command.impl;
 using UnityEngine;
-
-
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 
@@ -69,7 +67,14 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		[Inject]
 		public IGameModel iGameModel { get; set; } 
 
+		/// <summary>
+		/// Gets or sets the game state change signal.
+		/// </summary>
+		/// <value>The game state change signal.</value>
+		[Inject]
+		public GameStateChangeSignal gameStateChangeSignal {set; get;}
 
+		
 		// PUBLIC
 		
 		// PUBLIC STATIC
@@ -94,13 +99,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 			//ANYWHERE THAT CAN ACCESS THE MODEL
 			//CAN UPDATE THE STATE (ACCEPTABLY DANGEROUS)
 			//AND CAN CHECK THE STATE (ACCEPTABLE)
-			iGameModel.gameState = GameState.INIT;
-			iGameModel.gameState = GameState.INTRO;
-			iGameModel.gameState = GameState.PREPARING_NEXT_ROUND;
-			//iGameModel.gameState = GameState.GAME; //starts the next round
-
-
-
+			gameStateChangeSignal.Dispatch ( GameState.INIT);
 
 
 		}

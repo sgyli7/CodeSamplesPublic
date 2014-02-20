@@ -167,7 +167,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _doSendMove (TurretMoveVO aTurretMoveVO) 
 		{
 
-			if (iGameModel.gameState == GameState.GAME) {
+			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				turretDoMoveSignal.Dispatch (aTurretMoveVO);
 			}
 		

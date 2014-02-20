@@ -78,6 +78,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The _last user interface input V os_list.
 		/// </summary>
 		public List<UIInputVO> _lastUIInputVOs_list;
+
+		/// <summary>
+		/// Sets the visibility.
+		/// </summary>
+		private bool _isVisible_boolean;
+		public bool isVisible
+		{ 
+			get{
+				return _isVisible_boolean;
+			}
+			set
+			{
+				_isVisible_boolean = value;
+			}
+		}
+
 		
 		// PRIVATE STATIC
 		
@@ -186,9 +202,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		private void _doProcessDownStayEvents ()
 		{
 
-			Debug.Log ("--");
+			//Debug.Log ("--");
 			foreach (UIInputVO uiInputVO in _lastUIInputVOs_list) {
-				Debug.Log ("check ("+uiInputVO.keyCode+") =" + uiInputVO.uiInputEventType);
+				//Debug.Log ("check ("+uiInputVO.keyCode+") =" + uiInputVO.uiInputEventType);
 				if (uiInputVO.uiInputEventType == UIInputEventType.DownEnter) {
 
 					//SENDS #3, STAY

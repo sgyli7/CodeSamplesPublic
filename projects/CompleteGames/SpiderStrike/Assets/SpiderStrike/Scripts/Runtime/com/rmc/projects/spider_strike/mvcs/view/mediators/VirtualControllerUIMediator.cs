@@ -40,6 +40,9 @@ using com.rmc.projects.spider_strike.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.model;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -79,6 +82,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				view = value;
 			}
 		}
+
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+		
+
 		
 		
 		// PUBLIC
@@ -94,11 +106,23 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Methods
 		//--------------------------------------
 		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public void Start()
+		{
+			view.isVisible = false;
+			
+			
+		}
+
+
+		/// <summary>
 		/// Raises the register event.
 		/// </summary>
 		public override void OnRegister()
 		{
 			base.OnRegister();
+			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			
 		}
 		
@@ -108,6 +132,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRemove()
 		{
 			base.OnRemove();
+			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 		}
 		
 		
@@ -125,6 +150,19 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// _ons the game state changed signal.
+		/// </summary>
+		/// <param name="aGameState">A game state.</param>
+		private void _onGameStateChangedSignal (GameState aGameState)
+		{
+			//
+			if (aGameState == GameState.ROUND_START) {
+				view.isVisible = true;
+			}
+			
+		}
+
 	}
 }
 

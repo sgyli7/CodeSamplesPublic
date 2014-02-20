@@ -30,13 +30,14 @@
 //--------------------------------------
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using com.rmc.utilities;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -98,6 +99,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public PromptEndedSignal promptEndedSignal { get; set;}
 
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+		
+
 		// PUBLIC
 		
 		
@@ -122,6 +131,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			scoreChangedSignal.AddListener (_onScoreChangedSignal);
 			promptStartSignal.AddListener (_onPromptStartSignal);
 			view.uiPromptEndedSignal.AddListener (_onUIPromptEndedSignal);
+			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 
 
 			
@@ -136,6 +146,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			scoreChangedSignal.RemoveListener (_onScoreChangedSignal);
 			promptStartSignal.RemoveListener (_onPromptStartSignal);
 			view.uiPromptEndedSignal.RemoveListener (_onUIPromptEndedSignal);
+			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 		}
 		
 		/// <summary>
@@ -143,6 +154,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public void Start()
 		{
+			view.setVisibility (false);
 
 			
 		}
@@ -173,6 +185,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// _ons the game state changed signal.
+		/// </summary>
+		/// <param name="aGameState">A game state.</param>
+		private void _onGameStateChangedSignal (GameState aGameState)
+		{
+			//
+			if (aGameState == GameState.ROUND_START) {
+				view.setVisibility (true);
+			}
+			
+		}
+
+
 		/// <summary>
 		/// _ons the turret health changed signal.
 		/// </summary>
