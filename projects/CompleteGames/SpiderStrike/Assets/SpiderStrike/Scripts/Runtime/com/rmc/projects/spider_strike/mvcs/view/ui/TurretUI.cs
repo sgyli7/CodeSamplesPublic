@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -29,15 +29,15 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model.data;
 using com.rmc.projects.spider_strike.components.effects;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 
+
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -80,6 +80,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 			}
 		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="com.rmc.projects.spider_strike.mvcs.view.ui.TurretUI"/> is
+		/// running update.
+		/// 
+		/// NOTE: This is set by mediator based on GameState.
+		/// NOTE: Defaults to false
+		/// 
+		/// </summary>
+		/// <value><c>true</c> if is running update; otherwise, <c>false</c>.</value>
+		public bool isRunningUpdate {get;set;}
 
 		// PUBLIC
 		/// <summary>
@@ -158,6 +169,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		///</summary>
 		public void init () 
 		{
+			isRunningUpdate = false;
 			_turretSpinning_lerptarget 		= new LerpTarget (0, 0, 10, 2f);
 			_turretFiringAngle_lerptarget	= new LerpTarget (0, 0, 0, 5f);
 		}
@@ -168,31 +180,33 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		void Update () 
 		{
 
-			//ROTATE THE BARREL IF FIRING
-			if (_isCurrentlyFiring_boolean) {
-				_turretSpinning_lerptarget.lerpCurrentToTarget (Time.deltaTime);
-			} else {
-				_turretSpinning_lerptarget.lerpCurrentToReset (Time.deltaTime);
+			if (isRunningUpdate) {
+
+				//ROTATE THE BARREL IF FIRING
+				if (_isCurrentlyFiring_boolean) {
+					_turretSpinning_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+				} else {
+					_turretSpinning_lerptarget.lerpCurrentToReset (Time.deltaTime);
+				}
+				turretSpinningBarrel.transform.Rotate (new Vector3 (0, _turretSpinning_lerptarget.current, 0));
+
+
+				//ROTATE THE BASE TO THE DESIRED SHOOTING ANGLE
+				_turretFiringAngle_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+				Vector3 eulerAngles_vector3 = turretRotator.transform.localEulerAngles;
+				eulerAngles_vector3.z = _turretFiringAngle_lerptarget.current;
+				turretRotator.transform.localEulerAngles = eulerAngles_vector3;
+
+
+				//TOGGLE ON THE RED LIGHTS WHEN ANY TARGET IS 'FOUND'
+				//TODO: OPTIMIZE, DON'T 'SET' ENABLED VALUE IF ALREADY SET
+				if (_hasTargetInSights()) {
+					turretTargetingLight.SetActive (true);
+				} else {
+					turretTargetingLight.SetActive (false);
+				}
+
 			}
-			turretSpinningBarrel.transform.Rotate (new Vector3 (0, _turretSpinning_lerptarget.current, 0));
-
-
-			//ROTATE THE BASE TO THE DESIRED SHOOTING ANGLE
-			_turretFiringAngle_lerptarget.lerpCurrentToTarget (Time.deltaTime);
-			Vector3 eulerAngles_vector3 = turretRotator.transform.localEulerAngles;
-			eulerAngles_vector3.z = _turretFiringAngle_lerptarget.current;
-			turretRotator.transform.localEulerAngles = eulerAngles_vector3;
-
-
-			//TOGGLE ON THE RED LIGHTS WHEN ANY TARGET IS 'FOUND'
-			//TODO: OPTIMIZE, DON'T 'SET' ENABLED VALUE IF ALREADY SET
-			if (_hasTargetInSights()) {
-				turretTargetingLight.SetActive (true);
-			} else {
-				turretTargetingLight.SetActive (false);
-			}
-
-
 			
 		}
 		
@@ -277,6 +291,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			//
+			Debug.Log ("_getFirstColliderInFiringRange() SHOOT");
 			Debug.DrawRay (turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10);
 			//
 			Collider firstCollider = null;
@@ -287,6 +302,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 					//TODO, USE STRANGE SIGNAL FOR 'HITTING?'
 					
 					firstCollider = raycastHit.collider;
+					Debug.Log ("_getFirstColliderInFiringRange() HIT");
 					Debug.DrawRay (raycastHit.point, raycastHit.normal);
 					
 				}

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -30,21 +30,25 @@
 using UnityEngine;
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.signals;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.utilities;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
+
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	public enum IntroMode
+	{
+		Show,
+		Skip
+	}
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -62,13 +66,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// GETTER / SETTER
 		/// <summary>
-		/// Gets or sets the user interface intro ended signal.
-		/// </summary>
-		/// <value>The user interface intro ended signal.</value>
-		public UIIntroEndedSignal uiIntroEndedSignal { set; get; }
-
-		
-		/// <summary>
 		/// The user interface button clicked signal.
 		/// </summary>
 		public UIInputChangedSignal uiInputChangedSignal {set; get;}
@@ -76,25 +73,47 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The _text alpha_float.
 		/// </summary>
-		float _textAlpha_float = 1.0f;
-		public float textAlpha 
-		{
-			get { 
-				return _textAlpha_float; 
-			}
-			set { 
-				_textAlpha_float = value; 
-
-				//THIS IS NEVER CALLED. WHY?
-				//WORKAROUND: CALL THIS IN 'UPDATE'
-				//RendererUtility.SetMaterialAlpha (_clickGUIText.material, _textAlpha_float);
-				Debug.Log ("a1: " + _textAlpha_float);
+		[SerializeField]
+		private float _textAlpha_float;
+		public float textAlpha{
+			set {
+				_textAlpha_float = value;
 			}
 		}
 
 		// PUBLIC
+
+		/// <summary>
+		/// The click GUI text_gameobject.
+		/// </summary>
 		public GameObject clickGUIText_gameobject;
-		
+
+		//  PUBLIC STATIC
+		/// <summary>
+		/// The ANIMATIO n_ NAM e_ INTROU i_ STAR.
+		/// </summary>
+		public const string ANIMATION_NAME_INTRO_UI_START 	= "IntroUI_Start";
+
+		/// <summary>
+		/// The ANIMATIO n_ NAM e_ INTROU i_ STAR.
+		/// </summary>
+		public const string ANIMATION_NAME_INTRO_UI_END 	= "IntroUI_End";
+
+		/// <summary>
+		/// The intro mode.
+		/// </summary>
+		public IntroMode introMode = IntroMode.Show;
+
+		/// <summary>
+		/// The intro animation clip.
+		/// </summary>
+		public AnimationClip introStartAnimationClip;
+
+		/// <summary>
+		/// The outro animation clip.
+		/// </summary>
+		public AnimationClip introEndAnimationClip;
+
 		// PRIVATE STATIC
 
 		//
@@ -102,7 +121,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The _click GUI text.
 		/// </summary>
 		private GUIText _clickGUIText;
-		
+
+
+
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -114,9 +136,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void init ()
 		{
-			uiIntroEndedSignal = new UIIntroEndedSignal ();
 			uiInputChangedSignal = new UIInputChangedSignal();
-			
 		}
 		
 		
@@ -128,6 +148,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			base.Start();
 			_clickGUIText = clickGUIText_gameobject.GetComponent<GUIText>();
+			Debug.Log ("INTROUI.START() adding clips");
+			animation.AddClip (introStartAnimationClip, ANIMATION_NAME_INTRO_UI_START);
+			animation.AddClip (introEndAnimationClip, ANIMATION_NAME_INTRO_UI_END);
 			
 			
 		}
@@ -138,8 +161,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		///</summary>
 		void Update () 
 		{
-			
-			RendererUtility.SetMaterialAlpha (_clickGUIText.material, _textAlpha_float);
+
+			//Debug.Log ("updating: " + _textAlpha_float);
+			//RendererUtility.SetMaterialAlpha (_clickGUIText.material, _textAlpha_float);
 
 
 			if (Input.GetMouseButton(0) || Input.anyKey) {
@@ -160,6 +184,48 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			base.OnDestroy();
 			
 		}
+
+		/// <summary>
+		/// Sets the health text.
+		/// </summary>
+		/// <param name="aMessage_string">A message_string.</param>
+		public void setClickText (string aMessage_string)
+		{
+			_clickGUIText.text = aMessage_string;
+			
+		}
+
+		/// <summary>
+		/// Dos the name of the play animation by.
+		/// </summary>
+		/// <param name="aAnimationName_string">A animation name_string.</param>
+		public void doPlayAnimationByName (string aAnimationName_string)
+		{
+
+			Debug.Log ("doPlayAnimationByName: " + aAnimationName_string);
+			if (introMode == IntroMode.Show) {
+
+				//
+				gameObject.SetActive (true);
+				//
+				float animationDuration_float = animation.setAnimationIfNotYetSetTo (aAnimationName_string, WrapMode.Once);
+			
+				//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
+				CancelInvoke("onAnimationComplete");
+				if (animationDuration_float != 0) {
+					InvokeRepeating ("onAnimationComplete", animationDuration_float, animationDuration_float);
+				}
+			} else {
+
+				//
+				gameObject.SetActive (false);
+				//
+
+				//SKIP IT
+				Invoke ("onAnimationComplete", .1f);
+			}
+
+		}
 		
 		// PUBLIC STATIC
 		
@@ -176,6 +242,31 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
+		/// <summary>
+		/// Ons the animation complete.
+		/// 
+		/// 
+		/// NOTE: Method must be ***public*** due to InvokeRepeating
+		/// TODO: PACK THIS 'ON COMPLETE' FUNCTIONALITY INTO THE EXTENSION METHODS FOR 'Animation'
+		/// 
+		///
+		/// </summary>
+		public void onAnimationComplete ()
+		{
+			//Debug.Log ("onAnimationComplete : " + animation.name);
+
+			if (animation.wrapMode != WrapMode.Loop) {
+				CancelInvoke("onAnimationComplete");
+			}
+			if (introMode == IntroMode.Show) {
+				//RESPECT THE ANIMATION PROPERLY
+				animation.getUIAnimationCompleteSignal().Dispatch (animation.name);
+			} else {
+				//FAKE LIKE THE 'END' HAPPENED
+				animation.getUIAnimationCompleteSignal().Dispatch (ANIMATION_NAME_INTRO_UI_END);
+			}
+		}
+
 		
 	}
 }

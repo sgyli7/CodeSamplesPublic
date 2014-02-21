@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -167,6 +167,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _doSendMove (TurretMoveVO aTurretMoveVO) 
 		{
 
+			Debug.Log ("GOT: " + aTurretMoveVO);
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				turretDoMoveSignal.Dispatch (aTurretMoveVO);
 			}
@@ -190,7 +191,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _onUIInputChangedSignal (UIInputVO aUIInputVO)
 		{
 
-			//Debug.Log ("in: " + aUIInputVO.uiInputEventType);
+
 			if (aUIInputVO.uiInputEventType == UIInputEventType.DownEnter) {
 
 
@@ -211,6 +212,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 			} else if (aUIInputVO.uiInputEventType == UIInputEventType.DownExit) {
 
+
+
 				//KEYUP
 				switch (aUIInputVO.keyCode) {
 					case KeyCode.Space:
@@ -220,7 +223,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 
 			} else if (aUIInputVO.uiInputEventType == UIInputEventType.DownStay) {
-				
+
+				Debug.Log ("in: " + aUIInputVO.uiInputEventType);
+
 				//KEYSTAY
 				switch (aUIInputVO.keyCode) {
 					case KeyCode.LeftArrow:

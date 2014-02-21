@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -35,6 +35,7 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //  Namespace
 //--------------------------------------
 using System.Collections.Generic;
+using com.rmc.projects.spider_strike.mvcs.model.data;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.model.vo
@@ -76,6 +77,22 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		/// </summary>
 		public uint enemiesCreated;
 
+		/// <summary>
+		/// The enemies spawned at once_range.
+		/// </summary>
+		public Range enemiesSpawnedAtOnceRange;
+
+		/// <summary>
+		/// The enemy speed_range.
+		/// </summary>
+		public Range enemySpeedRange;
+
+
+		/// <summary>
+		/// The enemy health_range.
+		/// </summary>
+		public Range enemyHealthRange;
+
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -101,10 +118,13 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint)
+		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint, Range aEnemiesSpawnedAtOnce_range, Range aEnemySpeed_range, Range aEnemyHealth_range)
 		{
-			currentRound_uint 			= aCurrentRound_uint;
-			enemiesTotalToCreate 	= aTotalEnemiesToKill_uint;
+			currentRound_uint 				= aCurrentRound_uint;
+			enemiesTotalToCreate 			= aTotalEnemiesToKill_uint;
+			enemiesSpawnedAtOnceRange 		= aEnemiesSpawnedAtOnce_range;
+			enemySpeedRange				= aEnemySpeed_range;
+			enemyHealthRange				= aEnemyHealth_range;
 			//
 			
 		}

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -29,14 +29,11 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.view.ui;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.view.ui;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.signals
 {
 	
@@ -52,7 +49,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UIAnimationCompleteSignal : Signal<AnimationType>
+	public class UIAnimationCompleteSignal : Signal<string>
 	{
 		
 		//--------------------------------------

@@ -1,6 +1,5 @@
-
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -29,18 +28,18 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using strange.extensions.signal.impl;
+using UnityEngine;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.spider_strike.mvcs.view.signals
+namespace com.rmc.projects.spider_strike.mvcs
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
@@ -49,7 +48,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UIIntroEndedSignal : Signal
+	/// <summary>
+	/// Store constant values (ex. text for display)
+	/// 
+	/// </summary>
+	public class Constants
 	{
 		
 		//--------------------------------------
@@ -60,6 +63,16 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		// PUBLIC
 		
 		// PUBLIC STATIC
+		public const string PROMPT_ROUND_START      = "Round {0} -- Must Kill {1}";
+		//
+		public const string PROMPT_GAME_END_WIN 	= "You Won The Game!";
+		public const string PROMPT_GAME_END_LOSS	= "You Lost The Game!";
+		//
+		public const string HUD_CLICK_ANYWHERE      = "Tap/Click Anywhere To Continue\n\n\n<size=15>Left Arrow / Right Arrow, Space To Fire, Return To Reset</size>";
+		public const string HUD_HEALTH      		= "Health: {0}";
+		public const string HUD_SCORE      			= "Score: {0}";
+
+			
 		
 		// PRIVATE
 		
@@ -68,31 +81,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
-		public UIIntroEndedSignal( )
-		{
-			//Debug.Log ("UIIntroEndedSignal.constructor()");
-			
-		}
-		
-		~UIIntroEndedSignal()
-		{
-			
-		}
-		
-		
-		//	PUBLIC
-		
-		// PRIVATE
 		
 		// PRIVATE STATIC
 		
@@ -103,8 +91,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
+
 	}
 }
-
-
 

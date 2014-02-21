@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -36,6 +36,7 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.exceptions;
+using com.rmc.projects.spider_strike.mvcs.model.data;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.model
@@ -102,7 +103,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 				if (_gameState != value ) {
 					_gameState = value;
-					Debug.Log ("GameState2: " + _gameState);
+					Debug.Log ("GameState: " + _gameState);
 					//
 					switch (_gameState){
 					case GameState.INIT:
@@ -137,7 +138,6 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 						break;
 						#pragma warning restore 0162
 					}
-					gameStateChangedSignal.Dispatch (_gameState);
 				}
 			}
 		}
@@ -329,8 +329,22 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		/// </summary>
 		public void startNextRound ()
 		{
+			//
 			_currentLevel_uint++;
-			currentRoundDataVO = new RoundDataVO (_currentLevel_uint,_currentLevel_uint*_ENEMIES_PER_ROUND);
+
+			//
+			uint enemiesPerRound_uint 			= _currentLevel_uint*_ENEMIES_PER_ROUND;
+			Range enemiesSpawnedAtOnce_range	= new Range (1, _currentLevel_uint);
+			Range enemyHealth_range 			= new Range (11, 11);
+			Range enemySpeed_range				= new Range (1, 3 + _currentLevel_uint/2);
+			//
+			currentRoundDataVO = new RoundDataVO (
+				_currentLevel_uint,
+				enemiesPerRound_uint,
+				enemiesSpawnedAtOnce_range,
+				enemyHealth_range,
+				enemySpeed_range
+				);
 
 
 		}

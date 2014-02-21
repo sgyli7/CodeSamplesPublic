@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -31,13 +31,14 @@
 using UnityEngine;
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.exceptions;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
-using com.rmc.exceptions;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -84,6 +85,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The sound play signal.</value>
 		[Inject]
 		public SoundPlaySignal soundPlaySignal { get; set;}
+
+		
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+		
 
 
 		// PUBLIC
@@ -144,9 +154,30 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		
+		/// <summary>
+		/// _ons the game state changed signal.
+		/// </summary>
+		/// <param name="aGameState">A game state.</param>
+		private void _onGameStateChangedSignal (GameState aGameState)
+		{
+			//
+			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+				view.isRunningUpdate = true;
+			} else {
+				view.isRunningUpdate = false;
+			}
+			
+		}
+
+
+		/// <summary>
+		/// _ons the turret do move signal.
+		/// </summary>
+		/// <param name="aTurretMoveVO">A turret move V.</param>
 		private void _onTurretDoMoveSignal (TurretMoveVO aTurretMoveVO) 
 		{
-			//Debug.Log ("aTurretMoveVO: " + aTurretMoveVO.moveType);
+			Debug.Log ("aTurretMoveVO: " + aTurretMoveVO.moveType);
 			switch (aTurretMoveVO.moveType) {
 			case MoveType.LeftOneTick:
 				view.firingAngle -= aTurretMoveVO.amount;

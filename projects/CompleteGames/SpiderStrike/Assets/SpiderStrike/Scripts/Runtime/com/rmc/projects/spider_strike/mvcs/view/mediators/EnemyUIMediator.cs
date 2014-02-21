@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -116,7 +116,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			view.init();
 			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
-			view.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
+			view.animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
 
 		}
 
@@ -125,7 +125,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRemove()
 		{
-			view.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
+			view.animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
 		}
 
 		/// <summary>
@@ -205,24 +205,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		private void _onUIAnimationCompleteSignal (AnimationType aAnimationType)
+		private void _onUIAnimationCompleteSignal (string aAnimationType_string)
 		{
+			//Debug.Log ("AnimEnd: " + aAnimationType_string + " and " + AnimationType.DIE.ToString());
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				//Debug.Log ("AnimEnd: " + aAnimationType);
-				if (aAnimationType == AnimationType.DIE) {
+				if (aAnimationType_string == AnimationType.DIE.ToString()) {
 
 					//DESTROY OBJECT, UPDATE SCORE
+					Debug.Log ("VIEW:    " + view);
+					Debug.Log ("VIEW GO: " + view.gameObject);
 					enemyDiedSignal.Dispatch (view.gameObject);
 
 					//PLAY SOUND
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
 
-				} else if (aAnimationType == AnimationType.WALK) {
+				} else if (aAnimationType_string == AnimationType.WALK.ToString()) {
 
 					//PLAY SOUND
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
 
-				} else if (aAnimationType == AnimationType.ATTACK) {
+				} else if (aAnimationType_string == AnimationType.ATTACK.ToString()) {
 					
 					//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
 					_doInflictDamage();

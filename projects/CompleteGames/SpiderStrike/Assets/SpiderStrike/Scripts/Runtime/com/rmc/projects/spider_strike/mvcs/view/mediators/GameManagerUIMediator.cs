@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -34,6 +34,7 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.projects.spider_strike.mvcs.model;
+using System;
 
 
 //--------------------------------------
@@ -72,6 +73,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// Gets or sets the round start signal.
 		/// </summary>
 		/// <value>The round start signal.</value>
+		/// TODO: Remove this and jsut use game state change signal?
 		[Inject]
 		public RoundStartedSignal roundStartedSignal {set; get;}
 
@@ -211,10 +213,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//TODO: IS THIS SIGNAL NEEDED, WHY NOT JUST CHECK ONGAMESTATE?
 		private void _onRoundStartedSignal (RoundDataVO aRoundDataVO)
 		{
-			//
-			iGameModel.currentRoundDataVO.clearEnemies();
-
-			promptStartSignal.Dispatch ("Round " + aRoundDataVO.currentRound_uint + " -- Kill " + aRoundDataVO.enemiesTotalToCreate, true);
 
 
 		}
@@ -232,6 +230,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 		}
 
+
 		/// <summary>
 		/// _ons the game state changed signal.
 		/// </summary>
@@ -239,14 +238,37 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
 			//
-			Debug.Log ("changed: " + aGameState);
-			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				Debug.Log ("about to created spider");
-				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider() );
+			if (aGameState == GameState.ROUND_START) {
+				//
+				iGameModel.currentRoundDataVO.clearEnemies();
+				promptStartSignal.Dispatch (String.Format("Round {0} -- Kill {1}", iGameModel.currentRoundDataVO.currentRound_uint, iGameModel.currentRoundDataVO.enemiesTotalToCreate), true);
+
+			} else if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+				_doCreateNextSpiderBatch (iGameModel.currentRoundDataVO);
 			}
 
 		}
 
+
+		/// <summary>
+		/// _dos the create next spider batch.
+		/// </summary>
+		/// <param name="aRoundDataVO">A round data V.</param>
+		private void _doCreateNextSpiderBatch(RoundDataVO aRoundDataVO)
+		{
+
+			//how many to create?
+			//1. get a number within range
+			//2. be sure not to exceed the remaining allowed
+			int enemiesToSpawnAtOnce_int 	= aRoundDataVO.enemiesSpawnedAtOnceRange.getRandomIntValueWithinRange();
+			enemiesToSpawnAtOnce_int 		= (int)Mathf.Clamp ((float)enemiesToSpawnAtOnce_int, 0, iGameModel.currentRoundDataVO.enemiesTotalToCreate - iGameModel.currentRoundDataVO.enemiesCreated);
+			
+
+
+			for (var enemyToSpawnIndex_int = 0; enemyToSpawnIndex_int < enemiesToSpawnAtOnce_int; enemyToSpawnIndex_int++) {
+				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider(iGameModel.currentRoundDataVO) );
+			}
+		}
 
 		/// <summary>
 		/// _ons the enemy died signal.
@@ -262,13 +284,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//
 			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
 			if (iGameModel.currentRoundDataVO.enemiesCreated < iGameModel.currentRoundDataVO.enemiesTotalToCreate) {
-				iGameModel.currentRoundDataVO.addEnemy (	view.doCreateSpider() 	);
+				_doCreateNextSpiderBatch(iGameModel.currentRoundDataVO);
 			} else {
 
 				//DONE
 				gameStateChangeSignal.Dispatch ( GameState.GAME_END);
 
-				promptStartSignal.Dispatch ("You Won The Game!", false);
+				promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_WIN, false);
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
 
 			}
@@ -283,7 +305,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//DONE
 			gameStateChangeSignal.Dispatch (GameState.GAME_END);
 			//
-			promptStartSignal.Dispatch ("You Lost The Game!", false);
+			promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_LOSS, false);
 			soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_LOSS));
 				
 		}

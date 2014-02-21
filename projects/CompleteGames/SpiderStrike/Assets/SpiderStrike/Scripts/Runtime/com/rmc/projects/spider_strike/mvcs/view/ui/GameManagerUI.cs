@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -35,6 +35,7 @@ using strange.extensions.mediation.impl;
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using System.Collections;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -180,7 +181,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// Dos the create spider.
 		/// </summary>
-		public GameObject doCreateSpider()
+		public GameObject doCreateSpider(RoundDataVO aRoundDataVO)
 		{
 
 			//POSITION
@@ -192,11 +193,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				spawnAngle_float = 90	; 
 			} else {
 				spawnAngle_float = Random.Range (0, 360);
+
+				//round to 'space apart' the spawning
+				//NOTE: This discourages (but not eliminates) placing overlapping spiders
+				spawnAngle_float 			= Mathf.Round (spawnAngle_float/36)*36;
 			}
 
-			spawnAngle_float 			= Mathf.Round (spawnAngle_float/36)*36; //round to 'space apart' the spawning
-			spawnAngle_float			= Mathf.Deg2Rad*spawnAngle_float;
+
 			//
+			spawnAngle_float			= Mathf.Deg2Rad*spawnAngle_float;
 			float spawnX_float			= Mathf.Cos (spawnAngle_float)*spawnRadius_float;
 			float spawnZ_float			= Mathf.Sin (spawnAngle_float)*spawnRadius_float;
 
@@ -210,13 +215,18 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//
 			spider_gameobject.transform.parent = enemyParentGameObject.transform;
 
-			//TODO: PACK THIS INTO AN init() call?
-			spider_gameobject.GetComponent<EnemyUI>().setParameters (targetGameObject, attackRadius_float, 11, 3);
+			//SET BASIC PARAMETERS FOR BEHAVIOR
+			float enemyHealth_float = aRoundDataVO.enemyHealthRange.getRandomIntValueWithinRange(); //use int
+			float enemySpeed_float = aRoundDataVO.enemySpeedRange.getRandomFloatValueWithinRange(); //use float
+			spider_gameobject.GetComponent<EnemyUI>().setParameters (
+				targetGameObject, 
+				attackRadius_float, 
+				enemyHealth_float,
+				enemySpeed_float);
 
 			//TODO: ENSURE A SPIDER IS NOT SPAWNED ON TOP OF AN OTHER ONE
 			//TODO: ENSURE SPIDERS COME FROM 'ALL AROUND' WITHOUT 'REPEATING TOO MUCH'
 
-			Debug.Log ("created spider");
 			//
 			return spider_gameobject;
 		}

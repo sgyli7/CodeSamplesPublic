@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -38,6 +38,8 @@ using com.rmc.utilities;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model;
+using System;
+using UnityEngine;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -205,7 +207,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aNewValue_int">A new value_int.</param>
 		private void _onTurretHealthChangedSignal (int aNewValue_int)
 		{
-			view.setHealthText ("Health: " + aNewValue_int);
+			view.setHealthText (String.Format (Constants.HUD_HEALTH, aNewValue_int));
 
 		}
 
@@ -215,7 +217,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onScoreChangedSignal (float aNewValue_float)
 		{
-			view.setScoreText ("Score: " + aNewValue_float);
+			view.setHealthText (String.Format (Constants.HUD_SCORE, aNewValue_float));
 
 		}
 
@@ -225,6 +227,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onPromptStartSignal (string aMessage_string, bool aIsToFadeOutToo_boolean)
 		{
+			Debug.Log ("view.doPromptStart : " + aMessage_string );
 			view.doPromptStart (aMessage_string, aIsToFadeOutToo_boolean);
 			
 		}

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -28,96 +28,150 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.view.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
 //NOTE: NO NEED TO add 'using com.rmc.extension_methods;' in any class for this to work
 	
+//--------------------------------------
+//  Namespace Properties
+//--------------------------------------
+
+
+//--------------------------------------
+//  Class Attributes
+//--------------------------------------
+
+//--------------------------------------
+//  Class
+//--------------------------------------
+
+/// <summary>
+/// 
+/// Its like 'extending' that class but without needing to extend it. Magical!
+/// 
+/// </summary>
+using System;
+
+
+public static class AnimationExtensions 
+{
+
 	//--------------------------------------
-	//  Namespace Properties
+	//  Properties
 	//--------------------------------------
+	
+	// GETTER / SETTER
+	///<summary>
+	///	This is a sample getter/setter property.
+	///</summary>
+		
+	// PUBLIC
+	///<summary>
+	///	This is a sample public property.
+	///</summary>
+	
+	// PUBLIC STATIC
+	///<summary>
+	///	This is a sample public static property.
+	///</summary>
+	
+	// PRIVATE
+	///<summary>
+	///	This is a sample private property.
+	///</summary>
+	
+	// PRIVATE STATIC
+	///<summary>
+	///	This is a sample private static property.
+	///</summary>
 	
 	
 	//--------------------------------------
-	//  Class Attributes
-	//--------------------------------------
+	//  Methods
+	//--------------------------------------	
 	
-	//--------------------------------------
-	//  Class
-	//--------------------------------------
+	// PUBLIC
+	
+	// PUBLIC STATIC
+	/// <summary>
+	/// Gets or sets the user interface animation complete.
+	/// </summary>
+	/// <value>The user interface animation complete.</value>
+	public static UIAnimationCompleteSignal uiAnimationCompleteSignal {set; get;}
+
 
 	/// <summary>
-	/// 
-	/// Its like 'extending' that class but without needing to extend it. Magical!
-	/// 
+	/// Gets the user interface animation complete signal.
 	/// </summary>
-using com.rmc.projects.spider_strike.mvcs.view.signals;
-
-
-	public static class AnimationExtensions 
+	/// <returns>The user interface animation complete signal.</returns>
+	/// <param name="aAnimation">A animation.</param>
+	public static UIAnimationCompleteSignal getUIAnimationCompleteSignal (this Animation aAnimation) 
 	{
-
-		//--------------------------------------
-		//  Properties
-		//--------------------------------------
-		
-		// GETTER / SETTER
-		///<summary>
-		///	This is a sample getter/setter property.
-		///</summary>
-			
-		// PUBLIC
-		///<summary>
-		///	This is a sample public property.
-		///</summary>
-		
-		// PUBLIC STATIC
-		///<summary>
-		///	This is a sample public static property.
-		///</summary>
-		
-		// PRIVATE
-		///<summary>
-		///	This is a sample private property.
-		///</summary>
-		
-		// PRIVATE STATIC
-		///<summary>
-		///	This is a sample private static property.
-		///</summary>
-		
-		
-		//--------------------------------------
-		//  Methods
-		//--------------------------------------	
-		
-		// PUBLIC
-		
-		// PUBLIC STATIC
-		/// <summary>
-		/// Gets or sets the user interface animation complete.
-		/// </summary>
-		/// <value>The user interface animation complete.</value>
-		public static UIAnimationCompleteSignal uiAnimationCompleteSignal {set; get;}
-
-
-		public static UIAnimationCompleteSignal getUIAnimationCompleteSignal (this Animation aAnimation) 
-		{
+		if (uiAnimationCompleteSignal == null) {
 			uiAnimationCompleteSignal = new UIAnimationCompleteSignal();
-			return uiAnimationCompleteSignal;
-			
+		}
+		return uiAnimationCompleteSignal;
+		
+	}
+	
+	/// <summary>
+	/// Sets the animation if not yet set to.
+	/// </summary>
+	/// <returns>The animation if not yet set to.</returns>
+	/// <param name="aAnimation">A animation.</param>
+	/// <param name="aAnimationName_string">A animation name_string.</param>
+	/// <param name="aWrapMode">A wrap mode.</param>
+	public static float setAnimationIfNotYetSetTo (this Animation aAnimation, string aAnimationName_string, WrapMode aWrapMode)
+	{
+		
+		
+		/////////////////////////////////////////////
+		/// 
+		/// NOTE: The animation system seems unpredictable.
+		/// This affects the code setup, but not the end result.
+		/// 
+		/// ISSUE: The animationClips shown int the animation inspector will change at runtime
+		/// ISSUE: The inspector for a given animation clip will show at times the SAME name
+		/// 		as another clip (bad) and show a DIFFERENT name than its own name in the project window (bad)
+		/// 
+		///////////////////////////////////////////// 
+		if (aAnimation[aAnimationName_string] != null) {
+			aAnimation.wrapMode = aWrapMode;
+			aAnimation.name = aAnimationName_string;
+			aAnimation.Play (aAnimationName_string);
+			Debug.Log ("playing : " + aAnimationName_string);
+
+			//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
+			//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
+			// WHY *.7f, experimenting the timing
+			return aAnimation[aAnimationName_string].length*.7f;
+
+		} else {
+			//KEEP THIS
+			Debug.Log ("Anim NOT FOUND: " + aAnimationName_string);
+
+			//RETURN 0 SO THAT IT FAKES LIKE IT 'IMMEDIATLY FINISHES PLAYING'
+			return 0;
 		}
 
 		
-		// PRIVATE
-		
-		// PRIVATE STATIC
-		
-		
-		//--------------------------------------
-		//  Events
-		//--------------------------------------
 
 	}
+	
+
+
+	
+	// PRIVATE
+	
+	// PRIVATE STATIC
+	
+	
+	//--------------------------------------
+	//  Events
+	//--------------------------------------
+
+}
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -188,6 +188,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				//lastFoundUIInputVO.uiInputEventType = aUIInputEventType;
 				//_lastUIInputVOs_list.Add (lastFoundUIInputVO);
 			}
+			Debug.Log ("SEND: " + toSendUIInputVO);
 			uiInputChangedSignal.Dispatch (toSendUIInputVO);
 			
 		}

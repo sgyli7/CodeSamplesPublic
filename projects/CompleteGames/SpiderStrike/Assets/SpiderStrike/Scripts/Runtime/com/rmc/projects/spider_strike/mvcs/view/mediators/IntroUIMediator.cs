@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -31,16 +31,15 @@
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
-
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
+
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -107,6 +106,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _was clicked_boolean.
+		/// NOTE: Used to accept exactly 0,1 clicks
+		/// </summary>
+		private bool _wasClicked_boolean = false;
 		
 		// PRIVATE STATIC
 		
@@ -121,8 +125,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			
 			view.init ();
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
-			view.uiIntroEndedSignal.AddListener (_onUIIntroEndedSignal);
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
+			animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
 			
 			
 			
@@ -134,8 +138,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRemove()
 		{
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
-			view.uiIntroEndedSignal.RemoveListener (_onUIIntroEndedSignal);
 			view.uiInputChangedSignal.RemoveListener (_onUIInputChangedSignal);
+			animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
 
 		}
 		
@@ -145,7 +149,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public void Start()
 		{
 			
-			
+			view.setClickText (Constants.HUD_CLICK_ANYWHERE);
 		}
 		
 		
@@ -182,12 +186,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _onUIInputChangedSignal (UIInputVO aUIInputVO) 
 		{
 
-			if (iGameModel.gameState == GameState.INTRO_START) {
-				if (animation.isPlaying != true) {
-					animation.Play ("IntroUI_End");
-					soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
-					gameStateChangeSignal.Dispatch (GameState.GAME_START);
-				}
+			//USER CLICKED? - PLAY THE 'END'
+			if (iGameModel.gameState == GameState.INTRO_START && !_wasClicked_boolean) {
+				_wasClicked_boolean = true;
+				view.doPlayAnimationByName (IntroUI.ANIMATION_NAME_INTRO_UI_END);
+				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
 			}
 		}
 
@@ -201,21 +204,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//
 			if (aGameState == GameState.INTRO_START) {
-				//
-				//_onUIIntroEndedSignal();
-				animation.Play ("IntroUI_Start");
+				_wasClicked_boolean = false;
+				view.doPlayAnimationByName (IntroUI.ANIMATION_NAME_INTRO_UI_START);
 			}
 			
 		}
 
+
 		/// <summary>
-		/// _ons the intro ended signal.
+		/// _ons the user interface animation complete signal.
 		/// </summary>
-		private void _onUIIntroEndedSignal ()
+		/// <param name="aAnimationType">A animation type.</param>
+		private void _onUIAnimationCompleteSignal (string aAnimationType_string)
 		{
-			gameStateChangeSignal.Dispatch (GameState.GAME_START);
+			//Debug.Log ("MED._onUIAnimationCompleteSignal(): " + aAnimationType_string);
+			if (aAnimationType_string == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
+				gameStateChangeSignal.Dispatch (GameState.GAME_START);
+			}
+
+			
 		}
-		
 		
 	}
 }

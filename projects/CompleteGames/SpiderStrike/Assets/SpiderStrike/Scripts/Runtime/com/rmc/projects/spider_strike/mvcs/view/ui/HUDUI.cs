@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -151,6 +151,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		private GUIText _fpsGUIText;
 
 
+		/// <summary>
+		/// The _last prompt message_string.
+		/// 
+		/// NOTE: Store this for quick usage
+		/// </summary>
+		private string _lastPromptMessage_string;
+
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -184,10 +191,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			_promptGUIText		= promptGUIText_gameObject.GetComponent<GUIText>();
 			_promptGUIText2		= promptGUIText2_gameObject.GetComponent<GUIText>();
 			_fpsGUIText         = fpsGUIText_gameObject.GetComponent<GUIText>();
-			//Debug.Log ("HUD START");
-
 
 			//CLEAR PROMPT BEFORE ITS FIRST USE
+			Debug.Log ("HUDUI.start!" );
 			_setPromptText ("");
 
 		}
@@ -198,9 +204,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		///</summary>
 		void Update () 
 		{
-			
-			
-			
+			//Debug.Log ("HUDUI.update!" + _scoreGUIText.text);
+			if (_scoreGUIText.text != _lastPromptMessage_string) {
+				_setPromptText( _lastPromptMessage_string);
+			}
+
 		}
 		
 		/// <summary>
@@ -210,6 +218,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			//
 			base.OnDestroy();
+
+			Debug.Log ("HUDUI.Destroyed");
 			
 		}
 
@@ -219,12 +229,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aIsVisible_boolean">If set to <c>true</c> a is visible_boolean.</param>
 		public void setVisibility (bool aIsVisible_boolean)
 		{
+
 			RendererUtility.SetMaterialVisibility (_scoreGUIText.guiText.material, 		aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_scoreGUIText2.guiText.material, 	aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_healthGUIText.guiText.material, 	aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_healthGUIText2.guiText.material, 	aIsVisible_boolean);
-			RendererUtility.SetMaterialVisibility (_fpsGUIText.guiText.material, 	aIsVisible_boolean);
+			RendererUtility.SetMaterialVisibility (_fpsGUIText.guiText.material, 		aIsVisible_boolean);
 
+			//KEEP HERE AS REMINDER
+			//SINCE WE FADE THIS TEXT MANUALLY, DON'T SET VISIBILITY HERE
+			//RendererUtility.SetMaterialVisibility (_promptGUIText.guiText.material, 	aIsVisible_boolean);
+			//RendererUtility.SetMaterialVisibility (_promptGUIText2.guiText.material, 	aIsVisible_boolean);
 
 		}
 		
@@ -259,23 +274,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public void doPromptStart (string aMessage_string, bool aIsToFadeOutToo_boolean) 
 		{
 
-			//
-			_setPromptText (aMessage_string);
+			//DON'T SET IMMEDIATLY. SEE 'Update()' above
+			_lastPromptMessage_string = aMessage_string;
+
+
+			//1. TEMP SKIP THIS
+			_onDelayAfterPromptFadeOutComplete();
+			return;
+
+			//2. THE REAL CODE
+
 
 
 			//SETUP: IMMEDIATLY SET ALPHA TO 0
+			RendererUtility.SetMaterialAlpha (_promptGUIText.guiText.material, 		0);
+			RendererUtility.SetMaterialAlpha (_promptGUIText2.guiText.material, 	0);
 
-
-			Hashtable fadeTo_hashtable = new Hashtable();
-			fadeTo_hashtable.Add(iT.FadeTo.amount,				0);
-			fadeTo_hashtable.Add(iT.FadeTo.time,  				0);
-			fadeTo_hashtable.Add(iT.FadeTo.easetype, 			iTween.EaseType.linear);
-			//
-			iTween.FadeTo (promptGUIText_gameObject, 			fadeTo_hashtable);
-			iTween.FadeTo (promptGUIText2_gameObject, 			fadeTo_hashtable);
-
-			//_doSetGUITextGameObjectAlpha (promptGUIText_gameObject, 0);
-			//_doSetGUITextGameObjectAlpha (promptGUIText2_gameObject, 0);
 
 			/*********
 			 * 
@@ -309,7 +323,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				//
 				iTween.FadeTo (promptGUIText_gameObject, 			fadeTo3_hashtable);
 				//CALL COMPLETE JUST ONCE
-				fadeTo3_hashtable.Add(iT.FadeTo.oncomplete, 			"_onPromptRemoved");
+				fadeTo3_hashtable.Add(iT.FadeTo.oncomplete, 		"_onPromptFadeOutComplete");
 				iTween.FadeTo (promptGUIText2_gameObject, 			fadeTo3_hashtable);
 			}
 
@@ -325,23 +339,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aMessage_string">A message_string.</param>
 		private void _setPromptText (string aMessage_string)
 		{
-			_promptGUIText.text = aMessage_string;
 			_promptGUIText2.text = aMessage_string;
+			_promptGUIText.text = aMessage_string;
 			
 		}
 
-		/// <summary>
-		/// _dos the set GUI text game object alpha.
-		/// </summary>
-		/// <param name="aGameObject">A game object.</param>
-		/// <param name="aAlpha_float">A alpha_float.</param>
-		private void _doSetGUITextGameObjectAlpha (GameObject aGameObject, float aAlpha_float)
-		{
-			GUIText guiText = aGameObject.guiText;
-			guiText.color 	= new Color (guiText.color.r, guiText.color.g, guiText.color.b, aAlpha_float);
-
-		}
-		
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE
@@ -354,13 +356,25 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//
 		//--------------------------------------
 		/// <summary>
-		/// _ons the prompt removed.
+		/// _ons the prompt fade out complete.
 		/// </summary>
-		private void _onPromptRemoved ()
+		private void _onPromptFadeOutComplete ()
 		{
-			//Debug.Log ("_onPromptRemoved!!");
-			uiPromptEndedSignal.Dispatch ();
+			CancelInvoke ("_onDelayAfterPromptFadeOutComplete");
+			Invoke ("_onDelayAfterPromptFadeOutComplete", 0.5f);
 			
+		}
+
+		/// <summary>
+		/// _ons the delay after prompt fade out complete.
+		/// 
+		/// NOTE: Must be public
+		/// 
+		/// </summary>
+		public void _onDelayAfterPromptFadeOutComplete ()
+		{
+			uiPromptEndedSignal.Dispatch ();
+
 		}
 		
 	}

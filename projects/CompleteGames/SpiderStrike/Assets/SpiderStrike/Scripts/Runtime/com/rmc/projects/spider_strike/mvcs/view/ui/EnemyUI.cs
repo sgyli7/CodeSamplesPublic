@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -78,7 +78,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// Gets or sets the user interface animation complete.
 		/// </summary>
 		/// <value>The user interface animation complete.</value>
-		public UIAnimationCompleteSignal uiAnimationCompleteSignal {set; get;}
+		//public UIAnimationCompleteSignal uiAnimationCompleteSignal {set; get;}
 
 
 
@@ -113,7 +113,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The _health current_float.
 		/// </summary>
-		private float _healthCurrent_float = _HEALTH_INITIAL;
+		private float _healthCurrent_float;
 		
 		/// <summary>
 		/// The _target turret U.
@@ -148,8 +148,18 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		private const float _ROTATION_SPEED = 1.0f;
 
-		private const int _HEALTH_INITIAL = 11;
-		
+		/// <summary>
+		/// The ANIMATIO NAMES
+		/// </summary>
+		private const string ANIMATION_NAME_IDLE 		= "idle";	
+		private const string ANIMATION_NAME_WALK 		= "walk";	
+		private const string ANIMATION_NAME_ATTACK_1 	= "attack1";
+		private const string ANIMATION_NAME_ATTACK_2	= "attack2";
+		private const string ANIMATION_NAME_HIT_1 		= "hit1";
+		private const string ANIMATION_NAME_HIT_2 		= "hit2";
+		private const string ANIMATION_NAME_DEATH_1 	= "death1";
+		private const string ANIMATION_NAME_DEATH_2 	= "death2";
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -159,7 +169,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void init ()
 		{
-			uiAnimationCompleteSignal = new UIAnimationCompleteSignal();
+
+
+			//
+
 		}
 
 		/// <summary>
@@ -209,6 +222,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			//
 			base.OnDestroy();
+			Debug.Log ("EnemyUI.OnDestroy()");
 			
 		}
 		
@@ -252,33 +266,41 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public void doPlayAnimation (AnimationType aAnimationType) 
 		{
 			//
-			animationType = aAnimationType;
+			animationType 	= aAnimationType;
+			float  animationDuration_float; 
 
 			//
 			switch (animationType) {
-				case AnimationType.WALK:
-					_setAnimationIfNotYetSetTo ("walk", WrapMode.Loop);
-					break;
-				case AnimationType.ATTACK:
-					_setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {"attack1","attack2"}), WrapMode.Loop);
-					break;
-				case AnimationType.TAKE_HIT:
-					_setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {"hit1","hit2"}), WrapMode.Default);
-					break;
-				case AnimationType.DIE:
-					_setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {"death1","death2"}), WrapMode.ClampForever);
-					break;
-				case AnimationType.IDLE:
-					_setAnimationIfNotYetSetTo ("idle", WrapMode.Default);
-					break;
-				default:
-					#pragma warning disable 0162
-					throw new SwitchStatementException();
-					break;
-					#pragma warning restore 0162
+			case AnimationType.WALK:
+				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (ANIMATION_NAME_WALK, WrapMode.Loop);
+				break;
+			case AnimationType.ATTACK:
+				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Loop);
+				break;
+			case AnimationType.TAKE_HIT:
+				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
+				break;
+			case AnimationType.DIE:
+				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.ClampForever);
+				break;
+			case AnimationType.IDLE:
+				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (ANIMATION_NAME_IDLE, WrapMode.Default);
+				break;
+			default:
+				#pragma warning disable 0162
+				throw new SwitchStatementException();
+				break;
+				#pragma warning restore 0162
 			}
 
+
+			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
+			CancelInvoke("onAnimationComplete");
+			InvokeRepeating ("onAnimationComplete", animationDuration_float, animationDuration_float);
+
+
 		}
+
 
 		/// <summary>
 		/// Dos the stop animation.
@@ -316,35 +338,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// _sets the animation if not yet set to.
-		/// </summary>
-		/// <param name="aAnimationName_string">A animation name_string.</param>
-		private void _setAnimationIfNotYetSetTo (string aAnimationName_string, WrapMode aWrapMode)
-		{
-
-			//Debug.Log ("OK: " + aAnimationName_string);
-			if (animation.clip.name != aAnimationName_string) {
-				animation.clip.name = aAnimationName_string;
-
-				//NOT SURE WHICH TO SET HERE
-				animation.wrapMode = aWrapMode;
-				animation.clip.wrapMode = aWrapMode;
-
-				//
-				//animation.PlayQueued (animation.clip.name);
-				animation.Play(animation.clip.name);
-
-				//
-				//Debug.Log ("AnimStart: " + animationType +  " dur: " + animation.clip.length);
-
-				//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
-				//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
-				CancelInvoke("onAnimationComplete");
-				InvokeRepeating ("onAnimationComplete", animation.clip.length*.7f, animation.clip.length*.7f);
-			}
-		}
-
 
 		/// <summary>
 		/// _gets the random string from.
@@ -373,16 +366,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// 
 		/// 
 		/// NOTE: Method must be ***public*** due to InvokeRepeating
+		/// TODO: PACK THIS 'ON COMPLETE' FUNCTIONALITY INTO THE EXTENSION METHODS FOR 'Animation'
 		/// 
 		/// 
 		/// </summary>
 		public void onAnimationComplete ()
 		{
-			//Debug.Log ("ok: " + animation.clip.wrapMode);
 			if (animation.clip.wrapMode != WrapMode.Loop) {
 				CancelInvoke("onAnimationComplete");
 			}
-			uiAnimationCompleteSignal.Dispatch (animationType);
+			//Debug.Log ("onAnimationComplete: " + animationType.ToString());
+			animation.getUIAnimationCompleteSignal().Dispatch (animationType.ToString());
 		}
 
 	}
