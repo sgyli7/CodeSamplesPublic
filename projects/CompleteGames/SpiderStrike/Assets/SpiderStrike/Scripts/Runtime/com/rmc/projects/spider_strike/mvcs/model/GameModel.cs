@@ -103,34 +103,26 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 				if (_gameState != value ) {
 					_gameState = value;
-					Debug.Log ("GameState: " + _gameState);
+					Debug.Log ("GM.GameState: " + _gameState);
 					//
 					switch (_gameState){
 					case GameState.INIT:
 						doResetModel();
-						gameStateChangedSignal.Dispatch (_gameState);
-						gameState = GameState.INTRO_START;
 						break;
 					case GameState.INTRO_START:
-						gameStateChangedSignal.Dispatch (_gameState);
-						//WAIT FOR INTRO TO CHANGE STATE
+						//MODEL DOES NOTHING
 						break;
 					case GameState.GAME_START:
-						//NOTE: WE DISPATCH *INSIDE* EACH 'CASE' SO WE CAN 
-						//		IMMEIDATELY CHANGE THE STATE IN RARE CASES
-						gameStateChangedSignal.Dispatch (_gameState);
-						gameState = GameState.ROUND_START;
+						//MODEL DOES NOTHING
 						break;
 					case GameState.ROUND_START:
 						startNextRound();
-						gameStateChangedSignal.Dispatch (_gameState);
-						//WAIT FOR PROMPT TO CHANGE STATE
 						break;
 					case GameState.ROUND_DURING_CORE_GAMEPLAY:
-						gameStateChangedSignal.Dispatch (_gameState);
+						//MODEL DOES NOTHING
 						break;
 					case GameState.GAME_END:
-						gameStateChangedSignal.Dispatch (_gameState);
+						//MODEL DOES NOTHING
 						break;
 					default:
 						#pragma warning disable 0162
@@ -138,6 +130,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 						break;
 						#pragma warning restore 0162
 					}
+					gameStateChangedSignal.Dispatch (_gameState);
 				}
 			}
 		}
@@ -221,17 +214,8 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 			set
 			{
 				_currentRoundDataVO = value;
-				roundStartedSignal.Dispatch (_currentRoundDataVO);
 			}
 		}
-
-		/// <summary>
-		/// Gets or sets the round started signal.
-		/// </summary>
-		/// <value>The round started signal.</value>
-		[Inject]
-		public RoundStartedSignal roundStartedSignal { get; set;}
-
 
 		/// <summary>
 		/// Gets or sets the player died signal.
@@ -335,8 +319,8 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 			//
 			uint enemiesPerRound_uint 			= _currentLevel_uint*_ENEMIES_PER_ROUND;
 			Range enemiesSpawnedAtOnce_range	= new Range (1, _currentLevel_uint);
-			Range enemyHealth_range 			= new Range (11, 11);
-			Range enemySpeed_range				= new Range (1, 3 + _currentLevel_uint/2);
+			Range enemyHealth_range 			= new Range (11, 22);
+			Range enemySpeed_range				= new Range (1f, 2f);
 			//
 			currentRoundDataVO = new RoundDataVO (
 				_currentLevel_uint,

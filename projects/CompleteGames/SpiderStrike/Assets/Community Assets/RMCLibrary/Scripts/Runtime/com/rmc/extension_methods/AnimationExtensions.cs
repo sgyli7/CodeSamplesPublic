@@ -139,10 +139,10 @@ public static class AnimationExtensions
 		/// 
 		///////////////////////////////////////////// 
 		if (aAnimation[aAnimationName_string] != null) {
+			Debug.Log ("SET: " + aWrapMode);
 			aAnimation.wrapMode = aWrapMode;
 			aAnimation.name = aAnimationName_string;
 			aAnimation.Play (aAnimationName_string);
-			Debug.Log ("playing : " + aAnimationName_string);
 
 			//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
 			//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
@@ -151,7 +151,7 @@ public static class AnimationExtensions
 
 		} else {
 			//KEEP THIS
-			Debug.Log ("Anim NOT FOUND: " + aAnimationName_string);
+			Debug.Log ("AnimationExtension Anim NOT FOUND: !!!!!" + aAnimationName_string + "!!!!");
 
 			//RETURN 0 SO THAT IT FAKES LIKE IT 'IMMEDIATLY FINISHES PLAYING'
 			return 0;

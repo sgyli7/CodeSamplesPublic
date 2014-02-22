@@ -29,16 +29,11 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
+using com.rmc.exceptions;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.exceptions;
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using strange.extensions.signal.impl;
-using com.rmc.projects.spider_strike.mvcs.view.signals;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -128,6 +123,19 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			{
 				_targetTurretUI = value;
 			}
+		}
+
+
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="com.rmc.projects.spider_strike.mvcs.view.ui.EnemyUI"/> is alive.
+		/// </summary>
+		/// <value><c>true</c> if is alive; otherwise, <c>false</c>.</value>
+		public bool isAlive {
+			get {
+				return animationType != AnimationType.DIE;
+
+			}
+
 		}
 
 		
@@ -222,7 +230,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			//
 			base.OnDestroy();
-			Debug.Log ("EnemyUI.OnDestroy()");
+			Debug.Log ("3. EnemyUI.OnDestroy()");
 			
 		}
 		
@@ -281,7 +289,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
 				break;
 			case AnimationType.DIE:
-				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.ClampForever);
+				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.Default);
 				break;
 			case AnimationType.IDLE:
 				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (ANIMATION_NAME_IDLE, WrapMode.Default);
@@ -372,7 +380,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void onAnimationComplete ()
 		{
-			if (animation.clip.wrapMode != WrapMode.Loop) {
+			if (animation.wrapMode != WrapMode.Loop) {
 				CancelInvoke("onAnimationComplete");
 			}
 			//Debug.Log ("onAnimationComplete: " + animationType.ToString());

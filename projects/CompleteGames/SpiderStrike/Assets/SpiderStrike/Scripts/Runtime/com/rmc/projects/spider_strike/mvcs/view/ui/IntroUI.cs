@@ -148,7 +148,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			base.Start();
 			_clickGUIText = clickGUIText_gameobject.GetComponent<GUIText>();
-			Debug.Log ("INTROUI.START() adding clips");
 			animation.AddClip (introStartAnimationClip, ANIMATION_NAME_INTRO_UI_START);
 			animation.AddClip (introEndAnimationClip, ANIMATION_NAME_INTRO_UI_END);
 			
@@ -202,7 +201,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public void doPlayAnimationByName (string aAnimationName_string)
 		{
 
-			Debug.Log ("doPlayAnimationByName: " + aAnimationName_string);
+			//Debug.Log ("doPlayAnimationByName: " + aAnimationName_string);
 			if (introMode == IntroMode.Show) {
 
 				//

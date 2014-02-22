@@ -195,6 +195,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//
 			if (aGameState == GameState.ROUND_START) {
+
+				Debug.Log ("\taGameState: " + aGameState);
+				Debug.Log ("\t1HUDMED " + view);
+				Debug.Log ("\t2HUDMED " + view.gameObject);
 				view.setVisibility (true);
 			}
 			
@@ -227,7 +231,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onPromptStartSignal (string aMessage_string, bool aIsToFadeOutToo_boolean)
 		{
-			Debug.Log ("view.doPromptStart : " + aMessage_string );
 			view.doPromptStart (aMessage_string, aIsToFadeOutToo_boolean);
 			
 		}

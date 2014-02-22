@@ -118,12 +118,12 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint, Range aEnemiesSpawnedAtOnce_range, Range aEnemySpeed_range, Range aEnemyHealth_range)
+		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint, Range aEnemiesSpawnedAtOnce_range, Range aEnemyHealth_range, Range aEnemySpeed_range)
 		{
 			currentRound_uint 				= aCurrentRound_uint;
 			enemiesTotalToCreate 			= aTotalEnemiesToKill_uint;
 			enemiesSpawnedAtOnceRange 		= aEnemiesSpawnedAtOnce_range;
-			enemySpeedRange				= aEnemySpeed_range;
+			enemySpeedRange					= aEnemySpeed_range;
 			enemyHealthRange				= aEnemyHealth_range;
 			//
 			

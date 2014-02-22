@@ -4,6 +4,12 @@
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the      
+/**
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
+ * code [at] RivelloMultimediaConsulting [dot] com                                                  
+ *                                                                      
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the      
  * "Software"), to deal in the Software without restriction, including  
  * without limitation the rights to use, copy, modify, merge, publish,  
  * distribute, sublicense, and#or sell copies of the Software, and to   
@@ -28,19 +34,24 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using strange.extensions.signal.impl;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
+using strange.extensions.mediation.impl;
+using com.rmc.projects.spider_strike.mvcs.view.ui;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using com.rmc.projects.spider_strike.mvcs.model;
+using UnityEngine;
+
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.spider_strike.mvcs.controller.signals
+namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-
+	
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -50,15 +61,38 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class RoundStartedSignal : Signal<RoundDataVO>
+	public class TestUIMediator : Mediator
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
-		// GETTER / SETTER
+		
+		/// <summary>
+		/// Gets or sets the view.
+		/// </summary>
+		/// <value>The view.</value>
+		[Inject]
+		public TestUI view 	{ get; set;}
+		
+		/// <summary>
+		/// MODEL: The main game data
+		/// </summary>
+		[Inject]
+		public IGameModel iGameModel { get; set; } 
+
+		
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+		
+
 		
 		// PUBLIC
+		
 		
 		// PUBLIC STATIC
 		
@@ -69,29 +103,53 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
-		public RoundStartedSignal( )
+		/// <summary>
+		/// Raises the register event.
+		/// </summary>
+		public override void OnRegister()
 		{
-			//Debug.Log ("RoundStartSignal.constructor()");
+
+			//Debug.Log ("TestUIMediator.OnRegister()");
+			//
+			view.init ();
+			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
+			
+			
 			
 		}
 		
-		~RoundStartedSignal()
+		/// <summary>
+		/// Raises the remove event.
+		/// </summary>
+		public override void OnRemove()
 		{
+			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
+			
+		}
+		
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public void Start()
+		{
+			
+			
+		}
+		
+		
+		
+		/// <summary>
+		/// Update this instance.
+		/// </summary>
+		public void Update()
+		{
+			
 			
 		}
 		
 		
 		//	PUBLIC
+		
 		
 		// PRIVATE
 		
@@ -104,8 +162,18 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// _ons the game state changed signal.
+		/// </summary>
+		/// <param name="aGameState">A game state.</param>
+		private void _onGameStateChangedSignal (GameState aGameState)
+		{
+			Debug.Log ("     1. TestUIMed.aGameState()" + aGameState);
+			Debug.Log ("     2. TestUIMed.aGameState()" + view.gameObject);
+		}
+		
+		
 	}
 }
-
 
 

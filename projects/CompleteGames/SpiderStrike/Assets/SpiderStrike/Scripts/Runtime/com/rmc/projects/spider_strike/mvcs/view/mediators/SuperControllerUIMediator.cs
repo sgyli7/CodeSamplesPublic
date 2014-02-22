@@ -155,7 +155,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public void _doResetGame ()
 		{
-			Application.LoadLevel(Application.loadedLevel);
+			Application.LoadLevel (0);
 		}
 		
 		

@@ -159,7 +159,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		///</summary>
 		void Update () 
 		{
-			
+
+			if (this == null) {
+				Debug.Log ("GameManagerUIMediator () gameObject : " + this);
+			}
 			
 			
 		}
@@ -171,7 +174,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			//
 			base.OnDestroy();
-			
 		}
 		
 		// PUBLIC
@@ -184,7 +186,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public GameObject doCreateSpider(RoundDataVO aRoundDataVO)
 		{
 
+
 			//POSITION
+			Debug.Log ("1doCreateSpider() gameObject : " + this);
+			Debug.Log ("2doCreateSpider() gameObject : " + gameObject);
 			float spawnRadius_float 	= _getRadiusFromGameObject(spawnSphereGameObject);
 			float attackRadius_float 	= _getRadiusFromGameObject(attackSphereGameObject);
 			//

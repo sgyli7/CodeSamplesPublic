@@ -149,11 +149,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public void Update()
 		{
 
+
 			//*************************************************
 			//******* CORE LOGIC                     **********
 			//*************************************************
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				if (view.animationType == AnimationType.WALK) {
+				if (view.isAlive) {
 
 					//
 					if (!view.isAtAttackingDistance()) {
@@ -212,8 +213,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				if (aAnimationType_string == AnimationType.DIE.ToString()) {
 
 					//DESTROY OBJECT, UPDATE SCORE
-					Debug.Log ("VIEW:    " + view);
-					Debug.Log ("VIEW GO: " + view.gameObject);
 					enemyDiedSignal.Dispatch (view.gameObject);
 
 					//PLAY SOUND
@@ -228,7 +227,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 					
 					//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
 					_doInflictDamage();
-
 
 					//PLAY SOUND
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));

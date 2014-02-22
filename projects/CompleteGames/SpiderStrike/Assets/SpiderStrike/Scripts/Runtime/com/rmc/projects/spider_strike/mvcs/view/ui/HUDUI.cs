@@ -193,7 +193,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			_fpsGUIText         = fpsGUIText_gameObject.GetComponent<GUIText>();
 
 			//CLEAR PROMPT BEFORE ITS FIRST USE
-			Debug.Log ("HUDUI.start!" );
 			_setPromptText ("");
 
 		}
@@ -207,6 +206,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//Debug.Log ("HUDUI.update!" + _scoreGUIText.text);
 			if (_scoreGUIText.text != _lastPromptMessage_string) {
 				_setPromptText( _lastPromptMessage_string);
+			}
+
+			//Debug.Log ("HUD: " + gameObject);
+			if (gameObject == null || this == null) {
+				Debug.Log ("!!!!!!1HUDUI.Update: " + gameObject);
+				Debug.Log ("!!!!!!2HUDUI.Update: " + this);
 			}
 
 		}
@@ -230,6 +235,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public void setVisibility (bool aIsVisible_boolean)
 		{
 
+			//todo: remove
+			Debug.Log ("setVisibility1: " + aIsVisible_boolean);
+			Debug.Log ("setVisibility2: " + gameObject);
+			return;
+			Debug.Log ("setVisibility3: " + _scoreGUIText.gameObject);
+
 			RendererUtility.SetMaterialVisibility (_scoreGUIText.guiText.material, 		aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_scoreGUIText2.guiText.material, 	aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_healthGUIText.guiText.material, 	aIsVisible_boolean);
@@ -251,6 +262,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aMessage_string">A message_string.</param>
 		public void setScoreText (string aMessage_string)
 		{
+			CancelInvoke ("_onDelayAfterPromptFadeOutComplete");
+			Invoke ("_onDelayAfterPromptFadeOutComplete", 0.5f);
+
 			_scoreGUIText.text = aMessage_string;
 			_scoreGUIText2.text = aMessage_string;
 			
@@ -262,6 +276,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aMessage_string">A message_string.</param>
 		public void setHealthText (string aMessage_string)
 		{
+
 			_healthGUIText.text = aMessage_string;
 			_healthGUIText2.text = aMessage_string;
 
@@ -276,6 +291,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 			//DON'T SET IMMEDIATLY. SEE 'Update()' above
 			_lastPromptMessage_string = aMessage_string;
+
+
 
 
 			//1. TEMP SKIP THIS

@@ -192,7 +192,6 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\GameStateChangedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\PromptEndedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\PromptStartSignal.cs" />
-     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\RoundStartedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\ScoreChangeSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\ScoreChangedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\controller\signals\SoundPlaySignal.cs" />
@@ -216,6 +215,7 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\KeyboardControllerUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\SoundManagerUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\SuperControllerUIMediator.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\TestUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\TurretUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\VirtualControllerUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIAnimationCompleteSignal.cs" />
@@ -230,8 +230,10 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\KeyboardControllerUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\SoundManagerUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\SuperControllerUI.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\TestUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\TurretUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\VirtualControllerUI.cs" />
+     <Compile Include="Assets\TestComponent.cs" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Light.shader" />

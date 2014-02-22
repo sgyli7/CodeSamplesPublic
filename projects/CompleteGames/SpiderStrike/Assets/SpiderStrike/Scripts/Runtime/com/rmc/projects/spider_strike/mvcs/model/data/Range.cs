@@ -104,7 +104,8 @@ namespace com.rmc.projects.spider_strike.mvcs.model.data
 		/// <returns>The random float value within range.</returns>
 		public float getRandomFloatValueWithinRange ()
 		{
-			return Random.Range (minimum, maximum);
+			float return_float = Random.Range (minimum, maximum);
+			return return_float;
 		}
 
 		/// <summary>

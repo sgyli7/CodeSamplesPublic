@@ -295,15 +295,21 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			Debug.DrawRay (turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10);
 			//
 			Collider firstCollider = null;
+			EnemyUI enemyUI;
 			RaycastHit raycastHit;
+			//
 			if (Physics.Raycast(turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10, out raycastHit)) {
-				
+
+				//
 				if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer (EnemyUI.LAYER_NAME)) {
-					//TODO, USE STRANGE SIGNAL FOR 'HITTING?'
-					
-					firstCollider = raycastHit.collider;
-					Debug.Log ("_getFirstColliderInFiringRange() HIT");
-					Debug.DrawRay (raycastHit.point, raycastHit.normal);
+
+					//
+					enemyUI = raycastHit.collider.gameObject.GetComponent<EnemyUI>();
+					if (enemyUI && enemyUI.isAlive) {
+						firstCollider = raycastHit.collider;
+						Debug.Log ("_getFirstColliderInFiringRange() HIT");
+						Debug.DrawRay (raycastHit.point, raycastHit.normal);
+					}
 					
 				}
 			}

@@ -40,6 +40,10 @@ using System;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.exceptions;
+using System.Collections;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -68,15 +72,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The view.</value>
 		[Inject]
 		public GameManagerUI view 	{ get; set;}
-
-		/// <summary>
-		/// Gets or sets the round start signal.
-		/// </summary>
-		/// <value>The round start signal.</value>
-		/// TODO: Remove this and jsut use game state change signal?
-		[Inject]
-		public RoundStartedSignal roundStartedSignal {set; get;}
-
 
 		/// <summary>
 		/// The enemy died signal.
@@ -155,7 +150,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//view.init();
 			enemyDiedSignal.AddListener (_onEnemyDiedSignal);
 			turretDiedSignal.AddListener (_onTurretDiedSignal);
-			roundStartedSignal.AddListener (_onRoundStartedSignal);
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			promptEndedSignal.AddListener (_onPromptEndedSignal);
 			
@@ -168,7 +162,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			enemyDiedSignal.RemoveListener (_onEnemyDiedSignal);
 			turretDiedSignal.RemoveListener (_onTurretDiedSignal);
-			roundStartedSignal.RemoveListener (_onRoundStartedSignal);
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 			promptEndedSignal.RemoveListener (_onPromptEndedSignal);
 		}
@@ -237,17 +230,94 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
-			//
-			if (aGameState == GameState.ROUND_START) {
-				//
-				iGameModel.currentRoundDataVO.clearEnemies();
-				promptStartSignal.Dispatch (String.Format("Round {0} -- Kill {1}", iGameModel.currentRoundDataVO.currentRound_uint, iGameModel.currentRoundDataVO.enemiesTotalToCreate), true);
 
-			} else if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+			Debug.Log ("  GMUIM.GameState: " + aGameState);
+			//
+			switch (aGameState){
+			case GameState.INIT:
+				gameStateChangeSignal.Dispatch (GameState.INTRO_START); //todo: uncomment, this line is required
+				break;
+			case GameState.INTRO_START:
+				//WAITING FOR: INTRO ANIM TO FINISH
+				break;
+			case GameState.GAME_START:
+				gameStateChangeSignal.Dispatch (GameState.ROUND_START);
+				//WAITING FOR: USER TO CLICK ANYWHERE
+				break;
+			case GameState.ROUND_START:
+				iGameModel.currentRoundDataVO.clearEnemies();
+				promptStartSignal.Dispatch (String.Format
+				    (
+					"Round {0} -- Kill {1}", 
+					iGameModel.currentRoundDataVO.currentRound_uint, 
+					iGameModel.currentRoundDataVO.enemiesTotalToCreate), 
+				    true
+				    );
+				//WAITING FOR: PROMPT ANIM TO FINISH
+				break;
+			case GameState.ROUND_DURING_CORE_GAMEPLAY:
 				_doCreateNextSpiderBatch (iGameModel.currentRoundDataVO);
+				break;
+			case GameState.GAME_END:
+				break;
+			default:
+				#pragma warning disable 0162
+				throw new SwitchStatementException();
+				break;
+				#pragma warning restore 0162
 			}
 
 		}
+
+		/// <summary>
+		/// _dos the remove enemy after time.
+		/// </summary>
+		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
+		/// <param name="aDelay_float">A delay_float.</param>
+		private void _doRemoveEnemyAfterTime (GameObject aEnemyThatDied_gameobject, float aDelay_float ) 
+		{
+
+			//
+			Debug.Log ("2. Request Destroy()");
+			iGameModel.currentRoundDataVO.removeEnemy (aEnemyThatDied_gameobject);
+			
+			//
+			Hashtable moveTo_hashtable = new Hashtable();
+			moveTo_hashtable.Add(iT.MoveTo.y,					-1);
+			moveTo_hashtable.Add(iT.MoveTo.delay,  				0.5);
+			moveTo_hashtable.Add(iT.MoveTo.time,  				1);
+			moveTo_hashtable.Add(iT.MoveTo.easetype, 			iTween.EaseType.linear);
+			iTween.MoveTo (aEnemyThatDied_gameobject, 			moveTo_hashtable);
+			//
+			Destroy (aEnemyThatDied_gameobject, 1.5f);
+
+		}
+
+		/// <summary>
+		/// _dos the check round and game status after time.
+		/// 
+		/// NOTE: Must be public
+		/// 
+		/// </summary>
+		public void _doCheckRoundAndGameStatusAfterTime () 
+		{
+			//
+			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
+			if (iGameModel.currentRoundDataVO.enemiesCreated < iGameModel.currentRoundDataVO.enemiesTotalToCreate) {
+				Debug.Log ("GameManagerUIMedaitor.onEnemyDiedSignal");
+				_doCreateNextSpiderBatch(iGameModel.currentRoundDataVO);
+			} else {
+				
+				//DONE
+				gameStateChangeSignal.Dispatch ( GameState.GAME_END);
+				promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_WIN, false);
+				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
+				
+			}
+
+		}
+		 
+
 
 
 		/// <summary>
@@ -263,8 +333,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			int enemiesToSpawnAtOnce_int 	= aRoundDataVO.enemiesSpawnedAtOnceRange.getRandomIntValueWithinRange();
 			enemiesToSpawnAtOnce_int 		= (int)Mathf.Clamp ((float)enemiesToSpawnAtOnce_int, 0, iGameModel.currentRoundDataVO.enemiesTotalToCreate - iGameModel.currentRoundDataVO.enemiesCreated);
 			
-
-
+			//
 			for (var enemyToSpawnIndex_int = 0; enemyToSpawnIndex_int < enemiesToSpawnAtOnce_int; enemyToSpawnIndex_int++) {
 				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider(iGameModel.currentRoundDataVO) );
 			}
@@ -277,23 +346,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _onEnemyDiedSignal (GameObject aEnemyThatDied_gameobject)
 		{
 
-			iGameModel.currentRoundDataVO.removeEnemy (aEnemyThatDied_gameobject);
-			Destroy (aEnemyThatDied_gameobject);
-
-
 			//
-			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
-			if (iGameModel.currentRoundDataVO.enemiesCreated < iGameModel.currentRoundDataVO.enemiesTotalToCreate) {
-				_doCreateNextSpiderBatch(iGameModel.currentRoundDataVO);
-			} else {
-
-				//DONE
-				gameStateChangeSignal.Dispatch ( GameState.GAME_END);
-
-				promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_WIN, false);
-				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
-
-			}
+			_doRemoveEnemyAfterTime (aEnemyThatDied_gameobject, 1.5f);
+			//
+			CancelInvoke ("_doCheckRoundAndGameStatusAfterTime");
+			Invoke ("_doCheckRoundAndGameStatusAfterTime", 1.5f);
+			 
+	
 		}
 
 		/// <summary>
