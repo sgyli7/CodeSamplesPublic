@@ -208,7 +208,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aAnimationType">A animation type.</param>
 		private void _onUIAnimationCompleteSignal (string aAnimationType_string)
 		{
-			//Debug.Log ("AnimEnd: " + aAnimationType_string + " and " + AnimationType.DIE.ToString());
+			Debug.Log ("AnimEnd: " + aAnimationType_string + " and " + AnimationType.DIE.ToString());
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				if (aAnimationType_string == AnimationType.DIE.ToString()) {
 

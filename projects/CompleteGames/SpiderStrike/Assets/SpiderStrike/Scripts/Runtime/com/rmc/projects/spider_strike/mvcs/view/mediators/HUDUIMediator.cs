@@ -221,7 +221,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onScoreChangedSignal (float aNewValue_float)
 		{
-			view.setHealthText (String.Format (Constants.HUD_SCORE, aNewValue_float));
+			view.setScoreText (String.Format (Constants.HUD_SCORE, aNewValue_float));
 
 		}
 

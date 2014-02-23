@@ -274,7 +274,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
 		/// <param name="aDelay_float">A delay_float.</param>
-		private void _doRemoveEnemyAfterTime (GameObject aEnemyThatDied_gameobject, float aDelay_float ) 
+		private void _doRemoveEnemyAfterTime (GameObject aEnemyThatDied_gameobject, float aTotalTimeUntilDestory_float ) 
 		{
 
 			//
@@ -289,7 +289,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			moveTo_hashtable.Add(iT.MoveTo.easetype, 			iTween.EaseType.linear);
 			iTween.MoveTo (aEnemyThatDied_gameobject, 			moveTo_hashtable);
 			//
-			Destroy (aEnemyThatDied_gameobject, 1.5f);
+			//Destroy (aEnemyThatDied_gameobject, aTotalTimeUntilDestory_float);
 
 		}
 
@@ -347,7 +347,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 
 			//
-			_doRemoveEnemyAfterTime (aEnemyThatDied_gameobject, 1.5f);
+			_doRemoveEnemyAfterTime (aEnemyThatDied_gameobject, 0.5f);
 			//
 			CancelInvoke ("_doCheckRoundAndGameStatusAfterTime");
 			Invoke ("_doCheckRoundAndGameStatusAfterTime", 1.5f);

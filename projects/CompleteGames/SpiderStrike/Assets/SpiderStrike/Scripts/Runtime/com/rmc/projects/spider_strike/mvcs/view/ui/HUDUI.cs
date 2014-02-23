@@ -262,9 +262,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aMessage_string">A message_string.</param>
 		public void setScoreText (string aMessage_string)
 		{
-			CancelInvoke ("_onDelayAfterPromptFadeOutComplete");
-			Invoke ("_onDelayAfterPromptFadeOutComplete", 0.5f);
-
 			_scoreGUIText.text = aMessage_string;
 			_scoreGUIText2.text = aMessage_string;
 			
@@ -292,14 +289,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//DON'T SET IMMEDIATLY. SEE 'Update()' above
 			_lastPromptMessage_string = aMessage_string;
 
-
-
-
-			//1. TEMP SKIP THIS
-			_onDelayAfterPromptFadeOutComplete();
-			return;
-
-			//2. THE REAL CODE
 
 
 
