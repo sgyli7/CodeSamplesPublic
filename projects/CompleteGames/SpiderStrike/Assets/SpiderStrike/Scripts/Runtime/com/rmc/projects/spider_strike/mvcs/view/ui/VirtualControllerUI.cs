@@ -225,10 +225,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				GUI.skin = guiSkin;
 				#endif 
 
-				//RESET
-				if (GUI.RepeatButton (new Rect (Screen.width/2 - _BUTTON_WIDTH/2, _SCREEN_TOP_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
-					_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
-				} 
+
 
 				//LEFT
 				if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Left")) {
@@ -243,6 +240,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				} else if (_isCurrentlyRight_boolean && Event.current.type == EventType.repaint) { 
 					_doSetIsCurrentlyRight (false);
 				}
+
+				//RESET
+				if( GUI.RepeatButton (new Rect (Screen.width - (_BUTTON_WIDTH - _SCREEN_MARGIN)*3, Screen.height - _BUTTON_HEIGHT_SKINNY - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
+					_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
+				} 
+
 				//FIRE
 				if( GUI.RepeatButton (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Fire")) {
 					_doSetIsCurrentlyFiring (true);

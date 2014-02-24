@@ -88,6 +88,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public AnimationType animationType; 
 
+		/// <summary>
+		/// The shadow_gameobject.
+		/// </summary>
+		public GameObject shadow_gameobject;
 
 		// PUBLIC STATIC
 		/// <summary>
@@ -100,6 +104,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// HEIGHT OFF GROUND UPON CREATION
 		/// </summary>
 		public static float DEFAULT_Y_POSITION = 5;
+
 
 
 		// PRIVATE
@@ -134,6 +139,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				_targetTurretUI = value;
 			}
 		}
+
 
 
 		/// <summary>
@@ -431,8 +437,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			moveTo_hashtable.Add(iT.MoveTo.y,			-1);
 			moveTo_hashtable.Add(iT.MoveTo.delay,  		0.5);
 			moveTo_hashtable.Add(iT.MoveTo.time,  		1);
-			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);
+			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.easeOutExpo);
 			iTween.MoveTo (gameObject, 					moveTo_hashtable);
+
+
+			//
+			Hashtable moveTo2_hashtable 				= new Hashtable();
+			moveTo2_hashtable.Add(iT.MoveTo.y,			30);
+			moveTo2_hashtable.Add(iT.MoveTo.delay,  	0.5);
+			moveTo2_hashtable.Add(iT.MoveTo.time,  		.25);
+			moveTo2_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.easeOutExpo);
+			iTween.MoveTo (shadow_gameobject, 			moveTo2_hashtable);
+
+
+
+
+
 		}
 
 
