@@ -30,15 +30,16 @@
 //--------------------------------------
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.model;
+using com.rmc.utilities;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using UnityEngine;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
-using com.rmc.projects.spider_strike.mvcs.model;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -105,6 +106,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// The _ DAMAG e_ GIVE n_ PE r_ HI.
 		/// </summary>
 		private const int _DAMAGE_GIVEN_PER_HIT = 10;
+
+
 		
 		//--------------------------------------
 		//  Methods
@@ -116,7 +119,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			view.init();
 			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
-			view.animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
+
+			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
 
 		}
 
@@ -125,7 +129,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRemove()
 		{
-			view.animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
+			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
 		}
 
 		/// <summary>

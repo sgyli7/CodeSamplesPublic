@@ -100,7 +100,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				Debug.Log ("2TestUI.Update: " + this);
 			}
 
-			
+
 		}
 		
 		/// <summary>

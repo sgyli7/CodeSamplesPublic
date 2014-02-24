@@ -141,14 +141,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public IEnumerator Wait_ThenAllViewsInitializedSignal ()
 		{
 
-			yield return new  WaitForEndOfFrame ();
 			/*
 			 * TODO: WHAT IS THE BEST WAY TO NOTIFY THE MVCS SYSTEM THAT THE VIEWS ARE READY?
 			 * 
-			 * THIS IS A FULLY FUNCTIONAL WORKAROUND
+			 * THIS IS A FULLY FUNCTIONAL WORKAROUND, BUT WE ARE MANUALLY 'WAITING'
 			 * 
 			 * 
 			 **/
+			yield return new  WaitForEndOfFrame ();
+
+
+			//
 			allViewsInitializedSignal.Dispatch ();
 
 		}

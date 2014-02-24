@@ -40,6 +40,9 @@ using com.rmc.projects.spider_strike.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.utilities;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -111,7 +114,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// NOTE: Used to accept exactly 0,1 clicks
 		/// </summary>
 		private bool _wasClicked_boolean = false;
-		
+
+
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -126,9 +130,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			view.init ();
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
-			animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
-			
-			
+			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);	
 			
 		}
 		
@@ -139,8 +141,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 			view.uiInputChangedSignal.RemoveListener (_onUIInputChangedSignal);
-			animation.getUIAnimationCompleteSignal().AddListener (_onUIAnimationCompleteSignal);
-
+			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
 		}
 		
 		/// <summary>

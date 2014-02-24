@@ -262,8 +262,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aMessage_string">A message_string.</param>
 		public void setScoreText (string aMessage_string)
 		{
-			_scoreGUIText.text = aMessage_string;
-			_scoreGUIText2.text = aMessage_string;
+				_scoreGUIText.text = aMessage_string;
+				_scoreGUIText2.text = aMessage_string;
 			
 		}
 
@@ -274,8 +274,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public void setHealthText (string aMessage_string)
 		{
 
-			_healthGUIText.text = aMessage_string;
-			_healthGUIText2.text = aMessage_string;
+				_healthGUIText.text = aMessage_string;
+				_healthGUIText2.text = aMessage_string;
 
 		}
 

@@ -34,8 +34,6 @@ using com.rmc.projects.spider_strike.mvcs.view.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	

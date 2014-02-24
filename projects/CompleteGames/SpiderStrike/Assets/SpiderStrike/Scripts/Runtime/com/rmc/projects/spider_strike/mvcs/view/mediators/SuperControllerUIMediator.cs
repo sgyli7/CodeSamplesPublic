@@ -92,6 +92,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public TurretDoMoveSignal turretDoMoveSignal 		{ get; set;}
 
 		/// <summary>
+		/// Gets or sets the game reset signal.
+		/// </summary>
+		/// <value>The game reset signal.</value>
+		[Inject]
+		public GameResetSignal gameResetSignal 		{ get; set;}
+
+
+
+		/// <summary>
 		/// MODEL: The main game data
 		/// </summary>
 		[Inject]
@@ -147,15 +156,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <summary>
 		/// Resets the game.
 		/// 
-		/// NOTE: This works great. 
-		/// 
-		/// NOTE: In a more mature game, you may need to manually place each item again.
-		/// 		or put this logic in a more central location
-		/// 
 		/// </summary>
 		public void _doResetGame ()
 		{
-			Application.LoadLevel (0);
+			gameResetSignal.Dispatch ();
+
 		}
 		
 		

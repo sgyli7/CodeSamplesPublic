@@ -114,6 +114,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public AnimationClip introEndAnimationClip;
 
+		
+		/// <summary>
+		/// The _animation binder.
+		/// 
+		/// NOTE: Notifies when an animation is complete
+		/// 
+		/// </summary>
+		public AnimationMonitor animationMonitor;
+
 		// PRIVATE STATIC
 
 		//
@@ -122,9 +131,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		private GUIText _clickGUIText;
 
-
-
-
+		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -136,7 +143,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void init ()
 		{
-			uiInputChangedSignal = new UIInputChangedSignal();
+			uiInputChangedSignal 	= new UIInputChangedSignal();
+			animationMonitor 		= new AnimationMonitor (gameObject);
 		}
 		
 		
@@ -150,6 +158,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			_clickGUIText = clickGUIText_gameobject.GetComponent<GUIText>();
 			animation.AddClip (introStartAnimationClip, ANIMATION_NAME_INTRO_UI_START);
 			animation.AddClip (introEndAnimationClip, ANIMATION_NAME_INTRO_UI_END);
+
 			
 			
 		}
@@ -207,7 +216,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				//
 				gameObject.SetActive (true);
 				//
-				float animationDuration_float = animation.setAnimationIfNotYetSetTo (aAnimationName_string, WrapMode.Once);
+				float animationDuration_float = animationMonitor.setAnimationIfNotYetSetTo (aAnimationName_string, WrapMode.Once);
 			
 				//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
 				CancelInvoke("onAnimationComplete");
@@ -259,10 +268,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			}
 			if (introMode == IntroMode.Show) {
 				//RESPECT THE ANIMATION PROPERLY
-				animation.getUIAnimationCompleteSignal().Dispatch (animation.name);
+				animationMonitor.uiAnimationCompleteSignal.Dispatch (animation.name);
 			} else {
 				//FAKE LIKE THE 'END' HAPPENED
-				animation.getUIAnimationCompleteSignal().Dispatch (ANIMATION_NAME_INTRO_UI_END);
+				animationMonitor.uiAnimationCompleteSignal.Dispatch (ANIMATION_NAME_INTRO_UI_END);
 			}
 		}
 

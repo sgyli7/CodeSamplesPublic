@@ -96,70 +96,17 @@ public static class AnimationExtensions
 	// PUBLIC
 	
 	// PUBLIC STATIC
-	/// <summary>
-	/// Gets or sets the user interface animation complete.
-	/// </summary>
-	/// <value>The user interface animation complete.</value>
-	public static UIAnimationCompleteSignal uiAnimationCompleteSignal {set; get;}
 
 
-	/// <summary>
-	/// Gets the user interface animation complete signal.
-	/// </summary>
-	/// <returns>The user interface animation complete signal.</returns>
-	/// <param name="aAnimation">A animation.</param>
-	public static UIAnimationCompleteSignal getUIAnimationCompleteSignal (this Animation aAnimation) 
-	{
-		if (uiAnimationCompleteSignal == null) {
-			uiAnimationCompleteSignal = new UIAnimationCompleteSignal();
-		}
-		return uiAnimationCompleteSignal;
-		
-	}
-	
-	/// <summary>
-	/// Sets the animation if not yet set to.
-	/// </summary>
-	/// <returns>The animation if not yet set to.</returns>
-	/// <param name="aAnimation">A animation.</param>
-	/// <param name="aAnimationName_string">A animation name_string.</param>
-	/// <param name="aWrapMode">A wrap mode.</param>
+	/*
+	 * SAMPLE SYNTAX, BUT THIS IS NEVER USED YET.
+	 *
 	public static float setAnimationIfNotYetSetTo (this Animation aAnimation, string aAnimationName_string, WrapMode aWrapMode)
 	{
 		
-		
-		/////////////////////////////////////////////
-		/// 
-		/// NOTE: The animation system seems unpredictable.
-		/// This affects the code setup, but not the end result.
-		/// 
-		/// ISSUE: The animationClips shown int the animation inspector will change at runtime
-		/// ISSUE: The inspector for a given animation clip will show at times the SAME name
-		/// 		as another clip (bad) and show a DIFFERENT name than its own name in the project window (bad)
-		/// 
-		///////////////////////////////////////////// 
-		if (aAnimation[aAnimationName_string] != null) {
-			Debug.Log ("SET: " + aWrapMode);
-			aAnimation.wrapMode = aWrapMode;
-			aAnimation.name = aAnimationName_string;
-			aAnimation.Play (aAnimationName_string);
-
-			//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
-			//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
-			// WHY *.7f, experimenting the timing
-			return aAnimation[aAnimationName_string].length*.7f;
-
-		} else {
-			//KEEP THIS
-			Debug.Log ("AnimationExtension Anim NOT FOUND: !!!!!" + aAnimationName_string + "!!!!");
-
-			//RETURN 0 SO THAT IT FAKES LIKE IT 'IMMEDIATLY FINISHES PLAYING'
-			return 0;
-		}
-
-		
 
 	}
+	*/
 	
 
 

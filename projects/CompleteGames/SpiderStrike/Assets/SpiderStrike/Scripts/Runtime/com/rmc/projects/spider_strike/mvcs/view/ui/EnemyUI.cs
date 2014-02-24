@@ -34,6 +34,9 @@ using com.rmc.exceptions;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.utilities;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -138,6 +141,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		}
 
+		/// <summary>
+		/// The _animation binder.
+		/// 
+		/// NOTE: Notifies when an animation is complete
+		/// 
+		/// </summary>
+		public AnimationMonitor animationMonitor;
+
 		
 		/// <summary>
 		/// The attack radius.
@@ -148,7 +159,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The _move speed_float.
 		/// </summary>
-		float _moveSpeed_float;
+		private float _moveSpeed_float;
+
+
+
 
 		// PRIVATE STATIC
 		/// <summary>
@@ -177,9 +191,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void init ()
 		{
+			animationMonitor = new AnimationMonitor (gameObject);
 
-
-			//
 
 		}
 
@@ -206,7 +219,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			base.Start();
-			animation = GetComponentInChildren<Animation>();
+			animation 		= GetComponentInChildren<Animation>();
 			_particleSystem = GetComponentInChildren<ParticleSystem>();
 			
 			
@@ -280,19 +293,19 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//
 			switch (animationType) {
 			case AnimationType.WALK:
-				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (ANIMATION_NAME_WALK, WrapMode.Loop);
+				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (ANIMATION_NAME_WALK, WrapMode.Loop);
 				break;
 			case AnimationType.ATTACK:
-				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Loop);
+				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Loop);
 				break;
 			case AnimationType.TAKE_HIT:
-				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
+				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
 				break;
 			case AnimationType.DIE:
-				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.Default);
+				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.Default);
 				break;
 			case AnimationType.IDLE:
-				animationDuration_float 	= animation.setAnimationIfNotYetSetTo (ANIMATION_NAME_IDLE, WrapMode.Default);
+				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (ANIMATION_NAME_IDLE, WrapMode.Default);
 				break;
 			default:
 				#pragma warning disable 0162
@@ -384,7 +397,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				CancelInvoke("onAnimationComplete");
 			}
 			//Debug.Log ("onAnimationComplete: " + animationType.ToString());
-			animation.getUIAnimationCompleteSignal().Dispatch (animationType.ToString());
+			animationMonitor.uiAnimationCompleteSignal.Dispatch (animationType.ToString());
 		}
 
 	}
