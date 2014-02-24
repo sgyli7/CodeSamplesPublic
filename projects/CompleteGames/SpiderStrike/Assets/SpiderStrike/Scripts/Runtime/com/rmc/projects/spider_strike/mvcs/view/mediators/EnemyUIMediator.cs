@@ -139,11 +139,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 						
 			/*
-			 * KLUGE: WE CALL BOTH IMMEDIATLY TO MAKE IT 'WALK'
+			 * KLUGE: WE CALL BOTH IMMEDIATLY TO MAKE THE 2ND ONE *WORK* PROPERLY
 			 * 
 			 **/
 			view.doPlayAnimation (AnimationType.IDLE);
-			view.doPlayAnimation (AnimationType.WALK);
+			view.doPlayAnimation (AnimationType.JUMP);
+			view.doTweenToFallFromSky();
 
 		}
 
@@ -153,27 +154,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public void Update()
 		{
 
-
 			//*************************************************
 			//******* CORE LOGIC                     **********
 			//*************************************************
-			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				if (view.isAlive) {
+			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY && 
+			    view.isAlive) {
+				//
+				if (!view.isAtAttackingDistance()) {
 
-					//
-					if (!view.isAtAttackingDistance()) {
-
-						view.doFaceTarget();
+					view.doFaceTarget();
+					if (view.isFitToWalk()){
 						view.doMoveToTarget();
-
-					} else {
-
-						if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
-							view.doPlayAnimation (AnimationType.ATTACK);
-						}
 					}
 
+				} else {
+
+					if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
+						view.doPlayAnimation (AnimationType.ATTACK);
+					}
 				}
+
 			}
 			//*************************************************
 			//*************************************************
@@ -212,12 +212,23 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aAnimationType">A animation type.</param>
 		private void _onUIAnimationCompleteSignal (string aAnimationType_string)
 		{
-			Debug.Log ("AnimEnd: " + aAnimationType_string + " and " + AnimationType.DIE.ToString());
+			//Debug.Log ("AnimEnd: " + aAnimationType_string + " and " + AnimationType.DIE.ToString());
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				if (aAnimationType_string == AnimationType.DIE.ToString()) {
+
+
+				if (aAnimationType_string == AnimationType.JUMP.ToString()) {
+
+					//
+					view.doPlayAnimation (AnimationType.WALK);
+
+					//PLAY SOUND
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+
+
+				} else if (aAnimationType_string == AnimationType.DIE.ToString()) {
 
 					//DESTROY OBJECT, UPDATE SCORE
-					enemyDiedSignal.Dispatch (view.gameObject);
+					enemyDiedSignal.Dispatch (view);
 
 					//PLAY SOUND
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
@@ -226,6 +237,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 					//PLAY SOUND
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+
+				} else if (aAnimationType_string == AnimationType.TAKE_HIT.ToString()) {
+
+					//
+					view.doPlayAnimation (AnimationType.WALK);
 
 				} else if (aAnimationType_string == AnimationType.ATTACK.ToString()) {
 					
@@ -237,7 +253,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				}
 			} else {
 
-				//view.doPlayAnimation (AnimationType.IDLE);
+				//
 				view.doStopAnimation();
 			}
 

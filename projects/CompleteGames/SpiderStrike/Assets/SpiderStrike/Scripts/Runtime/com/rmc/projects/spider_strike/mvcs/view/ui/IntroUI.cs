@@ -203,6 +203,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 		}
 
+
+		/// <summary>
+		/// Sets the click text is visible.
+		/// </summary>
+		/// <param name="isVisible_boolean">Is visible_boolean.</param>
+		public void setClickTextIsVisible (bool isVisible_boolean)
+		{
+
+			RendererUtility.SetMaterialVisibility (_clickGUIText.material, isVisible_boolean);
+		}
+
 		/// <summary>
 		/// Dos the name of the play animation by.
 		/// </summary>
@@ -216,7 +227,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				//
 				gameObject.SetActive (true);
 				//
-				float animationDuration_float = animationMonitor.setAnimationIfNotYetSetTo (aAnimationName_string, WrapMode.Once);
+				float animationDuration_float = animationMonitor.setAnimationAndPlay (aAnimationName_string, WrapMode.Once);
 			
 				//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
 				CancelInvoke("onAnimationComplete");

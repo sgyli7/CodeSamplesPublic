@@ -127,7 +127,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			base.Start();
-
 			StartCoroutine ( Wait_ThenAllViewsInitializedSignal ());
 
 
@@ -163,10 +162,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		void Update () 
 		{
 
-			if (this == null) {
-				Debug.Log ("GameManagerUIMediator () gameObject : " + this);
-			}
-			
 			
 		}
 		
@@ -191,8 +186,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 			//POSITION
-			Debug.Log ("1doCreateSpider() gameObject : " + this);
-			Debug.Log ("2doCreateSpider() gameObject : " + gameObject);
 			float spawnRadius_float 	= _getRadiusFromGameObject(spawnSphereGameObject);
 			float attackRadius_float 	= _getRadiusFromGameObject(attackSphereGameObject);
 			//
@@ -218,7 +211,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			GameObject spider_gameobject = 
 				Instantiate (
 					spiderPrefabGameObject, 
-					new Vector3 (spawnX_float, 0, spawnZ_float), Quaternion.identity
+					new Vector3 (spawnX_float, EnemyUI.DEFAULT_Y_POSITION, spawnZ_float), Quaternion.identity
 				) as GameObject; 
 			//
 			spider_gameobject.transform.parent = enemyParentGameObject.transform;

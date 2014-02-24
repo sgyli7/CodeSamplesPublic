@@ -180,6 +180,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		void Update () 
 		{
 
+			//
 			if (isRunningUpdate) {
 
 				//ROTATE THE BARREL IF FIRING
@@ -291,7 +292,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			//
-			Debug.Log ("_getFirstColliderInFiringRange() SHOOT");
 			Debug.DrawRay (turretBulletSpawnPoint.transform.position, turretBulletSpawnPoint.transform.forward*10);
 			//
 			Collider firstCollider = null;
@@ -307,7 +307,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 					enemyUI = raycastHit.collider.gameObject.GetComponent<EnemyUI>();
 					if (enemyUI && enemyUI.isAlive) {
 						firstCollider = raycastHit.collider;
-						Debug.Log ("_getFirstColliderInFiringRange() HIT");
 						Debug.DrawRay (raycastHit.point, raycastHit.normal);
 					}
 					

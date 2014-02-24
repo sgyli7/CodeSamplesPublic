@@ -103,6 +103,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			base.init();
 
 		}
+
+
+		//
+		public override void Update()
+		{
+			//
+			base.Update();
+
+		}
 		
 		/// <summary>
 		/// Raises the destroy event.

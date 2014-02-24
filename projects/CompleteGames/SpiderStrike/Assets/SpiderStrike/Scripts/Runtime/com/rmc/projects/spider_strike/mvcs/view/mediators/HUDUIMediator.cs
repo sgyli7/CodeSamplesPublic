@@ -107,6 +107,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The game state changed signal.</value>
 		[Inject]
 		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+
 		
 
 		// PUBLIC
@@ -157,8 +158,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public void Start()
 		{
 			view.setVisibility (false);
-
-			
 		}
 
 
@@ -196,9 +195,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//
 			if (aGameState == GameState.ROUND_START) {
 
-				Debug.Log ("\taGameState: " + aGameState);
-				Debug.Log ("\t1HUDMED " + view);
-				Debug.Log ("\t2HUDMED " + view.gameObject);
 				view.setVisibility (true);
 			}
 			

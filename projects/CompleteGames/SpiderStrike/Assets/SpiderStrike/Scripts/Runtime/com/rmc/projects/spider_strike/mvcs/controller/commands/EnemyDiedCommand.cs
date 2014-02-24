@@ -36,6 +36,9 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.spider_strike.mvcs.view.ui;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 {
 	
@@ -60,11 +63,11 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		//--------------------------------------
 		// GETTER / SETTER
 		/// <summary>
-		/// Gets or sets the enemy that died_gameobject.
+		/// Gets or sets the enemy that died_enemyui.
 		/// </summary>
-		/// <value>The enemy that died_gameobject.</value>
+		/// <value>The enemy that died_enemyui.</value>
 		[Inject]
-		public GameObject enemyThatDied_gameobject {get;set;}
+		public EnemyUI enemyThatDied_enemyui {get;set;}
 
 
 		/// <summary>

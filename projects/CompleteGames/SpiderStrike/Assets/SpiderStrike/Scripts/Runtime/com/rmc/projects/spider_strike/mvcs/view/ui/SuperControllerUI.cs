@@ -78,7 +78,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// The _last user interface input V os_list.
 		/// </summary>
-		public List<UIInputVO> _lastUIInputVOs_list;
+		/// 
+		private Dictionary<KeyCode,UIInputVO> _lastInputVOByKeycode_dictionary;
 
 		/// <summary>
 		/// Sets the visibility.
@@ -107,24 +108,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		override protected void Start () 
 		{
 			base.Start();
-			_lastUIInputVOs_list = new List<UIInputVO>();
-			_lastUIInputVOs_list.Add (new UIInputVO (KeyCode.LeftArrow, UIInputEventType.DownExit));
-			_lastUIInputVOs_list.Add (new UIInputVO (KeyCode.RightArrow, UIInputEventType.DownExit));
-			
-
-		
+			_lastInputVOByKeycode_dictionary = new Dictionary<KeyCode,UIInputVO>();
 		}
+
 
 
 		/// <summary>
 		/// Update this instance.
 		/// </summary>
-		void Update ()
+		public virtual void Update()
 		{
 			_doProcessDownStayEvents();
-
 		}
-		
+
+
 		
 		// PUBLIC
 		/// <summary>
@@ -156,9 +153,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <summary>
 		/// _dos the update user interface input.
 		/// 
-		/// NOTE: We store the state of the last UIInputVO **PER** keycode. This way we can dispatch
-		/// 		if/when the 'DownStay' should be sent every frame.
+		/// NOTE: We get DownEnter and DownExit
 		/// 
+		/// NOTE: We interpolate and SOMETIMES send DownStay
 		/// 
 		/// 
 		/// </summary>
@@ -166,30 +163,16 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aUIInputEventType">A user interface input event type.</param>
 		protected void _doUpdateUIInput (KeyCode aKeyCode, UIInputEventType aUIInputEventType )
 		{
-			UIInputVO lastFoundUIInputVO 	= _lastUIInputVOs_list.Where(uiInputVO => uiInputVO.keyCode == aKeyCode).SingleOrDefault();
-			UIInputVO toSendUIInputVO 		= new UIInputVO (aKeyCode, aUIInputEventType);
 
 
-			_lastUIInputVOs_list.Remove (lastFoundUIInputVO);
-			//lastFoundUIInputVO.uiInputEventType = aUIInputEventType;
-			//_lastUIInputVOs_list.Add (lastFoundUIInputVO);
-			//Debug.Log ("after" + _lastUIInputVOs_list.Count);
+			//CHECK OLD DATA
+			UIInputVO newToSendUIInputVO 		= new UIInputVO (aKeyCode, aUIInputEventType);
 
+			//STORE *ONLY* MOST RECENT PER KEYCODE
+			_lastInputVOByKeycode_dictionary[newToSendUIInputVO.keyCode] = (newToSendUIInputVO);
 
-			//1. CREATE/STORE THAT INPUTVO
-			if (true) {
-				//Debug.Log ("ADD: " + _lastUIInputVOs_list.Count);
-			} else {
-				//2. OR UPDATE THE INPUTVO
-				Debug.Log ("update ("+aKeyCode+"): " + aUIInputEventType);
-
-				//SENDS #1, DOWN AND #2, UP
-				//_lastUIInputVOs_list.Remove (lastFoundUIInputVO);
-				//lastFoundUIInputVO.uiInputEventType = aUIInputEventType;
-				//_lastUIInputVOs_list.Add (lastFoundUIInputVO);
-			}
-			Debug.Log ("SEND: " + toSendUIInputVO);
-			uiInputChangedSignal.Dispatch (toSendUIInputVO);
+			//ALWAYS SEND
+			uiInputChangedSignal.Dispatch (newToSendUIInputVO);
 			
 		}
 
@@ -204,16 +187,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		private void _doProcessDownStayEvents ()
 		{
 
-			//Debug.Log ("--");
-			foreach (UIInputVO uiInputVO in _lastUIInputVOs_list) {
-				//Debug.Log ("check ("+uiInputVO.keyCode+") =" + uiInputVO.uiInputEventType);
+			//
+			foreach (UIInputVO uiInputVO in _lastInputVOByKeycode_dictionary.Values)
+			{
 				if (uiInputVO.uiInputEventType == UIInputEventType.DownEnter) {
-
-					//SENDS #3, STAY
 					uiInputChangedSignal.Dispatch (new UIInputVO (uiInputVO.keyCode, UIInputEventType.DownStay));
 				}
-
 			}
+
 		}
 
 		

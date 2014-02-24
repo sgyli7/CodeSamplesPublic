@@ -168,8 +168,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
-			Debug.Log ("     1. TestUIMed.aGameState()" + aGameState);
-			Debug.Log ("     2. TestUIMed.aGameState()" + view.gameObject);
+			//Debug.Log ("     1. TestUIMed.aGameState()" + aGameState);
+			//Debug.Log ("     2. TestUIMed.aGameState()" + view.gameObject);
 		}
 		
 		

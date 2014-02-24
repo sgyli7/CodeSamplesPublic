@@ -33,14 +33,12 @@ using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.model;
 using com.rmc.exceptions;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -113,11 +111,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRegister()
 		{
-
+			//
 			view.init();
 			turretDoMoveSignal.AddListener (_onTurretDoMoveSignal);
-			
-			
+			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			
 		}
 		
@@ -126,16 +123,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRemove()
 		{
+			//
 			turretDoMoveSignal.RemoveListener (_onTurretDoMoveSignal);
+			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 		}
 		
 		
 		/// <summary>
 		/// Update this instance.
 		/// </summary>
-		public void Update()
+		void Update()
 		{
-
 
 		}
 		
@@ -161,8 +159,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
-			//
-			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+			//todo:change to
+			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY || aGameState == GameState.ROUND_START) {
 				view.isRunningUpdate = true;
 			} else {
 				view.isRunningUpdate = false;
@@ -177,7 +176,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <param name="aTurretMoveVO">A turret move V.</param>
 		private void _onTurretDoMoveSignal (TurretMoveVO aTurretMoveVO) 
 		{
-			Debug.Log ("aTurretMoveVO: " + aTurretMoveVO.moveType);
 			switch (aTurretMoveVO.moveType) {
 			case MoveType.LeftOneTick:
 				view.firingAngle -= aTurretMoveVO.amount;

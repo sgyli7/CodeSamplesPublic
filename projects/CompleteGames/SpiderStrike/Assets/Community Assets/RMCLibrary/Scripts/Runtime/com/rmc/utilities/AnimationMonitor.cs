@@ -120,11 +120,9 @@ namespace com.rmc.utilities
 		/// <param name="aAnimation">A animation.</param>
 		/// <param name="aAnimationName_string">A animation name_string.</param>
 		/// <param name="aWrapMode">A wrap mode.</param>
-		public float setAnimationIfNotYetSetTo (string aAnimationName_string, WrapMode aWrapMode)
+		public float setAnimationAndPlay (string aAnimationName_string, WrapMode aWrapMode)
 		{
 
-			Debug.Log ("_______" + _gameObject);
-			Debug.Log ("_______" + _gameObject.GetComponent<Animation>());
 			if (_animation == null){
 				_animation = _gameObject.GetComponentInChildren<Animation>();
 				if (_animation == null){

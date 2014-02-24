@@ -224,7 +224,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//
 			base.OnDestroy();
 
-			Debug.Log ("HUDUI.Destroyed");
 			
 		}
 
@@ -234,12 +233,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aIsVisible_boolean">If set to <c>true</c> a is visible_boolean.</param>
 		public void setVisibility (bool aIsVisible_boolean)
 		{
-
-			//todo: remove
-			Debug.Log ("setVisibility1: " + aIsVisible_boolean);
-			Debug.Log ("setVisibility2: " + gameObject);
-			return;
-			Debug.Log ("setVisibility3: " + _scoreGUIText.gameObject);
 
 			RendererUtility.SetMaterialVisibility (_scoreGUIText.guiText.material, 		aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_scoreGUIText2.guiText.material, 	aIsVisible_boolean);

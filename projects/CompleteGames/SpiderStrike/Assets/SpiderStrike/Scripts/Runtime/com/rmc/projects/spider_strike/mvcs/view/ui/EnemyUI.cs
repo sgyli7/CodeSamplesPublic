@@ -35,6 +35,7 @@ using com.rmc.exceptions;
 //  Namespace
 //--------------------------------------
 using com.rmc.utilities;
+using System.Collections;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -49,7 +50,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		ATTACK,
 		TAKE_HIT,
 		DIE,
-		IDLE
+		IDLE,
+		JUMP
 
 	}
 	
@@ -93,6 +95,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public static string LAYER_NAME = "EnemyLayer";
 
+
+		/// <summary>
+		/// HEIGHT OFF GROUND UPON CREATION
+		/// </summary>
+		public static float DEFAULT_Y_POSITION = 5;
 
 
 		// PRIVATE
@@ -149,7 +156,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public AnimationMonitor animationMonitor;
 
-		
+		/// <summary>
+		/// The ANIMATION NAMES
+		/// </summary>
+		public const string ANIMATION_NAME_IDLE 		= "idle";	
+		public const string ANIMATION_NAME_JUMP 		= "jump";
+		public const string ANIMATION_NAME_WALK 		= "walk";	
+		public const string ANIMATION_NAME_ATTACK_1 	= "attack1";
+		public const string ANIMATION_NAME_ATTACK_2		= "attack2";
+		public const string ANIMATION_NAME_HIT_1 		= "hit1";
+		public const string ANIMATION_NAME_HIT_2 		= "hit2";
+		public const string ANIMATION_NAME_DEATH_1 		= "death1";
+		public const string ANIMATION_NAME_DEATH_2 		= "death2";
+
+
 		/// <summary>
 		/// The attack radius.
 		/// NOTE: SET FROM OUTSIDE
@@ -171,16 +191,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		private const float _ROTATION_SPEED = 1.0f;
 
 		/// <summary>
-		/// The ANIMATIO NAMES
+		/// The _ MOV e_ BAC k_ WHE n_ HI t_ AMOUN.
 		/// </summary>
-		private const string ANIMATION_NAME_IDLE 		= "idle";	
-		private const string ANIMATION_NAME_WALK 		= "walk";	
-		private const string ANIMATION_NAME_ATTACK_1 	= "attack1";
-		private const string ANIMATION_NAME_ATTACK_2	= "attack2";
-		private const string ANIMATION_NAME_HIT_1 		= "hit1";
-		private const string ANIMATION_NAME_HIT_2 		= "hit2";
-		private const string ANIMATION_NAME_DEATH_1 	= "death1";
-		private const string ANIMATION_NAME_DEATH_2 	= "death2";
+		private const float _MOVE_BACK_WHEN_HIT_AMOUNT = 1;
+
 
 		//--------------------------------------
 		//  Methods
@@ -243,7 +257,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			//
 			base.OnDestroy();
-			Debug.Log ("3. EnemyUI.OnDestroy()");
 			
 		}
 		
@@ -256,6 +269,16 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public bool isAtAttackingDistance ()
 		{
 			return Vector3.Distance (transform.position, _targetTurretUI.transform.position) < _attackRadius;
+		}
+
+
+		/// <summary>
+		/// Ises the fit to walk.
+		/// </summary>
+		/// <returns><c>true</c>, if fit to walk was ised, <c>false</c> otherwise.</returns>
+		public bool isFitToWalk (){
+
+			return animationType != AnimationType.TAKE_HIT && animationType != AnimationType.JUMP;
 		}
 		
 		/// <summary>
@@ -286,26 +309,31 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aAnimationType">A animation type.</param>
 		public void doPlayAnimation (AnimationType aAnimationType) 
 		{
+
+
 			//
 			animationType 	= aAnimationType;
 			float  animationDuration_float; 
-
+			
 			//
 			switch (animationType) {
+			case AnimationType.JUMP:
+				animationDuration_float 	= animationMonitor.setAnimationAndPlay (ANIMATION_NAME_JUMP, WrapMode.Default);
+				break;
 			case AnimationType.WALK:
-				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (ANIMATION_NAME_WALK, WrapMode.Loop);
+				animationDuration_float 	= animationMonitor.setAnimationAndPlay (ANIMATION_NAME_WALK, WrapMode.Loop);
 				break;
 			case AnimationType.ATTACK:
-				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Loop);
+				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Loop);
 				break;
 			case AnimationType.TAKE_HIT:
-				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
+				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
 				break;
 			case AnimationType.DIE:
-				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.Default);
+				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.Default);
 				break;
 			case AnimationType.IDLE:
-				animationDuration_float 	= animationMonitor.setAnimationIfNotYetSetTo (ANIMATION_NAME_IDLE, WrapMode.Default);
+				animationDuration_float 	= animationMonitor.setAnimationAndPlay (ANIMATION_NAME_IDLE, WrapMode.Default);
 				break;
 			default:
 				#pragma warning disable 0162
@@ -313,14 +341,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				break;
 				#pragma warning restore 0162
 			}
-
-
+			
+			
 			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
 			CancelInvoke("onAnimationComplete");
 			InvokeRepeating ("onAnimationComplete", animationDuration_float, animationDuration_float);
 
-
 		}
+
 
 
 		/// <summary>
@@ -345,6 +373,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//SMOKE
 			_particleSystem.Emit (1);
 
+			//MOVE BACKWARDS A LITTLE BIT
+			transform.position -= transform.forward * _MOVE_BACK_WHEN_HIT_AMOUNT;
+
 			//PLAY ANIMATION
 			if (_healthCurrent_float > 0) {
 				doPlayAnimation (AnimationType.TAKE_HIT);
@@ -355,6 +386,36 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				}
 			}
 		}
+
+		/// <summary>
+		/// Dos the tween to fall from sky.
+		/// </summary>
+		public void doTweenToFallFromSky ()
+		{
+			//
+			//
+			Hashtable moveTo_hashtable 					= new Hashtable();
+			moveTo_hashtable.Add(iT.MoveTo.y,			0);
+			moveTo_hashtable.Add(iT.MoveTo.delay,  		0);
+			moveTo_hashtable.Add(iT.MoveTo.time,  		1);
+			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);
+			iTween.MoveTo (gameObject, 					moveTo_hashtable);
+		}
+
+		/// <summary>
+		/// Dos the tween to fall from sky.
+		/// </summary>
+		public void doTweenToSinkIntoGround ()
+		{
+			//
+			Hashtable moveTo_hashtable 					= new Hashtable();
+			moveTo_hashtable.Add(iT.MoveTo.y,			-1);
+			moveTo_hashtable.Add(iT.MoveTo.delay,  		0.5);
+			moveTo_hashtable.Add(iT.MoveTo.time,  		1);
+			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);
+			iTween.MoveTo (gameObject, 					moveTo_hashtable);
+		}
+
 
 		// PUBLIC STATIC
 		

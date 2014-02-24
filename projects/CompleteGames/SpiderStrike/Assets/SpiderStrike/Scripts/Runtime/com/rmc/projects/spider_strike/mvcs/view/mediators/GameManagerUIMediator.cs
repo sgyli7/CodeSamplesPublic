@@ -2,6 +2,10 @@
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
+/**
+ * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
+ * code [at] RivelloMultimediaConsulting [dot] com                                                  
+ *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the      
  * "Software"), to deal in the Software without restriction, including  
@@ -72,27 +76,27 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The view.</value>
 		[Inject]
 		public GameManagerUI view 	{ get; set;}
-
+		
 		/// <summary>
 		/// The enemy died signal.
 		/// </summary>
 		[Inject]
 		public EnemyDiedSignal enemyDiedSignal {set; get;}
-
+		
 		/// <summary>
 		/// Gets or sets the player died signal.
 		/// </summary>
 		/// <value>The player died signal.</value>
 		[Inject]
 		public TurretDiedSignal turretDiedSignal {set; get;}
-
-
+		
+		
 		/// <summary>
 		/// MODEL: The main game data
 		/// </summary>
 		[Inject]
 		public IGameModel iGameModel { get; set; } 
-
+		
 		/// <summary>
 		/// Gets or sets the prompt start signal.
 		/// </summary>
@@ -106,30 +110,30 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <value>The prompt start signal.</value>
 		[Inject]
 		public PromptEndedSignal promptEndedSignal { get; set;}
-
+		
 		/// <summary>
 		/// Gets or sets the sound play signal.
 		/// </summary>
 		/// <value>The sound play signal.</value>
 		[Inject]
 		public SoundPlaySignal soundPlaySignal { get; set; }
-
-
+		
+		
 		/// <summary>
 		/// Gets or sets the game state change signal.
 		/// </summary>
 		/// <value>The game state change signal.</value>
 		[Inject]
 		public GameStateChangeSignal gameStateChangeSignal {set; get;}
-
-
+		
+		
 		/// <summary>
 		/// Gets or sets the game state changed signal.
 		/// </summary>
 		/// <value>The game state changed signal.</value>
 		[Inject]
 		public GameStateChangedSignal gameStateChangedSignal {set; get;}
-
+		
 		// PUBLIC
 		
 		
@@ -171,9 +175,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public void Start ()
 		{
-
-
-
+			
+			
+			
 		}
 		
 		/// <summary>
@@ -206,32 +210,31 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//TODO: IS THIS SIGNAL NEEDED, WHY NOT JUST CHECK ONGAMESTATE?
 		private void _onRoundStartedSignal (RoundDataVO aRoundDataVO)
 		{
-
-
+			
+			
 		}
-
+		
 		/// <summary>
 		/// _ons the prompt ended signal.
 		/// </summary>
 		private void _onPromptEndedSignal ()
 		{
-
+			
 			//
 			if (iGameModel.gameState == GameState.ROUND_START) {
 				gameStateChangeSignal.Dispatch (GameState.ROUND_DURING_CORE_GAMEPLAY);
 			}
-
+			
 		}
-
-
+		
+		
 		/// <summary>
 		/// _ons the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
-
-			Debug.Log ("  GMUIM.GameState: " + aGameState);
+			
 			//
 			switch (aGameState){
 			case GameState.INIT:
@@ -247,12 +250,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			case GameState.ROUND_START:
 				iGameModel.currentRoundDataVO.clearEnemies();
 				promptStartSignal.Dispatch (String.Format
-				    (
+				                            (
 					"Round {0} -- Kill {1}", 
 					iGameModel.currentRoundDataVO.currentRound_uint, 
 					iGameModel.currentRoundDataVO.enemiesTotalToCreate), 
-				    true
-				    );
+				                            true
+				                            );
 				//WAITING FOR: PROMPT ANIM TO FINISH
 				break;
 			case GameState.ROUND_DURING_CORE_GAMEPLAY:
@@ -266,33 +269,27 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				break;
 				#pragma warning restore 0162
 			}
-
+			
 		}
-
+		
 		/// <summary>
 		/// _dos the remove enemy after time.
 		/// </summary>
 		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
 		/// <param name="aDelay_float">A delay_float.</param>
-		private void _doRemoveEnemyAfterTime (GameObject aEnemyThatDied_gameobject, float aTotalTimeUntilDestory_float ) 
+		private void _doRemoveEnemyAfterTime (EnemyUI aEnemyThatDied_enemyUI, float aTotalTimeUntilDestory_float ) 
 		{
-
-			//
-			Debug.Log ("2. Request Destroy()");
-			iGameModel.currentRoundDataVO.removeEnemy (aEnemyThatDied_gameobject);
 			
 			//
-			Hashtable moveTo_hashtable = new Hashtable();
-			moveTo_hashtable.Add(iT.MoveTo.y,					-1);
-			moveTo_hashtable.Add(iT.MoveTo.delay,  				0.5);
-			moveTo_hashtable.Add(iT.MoveTo.time,  				1);
-			moveTo_hashtable.Add(iT.MoveTo.easetype, 			iTween.EaseType.linear);
-			iTween.MoveTo (aEnemyThatDied_gameobject, 			moveTo_hashtable);
+			iGameModel.currentRoundDataVO.removeEnemy (aEnemyThatDied_enemyUI.gameObject);
+
+			aEnemyThatDied_enemyUI.doTweenToSinkIntoGround();
+			
 			//
-			//Destroy (aEnemyThatDied_gameobject, aTotalTimeUntilDestory_float);
-
+			Destroy (aEnemyThatDied_enemyUI.gameObject, aTotalTimeUntilDestory_float);
+			
 		}
-
+		
 		/// <summary>
 		/// _dos the check round and game status after time.
 		/// 
@@ -314,19 +311,19 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
 				
 			}
-
+			
 		}
-		 
-
-
-
+		
+		
+		
+		
 		/// <summary>
 		/// _dos the create next spider batch.
 		/// </summary>
 		/// <param name="aRoundDataVO">A round data V.</param>
 		private void _doCreateNextSpiderBatch(RoundDataVO aRoundDataVO)
 		{
-
+			
 			//how many to create?
 			//1. get a number within range
 			//2. be sure not to exceed the remaining allowed
@@ -338,23 +335,25 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				iGameModel.currentRoundDataVO.addEnemy ( view.doCreateSpider(iGameModel.currentRoundDataVO) );
 			}
 		}
-
+		
 		/// <summary>
 		/// _ons the enemy died signal.
 		/// </summary>
 		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
-		private void _onEnemyDiedSignal (GameObject aEnemyThatDied_gameobject)
+		private void _onEnemyDiedSignal (EnemyUI aEnemyThatDied_enemyui)
 		{
-
+			
 			//
-			_doRemoveEnemyAfterTime (aEnemyThatDied_gameobject, 0.5f);
+			_doRemoveEnemyAfterTime (aEnemyThatDied_enemyui, 2f);
+
+
 			//
 			CancelInvoke ("_doCheckRoundAndGameStatusAfterTime");
-			Invoke ("_doCheckRoundAndGameStatusAfterTime", 1.5f);
-			 
-	
+			Invoke ("_doCheckRoundAndGameStatusAfterTime", 2.5f);
+			
+			
 		}
-
+		
 		/// <summary>
 		/// _ons the turret died signal.
 		/// </summary>
@@ -366,10 +365,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//
 			promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_LOSS, false);
 			soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_LOSS));
-				
+			
 		}
-
-
-
+		
+		
+		
 	}
 }

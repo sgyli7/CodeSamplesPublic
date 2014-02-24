@@ -93,9 +93,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// 
 		/// 
 		///</summary>
-		void Update () 
+		public override void Update()
 		{
-			
+			//
+			base.Update();
+
 			//RESET
 			if (Input.GetKeyDown (KeyCode.Return)) {
 				_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
@@ -127,16 +129,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 		
 		
-		// PUBLIC
-		/// <summary>
-		/// Init this instance.
-		/// </summary>
-		override public void init()
-		{
-			base.init();
-			
-		}
-		
+	
 		/// <summary>
 		/// Raises the destroy event.
 		/// </summary>

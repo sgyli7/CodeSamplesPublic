@@ -118,7 +118,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// <summary>
 		/// Spin amount per click
 		/// </summary>
-		private const float _TURRET_ROTATION_PER_CLICK = 5;
+		private const float _TURRET_ROTATION_PER_CLICK = 3;
 		
 		//--------------------------------------
 		//  Methods
@@ -172,7 +172,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		private void _doSendMove (TurretMoveVO aTurretMoveVO) 
 		{
 
-			Debug.Log ("GOT: " + aTurretMoveVO);
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				turretDoMoveSignal.Dispatch (aTurretMoveVO);
 			}
@@ -197,6 +196,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 
 
+			//
 			if (aUIInputVO.uiInputEventType == UIInputEventType.DownEnter) {
 
 
@@ -228,8 +228,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 
 			} else if (aUIInputVO.uiInputEventType == UIInputEventType.DownStay) {
-
-				Debug.Log ("in: " + aUIInputVO.uiInputEventType);
 
 				//KEYSTAY
 				switch (aUIInputVO.keyCode) {

@@ -29,6 +29,7 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
+using com.rmc.projects.spider_strike.mvcs.view.ui;
 using UnityEngine;
 
 //--------------------------------------
@@ -50,7 +51,7 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class EnemyDiedSignal : Signal<GameObject>
+	public class EnemyDiedSignal : Signal<EnemyUI>
 	{
 		
 		//--------------------------------------

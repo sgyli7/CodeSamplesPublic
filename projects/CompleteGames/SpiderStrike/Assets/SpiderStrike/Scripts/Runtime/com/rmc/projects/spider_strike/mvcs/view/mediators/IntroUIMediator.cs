@@ -192,6 +192,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				_wasClicked_boolean = true;
 				view.doPlayAnimationByName (IntroUI.ANIMATION_NAME_INTRO_UI_END);
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
+				//
+				view.setClickTextIsVisible (false);
 			}
 		}
 
@@ -206,6 +208,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//
 			if (aGameState == GameState.INTRO_START) {
 				_wasClicked_boolean = false;
+				//
+				view.setClickTextIsVisible (true);
 				view.doPlayAnimationByName (IntroUI.ANIMATION_NAME_INTRO_UI_START);
 			}
 			
