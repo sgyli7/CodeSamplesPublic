@@ -300,11 +300,27 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			//
 			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
+
+
+			//
+			//1. CONTINUE THIS ROUND
+			//
 			if (iGameModel.currentRoundDataVO.enemiesCreated < iGameModel.currentRoundDataVO.enemiesTotalToCreate) {
-				Debug.Log ("GameManagerUIMedaitor.onEnemyDiedSignal");
 				_doCreateNextSpiderBatch(iGameModel.currentRoundDataVO);
+
+			//
+			//2. GO TO NEXT ROUND
+			//
+			} else if (iGameModel.hasNextRound()) {
+
+				gameStateChangeSignal.Dispatch ( GameState.ROUND_START);
+
+			//
+			//3. END THE GAME
+			//
 			} else {
-				
+
+
 				//DONE
 				gameStateChangeSignal.Dispatch ( GameState.GAME_END);
 				promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_WIN, false);

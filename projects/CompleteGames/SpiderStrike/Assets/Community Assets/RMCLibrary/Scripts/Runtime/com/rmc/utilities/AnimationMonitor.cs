@@ -146,8 +146,8 @@ namespace com.rmc.utilities
 				
 				//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
 				//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
-				// WHY *.7f, experimenting the timing
-				return _animation[aAnimationName_string].length*.7f;
+				// WHY *.7f? I'm experimenting the timing
+				return _animation[aAnimationName_string].length;
 				
 			} else {
 				//KEEP THIS

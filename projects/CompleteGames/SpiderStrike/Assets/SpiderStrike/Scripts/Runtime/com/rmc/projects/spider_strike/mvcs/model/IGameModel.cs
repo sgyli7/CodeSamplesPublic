@@ -93,9 +93,15 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		void doResetModel();
 
 		/// <summary>
+		/// Hases the next round.
+		/// </summary>
+		/// <returns><c>true</c>, if next round was hased, <c>false</c> otherwise.</returns>
+		bool hasNextRound();
+
+		/// <summary>
 		/// Starts the next round.
 		/// </summary>
-		void startNextRound ();
+		void doRoundStart ();
 		
 	}
 }

@@ -220,11 +220,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		private void _onUIAnimationCompleteSignal (string aAnimationType_string)
+		private void _onUIAnimationCompleteSignal (string aAnimationType_string, bool isAfterAnyDelayToo_boolean)
 		{
 			//Debug.Log ("MED._onUIAnimationCompleteSignal(): " + aAnimationType_string);
-			if (aAnimationType_string == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
-				gameStateChangeSignal.Dispatch (GameState.GAME_START);
+
+			//we only care to hear 1 time, after any delays
+			if (isAfterAnyDelayToo_boolean) {
+				if (aAnimationType_string == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
+					gameStateChangeSignal.Dispatch (GameState.GAME_START);
+				}
 			}
 
 			

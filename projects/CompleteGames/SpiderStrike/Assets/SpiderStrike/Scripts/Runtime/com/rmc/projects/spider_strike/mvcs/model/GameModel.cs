@@ -116,7 +116,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 						//MODEL DOES NOTHING
 						break;
 					case GameState.ROUND_START:
-						startNextRound();
+						doRoundStart();
 						break;
 					case GameState.ROUND_DURING_CORE_GAMEPLAY:
 						//MODEL DOES NOTHING
@@ -232,16 +232,29 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		
 		// PRIVATE
 		/// <summary>
-		/// The _current level_uint.
+		/// The _current round_uint.
 		/// </summary>
-		private uint _currentLevel_uint;
+		private uint _currentRound_uint;
+
+		/// <summary>
+		/// The _total rounds per game_uint.
+		/// </summary>
+		private uint _totalRoundsPerGame_uint = 3;
+
+		/// <summary>
+		/// Has a next level?
+		/// </summary>
+		/// <returns><c>true</c>, if next level was hased, <c>false</c> otherwise.</returns>
+		public bool hasNextRound(){
+			return _currentRound_uint < _totalRoundsPerGame_uint;
+		}
 
 		
 		// PRIVATE STATIC
 		/// <summary>
 		/// The _ ENEMIE s_ PE r_ ROUN.
 		/// </summary>
-		private const int _ENEMIES_PER_ROUND = 5;
+		private const int _ENEMIES_PER_ROUND = 2;
 		
 		//--------------------------------------
 		//  Methods
@@ -303,7 +316,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 			turretHealth 		= 100;
 			score 				= 0;
-			_currentLevel_uint 	= 0;
+			_currentRound_uint 	= 0;
 			//Debug.Log ("MODEL RESET FINISHED");
 		}
 
@@ -311,19 +324,19 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		/// <summary>
 		/// Starts the next round.
 		/// </summary>
-		public void startNextRound ()
+		public void doRoundStart ()
 		{
 			//
-			_currentLevel_uint++;
+			_currentRound_uint++;
 
 			//
-			uint enemiesPerRound_uint 			= _currentLevel_uint*_ENEMIES_PER_ROUND;
-			Range enemiesSpawnedAtOnce_range	= new Range (1, _currentLevel_uint);
+			uint enemiesPerRound_uint 			= _currentRound_uint*_ENEMIES_PER_ROUND/2;
+			Range enemiesSpawnedAtOnce_range	= new Range (1, _currentRound_uint);
 			Range enemyHealth_range 			= new Range (11, 22);
 			Range enemySpeed_range				= new Range (1f, 2f);
 			//
 			currentRoundDataVO = new RoundDataVO (
-				_currentLevel_uint,
+				_currentRound_uint,
 				enemiesPerRound_uint,
 				enemiesSpawnedAtOnce_range,
 				enemyHealth_range,

@@ -142,8 +142,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			 * KLUGE: WE CALL BOTH IMMEDIATLY TO MAKE THE 2ND ONE *WORK* PROPERLY
 			 * 
 			 **/
-			view.doPlayAnimation (AnimationType.IDLE);
-			view.doPlayAnimation (AnimationType.JUMP);
+			view.doPlayAnimation (AnimationType.JUMP, 0, 1f);
 			view.doTweenToFallFromSky();
 
 		}
@@ -170,7 +169,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				} else {
 
 					if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
-						view.doPlayAnimation (AnimationType.ATTACK);
+						view.doPlayAnimation (AnimationType.ATTACK, 0, 0);
 					}
 				}
 
@@ -210,51 +209,68 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		private void _onUIAnimationCompleteSignal (string aAnimationType_string)
+		private void _onUIAnimationCompleteSignal (string aAnimationType_string, bool isAfterDelayToo_boolean)
 		{
-			//Debug.Log ("AnimEnd: " + aAnimationType_string + " and " + AnimationType.DIE.ToString());
-			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+
+			//WE MOSTLY CARE ABOUT WHEN THE ANIMATION IS OVER *INCLUDING* ANY COSMETIC DELAYS WE ADDED
+			if (isAfterDelayToo_boolean) {
+
+				Debug.Log ("AnimEnd: " + aAnimationType_string + " DELAY?: " + isAfterDelayToo_boolean);
 
 
-				if (aAnimationType_string == AnimationType.JUMP.ToString()) {
+				if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+
+
+					if (aAnimationType_string == AnimationType.JUMP.ToString()) {
+
+						//
+						view.doPlayAnimation (AnimationType.WALK, 0, 0);
+
+					} else if (aAnimationType_string == AnimationType.DIE.ToString()) {
+
+						//DESTROY OBJECT, UPDATE SCORE
+						enemyDiedSignal.Dispatch (view);
+
+						//PLAY SOUND
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
+
+					} else if (aAnimationType_string == AnimationType.WALK.ToString()) {
+
+						//PLAY SOUND
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+
+					} else if (aAnimationType_string == AnimationType.TAKE_HIT.ToString()) {
+
+						//
+						view.doPlayAnimation (AnimationType.WALK, 0, 0);
+
+					} else if (aAnimationType_string == AnimationType.ATTACK.ToString()) {
+						
+						//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
+						_doInflictDamage();
+
+						//PLAY SOUND
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));
+
+						//
+						view.doPlayAnimation (AnimationType.ATTACK, 0, 0);
+					}
+				} else {
 
 					//
-					view.doPlayAnimation (AnimationType.WALK);
-
-					//PLAY SOUND
-					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
-
-
-				} else if (aAnimationType_string == AnimationType.DIE.ToString()) {
-
-					//DESTROY OBJECT, UPDATE SCORE
-					enemyDiedSignal.Dispatch (view);
-
-					//PLAY SOUND
-					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
-
-				} else if (aAnimationType_string == AnimationType.WALK.ToString()) {
-
-					//PLAY SOUND
-					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
-
-				} else if (aAnimationType_string == AnimationType.TAKE_HIT.ToString()) {
-
-					//
-					view.doPlayAnimation (AnimationType.WALK);
-
-				} else if (aAnimationType_string == AnimationType.ATTACK.ToString()) {
-					
-					//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
-					_doInflictDamage();
-
-					//PLAY SOUND
-					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));
+					view.doStopAnimation();
 				}
+
 			} else {
 
-				//
-				view.doStopAnimation();
+				//BUT SOMETIMES WE JUST WANT TO TRIGGER A SOUND
+
+				if (aAnimationType_string == AnimationType.JUMP.ToString()) {
+					
+					//PLAY SOUND
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+					
+				} 
 			}
 
 		}

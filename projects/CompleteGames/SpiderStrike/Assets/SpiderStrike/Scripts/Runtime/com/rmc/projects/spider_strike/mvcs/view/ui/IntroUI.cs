@@ -279,10 +279,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			}
 			if (introMode == IntroMode.Show) {
 				//RESPECT THE ANIMATION PROPERLY
-				animationMonitor.uiAnimationCompleteSignal.Dispatch (animation.name);
+				animationMonitor.uiAnimationCompleteSignal.Dispatch (animation.name, true);
 			} else {
 				//FAKE LIKE THE 'END' HAPPENED
-				animationMonitor.uiAnimationCompleteSignal.Dispatch (ANIMATION_NAME_INTRO_UI_END);
+				animationMonitor.uiAnimationCompleteSignal.Dispatch (ANIMATION_NAME_INTRO_UI_END, true);
 			}
 		}
 

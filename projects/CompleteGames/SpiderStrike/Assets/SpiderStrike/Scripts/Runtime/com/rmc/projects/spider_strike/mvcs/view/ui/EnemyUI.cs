@@ -307,12 +307,30 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// Dos the play animation.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		public void doPlayAnimation (AnimationType aAnimationType) 
+		public void doPlayAnimation (AnimationType aAnimationType, float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
+		{
+			//
+			animationType 	= aAnimationType;
+
+			doStopAnimation();
+
+			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
+			StartCoroutine (doPlayAnimationInvoke(aDelayBeforeAnimation_float, aDelayAfterAnimation_float));
+
+		}
+
+		/// <summary>
+		/// Dos the play animation coroutine.
+		/// </summary>
+		/// <returns>The play animation coroutine.</returns>
+		/// <param name="aAnimationType">A animation type.</param>
+		public IEnumerator doPlayAnimationInvoke (float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
 		{
 
 
+			yield return new WaitForSeconds(aDelayBeforeAnimation_float);
 			//
-			animationType 	= aAnimationType;
+
 			float  animationDuration_float; 
 			
 			//
@@ -342,10 +360,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				#pragma warning restore 0162
 			}
 			
+
 			
 			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
-			CancelInvoke("onAnimationComplete");
-			InvokeRepeating ("onAnimationComplete", animationDuration_float, animationDuration_float);
+			StartCoroutine ( onAnimationComplete (animationDuration_float, aDelayAfterAnimation_float));
+
 
 		}
 
@@ -378,11 +397,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 			//PLAY ANIMATION
 			if (_healthCurrent_float > 0) {
-				doPlayAnimation (AnimationType.TAKE_HIT);
+				doPlayAnimation (AnimationType.TAKE_HIT, 0, 0);
 			} else {
 				_healthCurrent_float = 0;
 				if (animationType != AnimationType.DIE) {
-					doPlayAnimation (AnimationType.DIE);
+					doPlayAnimation (AnimationType.DIE, 0, 0);
 				}
 			}
 		}
@@ -452,13 +471,28 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// 
 		/// 
 		/// </summary>
-		public void onAnimationComplete ()
+		public IEnumerator onAnimationComplete (float aAnimationDuration_float, float aDelayAfterAnimation_float)
 		{
-			if (animation.wrapMode != WrapMode.Loop) {
-				CancelInvoke("onAnimationComplete");
-			}
-			//Debug.Log ("onAnimationComplete: " + animationType.ToString());
-			animationMonitor.uiAnimationCompleteSignal.Dispatch (animationType.ToString());
+
+			//WAIT FOR THE ANIMATION TO STOP
+			yield return new WaitForSeconds (aAnimationDuration_float);
+
+			//if (animation.wrapMode == WrapMode.Loop) {
+				//REPEATEDLY DISPATCH 'COMPLETE' FOR LOOPING ANIMS
+				//THIS HELPS WITH FOOTSTEP SOUNDS, ETC...
+			//	StartCoroutine (onAnimationComplete (aAnimationDuration_float, aDelayAfterAnimation_float));
+			//}
+
+			//Debug.Log ("1("+aAnimationDuration_float+")onAnimationComplete: " + animationType.ToString());
+			animationMonitor.uiAnimationCompleteSignal.Dispatch (animationType.ToString(), false);
+
+
+			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
+			yield return new WaitForSeconds (aDelayAfterAnimation_float);
+
+
+			//Debug.Log ("2onAnimationComplete: " + animationType.ToString());
+			animationMonitor.uiAnimationCompleteSignal.Dispatch (animationType.ToString(), true);
 		}
 
 	}

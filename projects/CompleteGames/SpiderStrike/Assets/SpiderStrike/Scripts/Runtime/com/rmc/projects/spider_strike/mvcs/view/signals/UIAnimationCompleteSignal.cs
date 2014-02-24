@@ -49,7 +49,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UIAnimationCompleteSignal : Signal<string>
+	public class UIAnimationCompleteSignal : Signal<string,bool>
 	{
 		
 		//--------------------------------------
