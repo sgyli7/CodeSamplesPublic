@@ -28,19 +28,35 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using strange.extensions.signal.impl;
-using com.rmc.projects.animation_monitor;
+using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.spider_strike.mvcs.view.signals
+namespace com.rmc.projects.animation_monitor
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	/// <summary>
+	/// Event type.
+	/// 
+	/// 		PRE_START = BEFORE ANY (OPTIONAL) DELAY
+	/// 		START = ANIMATION STARTS TO PLAY
+	/// 		COMPLETE = ANIMATION FINISHES PLAYING
+	/// 		POST_COMPLETE = AFTER ANY (OPTIONAL) DELAY
+	/// 		
+	/// </summary>
+	public enum AnimationMonitorEventType
+	{
+		PRE_START,
+		START,
+		COMPLETE,
+		POST_COMPLETE
+	}
+
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
@@ -49,7 +65,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UIAnimationMonitorEventSignal : Signal<AnimationMonitorEventVO>
+	public class AnimationMonitorEventVO
 	{
 		
 		//--------------------------------------
@@ -58,6 +74,24 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		// GETTER / SETTER
 		
 		// PUBLIC
+		/// <summary>
+		/// The type of the user interface animation monitor event.
+		/// </summary>
+		public AnimationMonitorEventType animationMonitorEventType;
+
+		/// <summary>
+		/// The animation.
+		/// </summary>
+		public Animation animation;
+
+
+		/// <summary>
+		/// The name of the animation clip.
+		/// </summary>
+		public string animationClipName;
+
+
+
 		
 		// PUBLIC STATIC
 		
@@ -78,19 +112,20 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public UIAnimationMonitorEventSignal( )
+		public AnimationMonitorEventVO (Animation aAnimation, string aAnimationClipName_string, AnimationMonitorEventType aUIAnimationMonitorEventType )
 		{
-			//Debug.Log ("UIAnimationCompleteSignal.constructor()");
+			animation 					= aAnimation;
+			animationClipName			= aAnimationClipName_string;
+			animationMonitorEventType = aUIAnimationMonitorEventType;
 			
 		}
 		
-		~UIAnimationMonitorEventSignal()
+		~AnimationMonitorEventVO()
 		{
 			
 		}
 		
-		
-		//	PUBLIC
+		// PUBLIC
 		
 		// PRIVATE
 		
@@ -105,6 +140,4 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		//--------------------------------------
 	}
 }
-
-
 

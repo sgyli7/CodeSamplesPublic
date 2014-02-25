@@ -281,7 +281,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animation.name, UIAnimationMonitorEventType.PRE_START));
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animation.name, AnimationMonitorEventType.PRE_START));
 			
 			
 			//WAIT
@@ -289,25 +289,40 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			
 			//
-			float animationDuration_float = animationMonitor.setAnimationAndPlay (animationClipName_string, WrapMode.Once);
 			
 			
 			if (introMode == IntroMode.Show) {
-				
+
+				//
 				gameObject.SetActive (true);
-				
-			} else {
+
+				float animationDuration_float = animationMonitor.setAnimationAndPlay (animationClipName_string, WrapMode.Once);
 				//WE SKIP THE ANIMATION AND DON'T WAIT FOR IT
 				animationDuration_float = .1f; //SUPER SHORT DURATION
+
+				//SEND SIGNAL
+				animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animation.name, AnimationMonitorEventType.START));
+				
+				
+				//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
+				StartCoroutine ( onAnimationComplete (animationDuration_float, aDelayAfterAnimation_float));
+
+			} else {
+
+
+				//
+				gameObject.SetActive (false);
+				
+				//1. FAKE ALL SIGNALS
+				//2. DON'T PLAY ANY ANIMATION
+				//3. DON'T CALL onAnimationComplete
+				animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, ANIMATION_NAME_INTRO_UI_END, AnimationMonitorEventType.START));
+				animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, ANIMATION_NAME_INTRO_UI_END, AnimationMonitorEventType.COMPLETE));
+				animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, ANIMATION_NAME_INTRO_UI_END, AnimationMonitorEventType.POST_COMPLETE));
+
 			}
 			
-			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animation.name, UIAnimationMonitorEventType.START));
-			
-			
-			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
-			StartCoroutine ( onAnimationComplete (animationDuration_float, aDelayAfterAnimation_float));
-			
+
 			
 		}
 		
@@ -337,14 +352,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			//ALLOW DEVELOPER TO SKIP THE WHOLE INTRO VIA INSPECTOR DROPDOWN
-			string animationClipName_string;
-			if (introMode == IntroMode.Show) {
-				animationClipName_string = animation.name;
-				
-			} else {
-				animationClipName_string = ANIMATION_NAME_INTRO_UI_END;
-			}
-			
+			string animationClipName_string = animation.name;
 			
 			//////////////////
 			
@@ -352,14 +360,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			yield return new WaitForSeconds (aAnimationDuration_float);
 			
 			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationClipName_string, UIAnimationMonitorEventType.COMPLETE));
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationClipName_string, AnimationMonitorEventType.COMPLETE));
 			
 			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
 			yield return new WaitForSeconds (aDelayAfterAnimation_float);
 			
 			
 			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationClipName_string, UIAnimationMonitorEventType.POST_COMPLETE));
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationClipName_string, AnimationMonitorEventType.POST_COMPLETE));
 			
 		}
 		

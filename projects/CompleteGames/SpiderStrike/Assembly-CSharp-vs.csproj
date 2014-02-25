@@ -52,7 +52,8 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\AnimationExtensions.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\GameObjectExtensions.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\animation_monitor\AnimationMonitor.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\animation_monitor\UIAnimationMonitorEventVO.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\animation_monitor\AnimationMonitorEventVO.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\animation_monitor\AnimationMonitorVO.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\Event.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\EventDispatcher.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\EventListenerData.cs" />

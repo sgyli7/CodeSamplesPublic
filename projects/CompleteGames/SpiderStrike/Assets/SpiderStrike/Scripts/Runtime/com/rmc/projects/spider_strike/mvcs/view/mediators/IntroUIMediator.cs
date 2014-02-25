@@ -225,15 +225,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		private void _onUIAnimationCompleteSignal (UIAnimationMonitorEventVO aUIAnimationMonitorEventVO)
+		private void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO)
 		{
 
-			Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.uiAnimationMonitorEventType);
-				
-
-
+			//Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.animationMonitorEventType);
 			//we only care to hear 1 time, after any delays
-			if (aUIAnimationMonitorEventVO.uiAnimationMonitorEventType == UIAnimationMonitorEventType.POST_COMPLETE ) {
+			if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.POST_COMPLETE ) {
 				if (aUIAnimationMonitorEventVO.animationClipName == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
 					gameStateChangeSignal.Dispatch (GameState.GAME_START);
 				}

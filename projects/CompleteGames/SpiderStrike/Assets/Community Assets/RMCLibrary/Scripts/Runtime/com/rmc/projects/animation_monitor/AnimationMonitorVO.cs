@@ -40,22 +40,6 @@ namespace com.rmc.projects.animation_monitor
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	/// <summary>
-	/// Event type.
-	/// 
-	/// 		PRE_START = BEFORE ANY (OPTIONAL) DELAY
-	/// 		START = ANIMATION STARTS TO PLAY
-	/// 		COMPLETE = ANIMATION FINISHES PLAYING
-	/// 		POST_COMPLETE = AFTER ANY (OPTIONAL) DELAY
-	/// 		
-	/// </summary>
-	public enum UIAnimationMonitorEventType
-	{
-		PRE_START,
-		START,
-		COMPLETE,
-		POST_COMPLETE
-	}
 
 	//--------------------------------------
 	//  Class Attributes
@@ -65,7 +49,7 @@ namespace com.rmc.projects.animation_monitor
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class UIAnimationMonitorEventVO
+	public class AnimationMonitorVO
 	{
 		
 		//--------------------------------------
@@ -77,7 +61,7 @@ namespace com.rmc.projects.animation_monitor
 		/// <summary>
 		/// The type of the user interface animation monitor event.
 		/// </summary>
-		public UIAnimationMonitorEventType uiAnimationMonitorEventType;
+		public AnimationMonitorEventType animationMonitorEventType;
 
 		/// <summary>
 		/// The animation.
@@ -112,15 +96,15 @@ namespace com.rmc.projects.animation_monitor
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public UIAnimationMonitorEventVO (Animation aAnimation, string aAnimationClipName_string, UIAnimationMonitorEventType aUIAnimationMonitorEventType )
+		public AnimationMonitorVO (Animation aAnimation, string aAnimationClipName_string, AnimationMonitorEventType aUIAnimationMonitorEventType )
 		{
 			animation 					= aAnimation;
 			animationClipName			= aAnimationClipName_string;
-			uiAnimationMonitorEventType = aUIAnimationMonitorEventType;
+			animationMonitorEventType = aUIAnimationMonitorEventType;
 			
 		}
 		
-		~UIAnimationMonitorEventVO()
+		~AnimationMonitorVO()
 		{
 			
 		}

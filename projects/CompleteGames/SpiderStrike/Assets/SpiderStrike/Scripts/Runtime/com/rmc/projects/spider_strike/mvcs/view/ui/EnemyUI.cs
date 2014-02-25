@@ -30,15 +30,14 @@
 using UnityEngine;
 using strange.extensions.mediation.impl;
 using com.rmc.exceptions;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
-using com.rmc.utilities;
 using System.Collections;
 using com.rmc.projects.animation_monitor;
 
 
+
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -275,6 +274,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 		/// <summary>
+		/// Ises the ready to attack.
+		/// </summary>
+		/// <returns><c>true</c>, if ready to attack was ised, <c>false</c> otherwise.</returns>
+		public bool isReadyToAttack ()
+		{
+
+			return (animationType != AnimationType.ATTACK && animationType != AnimationType.DIE);
+
+		}
+
+		/// <summary>
 		/// Ises the fit to walk.
 		/// </summary>
 		/// <returns><c>true</c>, if fit to walk was ised, <c>false</c> otherwise.</returns>
@@ -332,7 +342,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 
 			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.PRE_START));
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.PRE_START));
 
 
 			//WAIT
@@ -352,7 +362,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				animationDuration_float 	= animationMonitor.setAnimationAndPlay (ANIMATION_NAME_WALK, WrapMode.Loop);
 				break;
 			case AnimationType.ATTACK:
-				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Loop);
+				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Default);
 				break;
 			case AnimationType.TAKE_HIT:
 				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
@@ -372,7 +382,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 
 			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.START));
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.START));
 
 
 			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
@@ -490,14 +500,18 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			yield return new WaitForSeconds (aAnimationDuration_float);
 
 			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.COMPLETE));
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.COMPLETE));
 
 			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
 			yield return new WaitForSeconds (aDelayAfterAnimation_float);
+			if (animation.wrapMode == WrapMode.Loop) {
+				Debug.Log ("onAnimationComplete: " + animation.name + " , " + animation.wrapMode);
+//				StartCoroutine ( onAnimationComplete (aAnimationDuration_float, aDelayAfterAnimation_float)); 
+			}
 
 
 			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.POST_COMPLETE));
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.POST_COMPLETE));
 
 		}
 

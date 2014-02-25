@@ -34,15 +34,12 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.projects.spider_strike.mvcs.model;
-using com.rmc.utilities;
+using com.rmc.projects.animation_monitor;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.animation_monitor;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -139,10 +136,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public void Start ()
 		{
 						
-			/*
-			 * KLUGE: WE CALL BOTH IMMEDIATLY TO MAKE THE 2ND ONE *WORK* PROPERLY
-			 * 
-			 **/
 			view.doPlayAnimation (AnimationType.JUMP, 0, 1f);
 			view.doTweenToFallFromSky();
 
@@ -169,7 +162,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 				} else {
 
-					if (view.animationType != AnimationType.ATTACK && view.animationType != AnimationType.DIE) {
+					if (view.isReadyToAttack()) {
 						view.doPlayAnimation (AnimationType.ATTACK, 0, 0);
 					}
 				}
@@ -210,15 +203,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		private void _onUIAnimationCompleteSignal (UIAnimationMonitorEventVO aUIAnimationMonitorEventVO )
+		private void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO )
 		{
 
 
-			Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.uiAnimationMonitorEventType);
+			//Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.animationMonitorEventType);
 
 
 			//WE MOSTLY CARE ABOUT WHEN THE ANIMATION IS OVER *INCLUDING* ANY COSMETIC DELAYS WE ADDED
-			if (aUIAnimationMonitorEventVO.uiAnimationMonitorEventType == UIAnimationMonitorEventType.POST_COMPLETE) {
+			if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.POST_COMPLETE) {
 
 	
 
@@ -265,7 +258,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 					view.doStopAnimation();
 				}
 
-			} else if (aUIAnimationMonitorEventVO.uiAnimationMonitorEventType == UIAnimationMonitorEventType.COMPLETE) {
+			} else if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.COMPLETE) {
 
 				//BUT SOMETIMES WE JUST WANT TO TRIGGER A SOUND
 
