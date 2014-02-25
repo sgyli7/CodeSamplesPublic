@@ -41,6 +41,7 @@ using com.rmc.projects.spider_strike.mvcs.model.vo;
 //  Namespace
 //--------------------------------------
 using com.rmc.utilities;
+using com.rmc.projects.animation_monitor;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -130,7 +131,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			view.init ();
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
-			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);	
+			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);	
 			
 		}
 		
@@ -141,7 +142,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 			view.uiInputChangedSignal.RemoveListener (_onUIInputChangedSignal);
-			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
+			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);
 		}
 		
 		/// <summary>
@@ -190,7 +191,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//USER CLICKED? - PLAY THE 'END'
 			if (iGameModel.gameState == GameState.INTRO_START && !_wasClicked_boolean) {
 				_wasClicked_boolean = true;
-				view.doPlayAnimationByName (IntroUI.ANIMATION_NAME_INTRO_UI_END);
+				view.doPlayAnimation (IntroUI.ANIMATION_NAME_INTRO_UI_END, 0, 0);
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
 				//
 				view.setClickTextIsVisible (false);
@@ -210,7 +211,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				_wasClicked_boolean = false;
 				//
 				view.setClickTextIsVisible (true);
-				view.doPlayAnimationByName (IntroUI.ANIMATION_NAME_INTRO_UI_START);
+				view.doPlayAnimation (IntroUI.ANIMATION_NAME_INTRO_UI_START, 0, 0);
 			}
 			
 		}
@@ -220,13 +221,16 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		private void _onUIAnimationCompleteSignal (string aAnimationType_string, bool isAfterAnyDelayToo_boolean)
+		private void _onUIAnimationCompleteSignal (UIAnimationMonitorEventVO aUIAnimationMonitorEventVO)
 		{
-			//Debug.Log ("MED._onUIAnimationCompleteSignal(): " + aAnimationType_string);
+
+			Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.uiAnimationMonitorEventType);
+				
+
 
 			//we only care to hear 1 time, after any delays
-			if (isAfterAnyDelayToo_boolean) {
-				if (aAnimationType_string == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
+			if (aUIAnimationMonitorEventVO.uiAnimationMonitorEventType == UIAnimationMonitorEventType.POST_COMPLETE ) {
+				if (aUIAnimationMonitorEventVO.animationClipName == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
 					gameStateChangeSignal.Dispatch (GameState.GAME_START);
 				}
 			}

@@ -40,6 +40,7 @@ using com.rmc.utilities;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.animation_monitor;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view
@@ -120,7 +121,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			view.init();
 			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
 
-			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
+			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);
 
 		}
 
@@ -129,7 +130,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public override void OnRemove()
 		{
-			view.animationMonitor.uiAnimationCompleteSignal.AddListener (_onUIAnimationCompleteSignal);
+			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);
 		}
 
 		/// <summary>
@@ -209,24 +210,27 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// _ons the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
-		private void _onUIAnimationCompleteSignal (string aAnimationType_string, bool isAfterDelayToo_boolean)
+		private void _onUIAnimationCompleteSignal (UIAnimationMonitorEventVO aUIAnimationMonitorEventVO )
 		{
 
+
+			Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.uiAnimationMonitorEventType);
+
+
 			//WE MOSTLY CARE ABOUT WHEN THE ANIMATION IS OVER *INCLUDING* ANY COSMETIC DELAYS WE ADDED
-			if (isAfterDelayToo_boolean) {
+			if (aUIAnimationMonitorEventVO.uiAnimationMonitorEventType == UIAnimationMonitorEventType.POST_COMPLETE) {
 
-				Debug.Log ("AnimEnd: " + aAnimationType_string + " DELAY?: " + isAfterDelayToo_boolean);
-
+	
 
 				if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 
 
-					if (aAnimationType_string == AnimationType.JUMP.ToString()) {
+					if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.JUMP.ToString()) {
 
 						//
 						view.doPlayAnimation (AnimationType.WALK, 0, 0);
 
-					} else if (aAnimationType_string == AnimationType.DIE.ToString()) {
+					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.DIE.ToString()) {
 
 						//DESTROY OBJECT, UPDATE SCORE
 						enemyDiedSignal.Dispatch (view);
@@ -234,17 +238,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 						//PLAY SOUND
 						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
 
-					} else if (aAnimationType_string == AnimationType.WALK.ToString()) {
+					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.WALK.ToString()) {
 
 						//PLAY SOUND
 						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
 
-					} else if (aAnimationType_string == AnimationType.TAKE_HIT.ToString()) {
+					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.TAKE_HIT.ToString()) {
 
 						//
 						view.doPlayAnimation (AnimationType.WALK, 0, 0);
 
-					} else if (aAnimationType_string == AnimationType.ATTACK.ToString()) {
+					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.ATTACK.ToString()) {
 						
 						//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
 						_doInflictDamage();
@@ -261,11 +265,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 					view.doStopAnimation();
 				}
 
-			} else {
+			} else if (aUIAnimationMonitorEventVO.uiAnimationMonitorEventType == UIAnimationMonitorEventType.COMPLETE) {
 
 				//BUT SOMETIMES WE JUST WANT TO TRIGGER A SOUND
 
-				if (aAnimationType_string == AnimationType.JUMP.ToString()) {
+				if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.JUMP.ToString()) {
 					
 					//PLAY SOUND
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));

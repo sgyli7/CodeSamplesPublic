@@ -36,6 +36,7 @@ using com.rmc.exceptions;
 //--------------------------------------
 using com.rmc.utilities;
 using System.Collections;
+using com.rmc.projects.animation_monitor;
 
 
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
@@ -313,6 +314,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// Dos the play animation.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
+		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
+		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
 		public void doPlayAnimation (AnimationType aAnimationType, float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
 		{
 			//
@@ -321,7 +324,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			doStopAnimation();
 
 			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
-			StartCoroutine (doPlayAnimationInvoke(aDelayBeforeAnimation_float, aDelayAfterAnimation_float));
+			StartCoroutine (doPlayAnimationCoroutine(aDelayBeforeAnimation_float, aDelayAfterAnimation_float));
 
 		}
 
@@ -330,11 +333,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		/// <returns>The play animation coroutine.</returns>
 		/// <param name="aAnimationType">A animation type.</param>
-		public IEnumerator doPlayAnimationInvoke (float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
+		public IEnumerator doPlayAnimationCoroutine (float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
 		{
 
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.PRE_START));
 
+
+			//WAIT
 			yield return new WaitForSeconds(aDelayBeforeAnimation_float);
+
+
 			//
 
 			float  animationDuration_float; 
@@ -367,7 +376,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			}
 			
 
-			
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.START));
+
+
 			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
 			StartCoroutine ( onAnimationComplete (animationDuration_float, aDelayAfterAnimation_float));
 
@@ -484,35 +496,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//--------------------------------------
 		/// <summary>
 		/// Ons the animation complete.
-		/// 
-		/// 
-		/// NOTE: Method must be ***public*** due to InvokeRepeating
-		/// TODO: PACK THIS 'ON COMPLETE' FUNCTIONALITY INTO THE EXTENSION METHODS FOR 'Animation'
-		/// 
-		/// 
 		/// </summary>
+		/// <returns>The animation complete.</returns>
+		/// <param name="aAnimationDuration_float">A animation duration_float.</param>
+		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
 		public IEnumerator onAnimationComplete (float aAnimationDuration_float, float aDelayAfterAnimation_float)
 		{
 
-			//WAIT FOR THE ANIMATION TO STOP
+			//WAIT
 			yield return new WaitForSeconds (aAnimationDuration_float);
 
-			//if (animation.wrapMode == WrapMode.Loop) {
-				//REPEATEDLY DISPATCH 'COMPLETE' FOR LOOPING ANIMS
-				//THIS HELPS WITH FOOTSTEP SOUNDS, ETC...
-			//	StartCoroutine (onAnimationComplete (aAnimationDuration_float, aDelayAfterAnimation_float));
-			//}
-
-			//Debug.Log ("1("+aAnimationDuration_float+")onAnimationComplete: " + animationType.ToString());
-			animationMonitor.uiAnimationCompleteSignal.Dispatch (animationType.ToString(), false);
-
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.COMPLETE));
 
 			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
 			yield return new WaitForSeconds (aDelayAfterAnimation_float);
 
 
-			//Debug.Log ("2onAnimationComplete: " + animationType.ToString());
-			animationMonitor.uiAnimationCompleteSignal.Dispatch (animationType.ToString(), true);
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationType.ToString(), UIAnimationMonitorEventType.POST_COMPLETE));
+
 		}
 
 	}

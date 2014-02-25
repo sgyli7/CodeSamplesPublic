@@ -38,6 +38,10 @@ using com.rmc.projects.spider_strike.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.animation_monitor;
+using System.Collections;
+
+
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -69,7 +73,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The user interface button clicked signal.
 		/// </summary>
 		public UIInputChangedSignal uiInputChangedSignal {set; get;}
-
+		
 		/// <summary>
 		/// The _text alpha_float.
 		/// </summary>
@@ -80,40 +84,40 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				_textAlpha_float = value;
 			}
 		}
-
+		
 		// PUBLIC
-
+		
 		/// <summary>
 		/// The click GUI text_gameobject.
 		/// </summary>
 		public GameObject clickGUIText_gameobject;
-
+		
 		//  PUBLIC STATIC
 		/// <summary>
 		/// The ANIMATIO n_ NAM e_ INTROU i_ STAR.
 		/// </summary>
 		public const string ANIMATION_NAME_INTRO_UI_START 	= "IntroUI_Start";
-
+		
 		/// <summary>
 		/// The ANIMATIO n_ NAM e_ INTROU i_ STAR.
 		/// </summary>
 		public const string ANIMATION_NAME_INTRO_UI_END 	= "IntroUI_End";
-
+		
 		/// <summary>
 		/// The intro mode.
 		/// </summary>
 		public IntroMode introMode = IntroMode.Show;
-
+		
 		/// <summary>
 		/// The intro animation clip.
 		/// </summary>
 		public AnimationClip introStartAnimationClip;
-
+		
 		/// <summary>
 		/// The outro animation clip.
 		/// </summary>
 		public AnimationClip introEndAnimationClip;
-
+		
 		
 		/// <summary>
 		/// The _animation binder.
@@ -122,15 +126,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// 
 		/// </summary>
 		public AnimationMonitor animationMonitor;
-
+		
 		// PRIVATE STATIC
-
+		
 		//
 		/// <summary>
 		/// The _click GUI text.
 		/// </summary>
 		private GUIText _clickGUIText;
-
+		
 		
 		//--------------------------------------
 		//  Methods
@@ -158,7 +162,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			_clickGUIText = clickGUIText_gameobject.GetComponent<GUIText>();
 			animation.AddClip (introStartAnimationClip, ANIMATION_NAME_INTRO_UI_START);
 			animation.AddClip (introEndAnimationClip, ANIMATION_NAME_INTRO_UI_END);
-
+			
 			
 			
 		}
@@ -169,16 +173,16 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		///</summary>
 		void Update () 
 		{
-
+			
 			//Debug.Log ("updating: " + _textAlpha_float);
 			//RendererUtility.SetMaterialAlpha (_clickGUIText.material, _textAlpha_float);
-
-
+			
+			
 			if (Input.GetMouseButton(0) || Input.anyKey) {
-
+				
 				//SEND ANY KEYCODE. ITS NOT IMPORTANT
 				uiInputChangedSignal.Dispatch (new  UIInputVO (KeyCode.A, UIInputEventType.DownEnter));
-
+				
 			}
 			
 		}
@@ -192,7 +196,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			base.OnDestroy();
 			
 		}
-
+		
 		/// <summary>
 		/// Sets the health text.
 		/// </summary>
@@ -202,49 +206,84 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			_clickGUIText.text = aMessage_string;
 			
 		}
-
-
+		
+		
 		/// <summary>
 		/// Sets the click text is visible.
 		/// </summary>
 		/// <param name="isVisible_boolean">Is visible_boolean.</param>
 		public void setClickTextIsVisible (bool isVisible_boolean)
 		{
-
+			
 			RendererUtility.SetMaterialVisibility (_clickGUIText.material, isVisible_boolean);
+		}
+		
+		/// <summary>
+		/// Dos the play animation.
+		/// </summary>
+		/// <param name="aAnimationType">A animation type.</param>
+		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
+		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
+		public void doPlayAnimation (string animationClipName_string, float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
+		{
+			//
+			doStopAnimation();
+			
+			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
+			StartCoroutine (doPlayAnimationCoroutine(animationClipName_string, aDelayBeforeAnimation_float, aDelayAfterAnimation_float));
+			
 		}
 
 		/// <summary>
-		/// Dos the name of the play animation by.
+		/// Dos the stop animation.
 		/// </summary>
-		/// <param name="aAnimationName_string">A animation name_string.</param>
-		public void doPlayAnimationByName (string aAnimationName_string)
+		public void doStopAnimation()
 		{
-
-			//Debug.Log ("doPlayAnimationByName: " + aAnimationName_string);
-			if (introMode == IntroMode.Show) {
-
-				//
-				gameObject.SetActive (true);
-				//
-				float animationDuration_float = animationMonitor.setAnimationAndPlay (aAnimationName_string, WrapMode.Once);
+			animation.Stop();
 			
-				//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
-				CancelInvoke("onAnimationComplete");
-				if (animationDuration_float != 0) {
-					InvokeRepeating ("onAnimationComplete", animationDuration_float, animationDuration_float);
-				}
-			} else {
-
-				//
-				gameObject.SetActive (false);
-				//
-
-				//SKIP IT
-				Invoke ("onAnimationComplete", .1f);
-			}
-
+			
 		}
+
+		/// <summary>
+		/// Dos the play animation coroutine.
+		/// </summary>
+		/// <returns>The play animation coroutine.</returns>
+		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
+		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
+		public IEnumerator doPlayAnimationCoroutine (string animationClipName_string, float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
+		{
+			
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animation.name, UIAnimationMonitorEventType.PRE_START));
+			
+			
+			//WAIT
+			yield return new WaitForSeconds(aDelayBeforeAnimation_float);
+			
+			
+			//
+			float animationDuration_float = animationMonitor.setAnimationAndPlay (animationClipName_string, WrapMode.Once);
+			
+			
+			if (introMode == IntroMode.Show) {
+				
+				gameObject.SetActive (true);
+				
+			} else {
+				//WE SKIP THE ANIMATION AND DON'T WAIT FOR IT
+				animationDuration_float = .1f; //SUPER SHORT DURATION
+			}
+			
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animation.name, UIAnimationMonitorEventType.START));
+			
+			
+			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
+			StartCoroutine ( onAnimationComplete (animationDuration_float, aDelayAfterAnimation_float));
+			
+			
+		}
+		
 		
 		// PUBLIC STATIC
 		
@@ -263,29 +302,40 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//--------------------------------------
 		/// <summary>
 		/// Ons the animation complete.
-		/// 
-		/// 
-		/// NOTE: Method must be ***public*** due to InvokeRepeating
-		/// TODO: PACK THIS 'ON COMPLETE' FUNCTIONALITY INTO THE EXTENSION METHODS FOR 'Animation'
-		/// 
-		///
 		/// </summary>
-		public void onAnimationComplete ()
+		/// <returns>The animation complete.</returns>
+		/// <param name="aAnimationDuration_float">A animation duration_float.</param>
+		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
+		public IEnumerator onAnimationComplete (float aAnimationDuration_float, float aDelayAfterAnimation_float)
 		{
-			//Debug.Log ("onAnimationComplete : " + animation.name);
-
-			if (animation.wrapMode != WrapMode.Loop) {
-				CancelInvoke("onAnimationComplete");
-			}
+			
+			//ALLOW DEVELOPER TO SKIP THE WHOLE INTRO VIA INSPECTOR DROPDOWN
+			string animationClipName_string;
 			if (introMode == IntroMode.Show) {
-				//RESPECT THE ANIMATION PROPERLY
-				animationMonitor.uiAnimationCompleteSignal.Dispatch (animation.name, true);
+				animationClipName_string = animation.name;
+				
 			} else {
-				//FAKE LIKE THE 'END' HAPPENED
-				animationMonitor.uiAnimationCompleteSignal.Dispatch (ANIMATION_NAME_INTRO_UI_END, true);
+				animationClipName_string = ANIMATION_NAME_INTRO_UI_END;
 			}
+			
+			
+			//////////////////
+			
+			//WAIT
+			yield return new WaitForSeconds (aAnimationDuration_float);
+			
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationClipName_string, UIAnimationMonitorEventType.COMPLETE));
+			
+			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
+			yield return new WaitForSeconds (aDelayAfterAnimation_float);
+			
+			
+			//SEND SIGNAL
+			animationMonitor.uiAnimationMonitorSignal.Dispatch (new UIAnimationMonitorEventVO (animation, animationClipName_string, UIAnimationMonitorEventType.POST_COMPLETE));
+			
 		}
-
+		
 		
 	}
 }

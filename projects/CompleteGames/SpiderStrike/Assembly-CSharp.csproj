@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;0</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -51,15 +51,16 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\exceptions\SwitchStatementException.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\AnimationExtensions.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\GameObjectExtensions.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\Event.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\EventDispatcher.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\EventListenerData.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\IEvent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\EventDispatcher\IEventDispatcher.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\animation_monitor\AnimationMonitor.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\animation_monitor\UIAnimationMonitorEventVO.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\Event.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\EventDispatcher.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\EventListenerData.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\IEvent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\projects\event_dispatcher\IEventDispatcher.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateInterface.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateManagerComponent.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\AnimationMonitor.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\GenericsUtility.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\RendererUtility.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\ReadMe.cs" />
@@ -221,7 +222,7 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\TestUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\TurretUIMediator.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\mediators\VirtualControllerUIMediator.cs" />
-     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIAnimationCompleteSignal.cs" />
+     <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIAnimationMonitorEventSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIInputChangedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\signals\UIPromptEndedSignal.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\EnemyUI.cs" />
