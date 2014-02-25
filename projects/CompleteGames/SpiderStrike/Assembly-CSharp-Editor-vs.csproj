@@ -49,7 +49,6 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\CreateDefaultFoldersMenu.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\EditorWindowUtility.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\ScriptableObjectUtility.cs" />
-     <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Light.shader" />
