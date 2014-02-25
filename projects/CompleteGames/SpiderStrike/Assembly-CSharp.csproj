@@ -241,7 +241,6 @@
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\TestUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\TurretUI.cs" />
      <Compile Include="Assets\SpiderStrike\Scripts\Runtime\com\rmc\projects\spider_strike\mvcs\view\ui\VirtualControllerUI.cs" />
-     <Compile Include="Assets\TestComponent.cs" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Light.shader" />

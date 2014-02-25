@@ -196,7 +196,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				view.doPlayAnimation (IntroUI.ANIMATION_NAME_INTRO_UI_END, 0, 0);
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
 				//
-				view.setLogoTextureIsVisible 	(false);
 			}
 		}
 
