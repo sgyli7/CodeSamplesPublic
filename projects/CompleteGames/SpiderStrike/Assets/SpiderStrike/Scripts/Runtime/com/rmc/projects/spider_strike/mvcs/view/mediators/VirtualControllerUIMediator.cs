@@ -30,19 +30,13 @@
 //--------------------------------------
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
-using com.rmc.exceptions;
-using com.rmc.projects.spider_strike.mvcs.model.vo;
-
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -151,7 +145,28 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// _ons the game state changed signal.
+		/// When the cross platform changed signal fires.
+		/// 
+		/// NOTE: 	During startup we dispatch this signal based on
+		/// 		Application.platform so obvservers can handle themselves.
+		/// 
+		/// </summary>
+		/// <param name="aRuntimePlatform">A runtime platform.</param>
+		override protected void _onCrossPlatformChangedSignal (RuntimePlatform aRuntimePlatform)
+		{
+			//THIS FUNCTIONALITY SHOULD RUN ONLY ON SOME PLATFORMS.
+			if (aRuntimePlatform != RuntimePlatform.IPhonePlayer) {
+
+				gameObject.SetActive (false);
+			} else {
+				gameObject.SetActive (true);
+			}
+			
+		}
+
+
+		/// <summary>
+		/// When the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)

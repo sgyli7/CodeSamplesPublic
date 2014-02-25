@@ -111,7 +111,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		
 		// PRIVATE
 		/// <summary>
-		/// The _was clicked_boolean.
+		/// When the _was clicked_boolean.
 		/// NOTE: Used to accept exactly 0,1 clicks
 		/// </summary>
 		private bool _wasClicked_boolean = false;
@@ -131,7 +131,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			view.init ();
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
-			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);	
+
 			
 		}
 		
@@ -150,7 +150,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public void Start()
 		{
-			
+			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);	
 			view.setClickText (Constants.HUD_CLICK_ANYWHERE);
 			view.setClickTextIsVisible 		(false);
 			view.setLogoTextureIsVisible 	(false);
@@ -184,7 +184,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 
 		/// <summary>
-		/// _ons the user interface input changed signal.
+		/// When the user interface input changed signal.
 		/// </summary>
 		/// <param name="">.</param>
 		private void _onUIInputChangedSignal (UIInputVO aUIInputVO) 
@@ -196,7 +196,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				view.doPlayAnimation (IntroUI.ANIMATION_NAME_INTRO_UI_END, 0, 0);
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
 				//
-				view.setClickTextIsVisible 		(false);
 				view.setLogoTextureIsVisible 	(false);
 			}
 		}
@@ -204,7 +203,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 
 		/// <summary>
-		/// _ons the game state changed signal.
+		/// When the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
@@ -222,7 +221,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 
 		/// <summary>
-		/// _ons the user interface animation complete signal.
+		/// When the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
 		private void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO)
@@ -231,7 +230,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			//Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.animationMonitorEventType);
 			//we only care to hear 1 time, after any delays
 			if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.POST_COMPLETE ) {
-				if (aUIAnimationMonitorEventVO.animationClipName == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
+				if (aUIAnimationMonitorEventVO.animationMonitorRequestVO.animationClipName == IntroUI.ANIMATION_NAME_INTRO_UI_END) {
+					view.gameObject.SetActive (false);
 					gameStateChangeSignal.Dispatch (GameState.GAME_START);
 				}
 			}

@@ -29,22 +29,17 @@
 //  Imports
 //--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model.vo;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.model
 {
 	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	/// <summary>
-	/// 
-	/// </summary>
 	public interface IGameModel
 	{
 		

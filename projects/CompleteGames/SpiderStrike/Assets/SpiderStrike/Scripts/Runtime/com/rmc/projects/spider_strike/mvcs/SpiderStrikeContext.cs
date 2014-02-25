@@ -79,24 +79,32 @@ namespace com.rmc.projects.spider_strike.mvcs
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.SpiderStrikeContext"/> class.
+		/// </summary>
 		public SpiderStrikeContext () : base()
 		{
 		}
-		
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.SpiderStrikeContext"/> class.
+		/// </summary>
+		/// <param name="view">View.</param>
+		/// <param name="autoStartup">If set to <c>true</c> auto startup.</param>
 		public SpiderStrikeContext (MonoBehaviour view, bool autoStartup) : base(view, autoStartup)
 		{
 			//Debug.Log ("SpiderStrikeContext.constructor()");
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.SpiderStrikeContext"/> is reclaimed by garbage collection.
+		/// </summary>
 		~SpiderStrikeContext()
 		{
 			
@@ -191,6 +199,8 @@ namespace com.rmc.projects.spider_strike.mvcs
 			//
 			injectionBinder.Bind<PromptStartSignal>().ToSingleton();
 			injectionBinder.Bind<PromptEndedSignal>().ToSingleton();
+			//
+			commandBinder.Bind<GameResetSignal>().To<GameResetCommand>();
 
 
 
@@ -205,7 +215,10 @@ namespace com.rmc.projects.spider_strike.mvcs
 			commandBinder.Bind<GameStateChangeSignal>().To<GameStateChangeCommand>();
 			injectionBinder.Bind<GameStateChangedSignal>().ToSingleton();
 			//
-			commandBinder.Bind<GameResetSignal>().To<GameResetCommand>();
+			commandBinder.Bind<CrossPlatformChangeSignal>().To<CrossPlatformChangeCommand>();
+			injectionBinder.Bind<CrossPlatformChangedSignal>().ToSingleton();
+			//
+
 
 			/**
 			 * SERVICE

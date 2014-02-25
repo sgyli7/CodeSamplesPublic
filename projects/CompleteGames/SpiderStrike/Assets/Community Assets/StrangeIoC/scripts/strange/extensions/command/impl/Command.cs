@@ -47,7 +47,7 @@ namespace strange.extensions.command.impl
 		[Inject]
 		public ICommandBinder commandBinder{ get; set;}
 
-		/// The InjectionBinder for this Context
+		/// When the InjectionBinder for this Context
 		[Inject]
 		public IInjectionBinder injectionBinder{ get; set; }
 

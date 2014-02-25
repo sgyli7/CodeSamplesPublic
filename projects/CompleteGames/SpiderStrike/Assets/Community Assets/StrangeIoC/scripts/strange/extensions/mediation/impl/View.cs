@@ -65,7 +65,7 @@ namespace strange.extensions.mediation.impl
 		public bool registeredWithContext{get; set;}
 
 		/// A MonoBehaviour Awake handler.
-		/// The View will attempt to connect to the Context at this moment.
+		/// When the View will attempt to connect to the Context at this moment.
 		protected virtual void Awake ()
 		{
 			if (autoRegisterWithContext && !registeredWithContext)
@@ -82,7 +82,7 @@ namespace strange.extensions.mediation.impl
 		}
 
 		/// A MonoBehaviour OnDestroy handler
-		/// The View will inform the Context that it is about to be
+		/// When the View will inform the Context that it is about to be
 		/// destroyed.
 		protected virtual void OnDestroy ()
 		{

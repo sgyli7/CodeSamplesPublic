@@ -29,15 +29,14 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using System.Collections;
 using com.rmc.projects.spider_strike.mvcs.view.signals;
 using com.rmc.utilities;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -71,41 +70,41 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public UIPromptEndedSignal uiPromptEndedSignal { set; get; }
 
 		/// <summary>
-		/// The health GUI text.
+		/// When the health GUI text.
 		/// </summary>
 		public GameObject healthGUIText_gameobject;
 
 
 		/// <summary>
-		/// The health GUI text.
+		/// When the health GUI text.
 		/// </summary>
 		public GameObject healthGUIText2_gameobject;
 
 
 		/// <summary>
-		/// The score GUI text.
+		/// When the score GUI text.
 		/// </summary>
 		public GameObject scoreGUIText_gameObject;
 
 		/// <summary>
-		/// The score GUI text.
+		/// When the score GUI text.
 		/// </summary>
 		public GameObject scoreGUIText2_gameObject;
 
 		
 		/// <summary>
-		/// The prompt GUI text_game object.
+		/// When the prompt GUI text_game object.
 		/// </summary>
 		public GameObject promptGUIText_gameObject;
 
 		
 		/// <summary>
-		/// The prompt GUI text_game object.
+		/// When the prompt GUI text_game object.
 		/// </summary>
 		public GameObject promptGUIText2_gameObject;
 
 		/// <summary>
-		/// The FPS GUI text_game object.
+		/// When the FPS GUI text_game object.
 		/// </summary>
 		public GameObject fpsGUIText_gameObject;
 
@@ -114,45 +113,45 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// The health GUI text.
+		/// When the health GUI text.
 		/// </summary>
 		private GUIText _healthGUIText;
 
 		/// <summary>
-		/// The health GUI text.
+		/// When the health GUI text.
 		/// </summary>
 		private GUIText _healthGUIText2;
 
 		/// <summary>
-		/// The score GUI text.
+		/// When the score GUI text.
 		/// </summary>
 		private GUIText _scoreGUIText;
 
 		/// <summary>
-		/// The score GUI text.
+		/// When the score GUI text.
 		/// </summary>
 		private GUIText _scoreGUIText2;
 
 		
 		/// <summary>
-		/// The prompt GUI text.
+		/// When the prompt GUI text.
 		/// </summary>
 		private GUIText _promptGUIText;
 
 		
 		/// <summary>
-		/// The prompt GUI text.
+		/// When the prompt GUI text.
 		/// </summary>
 		private GUIText _promptGUIText2;
 
 		/// <summary>
-		/// The FPS GUI text.
+		/// When the FPS GUI text.
 		/// </summary>
 		private GUIText _fpsGUIText;
 
 
 		/// <summary>
-		/// The _last prompt message_string.
+		/// When the _last prompt message_string.
 		/// 
 		/// NOTE: Store this for quick usage
 		/// </summary>
@@ -163,9 +162,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
-
-
-
 		/// <summary>
 		/// Init this instance.
 		/// </summary>
@@ -355,7 +351,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//
 		//--------------------------------------
 		/// <summary>
-		/// _ons the prompt fade out complete.
+		/// When the prompt fade out complete.
 		/// </summary>
 		private void _onPromptFadeOutComplete ()
 		{
@@ -365,7 +361,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// _ons the delay after prompt fade out complete.
+		/// When the delay after prompt fade out complete.
 		/// 
 		/// NOTE: Must be public
 		/// 

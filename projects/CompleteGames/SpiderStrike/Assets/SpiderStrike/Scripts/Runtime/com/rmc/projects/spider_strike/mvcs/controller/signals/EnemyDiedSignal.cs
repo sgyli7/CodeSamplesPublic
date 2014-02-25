@@ -30,7 +30,6 @@
 //--------------------------------------
 using strange.extensions.signal.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
-using UnityEngine;
 
 //--------------------------------------
 //  Namespace
@@ -77,15 +76,20 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.EnemyDiedSignal"/> class.
+		/// </summary>
 		public EnemyDiedSignal( )
 		{
 			//Debug.Log ("EnemyDiedSignal.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.EnemyDiedSignal"/> is reclaimed by garbage collection.
+		/// </summary>
 		~EnemyDiedSignal()
 		{
 			

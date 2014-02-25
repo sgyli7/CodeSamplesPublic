@@ -33,7 +33,7 @@ namespace strange.extensions.context.impl
 {
 	public class Context : Binder, IContext
 	{
-		/// The top of the View hierarchy.
+		/// When the top of the View hierarchy.
 		/// In MVCSContext, this is your top-level GameObject
 		public object contextView{get;set;}
 
@@ -107,7 +107,7 @@ namespace strange.extensions.context.impl
 			return this;
 		}
 
-		/// The final method to fire after mappings.
+		/// When the final method to fire after mappings.
 		/// If autoStartup is false, you need to call this manually.
 		virtual public void Launch()
 		{

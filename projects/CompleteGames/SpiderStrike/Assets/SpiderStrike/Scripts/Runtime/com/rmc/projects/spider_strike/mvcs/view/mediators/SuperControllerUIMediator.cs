@@ -34,14 +34,13 @@ using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
 using com.rmc.exceptions;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model;
-
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -106,6 +105,13 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		[Inject]
 		public IGameModel iGameModel { get; set; } 
 
+		/// <summary>
+		/// Gets or sets the cross platform changed signal.
+		/// </summary>
+		/// <value>The cross platform changed signal.</value>
+		[Inject]
+		public CrossPlatformChangedSignal crossPlatformChangedSignal {get;set;}
+
 		
 		// PUBLIC
 		
@@ -130,6 +136,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			view.init();
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
+			crossPlatformChangedSignal.AddListener (_onCrossPlatformChangedSignal);
 			
 		}
 		
@@ -139,6 +146,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public override void OnRemove()
 		{
 			view.uiInputChangedSignal.RemoveListener (_onUIInputChangedSignal);
+			crossPlatformChangedSignal.RemoveListener (_onCrossPlatformChangedSignal);
 		}
 		
 		
@@ -166,7 +174,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the send move.
+		/// Do send move.
 		/// </summary>
 		/// <param name="aTurretMoveVO">A turret move V.</param>
 		private void _doSendMove (TurretMoveVO aTurretMoveVO) 
@@ -189,7 +197,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// _ons the user interface input signal.
+		/// When the cross platform changed signal fires.
+		/// 
+		/// NOTE: 	During startup we dispatch this signal based on
+		/// 		Application.platform so obvservers can handle themselves.
+		/// 
+		/// </summary>
+		/// <param name="aRuntimePlatform">A runtime platform.</param>
+		protected virtual void _onCrossPlatformChangedSignal (RuntimePlatform aRuntimePlatform)
+		{
+			//OVERRIDE FOR USEAGE
+
+		}
+
+
+		/// <summary>
+		/// When the user interface input signal.
 		/// </summary>
 		/// <param name="aUIInputType">A user interface input type.</param>
 		private void _onUIInputChangedSignal (UIInputVO aUIInputVO)

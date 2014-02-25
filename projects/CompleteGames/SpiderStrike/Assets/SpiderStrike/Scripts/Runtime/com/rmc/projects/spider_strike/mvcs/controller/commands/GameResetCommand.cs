@@ -86,11 +86,6 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 			//Debug.Log ("GameResetCommand.cs.Execute()" + gameState);
 
 
-			//IDEALLY 100% OF RAM IS BLANKED. IS SOMETHING NOT BLANKING? WE HAVE A BUG
-			//WE ARE TESTING THE 'COMPLETENESS' OF A RESET
-			//SHALL WE SET A VALUE AND TEST THE MODEL LATER?
-			//iGameModel.blah
-
 			/// NOTE: This works great. 
 			/// 
 			/// NOTE: In a more mature game, you may need be

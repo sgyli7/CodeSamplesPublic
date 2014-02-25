@@ -63,6 +63,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	[RequireComponent (typeof(Animation), typeof(AnimationMonitor))]
 	public class EnemyUI : View 
 	{
 		
@@ -74,23 +75,15 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PUBLIC
 
-		/// <summary>
-		/// Gets or sets the user interface animation complete.
-		/// </summary>
-		/// <value>The user interface animation complete.</value>
-		//public UIAnimationCompleteSignal uiAnimationCompleteSignal {set; get;}
-
-
-
 
 		/// <summary>
-		/// The type of the _animation.
+		/// When the type of the _animation.
 		/// </summary>
 		public AnimationType animationType; 
 
 		// PUBLIC STATIC
 		/// <summary>
-		/// The LAYE r_ NAM.
+		/// When the LAYE r_ NAM.
 		/// </summary>
 		public static string LAYER_NAME = "EnemyLayer";
 
@@ -106,22 +99,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 		/// <summary>
-		/// The animation.
+		/// When the animation.
 		/// </summary>
 		new private Animation animation;
 
 		/// <summary>
-		/// The _particle system.
+		/// When the _particle system.
 		/// </summary>
 		private ParticleSystem _particleSystem;
 
 		/// <summary>
-		/// The _health current_float.
+		/// When the _health current_float.
 		/// </summary>
 		private float _healthCurrent_float;
 		
 		/// <summary>
-		/// The _target turret U.
+		/// When the _target turret U.
 		/// </summary>
 		private TurretUI _targetTurretUI;
 		public TurretUI targetTurretUI
@@ -150,7 +143,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// The _animation binder.
+		/// When the _animation binder.
 		/// 
 		/// NOTE: Notifies when an animation is complete
 		/// 
@@ -158,7 +151,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public AnimationMonitor animationMonitor;
 
 		/// <summary>
-		/// The ANIMATION NAMES
+		/// When the ANIMATION NAMES
 		/// </summary>
 		public const string ANIMATION_NAME_IDLE 		= "idle";	
 		public const string ANIMATION_NAME_JUMP 		= "jump";
@@ -172,27 +165,25 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 		/// <summary>
-		/// The attack radius.
+		/// When the attack radius.
 		/// NOTE: SET FROM OUTSIDE
 		/// </summary>
 		private float _attackRadius;
 
 		/// <summary>
-		/// The _move speed_float.
+		/// When the _move speed_float.
 		/// </summary>
 		private float _moveSpeed_float;
 
 
-
-
 		// PRIVATE STATIC
 		/// <summary>
-		/// The _ ROTATIO n_ SPEE.
+		/// MOVEMENT PER KEYSTROKE
 		/// </summary>
 		private const float _ROTATION_SPEED = 1.0f;
 
 		/// <summary>
-		/// The _ MOV e_ BAC k_ WHE n_ HI t_ AMOUN.
+		/// RECOIL WHEN HIT BY BULLET
 		/// </summary>
 		private const float _MOVE_BACK_WHEN_HIT_AMOUNT = 1;
 
@@ -206,8 +197,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public void init ()
 		{
-			animationMonitor = new AnimationMonitor (gameObject);
-
 
 		}
 
@@ -217,6 +206,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// <param name="aTargetGameObject">A target game object.</param>
 		/// <param name="aAttackRadius_float">A attack radius_float.</param>
 		/// <param name="aHealth_float">A health_float.</param>
+		/// <param name="aMoveSpeed_float">A move speed_float.</param>
 		public void setParameters (TurretUI aTargetGameObject, float aAttackRadius_float, float aHealth_float, float aMoveSpeed_float)
 		{
 			_targetTurretUI 		= aTargetGameObject;
@@ -234,8 +224,9 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			base.Start();
-			animation 		= GetComponentInChildren<Animation>();
-			_particleSystem = GetComponentInChildren<ParticleSystem>();
+			animation 			= GetComponentInChildren<Animation>();
+			animationMonitor 	= GetComponentInChildren<AnimationMonitor>();
+			_particleSystem 	= GetComponentInChildren<ParticleSystem>();
 			
 			
 		}
@@ -264,7 +255,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PUBLIC
 
 		/// <summary>
-		/// _ises at attacking distance.
+		/// Is at attacking distance.
 		/// </summary>
 		/// <returns><c>true</c>, if at attacking distance was _ised, <c>false</c> otherwise.</returns>
 		public bool isAtAttackingDistance ()
@@ -274,7 +265,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 		/// <summary>
-		/// Ises the ready to attack.
+		/// Is ready to attack.
 		/// </summary>
 		/// <returns><c>true</c>, if ready to attack was ised, <c>false</c> otherwise.</returns>
 		public bool isReadyToAttack ()
@@ -285,7 +276,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Ises the fit to walk.
+		/// Is the fit to walk.
 		/// </summary>
 		/// <returns><c>true</c>, if fit to walk was ised, <c>false</c> otherwise.</returns>
 		public bool isFitToWalk (){
@@ -294,7 +285,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 		
 		/// <summary>
-		/// _dos the face target.
+		/// Do face target.
 		/// </summary>
 		public void doFaceTarget ()
 		{
@@ -307,7 +298,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 		
 		/// <summary>
-		/// _dos the move to target.
+		/// Do move to target.
 		/// </summary>
 		public void doMoveToTarget ()
 		{
@@ -316,7 +307,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the play animation.
+		/// Do play animation.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
 		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
@@ -328,50 +319,27 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 			doStopAnimation();
 
-			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
-			StartCoroutine (doPlayAnimationCoroutine(aDelayBeforeAnimation_float, aDelayAfterAnimation_float));
 
-		}
-
-		/// <summary>
-		/// Dos the play animation coroutine.
-		/// </summary>
-		/// <returns>The play animation coroutine.</returns>
-		/// <param name="aAnimationType">A animation type.</param>
-		public IEnumerator doPlayAnimationCoroutine (float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
-		{
-
-			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.PRE_START));
-
-
-			//WAIT
-			yield return new WaitForSeconds(aDelayBeforeAnimation_float);
-
-
-			//
-
-			float  animationDuration_float; 
 			
 			//
 			switch (animationType) {
 			case AnimationType.JUMP:
-				animationDuration_float 	= animationMonitor.setAnimationAndPlay (ANIMATION_NAME_JUMP, WrapMode.Default);
+				animationMonitor.playRequest ( new AnimationMonitorRequestVO (ANIMATION_NAME_JUMP, WrapMode.Default));
 				break;
 			case AnimationType.WALK:
-				animationDuration_float 	= animationMonitor.setAnimationAndPlay (ANIMATION_NAME_WALK, WrapMode.Loop);
+				animationMonitor.playRequest ( new AnimationMonitorRequestVO (ANIMATION_NAME_WALK, WrapMode.Loop));
 				break;
 			case AnimationType.ATTACK:
-				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Default);
+				animationMonitor.playRequest ( new AnimationMonitorRequestVO (_getRandomStringFrom( new string[] {ANIMATION_NAME_ATTACK_1, ANIMATION_NAME_ATTACK_2}), WrapMode.Default));
 				break;
 			case AnimationType.TAKE_HIT:
-				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default);
+				animationMonitor.playRequest ( new AnimationMonitorRequestVO (_getRandomStringFrom(new string[] {ANIMATION_NAME_HIT_1, ANIMATION_NAME_HIT_2}), WrapMode.Default));
 				break;
 			case AnimationType.DIE:
-				animationDuration_float 	= animationMonitor.setAnimationAndPlay (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.Default);
+				animationMonitor.playRequest ( new AnimationMonitorRequestVO (_getRandomStringFrom(new string[] {ANIMATION_NAME_DEATH_1, ANIMATION_NAME_DEATH_2}), WrapMode.Default));
 				break;
 			case AnimationType.IDLE:
-				animationDuration_float 	= animationMonitor.setAnimationAndPlay (ANIMATION_NAME_IDLE, WrapMode.Default);
+				animationMonitor.playRequest ( new AnimationMonitorRequestVO (ANIMATION_NAME_IDLE, WrapMode.Default));
 				break;
 			default:
 				#pragma warning disable 0162
@@ -379,14 +347,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				break;
 				#pragma warning restore 0162
 			}
-			
-
-			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.START));
-
-
-			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
-			StartCoroutine ( onAnimationComplete (animationDuration_float, aDelayAfterAnimation_float));
 
 
 		}
@@ -394,7 +354,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 
 		/// <summary>
-		/// Dos the stop animation.
+		/// Do stop animation.
 		/// </summary>
 		public void doStopAnimation()
 		{
@@ -404,7 +364,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the take damage.
+		/// Do take damage.
 		/// </summary>
 		/// <param name="aDamageAmount_float">A damage amount_float.</param>
 		public void doTakeDamage (float aDamageAmount_float)
@@ -430,7 +390,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the tween to fall from sky.
+		/// Do tween to fall from sky.
 		/// </summary>
 		public void doTweenToFallFromSky ()
 		{
@@ -445,7 +405,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the tween to fall from sky.
+		/// Do tween to fall from sky.
 		/// </summary>
 		public void doTweenToSinkIntoGround ()
 		{
@@ -466,7 +426,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PRIVATE
 
 		/// <summary>
-		/// _gets the random string from.
+		/// _gets the random string from from the array
 		/// </summary>
 		/// <returns>The random string from.</returns>
 		/// <param name="aString_array">A string_array.</param>
@@ -487,33 +447,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
-		/// <summary>
-		/// Ons the animation complete.
-		/// </summary>
-		/// <returns>The animation complete.</returns>
-		/// <param name="aAnimationDuration_float">A animation duration_float.</param>
-		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
-		public IEnumerator onAnimationComplete (float aAnimationDuration_float, float aDelayAfterAnimation_float)
-		{
 
-			//WAIT
-			yield return new WaitForSeconds (aAnimationDuration_float);
-
-			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.COMPLETE));
-
-			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
-			yield return new WaitForSeconds (aDelayAfterAnimation_float);
-			if (animation.wrapMode == WrapMode.Loop) {
-				Debug.Log ("onAnimationComplete: " + animation.name + " , " + animation.wrapMode);
-//				StartCoroutine ( onAnimationComplete (aAnimationDuration_float, aDelayAfterAnimation_float)); 
-			}
-
-
-			//SEND SIGNAL
-			animationMonitor.uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (animation, animationType.ToString(), AnimationMonitorEventType.POST_COMPLETE));
-
-		}
 
 	}
 }

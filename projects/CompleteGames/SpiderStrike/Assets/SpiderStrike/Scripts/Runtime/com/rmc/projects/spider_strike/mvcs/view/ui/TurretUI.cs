@@ -94,22 +94,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		// PUBLIC
 		/// <summary>
-		/// The turret rotator.
+		/// When the turret rotator.
 		/// </summary>
 		public GameObject turretRotator;
 
 		/// <summary>
-		/// The turret barrel.
+		/// When the turret barrel.
 		/// </summary>
 		public GameObject turretBulletSpawnPoint;
 
 		/// <summary>
-		/// The turret targeting light.
+		/// When the turret targeting light.
 		/// </summary>
 		public GameObject turretTargetingLight;
 
 		/// <summary>
-		/// The turret spinning barrel.
+		/// When the turret spinning barrel.
 		/// </summary>
 		public GameObject turretSpinningBarrel;
 
@@ -130,22 +130,22 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// The is currently firing_boolean.
+		/// When the is currently firing_boolean.
 		/// </summary>
 		private bool _isCurrentlyFiring_boolean = false;
 
 		/// <summary>
-		/// The turret spinning_lerptarget.
+		/// When the turret spinning_lerptarget.
 		/// </summary>
 		private LerpTarget _turretSpinning_lerptarget;
 		
 		/// <summary>
-		/// The turret firing angle_lerptarget.
+		/// When the turret firing angle_lerptarget.
 		/// </summary>
 		private LerpTarget _turretFiringAngle_lerptarget;
 
 		/// <summary>
-		/// The _turret bullet spawn point component.
+		/// When the _turret bullet spawn point component.
 		/// </summary>
 		private TurretBulletSpawnPointComponent _turretBulletSpawnPointComponent;
 
@@ -258,7 +258,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the fire once.
+		/// Do fire once.
 		/// </summary>
 		private void _doFireOnce() 
 		{

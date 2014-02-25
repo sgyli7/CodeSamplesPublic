@@ -63,7 +63,7 @@ namespace strange.extensions.pool.api
 		/// interface.
 		IInstanceProvider instanceProvider { get; set; }
 
-		/// The object Type of the first object added to the pool.
+		/// When the object Type of the first object added to the pool.
 		/// Pool objects must be of the same concrete type. This property enforces that requirement. 
 		Type poolType { get; set; }
 

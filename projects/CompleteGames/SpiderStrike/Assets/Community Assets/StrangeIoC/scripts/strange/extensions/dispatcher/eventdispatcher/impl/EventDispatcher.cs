@@ -48,12 +48,12 @@ namespace strange.extensions.dispatcher.eventdispatcher.impl
 {
 	public class EventDispatcher : Binder, IEventDispatcher, ITriggerProvider, ITriggerable
 	{
-		/// The list of clients that will be triggered as a consequence of an Event firing.
+		/// When the list of clients that will be triggered as a consequence of an Event firing.
 		protected HashSet<ITriggerable> triggerClients;
 		protected HashSet<ITriggerable> triggerClientRemovals;
 		protected bool isTriggeringClients;
 
-		/// The eventPool is shared across all EventDispatchers for efficiency
+		/// When the eventPool is shared across all EventDispatchers for efficiency
 		public static IPool<TmEvent> eventPool;
 
 		public EventDispatcher ()

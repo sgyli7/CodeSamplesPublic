@@ -28,10 +28,6 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
@@ -39,6 +35,9 @@ using com.rmc.exceptions;
 using com.rmc.projects.spider_strike.mvcs.model.data;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.model
 {
 	
@@ -75,7 +74,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 
 		/// <summary>
-		/// The state of the _game.
+		/// When the state of the _game.
 		/// 
 		/// NOTE: Typically View/Controller will change the state here, 
 		/// because timing of animations is required
@@ -145,7 +144,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 
 		/// <summary>
-		/// The _turret health_int.
+		/// When the _turret health_int.
 		/// </summary>
 		private int _turretHealth_int;
 		public int turretHealth
@@ -175,7 +174,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 
 		/// <summary>
-		/// The _score_float.
+		/// When the _score_float.
 		/// </summary>
 		private float _score_float;
 		public float score
@@ -203,7 +202,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 
 
 		/// <summary>
-		/// The _current round data V.
+		/// When the _current round data V.
 		/// </summary>
 		private RoundDataVO _currentRoundDataVO;
 		public RoundDataVO currentRoundDataVO
@@ -232,12 +231,12 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		
 		// PRIVATE
 		/// <summary>
-		/// The _current round_uint.
+		/// When the _current round_uint.
 		/// </summary>
 		private uint _currentRound_uint;
 
 		/// <summary>
-		/// The _total rounds per game_uint.
+		/// When the _total rounds per game_uint.
 		/// </summary>
 		private uint _totalRoundsPerGame_uint = 3;
 
@@ -252,7 +251,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		
 		// PRIVATE STATIC
 		/// <summary>
-		/// The _ ENEMIE s_ PE r_ ROUN.
+		/// When the _ ENEMIE s_ PE r_ ROUN.
 		/// </summary>
 		private const int _ENEMIES_PER_ROUND = 2;
 		
@@ -260,24 +259,24 @@ namespace com.rmc.projects.spider_strike.mvcs.model
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		/// 
-		///  NOTE: **TIMING** THIS IS STEP 1 OF 3
-		/// 
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.model.GameModel"/> class.
+		/// </summary>
 		public GameModel( )
 		{
 			//Debug.Log ("GameModel.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.model.GameModel"/> is reclaimed by garbage collection.
+		/// </summary>
 		~GameModel()
 		{
 			

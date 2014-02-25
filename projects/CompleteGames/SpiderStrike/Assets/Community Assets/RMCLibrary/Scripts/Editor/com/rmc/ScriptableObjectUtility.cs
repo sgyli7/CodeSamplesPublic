@@ -135,7 +135,7 @@ namespace com.rmc.utilities
 		/// Hases the valid project selection.
 		/// </summary>
 		/// <returns>
-		/// The valid project selection.
+		/// When the valid project selection.
 		/// </returns>
 		public static bool hasValidProjectSelection ()
 		{

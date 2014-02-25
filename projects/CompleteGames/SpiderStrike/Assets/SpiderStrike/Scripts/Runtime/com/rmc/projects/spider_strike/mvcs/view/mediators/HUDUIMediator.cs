@@ -31,17 +31,14 @@
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using com.rmc.utilities;
-
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model;
 using System;
 using UnityEngine;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -187,7 +184,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// _ons the game state changed signal.
+		/// When the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
@@ -202,7 +199,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 
 		/// <summary>
-		/// _ons the turret health changed signal.
+		/// When the turret health changed signal.
 		/// </summary>
 		/// <param name="aNewValue_int">A new value_int.</param>
 		private void _onTurretHealthChangedSignal (int aNewValue_int)
@@ -212,7 +209,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 
 		/// <summary>
-		/// _ons the score changed signal.
+		/// When the score changed signal.
 		/// </summary>
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onScoreChangedSignal (float aNewValue_float)
@@ -222,7 +219,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 
 		/// <summary>
-		/// _ons the prompt start signal.
+		/// When the prompt start signal.
 		/// </summary>
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onPromptStartSignal (string aMessage_string, bool aIsToFadeOutToo_boolean)
@@ -232,7 +229,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 
 		/// <summary>
-		/// _ons the user interface prompt ended signal.
+		/// When the user interface prompt ended signal.
 		/// </summary>
 		private void _onUIPromptEndedSignal ()
 		{

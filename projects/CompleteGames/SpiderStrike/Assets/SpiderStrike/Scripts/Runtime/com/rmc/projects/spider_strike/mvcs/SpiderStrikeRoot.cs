@@ -68,22 +68,24 @@ namespace com.rmc.projects.spider_strike.mvcs
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.SpiderStrikeRoot"/> class.
+		/// </summary>
 		public SpiderStrikeRoot( )
 		{
 			//Debug.Log ("SpiderStrikeRoot.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.SpiderStrikeRoot"/> is reclaimed by garbage collection.
+		/// </summary>
 		~SpiderStrikeRoot()
 		{
 			

@@ -29,6 +29,7 @@
 //--------------------------------------
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.view.signals;
+using System.Collections;
 
 //--------------------------------------
 //  Namespace
@@ -47,7 +48,8 @@ namespace com.rmc.projects.animation_monitor
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class AnimationMonitor 
+	[RequireComponent (typeof(Animation))]
+	public class AnimationMonitor : MonoBehaviour
 	{
 		
 		//--------------------------------------
@@ -67,17 +69,7 @@ namespace com.rmc.projects.animation_monitor
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// The _game object.
-		/// </summary>
-		private GameObject _gameObject;
 
-		/// <summary>
-		/// The _animation.
-		/// </summary>
-		private Animation _animation;
-
-		
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -86,25 +78,18 @@ namespace com.rmc.projects.animation_monitor
 		
 		// PUBLIC
 		/// <summary>
-		/// Initializes a new instance of the <see cref="com.rmc.utilities.AnimationMonitor"/> class.
-		/// 
-		/// NOTE: We want to know when animation is complete
-		/// 		We want a scalable solution (various unrelated animation instances and gameobjects)
-		/// 		This current solution requires no monobehavior here.
-		/// 
-		/// TODO: it would be nicer to have an internal 'timer' to check then dispatch event or delegate.
-		/// 
-		/// 
-		/// 
+		/// Initializes a new instance of the <see cref="com.rmc.projects.animation_monitor.AnimationMonitor"/> class.
 		/// </summary>
-		public AnimationMonitor(GameObject aGameObject)
+		public AnimationMonitor()
 		{
-			//
-			_gameObject = aGameObject;
 			uiAnimationMonitorSignal = new UIAnimationMonitorEventSignal();
 			
 		}
 
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.animation_monitor.AnimationMonitor"/> is reclaimed by garbage collection.
+		/// </summary>
 		~AnimationMonitor( )
 		{
 			//Debug.Log ("AnimationMonitor.destructor()");
@@ -112,60 +97,73 @@ namespace com.rmc.projects.animation_monitor
 		}
 
 
-		
 		/// <summary>
-		/// Sets the animation if not yet set to.
+		/// Start this instance.
 		/// </summary>
-		/// <returns>The animation if not yet set to.</returns>
-		/// <param name="aAnimation">A animation.</param>
-		/// <param name="aAnimationName_string">A animation name_string.</param>
-		/// <param name="aWrapMode">A wrap mode.</param>
-		public float setAnimationAndPlay (string aAnimationName_string, WrapMode aWrapMode)
+		public void Start ()
 		{
 
-			if (_animation == null){
-				_animation = _gameObject.GetComponentInChildren<Animation>();
-				if (_animation == null){
-					throw new UnassignedReferenceException ("animationMonitor._animation");
-				}
-			}
-			/////////////////////////////////////////////
-			/// 
-			/// NOTE: The existing animation system seems unpredictable.
-			/// This affects the code setup, but not the end result.
-			/// 
-			/// ISSUE: The animationClips shown int the animation inspector will change at runtime
-			/// ISSUE: The inspector for a given animation clip will show at times the SAME name
-			/// 		as another clip (bad) and show a DIFFERENT name than its own name in the project window (bad)
-			/// 
-			///////////////////////////////////////////// 
-			if (_animation[aAnimationName_string] != null) {
-				_animation.wrapMode = aWrapMode;
-				_animation.name = aAnimationName_string;
-				_animation.Play (aAnimationName_string);
-				
-				//TRIGGER WHEN ANIMATION IS COMPLETE (NOTE: ONE ANIMATION AT A TIME MAXIMUM)
-				//NOTE: THERE IS NO 'AUTOMATIC' WAY TO LISTEN FOR ANIMATION COMPLETION
-				// WHY *.7f? I'm experimenting the timing
-				return _animation[aAnimationName_string].length;
-				
-			} else {
-				//KEEP THIS
-				Debug.Log ("AnimationExtension Anim NOT FOUND: !!!!!" + aAnimationName_string + "!!!!");
-				
-				//RETURN 0 SO THAT IT FAKES LIKE IT 'IMMEDIATLY FINISHES PLAYING'
-				return 0;
-			}
-			
-			
-			
+
 		}
+
+		/// <summary>
+		/// Plays the request.
+		/// </summary>
+		/// <param name="aAnimationMonitorRequestVO">A animation monitor request V.</param>
+		public void playRequest (AnimationMonitorRequestVO aAnimationMonitorRequestVO)
+		{
+		
+			StartCoroutine (_playRequestCoroutine (aAnimationMonitorRequestVO));
+
+		}
+
+
 		
 		// PUBLIC STATIC
-
+		
 		
 		
 		// PRIVATE
+
+		/// <summary>
+		/// Plays the request coroutine.
+		/// </summary>
+		/// <returns>The request coroutine.</returns>
+		/// <param name="aAnimationMonitorRequestVO">A animation monitor request V.</param>
+		private IEnumerator _playRequestCoroutine (AnimationMonitorRequestVO aAnimationMonitorRequestVO)
+		{
+
+			//SEND SIGNAL
+			uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (AnimationMonitorEventType.PRE_START, aAnimationMonitorRequestVO));
+
+
+			//WAIT
+			yield return new WaitForSeconds(aAnimationMonitorRequestVO.delayBeforeAnimation);
+
+			//PLAY THE ANIMATION
+			if (animation[aAnimationMonitorRequestVO.animationClipName] != null) {
+				animation.wrapMode = aAnimationMonitorRequestVO.wrapMode;
+				animation.name = aAnimationMonitorRequestVO.animationClipName;
+				animation.Play (aAnimationMonitorRequestVO.animationClipName);
+
+			} else {
+				//KEEP THIS
+				Debug.Log ("AnimationMonitor:  AnimationClip NOT FOUND: !!!!!" + aAnimationMonitorRequestVO.animationClipName + "!!!!");
+
+			}
+
+			//SEND SIGNAL
+			uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (AnimationMonitorEventType.START, aAnimationMonitorRequestVO));
+
+
+			//SET TIMER TO KNOW WHEN ANIMATION IS COMPLETE
+			StartCoroutine ( _onAnimationComplete (aAnimationMonitorRequestVO));
+
+
+				
+		}
+			
+
 		
 		// PRIVATE STATIC
 		
@@ -173,6 +171,33 @@ namespace com.rmc.projects.animation_monitor
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		
+		//--------------------------------------
+		//  Events 
+		//		(This is a loose term for -- handling incoming messaging)
+		//
+		//--------------------------------------
+		/// <summary>
+		/// Ons the animation complete.
+		/// </summary>
+		/// <returns>The animation complete.</returns>
+		/// <param name="aAnimationMonitorRequestVO">A animation monitor request V.</param>
+		private IEnumerator _onAnimationComplete (AnimationMonitorRequestVO aAnimationMonitorRequestVO)
+		{
+
+			//WAIT
+			yield return new WaitForSeconds (animation[aAnimationMonitorRequestVO.animationClipName].length);
+			
+			//SEND SIGNAL
+			uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (AnimationMonitorEventType.COMPLETE, aAnimationMonitorRequestVO));
+			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
+			yield return new WaitForSeconds (aAnimationMonitorRequestVO.delayAfterAnimation);
+			
+			
+			//SEND SIGNAL
+			uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (AnimationMonitorEventType.POST_COMPLETE, aAnimationMonitorRequestVO));
+			
+		}
 		
 	}
 }

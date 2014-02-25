@@ -92,7 +92,7 @@ namespace strange.extensions.injector.impl
 			throw new InjectionException ("InjectorFactory can't instantiate an Interface or Abstract Class. Class: " + key.ToString(), InjectionExceptionType.NOT_INSTANTIABLE);
 		}
 
-		/// The binding already has a value. Simply return it.
+		/// When the binding already has a value. Simply return it.
 		protected object valueOf(IInjectionBinding binding)
 		{
 			return binding.value;

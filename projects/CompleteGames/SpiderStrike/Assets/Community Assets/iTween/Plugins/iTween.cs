@@ -92,7 +92,7 @@ public class iTween : MonoBehaviour{
 
 
 	/// <summary>
-	/// The type of easing to use based on Robert Penner's open source easing equations (http://www.robertpenner.com/easing_terms_of_use.html).
+	/// When the type of easing to use based on Robert Penner's open source easing equations (http://www.robertpenner.com/easing_terms_of_use.html).
 	/// </summary>
 	public enum EaseType{
 		easeInQuad,
@@ -137,7 +137,7 @@ public class iTween : MonoBehaviour{
 	}
 	
 	/// <summary>
-	/// The type of loop (if any) to use.  
+	/// When the type of loop (if any) to use.  
 	/// </summary>
 	public enum LoopType{
 		/// <summary>
@@ -159,19 +159,19 @@ public class iTween : MonoBehaviour{
 	/// </summary>
 	public enum NamedValueColor{
 		/// <summary>
-		/// The main color of a material. Used by default and not required for Color methods to work in iTween.
+		/// When the main color of a material. Used by default and not required for Color methods to work in iTween.
 		/// </summary>
 		_Color,
 		/// <summary>
-		/// The specular color of a material (used in specular/glossy/vertexlit shaders).
+		/// When the specular color of a material (used in specular/glossy/vertexlit shaders).
 		/// </summary>
 		_SpecColor,
 		/// <summary>
-		/// The emissive color of a material (used in vertexlit shaders).
+		/// When the emissive color of a material (used in vertexlit shaders).
 		/// </summary>
 		_Emission,
 		/// <summary>
-		/// The reflection color of the material (used in reflective shaders).
+		/// When the reflection color of the material (used in reflective shaders).
 		/// </summary>
 		_ReflectColor
 	}
@@ -5436,7 +5436,7 @@ public class iTween : MonoBehaviour{
 	/// Returns the length of a curved path drawn through the provided array of Vector3s.
 	/// </summary>
 	/// <returns>
-	/// The length.
+	/// When the length.
 	/// </returns>
 	/// <param name='path'>
 	/// A <see cref="Vector3[]"/>
@@ -6393,7 +6393,7 @@ public class iTween : MonoBehaviour{
 	/// Stop and destroy all iTweens in current scene of a particular name.
 	/// </summary>
 	/// <param name="name">
-	/// The <see cref="System.String"/> name of iTween you would like to stop.
+	/// When the <see cref="System.String"/> name of iTween you would like to stop.
 	/// </param> 
 	public static void StopByName(string name){
 		ArrayList stopArray = new ArrayList();
@@ -6454,7 +6454,7 @@ public class iTween : MonoBehaviour{
 	/// Stop and destroy all iTweens on a GameObject of a particular name.
 	/// </summar
 	/// <param name="name">
-	/// The <see cref="System.String"/> name of iTween you would like to stop.
+	/// When the <see cref="System.String"/> name of iTween you would like to stop.
 	/// </param>	
 	public static void StopByName(GameObject target, string name){
 		Component[] tweens = target.GetComponents<iTween>();
@@ -6498,7 +6498,7 @@ public class iTween : MonoBehaviour{
 	/// Stop and destroy all iTweens on a GameObject of a particular name including its children.
 	/// </summar
 	/// <param name="name">
-	/// The <see cref="System.String"/> name of iTween you would like to stop.
+	/// When the <see cref="System.String"/> name of iTween you would like to stop.
 	/// </param>	
 	public static void StopByName(GameObject target, string name, bool includechildren){
 		Component[] tweens = target.GetComponents<iTween>();

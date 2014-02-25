@@ -142,7 +142,7 @@ namespace com.rmc.utilities
 		/// Gets the type of the all project window items subclass of.
 		/// </summary>
 		/// <returns>
-		/// The all project window items subclass of type.
+		/// When the all project window items subclass of type.
 		/// </returns>
 		/// <param name='aType'>
 		/// A type.
@@ -158,7 +158,7 @@ namespace com.rmc.utilities
 		/// Gets all project window items interface of.
 		/// </summary>
 		/// <returns>
-		/// The all project window items interface of.
+		/// When the all project window items interface of.
 		/// </returns>
 		/// <param name='aType'>
 		/// A type.
@@ -176,7 +176,7 @@ namespace com.rmc.utilities
 		/// Gets the type of the all project window items by interface and is subclass of.
 		/// </summary>
 		/// <returns>
-		/// The all project window items by interface and is subclass of type.
+		/// When the all project window items by interface and is subclass of type.
 		/// </returns>
 		/// <param name='aInterfaceType'>
 		/// A interface type.

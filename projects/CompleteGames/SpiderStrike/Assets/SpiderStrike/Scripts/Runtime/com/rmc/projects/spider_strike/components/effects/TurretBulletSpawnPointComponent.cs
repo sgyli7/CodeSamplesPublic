@@ -57,13 +57,13 @@ namespace com.rmc.projects.spider_strike.components.effects
 		
 		// PUBLIC
 		/// <summary>
-		/// The muzzle flash materials_array.
+		/// When the muzzle flash materials_array.
 		/// </summary>
 		public Material[] muzzleFlashMaterials_array;
 
 
 		/// <summary>
-		/// The muzzle flash_gameobject.
+		/// When the muzzle flash_gameobject.
 		/// </summary>
 		public GameObject muzzleFlash_gameobject;
 		
@@ -73,13 +73,13 @@ namespace com.rmc.projects.spider_strike.components.effects
 		
 		// PRIVATE
 		/// <summary>
-		/// The _life duration_float.
+		/// When the _life duration_float.
 		/// </summary>
 		private float _lifeDuration_float;
 
 
 		/// <summary>
-		/// The _angle_float.
+		/// When the _angle_float.
 		/// </summary>
 		private float _angle_float;
 
@@ -87,28 +87,33 @@ namespace com.rmc.projects.spider_strike.components.effects
 		
 		// PRIVATE STATIC
 		/// <summary>
-		/// The _ LIF e_ DURATIO n_ MINIMU.
+		/// When the _ LIF e_ DURATIO n_ MINIMU.
 		/// </summary>
 		private const float _LIFE_DURATION = 0.1f;
 
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
-
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.components.effects.TurretBulletSpawnPointComponent"/> class.
+		/// </summary>
 		public TurretBulletSpawnPointComponent( )
 		{
 			//Debug.Log ("1. TurretBulletSpawnPointComponent.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.components.effects.TurretBulletSpawnPointComponent"/> is reclaimed by
+		/// garbage collection.
+		/// </summary>
 		~TurretBulletSpawnPointComponent()
 		{
 			

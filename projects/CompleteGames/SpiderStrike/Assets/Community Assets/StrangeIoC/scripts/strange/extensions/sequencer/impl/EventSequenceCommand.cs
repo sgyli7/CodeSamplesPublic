@@ -29,11 +29,11 @@ namespace strange.extensions.sequencer.impl
 {
 	public class EventSequenceCommand : SequenceCommand
 	{
-		/// The context-wide Event bus
+		/// When the context-wide Event bus
 		[Inject(ContextKeys.CONTEXT_DISPATCHER)]
 		public IEventDispatcher dispatcher{ get; set;}
 
-		/// The injected IEvent
+		/// When the injected IEvent
 		[Inject]
 		public IEvent evt{ get; set;}
 	}

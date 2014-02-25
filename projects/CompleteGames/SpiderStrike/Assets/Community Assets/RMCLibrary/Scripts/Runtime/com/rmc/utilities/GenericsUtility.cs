@@ -71,7 +71,7 @@ namespace com.rmc.utilities
 		/// Calls the type of the generic by.
 		/// </summary>
 		/// <returns>
-		/// The generic by type.
+		/// When the generic by type.
 		/// </returns>
 		/// <param name='aHost'>
 		/// A host.

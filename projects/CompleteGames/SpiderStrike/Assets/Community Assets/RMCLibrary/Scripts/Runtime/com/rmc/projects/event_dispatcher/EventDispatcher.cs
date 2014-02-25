@@ -55,12 +55,12 @@ namespace com.rmc.projects.event_dispatcher
 		
 		// PRIVATE
 		/// <summary>
-		/// The mom_serialized object.
+		/// When the mom_serialized object.
 		/// </summary>
 	    private Hashtable _eventListenerDatas_hashtable = new Hashtable();
 	 
 		/// <summary>
-		/// The _target_object.
+		/// When the _target_object.
 		/// </summary>
 		private object _target_object;
 		
@@ -95,7 +95,7 @@ namespace com.rmc.projects.event_dispatcher
 		/// Adds the event listener.
 		/// </summary>
 		/// <returns>
-		/// The event listener.
+		/// When the event listener.
 		/// </returns>
 		/// <param name='aEventName_string'>
 		/// If set to <c>true</c> a event name_string.
@@ -112,7 +112,7 @@ namespace com.rmc.projects.event_dispatcher
 		/// Adds the event listener.
 		/// </summary>
 		/// <returns>
-		/// The event listener.
+		/// When the event listener.
 		/// </returns>
 		/// <param name='aEventDelegate'>
 		/// If set to <c>true</c> a event delegate.
@@ -130,7 +130,7 @@ namespace com.rmc.projects.event_dispatcher
 		/// Adds the event listener.
 		/// </summary>
 		/// <returns>
-		/// The event listener.
+		/// When the event listener.
 		/// </returns>
 		/// <param name='aEventName_string'>
 		/// If set to <c>true</c> a event type_string.
@@ -185,7 +185,7 @@ namespace com.rmc.projects.event_dispatcher
 	    /// Hases the event listener.
 	    /// </summary>
 	    /// <returns>
-	    /// The event listener.
+	    /// When the event listener.
 	    /// </returns>
 	    /// <param name='aIEventListener'>
 	    /// If set to <c>true</c> a I event listener.
@@ -224,7 +224,7 @@ namespace com.rmc.projects.event_dispatcher
 	    /// Removes the event listener.
 	    /// </summary>
 	    /// <returns>
-	    /// The event listener.
+	    /// When the event listener.
 	    /// </returns>
 	    /// <param name='aIEventListener'>
 	    /// If set to <c>true</c> a I event listener.
@@ -261,7 +261,7 @@ namespace com.rmc.projects.event_dispatcher
 		/// Removes all event listeners.
 		/// </summary>
 		/// <returns>
-		/// The all event listeners.
+		/// When the all event listeners.
 		/// </returns>
 	    public bool removeAllEventListeners()
 	    {
@@ -279,7 +279,7 @@ namespace com.rmc.projects.event_dispatcher
 	    /// Dispatchs the event.
 	    /// </summary>
 	    /// <returns>
-	    /// The event.
+	    /// When the event.
 	    /// </returns>
 	    /// <param name='aIEvent'>
 	    /// If set to <c>true</c> a I event.
@@ -348,7 +348,7 @@ namespace com.rmc.projects.event_dispatcher
 	    }
 		
 		/// <summary>
-		/// _dos the add target value to I event.
+		/// Do add target value to I event.
 		/// </summary>
 		/// <param name='aIEvent'>
 		/// A I event.

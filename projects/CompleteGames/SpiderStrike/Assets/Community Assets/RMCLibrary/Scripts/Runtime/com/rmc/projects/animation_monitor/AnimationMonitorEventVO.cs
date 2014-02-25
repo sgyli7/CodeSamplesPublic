@@ -75,22 +75,14 @@ namespace com.rmc.projects.animation_monitor
 		
 		// PUBLIC
 		/// <summary>
-		/// The type of the user interface animation monitor event.
+		/// When the type of the animation monitor event.
 		/// </summary>
 		public AnimationMonitorEventType animationMonitorEventType;
 
 		/// <summary>
-		/// The animation.
+		/// When the animation monitor V.
 		/// </summary>
-		public Animation animation;
-
-
-		/// <summary>
-		/// The name of the animation clip.
-		/// </summary>
-		public string animationClipName;
-
-
+		public AnimationMonitorRequestVO animationMonitorRequestVO;
 
 		
 		// PUBLIC STATIC
@@ -112,11 +104,10 @@ namespace com.rmc.projects.animation_monitor
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public AnimationMonitorEventVO (Animation aAnimation, string aAnimationClipName_string, AnimationMonitorEventType aUIAnimationMonitorEventType )
+		public AnimationMonitorEventVO (AnimationMonitorEventType aUIAnimationMonitorEventType, AnimationMonitorRequestVO aanimationMonitorRequestVO )
 		{
-			animation 					= aAnimation;
-			animationClipName			= aAnimationClipName_string;
-			animationMonitorEventType = aUIAnimationMonitorEventType;
+			animationMonitorEventType 	= aUIAnimationMonitorEventType;
+			animationMonitorRequestVO			= aanimationMonitorRequestVO;
 			
 		}
 		

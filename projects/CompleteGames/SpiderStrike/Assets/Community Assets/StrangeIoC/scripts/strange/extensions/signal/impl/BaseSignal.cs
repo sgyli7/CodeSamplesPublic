@@ -31,10 +31,10 @@ namespace strange.extensions.signal.impl
 {
 	public class BaseSignal : IBaseSignal
 	{
-		/// The delegate for repeating listeners
+		/// When the delegate for repeating listeners
 		public event Action<IBaseSignal, object[]> BaseListener = delegate { };
 
-		/// The delegate for one-off listeners
+		/// When the delegate for one-off listeners
 		public event Action<IBaseSignal, object[]> OnceBaseListener = delegate { };
 
 		public void Dispatch(object[] args) 

@@ -56,13 +56,13 @@ namespace strange.extensions.command.api
 		void Cancel ();
 
 		/// Flag to indicate that a pooled Command has been restored to its pristine state.
-		/// The CommandBinder will use this to determine if re-Injection is required.
+		/// When the CommandBinder will use this to determine if re-Injection is required.
 		bool IsClean { get; set; }
 
-		/// The property set by `Retain` and `Release` to indicate whether the Command should be cleaned up on completion of the `Execute()` method. 
+		/// When the property set by `Retain` and `Release` to indicate whether the Command should be cleaned up on completion of the `Execute()` method. 
 		bool retain { get; }
 
-		/// The property set to true by a Cancel() call.
+		/// When the property set to true by a Cancel() call.
 		/// Use cancelled internally to determine if further execution is warranted, especially in
 		/// asynchronous calls.
 		bool cancelled { get; set; }

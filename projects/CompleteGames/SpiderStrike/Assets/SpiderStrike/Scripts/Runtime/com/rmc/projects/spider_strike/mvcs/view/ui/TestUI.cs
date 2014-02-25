@@ -29,14 +29,12 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
+using com.rmc.projects.spider_strike.mvcs.model;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	

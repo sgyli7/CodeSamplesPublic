@@ -31,7 +31,6 @@
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.projects.spider_strike.mvcs.model;
 using com.rmc.projects.animation_monitor;
@@ -71,7 +70,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public EnemyUI view 	{ get; set;}
 
 
-
 		/// <summary>
 		/// Gets or sets the sound play signal.
 		/// </summary>
@@ -80,7 +78,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public SoundPlaySignal soundPlaySignal { get; set;}
 		
 		/// <summary>
-		/// The enemy died signal.
+		/// When the enemy died signal.
 		/// </summary>
 		[Inject]
 		public EnemyDiedSignal enemyDiedSignal {set; get;}
@@ -101,7 +99,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		
 		// PRIVATE STATIC
 		/// <summary>
-		/// The _ DAMAG e_ GIVE n_ PE r_ HI.
+		/// Damage
 		/// </summary>
 		private const int _DAMAGE_GIVEN_PER_HIT = 10;
 
@@ -118,7 +116,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			view.init();
 			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
 
-			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);
 
 		}
 
@@ -135,7 +132,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		/// </summary>
 		public void Start ()
 		{
-						
+			view.animationMonitor.uiAnimationMonitorSignal.AddListener (_onUIAnimationCompleteSignal);
 			view.doPlayAnimation (AnimationType.JUMP, 0, 1f);
 			view.doTweenToFallFromSky();
 
@@ -181,7 +178,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the inflict damage.
+		/// Do inflict damage.
 		/// </summary>
 		private void _doInflictDamage ()
 		{
@@ -200,30 +197,27 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// _ons the user interface animation complete signal.
+		/// When the user interface animation complete signal.
 		/// </summary>
-		/// <param name="aAnimationType">A animation type.</param>
+		/// <param name="aUIAnimationMonitorEventVO">A user interface animation monitor event V.</param>
 		private void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO )
 		{
 
 
-			//Debug.Log ("AnimEnd: " + aUIAnimationMonitorEventVO.animationClipName + " DELAY?: " + aUIAnimationMonitorEventVO.animationMonitorEventType);
+			//MATCH CASE OF STRING
+			string animationClipNameUpper_string = view.animationType.ToString();
 
 
 			//WE MOSTLY CARE ABOUT WHEN THE ANIMATION IS OVER *INCLUDING* ANY COSMETIC DELAYS WE ADDED
 			if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.POST_COMPLETE) {
 
-	
-
 				if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 
+					if (animationClipNameUpper_string == AnimationType.JUMP.ToString()) {
 
-					if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.JUMP.ToString()) {
-
-						//
 						view.doPlayAnimation (AnimationType.WALK, 0, 0);
 
-					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.DIE.ToString()) {
+					} else if (animationClipNameUpper_string == AnimationType.DIE.ToString()) {
 
 						//DESTROY OBJECT, UPDATE SCORE
 						enemyDiedSignal.Dispatch (view);
@@ -231,17 +225,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 						//PLAY SOUND
 						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
 
-					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.WALK.ToString()) {
+					} else if (animationClipNameUpper_string == AnimationType.WALK.ToString()) {
 
 						//PLAY SOUND
 						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
 
-					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.TAKE_HIT.ToString()) {
+					} else if (animationClipNameUpper_string == AnimationType.TAKE_HIT.ToString()) {
 
 						//
 						view.doPlayAnimation (AnimationType.WALK, 0, 0);
 
-					} else if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.ATTACK.ToString()) {
+					} else if (animationClipNameUpper_string == AnimationType.ATTACK.ToString()) {
 						
 						//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
 						_doInflictDamage();
@@ -253,7 +247,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 						view.doPlayAnimation (AnimationType.ATTACK, 0, 0);
 					}
 				} else {
-
+					 
 					//
 					view.doStopAnimation();
 				}
@@ -262,8 +256,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 				//BUT SOMETIMES WE JUST WANT TO TRIGGER A SOUND
 
-				if (aUIAnimationMonitorEventVO.animationClipName == AnimationType.JUMP.ToString()) {
-					
+				if (animationClipNameUpper_string == AnimationType.JUMP.ToString()) {
+
 					//PLAY SOUND
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
 					

@@ -33,7 +33,7 @@ using com.rmc.projects.spider_strike.mvcs.view.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-//NOTE: NO NEED TO add 'using com.rmc.extension_methods;' in any class for this to work
+//NOTE: USE NO NAMESPACES FOR EXTENSION METHODS
 	
 //--------------------------------------
 //  Namespace Properties

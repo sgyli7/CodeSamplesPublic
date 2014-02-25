@@ -23,7 +23,7 @@ namespace strange.extensions.injector.api
 		/// A circular dependency was found.
 		/// This Exception was raised to prevent a stack overflow.
 		CIRCULAR_DEPENDENCY,
-		/// The value of a binding does not extend or implement the binding type.
+		/// When the value of a binding does not extend or implement the binding type.
 		ILLEGAL_BINDING_VALUE,
 		/// No InjectionBinder found.
 		NO_BINDER,
@@ -31,9 +31,9 @@ namespace strange.extensions.injector.api
 		NO_REFLECTOR,
 		/// No InjectorFactory found.
 		NO_FACTORY,
-		/// The provided binding is not an instantiable class.
+		/// When the provided binding is not an instantiable class.
 		NOT_INSTANTIABLE,
-		/// The requested Binding was null or couldn't be found.
+		/// When the requested Binding was null or couldn't be found.
 		NULL_BINDING,
 		/// During an attempt to construct, no constructor was found.
 		NULL_CONSTRUCTOR,
@@ -41,15 +41,15 @@ namespace strange.extensions.injector.api
 		NULL_INJECTION_POINT,
 		/// No reflection was provided for the requested class.
 		NULL_REFLECTION,
-		/// The instance being injected into resolved to null.
+		/// When the instance being injected into resolved to null.
 		NULL_TARGET,
-		/// The value being injected into the target resolved to null.
+		/// When the value being injected into the target resolved to null.
 		NULL_VALUE_INJECTION,
-		/// The list of setters and setter names must have exactly the same number of entries.
+		/// When the list of setters and setter names must have exactly the same number of entries.
 		/// Two lists are required because Unity does not at present support Tuple.
 		/// Seeing this error likely indicates a problem with the Reflector (it's not you, it's me).
 		SETTER_NAME_MISMATCH,
-		/// The requested cross-context injector returned null
+		/// When the requested cross-context injector returned null
 		MISSING_CROSS_CONTEXT_INJECTOR,
 		//An implicit implementor does not fulfill the designated interface
 		IMPLICIT_BINDING_IMPLEMENTOR_DOES_NOT_IMPLEMENT_INTERFACE,

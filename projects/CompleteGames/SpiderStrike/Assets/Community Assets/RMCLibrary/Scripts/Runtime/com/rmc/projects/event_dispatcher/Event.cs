@@ -49,7 +49,7 @@ namespace com.rmc.projects.event_dispatcher
 		//--------------------------------------
 		// GETTER / SETTER
 		/// <summary>
-		/// The _type_string.
+		/// When the _type_string.
 		/// </summary>
 		private string _type_string;
 		string IEvent.type { 
@@ -65,7 +65,7 @@ namespace com.rmc.projects.event_dispatcher
 		}
 		
 		/// <summary>
-		/// The _target_object.
+		/// When the _target_object.
 		/// </summary>
 		private object _target_object;
 		object IEvent.target { 
@@ -100,9 +100,10 @@ namespace com.rmc.projects.event_dispatcher
 		//--------------------------------------
 		// PUBLIC
 		
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.event_dispatcher.Event"/> class.
+		/// </summary>
+		/// <param name="aType_str">A type_str.</param>
 		public Event (string aType_str )
 		{
 			//
@@ -111,14 +112,16 @@ namespace com.rmc.projects.event_dispatcher
 			
 		}
 		
+
 		/// <summary>
-		/// Deconstructor
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.event_dispatcher.Event"/> is reclaimed by garbage collection.
 		/// </summary>
-		//~Event ( )
-		//{
-		//	Debug.Log ("Event.deconstructor()");
+		~Event ( )
+		{
+			//Debug.Log ("Event.deconstructor()");
 			
-		//}
+		}
 		
 		
 		// PUBLIC STATIC

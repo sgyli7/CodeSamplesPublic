@@ -70,22 +70,25 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.view.signals.UIInputChangedSignal"/> class.
+		/// </summary>
 		public UIInputChangedSignal( )
 		{
 			//Debug.Log ("UIInputChangedSignal.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.view.signals.UIInputChangedSignal"/> is reclaimed by garbage collection.
+		/// </summary>
 		~UIInputChangedSignal()
 		{
 			

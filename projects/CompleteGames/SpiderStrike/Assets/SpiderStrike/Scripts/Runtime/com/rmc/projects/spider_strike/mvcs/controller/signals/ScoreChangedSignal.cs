@@ -69,21 +69,25 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.ScoreChangedSignal"/> class.
+		/// </summary>
 		public ScoreChangedSignal( )
 		{
 			//Debug.Log ("ScoreChangedSignal.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.ScoreChangedSignal"/> is reclaimed by garbage collection.
+		/// </summary>
 		~ScoreChangedSignal()
 		{
 			

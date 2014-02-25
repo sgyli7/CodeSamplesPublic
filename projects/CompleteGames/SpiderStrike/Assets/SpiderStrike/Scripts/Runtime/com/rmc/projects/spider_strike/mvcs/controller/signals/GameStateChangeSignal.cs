@@ -76,15 +76,20 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.GameStateChangeSignal"/> class.
+		/// </summary>
 		public GameStateChangeSignal( )
 		{
 			//Debug.Log ("GameStateChangeSignal.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.GameStateChangeSignal"/> is reclaimed by garbage collection.
+		/// </summary>
 		~GameStateChangeSignal()
 		{
 			

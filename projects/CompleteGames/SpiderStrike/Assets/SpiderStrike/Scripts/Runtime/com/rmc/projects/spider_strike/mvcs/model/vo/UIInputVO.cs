@@ -64,12 +64,12 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		
 		// PUBLIC
 		/// <summary>
-		/// The key code.
+		/// When the key code.
 		/// </summary>
 		public KeyCode keyCode;
 
 		/// <summary>
-		/// The type of the input event.
+		/// When the type of the input event.
 		/// </summary>
 		public UIInputEventType uiInputEventType;
 		

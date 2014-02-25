@@ -72,6 +72,12 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		[Inject]
 		public GameStateChangeSignal gameStateChangeSignal {set; get;}
 
+		/// <summary>
+		/// Gets or sets the cross platform changed signal.
+		/// </summary>
+		/// <value>The cross platform changed signal.</value>
+		[Inject]
+		public CrossPlatformChangeSignal crossPlatformChangeSignal {get;set;}
 		
 		// PUBLIC
 		
@@ -99,6 +105,9 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 			//AND CAN CHECK THE STATE (ACCEPTABLE)
 			gameStateChangeSignal.Dispatch ( GameState.INIT);
 
+
+			//
+			crossPlatformChangeSignal.Dispatch (Application.platform);
 
 		}
 		

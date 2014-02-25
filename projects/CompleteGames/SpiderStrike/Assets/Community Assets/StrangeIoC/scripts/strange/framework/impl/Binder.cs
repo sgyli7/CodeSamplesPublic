@@ -226,7 +226,7 @@ namespace strange.framework.impl
 			return new Binding (resolver);
 		}
 
-		/// The default handler for resolving bindings during chained commands
+		/// When the default handler for resolving bindings during chained commands
 		virtual protected void resolver(IBinding binding)
 		{
 			object key = binding.key;

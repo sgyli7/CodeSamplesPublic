@@ -61,6 +61,9 @@ namespace com.rmc.projects.spider_strike.mvcs.model.data
 		// GETTER / SETTER
 		
 		// PUBLIC
+		/// <summary>
+		/// ALL THE VALUES
+		/// </summary>
 		public float current;
 		public float resetValue;
 		public float targetValue;
@@ -76,15 +79,18 @@ namespace com.rmc.projects.spider_strike.mvcs.model.data
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.model.data.LerpTarget"/> class.
+		/// </summary>
+		/// <param name="aCurrent_float">A current_float.</param>
+		/// <param name="aMinimum_float">A minimum_float.</param>
+		/// <param name="aMaximum_float">A maximum_float.</param>
+		/// <param name="aAcceleration_float">A acceleration_float.</param>
 		public LerpTarget (float aCurrent_float, float aMinimum_float, float aMaximum_float, float aAcceleration_float)
 		{
 			current 		= aCurrent_float;
@@ -93,13 +99,19 @@ namespace com.rmc.projects.spider_strike.mvcs.model.data
 			acceleration  	= aAcceleration_float;
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.model.data.LerpTarget"/> is reclaimed by garbage collection.
+		/// </summary>
 		~LerpTarget()
 		{
 			
 		}
 		
 		// PUBLIC
+
+
 		/// <summary>
 		/// Lerps the current to target.
 		/// </summary>
@@ -117,8 +129,11 @@ namespace com.rmc.projects.spider_strike.mvcs.model.data
 		{
 			_lerpCurrentTo (resetValue, aDeltaTime_float);
 		}
-		
+
+
 		// PRIVATE
+
+
 		/// <summary>
 		/// _lerps the current to.
 		/// </summary>

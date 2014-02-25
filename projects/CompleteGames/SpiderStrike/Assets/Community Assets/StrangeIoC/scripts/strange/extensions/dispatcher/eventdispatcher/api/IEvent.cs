@@ -26,10 +26,10 @@ namespace strange.extensions.dispatcher.eventdispatcher.api
 {
 	public interface IEvent
 	{
-		/// The Event key
+		/// When the Event key
 		object type{ get; set; }
 
-		/// The IEventDispatcher that sent the event
+		/// When the IEventDispatcher that sent the event
 		IEventDispatcher target{ get; set; }
 
 		/// An arbitrary data payload

@@ -59,7 +59,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		// PUBLIC
 		/// <summary>
-		/// The custom skin.
+		/// When the custom skin.
 		/// </summary>
 		#if UNITY_EDITOR
 		public GUISkin guiSkin;
@@ -69,7 +69,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// The _is firing_boolean.
+		/// When the _is firing_boolean.
 		/// </summary>
 		bool _isCurrentlyFiring_boolean = true;
 		
@@ -130,7 +130,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PRIVATE
 
 		/// <summary>
-		/// _dos the set is firing.
+		/// Do set is firing.
 		/// </summary>
 		/// <param name="aIsFiring_boolean">If set to <c>true</c> a is firing_boolean.</param>
 		private void _doSetIsCurrentlyFiring (bool aIsCurrentlyFiring_boolean) 
@@ -148,12 +148,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		// PRIVATE
 		/// <summary>
-		/// The _is currently left_boolean.
+		/// When the _is currently left_boolean.
 		/// </summary>
 		bool _isCurrentlyLeft_boolean = true;
 		
 		/// <summary>
-		/// _dos the set is currently left.
+		/// Do set is currently left.
 		/// </summary>
 		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
 		private void _doSetIsCurrentlyLeft (bool aIsCurrentlyLeft_boolean) 
@@ -172,12 +172,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		// PRIVATE
 		/// <summary>
-		/// The _is currently left_boolean.
+		/// When the _is currently left_boolean.
 		/// </summary>
 		bool _isCurrentlyRight_boolean = true;
 		
 		/// <summary>
-		/// _dos the set is currently left.
+		/// Do set is currently left.
 		/// </summary>
 		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
 		private void _doSetIsCurrentlyRight (bool aIsCurrentlyRight_boolean) 

@@ -50,7 +50,7 @@ namespace com.rmc.projects.event_dispatcher
 		// GETTER / SETTER
 		
 		/// <summary>
-		/// The _event listener.
+		/// When the _event listener.
 		/// </summary>
 		private object _eventListener;
 		public object eventListener 
@@ -67,7 +67,7 @@ namespace com.rmc.projects.event_dispatcher
 		}
 		
 		/// <summary>
-		/// The _event name_string.
+		/// When the _event name_string.
 		/// </summary>
 		private string _eventName_string;
 		public string eventName 
@@ -86,7 +86,7 @@ namespace com.rmc.projects.event_dispatcher
 		
 		
 		/// <summary>
-		/// The _event delegate.
+		/// When the _event delegate.
 		/// </summary>
 		private EventDelegate _eventDelegate;
 		public EventDelegate eventDelegate 

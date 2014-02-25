@@ -2,10 +2,6 @@
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
-/**
- * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
- * code [at] RivelloMultimediaConsulting [dot] com                                                  
- *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the      
  * "Software"), to deal in the Software without restriction, including  
@@ -38,16 +34,14 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.projects.spider_strike.mvcs.model;
+using com.rmc.exceptions;
+using System.Collections;
 using System;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.exceptions;
-using System.Collections;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -78,7 +72,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		public GameManagerUI view 	{ get; set;}
 		
 		/// <summary>
-		/// The enemy died signal.
+		/// When the enemy died signal.
 		/// </summary>
 		[Inject]
 		public EnemyDiedSignal enemyDiedSignal {set; get;}
@@ -204,7 +198,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// _ons the round start signal.
+		/// When the round started signal.
 		/// </summary>
 		/// <param name="aRoundDataVO">A round data V.</param>
 		//TODO: IS THIS SIGNAL NEEDED, WHY NOT JUST CHECK ONGAMESTATE?
@@ -215,7 +209,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 		
 		/// <summary>
-		/// _ons the prompt ended signal.
+		/// When the prompt ended signal.
 		/// </summary>
 		private void _onPromptEndedSignal ()
 		{
@@ -229,7 +223,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		
 		
 		/// <summary>
-		/// _ons the game state changed signal.
+		/// When the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
@@ -273,7 +267,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 		
 		/// <summary>
-		/// _dos the remove enemy after time.
+		/// Do remove enemy after time.
 		/// </summary>
 		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
 		/// <param name="aDelay_float">A delay_float.</param>
@@ -291,7 +285,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 		
 		/// <summary>
-		/// _dos the check round and game status after time.
+		/// Do check round and game status after time.
 		/// 
 		/// NOTE: Must be public
 		/// 
@@ -334,7 +328,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		
 		
 		/// <summary>
-		/// _dos the create next spider batch.
+		/// Do create next spider batch.
 		/// </summary>
 		/// <param name="aRoundDataVO">A round data V.</param>
 		private void _doCreateNextSpiderBatch(RoundDataVO aRoundDataVO)
@@ -353,7 +347,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 		
 		/// <summary>
-		/// _ons the enemy died signal.
+		/// When the enemy died signal.
 		/// </summary>
 		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
 		private void _onEnemyDiedSignal (EnemyUI aEnemyThatDied_enemyui)
@@ -371,7 +365,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		}
 		
 		/// <summary>
-		/// _ons the turret died signal.
+		/// When the turret died signal.
 		/// </summary>
 		private void _onTurretDiedSignal ()
 		{

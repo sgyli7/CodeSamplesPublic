@@ -31,13 +31,11 @@
 //--------------------------------------
 using strange.extensions.signal.impl;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.view.ui;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.view.ui;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.signals
 {
 	
@@ -72,22 +70,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view.signals
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.view.signals.UIPromptEndedSignal"/> class.
+		/// </summary>
 		public UIPromptEndedSignal( )
 		{
 			//Debug.Log ("UIPromptEndedSignal.constructor()");
 			
 		}
-		
+
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.view.signals.UIPromptEndedSignal"/> is reclaimed by garbage collection.
+		/// </summary>
 		~UIPromptEndedSignal()
 		{
 			

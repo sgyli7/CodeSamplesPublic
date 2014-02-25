@@ -70,21 +70,25 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.signals
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.GameResetSignal"/> class.
+		/// </summary>
 		public GameResetSignal( )
 		{
 			//Debug.Log ("GameResetSignal.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.controller.signals.GameResetSignal"/> is reclaimed by garbage collection.
+		/// </summary>
 		~GameResetSignal()
 		{
 			

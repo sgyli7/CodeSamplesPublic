@@ -29,15 +29,13 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using System.Collections;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 
-
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -70,40 +68,40 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PUBLIC
 		/// <summary>
-		/// The enemy parent game object.
+		/// When the enemy parent game object.
 		/// </summary>
 		public GameObject enemyParentGameObject;
 
 		/// <summary>
-		/// The spider game object.
+		/// When the spider game object.
 		/// </summary>
 		public GameObject spiderPrefabGameObject;
 
 		/// <summary>
-		/// The intro user interface game object.
+		/// When the intro user interface game object.
 		/// </summary>
 		public GameObject introUIGameObject;
 
 		/// <summary>
-		/// The target game object.
+		/// When the target game object.
 		/// </summary>
 		public TurretUI targetGameObject;
 
 		/// <summary>
-		/// The attack sphere game object. 
+		/// When the attack sphere game object. 
 		/// NOTE: Non-visual. Sets radius for spawning
 		/// </summary>
 		public GameObject spawnSphereGameObject;
 		
 		/// <summary>
-		/// The attack sphere game object. 
+		/// When the attack sphere game object. 
 		/// NOTE: Non-visual. Sets radius for attack behavior
 		/// </summary>
 		public GameObject attackSphereGameObject;
 
 
 		/// <summary>
-		/// The enemy placement. TOGGLED ONLY DURING DEBUGGING
+		/// When the enemy placement. TOGGLED ONLY DURING DEBUGGING
 		/// </summary>
 		public EnemyPlacement enemyPlacement = EnemyPlacement.PRODUCTION;
 

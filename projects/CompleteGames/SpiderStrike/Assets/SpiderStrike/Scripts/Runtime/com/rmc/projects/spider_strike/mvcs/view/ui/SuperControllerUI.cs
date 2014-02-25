@@ -29,17 +29,15 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
+using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.spider_strike.mvcs.view.signals;
+using System.Collections.Generic;
+using System.Linq;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.model.vo;
-using com.rmc.projects.spider_strike.mvcs.view.signals;
-using System.Collections.Generic;
-using System.Linq;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -67,7 +65,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		// PUBLIC
 		
 		/// <summary>
-		/// The user interface button clicked signal.
+		/// When the user interface button clicked signal.
 		/// </summary>
 		public UIInputChangedSignal uiInputChangedSignal {set; get;}
 
@@ -76,7 +74,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// The _last user interface input V os_list.
+		/// When the _last user interface input V os_list.
 		/// </summary>
 		/// 
 		private Dictionary<KeyCode,UIInputVO> _lastInputVOByKeycode_dictionary;
@@ -151,7 +149,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the update user interface input.
+		/// Do update user interface input.
 		/// 
 		/// NOTE: We get DownEnter and DownExit
 		/// 
@@ -177,7 +175,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// _dos the process down stay events.
+		/// Do process down stay events.
 		/// 
 		/// NOTE: We use the state information here to repeatedly send 'yes I'm currently down' events
 		/// 

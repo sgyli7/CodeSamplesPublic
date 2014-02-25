@@ -34,9 +34,6 @@ using com.rmc.projects.spider_strike.mvcs.controller.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using System.Collections.Generic;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.model.vo
 {
 	
@@ -74,7 +71,7 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		
 		// PUBLIC
 		/// <summary>
-		/// The type of the sound.
+		/// When the type of the sound.
 		/// </summary>
 		public SoundType soundType;
 
@@ -84,22 +81,26 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.model.vo.SoundPlayVO"/> class.
+		/// </summary>
+		/// <param name="aSoundType">A sound type.</param>
 		public SoundPlayVO (SoundType aSoundType)
 		{
 			soundType = aSoundType;
 			//
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.model.vo.SoundPlayVO"/> is reclaimed by garbage collection.
+		/// </summary>
 		~SoundPlayVO()
 		{
 			

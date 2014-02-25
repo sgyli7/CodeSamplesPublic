@@ -30,15 +30,12 @@
 //--------------------------------------
 using strange.extensions.command.impl;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
-using UnityEngine;
+using com.rmc.projects.spider_strike.mvcs.view.ui;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.spider_strike.mvcs.view.ui;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 {
 	
@@ -96,7 +93,6 @@ namespace com.rmc.projects.spider_strike.mvcs.controller.commands
 		{
 			//
 			//Debug.Log ("EnemyDiedCommand.Execute()" + enemyThatDied_gameobject);
-
 
 			scoreChangeSignal.Dispatch (100);
 

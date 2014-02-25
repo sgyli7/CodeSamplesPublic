@@ -99,7 +99,7 @@ using UnityEngine;
 		/// Finds the distance to origin. This is a useless example.
 		/// </summary>
 		/// <returns>
-		/// The distance to origin.
+		/// When the distance to origin.
 		/// </returns>
 		/// <param name='gameObject'>
 		/// Game object.
@@ -108,11 +108,13 @@ using UnityEngine;
 		/// NOTE: You can add ANY functionality you want to ANY/ALL native/custom classes.
 		/// 
 		///</summary>
+	    /*
 		public static float FindDistanceToOrigin (this GameObject gameObject) 
 		{
 			return Vector3.Distance (gameObject.transform.position, new Vector3 (0, 0, 0));
 			
 		}
+		**/
 
 		
 		// PRIVATE

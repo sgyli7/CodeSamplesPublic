@@ -30,16 +30,14 @@
 //--------------------------------------
 using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.ui;
-
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view
 {
 	
@@ -146,7 +144,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//  Events
 		//--------------------------------------
 		/// <summary>
-		/// _ons the sound play signal.
+		/// When the sound play signal.
 		/// </summary>
 		/// <param name="aSoundPlayVO">A sound play V.</param>
 		private void _onSoundPlaySignal (SoundPlayVO aSoundPlayVO)

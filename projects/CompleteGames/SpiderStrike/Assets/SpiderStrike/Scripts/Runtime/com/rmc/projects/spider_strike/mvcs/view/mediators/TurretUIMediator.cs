@@ -154,7 +154,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		
 		/// <summary>
-		/// _ons the game state changed signal.
+		/// When the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
 		private void _onGameStateChangedSignal (GameState aGameState)
@@ -171,7 +171,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 
 
 		/// <summary>
-		/// _ons the turret do move signal.
+		/// When the turret do move signal.
 		/// </summary>
 		/// <param name="aTurretMoveVO">A turret move V.</param>
 		private void _onTurretDoMoveSignal (TurretMoveVO aTurretMoveVO) 

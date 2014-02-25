@@ -125,6 +125,26 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// When the cross platform changed signal fires.
+		/// 
+		/// NOTE: 	During startup we dispatch this signal based on
+		/// 		Application.platform so obvservers can handle themselves.
+		/// 
+		/// </summary>
+		/// <param name="aRuntimePlatform">A runtime platform.</param>
+		override protected void _onCrossPlatformChangedSignal (RuntimePlatform aRuntimePlatform)
+		{
+			//THIS FUNCTIONALITY SHOULD RUN ONLY ON SOME PLATFORMS.
+			if (aRuntimePlatform != RuntimePlatform.IPhonePlayer) {
+				
+				gameObject.SetActive (true);
+			} else {
+				gameObject.SetActive (false);
+			}
+			
+		}
+
 	}
 }
 

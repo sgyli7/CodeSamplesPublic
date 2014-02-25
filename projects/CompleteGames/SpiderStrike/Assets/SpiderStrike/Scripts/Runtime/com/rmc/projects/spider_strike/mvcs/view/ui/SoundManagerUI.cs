@@ -29,16 +29,15 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.spider_strike.mvcs.model.vo;
 using com.rmc.exceptions;
 using System.Collections.Generic;
 using System.Linq;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -67,7 +66,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		
 		/// <summary>
-		/// The audio clip_list.
+		/// When the audio clip_list.
 		/// </summary>
 		public List<AudioClip> audioClip_list;
 
@@ -75,12 +74,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 
 		// PRIVATE
 		/// <summary>
-		/// The _audio source game object_list.
+		/// When the _audio source game object_list.
 		/// </summary>
 		private List<GameObject> _audioSourceGameObject_list;
 
 		/// <summary>
-		/// The _audio source_list.
+		/// When the _audio source_list.
 		/// </summary>
 		private List<AudioSource> _audioSource_list;
 
@@ -192,7 +191,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the create all audio sources.
+		/// Do create all audio sources.
 		/// </summary>
 		void _doCreateAllAudioSources ()
 		{

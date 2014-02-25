@@ -30,14 +30,13 @@
 //--------------------------------------
 using UnityEngine;
 using com.rmc.projects.spider_strike.mvcs.controller.signals;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using System.Collections.Generic;
 using com.rmc.projects.spider_strike.mvcs.model.data;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.spider_strike.mvcs.model.vo
 {
 	
@@ -63,33 +62,33 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		
 		// PUBLIC
 		/// <summary>
-		/// The current round_uint.
+		/// When the current round_uint.
 		/// </summary>
 		public uint currentRound_uint;
 
 		/// <summary>
-		/// The total enemies to kill_uint.
+		/// When the total enemies to kill_uint.
 		/// </summary>
 		public uint enemiesTotalToCreate;
 
 		/// <summary>
-		/// The enemies created.
+		/// When the enemies created.
 		/// </summary>
 		public uint enemiesCreated;
 
 		/// <summary>
-		/// The enemies spawned at once_range.
+		/// When the enemies spawned at once_range.
 		/// </summary>
 		public Range enemiesSpawnedAtOnceRange;
 
 		/// <summary>
-		/// The enemy speed_range.
+		/// When the enemy speed_range.
 		/// </summary>
 		public Range enemySpeedRange;
 
 
 		/// <summary>
-		/// The enemy health_range.
+		/// When the enemy health_range.
 		/// </summary>
 		public Range enemyHealthRange;
 
@@ -109,15 +108,19 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.model.vo.RoundDataVO"/> class.
+		/// </summary>
+		/// <param name="aCurrentRound_uint">A current round_uint.</param>
+		/// <param name="aTotalEnemiesToKill_uint">A total enemies to kill_uint.</param>
+		/// <param name="aEnemiesSpawnedAtOnce_range">A enemies spawned at once_range.</param>
+		/// <param name="aEnemyHealth_range">A enemy health_range.</param>
+		/// <param name="aEnemySpeed_range">A enemy speed_range.</param>
 		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint, Range aEnemiesSpawnedAtOnce_range, Range aEnemyHealth_range, Range aEnemySpeed_range)
 		{
 			currentRound_uint 				= aCurrentRound_uint;
@@ -128,7 +131,11 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 			//
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.model.vo.RoundDataVO"/> is reclaimed by garbage collection.
+		/// </summary>
 		~RoundDataVO()
 		{
 			
@@ -137,6 +144,35 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		// PUBLIC
 		
 		// PRIVATE
+		/// <summary>
+		/// Clears the enemies.
+		/// </summary>
+		public void clearEnemies ()
+		{
+			enemies = new List<GameObject>();
+			enemiesCreated = 0;
+		}
+		
+		/// <summary>
+		/// Adds the enemy.
+		/// </summary>
+		/// <param name="aGameObject">A game object.</param>
+		public void addEnemy (GameObject aGameObject)
+		{
+			enemies.Add (aGameObject);
+			//keep this count so even when we remove enemies, 
+			//		we know the total 'ever' created in this round
+			enemiesCreated ++; 
+		}
+		
+		/// <summary>
+		/// Removes the enemy.
+		/// </summary>
+		/// <param name="aGameObject">A game object.</param>
+		public void removeEnemy (GameObject aGameObject)
+		{
+			enemies.Remove (aGameObject);
+		}
 		
 		// PRIVATE STATIC
 		
@@ -147,25 +183,6 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-
-		public void clearEnemies ()
-		{
-			enemies = new List<GameObject>();
-			enemiesCreated = 0;
-		}
-
-		public void addEnemy (GameObject aGameObject)
-		{
-			enemies.Add (aGameObject);
-			//keep this count so even when we remove enemies, 
-			//		we know the total 'ever' created in this round
-			enemiesCreated ++; 
-		}
-
-		public void removeEnemy (GameObject aGameObject)
-		{
-			enemies.Remove (aGameObject);
-		}
 	}
 }
 

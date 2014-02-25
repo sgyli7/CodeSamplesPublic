@@ -52,7 +52,7 @@ namespace com.rmc.templates
 		/// Gets or sets the type.
 		/// </summary>
 		/// <value>
-		/// The type.
+		/// When the type.
 		/// </value>
 		//string type { get; set;}
 

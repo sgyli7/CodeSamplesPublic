@@ -22,7 +22,7 @@ namespace strange.extensions.mediation.api
 	{
 		/// Exception raised when a View can't locate a Context.
 		/// Views contact the Context by "bubbling" their existence up 
-		/// the display chain (recursively using transform.parent).
+		/// When the display chain (recursively using transform.parent).
 		/// If a View reaches the top of that chain without locating
 		/// a Context, it will raise this Exception to warn you.
 		/// 

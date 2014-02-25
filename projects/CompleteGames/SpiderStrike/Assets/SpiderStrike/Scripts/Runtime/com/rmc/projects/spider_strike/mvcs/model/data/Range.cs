@@ -63,7 +63,14 @@ namespace com.rmc.projects.spider_strike.mvcs.model.data
 		// GETTER / SETTER
 		
 		// PUBLIC
+		/// <summary>
+		/// The minimum.
+		/// </summary>
 		public float minimum;
+
+		/// <summary>
+		/// The maximum.
+		/// </summary>
 		public float maximum;
 		
 		// PUBLIC STATIC
@@ -76,22 +83,27 @@ namespace com.rmc.projects.spider_strike.mvcs.model.data
 		//  Methods
 		//--------------------------------------
 		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.model.data.Range"/> class.
+		/// </summary>
+		/// <param name="aMinimum_float">A minimum_float.</param>
+		/// <param name="aMaximum_float">A maximum_float.</param>
 		public Range (float aMinimum_float, float aMaximum_float)
 		{
 			minimum = aMinimum_float;
 			maximum = aMaximum_float;
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.model.data.Range"/> is reclaimed by garbage collection.
+		/// </summary>
 		~Range()
 		{
 			

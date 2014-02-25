@@ -99,28 +99,37 @@ namespace com.rmc.projects.spider_strike.mvcs.model.vo
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.model.vo.TurretMoveVO"/> class.
+		/// </summary>
+		/// <param name="aMoveType">A move type.</param>
 		public TurretMoveVO (MoveType aMoveType )
 		{
 			_moveType = aMoveType;
 			
 		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.spider_strike.mvcs.model.vo.TurretMoveVO"/> class.
+		/// </summary>
+		/// <param name="aMoveType">A move type.</param>
+		/// <param name="aAmount_float">A amount_float.</param>
 		public TurretMoveVO (MoveType aMoveType, float aAmount_float )
 		{
 			_moveType = aMoveType;
 			_amount_float = aAmount_float;
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.model.vo.TurretMoveVO"/> is reclaimed by garbage collection.
+		/// </summary>
 		~TurretMoveVO()
 		{
 			
