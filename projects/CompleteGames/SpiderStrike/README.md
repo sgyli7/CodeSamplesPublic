@@ -2,12 +2,18 @@
 Complete Game: Spider Strike
 =====================================
 
-More details…
+**DESCRIPTION**
+
+Command the turret to defeat all attacking spiders.
+
+**OVERVIEW**
+
+* Spider Strike: is a simple, complete game created to showcase Unity3D/C# development skills.
+* Role: I completed all aspects of game design and development and imported existing art assets via the Asset Store.
+* Client: This is an internal project.
 
 
-**CODING STANDARDS**
+**LINK / VIDEO / BROWSER DEMO**
 
-The demo uses my typical coding standards, namespacing, and project folder structure. On teams, I defer to the practices and processes of the group.
-
-* http://www.rivellomultimediaconsulting.com/c-sharp-coding-conventions-and-standards/
+http://www.rivellomultimediaconsulting.com/portfolio-item/spider-strike/
 
