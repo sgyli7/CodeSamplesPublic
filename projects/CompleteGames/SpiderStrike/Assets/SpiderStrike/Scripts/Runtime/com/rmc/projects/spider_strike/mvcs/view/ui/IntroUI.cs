@@ -32,16 +32,14 @@ using strange.extensions.mediation.impl;
 using com.rmc.projects.spider_strike.mvcs.view.signals;
 using com.rmc.utilities;
 using com.rmc.projects.spider_strike.mvcs.model.vo;
+using com.rmc.projects.animation_monitor;
+using System.Collections;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.animation_monitor;
-using System.Collections;
-
-
 namespace com.rmc.projects.spider_strike.mvcs.view.ui
 {
 	
@@ -91,6 +89,12 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The click GUI text_gameobject.
 		/// </summary>
 		public GameObject clickGUIText_gameobject;
+
+
+		/// <summary>
+		/// The logo GUI texture_gameobjects.
+		/// </summary>
+		public GameObject logoGUITexture_gameobjects;
 		
 		//  PUBLIC STATIC
 		/// <summary>
@@ -134,6 +138,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// The _click GUI text.
 		/// </summary>
 		private GUIText _clickGUIText;
+
+		/// <summary>
+		/// The _logo_guitexture.
+		/// </summary>
+		private GUITexture _logo_guitexture;
 		
 		
 		//--------------------------------------
@@ -159,7 +168,14 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		{
 			
 			base.Start();
-			_clickGUIText = clickGUIText_gameobject.GetComponent<GUIText>();
+
+			//
+			_clickGUIText 	= clickGUIText_gameobject.GetComponent<GUIText>();
+			_logo_guitexture = logoGUITexture_gameobjects.GetComponent<GUITexture>();
+
+			//EXPERIMENT: STORE CLIPS IN CUSTOM PROPERTIES AND ADD THEM DYNAMICALLY
+			//	NOT REQUIRED FOR THE CURRENT SETUP, BUT COULD BE USEFUL FOR DYNAMIC
+			//	ANIMATION SETUP
 			animation.AddClip (introStartAnimationClip, ANIMATION_NAME_INTRO_UI_START);
 			animation.AddClip (introEndAnimationClip, ANIMATION_NAME_INTRO_UI_END);
 			
@@ -217,6 +233,17 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			RendererUtility.SetMaterialVisibility (_clickGUIText.material, isVisible_boolean);
 		}
+
+		/// <summary>
+		/// Sets the logo texture is visible.
+		/// </summary>
+		/// <param name="isVisible_boolean">If set to <c>true</c> is visible_boolean.</param>
+		public void setLogoTextureIsVisible (bool isVisible_boolean)
+		{
+
+			RendererUtility.SetGUITextureVisibility (_logo_guitexture, isVisible_boolean);
+		}
+
 		
 		/// <summary>
 		/// Dos the play animation.

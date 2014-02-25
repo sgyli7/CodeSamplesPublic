@@ -93,6 +93,24 @@ namespace com.rmc.utilities
 			aMaterial.color = new Color(color.r, color.g, color.b, aNewAlpha_float);
 		}
 
+
+		/// <summary>
+		/// Sets the GUI texture visibility.
+		/// </summary>
+		/// <param name="aGUITexture">A GUI texture.</param>
+		/// <param name="aIsVisible_boolean">If set to <c>true</c> a is visible_boolean.</param>
+		public static void SetGUITextureVisibility (GUITexture aGUITexture, bool aIsVisible_boolean)
+		{
+			float alpha_float;
+			if (aIsVisible_boolean) {
+				alpha_float = 1;
+			} else {
+				alpha_float = 0;
+			}
+			Color color = aGUITexture.color;
+			aGUITexture.color = new Color(color.r, color.g, color.b, alpha_float);
+		}
+
 		// PRIVATE
 		
 		// PRIVATE STATIC

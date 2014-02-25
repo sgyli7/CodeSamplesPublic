@@ -89,11 +89,6 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		/// </summary>
 		public AnimationType animationType; 
 
-		/// <summary>
-		/// The shadow_gameobject.
-		/// </summary>
-		public GameObject shadow_gameobject;
-
 		// PUBLIC STATIC
 		/// <summary>
 		/// The LAYE r_ NAM.
@@ -447,22 +442,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			//
 			Hashtable moveTo_hashtable 					= new Hashtable();
 			moveTo_hashtable.Add(iT.MoveTo.y,			-1);
-			moveTo_hashtable.Add(iT.MoveTo.delay,  		0.5);
-			moveTo_hashtable.Add(iT.MoveTo.time,  		1);
+			moveTo_hashtable.Add(iT.MoveTo.delay,  		0.25);
+			moveTo_hashtable.Add(iT.MoveTo.time,  		2);
 			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.easeOutExpo);
 			iTween.MoveTo (gameObject, 					moveTo_hashtable);
-
-
-			//
-			Hashtable moveTo2_hashtable 				= new Hashtable();
-			moveTo2_hashtable.Add(iT.MoveTo.y,			30);
-			moveTo2_hashtable.Add(iT.MoveTo.delay,  	0.5);
-			moveTo2_hashtable.Add(iT.MoveTo.time,  		.25);
-			moveTo2_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.easeOutExpo);
-			iTween.MoveTo (shadow_gameobject, 			moveTo2_hashtable);
-
-
-
 
 
 		}

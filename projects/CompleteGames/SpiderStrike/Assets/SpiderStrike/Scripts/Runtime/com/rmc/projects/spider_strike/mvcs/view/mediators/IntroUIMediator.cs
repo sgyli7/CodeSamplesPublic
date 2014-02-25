@@ -152,6 +152,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 		{
 			
 			view.setClickText (Constants.HUD_CLICK_ANYWHERE);
+			view.setClickTextIsVisible 		(false);
+			view.setLogoTextureIsVisible 	(false);
 		}
 		
 		
@@ -194,7 +196,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				view.doPlayAnimation (IntroUI.ANIMATION_NAME_INTRO_UI_END, 0, 0);
 				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.BUTTON_CLICK));
 				//
-				view.setClickTextIsVisible (false);
+				view.setClickTextIsVisible 		(false);
+				view.setLogoTextureIsVisible 	(false);
 			}
 		}
 
@@ -210,7 +213,8 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 			if (aGameState == GameState.INTRO_START) {
 				_wasClicked_boolean = false;
 				//
-				view.setClickTextIsVisible (true);
+				view.setClickTextIsVisible 		(true);
+				view.setLogoTextureIsVisible 	(true);
 				view.doPlayAnimation (IntroUI.ANIMATION_NAME_INTRO_UI_START, 0, 0);
 			}
 			
