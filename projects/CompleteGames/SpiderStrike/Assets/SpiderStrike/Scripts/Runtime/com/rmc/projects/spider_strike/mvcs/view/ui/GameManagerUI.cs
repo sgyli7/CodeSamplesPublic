@@ -80,6 +80,11 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 		public GameObject spiderPrefabGameObject;
 
 		/// <summary>
+		/// The intro user interface game object.
+		/// </summary>
+		public GameObject introUIGameObject;
+
+		/// <summary>
 		/// The target game object.
 		/// </summary>
 		public TurretUI targetGameObject;
@@ -128,6 +133,10 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 			
 			base.Start();
 			StartCoroutine ( Wait_ThenAllViewsInitializedSignal ());
+
+			//WE DISABLE THE INTRO TO EASE THE USE OF THE UNITY IDE
+			//HERE WE ENABLE IT
+			introUIGameObject.SetActive (true);
 
 
 		}
