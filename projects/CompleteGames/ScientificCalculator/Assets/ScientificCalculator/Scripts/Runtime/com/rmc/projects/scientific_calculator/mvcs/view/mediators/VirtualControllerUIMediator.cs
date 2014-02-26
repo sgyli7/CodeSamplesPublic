@@ -70,7 +70,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 		 * 
 		 **/
 		[Inject]
-		public VirtualControllerUI viewConcrete 	
+		public GUIUI viewConcrete 	
 		{ 
 			set {
 				view = value;

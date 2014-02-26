@@ -184,7 +184,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		/// </summary>
 		private void _doProcessDownStayEvents ()
 		{
-
+			/*
 			//
 			foreach (UIInputVO uiInputVO in _lastInputVOByKeycode_dictionary.Values)
 			{
@@ -192,7 +192,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 					uiInputChangedSignal.Dispatch (new UIInputVO (uiInputVO.keyCode, UIInputEventType.DownStay));
 				}
 			}
-
+*/
 		}
 
 		
