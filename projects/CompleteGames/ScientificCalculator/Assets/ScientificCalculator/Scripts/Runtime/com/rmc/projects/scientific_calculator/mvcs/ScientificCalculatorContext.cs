@@ -44,6 +44,9 @@ using com.rmc.projects.scientific_calculator.mvcs.model;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.scientific_calculator.mvcs.view.mediators;
+
+
 namespace com.rmc.projects.scientific_calculator.mvcs
 {
 	
@@ -151,7 +154,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			 * 
 			 * 
 			**/
-			injectionBinder.Bind<ICalculatorModel>().To<CalculatorModel>().ToSingleton();
+			injectionBinder.Bind<IScientificCalculatorModel>().To<ScientificCalculatorModel>().ToSingleton();
 
 
 
@@ -163,6 +166,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			//
 			mediationBinder.Bind<GUIUI>().To<GUIUIMediator>();
 			mediationBinder.Bind<KeyboardControllerUI>().To<KeyboardControllerUIMediator>();
+			mediationBinder.Bind<SoundManagerUI>().To<SoundManagerUIMediator>();
 			//
 
 
@@ -191,6 +195,11 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			commandBinder.Bind<CrossPlatformChangeSignal>().To<CrossPlatformChangeCommand>();
 			injectionBinder.Bind<CrossPlatformChangedSignal>().ToSingleton();
 			//
+			commandBinder.Bind<CalculatorModelChangeSignal>().To<AllViewsInitializedCommand>();
+			injectionBinder.Bind<CalculatorModelChangedSignal>().ToSingleton();
+			//
+			commandBinder.Bind<DisplayTextChangeSignal>().To<DisplayTextChangeCommand>();
+			injectionBinder.Bind<DisplayTextChangedSignal>().ToSingleton();
 
 
 			/**

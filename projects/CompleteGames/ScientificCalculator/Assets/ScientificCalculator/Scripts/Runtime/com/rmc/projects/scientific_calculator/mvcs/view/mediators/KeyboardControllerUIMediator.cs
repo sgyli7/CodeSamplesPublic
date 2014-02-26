@@ -29,18 +29,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.scientific_calculator.mvcs.controller.signals;
-using strange.extensions.mediation.impl;
 using com.rmc.projects.scientific_calculator.mvcs.view.ui;
-using com.rmc.exceptions;
-using com.rmc.projects.scientific_calculator.mvcs.model.vo;
-
+using com.rmc.projects.scientific_calculator.mvcs.view.mediators.core;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.scientific_calculator.mvcs.view
+namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 {
 	
 	//--------------------------------------

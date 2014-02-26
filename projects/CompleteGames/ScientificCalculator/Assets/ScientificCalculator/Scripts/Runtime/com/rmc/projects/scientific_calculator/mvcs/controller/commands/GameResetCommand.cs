@@ -63,7 +63,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.controller.commands
 		/// MODEL: The main game data
 		/// </summary>
 		[Inject]
-		public ICalculatorModel iCalculatorModel { get; set; } 
+		public IScientificCalculatorModel iCalculatorModel { get; set; } 
 
 		
 		// PUBLIC

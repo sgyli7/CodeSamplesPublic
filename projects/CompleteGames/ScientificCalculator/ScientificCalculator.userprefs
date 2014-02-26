@@ -1,10 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/components/ButtonDataComponent.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/mediators/GUIUIMediator.cs">
     <Files>
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/components/ButtonDataComponent.cs" Line="121" Column="64" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Editor/com/rmc/projects/components/ButtonDataComponentEditor.cs" Line="108" Column="11" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/GUIUI.cs" Line="227" Column="16" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/components/ButtonDataComponent.cs" Line="55" Column="16" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/controller/signals/DisplayTextChangedSignal.cs" Line="1" Column="1" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/GUIUI.cs" Line="56" Column="33" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/controller/signals/CrossPlatformChangedSignal.cs" Line="53" Column="1" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/ScientificCalculatorContext.cs" Line="167" Column="27" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/mediators/core/SuperControllerUIMediator.cs" Line="79" Column="15" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/mediators/GUIUIMediator.cs" Line="82" Column="12" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/mediators/KeyboardControllerUIMediator.cs" Line="62" Column="59" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/mediators/SoundManagerUIMediator.cs" Line="43" Column="69" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/core/IControllerUI.cs" Line="39" Column="67" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/core/SuperControllerUI.cs" Line="41" Column="67" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/KeyboardControllerUI.cs" Line="56" Column="50" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/SoundManagerUI.cs" Line="174" Column="62" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

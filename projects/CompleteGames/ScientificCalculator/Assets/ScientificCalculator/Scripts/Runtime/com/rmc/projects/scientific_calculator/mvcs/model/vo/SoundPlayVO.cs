@@ -43,13 +43,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model.vo
 	public enum SoundType
 	{
 		BUTTON_CLICK,
-		TURRET_FIRE,
-		ENEMY_FOOSTEP,
-		ENEMY_ATTACK,
-		ENEMY_DAMAGED,
-		ENEMY_DIE,
 		GAME_OVER_WIN,
-		GAME_OVER_LOSS,
 	}
 
 

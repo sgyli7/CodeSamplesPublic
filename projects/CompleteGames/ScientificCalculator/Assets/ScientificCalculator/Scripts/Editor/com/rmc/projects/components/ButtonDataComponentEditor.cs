@@ -92,7 +92,10 @@ namespace com.rmc.projects.scientific_calculator.components
 			KeyCode.KeypadPlus,
 			KeyCode.KeypadMinus,
 			KeyCode.KeypadMultiply,
-			KeyCode.Return
+			KeyCode.KeypadPeriod,
+			KeyCode.X,
+			KeyCode.KeypadEnter,
+			KeyCode.Delete
 		};
 
 		/// <summary>

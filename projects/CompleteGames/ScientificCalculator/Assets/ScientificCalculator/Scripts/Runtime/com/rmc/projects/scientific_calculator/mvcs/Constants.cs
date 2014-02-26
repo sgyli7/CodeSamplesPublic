@@ -136,11 +136,8 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			case KeyCode.Alpha9:
 				buttonLabel_string = "9";
 				break;
-			case KeyCode.Return:
-				buttonLabel_string = "Enter";
-				break;
-			case KeyCode.Delete:
-				buttonLabel_string = "Clear";
+			case KeyCode.KeypadPeriod:
+				buttonLabel_string = ".";
 				break;
 			case KeyCode.KeypadMultiply:
 				buttonLabel_string = "*";
@@ -153,6 +150,12 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 				break;
 			case KeyCode.KeypadMinus:
 				buttonLabel_string = "-";
+				break;
+			case KeyCode.KeypadEnter:
+				buttonLabel_string = "=";
+				break;
+			case KeyCode.Delete:
+				buttonLabel_string = "<font size='10'>Del</font>";
 				break;
 			default:
 				#pragma warning disable 0162

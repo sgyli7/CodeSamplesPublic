@@ -35,6 +35,7 @@ using com.rmc.projects.scientific_calculator.mvcs.controller.signals;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.scientific_calculator.mvcs.model.vo;
+using com.rmc.projects.scientific_calculator.mvcs.view.ui.core;
 
 
 namespace com.rmc.projects.scientific_calculator.mvcs.view.ui

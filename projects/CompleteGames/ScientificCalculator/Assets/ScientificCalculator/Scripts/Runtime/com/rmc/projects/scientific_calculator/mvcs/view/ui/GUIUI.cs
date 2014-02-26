@@ -35,6 +35,8 @@ using com.rmc.projects.scientific_calculator.mvcs.model.vo;
 //--------------------------------------
 using com.rmc.projects.scientific_calculator.components;
 using com.rmc.exceptions;
+using com.rmc.projects.scientific_calculator.mvcs.view.ui.core;
+using com.rmc.projects.scientific_calculator.mvcs.view.signals;
 
 
 namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
@@ -63,26 +65,22 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 
 		// PUBLIC
 		/// <summary>
-		/// When the custom skin.
+		/// The display text G.
 		/// </summary>
-		#if UNITY_EDITOR
-		public GUISkin guiSkin;
-		#endif 
+		public GameObject displayTextGO;
+		
+
 
 		// PUBLIC STATIC
 		
 		// PRIVATE
 		/// <summary>
-		/// When the _is firing_boolean.
+		/// The _display text_uilabel.
 		/// </summary>
-		bool _isCurrentlyFiring_boolean = true;
+		private UILabel _displayText_uilabel;
+
 		
 		// PRIVATE STATIC
-		private const float _SCREEN_TOP_MARGIN = 30;
-		private const float _SCREEN_MARGIN = 20;
-		private const float _BUTTON_WIDTH = 120;
-		private const float _BUTTON_HEIGHT = 100;
-		private const float _BUTTON_HEIGHT_SKINNY = 70;
 		
 		//--------------------------------------
 		//  Methods
@@ -94,6 +92,9 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		{
 			
 			base.Start();
+			_displayText_uilabel = displayTextGO.GetComponentInChildren<UILabel>();
+			uiInputChangedSignal = new UIInputChangedSignal();
+			setDisplayText ("");
 			
 		}
 		
@@ -128,77 +129,20 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		}
 
 
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		public void setDisplayText (string aDisplayText_string)
+		{
+			_displayText_uilabel.text = aDisplayText_string;
+			
+		}
+
+
 
 		// PUBLIC STATIC
 		
 		// PRIVATE
-
-		/// <summary>
-		/// Do set is firing.
-		/// </summary>
-		/// <param name="aIsFiring_boolean">If set to <c>true</c> a is firing_boolean.</param>
-		private void _doSetIsCurrentlyFiring (bool aIsCurrentlyFiring_boolean) 
-		{
-			if (_isCurrentlyFiring_boolean != aIsCurrentlyFiring_boolean) {
-				_isCurrentlyFiring_boolean = aIsCurrentlyFiring_boolean;
-				if (_isCurrentlyFiring_boolean) {
-					_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownEnter);
-				} else {
-					_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownExit);
-				}
-			}
-			
-		}
-
-		// PRIVATE
-		/// <summary>
-		/// When the _is currently left_boolean.
-		/// </summary>
-		bool _isCurrentlyLeft_boolean = true;
-		
-		/// <summary>
-		/// Do set is currently left.
-		/// </summary>
-		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
-		private void _doSetIsCurrentlyLeft (bool aIsCurrentlyLeft_boolean) 
-		{
-			if (_isCurrentlyLeft_boolean != aIsCurrentlyLeft_boolean) {
-				_isCurrentlyLeft_boolean = aIsCurrentlyLeft_boolean;
-				if (_isCurrentlyLeft_boolean) {
-					_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownEnter);
-				} else {
-					_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownExit);
-				}
-			}
-			
-		}
-
-
-		// PRIVATE
-		/// <summary>
-		/// When the _is currently left_boolean.
-		/// </summary>
-		bool _isCurrentlyRight_boolean = true;
-		
-		/// <summary>
-		/// Do set is currently left.
-		/// </summary>
-		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
-		private void _doSetIsCurrentlyRight (bool aIsCurrentlyRight_boolean) 
-		{
-			if (_isCurrentlyRight_boolean != aIsCurrentlyRight_boolean) {
-				_isCurrentlyRight_boolean = aIsCurrentlyRight_boolean;
-				if (_isCurrentlyRight_boolean) {
-					_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownEnter);
-				} else {
-					_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownExit);
-				}
-			}
-			
-		}
-
-
-
 		
 		// PRIVATE STATIC
 		
@@ -213,32 +157,17 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		//--------------------------------------
 		/// <summary>
 		/// Ons the user interface button message.
+		/// 
+		/// NOTE: Must be public (for sendmessage's use)
+		/// 
 		/// </summary>
-		/// <param name="aGameObject">A game object.</param>
+		/// <param name="aUIButton">A user interface button.</param>
 		public void onUIButtonMessage (GameObject aGameObject) 
 		{
 			ButtonDataComponent buttonDataComponent = aGameObject.GetComponentInChildren<ButtonDataComponent>();
-			Debug.Log ("onUIButtonMessage(): " + buttonDataComponent.keyCode);
-
-			switch (buttonDataComponent.keyCode) {
-			case KeyCode.Alpha0:
-				_doUpdateUIInput (KeyCode.Alpha0, UIInputEventType.DownEnter);
-				break;
-			case KeyCode.Alpha1:
-				_doUpdateUIInput (KeyCode.Alpha1, UIInputEventType.DownEnter);
-				break;
-
-				/*
-				 * TODO: ADD ALL CASES THEN ADD DEFAULT
-			default:
-				#pragma warning disable 0162
-				throw new SwitchStatementException(buttonDataComponent.keyCode);
-				break;
-				#pragma warning restore 0162
-*/
-			}
+			//Debug.Log ("onUIButtonMessage" + buttonDataComponent);
+			_doUpdateUIInput (buttonDataComponent.keyCode, UIInputEventType.DownEnter);
 		}
-
 
 	}
 }

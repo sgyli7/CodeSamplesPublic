@@ -37,7 +37,11 @@ using com.rmc.projects.scientific_calculator.mvcs.model;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.scientific_calculator.mvcs.view
+using com.rmc.projects.scientific_calculator.mvcs.view.mediators.core;
+using com.rmc.projects.scientific_calculator.mvcs.view.signals;
+
+
+namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 {
 	
 	//--------------------------------------
@@ -75,10 +79,30 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 			set {
 				view = value;
 			}
+			get {
+				return view as GUIUI;
+			}
 		}
 
 
-		
+		/// <summary>
+		/// Gets or sets the display text changed signal.
+		/// </summary>
+		/// <value>The display text changed signal.</value>
+		[Inject]
+		public DisplayTextChangedSignal displayTextChangedSignal { get; set;}
+
+		/// <summary>
+		/// Gets or sets all views initialized signal.
+		/// 
+		/// NOTE: We arbitrarily choose this UI to dispatch this and assume all other UI are ready
+		/// 
+		/// </summary>
+		/// <value>All views initialized signal.</value>
+		[Inject]
+		public AllViewsInitializedSignal allViewsInitializedSignal { get; set;}
+
+
 		// PUBLIC
 		
 		
@@ -96,8 +120,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 		/// </summary>
 		public void Start()
 		{
-			
-			
+			allViewsInitializedSignal.Dispatch();
 		}
 
 
@@ -107,6 +130,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 		public override void OnRegister()
 		{
 			base.OnRegister();
+			displayTextChangedSignal.AddListener (_onDisplayTextChangedSignal);
 			
 		}
 		
@@ -116,6 +140,8 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 		public override void OnRemove()
 		{
 			base.OnRemove();
+			displayTextChangedSignal.RemoveListener (_onDisplayTextChangedSignal);
+
 		}
 		
 		
@@ -133,6 +159,19 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// _ons the display text changed signal.
+		/// </summary>
+		/// <param name="aDisplayText_string">A display text_string.</param>
+		private void _onDisplayTextChangedSignal (string aDisplayText_string)
+		{
+
+			viewConcrete.setDisplayText (aDisplayText_string);
+
+		}
+
+
+
 		/// <summary>
 		/// When the cross platform changed signal fires.
 		/// 

@@ -40,7 +40,7 @@ using UnityEngine;
 using com.rmc.projects.scientific_calculator.mvcs.model.vo;
 
 
-namespace com.rmc.projects.scientific_calculator.mvcs.view
+namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 {
 	
 	//--------------------------------------
@@ -117,7 +117,6 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 		/// </summary>
 		public void Start()
 		{
-			view.playMusic();
 			
 		}
 		
