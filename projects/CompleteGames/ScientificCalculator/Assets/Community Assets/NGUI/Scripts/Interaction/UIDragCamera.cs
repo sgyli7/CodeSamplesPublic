@@ -54,10 +54,12 @@ public class UIDragCamera : IgnoreTimeScale
 
 	void OnPress (bool isPressed)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && draggableCamera != null)
 		{
 			draggableCamera.Press(isPressed);
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -66,10 +68,12 @@ public class UIDragCamera : IgnoreTimeScale
 
 	void OnDrag (Vector2 delta)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && draggableCamera != null)
 		{
 			draggableCamera.Drag(delta);
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -78,9 +82,11 @@ public class UIDragCamera : IgnoreTimeScale
 
 	void OnScroll (float delta)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && draggableCamera != null)
 		{
 			draggableCamera.Scroll(delta);
 		}
+		#pragma warning restore 0618
 	}
 }

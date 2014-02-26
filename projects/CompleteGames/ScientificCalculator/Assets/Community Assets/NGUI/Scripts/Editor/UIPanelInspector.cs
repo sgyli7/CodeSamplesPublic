@@ -18,7 +18,9 @@ public class UIPanelInspector : Editor
 	{
 		UIPanel panel = target as UIPanel;
 		List<UIDrawCall> drawcalls = panel.drawCalls;
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 
 		NGUIEditorTools.DrawSeparator();
 

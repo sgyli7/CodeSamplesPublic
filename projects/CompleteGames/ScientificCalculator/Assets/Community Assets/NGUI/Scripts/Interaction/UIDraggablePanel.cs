@@ -468,6 +468,7 @@ public class UIDraggablePanel : IgnoreTimeScale
 
 	public void Press (bool pressed)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active)
 		{
 			mTouches += (pressed ? 1 : -1);
@@ -496,6 +497,7 @@ public class UIDraggablePanel : IgnoreTimeScale
 				RestrictWithinBounds(false);
 			}
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -504,6 +506,8 @@ public class UIDraggablePanel : IgnoreTimeScale
 
 	public void Drag (Vector2 delta)
 	{
+		#pragma warning disable 0618
+		
 		if (enabled && gameObject.active && mShouldMove)
 		{
 			UICamera.currentTouch.clickNotification = UICamera.ClickNotification.BasedOnDelta;
@@ -539,6 +543,7 @@ public class UIDraggablePanel : IgnoreTimeScale
 				}
 			}
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -547,12 +552,14 @@ public class UIDraggablePanel : IgnoreTimeScale
 
 	public void Scroll (float delta)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active)
 		{
 			mShouldMove = shouldMove;
 			if (Mathf.Sign(mScroll) != Mathf.Sign(delta)) mScroll = 0f;
 			mScroll += delta * scrollWheelFactor;
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>

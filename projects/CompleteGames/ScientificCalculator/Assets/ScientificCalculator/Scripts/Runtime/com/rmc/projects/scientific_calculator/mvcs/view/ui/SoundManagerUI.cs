@@ -171,7 +171,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 				break;
 			default:
 				#pragma warning disable 0162
-				throw new SwitchStatementException();
+				throw new SwitchStatementException(aSoundPlayVO.soundType);
 				break;
 				#pragma warning restore 0162
 			}
@@ -198,6 +198,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 			_audioSourceGameObject_list = new List<GameObject>();
 			_audioSource_list 			= new List<AudioSource>();
 			GameObject nextAudioSource_gameobject;
+			#pragma warning disable 0219
 			foreach (AudioClip audioClip in audioClip_list) {
 				
 				nextAudioSource_gameobject = new GameObject ();
@@ -208,6 +209,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 				_audioSourceGameObject_list.Add (nextAudioSource_gameobject);
 				_audioSource_list.Add (nextAudioSource_gameobject.GetComponent<AudioSource>());
 			}
+			#pragma warning restore 0219
 		}
 
 

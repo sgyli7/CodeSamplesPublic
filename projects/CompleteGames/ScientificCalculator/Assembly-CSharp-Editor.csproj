@@ -76,6 +76,10 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\CreateDefaultFoldersMenu.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\EditorWindowUtility.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\ScriptableObjectUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\unity3d\wiki\expose_properties\EditorWithExposedProperties.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\unity3d\wiki\expose_properties\ExposeProperties.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\unity3d\wiki\expose_properties\PropertyField.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Editor\com\rmc\projects\components\ButtonDataComponentEditor.cs" />
      <None Include="Assets\Community Assets\NGUI\Resources\Shaders\Depth.shader" />
      <None Include="Assets\SpiderStrike\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Community Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />

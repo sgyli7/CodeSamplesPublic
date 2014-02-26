@@ -127,6 +127,7 @@ public class UITable : MonoBehaviour
 
 	public void Reposition ()
 	{
+		#pragma warning disable 0618
 		if (mStarted)
 		{
 			Transform myTrans = transform;
@@ -143,6 +144,7 @@ public class UITable : MonoBehaviour
 			if (mDrag != null) mDrag.UpdateScrollbars(true);
 		}
 		else repositionNow = true;
+		#pragma warning restore 0618
 	}
 
 	/// <summary>

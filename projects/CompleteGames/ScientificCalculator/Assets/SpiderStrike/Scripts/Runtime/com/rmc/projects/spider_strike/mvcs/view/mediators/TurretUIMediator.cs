@@ -192,7 +192,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view
 				break;
 			default:
 				#pragma warning disable 0162
-				throw new SwitchStatementException();
+				throw new SwitchStatementException(aTurretMoveVO.moveType);
 				break;
 				#pragma warning restore 0162
 			}

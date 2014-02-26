@@ -80,6 +80,7 @@ public class UIDragObject : IgnoreTimeScale
 
 	void OnPress (bool pressed)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && target != null)
 		{
 			mPressed = pressed;
@@ -111,6 +112,7 @@ public class UIDragObject : IgnoreTimeScale
 				mPanel.ConstrainTargetToBounds(target, ref mBounds, false);
 			}
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -119,6 +121,7 @@ public class UIDragObject : IgnoreTimeScale
 
 	void OnDrag (Vector2 delta)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && target != null)
 		{
 			UICamera.currentTouch.clickNotification = UICamera.ClickNotification.BasedOnDelta;
@@ -165,6 +168,7 @@ public class UIDragObject : IgnoreTimeScale
 				}
 			}
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -223,10 +227,12 @@ public class UIDragObject : IgnoreTimeScale
 
 	void OnScroll (float delta)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active)
 		{
 			if (Mathf.Sign(mScroll) != Mathf.Sign(delta)) mScroll = 0f;
 			mScroll += delta * scrollWheelFactor;
 		}
+		#pragma warning restore 0618
 	}
 }

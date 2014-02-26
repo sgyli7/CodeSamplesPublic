@@ -44,7 +44,9 @@ public class UISliderInspector : Editor
 
 	public override void OnInspectorGUI ()
 	{
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 		UISlider slider = target as UISlider;
 
 		NGUIEditorTools.DrawSeparator();

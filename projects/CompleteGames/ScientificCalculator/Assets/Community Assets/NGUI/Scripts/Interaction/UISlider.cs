@@ -201,7 +201,9 @@ public class UISlider : IgnoreTimeScale
 		if (!plane.Raycast(ray, out dist)) return;
 
 		// Collider's bottom-left corner in local space
+		#pragma warning disable 0618
 		Vector3 localOrigin = mTrans.localPosition + mCol.center - mCol.extents;
+		#pragma warning restore 0618
 		Vector3 localOffset = mTrans.localPosition - localOrigin;
 
 		// Direction to the point on the plane in scaled local space

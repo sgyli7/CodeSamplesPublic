@@ -187,11 +187,13 @@ public class UIDraggableCamera : IgnoreTimeScale
 
 	public void Scroll (float delta)
 	{
-		if (enabled && gameObject.active)
+		#pragma warning disable 0618
 		{
+			if (enabled && gameObject.active)
 			if (Mathf.Sign(mScroll) != Mathf.Sign(delta)) mScroll = 0f;
 			mScroll += delta * scrollWheelFactor;
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>

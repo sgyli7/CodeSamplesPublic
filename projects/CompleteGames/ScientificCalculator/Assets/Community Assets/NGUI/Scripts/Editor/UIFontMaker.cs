@@ -66,6 +66,7 @@ public class UIFontMaker : EditorWindow
 
 	void OnGUI ()
 	{
+		#pragma warning disable 0618
 		string prefabPath = "";
 		string matPath = "";
 
@@ -280,5 +281,6 @@ public class UIFontMaker : EditorWindow
 				}
 			}
 		}
+		#pragma warning restore 0618
 	}
 }

@@ -35,7 +35,9 @@ public class UICreateNewUIWizard : EditorWindow
 
 	void OnGUI ()
 	{
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 
 		GUILayout.Label("Create a new UI with the following parameters:");
 		NGUIEditorTools.DrawSeparator();
@@ -63,6 +65,7 @@ public class UICreateNewUIWizard : EditorWindow
 
 	void CreateNewUI ()
 	{
+		#pragma warning disable 0618
 		NGUIEditorTools.RegisterUndo("Create New UI");
 
 		// Root for the UI
@@ -157,5 +160,6 @@ public class UICreateNewUIWizard : EditorWindow
 			UIPanel panel = NGUITools.AddChild<UIPanel>(anchor.gameObject);
 			Selection.activeGameObject = panel.gameObject;
 		}
+		#pragma warning restore 0618
 	}
 }

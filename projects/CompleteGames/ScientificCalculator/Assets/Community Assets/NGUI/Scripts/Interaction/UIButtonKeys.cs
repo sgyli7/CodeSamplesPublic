@@ -18,14 +18,18 @@ public class UIButtonKeys : MonoBehaviour
 
 	void Start ()
 	{
+
+		#pragma warning disable 0618
 		if (startsSelected && (UICamera.selectedObject == null || !UICamera.selectedObject.active))
 		{
 			UICamera.selectedObject = gameObject;
 		}
+		#pragma warning restore 0618
 	}
 
 	void OnKey (KeyCode key)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active)
 		{
 			switch (key)
@@ -60,6 +64,7 @@ public class UIButtonKeys : MonoBehaviour
 				break;
 			}
 		}
+		#pragma warning restore 0618
 	}
 
 	void OnClick ()

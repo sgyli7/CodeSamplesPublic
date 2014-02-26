@@ -34,7 +34,9 @@ public class UIWidgetInspector : Editor
 
 	public override void OnInspectorGUI ()
 	{
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 		mWidget = target as UIWidget;
 
 		if (!mInitialized)

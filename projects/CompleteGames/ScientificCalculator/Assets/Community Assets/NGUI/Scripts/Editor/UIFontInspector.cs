@@ -73,7 +73,9 @@ public class UIFontInspector : Editor
 	override public void OnInspectorGUI ()
 	{
 		mFont = target as UIFont;
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 
 		NGUIEditorTools.DrawSeparator();
 
@@ -228,13 +230,17 @@ public class UIFontInspector : Editor
 				// Font spacing
 				GUILayout.BeginHorizontal();
 				{
+					#pragma warning disable 0618
 					EditorGUIUtility.LookLikeControls(0f);
+					#pragma warning restore 0618
 					GUILayout.Label("Spacing", GUILayout.Width(60f));
 					GUILayout.Label("X", GUILayout.Width(12f));
 					int x = EditorGUILayout.IntField(mFont.horizontalSpacing);
 					GUILayout.Label("Y", GUILayout.Width(12f));
 					int y = EditorGUILayout.IntField(mFont.verticalSpacing);
+					#pragma warning disable 0618
 					EditorGUIUtility.LookLikeControls(80f);
+					#pragma warning restore 0618
 
 					if (mFont.horizontalSpacing != x || mFont.verticalSpacing != y)
 					{

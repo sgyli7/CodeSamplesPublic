@@ -54,6 +54,7 @@ public class UIGrid : MonoBehaviour
 
 	public void Reposition ()
 	{
+		#pragma warning disable 0618
 		if (!mStarted)
 		{
 			repositionNow = true;
@@ -116,5 +117,6 @@ public class UIGrid : MonoBehaviour
 
 		UIDraggablePanel drag = NGUITools.FindInParents<UIDraggablePanel>(gameObject);
 		if (drag != null) drag.UpdateScrollbars(true);
+		#pragma warning restore 0618
 	}
 }

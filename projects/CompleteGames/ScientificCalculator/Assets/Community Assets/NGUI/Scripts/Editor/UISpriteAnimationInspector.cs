@@ -20,7 +20,9 @@ public class UISpriteAnimationInspector : Editor
 	public override void OnInspectorGUI ()
 	{
 		NGUIEditorTools.DrawSeparator();
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 		UISpriteAnimation anim = target as UISpriteAnimation;
 
 		int fps = EditorGUILayout.IntField("Framerate", anim.framesPerSecond);

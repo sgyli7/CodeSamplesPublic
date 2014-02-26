@@ -165,6 +165,8 @@ public class UIButtonTween : MonoBehaviour
 
 	public void Play (bool forward)
 	{
+
+		#pragma warning disable 0618
 		GameObject go = (tweenTarget == null) ? gameObject : tweenTarget;
 
 		if (!go.active)
@@ -218,5 +220,6 @@ public class UIButtonTween : MonoBehaviour
 				}
 			}
 		}
+		#pragma warning restore 0618
 	}
 }

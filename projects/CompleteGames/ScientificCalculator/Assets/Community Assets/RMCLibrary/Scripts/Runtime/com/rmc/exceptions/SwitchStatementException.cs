@@ -66,7 +66,7 @@ namespace com.rmc.exceptions
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
-		public SwitchStatementException () : base ("Reaching the default for this switch is not acceptable.")
+		public SwitchStatementException (Object aInvalideValue_object ) : base ("Reaching the default for this switch is not acceptable. Value (" +aInvalideValue_object+")")
 		{
 
 

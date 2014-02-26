@@ -154,7 +154,9 @@ public class UICameraTool : EditorWindow
 
 	void OnGUI ()
 	{
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 
 		List<Camera> list = NGUIEditorTools.FindInScene<Camera>();
 
@@ -178,6 +180,7 @@ public class UICameraTool : EditorWindow
 
 	void DrawRow (Camera cam)
 	{
+		#pragma warning disable 0618
 		if (cam != null) NGUIEditorTools.HighlightLine(new Color(0.6f, 0.6f, 0.6f));
 
 		GUILayout.BeginHorizontal();
@@ -269,5 +272,6 @@ public class UICameraTool : EditorWindow
 			}
 		}
 		GUILayout.EndHorizontal();
+		#pragma warning restore 0618
 	}
 }

@@ -95,7 +95,9 @@ public class UIAtlasInspector : Editor
 
 	public override void OnInspectorGUI ()
 	{
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 		mAtlas = target as UIAtlas;
 
 		NGUIEditorTools.DrawSeparator();

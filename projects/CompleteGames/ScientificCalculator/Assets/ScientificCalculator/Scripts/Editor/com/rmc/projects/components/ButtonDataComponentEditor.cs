@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -7,9 +7,7 @@
  * "Software"), to deal in the Software without restriction, including  
  * without limitation the rights to use, copy, modify, merge, publish,  
  * distribute, sublicense, and#or sell copies of the Software, and to   
- * permit persons to whom the Software is furn
- * 
- * ished to do so, subject to
+ * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:                                            
  *                                                                      
  * The above copyright notice and this permission notice shall be       
@@ -25,106 +23,137 @@
  */
 // Marks the right margin of code *******************************************************************
 
+
 //--------------------------------------
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.scientific_calculator.mvcs.controller.signals;
-using com.rmc.projects.scientific_calculator.mvcs.view.ui;
-using com.rmc.projects.scientific_calculator.mvcs.model;
-
+using UnityEditor;
+using System.Linq;
+using com.rmc.projects.scientific_calculator.mvcs;
+using System;
+using com.unity3d.wiki.expose_properties;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.scientific_calculator.mvcs.view
+namespace com.rmc.projects.scientific_calculator.components
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
 	
-	
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
 	
-	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class VirtualControllerUIMediator : SuperControllerUIMediator
+	[CustomEditor(typeof(ButtonDataComponent))]
+	public class ButtonDataComponentEditor : EditorWithExposedProperties 
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		
-		/*
-		 * NOTE: According to my tests and
-		 * 		http://kendlj.wordpress.com/2014/01/03/unit-testing-strangeioc-mediator/
-		 * 
-		 * 		We cannot do "mediationBinder.Bind<IControllerUI>().To<VirtualControllerUIMediator>();
-		 * 
-		 * 		So this is a workaround
-		 * 
-		 **/
-		[Inject]
-		public GUIUI viewConcrete 	
-		{ 
-			set {
-				view = value;
+		// GETTER / SETTER
+
+		/// <summary>
+		/// Gets the button data component.
+		/// </summary>
+		/// <value>The button data component.</value>
+		private ButtonDataComponent buttonDataComponent {
+			get{
+				return target as ButtonDataComponent;
 			}
 		}
 
 
-		
 		// PUBLIC
-		
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
+		/// <summary>
+		/// The _key codes_array.
+		/// </summary>
+		private KeyCode[] _keyCodes_array = new KeyCode[]
+		{ 
+			KeyCode.Alpha0,
+			KeyCode.Alpha1,
+			KeyCode.Alpha2,
+			KeyCode.Alpha3,
+			KeyCode.Alpha4,
+			KeyCode.Alpha5,
+			KeyCode.Alpha6,
+			KeyCode.Alpha7,
+			KeyCode.Alpha8,
+			KeyCode.Alpha9,
+			KeyCode.KeypadDivide,
+			KeyCode.KeypadPlus,
+			KeyCode.KeypadMinus,
+			KeyCode.KeypadMultiply,
+			KeyCode.Return
+		};
+
+		/// <summary>
+		/// The _key code selected index_int.
+		/// </summary>
+		private int _keyCodeSelectedIndex_int = 0;
+
+
+
+
 		
 		// PRIVATE STATIC
 		
 		//--------------------------------------
 		//  Methods
-		//--------------------------------------
+		//--------------------------------------	
+		
+		// PUBLIC
 		/// <summary>
-		/// Start this instance.
+		/// Raises the enable event.
 		/// </summary>
-		public void Start()
+		override public void OnEnable()
 		{
-			view.isVisible = false;
+			//SETUP PROPERTY FIELD-RELATED MEMBERS
+			base.OnEnable();
+		}
+
+		/// <summary>
+		/// Raises the inspector GU event.
+		/// </summary>
+		public override void OnInspectorGUI ()
+		{
+
+			if ( buttonDataComponent != null ){
 			
-			
+
+				// Draw the default inspector
+				//DrawDefaultInspector();
+
+				// DRAW CUSTOM DROPDOWN FOR OPTIONS
+				_keyCodeSelectedIndex_int = Array.IndexOf<KeyCode> (_keyCodes_array, buttonDataComponent.keyCode);
+
+				//CONVERT OPTIONS TO STRINGS FOR DISPLAY
+				string[] result = _keyCodes_array.Select(aKeyCode=>aKeyCode.ToString()).ToArray();
+				_keyCodeSelectedIndex_int = EditorGUILayout.Popup(Constants.INSPECTOR_LABEL_KEY_CODE, _keyCodeSelectedIndex_int, result );
+				//Debug.Log ("_choiceIndex: " + _keyCodeSelectedIndex_int);
+
+				//DRAW PROPERTY FIELD-RELATED MEMBERS
+				base.OnInspectorGUI();
+
+				//INSPECTOR CHANGED? UPDATE THE OBJECT
+				buttonDataComponent.keyCode = _keyCodes_array[_keyCodeSelectedIndex_int];
+				buttonDataComponent.label =  Constants.GetButtonLabelByKeyCode (buttonDataComponent.keyCode);
+				EditorUtility.SetDirty(target);
+
+			}
 		}
 
 
-		/// <summary>
-		/// Raises the register event.
-		/// </summary>
-		public override void OnRegister()
-		{
-			base.OnRegister();
-			
-		}
-		
-		/// <summary>
-		/// Raises the remove event.
-		/// </summary>
-		public override void OnRemove()
-		{
-			base.OnRemove();
-		}
-		
-		
-		//	PUBLIC
-		
-		
 		// PRIVATE
-
+		
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE
@@ -132,29 +161,10 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view
 		// PRIVATE INVOKE
 		
 		//--------------------------------------
-		//  Events
+		//  Events 
+		//		(This is a loose term for -- handling incoming messaging)
+		//
 		//--------------------------------------
-		/// <summary>
-		/// When the cross platform changed signal fires.
-		/// 
-		/// NOTE: 	During startup we dispatch this signal based on
-		/// 		Application.platform so obvservers can handle themselves.
-		/// 
-		/// </summary>
-		/// <param name="aRuntimePlatform">A runtime platform.</param>
-		override protected void _onCrossPlatformChangedSignal (RuntimePlatform aRuntimePlatform)
-		{
-			//THIS FUNCTIONALITY SHOULD RUN ONLY ON SOME PLATFORMS.
-			if (aRuntimePlatform != RuntimePlatform.IPhonePlayer) {
-
-				gameObject.SetActive (false);
-			} else {
-				gameObject.SetActive (true);
-			}
-			
-		}
-
-
 	}
 }
 

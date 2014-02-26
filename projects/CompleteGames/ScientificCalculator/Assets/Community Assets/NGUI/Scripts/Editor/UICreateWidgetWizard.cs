@@ -797,7 +797,9 @@ public class UICreateWidgetWizard : EditorWindow
 		// Load the saved preferences
 		if (!mLoaded) { mLoaded = true; Load(); }
 
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 		GameObject go = NGUIEditorTools.SelectedRoot();
 
 		if (go == null)

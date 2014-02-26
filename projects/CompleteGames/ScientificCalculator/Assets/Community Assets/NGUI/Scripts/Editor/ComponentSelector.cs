@@ -69,7 +69,9 @@ public class ComponentSelector : ScriptableWizard
 
 	void OnGUI ()
 	{
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 
 		if (mObjects.Length == 0)
 		{

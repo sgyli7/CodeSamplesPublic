@@ -343,7 +343,7 @@ namespace com.rmc.projects.spider_strike.mvcs.view.ui
 				break;
 			default:
 				#pragma warning disable 0162
-				throw new SwitchStatementException();
+				throw new SwitchStatementException(animationType);
 				break;
 				#pragma warning restore 0162
 			}

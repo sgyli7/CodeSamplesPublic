@@ -34,6 +34,7 @@ using com.rmc.projects.scientific_calculator.mvcs.model.vo;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.scientific_calculator.components;
+using com.rmc.exceptions;
 
 
 namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
@@ -210,11 +211,32 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
-
+		/// <summary>
+		/// Ons the user interface button message.
+		/// </summary>
+		/// <param name="aGameObject">A game object.</param>
 		public void onUIButtonMessage (GameObject aGameObject) 
 		{
 			ButtonDataComponent buttonDataComponent = aGameObject.GetComponentInChildren<ButtonDataComponent>();
-			Debug.Log ("onUIButtonMessage" + buttonDataComponent.buttonData);
+			Debug.Log ("onUIButtonMessage(): " + buttonDataComponent.keyCode);
+
+			switch (buttonDataComponent.keyCode) {
+			case KeyCode.Alpha0:
+				_doUpdateUIInput (KeyCode.Alpha0, UIInputEventType.DownEnter);
+				break;
+			case KeyCode.Alpha1:
+				_doUpdateUIInput (KeyCode.Alpha1, UIInputEventType.DownEnter);
+				break;
+
+				/*
+				 * TODO: ADD ALL CASES THEN ADD DEFAULT
+			default:
+				#pragma warning disable 0162
+				throw new SwitchStatementException(buttonDataComponent.keyCode);
+				break;
+				#pragma warning restore 0162
+*/
+			}
 		}
 
 

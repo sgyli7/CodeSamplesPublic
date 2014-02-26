@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -32,31 +32,18 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using System;
+using com.unity3d.wiki.expose_properties;
+using com.rmc.projects.scientific_calculator.mvcs;
+
+
 namespace com.rmc.projects.scientific_calculator.components
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum ButtonData 
-	{
-		Button_0,
-		Button_1,
-		Button_2,
-		Button_3,
-		Button_4,
-		Button_5,
-		Button_6,
-		Button_7,
-		Button_8,
-		Button_9,
-		Button_Enter,
-		Button_Multiply,
-		Button_Divide,
-		Button_Add,
-		Button_Subtract
-	}
-	
+
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
@@ -64,6 +51,8 @@ namespace com.rmc.projects.scientific_calculator.components
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	
+	[Serializable]
 	public class ButtonDataComponent : MonoBehaviour 
 	{
 		
@@ -74,11 +63,46 @@ namespace com.rmc.projects.scientific_calculator.components
 		// GETTER / SETTER
 		
 		// PUBLIC
+
 		/// <summary>
-		/// The button data.
+		/// The key code.
 		/// </summary>
-		public ButtonData buttonData;
+		public KeyCode keyCode;
+
+
+		/// <summary>
+		/// The maximum z distance the camera can be to z=0
+		/// </summary>
+		[SerializeField][HideInInspector]
+		private float _distanceMax_float = 15;
+		[ExposeProperty]
+		public float distanceMax {
+			get{
+				return _distanceMax_float;
+			}
+			set{
+				
+				_distanceMax_float = Mathf.Clamp (value, 0, Mathf.Infinity) ;
+				//Debug.Log ("_distanceMax_float: " + _distanceMax_float);
+				
+			}
+		}
+
 		
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public string label;
+
+
+		// PRIVATE
+		/// <summary>
+		/// The user interface label.
+		/// </summary>
+		private UILabel _uiLabel;
+
+
+
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -87,6 +111,47 @@ namespace com.rmc.projects.scientific_calculator.components
 
 		// PUBLIC
 
+
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public void Start ()
+		{
+			if (_uiLabel == null) {
+				_uiLabel = GetComponentInChildren<UILabel>();
+			}
+		}
+
+		public void OnGUI ()
+		{
+			if (_uiLabel == null) {
+				_uiLabel = GetComponentInChildren<UILabel>();
+			}
+
+		}
+
+		/// <summary>
+		/// Update this instance.
+		/// </summary>
+		public void Update ()
+		{
+			//TODO: MOVE THIS TO ONLY OCCUR IN A SETTER (IN BOTH EDITOR AND PLAY MODE!!!)
+			_doUpdateLabelText();
+
+		}
+
+		/// <summary>
+		/// Updates the label.
+		/// </summary>
+		private void _doUpdateLabelText ()
+		{
+
+			if (label != null) {
+				_uiLabel.text = label;
+			}
+
+
+		}
 
 		// PRIVATE
 		

@@ -161,7 +161,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			 * 
 			**/
 			//
-			mediationBinder.Bind<GUIUI>().To<VirtualControllerUIMediator>();
+			mediationBinder.Bind<GUIUI>().To<GUIUIMediator>();
 			mediationBinder.Bind<KeyboardControllerUI>().To<KeyboardControllerUIMediator>();
 			//
 

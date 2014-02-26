@@ -63,10 +63,12 @@ public class UIDragPanelContents : MonoBehaviour
 
 	void OnPress (bool pressed)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && draggablePanel != null)
 		{
 			draggablePanel.Press(pressed);
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -75,10 +77,12 @@ public class UIDragPanelContents : MonoBehaviour
 
 	void OnDrag (Vector2 delta)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && draggablePanel != null)
 		{
 			draggablePanel.Drag(delta);
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -87,9 +91,11 @@ public class UIDragPanelContents : MonoBehaviour
 
 	void OnScroll (float delta)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && draggablePanel != null)
 		{
 			draggablePanel.Scroll(delta);
 		}
+		#pragma warning restore 0618
 	}
 }

@@ -81,6 +81,7 @@ public class UIPanelTool : EditorWindow
 
 	static void SetActiveState (Transform t, bool state)
 	{
+		#pragma warning disable 0618
 		for (int i = 0; i < t.childCount; ++i)
 		{
 			Transform child = t.GetChild(i);
@@ -98,6 +99,7 @@ public class UIPanelTool : EditorWindow
 			}
 			EditorUtility.SetDirty(child.gameObject);
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -106,6 +108,7 @@ public class UIPanelTool : EditorWindow
 
 	static void SetActiveState (UIPanel panel, bool state)
 	{
+		#pragma warning disable 0618
 		if (state)
 		{
 			panel.gameObject.active = true;
@@ -117,6 +120,7 @@ public class UIPanelTool : EditorWindow
 			panel.gameObject.active = false;
 		}
 		EditorUtility.SetDirty(panel.gameObject);
+		#pragma warning restore 0618
 	}
 
 	/// <summary>
@@ -125,6 +129,7 @@ public class UIPanelTool : EditorWindow
 
 	void OnGUI ()
 	{
+		#pragma warning disable 0618
 		List<UIPanel> panels = GetListOfPanels();
 
 		if (panels != null && panels.Count > 0)
@@ -163,7 +168,9 @@ public class UIPanelTool : EditorWindow
 			// Sort the list alphabetically
 			entries.Sort(Compare);
 
+			#pragma warning disable 0618
 			EditorGUIUtility.LookLikeControls(80f);
+			#pragma warning restore 0618
 			bool showAll = DrawRow(null, null, allEnabled);
 			NGUIEditorTools.DrawSeparator();
 
@@ -194,6 +201,7 @@ public class UIPanelTool : EditorWindow
 		{
 			GUILayout.Label("No UI Panels found in the scene");
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>

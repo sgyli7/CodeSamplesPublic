@@ -32,12 +32,14 @@ public class NGUISelectionTools
 	[MenuItem("GameObject/Selection/Toggle 'Active' #&a")]
 	static void ActivateDeactivate()
 	{
+		#pragma warning disable 0618
 		if (HasValidTransform())
 		{
 			GameObject[] gos = Selection.gameObjects;
 			bool val = !Selection.activeGameObject.active;
 			foreach (GameObject go in gos) NGUITools.SetActive(go, val);
 		}
+		#pragma warning restore 0618
 	}
 	
 	[MenuItem("GameObject/Selection/Clear Local Transform")]

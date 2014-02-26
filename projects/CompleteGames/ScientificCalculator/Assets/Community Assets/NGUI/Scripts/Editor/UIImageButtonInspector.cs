@@ -32,7 +32,9 @@ public class UIImageButtonInspector : Editor
 
 	public override void OnInspectorGUI ()
 	{
+		#pragma warning disable 0618
 		EditorGUIUtility.LookLikeControls(80f);
+		#pragma warning restore 0618
 		mButton = target as UIImageButton;
 
 		UISprite sprite = EditorGUILayout.ObjectField("Sprite", mButton.target, typeof(UISprite), true) as UISprite;

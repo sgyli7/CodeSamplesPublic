@@ -1,11 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/components/ButtonDataComponent.cs">
     <Files>
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/GUIUI.cs" Line="213" Column="100" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/SuperControllerUI.cs" Line="189" Column="34" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/components/ButtonDataComponent.cs" Line="67" Column="34" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/components/ButtonMessageListenerComponent.cs" Line="4" Column="44" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/components/ButtonDataComponent.cs" Line="121" Column="64" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Editor/com/rmc/projects/components/ButtonDataComponentEditor.cs" Line="108" Column="11" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/ui/GUIUI.cs" Line="227" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -173,13 +173,17 @@ public class UIScrollBar : MonoBehaviour
 			if (mFG != null)
 			{
 				mFG.alpha = value;
+				#pragma warning disable 0618
 				mFG.gameObject.active = mFG.alpha > 0.001f;
+				#pragma warning restore 0618
 			}
 
 			if (mBG != null)
 			{
 				mBG.alpha = value;
+				#pragma warning disable 0618
 				mBG.gameObject.active = mBG.alpha > 0.001f;
+				#pragma warning restore 0618
 			}
 		}
 	}

@@ -310,6 +310,7 @@ public class UIPopupList : MonoBehaviour
 
 	void OnKey (KeyCode key)
 	{
+		#pragma warning disable 0618
 		if (enabled && gameObject.active && handleEvents)
 		{
 			int index = mLabelList.IndexOf(mHighlightedLabel);
@@ -333,6 +334,7 @@ public class UIPopupList : MonoBehaviour
 				OnSelect(false);
 			}
 		}
+		#pragma warning restore 0618
 	}
 
 	/// <summary>

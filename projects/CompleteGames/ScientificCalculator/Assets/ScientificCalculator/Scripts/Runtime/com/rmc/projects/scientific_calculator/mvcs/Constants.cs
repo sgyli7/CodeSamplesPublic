@@ -33,6 +33,9 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.exceptions;
+
+
 namespace com.rmc.projects.scientific_calculator.mvcs
 {
 	
@@ -63,8 +66,13 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 		// PUBLIC
 		
 		// PUBLIC STATIC
-		public const string PROMPT_ROUND_START      = "Round {0} -- Must Kill {1}";
+		public static string INSPECTOR_LABEL_KEY_CODE 	= "KeyCode";
+
+
+
+		//TODO: 
 		//
+		public const string PROMPT_ROUND_START      = "Round {0} -- Must Kill {1}";
 		public const string PROMPT_GAME_END_WIN 	= "You Won The Game!";
 		public const string PROMPT_GAME_END_LOSS	= "You Lost The Game!";
 		//
@@ -81,8 +89,81 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+
+		// PUBLIC
+
+		// PUBLIC STATIC
 		
-		// PRIVATE STATIC
+		/// <summary>
+		/// Gets the button label by key code.
+		/// </summary>
+		/// <returns>The button label by key code.</returns>
+		/// <param name="aKeyCode">A key code.</param>
+		public static string GetButtonLabelByKeyCode (KeyCode aKeyCode)
+		{
+			string buttonLabel_string;
+
+
+			//
+			switch (aKeyCode){
+			case KeyCode.Alpha0:
+				buttonLabel_string = "0";
+				break;
+			case KeyCode.Alpha1:
+				buttonLabel_string = "1";
+				break;
+			case KeyCode.Alpha2:
+				buttonLabel_string = "2";
+				break;
+			case KeyCode.Alpha3:
+				buttonLabel_string = "3";
+				break;
+			case KeyCode.Alpha4:
+				buttonLabel_string = "4";
+				break;
+			case KeyCode.Alpha5:
+				buttonLabel_string = "5";
+				break;
+			case KeyCode.Alpha6:
+				buttonLabel_string = "6";
+				break;
+			case KeyCode.Alpha7:
+				buttonLabel_string = "7";
+				break;
+			case KeyCode.Alpha8:
+				buttonLabel_string = "8";
+				break;
+			case KeyCode.Alpha9:
+				buttonLabel_string = "9";
+				break;
+			case KeyCode.Return:
+				buttonLabel_string = "Enter";
+				break;
+			case KeyCode.Delete:
+				buttonLabel_string = "Clear";
+				break;
+			case KeyCode.KeypadMultiply:
+				buttonLabel_string = "*";
+				break;
+			case KeyCode.KeypadDivide:
+				buttonLabel_string = "/";
+				break;
+			case KeyCode.KeypadPlus:
+				buttonLabel_string = "+";
+				break;
+			case KeyCode.KeypadMinus:
+				buttonLabel_string = "-";
+				break;
+			default:
+				#pragma warning disable 0162
+				throw new SwitchStatementException(aKeyCode);
+				break;
+				#pragma warning restore 0162
+			}
+
+			return buttonLabel_string;
+		}
+
 		
 		// PRIVATE COROUTINE
 		
