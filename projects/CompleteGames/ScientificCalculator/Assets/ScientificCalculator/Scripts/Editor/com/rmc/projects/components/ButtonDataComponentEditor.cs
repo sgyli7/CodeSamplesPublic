@@ -95,7 +95,9 @@ namespace com.rmc.projects.scientific_calculator.components
 			KeyCode.KeypadPeriod,
 			KeyCode.X,
 			KeyCode.KeypadEnter,
-			KeyCode.Delete
+			KeyCode.Delete,
+
+			KeyCode.R,
 		};
 
 		/// <summary>

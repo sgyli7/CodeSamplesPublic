@@ -81,7 +81,6 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\unity3d\wiki\expose_properties\PropertyField.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Editor\com\rmc\projects\components\ButtonDataComponentEditor.cs" />
      <None Include="Assets\Community Assets\NGUI\Resources\Shaders\Depth.shader" />
-     <None Include="Assets\SpiderStrike\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Community Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\Community Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\Community Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
@@ -91,7 +90,6 @@
      <None Include="Assets\Community Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
      <None Include="Assets\Community Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\Community Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
-     <None Include="Assets\SpiderStrike\Shaders\Projector Light.shader" />
      <None Include="Assets\Community Assets\NGUI\ReadMe.txt" />
      <None Include="Assets\Community Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
      <None Include="Assets\Community Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (HardClip).shader" />

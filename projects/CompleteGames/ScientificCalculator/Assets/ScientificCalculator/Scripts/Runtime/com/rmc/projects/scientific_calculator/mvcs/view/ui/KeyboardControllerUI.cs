@@ -28,14 +28,13 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using strange.extensions.mediation.impl;
-using com.rmc.projects.scientific_calculator.mvcs.controller.signals;
+using com.rmc.projects.scientific_calculator.mvcs.view.ui.core;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using System;
 using com.rmc.projects.scientific_calculator.mvcs.model.vo;
-using com.rmc.projects.scientific_calculator.mvcs.view.ui.core;
 
 
 namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
@@ -99,37 +98,18 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 			//
 			base.Update();
 
-			//RESET
-			if (Input.GetKeyDown (KeyCode.Return)) {
-				_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
-			} 
-			
-			//LEFT
-			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownEnter);
-			} else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
-				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownExit);
-			}
-			
-			//RIGHT
-			if (Input.GetKeyDown (KeyCode.RightArrow)) {
-				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownEnter);
-			} else if (Input.GetKeyUp (KeyCode.RightArrow)) {
-				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownExit);
-			}
-			
-			//FIRE
-			if(Input.GetKeyDown (KeyCode.Space)) { 
-				_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownEnter);
-			}
-
-			if(Input.GetKeyUp (KeyCode.Space)) { 
-				_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownExit);
-			}
-
 		}
 		
-		
+		public void OnGUI ()
+		{
+			if (Input.anyKeyDown) {
+
+				//NOTE: WE USE OnGUI because Update() does not allow access to Event.current.keyCod
+				//Debug.Log ("ok" + Event.current.keyCode);
+				_doUpdateUIInput (Event.current.keyCode, UIInputEventType.DownEnter);
+				
+			}
+		}
 	
 		/// <summary>
 		/// Raises the destroy event.

@@ -134,8 +134,6 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		{
 			view.init();
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
-			Debug.Log ("setup: " + view.uiInputChangedSignal);
-			view.uiInputChangedSignal.Dispatch ( new UIInputVO (KeyCode.A, UIInputEventType.DownEnter));
 			crossPlatformChangedSignal.AddListener (_onCrossPlatformChangedSignal);
 			
 		}
@@ -203,18 +201,31 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		/// <param name="aUIInputType">A user interface input type.</param>
 		private void _onUIInputChangedSignal (UIInputVO aUIInputVO)
 		{
+			return;
 			Debug.Log("_onUIInputChangedSignal");
 
-			//
+			//SOUND ONLY
 			if (aUIInputVO.uiInputEventType == UIInputEventType.DownEnter) {
-
-				Debug.Log(aUIInputVO.keyCode);	
+				Debug.Log("_onUIInputChangedSignal");
 				if (aUIInputVO.keyCode == KeyCode.KeypadEnter) {
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GAME_OVER_WIN));
 				} else {
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 				}
 
+			} 
+
+
+			//ACTION ONLY
+			if (aUIInputVO.uiInputEventType == UIInputEventType.DownEnter) {
+				Debug.Log("_onUIInputChangedSignal");
+				if (aUIInputVO.keyCode == KeyCode.R) {
+
+				} else {
+					//
+					gameResetSignal.Dispatch ();
+				}
+				
 			} 
 			
 			

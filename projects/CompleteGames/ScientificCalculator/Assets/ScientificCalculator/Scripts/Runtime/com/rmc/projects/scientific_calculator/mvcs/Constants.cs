@@ -155,7 +155,14 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 				buttonLabel_string = "=";
 				break;
 			case KeyCode.Delete:
-				buttonLabel_string = "<font size='10'>Del</font>";
+				buttonLabel_string = "Del";
+				break;
+
+
+
+
+			case KeyCode.R:
+				buttonLabel_string = "R";
 				break;
 			default:
 				#pragma warning disable 0162
@@ -167,6 +174,45 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			return buttonLabel_string;
 		}
 
+		/// <summary>
+		/// Determines if is acceptable key code the specified keyCode.
+		/// </summary>
+		/// <returns><c>true</c> if is acceptable key code the specified keyCode; otherwise, <c>false</c>.</returns>
+		/// <param name="keyCode">Key code.</param>
+		public static bool IsAcceptableKeyCode (KeyCode aKeyCode)
+		{
+			bool isAcceptableKeyCode_boolean;
+
+			switch (aKeyCode){
+			case KeyCode.Alpha0:
+			case KeyCode.Alpha1:
+			case KeyCode.Alpha2:
+			case KeyCode.Alpha3:
+			case KeyCode.Alpha4:
+			case KeyCode.Alpha5:
+			case KeyCode.Alpha6:
+			case KeyCode.Alpha7:
+			case KeyCode.Alpha8:
+			case KeyCode.Alpha9:
+			case KeyCode.KeypadPeriod:
+			case KeyCode.KeypadMultiply:
+			case KeyCode.KeypadDivide:
+			case KeyCode.KeypadPlus:
+			case KeyCode.KeypadMinus:
+			case KeyCode.KeypadEnter:
+			case KeyCode.Delete:
+			case KeyCode.R:
+				isAcceptableKeyCode_boolean = true;
+				break;
+				//ALLOW INPUT
+			default:
+				//DON'T ALLOW INPUT
+				isAcceptableKeyCode_boolean = false;
+				break;
+			}
+			
+			return isAcceptableKeyCode_boolean;
+		}
 		
 		// PRIVATE COROUTINE
 		

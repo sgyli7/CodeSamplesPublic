@@ -28,7 +28,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.spider_strike.mvcs.view.signals;
 using System.Collections;
 
 //--------------------------------------

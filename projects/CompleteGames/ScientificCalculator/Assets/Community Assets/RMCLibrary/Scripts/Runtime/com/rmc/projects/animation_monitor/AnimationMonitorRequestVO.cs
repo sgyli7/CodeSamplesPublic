@@ -29,7 +29,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.spider_strike.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace

@@ -114,6 +114,8 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		/// </summary>
 		public virtual void Update()
 		{
+
+			//NOTE: See comments in '_doUpdateUIInput'
 			_doProcessDownStayEvents();
 		}
 
@@ -151,7 +153,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		/// 
 		/// NOTE: We get DownEnter and DownExit
 		/// 
-		/// NOTE: We interpolate and SOMETIMES send DownStay
+		/// NOTE: We interpolate and SOMETIMES send DownStay using _doProcessDownStayEvents
 		/// 
 		/// 
 		/// </summary>
@@ -176,9 +178,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		/// <summary>
 		/// Do process down stay events.
 		/// 
-		/// NOTE: We use the state information here to repeatedly send 'yes I'm currently down' events
-		/// 
-		/// 
+		/// NOTE: See comments in '_doUpdateUIInput'
 		/// 
 		/// </summary>
 		private void _doProcessDownStayEvents ()
