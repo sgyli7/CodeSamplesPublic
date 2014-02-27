@@ -104,9 +104,11 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		{
 			if (Input.anyKeyDown) {
 
-				//NOTE: WE USE OnGUI because Update() does not allow access to Event.current.keyCod
-				//Debug.Log ("ok" + Event.current.keyCode);
-				_doUpdateUIInput (Event.current.keyCode, UIInputEventType.DownEnter);
+				//NOTE: WE USE OnGUI() because Update() does not 
+				//		allow access to Event.current.keyCode
+				if (Constants.IsAcceptableKeyCode (Event.current.keyCode)) {
+					_doUpdateUIInput (Event.current.keyCode, UIInputEventType.DownEnter);
+				}
 				
 			}
 		}

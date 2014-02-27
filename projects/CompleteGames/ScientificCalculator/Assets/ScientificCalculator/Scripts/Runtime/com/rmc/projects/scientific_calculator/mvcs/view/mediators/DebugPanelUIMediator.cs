@@ -83,6 +83,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 				return view as DebugPanelUI;
 			}
 		}
+		
 
 		// PUBLIC
 		

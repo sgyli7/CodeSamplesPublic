@@ -150,6 +150,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 		/// <param name="aSoundPlayVO">A sound play V.</param>
 		private void _onSoundPlaySignal (SoundPlayVO aSoundPlayVO)
 		{
+
 			view.playSound (aSoundPlayVO);
 			
 		}

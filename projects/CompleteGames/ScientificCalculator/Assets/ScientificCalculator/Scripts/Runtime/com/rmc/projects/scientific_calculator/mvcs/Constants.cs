@@ -81,7 +81,6 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 		public const string HUD_SCORE      			= "Score: {0}";
 
 			
-		
 		// PRIVATE
 		
 		// PRIVATE STATIC
@@ -155,7 +154,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 				buttonLabel_string = "=";
 				break;
 			case KeyCode.Delete:
-				buttonLabel_string = "Del";
+				buttonLabel_string = "Clr";
 				break;
 
 

@@ -58,6 +58,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		/// <value>The user interface input changed signal.</value>
 		UIInputChangedSignal uiInputChangedSignal { get; set;}
 
+		UITestSignal uiTestSignal { set; get; }
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this

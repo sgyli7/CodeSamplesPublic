@@ -133,16 +133,25 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		public override void OnRegister()
 		{
 			view.init();
+			//
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
+			view.uiTestSignal.AddListener (_onUITestSignal);
 			crossPlatformChangedSignal.AddListener (_onCrossPlatformChangedSignal);
-			
+
 		}
-		
+
+		private void _onUITestSignal ()
+		{
+			Debug.Log ("med _onUITestSignal");
+
+		}
+
 		/// <summary>
 		/// Raises the remove event.
 		/// </summary>
 		public override void OnRemove()
 		{
+			Debug.Log ("OnRemove");
 			view.uiInputChangedSignal.RemoveListener (_onUIInputChangedSignal);
 			crossPlatformChangedSignal.RemoveListener (_onCrossPlatformChangedSignal);
 		}
@@ -153,8 +162,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		/// </summary>
 		public void Update()
 		{
-			
-			
+
 		}
 		
 		
@@ -188,11 +196,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		/// 
 		/// </summary>
 		/// <param name="aRuntimePlatform">A runtime platform.</param>
-		protected virtual void _onCrossPlatformChangedSignal (RuntimePlatform aRuntimePlatform)
-		{
-			//OVERRIDE FOR USEAGE
-
-		}
+		protected virtual void _onCrossPlatformChangedSignal (RuntimePlatform aRuntimePlatform) {/*override as needed*/}
 
 
 		/// <summary>
@@ -201,32 +205,32 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		/// <param name="aUIInputType">A user interface input type.</param>
 		private void _onUIInputChangedSignal (UIInputVO aUIInputVO)
 		{
-			return;
-			Debug.Log("_onUIInputChangedSignal");
 
-			//SOUND ONLY
+			//WE CARE ONLY ABOUT INPUT 'ENTER' (NOT 'EXIT' OR 'STAY')
 			if (aUIInputVO.uiInputEventType == UIInputEventType.DownEnter) {
-				Debug.Log("_onUIInputChangedSignal");
+
+				//Debug.Log("MED.uichanged: " + aUIInputVO.keyCode + " , " + UIInputEventType.DownEnter);
+
+				//SOUND ONLY
 				if (aUIInputVO.keyCode == KeyCode.KeypadEnter) {
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GAME_OVER_WIN));
 				} else {
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 				}
 
-			} 
 
-
-			//ACTION ONLY
-			if (aUIInputVO.uiInputEventType == UIInputEventType.DownEnter) {
-				Debug.Log("_onUIInputChangedSignal");
+				//ACTION ONLY
 				if (aUIInputVO.keyCode == KeyCode.R) {
-
-				} else {
-					//
 					gameResetSignal.Dispatch ();
-				}
-				
+					
+				} 
+
+
 			} 
+
+
+
+				
 			
 			
 		}

@@ -83,7 +83,6 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		{
 			
 			base.Start();
-			uiInputChangedSignal = new UIInputChangedSignal();
 			
 		}
 		
@@ -132,19 +131,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
-		/// <summary>
-		/// Ons the user interface button message.
-		/// 
-		/// NOTE: Must be public (for sendmessage's use)
-		/// 
-		/// </summary>
-		/// <param name="aUIButton">A user interface button.</param>
-		public void onUIButtonMessage (GameObject aGameObject) 
-		{
-			ButtonDataComponent buttonDataComponent = aGameObject.GetComponentInChildren<ButtonDataComponent>();
-			//Debug.Log ("onUIButtonMessage" + buttonDataComponent);
-			_doUpdateUIInput (buttonDataComponent.keyCode, UIInputEventType.DownEnter);
-		}
+
 
 	}
 }

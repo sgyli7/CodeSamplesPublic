@@ -89,7 +89,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("4. CrossPlatformChangeCommand.Execute()");
+			//Debug.Log ("4. CrossPlatformChangeCommand.Execute()");
 
 			
 			/*

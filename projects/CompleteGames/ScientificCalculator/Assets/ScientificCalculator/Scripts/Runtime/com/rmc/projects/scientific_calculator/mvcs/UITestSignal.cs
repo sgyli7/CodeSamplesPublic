@@ -7,7 +7,9 @@
  * "Software"), to deal in the Software without restriction, including  
  * without limitation the rights to use, copy, modify, merge, publish,  
  * distribute, sublicense, and#or sell copies of the Software, and to   
- * permit persons to whom the Software is furnished to do so, subject to
+ * permit persons to whom the Software is furn
+ * 
+ * ished to do so, subject to
  * the following conditions:                                            
  *                                                                      
  * The above copyright notice and this permission notice shall be       
@@ -23,123 +25,77 @@
  */
 // Marks the right margin of code *******************************************************************
 
-
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using UnityEngine;
+using strange.extensions.signal.impl;
 using com.rmc.projects.scientific_calculator.mvcs.model.vo;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.scientific_calculator.components;
-using com.rmc.exceptions;
-using com.rmc.projects.scientific_calculator.mvcs.view.ui.core;
-using com.rmc.projects.scientific_calculator.mvcs.view.signals;
 
 
-namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
+namespace com.rmc.projects.scientific_calculator.mvcs.view.signals
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-
 	
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
 	
+	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class ScientificCalculatorUI : SuperControllerUI, IControllerUI
+	public class UITestSignal : Signal
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
-		
 		// GETTER / SETTER
-
-		// PUBLIC
-		/// <summary>
-		/// The display text G.
-		/// </summary>
-		public GameObject displayTextGO;
 		
-
-
+		// PUBLIC
+		
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// The _display text_uilabel.
-		/// </summary>
-		private UILabel _displayText_uilabel;
-
 		
 		// PRIVATE STATIC
 		
 		//--------------------------------------
 		//  Methods
-		//--------------------------------------		
-		///<summary>
-		///	Use this for initialization
-		///</summary>
-		override protected void Start () 
+		//--------------------------------------
+		///////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////
+		///			CONSTRUCTOR / DESTRUCTOR
+		///////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.view.signals.UITestSignal"/> class.
+		/// </summary>
+		public UITestSignal( )
 		{
-			
-			base.Start();
-			_displayText_uilabel = displayTextGO.GetComponentInChildren<UILabel>();
-			setDisplayText ("");
+			//Debug.Log ("UITestSignal.constructor()");
 			
 		}
 		
-
-		// PUBLIC
 		/// <summary>
-		/// Init this instance.
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.spider_strike.mvcs.view.signals.UITestSignal"/> is reclaimed by garbage collection.
 		/// </summary>
-		override public void init()
+		~UITestSignal()
 		{
-			base.init();
-
-		}
-
-
-		//
-		public override void Update()
-		{
-			//
-			base.Update();
-
+			
 		}
 		
-		/// <summary>
-		/// Raises the destroy event.
-		/// </summary>
-		override protected void OnDestroy ()
-		{
-			//
-			base.OnDestroy();
-			
-		}
-
-
-		/// <summary>
-		/// Raises the destroy event.
-		/// </summary>
-		public void setDisplayText (string aDisplayText_string)
-		{
-			_displayText_uilabel.text = aDisplayText_string;
-			
-		}
-
-
-
-		// PUBLIC STATIC
+		
+		//	PUBLIC
 		
 		// PRIVATE
 		
@@ -150,11 +106,10 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		// PRIVATE INVOKE
 		
 		//--------------------------------------
-		//  Events 
-		//		(This is a loose term for -- handling incoming messaging)
-		//
+		//  Events
 		//--------------------------------------
-
 	}
 }
+
+
 

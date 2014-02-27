@@ -103,6 +103,12 @@
      <None Include="Assets\Community Assets\NGUI\Examples\Shaders\Refractive.shader" />
      <None Include="Assets\Community Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\Community Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (SoftClip).shader" />
+ <Reference Include="Assets\Community Assets\NGUI\DLLs\NGUI">
+ <HintPath>Assets\Community Assets\NGUI\DLLs\NGUI.dll</HintPath>
+ </Reference>
+ <Reference Include="Assets\Community Assets\NGUI\DLLs\Editor\NGUI_Editor">
+ <HintPath>Assets\Community Assets\NGUI\DLLs\Editor\NGUI_Editor.dll</HintPath>
+ </Reference>
  <Reference Include="\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -114,12 +120,6 @@
  </Reference>
  <Reference Include="\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\PlaybackEngines\AndroidPlayer\EditorExtensions\UnityEditor.Android.Extensions">
  <HintPath>\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\PlaybackEngines\AndroidPlayer\EditorExtensions\UnityEditor.Android.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="Assets\Community Assets\NGUI\DLLs\Editor\NGUI_Editor">
- <HintPath>Assets\Community Assets\NGUI\DLLs\Editor\NGUI_Editor.dll</HintPath>
- </Reference>
- <Reference Include="Assets\Community Assets\NGUI\DLLs\NGUI">
- <HintPath>Assets\Community Assets\NGUI\DLLs\NGUI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

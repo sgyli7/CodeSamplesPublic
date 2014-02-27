@@ -36,6 +36,9 @@ using System.Collections.Generic;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.scientific_calculator.components;
+
+
 namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 {
 	
@@ -67,7 +70,9 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		/// </summary>
 		public UIInputChangedSignal uiInputChangedSignal {set; get;}
 
-		
+
+		public UITestSignal uiTestSignal { set; get; }
+
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -98,16 +103,28 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------		
+		// PUBLIC
+
 		///<summary>
 		///	Use this for initialization
 		///</summary>
 		override protected void Start () 
 		{
 			base.Start();
-			_lastInputVOByKeycode_dictionary = new Dictionary<KeyCode,UIInputVO>();
+
 		}
 
-
+		/// <summary>
+		/// Init this instance.
+		/// </summary>
+		virtual public void init()
+		{
+			//
+			_lastInputVOByKeycode_dictionary = new Dictionary<KeyCode,UIInputVO>();
+			uiInputChangedSignal = new UIInputChangedSignal ();
+			uiTestSignal = new UITestSignal();
+			
+		}
 
 		/// <summary>
 		/// Update this instance.
@@ -121,15 +138,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 
 
 		
-		// PUBLIC
-		/// <summary>
-		/// Init this instance.
-		/// </summary>
-		virtual public void init()
-		{
-			uiInputChangedSignal = new UIInputChangedSignal ();
-			
-		}
+
 		
 		/// <summary>
 		/// Raises the destroy event.
@@ -139,8 +148,6 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 			//
 			base.OnDestroy();
 			
-			//
-			uiInputChangedSignal = null; //overkill to existing garbage-collection.
 			
 		}
 		
@@ -161,8 +168,6 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		/// <param name="aUIInputEventType">A user interface input event type.</param>
 		protected void _doUpdateUIInput (KeyCode aKeyCode, UIInputEventType aUIInputEventType )
 		{
-
-			Debug.Log ("_doUpdateUIInput() : " + aKeyCode);
 
 			//CHECK OLD DATA
 			UIInputVO newToSendUIInputVO 		= new UIInputVO (aKeyCode, aUIInputEventType);
@@ -186,6 +191,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 			foreach (UIInputVO uiInputVO in _lastInputVOByKeycode_dictionary.Values)
 			{
 				if (uiInputVO.uiInputEventType == UIInputEventType.DownEnter) {
+					//Debug.Log ("_doProcessDownStayEvents() : ");
 					uiInputChangedSignal.Dispatch (new UIInputVO (uiInputVO.keyCode, UIInputEventType.DownStay));
 				}
 			}
@@ -203,6 +209,31 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui.core
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
+		/// <summary>
+		/// Ons the user interface button press.
+		/// 
+		/// NOTE: Must be public (for sendmessage's use)
+		/// 
+		/// </summary>
+		/// <param name="aGameObject">A game object.</param>
+		public void onUIButtonPress (GameObject aGameObject) 
+		{
+			ButtonDataComponent buttonDataComponent = aGameObject.GetComponentInChildren<ButtonDataComponent>();
+			_doUpdateUIInput (buttonDataComponent.keyCode, UIInputEventType.DownEnter);
+		}
+		
+		/// <summary>
+		/// Ons the user interface button press.
+		/// 
+		/// NOTE: Must be public (for sendmessage's use)
+		/// 
+		/// </summary>
+		/// <param name="aGameObject">A game object.</param>
+		public void onUIButtonRelease (GameObject aGameObject) 
+		{
+			ButtonDataComponent buttonDataComponent = aGameObject.GetComponentInChildren<ButtonDataComponent>();
+			_doUpdateUIInput (buttonDataComponent.keyCode, UIInputEventType.DownExit);
+		}
 	}
 }
 

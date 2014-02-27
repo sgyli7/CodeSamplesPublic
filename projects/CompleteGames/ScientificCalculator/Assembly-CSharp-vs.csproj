@@ -263,6 +263,7 @@
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\Constants.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\ScientificCalculatorContext.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\ScientificCalculatorRoot.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\UITestSignal.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\CalculatorModeChangeCommand.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\CrossPlatformChangeCommand.cs" />
