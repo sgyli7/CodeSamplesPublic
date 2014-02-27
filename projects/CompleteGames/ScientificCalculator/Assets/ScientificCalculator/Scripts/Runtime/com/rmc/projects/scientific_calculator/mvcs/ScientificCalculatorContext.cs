@@ -178,7 +178,8 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			**/
 			//	1. (MAPPED COMMANDS) 
 			commandBinder.Bind<StartSignal>().To<StartCommand>(); //TODO add once()
-			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>();//TODO add once()
+			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>();
+			commandBinder.Bind<EnterInstructionSignal>().To<EnterInstructionCommand>();
 
 
 
@@ -196,7 +197,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs
 			commandBinder.Bind<CrossPlatformChangeSignal>().To<CrossPlatformChangeCommand>();
 			injectionBinder.Bind<CrossPlatformChangedSignal>().ToSingleton();
 			//
-			commandBinder.Bind<CalculatorModelChangeSignal>().To<AllViewsInitializedCommand>();
+			commandBinder.Bind<CalculatorModelChangeSignal>().To<CalculatorModeChangeCommand>();
 			injectionBinder.Bind<CalculatorModelChangedSignal>().ToSingleton();
 			//
 			commandBinder.Bind<DisplayTextChangeSignal>().To<DisplayTextChangeCommand>();

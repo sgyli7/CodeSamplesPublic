@@ -65,19 +65,30 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 
 		// PUBLIC
 		/// <summary>
-		/// The display text G.
+		/// Display of Input/Output
 		/// </summary>
 		public GameObject displayTextGO;
+
+
+		/// <summary>
+		/// Display of Mode Name
+		/// </summary>
+		public GameObject modeTextGO;
 		
-
-
+		
 		// PUBLIC STATIC
 		
 		// PRIVATE
 		/// <summary>
-		/// The _display text_uilabel.
+		/// The DisplayText UILabel
 		/// </summary>
 		private UILabel _displayText_uilabel;
+
+		/// <summary>
+		/// The mode UILabel
+		/// </summary>
+		private UILabel _modeText_uilabel;
+
 
 		
 		// PRIVATE STATIC
@@ -93,7 +104,9 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 			
 			base.Start();
 			_displayText_uilabel = displayTextGO.GetComponentInChildren<UILabel>();
-			setDisplayText ("");
+			_modeText_uilabel	 = modeTextGO.GetComponentInChildren<UILabel>();
+			setDisplayText	("");
+			setModeText 	("");
 			
 		}
 		
@@ -128,17 +141,30 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.ui
 		}
 
 
+
+
+
 		/// <summary>
-		/// Raises the destroy event.
+		/// Sets the display text.
 		/// </summary>
+		/// <param name="aDisplayText_string">A display text_string.</param>
 		public void setDisplayText (string aDisplayText_string)
 		{
 			_displayText_uilabel.text = aDisplayText_string;
 			
 		}
 
+		/// <summary>
+		/// Sets the mode text.
+		/// </summary>
+		/// <param name="aDisplayText_string">A display text_string.</param>
+		public void setModeText (string aDisplayText_string)
+		{
+			_modeText_uilabel.text = aDisplayText_string;
+			
+		}
 
-
+		
 		// PUBLIC STATIC
 		
 		// PRIVATE

@@ -76,29 +76,7 @@ namespace com.rmc.projects.scientific_calculator.components
 		/// <summary>
 		/// The _key codes_array.
 		/// </summary>
-		private KeyCode[] _keyCodes_array = new KeyCode[]
-		{ 
-			KeyCode.Alpha0,
-			KeyCode.Alpha1,
-			KeyCode.Alpha2,
-			KeyCode.Alpha3,
-			KeyCode.Alpha4,
-			KeyCode.Alpha5,
-			KeyCode.Alpha6,
-			KeyCode.Alpha7,
-			KeyCode.Alpha8,
-			KeyCode.Alpha9,
-			KeyCode.KeypadDivide,
-			KeyCode.KeypadPlus,
-			KeyCode.KeypadMinus,
-			KeyCode.KeypadMultiply,
-			KeyCode.KeypadPeriod,
-			KeyCode.X,
-			KeyCode.KeypadEnter,
-			KeyCode.Delete,
-
-			KeyCode.R,
-		};
+		private KeyCode[] _keyCodes_array = Constants.GetKeyCodeList();
 
 		/// <summary>
 		/// The _key code selected index_int.

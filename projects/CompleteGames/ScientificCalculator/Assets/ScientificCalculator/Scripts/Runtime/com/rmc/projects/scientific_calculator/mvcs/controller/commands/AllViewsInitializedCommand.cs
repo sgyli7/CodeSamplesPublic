@@ -63,7 +63,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.controller.commands
 		/// MODEL: The main game data
 		/// </summary>
 		[Inject]
-		public IScientificCalculatorModel iCalculatorModel { get; set; } 
+		public IScientificCalculatorModel iScientificCalculatorModel { get; set; } 
 
 
 		/// <summary>
@@ -93,7 +93,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.controller.commands
 
 
 			//
-			iCalculatorModel.doResetModel();
+			iScientificCalculatorModel.doResetModel();
 			crossPlatformChangeSignal.Dispatch (Application.platform);
 
 		}

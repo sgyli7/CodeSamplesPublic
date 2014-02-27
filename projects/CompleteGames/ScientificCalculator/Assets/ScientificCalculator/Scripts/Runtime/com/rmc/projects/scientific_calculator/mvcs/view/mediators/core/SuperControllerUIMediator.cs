@@ -42,6 +42,7 @@ using com.rmc.projects.scientific_calculator.mvcs.model;
 //--------------------------------------
 using com.rmc.projects.scientific_calculator.mvcs.model.vo;
 using com.rmc.projects.scientific_calculator.mvcs.view.ui.core;
+using com.rmc.projects.scientific_calculator.mvcs.model.instructions;
 
 
 namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
@@ -87,12 +88,13 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		public GameResetSignal gameResetSignal 		{ get; set;}
 
 
-
 		/// <summary>
-		/// MODEL: The main game data
+		/// Gets or sets the calculator model change signal.
 		/// </summary>
+		/// <value>The calculator model change signal.</value>
 		[Inject]
-		public IScientificCalculatorModel iCalculatorModel { get; set; } 
+		public CalculatorModelChangeSignal calculatorModelChangeSignal 	{ get; set;}
+
 
 		/// <summary>
 		/// Gets or sets the cross platform changed signal.
@@ -108,6 +110,20 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 		/// <value>The sound play signal.</value>
 		[Inject]
 		public SoundPlaySignal soundPlaySignal {get;set;}
+
+		/// <summary>
+		/// Gets or sets the enter instruction signal.
+		/// </summary>
+		/// <value>The enter instruction signal.</value>
+		[Inject]
+		public EnterInstructionSignal enterInstructionSignal {get;set;}
+
+		
+		/// <summary>
+		/// MODEL: The main game data
+		/// </summary>
+		[Inject]
+		public IScientificCalculatorModel iScientificCalculatorModel { get; set; } 
 
 
 		
@@ -211,7 +227,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 
 				//Debug.Log("MED.uichanged: " + aUIInputVO.keyCode + " , " + UIInputEventType.DownEnter);
 
-				//SOUND ONLY
+				//1. SOUND ONLY
 				if (aUIInputVO.keyCode == KeyCode.KeypadEnter) {
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GAME_OVER_WIN));
 				} else {
@@ -219,11 +235,70 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators.core
 				}
 
 
-				//ACTION ONLY
-				if (aUIInputVO.keyCode == KeyCode.R) {
+				//2. ACTIONS ONLY
+				switch (aUIInputVO.keyCode){
+
+				//************************************
+				//
+				//	OPERANDS
+				//
+				//************************************
+				case KeyCode.Alpha0:
+				case KeyCode.Alpha1:
+				case KeyCode.Alpha2:
+				case KeyCode.Alpha3:
+				case KeyCode.Alpha4:
+				case KeyCode.Alpha5:
+				case KeyCode.Alpha6:
+				case KeyCode.Alpha7:
+				case KeyCode.Alpha8:
+				case KeyCode.Alpha9:
+					enterInstructionSignal.Dispatch ( new OperandInstruction(aUIInputVO.keyCode));
+					break;
+
+
+				//************************************
+				//
+				//	OPERATOR
+				//
+				//************************************
+				case KeyCode.KeypadMultiply:
+				case KeyCode.KeypadDivide:
+				case KeyCode.KeypadPlus:
+				case KeyCode.KeypadMinus:
+				case KeyCode.KeypadPeriod:
+					enterInstructionSignal.Dispatch ( new DecimalOperatorInstruction 	(aUIInputVO.keyCode));
+					break;
+				case KeyCode.KeypadEnter:
+					enterInstructionSignal.Dispatch ( new EnterOperatorInstruction 		(aUIInputVO.keyCode));
+					break;
+				case KeyCode.L:
+					enterInstructionSignal.Dispatch ( new LogOperatorInstruction		(aUIInputVO.keyCode));
+					break;
+				case KeyCode.Delete:
+					enterInstructionSignal.Dispatch ( new ClearOperatorInstruction		(aUIInputVO.keyCode));
+					break;
+
+				//************************************
+				//
+				//	SPECIAL
+				//
+				//************************************
+				case KeyCode.R:
 					gameResetSignal.Dispatch ();
-					
-				} 
+					break;
+				case KeyCode.M:
+					//TOOGLE BASED ON CURRENT VALUE
+					if (iScientificCalculatorModel.calculatorMode == CalculatorMode.LinearEquations) {
+						calculatorModelChangeSignal.Dispatch (CalculatorMode.Scientific);
+					} else {
+						calculatorModelChangeSignal.Dispatch (CalculatorMode.LinearEquations);
+					}
+					break;
+				default:
+					//NOTHING
+					break;
+				}
 
 
 			} 

@@ -34,6 +34,9 @@ using com.rmc.projects.scientific_calculator.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.scientific_calculator.mvcs.model.instructions;
+
+
 namespace com.rmc.projects.scientific_calculator.mvcs.model
 {
 	
@@ -83,6 +86,11 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 		/// </summary>
 		void doResetModel();
 
+		/// <summary>
+		/// Dos the enter instruction.
+		/// </summary>
+		/// <param name="instruction">Instruction.</param>
+		void doEnterInstruction (Instruction instruction);
 	}
 }
 

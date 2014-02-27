@@ -89,8 +89,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("4. CalculatorModeChangeCommand.Execute()");
-
+			//Debug.Log ("4. CalculatorModeChangeCommand.Execute()");
 
 			//
 			iScientificCalculatorModel.calculatorMode = calculatorMode;

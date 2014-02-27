@@ -37,6 +37,9 @@ using com.rmc.exceptions;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.scientific_calculator.mvcs.model.instructions;
+
+
 namespace com.rmc.projects.scientific_calculator.mvcs.model
 {
 	
@@ -47,8 +50,15 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 	{
 		Scientific,
 		LinearEquations
-
 	}
+
+	public enum CalculatorState
+	{
+		AppendingOperands,
+		NotAppendingOperands
+	}
+
+
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
@@ -93,9 +103,25 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 		public CalculatorModelChangedSignal calculatorModeChangedSignal { get; set;}
 
 
+		/// <summary>
+		/// The state of the _calculator.
+		/// </summary>
+		private CalculatorState _calculatorState;
+		public CalculatorState calculatorState
+		{ 
+			get{
+				return _calculatorState;
+			}
+			set
+			{
+				_calculatorState = value;
+				
+			}
+		}
+		
 
 		/// <summary>
-		/// The _calculator mode.
+		/// The _display text_string.
 		/// </summary>
 		private string _displayText_string;
 		public string displayText
@@ -117,6 +143,26 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 		[Inject]
 		public DisplayTextChangedSignal displayTextChangedSignal { get; set;}
 
+
+		/// <summary>
+		/// The _display value_float.
+		/// </summary>
+		private float _displayValue_float;
+		public float displayValue
+		{ 
+			get{
+				return _displayValue_float;
+			}
+			set
+			{
+				_displayValue_float = value;
+				if (!float.IsNaN (_displayValue_float)) {
+					displayText = _displayValue_float.ToString();
+				} else {
+					displayText = "";
+				}
+			}
+		}
 
 
 		// PUBLIC
@@ -189,11 +235,37 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 		{
 
 			//Debug.Log ("doResetModel()");
-			displayText = "";
+			displayText 	= "";
+			calculatorMode 	= CalculatorMode.Scientific;
+			calculatorState = CalculatorState.AppendingOperands;
 		}
 
 
+		/// <summary>
+		/// Dos the enter instruction.
+		/// </summary>
+		/// <param name="instruction">Instruction.</param>
+		public void doEnterInstruction (Instruction aInstruction) {
 
+
+			if (aInstruction.instructionType == InstructionType.Operand) {
+
+				//PUT NEW # TO THE RIGHT OF THE EXISTING DISPLAY #
+				if (calculatorState == CalculatorState.AppendingOperands) {
+					displayValue 	= float.Parse (displayValue.ToString() + Constants.GetOperandValueByKeyCode (aInstruction.keyCode).ToString());
+				} else {
+					displayValue 	= float.Parse (Constants.GetOperandValueByKeyCode (aInstruction.keyCode).ToString());
+					calculatorState = CalculatorState.AppendingOperands;
+				}
+
+			} else {
+
+				displayValue = (float)aInstruction.execute (displayValue);
+				calculatorState = CalculatorState.NotAppendingOperands;
+
+			}
+
+		}
 		
 		// PRIVATE
 		

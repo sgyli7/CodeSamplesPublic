@@ -29,14 +29,12 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
+using com.rmc.projects.scientific_calculator.mvcs.model;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.scientific_calculator.mvcs.model;
-
-
 namespace com.rmc.projects.scientific_calculator.mvcs.controller.signals
 {
 	

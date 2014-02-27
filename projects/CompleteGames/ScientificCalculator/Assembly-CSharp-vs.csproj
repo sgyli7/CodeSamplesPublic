@@ -268,6 +268,7 @@
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\CalculatorModeChangeCommand.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\CrossPlatformChangeCommand.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\DisplayTextChangeCommand.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\EnterInstructionCommand.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\GameResetCommand.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\commands\StartCommand.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
@@ -277,11 +278,19 @@
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\CrossPlatformChangedSignal.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\DisplayTextChangeSignal.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\DisplayTextChangedSignal.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\EnterInstructionSignal.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\GameResetSignal.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\SoundPlaySignal.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\controller\signals\StartSignal.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\IScientificCalculatorModel.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\ScientificCalculatorModel.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\ClearOperatorInstruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\DecimalOperatorInstruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\EnterOperatorInstruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\LogOperatorInstruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\OperandInstruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\Instruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\OperatorInstruction.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\vo\SoundPlayVO.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\vo\UIInputVO.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\view\mediators\DebugPanelUIMediator.cs" />

@@ -102,6 +102,13 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 		[Inject]
 		public AllViewsInitializedSignal allViewsInitializedSignal { get; set;}
 
+		/// <summary>
+		/// Gets or sets the calculator mode changed signal.
+		/// </summary>
+		/// <value>The calculator mode changed signal.</value>
+		[Inject]
+		public CalculatorModelChangedSignal calculatorModeChangedSignal { get; set;}
+
 
 		// PUBLIC
 		
@@ -131,6 +138,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 		{
 			base.OnRegister();
 			displayTextChangedSignal.AddListener (_onDisplayTextChangedSignal);
+			calculatorModeChangedSignal.AddListener (_onCalculatorModeChangedSignal);
 			
 		}
 		
@@ -141,6 +149,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 		{
 			base.OnRemove();
 			displayTextChangedSignal.RemoveListener (_onDisplayTextChangedSignal);
+			calculatorModeChangedSignal.AddListener (_onCalculatorModeChangedSignal);
 
 		}
 		
@@ -168,6 +177,17 @@ namespace com.rmc.projects.scientific_calculator.mvcs.view.mediators
 
 			viewConcrete.setDisplayText (aDisplayText_string);
 
+		}
+
+		/// <summary>
+		/// _ons the calculator mode changed signal.
+		/// </summary>
+		/// <param name="aDisplayText_string">A display text_string.</param>
+		private void _onCalculatorModeChangedSignal (CalculatorMode aCalculatorMode)
+		{
+			
+			viewConcrete.setModeText (Constants.MODE_TEXT_PREFIX +  Constants.GetModeTextByCalculatorMode(aCalculatorMode));
+			
 		}
 
 
