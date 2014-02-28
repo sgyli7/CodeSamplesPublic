@@ -1,12 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/StrangeIoCTemplate/Scripts/Runtime/com/rmc/projects/strangeioc_template2/mvcs/controller/commands/GameListPropertyChangeCommmand.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../../../New Unity Project 1/Assets/CubeComponent.cs">
     <Files>
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/Runtime/com/rmc/projects/strangeioc_template2/mvcs/controller/commands/GameListPropertyChangeCommmand.cs" Line="110" Column="27" />
-      <File FileName="../../CompleteGames/ScientificCalculator/Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/Constants.cs" Line="283" Column="5" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/Runtime/com/rmc/projects/strangeioc_template2/mvcs/controller/commands/StartCommand.cs" Line="110" Column="19" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Runtime/com/rmc/projects/property_change_signal/vo/PropertyChangeSignalVO.cs" Line="137" Column="7" />
-      <File FileName="Assets/StrangeIoCTemplate/Scripts/Runtime/com/rmc/projects/strangeioc_template2/mvcs/model/CustomModel.cs" Line="161" Column="1" />
+      <File FileName="Assets/StrangeIoCTemplate/Documentation/CodeSnippetsForBlogArticle.cs" Line="70" Column="1" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/Runtime/com/rmc/projects/strangeioc_template2/mvcs/StrangeIocTemplateContext.cs" Line="162" Column="4" />
+      <File FileName="../../../../../../../New Unity Project 1/Assets/CubeComponent.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
