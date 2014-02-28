@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -105,7 +105,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 
 			case PropertyChangeType.CLEAR:
 				//ASK TO CLEAR THE MODEL
-				iCustomModel.doClearGameList(); 
+				iCustomModel.doClear_GameList(); 
 				break;
 			case PropertyChangeType.UPDATE:
 				//ASK TO UPDATE A VALUE IN THE MODEL

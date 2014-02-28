@@ -121,16 +121,15 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		}
 		
 		/// <summary>
-		/// CLEAR ALL DATA
+		/// Do clear game list.
 		/// </summary>
-		/// 
-		public void doClearGameList ()
+		public void doClear_GameList ()
 		{
 			gameList = null;
 		}	
 
 		/// <summary>
-		/// Do refresh game list.
+		/// DISPATCH 
 		/// </summary>
 		public void doDispatchUpdated_GameList () 
 		{
@@ -160,7 +159,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		{
 			//CALL A 'CLEAR' METHOD FOR EACH PIECE OF DATA
 			//(HERE, WE HAVE JUST ONE DATA)
-			doClearGameList();
+			doClear_GameList();
 		}
 		
 		// PRIVATE STATIC

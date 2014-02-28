@@ -71,7 +71,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// <summary>
 		/// Dos the clear game list.
 		/// </summary>
-		void doClearGameList();
+		void doClear_GameList();
 
 		/// <summary>
 		/// Dos the refresh game list.
