@@ -118,7 +118,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 			case PropertyChangeType.REQUEST:
 				//FORCE THE MODEL TO RE-SEND 'UPDATED' (WITH NO CHANGE)
 				//THIS IS VERY COMMON IN APPS (E.G. A TEMPORARY A DIALOG PROMPT)
-				iCustomModel.doRefreshGameList();
+				iCustomModel.doDispatchedUpdated_GameList();
 				break;
 			default:
 				#pragma warning disable 0162

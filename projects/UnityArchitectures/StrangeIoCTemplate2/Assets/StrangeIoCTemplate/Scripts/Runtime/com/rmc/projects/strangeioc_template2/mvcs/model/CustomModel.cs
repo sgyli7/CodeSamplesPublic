@@ -75,7 +75,8 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 				//TODO: CONSIDER ALTERNATIVE THAT CHECKS "_gameList != value" BEFORE DISPATCHING
 				_gameList = value;
 				Debug.Log ("6. CustomModel.gameList = " + _gameList );
-				gameListPropertyChangeSignal.Dispatch (new PropertyChangeSignalVO(PropertyChangeType.UPDATED, _gameList) );
+				doDispatchedUpdated_GameList();
+
 			}
 		}
 
@@ -131,20 +132,9 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// <summary>
 		/// Do refresh game list.
 		/// </summary>
-		public void doRefreshGameList () 
+		public void doDispatchedUpdated_GameList () 
 		{
-
-			//TWO MUTUALLY EXCLUSIVE WAYS TO REFRESH...
-
-			//1. REFRESH VALUE
-			//FORCE THE MODEL TO RE-SEND 'UPDATED' (WITH NO CHANGE)
-			//THIS IS VERY COMMON IN APPS (E.G. A TEMPORARY A DIALOG PROMPT)
-			gameList = gameList;
-
-			//2. AN ALTERNAIVE APPROACH WOULD BE *NOT* 
-			//	TO SET THE VALUE, BUT INSTEAD, JUST DISPATCH 'UPDATED' FROM HERE
-			//...
-
+			gameListPropertyChangeSignal.Dispatch (new PropertyChangeSignalVO(PropertyChangeType.UPDATED, _gameList) );
 		}
 
 		
