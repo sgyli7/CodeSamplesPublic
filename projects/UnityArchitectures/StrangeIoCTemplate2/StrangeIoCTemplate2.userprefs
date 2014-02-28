@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../../_Projects_Source_Code/Unity3DSource/StrangeIOCDemo/Assets/Community Assets/StrangeIoC/examples/Assets/scripts/multiplecontexts/social/SocialContext.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/StrangeIoCTemplate/Scripts/Runtime/com/rmc/projects/strangeioc_template2/mvcs/controller/commands/GameListPropertyChangeCommmand.cs">
     <Files>
-      <File FileName="../../../../../../_Projects_Source_Code/Unity3DSource/StrangeIOCDemo/Assets/Community Assets/StrangeIoC/examples/Assets/scripts/multiplecontexts/social/SocialContext.cs" Line="46" Column="31" />
+      <File FileName="Assets/StrangeIoCTemplate/Scripts/Runtime/com/rmc/projects/strangeioc_template2/mvcs/controller/commands/GameListPropertyChangeCommmand.cs" Line="100" Column="1" />
+      <File FileName="../../CompleteGames/ScientificCalculator/Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/Constants.cs" Line="283" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
