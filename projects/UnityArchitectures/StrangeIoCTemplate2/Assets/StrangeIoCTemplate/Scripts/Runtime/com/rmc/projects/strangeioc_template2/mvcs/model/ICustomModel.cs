@@ -76,7 +76,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// <summary>
 		/// Dos the refresh game list.
 		/// </summary>
-		void doDispatchedUpdated_GameList ();
+		void doDispatchUpdated_GameList ();
 
 	}
 }

@@ -75,7 +75,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 				//TODO: CONSIDER ALTERNATIVE THAT CHECKS "_gameList != value" BEFORE DISPATCHING
 				_gameList = value;
 				Debug.Log ("6. CustomModel.gameList = " + _gameList );
-				doDispatchedUpdated_GameList();
+				doDispatchUpdated_GameList();
 
 			}
 		}
@@ -132,7 +132,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.model
 		/// <summary>
 		/// Do refresh game list.
 		/// </summary>
-		public void doDispatchedUpdated_GameList () 
+		public void doDispatchUpdated_GameList () 
 		{
 			gameListPropertyChangeSignal.Dispatch (new PropertyChangeSignalVO(PropertyChangeType.UPDATED, _gameList) );
 		}

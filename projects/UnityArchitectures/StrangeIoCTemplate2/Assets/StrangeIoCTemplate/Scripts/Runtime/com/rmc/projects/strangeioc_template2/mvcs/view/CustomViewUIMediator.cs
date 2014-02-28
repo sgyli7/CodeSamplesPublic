@@ -169,6 +169,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 		{
 			customViewLoadButtonClickSignal.Dispatch ();
 
+
 		}
 
 		/// <summary>
@@ -177,6 +178,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 		private void _onClearMessageClick ()
 		{
 			customViewClearButtonClickSignal.Dispatch ();
+
 			
 		}
 
@@ -187,6 +189,7 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 		/// </summary>
 		private void _onGameListPropertyChangeSignal (PropertyChangeSignalVO aPropertyChangeSignalVO)
 		{
+			//Debug.Log ("IS : " + aPropertyChangeSignalVO.propertyChangeType);
 			if (aPropertyChangeSignalVO.propertyChangeType == PropertyChangeType.UPDATED) {
 
 				doRenderLayout(aPropertyChangeSignalVO.value as List<string>);

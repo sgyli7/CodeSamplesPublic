@@ -116,9 +116,11 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.controller.commands
 				//OPTIONALLY, WE COULD ALSO DO SOMETHING HERE IF NEEDED
 				break;
 			case PropertyChangeType.REQUEST:
-				//FORCE THE MODEL TO RE-SEND 'UPDATED' (WITH NO CHANGE)
-				//THIS IS VERY COMMON IN APPS (E.G. A TEMPORARY A DIALOG PROMPT)
-				iCustomModel.doDispatchedUpdated_GameList();
+				//FORCE THE MODEL TO RE-SEND 'UPDATED' (WITH NO ACTUAL VALUE CHANGE)
+				//		THIS HAS VERY COMMON USE CASES 
+				//		(E.G. A TEMPORARY A DIALOG PROMPT THAT IS SPAWNED AT AN ARBITRARY POINT
+				//		IN TIME AND MUST 'ASK' FOR EXISTING 'STALE' MODEL DATA TO POPULATE ITSELF)
+				iCustomModel.doDispatchUpdated_GameList();
 				break;
 			default:
 				#pragma warning disable 0162

@@ -33,6 +33,9 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.exceptions;
+
+
 namespace com.rmc.projects.property_change_signal.vo
 {
 	
@@ -126,36 +129,68 @@ namespace com.rmc.projects.property_change_signal.vo
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.property_change_signal.vo.PropertyChangeSignalVO"/> class.
+		/// </summary>
+		/// <param name="aPropertyChangeType">A property change type.</param>
 		public PropertyChangeSignalVO (PropertyChangeType aPropertyChangeType )
 		{
-			//THIS 1 REQUIRES 1 ARGUMENT, ALWAYS
-			if (aPropertyChangeType == PropertyChangeType.CLEAR) {
-				//
-				//Debug.Log("--PropertyChangeSignalVO.constructor ("+aPropertyChangeType+")");
+			//THESE 2 TYPES REQUIRES 1 ARGUMENT, ALWAYS
+			//Debug.Log("--PropertyChangeSignalVO.constructor ("+aPropertyChangeType+")");
+			//
+			switch (aPropertyChangeType) {
+				
+			case PropertyChangeType.CLEAR:
 				_propertyChangeType = aPropertyChangeType;
 				_value_object 		= null;
+				break;
+			case PropertyChangeType.REQUEST:
+				_propertyChangeType = aPropertyChangeType;
+				break;
+			default:
+				#pragma warning disable 0162
+				//ANY OTHER VALUES ARE NOT ACCEPTABLE IN THIS CONTEXT
+				throw new SwitchStatementException(propertyChangeType.ToString());
+				break;
+				#pragma warning restore 0162
+				
 			}
 			
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.property_change_signal.vo.PropertyChangeSignalVO"/> class.
+		/// </summary>
+		/// <param name="aPropertyChangeType">A property change type.</param>
+		/// <param name="aValue_object">A value_object.</param>
 		public PropertyChangeSignalVO (PropertyChangeType aPropertyChangeType, object aValue_object )
 		{
 
-			//THESE 2 REQUIRE 2 ARGUMENTS, ALWAYS
-			if (	aPropertyChangeType == PropertyChangeType.UPDATE ||
-			    	aPropertyChangeType == PropertyChangeType.UPDATED	) {
-
-				//
-				//Debug.Log("--PropertyChangeSignalVO.constructor ("+aPropertyChangeType+","+aValue_object+")");
+			//Debug.Log("--PropertyChangeSignalVO.constructor ("+aPropertyChangeType+","+aValue_object+")");
+			//THESE 2 TYPES REQUIRE 2 ARGUMENTS, ALWAYS
+			//
+			switch (aPropertyChangeType) {
+				
+			case PropertyChangeType.UPDATE:
+			case PropertyChangeType.UPDATED:
 				_propertyChangeType = aPropertyChangeType;
 				_value_object 		= aValue_object;
+				break;
+			default:
+				#pragma warning disable 0162
+				//ANY OTHER VALUES ARE NOT ACCEPTABLE IN THIS CONTEXT
+				throw new SwitchStatementException(propertyChangeType.ToString());
+				break;
+				#pragma warning restore 0162
+				
 			}
-			
+
 		}
 
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.property_change_signal.vo.PropertyChangeSignalVO"/> is reclaimed by garbage collection.
+		/// </summary>
 		~PropertyChangeSignalVO()
 		{
 			
