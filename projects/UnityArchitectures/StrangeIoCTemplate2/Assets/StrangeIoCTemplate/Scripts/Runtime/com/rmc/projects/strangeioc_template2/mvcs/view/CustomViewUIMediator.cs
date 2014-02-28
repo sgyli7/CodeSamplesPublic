@@ -182,22 +182,16 @@ namespace com.rmc.projects.strangeioc_template2.mvcs.view
 
 
 		/// <summary>
-		/// Ons the favorite videogames changed.
+		/// Render the layout when the data changes
+		/// 
 		/// </summary>
-		/// <param name="aIEvent">A I event.</param>
 		private void _onGameListPropertyChangeSignal (PropertyChangeSignalVO aPropertyChangeSignalVO)
 		{
 			if (aPropertyChangeSignalVO.propertyChangeType == PropertyChangeType.UPDATED) {
-				//Debug.Log ("CustomViewMed, type: " + aPropertyChangeSignalVO.propertyChangeType );
-				//Debug.Log ("CustomViewMed, new: " + aPropertyChangeSignalVO.value );
 
-				if (aPropertyChangeSignalVO.value != null) {
-					Debug.Log ("7. CustomViewUIMediator, value: " + aPropertyChangeSignalVO.value );
-				}
 				doRenderLayout(aPropertyChangeSignalVO.value as List<string>);
 
 			}
-			
 		}
 
 	}

@@ -148,6 +148,7 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\BinderException.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\Binding.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Documentation\CodeSnippetsForBlogArticle.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\StrangeIoCTemplateRoot.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\StrangeIocTemplateContext.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
