@@ -1,0 +1,207 @@
+fileFormatVersion: 2
+guid: dd7eefd5fa63a47138cecc57be521087
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 60
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: PaddleBlue_01
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 404
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleBlue_02
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 380
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleBlue_03
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 356
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleBlue_04
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 333
+        width: 74
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleBlue_05
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 309
+        width: 74
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleBlue_06
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 284
+        width: 74
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleBlue_07
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 260
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleBlue_08
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 236
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_01
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 198
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_02
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 174
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_03
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 150
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_04
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 127
+        width: 74
+        height: 19
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_05
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 102
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_06
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 78
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_07
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 54
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: PaddleRed_08
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 30
+        width: 74
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: 59179_92
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 21
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: 59179_93
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 21
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

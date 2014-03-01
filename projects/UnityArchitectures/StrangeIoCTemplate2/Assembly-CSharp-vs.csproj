@@ -154,7 +154,7 @@
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\ClearButtonClickCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\CustomServiceLoadedCommand.cs" />
-     <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\GameListPropertyChangeCommmand.cs" />
+     <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\GameListPropertyChangeCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\LoadButtonClickCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\commands\StartCommand.cs" />
      <Compile Include="Assets\StrangeIoCTemplate\Scripts\Runtime\com\rmc\projects\strangeioc_template2\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
