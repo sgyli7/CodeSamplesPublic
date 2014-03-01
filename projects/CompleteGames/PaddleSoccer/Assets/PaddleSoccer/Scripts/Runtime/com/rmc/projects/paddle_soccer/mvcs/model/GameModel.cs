@@ -146,20 +146,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// <summary>
 		/// When the _turret health_int.
 		/// </summary>
-		private int _turretHealth_int;
-		public int turretHealth
+		private int _rightPaddleScore_int;
+		public int rightPaddleScore
 		{ 
 			get{
-				return _turretHealth_int;
+				return _rightPaddleScore_int;
 			}
 			set
 			{
-				_turretHealth_int = value;
-				_turretHealth_int = Mathf.Clamp (_turretHealth_int, 0, 1000);
-				turretHealthChangedSignal.Dispatch (_turretHealth_int);
+				_rightPaddleScore_int = value;
+				_rightPaddleScore_int = Mathf.Clamp (_rightPaddleScore_int, 0, 1000);
+				turretHealthChangedSignal.Dispatch (_rightPaddleScore_int);
 
-				if (_turretHealth_int == 0) {
-					turretDiedSignal.Dispatch ();
+				if (_rightPaddleScore_int == 0) {
+					rightPaddleScoreChangedSignal.Dispatch (_rightPaddleScore_int);
 				}
 				
 			}
@@ -170,22 +170,22 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// </summary>
 		/// <value>The turret health changed signal.</value>
 		[Inject]
-		public TurretHealthChangedSignal turretHealthChangedSignal { get; set;}
+		public RightPaddleScoreChangedSignal turretHealthChangedSignal { get; set;}
 
 
 		/// <summary>
 		/// When the _score_float.
 		/// </summary>
-		private float _score_float;
-		public float score
+		private int _leftPaddleScore_int;
+		public int leftPaddleScore
 		{ 
 			get{
-				return _score_float;
+				return _leftPaddleScore_int;
 			}
 			set
 			{
-				_score_float = value;
-				scoreChangedSignal.Dispatch (_score_float);
+				_leftPaddleScore_int = value;
+				leftPaddleScoreChangedSignal.Dispatch (_leftPaddleScore_int);
 				
 			}
 		}
@@ -197,7 +197,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// </summary>
 		/// <value>The score changed signal.</value>
 		[Inject]
-		public ScoreChangedSignal scoreChangedSignal { get; set;}
+		public LeftPaddleScoreChangedSignal leftPaddleScoreChangedSignal { get; set;}
 
 
 
@@ -217,11 +217,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		}
 
 		/// <summary>
-		/// Gets or sets the player died signal.
+		/// Gets or sets the right paddle score changed signal.
 		/// </summary>
-		/// <value>The player died signal.</value>
+		/// <value>The right paddle score changed signal.</value>
 		[Inject]
-		public TurretDiedSignal turretDiedSignal {set; get;}
+		public RightPaddleScoreChangedSignal rightPaddleScoreChangedSignal {set; get;}
 
 
 
@@ -238,7 +238,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// <summary>
 		/// When the _total rounds per game_uint.
 		/// </summary>
-		private uint _totalRoundsPerGame_uint = 3;
+		private uint _totalRoundsPerGame_uint = 1;
 
 		/// <summary>
 		/// Has a next level?
@@ -253,7 +253,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// <summary>
 		/// When the _ ENEMIE s_ PE r_ ROUN.
 		/// </summary>
-		private const int _ENEMIES_PER_ROUND = 2;
+		private const int _GOALS_REQUIRED_PER_ROUND = 2;
 		
 		//--------------------------------------
 		//  Methods
@@ -313,9 +313,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		public void doResetModel ()
 		{
 
-			turretHealth 		= 100;
-			score 				= 0;
-			_currentRound_uint 	= 0;
+			rightPaddleScore 		= 0;
+			leftPaddleScore 		= 0;
+			_currentRound_uint 		= 0;
 			//Debug.Log ("MODEL RESET FINISHED");
 		}
 
@@ -329,14 +329,14 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 			_currentRound_uint++;
 
 			//
-			uint enemiesPerRound_uint 			= _currentRound_uint*_ENEMIES_PER_ROUND/2;
+			uint goalsRequiredToWin_uint 			= _currentRound_uint*_GOALS_REQUIRED_PER_ROUND;
 			Range enemiesSpawnedAtOnce_range	= new Range (1, _currentRound_uint);
 			Range enemyHealth_range 			= new Range (11, 22);
 			Range enemySpeed_range				= new Range (1f, 2f);
 			//
 			currentRoundDataVO = new RoundDataVO (
 				_currentRound_uint,
-				enemiesPerRound_uint,
+				goalsRequiredToWin_uint,
 				enemiesSpawnedAtOnce_range,
 				enemyHealth_range,
 				enemySpeed_range

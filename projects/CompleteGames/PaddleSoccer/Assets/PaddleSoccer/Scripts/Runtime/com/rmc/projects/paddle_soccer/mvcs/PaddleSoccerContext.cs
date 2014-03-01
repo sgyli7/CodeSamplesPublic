@@ -196,7 +196,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 
 
 			//	2. (INJECTED SIGNALS - DIRECTLY OBSERVED)
-			injectionBinder.Bind<TurretDiedSignal>().ToSingleton();
+			injectionBinder.Bind<RightPaddleScoreChangedSignal>().ToSingleton();
 			//
 			injectionBinder.Bind<SoundPlaySignal>().ToSingleton();
 			//
@@ -206,22 +206,19 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 			commandBinder.Bind<GameResetSignal>().To<GameResetCommand>();
 
 
-
 			//	3. (PAIRS OF MAPPED/INJECTED SIGNALS)
 			//
-			commandBinder.Bind<TurretHealthChangeSignal>().To<TurretHealthChangeCommand>();
-			injectionBinder.Bind<TurretHealthChangedSignal>().ToSingleton(); 
+			//commandBinder.Bind<RightPaddleScoreChangeSignal>().To<RightPaddleScoreChangeCommand>();
+			//injectionBinder.Bind<RightPaddleScoreChangedSignal>().ToSingleton(); 
 			//
-			commandBinder.Bind<ScoreChangeSignal>().To<ScoreChangeCommand>();
-			injectionBinder.Bind<ScoreChangedSignal>().ToSingleton();
+			commandBinder.Bind<LeftPaddleScoreChangeSignal>().To<LeftPaddleScoreChangeCommand>();
+			injectionBinder.Bind<LeftPaddleScoreChangedSignal>().ToSingleton();
 			//
 			commandBinder.Bind<GameStateChangeSignal>().To<GameStateChangeCommand>();
 			injectionBinder.Bind<GameStateChangedSignal>().ToSingleton();
 			//
 			commandBinder.Bind<CrossPlatformChangeSignal>().To<CrossPlatformChangeCommand>();
 			injectionBinder.Bind<CrossPlatformChangedSignal>().ToSingleton();
-			//
-
 
 			/**
 			 * SERVICE

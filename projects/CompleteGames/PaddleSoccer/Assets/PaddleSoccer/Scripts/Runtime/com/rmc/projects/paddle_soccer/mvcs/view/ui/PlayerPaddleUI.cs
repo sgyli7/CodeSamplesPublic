@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -75,12 +75,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public bool isRunningUpdate {get;set;}
 
 		// PUBLIC
-		/// <summary>
-		/// Gets or sets the turret health change signal.
-		/// </summary>
-		/// <value>The turret health change signal.</value>
-		[Inject]
-		public TurretHealthChangeSignal turretHealthChangeSignal 		{ get; set;}
 
 
 		// PUBLIC STATIC

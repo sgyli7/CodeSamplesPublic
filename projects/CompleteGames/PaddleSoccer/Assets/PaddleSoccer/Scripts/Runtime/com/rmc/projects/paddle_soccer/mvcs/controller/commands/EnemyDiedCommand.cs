@@ -72,7 +72,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.commands
 		/// </summary>
 		/// <value>The ecore change signal.</value>
 		[Inject]
-		public ScoreChangeSignal scoreChangeSignal {get;set;}
+		public LeftPaddleScoreChangeSignal scoreChangeSignal {get;set;}
 
 
 		// PUBLIC

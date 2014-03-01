@@ -76,13 +76,23 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		[Inject]
 		public EnemyDiedSignal enemyDiedSignal {set; get;}
+
+
 		
+		/// <summary>
+		/// Gets or sets the right paddle score changed signal.
+		/// </summary>
+		/// <value>The right paddle score changed signal.</value>
+		[Inject]
+		public RightPaddleScoreChangedSignal rightPaddleScoreChangedSignal {set; get;}
+
+
 		/// <summary>
 		/// Gets or sets the player died signal.
 		/// </summary>
 		/// <value>The player died signal.</value>
 		[Inject]
-		public TurretDiedSignal turretDiedSignal {set; get;}
+		public RightPaddleScoreChangedSignal leftPaddleScoreChangedSignal {set; get;}
 		
 		
 		/// <summary>
@@ -119,15 +129,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <value>The game state change signal.</value>
 		[Inject]
 		public GameStateChangeSignal gameStateChangeSignal {set; get;}
-		
-		
+
 		/// <summary>
-		/// Gets or sets the game state changed signal.
+		/// Gets or sets the game state change signal.
 		/// </summary>
-		/// <value>The game state changed signal.</value>
+		/// <value>The game state change signal.</value>
 		[Inject]
 		public GameStateChangedSignal gameStateChangedSignal {set; get;}
-		
+
+
 		// PUBLIC
 		
 		
@@ -146,7 +156,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public override void OnRegister()
 		{
 			//view.init();
-			turretDiedSignal.AddListener (_onTurretDiedSignal);
+			leftPaddleScoreChangedSignal.AddListener (_onLeftPaddleScoreChangedSignal);
+			rightPaddleScoreChangedSignal.AddListener (_onRightPaddleScoreChangedSignal);
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			promptEndedSignal.AddListener (_onPromptEndedSignal);
 			
@@ -157,7 +168,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		public override void OnRemove()
 		{
-			turretDiedSignal.RemoveListener (_onTurretDiedSignal);
+			leftPaddleScoreChangedSignal.AddListener (_onLeftPaddleScoreChangedSignal);
+			rightPaddleScoreChangedSignal.AddListener (_onRightPaddleScoreChangedSignal);
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 			promptEndedSignal.RemoveListener (_onPromptEndedSignal);
 		}
@@ -195,17 +207,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		/// <summary>
-		/// When the round started signal.
-		/// </summary>
-		/// <param name="aRoundDataVO">A round data V.</param>
-		//TODO: IS THIS SIGNAL NEEDED, WHY NOT JUST CHECK ONGAMESTATE?
-		private void _onRoundStartedSignal (RoundDataVO aRoundDataVO)
-		{
-			
-			
-		}
-		
+
 		/// <summary>
 		/// When the prompt ended signal.
 		/// </summary>
@@ -307,18 +309,23 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <summary>
 		/// When the turret died signal.
 		/// </summary>
-		private void _onTurretDiedSignal ()
+		private void _onLeftPaddleScoreChangedSignal (int aLeftPaddleScore_int)
 		{
-			
-			//DONE
-			gameStateChangeSignal.Dispatch (GameState.GAME_END);
-			//
-			promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_LOSS, false);
-			soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_LOSS));
+
 			
 		}
-		
-		
+
+		/// <summary>
+		/// _ons the right paddle score changed signal.
+		/// </summary>
+		/// <param name="aRightPaddleScore_int">A right paddle score_int.</param>
+		private void _onRightPaddleScoreChangedSignal (int aRightPaddleScore_int)
+		{
+			
+			
+		}
+
+
 		
 	}
 }

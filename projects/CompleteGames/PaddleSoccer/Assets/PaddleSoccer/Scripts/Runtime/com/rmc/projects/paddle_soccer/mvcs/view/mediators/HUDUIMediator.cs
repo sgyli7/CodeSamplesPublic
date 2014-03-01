@@ -70,19 +70,19 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public HUDUI view 	{ get; set;}
 		
 		/// <summary>
-		/// Gets or sets the turret health changed signal.
+		/// Gets or sets the right paddle score changed signal.
 		/// </summary>
-		/// <value>The turret health changed signal.</value>
+		/// <value>The right paddle score changed signal.</value>
 		[Inject]
-		public TurretHealthChangedSignal turretHealthChangedSignal { get; set;}
+		public RightPaddleScoreChangedSignal rightPaddleScoreChangedSignal { get; set;}
 
 
 		/// <summary>
-		/// Gets or sets the score changed signal.
+		/// Gets or sets the left paddle score changed signal.
 		/// </summary>
-		/// <value>The score changed signal.</value>
+		/// <value>The left paddle score changed signal.</value>
 		[Inject]
-		public ScoreChangedSignal scoreChangedSignal { get; set;}
+		public LeftPaddleScoreChangedSignal leftPaddleScoreChangedSignal { get; set;}
 
 		/// <summary>
 		/// Gets or sets the prompt start signal.
@@ -127,8 +127,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 
 			view.init ();
 			//Debug.Log ("HUD IS READY - WHY AFTER???");
-			turretHealthChangedSignal.AddListener (_onTurretHealthChangedSignal);
-			scoreChangedSignal.AddListener (_onScoreChangedSignal);
+			rightPaddleScoreChangedSignal.AddListener (_onRightPaddleScoreChangedSignal);
+			leftPaddleScoreChangedSignal.AddListener (_onLeftPaddleScoreChangedSignal);
 			promptStartSignal.AddListener (_onPromptStartSignal);
 			view.uiPromptEndedSignal.AddListener (_onUIPromptEndedSignal);
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
@@ -142,8 +142,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		public override void OnRemove()
 		{
-			turretHealthChangedSignal.RemoveListener (_onTurretHealthChangedSignal);
-			scoreChangedSignal.RemoveListener (_onScoreChangedSignal);
+			rightPaddleScoreChangedSignal.RemoveListener (_onRightPaddleScoreChangedSignal);
+			leftPaddleScoreChangedSignal.RemoveListener (_onLeftPaddleScoreChangedSignal);
 			promptStartSignal.RemoveListener (_onPromptStartSignal);
 			view.uiPromptEndedSignal.RemoveListener (_onUIPromptEndedSignal);
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
@@ -199,24 +199,26 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 
 
 		/// <summary>
-		/// When the turret health changed signal.
+		/// _ons the left paddle score changed signal.
 		/// </summary>
 		/// <param name="aNewValue_int">A new value_int.</param>
-		private void _onTurretHealthChangedSignal (int aNewValue_int)
+		private void _onLeftPaddleScoreChangedSignal (int aNewValue_int)
+		{
+			view.setLeftScoreText (String.Format (Constants.HUD_LEFT_SCORE, aNewValue_int));
+			
+		}
+
+
+		/// <summary>
+		/// _ons the right paddle score changed signal.
+		/// </summary>
+		/// <param name="aNewValue_int">A new value_int.</param>
+		private void _onRightPaddleScoreChangedSignal (int aNewValue_int)
 		{
 			view.setRightScoreText (String.Format (Constants.HUD_RIGHT_SCORE, aNewValue_int));
 
 		}
 
-		/// <summary>
-		/// When the score changed signal.
-		/// </summary>
-		/// <param name="aNewValue_float">A new value_float.</param>
-		private void _onScoreChangedSignal (float aNewValue_float)
-		{
-			view.setLeftScoreText (String.Format (Constants.HUD_LEFT_SCORE, aNewValue_float));
-
-		}
 
 		/// <summary>
 		/// When the prompt start signal.

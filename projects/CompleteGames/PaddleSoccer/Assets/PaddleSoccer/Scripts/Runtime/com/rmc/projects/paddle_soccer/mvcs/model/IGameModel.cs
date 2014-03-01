@@ -48,22 +48,29 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		//--------------------------------------
 		// GETTER / SETTER
 		/// <summary>
-		/// Gets or sets the turret health changed signal.
+		/// Gets or sets the right paddle score changed signal.
 		/// </summary>
-		/// <value>The turret health changed signal.</value>
-		TurretHealthChangedSignal turretHealthChangedSignal { get; set;}
+		/// <value>The right paddle score changed signal.</value>
+		RightPaddleScoreChangedSignal rightPaddleScoreChangedSignal { get; set;}
+
 
 		/// <summary>
-		/// Gets or sets the turret health.
+		/// Gets or sets the left paddle score changed signal.
 		/// </summary>
-		/// <value>The turret health.</value>
-		int turretHealth { set; get;}
+		/// <value>The left paddle score changed signal.</value>
+		LeftPaddleScoreChangedSignal leftPaddleScoreChangedSignal { get; set;}
 
 		/// <summary>
-		/// Gets or sets the score.
+		/// Gets or sets the right paddle score.
 		/// </summary>
-		/// <value>The score.</value>
-		float score { set; get;}
+		/// <value>The right paddle score.</value>
+		int rightPaddleScore { set; get;}
+
+		/// <summary>
+		/// Gets or sets the left paddle score.
+		/// </summary>
+		/// <value>The left paddle score.</value>
+		int leftPaddleScore { set; get;}
 
 		/// <summary>
 		/// Gets or sets the current round data V.
