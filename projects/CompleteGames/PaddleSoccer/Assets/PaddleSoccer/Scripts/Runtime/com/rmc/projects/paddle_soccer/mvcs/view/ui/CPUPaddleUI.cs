@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -36,6 +36,7 @@ using com.rmc.projects.paddle_soccer.components;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
 
 
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
@@ -54,8 +55,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	[RequireComponent (typeof(Animation), typeof(AnimationMonitor))]
-	public class CPUPaddleUI : View 
+	public class CPUPaddleUI : SuperPaddleUI 
 	{
 		
 		//--------------------------------------
@@ -65,17 +65,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		// GETTER / SETTER
 		
 		// PUBLIC
-		GameObject soccerBall_gameobject;
+		public GameObject soccerBall_gameobject;
 
 
 		// PUBLIC STATIC
 
 		// PRIVATE
-		/// <summary>
-		/// The _paddle component.
-		/// </summary>
-		PaddleComponent _paddleComponent;
-
 
 
 		//--------------------------------------
@@ -85,9 +80,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// <summary>
 		/// Init this instance.
 		/// </summary>
-		public void init ()
+		override public void init ()
 		{
-
+			base.init ();
 		}
 
 
@@ -98,8 +93,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 			
 			base.Start();
-			_paddleComponent = GetComponent<PaddleComponent>();
-			
 			
 		}
 		
@@ -109,7 +102,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		///</summary>
 		void Update () 
 		{
-			
+			targetY = soccerBall_gameobject.transform.position.y;
+
 		}
 
 
@@ -125,15 +119,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		}
 		
 		// PUBLIC
-
-		/// <summary>
-		/// Do move to target.
-		/// </summary>
-		public void doMoveToTarget ()
-		{
-			_paddleComponent.doMoveToTarget (soccerBall_gameobject.transform);
-			
-		}
 
 		// PUBLIC STATIC
 		

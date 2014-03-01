@@ -74,7 +74,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		/// <value>The turret do move signal.</value>
 		[Inject]
-		public TurretDoMoveSignal turretDoMoveSignal 		{ get; set;}
+		public PlayerDoMoveSignal playerDoMoveSignal 		{ get; set;}
 
 
 		/// <summary>
@@ -113,7 +113,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		{
 			//
 			view.init();
-			turretDoMoveSignal.AddListener (_onTurretDoMoveSignal);
+			playerDoMoveSignal.AddListener (_onPlayerDoMoveSignal);
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			
 		}
@@ -124,7 +124,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public override void OnRemove()
 		{
 			//
-			turretDoMoveSignal.RemoveListener (_onTurretDoMoveSignal);
+			playerDoMoveSignal.RemoveListener (_onPlayerDoMoveSignal);
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 		}
 		
@@ -174,21 +174,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// When the turret do move signal.
 		/// </summary>
 		/// <param name="aTurretMoveVO">A turret move V.</param>
-		private void _onTurretDoMoveSignal (TurretMoveVO aTurretMoveVO) 
+		private void _onPlayerDoMoveSignal (PlayerMoveVO aPlayerMoveVO) 
 		{
-			switch (aTurretMoveVO.moveType) {
-			case MoveType.LeftOneTick:
-				view.firingAngle -= aTurretMoveVO.amount;
+			switch (aPlayerMoveVO.moveType) {
+			case MoveType.UpOneTick:
+				view.targetY += aPlayerMoveVO.amount;
 				break;
-			case MoveType.RightOneTick:
-				view.firingAngle += aTurretMoveVO.amount;
+			case MoveType.DownOneTick:
+				view.targetY -= aPlayerMoveVO.amount;
 				break;
-			case MoveType.FiringStart:
-				view.doSetIsFiring (true);
-				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.TURRET_FIRE));
-				break;
-			case MoveType.FiringStop:
-				view.doSetIsFiring (false);
 				break;
 			default:
 				#pragma warning disable 0162

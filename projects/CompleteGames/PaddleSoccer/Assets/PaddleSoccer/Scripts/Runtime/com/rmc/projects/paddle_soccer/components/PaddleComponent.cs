@@ -37,6 +37,10 @@ using com.rmc.projects.animation_monitor;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.mvcs.model.data;
+using com.rmc.utilities;
+
+
 namespace com.rmc.projects.paddle_soccer.components
 {
 	
@@ -69,6 +73,23 @@ namespace com.rmc.projects.paddle_soccer.components
 		//--------------------------------------
 		
 		// GETTER / SETTER
+
+		/// <summary>
+		/// The _target y_float.
+		/// </summary>
+		public float targetY
+		{ 
+			get{
+				return _yPosition_lerptarget.targetValue;
+			}
+			set
+			{
+				_yPosition_lerptarget.targetValue = value;
+				
+			}
+		}
+
+
 		
 		// PUBLIC
 		
@@ -81,6 +102,10 @@ namespace com.rmc.projects.paddle_soccer.components
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// When the turret spinning_lerptarget.
+		/// </summary>
+		private LerpTarget _yPosition_lerptarget;
 		
 		
 		/// <summary>
@@ -122,23 +147,16 @@ namespace com.rmc.projects.paddle_soccer.components
 		//  Methods
 		//--------------------------------------	
 		
-		/// <summary>
-		/// Init this instance.
-		/// </summary>
-		public void init ()
-		{
-			
-		}
-		
 		///<summary>
 		///	Use this for initialization
 		///</summary>
 		public void Start () 
 		{
 			
-			animation 			= GetComponentInChildren<Animation>();
-			animationMonitor 	= GetComponentInChildren<AnimationMonitor>();
-			
+			animation 						= GetComponentInChildren<Animation>();
+			animationMonitor 				= GetComponentInChildren<AnimationMonitor>();
+			_yPosition_lerptarget 			= new LerpTarget (0, 0, -2.8f, 3.7f, 0.5f);
+
 			
 		}
 		
@@ -148,21 +166,22 @@ namespace com.rmc.projects.paddle_soccer.components
 		///</summary>
 		void Update () 
 		{
-			
+
+			//ROTATE THE BARREL IF FIRING
+			if (true) {
+				_yPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+				_doMoveToTarget();
+			} 
+
+
+
 		}
 		
 
 		
 		// PUBLIC
 
-		/// <summary>
-		/// Do move to target.
-		/// </summary>
-		public void doMoveToTarget (Transform aTarget_transform)
-		{
-			transform.position = new Vector3 (transform.position.x, aTarget_transform.position.y, transform.position.z);
-			
-		}
+
 		
 		/// <summary>
 		/// Do play animation.
@@ -226,6 +245,14 @@ namespace com.rmc.projects.paddle_soccer.components
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// Do move to target.
+		/// </summary>
+		public void _doMoveToTarget ()
+		{
+			transform.position = new Vector3 (transform.position.x, _yPosition_lerptarget.current, transform.position.z);
+			
+		}
 		
 		// PRIVATE STATIC
 		

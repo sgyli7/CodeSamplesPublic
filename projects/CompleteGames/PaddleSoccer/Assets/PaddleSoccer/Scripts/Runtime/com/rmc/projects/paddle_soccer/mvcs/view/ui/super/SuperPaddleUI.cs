@@ -7,9 +7,7 @@
  * "Software"), to deal in the Software without restriction, including  
  * without limitation the rights to use, copy, modify, merge, publish,  
  * distribute, sublicense, and#or sell copies of the Software, and to   
- * permit persons to whom the Software is furn
- * 
- * ished to do so, subject to
+ * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:                                            
  *                                                                      
  * The above copyright notice and this permission notice shall be       
@@ -25,117 +23,125 @@
  */
 // Marks the right margin of code *******************************************************************
 
+
 //--------------------------------------
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
+using strange.extensions.mediation.impl;
+using com.rmc.projects.animation_monitor;
+using com.rmc.projects.paddle_soccer.components;
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
+
+
+namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum MoveType
-	{
-		LeftOneTick,
-		RightOneTick,
-		FiringStart,
-		FiringStop
-	}
-
+	
+	
+	
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
 	
-	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretMoveVO 
+	[RequireComponent (typeof(Animation), typeof(AnimationMonitor))]
+	public class SuperPaddleUI : View 
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
+		
 		// GETTER / SETTER
-		private MoveType _moveType;
-		public MoveType moveType { 
-			get
-			{
-				return _moveType;
+		
+		/// <summary>
+		/// The _target y_float.
+		/// </summary>
+		public float targetY
+		{ 
+			get{
+				return _paddleComponent.targetY;
 			}
 			set
 			{
-				_moveType = value;
+				_paddleComponent.targetY = value;
+				
 			}
 		}
-		
-		private float _amount_float;
-		public float amount {
-			get
-			{
-				return _amount_float;
-			}
-			set
-			{
-				_amount_float = value;
-			}
-		}
-		
+
 		
 		// PUBLIC
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _paddle component.
+		/// </summary>
+		protected PaddleComponent _paddleComponent;
 		
-		// PRIVATE STATIC
+		
 		
 		//--------------------------------------
 		//  Methods
-		//--------------------------------------
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
+		//--------------------------------------	
+		
 		/// <summary>
-		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> class.
+		/// Init this instance.
 		/// </summary>
-		/// <param name="aMoveType">A move type.</param>
-		public TurretMoveVO (MoveType aMoveType )
+		public virtual void init ()
 		{
-			_moveType = aMoveType;
 			
 		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> class.
-		/// </summary>
-		/// <param name="aMoveType">A move type.</param>
-		/// <param name="aAmount_float">A amount_float.</param>
-		public TurretMoveVO (MoveType aMoveType, float aAmount_float )
+		
+		
+		///<summary>
+		///	Use this for initialization
+		///</summary>
+		override protected void Start () 
 		{
-			_moveType = aMoveType;
-			_amount_float = aAmount_float;
+			
+			base.Start();
+			_paddleComponent = GetComponent<PaddleComponent>();
+			
 			
 		}
-
-		/// <summary>
-		/// Releases unmanaged resources and performs other cleanup operations before the
-		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> is reclaimed by garbage collection.
-		/// </summary>
-		~TurretMoveVO()
+		
+		
+		///<summary>
+		///	Called once per frame
+		///</summary>
+		void Update () 
 		{
+			
+			
+		}
+		
+		
+		
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		override protected void OnDestroy ()
+		{
+			//
+			base.OnDestroy();
 			
 		}
 		
 		// PUBLIC
+		
+		// PUBLIC STATIC
 		
 		// PRIVATE
 		
@@ -146,8 +152,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		// PRIVATE INVOKE
 		
 		//--------------------------------------
-		//  Events
+		//  Events 
+		//		(This is a loose term for -- handling incoming messaging)
+		//
 		//--------------------------------------
+		
+		
 	}
 }
 

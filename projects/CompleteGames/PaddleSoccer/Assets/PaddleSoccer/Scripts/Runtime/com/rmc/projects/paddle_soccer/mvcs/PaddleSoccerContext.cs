@@ -191,7 +191,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 			commandBinder.Bind<StartSignal>().To<StartCommand>(); //TODO add once()
 			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>();//TODO add once()
 			commandBinder.Bind<EnemyDiedSignal>().To<EnemyDiedCommand>();
-			commandBinder.Bind<TurretDoMoveSignal>().To<TurretDoMoveCommand>();
+			commandBinder.Bind<PlayerDoMoveSignal>().To<TurretDoMoveCommand>();
 
 
 

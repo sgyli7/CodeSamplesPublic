@@ -146,7 +146,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			//*************************************************
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 
-				view.doMoveToTarget();
+				//view.doMoveToTarget();
 
 			}
 			//*************************************************

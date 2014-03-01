@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -50,7 +50,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TurretDoMoveSignal : Signal<TurretMoveVO>
+	public class PlayerDoMoveSignal : Signal<PlayerMoveVO>
 	{
 		
 		//--------------------------------------
@@ -79,13 +79,13 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public TurretDoMoveSignal( )
+		public PlayerDoMoveSignal( )
 		{
 			//Debug.Log ("TurretDoMoveSignal.constructor()");
 			
 		}
 		
-		~TurretDoMoveSignal()
+		~PlayerDoMoveSignal()
 		{
 			
 		}

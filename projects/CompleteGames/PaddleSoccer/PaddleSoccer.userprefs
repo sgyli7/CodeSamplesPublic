@@ -1,14 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/PlayerPaddleUIMediator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/components/PaddleComponent.cs">
     <Files>
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/GameManagerUI.cs" Line="1" Column="1" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/GameManagerUIMediator.cs" Line="1" Column="1" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/CPUPaddleUI.cs" Line="134" Column="29" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/PlayerPaddleUI.cs" Line="56" Column="29" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/components/PaddleComponent.cs" Line="31" Column="1" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/CPUPaddleUIMediator.cs" Line="58" Column="34" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/PlayerPaddleUIMediator.cs" Line="58" Column="37" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/CPUPaddleUI.cs" Line="105" Column="57" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/super/SuperPaddleUI.cs" Line="70" Column="3" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/PlayerPaddleUI.cs" Line="104" Column="15" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/CPUPaddleUIMediator.cs" Line="1" Column="1" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/PlayerPaddleUIMediator.cs" Line="185" Column="19" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/components/PaddleComponent.cs" Line="158" Column="47" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/super/SuperControllerUIMediator.cs" Line="130" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

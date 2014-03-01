@@ -87,11 +87,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		public SoundPlaySignal soundPlaySignal { get; set;}
 
 		/// <summary>
-		/// Gets or sets the turret do move signal.
+		/// Gets or sets the player move signal.
 		/// </summary>
-		/// <value>The turret do move signal.</value>
+		/// <value>The player move signal.</value>
 		[Inject]
-		public TurretDoMoveSignal turretDoMoveSignal 		{ get; set;}
+		public PlayerDoMoveSignal playerDoMoveSignal 		{ get; set;}
 
 		/// <summary>
 		/// Gets or sets the game reset signal.
@@ -127,7 +127,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		/// <summary>
 		/// Spin amount per click
 		/// </summary>
-		private const float _TURRET_ROTATION_PER_CLICK = 3;
+		private const float _PADDLE_MOVE_PER_TICK = 1.2f;
 		
 		//--------------------------------------
 		//  Methods
@@ -180,11 +180,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		/// Do send move.
 		/// </summary>
 		/// <param name="aTurretMoveVO">A turret move V.</param>
-		private void _doSendMove (TurretMoveVO aTurretMoveVO) 
+		private void _doSendMove (PlayerMoveVO aTurretMoveVO) 
 		{
 
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				turretDoMoveSignal.Dispatch (aTurretMoveVO);
+				playerDoMoveSignal.Dispatch (aTurretMoveVO);
 			}
 		
 		}
@@ -230,11 +230,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 				switch (aUIInputVO.keyCode) {
 					case KeyCode.LeftArrow:
 					case KeyCode.RightArrow:
-						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
-						break;
-					case KeyCode.Space:
-						_doSendMove (new TurretMoveVO( MoveType.FiringStart));
-						break;
 					case KeyCode.Return:
 						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.BUTTON_CLICK));
 						_doResetGame();
@@ -245,23 +240,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 
 
 
-				//KEYUP
-				switch (aUIInputVO.keyCode) {
-					case KeyCode.Space:
-						turretDoMoveSignal.Dispatch (new TurretMoveVO( MoveType.FiringStop));
-						break;
-				}
-
-
 			} else if (aUIInputVO.uiInputEventType == UIInputEventType.DownStay) {
 
 				//KEYSTAY
 				switch (aUIInputVO.keyCode) {
-					case KeyCode.LeftArrow:
-						_doSendMove (new TurretMoveVO( MoveType.LeftOneTick, _TURRET_ROTATION_PER_CLICK));
+					case KeyCode.UpArrow:
+						_doSendMove (new PlayerMoveVO( MoveType.UpOneTick, _PADDLE_MOVE_PER_TICK));
 						break;
-					case KeyCode.RightArrow:
-						_doSendMove (new TurretMoveVO( MoveType.RightOneTick, _TURRET_ROTATION_PER_CLICK));
+					case KeyCode.DownArrow:
+						_doSendMove (new PlayerMoveVO( MoveType.DownOneTick, _PADDLE_MOVE_PER_TICK));
 						break;
 				}
 				

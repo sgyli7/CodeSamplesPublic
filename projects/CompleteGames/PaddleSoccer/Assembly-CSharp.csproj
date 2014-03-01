@@ -63,6 +63,7 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateInterface.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateManagerComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\GenericsUtility.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\LerpTarget.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\RendererUtility.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\ReadMe.cs" />
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\command\api\CommandExceptionType.cs" />
@@ -199,6 +200,7 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\GameResetSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\GameStateChangeSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\GameStateChangedSignal.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\PlayerDoMoveSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\PromptEndedSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\PromptStartSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\ScoreChangeSignal.cs" />
@@ -206,16 +208,14 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\SoundPlaySignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\StartSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\TurretDiedSignal.cs" />
-     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\TurretDoMoveSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\TurretHealthChangeSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\TurretHealthChangedSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\GameModel.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\IGameModel.cs" />
-     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\data\LerpTarget.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\data\Range.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\vo\PlayerMoveVO.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\vo\RoundDataVO.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\vo\SoundPlayVO.cs" />
-     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\vo\TurretMoveVO.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\model\vo\UIInputVO.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\CPUPaddleUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\GameManagerUIMediator.cs" />
@@ -242,6 +242,7 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\IControllerUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\IDamageable.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\SuperControllerUI.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\SuperPaddleUI.cs" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\LICENSE-2.0.txt" />
      <None Include="Assets\Community Assets\StrangeIoC\README.txt" />

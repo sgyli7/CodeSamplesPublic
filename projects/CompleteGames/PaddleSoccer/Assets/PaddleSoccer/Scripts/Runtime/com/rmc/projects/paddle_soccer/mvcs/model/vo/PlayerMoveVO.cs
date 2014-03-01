@@ -29,16 +29,22 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.paddle_soccer.mvcs.model.data
+namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum MoveType
+	{
+		UpOneTick,
+		DownOneTick,
+	}
 
 	//--------------------------------------
 	//  Class Attributes
@@ -48,26 +54,39 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.data
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	/// <summary>
-	/// If you want to smoothly move from current value to target value (and back to a reset value)
-	/// then this is a great class. Currently works for float only.
-	/// </summary>
-	public class LerpTarget
+	public class PlayerMoveVO 
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		private MoveType _moveType;
+		public MoveType moveType { 
+			get
+			{
+				return _moveType;
+			}
+			set
+			{
+				_moveType = value;
+			}
+		}
+		
+		private float _amount_float;
+		public float amount {
+			get
+			{
+				return _amount_float;
+			}
+			set
+			{
+				_amount_float = value;
+			}
+		}
+		
 		
 		// PUBLIC
-		/// <summary>
-		/// ALL THE VALUES
-		/// </summary>
-		public float current;
-		public float resetValue;
-		public float targetValue;
-		public float acceleration;
 		
 		// PUBLIC STATIC
 		
@@ -78,75 +97,46 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.data
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-		
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
 		///			CONSTRUCTOR / DESTRUCTOR
 		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////
 		/// <summary>
-		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.data.LerpTarget"/> class.
+		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> class.
 		/// </summary>
-		/// <param name="aCurrent_float">A current_float.</param>
-		/// <param name="aMinimum_float">A minimum_float.</param>
-		/// <param name="aMaximum_float">A maximum_float.</param>
-		/// <param name="aAcceleration_float">A acceleration_float.</param>
-		public LerpTarget (float aCurrent_float, float aMinimum_float, float aMaximum_float, float aAcceleration_float)
+		/// <param name="aMoveType">A move type.</param>
+		public PlayerMoveVO (MoveType aMoveType )
 		{
-			current 		= aCurrent_float;
-			resetValue 	= aMinimum_float;
-			targetValue 	= aMaximum_float;
-			acceleration  	= aAcceleration_float;
+			_moveType = aMoveType;
+			
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> class.
+		/// </summary>
+		/// <param name="aMoveType">A move type.</param>
+		/// <param name="aAmount_float">A amount_float.</param>
+		public PlayerMoveVO (MoveType aMoveType, float aAmount_float )
+		{
+			_moveType = aMoveType;
+			_amount_float = aAmount_float;
 			
 		}
 
 		/// <summary>
 		/// Releases unmanaged resources and performs other cleanup operations before the
-		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.model.data.LerpTarget"/> is reclaimed by garbage collection.
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> is reclaimed by garbage collection.
 		/// </summary>
-		~LerpTarget()
+		~PlayerMoveVO()
 		{
 			
 		}
 		
 		// PUBLIC
-
-
-		/// <summary>
-		/// Lerps the current to target.
-		/// </summary>
-		/// <param name="deltaTime">Delta time.</param>
-		public void lerpCurrentToTarget (float aDeltaTime_float)
-		{
-			_lerpCurrentTo (targetValue, aDeltaTime_float);
-		}
-
-		/// <summary>
-		/// Lerps the current to reset.
-		/// </summary>
-		/// <param name="deltaTime">Delta time.</param>
-		public void lerpCurrentToReset (float aDeltaTime_float)
-		{
-			_lerpCurrentTo (resetValue, aDeltaTime_float);
-		}
-
-
+		
 		// PRIVATE
-
-
-		/// <summary>
-		/// _lerps the current to.
-		/// </summary>
-		/// <param name="aDeltaTime_float">A delta time_float.</param>
-		/// <param name="aNextValue">A next value.</param>
-		private void _lerpCurrentTo ( float aNextValue, float aDeltaTime_float)
-		{
-			current =  Mathf.Lerp	(
-										current,
-										aNextValue,
-										aDeltaTime_float*acceleration
-									);
-		}
+		
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE
@@ -156,13 +146,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.data
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-
-
-
-
-
-
-
 	}
 }
 

@@ -29,15 +29,15 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
-using com.rmc.projects.paddle_soccer.mvcs.model.data;
-using com.rmc.projects.paddle_soccer.components.effects;
 using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
-
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
+
+
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 {
 	
@@ -53,7 +53,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class PlayerPaddleUI : View 
+	public class PlayerPaddleUI : SuperPaddleUI 
 	{
 		
 		//--------------------------------------
@@ -61,28 +61,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		//--------------------------------------
 		
 		// GETTER / SETTER
-		/// <summary>
-		/// Gets or sets the target rotation.
-		/// </summary>
-		/// <value>The target rotation.</value>
-		public float firingAngle { 
 
-			get{
-
-				return _turretFiringAngle_lerptarget.targetValue;
-
-			}
-			set
-			{
-				_turretFiringAngle_lerptarget.targetValue = value;
-				//turretFiringAngle_lerptarget.targetValue = _clampAngle (turretFiringAngle_lerptarget.targetValue);
-				//Debug.Log ("NOW: " + turretFiringAngle_lerptarget.targetValue);
-
-			}
-		}
 
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.TurretUI"/> is
+		/// Gets or sets a value indicating whether this <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.PlayerPaddleUI"/> is
 		/// running update.
 		/// 
 		/// NOTE: This is set by mediator based on GameState.
@@ -94,26 +76,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 		// PUBLIC
 		/// <summary>
-		/// When the turret rotator.
-		/// </summary>
-		public GameObject turretRotator;
-
-		/// <summary>
-		/// When the turret barrel.
-		/// </summary>
-		public GameObject turretBulletSpawnPoint;
-
-		/// <summary>
-		/// When the turret targeting light.
-		/// </summary>
-		public GameObject turretTargetingLight;
-
-		/// <summary>
-		/// When the turret spinning barrel.
-		/// </summary>
-		public GameObject turretSpinningBarrel;
-
-		/// <summary>
 		/// Gets or sets the turret health change signal.
 		/// </summary>
 		/// <value>The turret health change signal.</value>
@@ -121,34 +83,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public TurretHealthChangeSignal turretHealthChangeSignal 		{ get; set;}
 
 
-
-
 		// PUBLIC STATIC
-
-
-
 		
 		// PRIVATE
-		/// <summary>
-		/// When the is currently firing_boolean.
-		/// </summary>
-		private bool _isCurrentlyFiring_boolean = false;
-
-		/// <summary>
-		/// When the turret spinning_lerptarget.
-		/// </summary>
-		private LerpTarget _turretSpinning_lerptarget;
-		
-		/// <summary>
-		/// When the turret firing angle_lerptarget.
-		/// </summary>
-		private LerpTarget _turretFiringAngle_lerptarget;
-
-		/// <summary>
-		/// When the _turret bullet spawn point component.
-		/// </summary>
-		private TurretBulletSpawnPointComponent _turretBulletSpawnPointComponent;
-
 
 		// PRIVATE STATIC
 		
@@ -161,7 +98,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		override protected void Start () 
 		{
 			base.Start();
-			_turretBulletSpawnPointComponent = turretBulletSpawnPoint.GetComponent<TurretBulletSpawnPointComponent>();
+
 		}
 
 		///<summary>
@@ -170,8 +107,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public void init () 
 		{
 			isRunningUpdate = false;
-			_turretSpinning_lerptarget 		= new LerpTarget (0, 0, 10, 2f);
-			_turretFiringAngle_lerptarget	= new LerpTarget (0, 0, 0, 5f);
+
 		}
 
 		///<summary>
@@ -182,21 +118,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 			//
 			if (isRunningUpdate) {
-
-				//ROTATE THE BARREL IF FIRING
-				if (_isCurrentlyFiring_boolean) {
-					_turretSpinning_lerptarget.lerpCurrentToTarget (Time.deltaTime);
-				} else {
-					_turretSpinning_lerptarget.lerpCurrentToReset (Time.deltaTime);
-				}
-				turretSpinningBarrel.transform.Rotate (new Vector3 (0, _turretSpinning_lerptarget.current, 0));
-
-
-				//ROTATE THE BASE TO THE DESIRED SHOOTING ANGLE
-				_turretFiringAngle_lerptarget.lerpCurrentToTarget (Time.deltaTime);
-				Vector3 eulerAngles_vector3 = turretRotator.transform.localEulerAngles;
-				eulerAngles_vector3.z = _turretFiringAngle_lerptarget.current;
-				turretRotator.transform.localEulerAngles = eulerAngles_vector3;
 
 
 			}
@@ -216,63 +137,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		// PUBLIC
 
 
-		/// <summary>
-		/// Sets the is firing.
-		/// </summary>
-		/// <param name="aIsFiring_boolean">If set to <c>true</c> a is firing_boolean.</param>
-		public void doSetIsFiring (bool aIsFiring_boolean)
-		{
-			//INSTEAD OF SINGLE SHOTS, I THINK WE'LL NEED TO TURN ON, REPEATEDLY 'FIRE', AND TURN OFF, THE GUN
-			//TO MAKE THE ANIMATION LOOK GOOD
-			//Debug.Log ("is: "+ aIsFiring_boolean);
-			if (_isCurrentlyFiring_boolean != aIsFiring_boolean) {
-				//Debug.Log ("doSetIsFiring: "+ aIsFiring_boolean);
-				_isCurrentlyFiring_boolean = aIsFiring_boolean;
-
-				if (_isCurrentlyFiring_boolean) {
-					_doFireOnce();
-				}
-			}
-			
-		}
-
-		/// <summary>
-		/// Dos the take damage.
-		/// </summary>
-		/// <param name="i">The index.</param>
-		public void doTakeDamage (int aDamageAmount_int)
-		{
-
-			turretHealthChangeSignal.Dispatch (-aDamageAmount_int);
-		}
-
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// Do fire once.
-		/// </summary>
-		private void _doFireOnce() 
-		{
-
-
-		}
-
-
-		/*
-		 * //THE MATH WORKS HERE, BUT THEN THE ROTATION SPINS COUNTER-WISE SOMETIMES
-		 * //FOR NOW: IGNORE THE NEED FOR THIS. 
-		private float _clampAngle(float angle) 
-		{
-			if(angle < 0) {
-				angle = 360 + angle;
-			} else if (angle > 360) {
-				angle = 360 - angle;
-			}
-			return angle;
-		}
-		*/
-
 
 		// PRIVATE STATIC
 		
