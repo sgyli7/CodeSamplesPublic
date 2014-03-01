@@ -44,7 +44,7 @@ using com.rmc.utilities;
 using com.rmc.projects.animation_monitor;
 
 
-namespace com.rmc.projects.paddle_soccer.mvcs.view
+namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 {
 	
 	//--------------------------------------

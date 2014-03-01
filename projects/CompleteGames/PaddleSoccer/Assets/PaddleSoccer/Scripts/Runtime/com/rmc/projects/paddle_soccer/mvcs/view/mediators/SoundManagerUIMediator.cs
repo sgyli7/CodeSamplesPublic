@@ -38,7 +38,7 @@ using com.rmc.projects.paddle_soccer.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.paddle_soccer.mvcs.view
+namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 {
 	
 	//--------------------------------------

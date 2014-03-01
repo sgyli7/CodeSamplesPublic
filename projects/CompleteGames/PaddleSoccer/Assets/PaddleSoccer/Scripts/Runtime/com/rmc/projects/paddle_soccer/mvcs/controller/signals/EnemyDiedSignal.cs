@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -50,7 +50,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class EnemyDiedSignal : Signal<EnemyUI>
+	public class EnemyDiedSignal : Signal<CPUPaddleUI>
 	{
 		
 		//--------------------------------------

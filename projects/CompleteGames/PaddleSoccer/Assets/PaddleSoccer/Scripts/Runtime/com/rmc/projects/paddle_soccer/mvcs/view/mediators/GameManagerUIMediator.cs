@@ -42,7 +42,7 @@ using System;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.paddle_soccer.mvcs.view
+namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 {
 	
 	//--------------------------------------
@@ -146,7 +146,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view
 		public override void OnRegister()
 		{
 			//view.init();
-			enemyDiedSignal.AddListener (_onEnemyDiedSignal);
 			turretDiedSignal.AddListener (_onTurretDiedSignal);
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			promptEndedSignal.AddListener (_onPromptEndedSignal);
@@ -158,7 +157,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view
 		/// </summary>
 		public override void OnRemove()
 		{
-			enemyDiedSignal.RemoveListener (_onEnemyDiedSignal);
 			turretDiedSignal.RemoveListener (_onTurretDiedSignal);
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 			promptEndedSignal.RemoveListener (_onPromptEndedSignal);
@@ -265,24 +263,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view
 		}
 		
 		/// <summary>
-		/// Do remove enemy after time.
-		/// </summary>
-		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
-		/// <param name="aDelay_float">A delay_float.</param>
-		private void _doRemoveEnemyAfterTime (EnemyUI aEnemyThatDied_enemyUI, float aTotalTimeUntilDestory_float ) 
-		{
-			
-			//
-			iGameModel.currentRoundDataVO.removeEnemy (aEnemyThatDied_enemyUI.gameObject);
-
-			aEnemyThatDied_enemyUI.doTweenToSinkIntoGround();
-			
-			//
-			Destroy (aEnemyThatDied_enemyUI.gameObject, aTotalTimeUntilDestory_float);
-			
-		}
-		
-		/// <summary>
 		/// Do check round and game status after time.
 		/// 
 		/// NOTE: Must be public
@@ -322,26 +302,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view
 			
 		}
 		
-		
 
-		
-		/// <summary>
-		/// When the enemy died signal.
-		/// </summary>
-		/// <param name="aEnemyThatDied_gameobject">A enemy that died_gameobject.</param>
-		private void _onEnemyDiedSignal (EnemyUI aEnemyThatDied_enemyui)
-		{
-			
-			//
-			_doRemoveEnemyAfterTime (aEnemyThatDied_enemyui, 2f);
-
-
-			//
-			CancelInvoke ("_doCheckRoundAndGameStatusAfterTime");
-			Invoke ("_doCheckRoundAndGameStatusAfterTime", 2.5f);
-			
-			
-		}
 		
 		/// <summary>
 		/// When the turret died signal.

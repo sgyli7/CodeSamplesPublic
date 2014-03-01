@@ -44,6 +44,9 @@ using com.rmc.projects.paddle_soccer.mvcs.model;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.mvcs.view.mediators;
+
+
 namespace com.rmc.projects.paddle_soccer.mvcs
 {
 	
@@ -163,8 +166,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 			//
 			mediationBinder.Bind<IntroUI>().To<IntroUIMediator>();
 			//
-			mediationBinder.Bind<TurretUI>().To<TurretUIMediator>();
-			mediationBinder.Bind<EnemyUI>().To<EnemyUIMediator>();
+			mediationBinder.Bind<PlayerPaddleUI>().To<PlayerPaddleUIMediator>();
+			mediationBinder.Bind<CPUPaddleUI>().To<CPUPaddleUIMediator>();
 			//
 			mediationBinder.Bind<VirtualControllerUI>().To<VirtualControllerUIMediator>();
 			mediationBinder.Bind<KeyboardControllerUI>().To<KeyboardControllerUIMediator>();

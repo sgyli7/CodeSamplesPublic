@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -64,7 +64,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.commands
 		/// </summary>
 		/// <value>The enemy that died_enemyui.</value>
 		[Inject]
-		public EnemyUI enemyThatDied_enemyui {get;set;}
+		public CPUPaddleUI enemyThatDied_enemyui {get;set;}
 
 
 		/// <summary>

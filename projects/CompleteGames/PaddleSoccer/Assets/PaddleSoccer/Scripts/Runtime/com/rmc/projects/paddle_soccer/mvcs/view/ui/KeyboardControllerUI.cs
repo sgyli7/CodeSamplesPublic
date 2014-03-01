@@ -35,6 +35,7 @@ using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.paddle_soccer.mvcs.model.vo;
+using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
 
 
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
@@ -103,28 +104,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 				_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
 			} 
 			
-			//LEFT
-			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownEnter);
-			} else if (Input.GetKeyUp (KeyCode.LeftArrow)) {
-				_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownExit);
+			//UP
+			if (Input.GetKeyDown (KeyCode.UpArrow)) {
+				_doUpdateUIInput (KeyCode.UpArrow, UIInputEventType.DownEnter);
+			} else if (Input.GetKeyUp (KeyCode.UpArrow)) {
+				_doUpdateUIInput (KeyCode.UpArrow, UIInputEventType.DownExit);
 			}
 			
-			//RIGHT
-			if (Input.GetKeyDown (KeyCode.RightArrow)) {
-				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownEnter);
-			} else if (Input.GetKeyUp (KeyCode.RightArrow)) {
-				_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownExit);
+			//DOWN
+			if (Input.GetKeyDown (KeyCode.DownArrow)) {
+				_doUpdateUIInput (KeyCode.DownArrow, UIInputEventType.DownEnter);
+			} else if (Input.GetKeyUp (KeyCode.DownArrow)) {
+				_doUpdateUIInput (KeyCode.DownArrow, UIInputEventType.DownExit);
 			}
 			
-			//FIRE
-			if(Input.GetKeyDown (KeyCode.Space)) { 
-				_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownEnter);
-			}
-
-			if(Input.GetKeyUp (KeyCode.Space)) { 
-				_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownExit);
-			}
 
 		}
 		

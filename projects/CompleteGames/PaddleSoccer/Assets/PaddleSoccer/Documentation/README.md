@@ -2,7 +2,9 @@
 TODO LIST
 =====================================
 
-# None.
+# remove ‘spider’ string .
+# go through classes, remove unneeded code
+
 
 
 
