@@ -198,6 +198,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			_audioSourceGameObject_list = new List<GameObject>();
 			_audioSource_list 			= new List<AudioSource>();
 			GameObject nextAudioSource_gameobject;
+			#pragma warning disable 0219
 			foreach (AudioClip audioClip in audioClip_list) {
 				
 				nextAudioSource_gameobject = new GameObject ();
@@ -208,6 +209,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 				_audioSourceGameObject_list.Add (nextAudioSource_gameobject);
 				_audioSource_list.Add (nextAudioSource_gameobject.GetComponent<AudioSource>());
 			}
+			#pragma warning restore 0219
 		}
 
 

@@ -79,6 +79,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 
 		// PUBLIC STATIC
+		/// <summary>
+		/// The TA.
+		/// </summary>
+		public static string TAG = "SoccerBallTag";
 		
 		// PRIVATE
 		/// <summary>
@@ -90,6 +94,22 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// The _current rotation_quaternion.
 		/// </summary>
 		private Quaternion _currentRotation_quaternion;
+
+		/// <summary>
+		/// The _move direction_vector2.
+		/// </summary>
+		private Vector2 _moveDirection_vector2;
+
+		/// <summary>
+		/// The _target angle_float.
+		/// </summary>
+		private float _targetAngle_float;
+
+		/// <summary>
+		/// The _turn speed_float.
+		/// </summary>
+		private float _turnSpeed_float;
+
 
 		// PRIVATE STATIC
 		
@@ -108,8 +128,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		///<summary>
 		///	Use this for initialization
 		///</summary>
-		public void init () 
+		override public void init () 
 		{
+			base.init();
 			isRunningUpdate = false;
 			rigidbody2D.fixedAngle = true;
 
@@ -157,10 +178,21 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public void doGiveStartingPush ()
 		{
 
-			rigidbody2D.AddForce (new Vector2 (200, 100));
+			rigidbody2D.AddForce (new Vector2 (-200, 0));
 
 		}
 
+		/// <summary>
+		/// Dos the give english from paddle velocity.
+		/// 
+		/// NOTE: English = (angled adjustment from moving paddle)
+		/// 
+		/// </summary>
+		/// <param name="aVelocity_vector2">A velocity_vector2.</param>
+		public void doGiveEnglishFromPaddleVelocity (Vector2 aVelocity_vector2)
+		{
+			rigidbody2D.AddForce (new Vector2 (0, aVelocity_vector2.y*3000));
+		}
 		
 
 		// PUBLIC STATIC
@@ -172,10 +204,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		private void _doLookInDirectionOfMovement()
 		{
 			// calculates the angle we should turn towards, - 90 makes the sprite rotate
-			Vector2 moveDirection = rigidbody2D.velocity.normalized;
-			float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg - 180;
-			float turnSpeed = 10f * Time.deltaTime;
-			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed);
+			_moveDirection_vector2 	= rigidbody2D.velocity.normalized;
+			_targetAngle_float 		= Mathf.Atan2(_moveDirection_vector2.y, _moveDirection_vector2.x) * Mathf.Rad2Deg - 180;
+			_turnSpeed_float 		= 10f * Time.deltaTime;
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, _targetAngle_float), _turnSpeed_float);
 			
 
 //			transform.rotation = Quaternion.LookRotation( transform.forward);
@@ -194,18 +226,28 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		//--------------------------------------
 		/// <summary>
 		/// Raises the collision enter2 d event.
+		/// 
+		/// NOTE: This just detect BOUNDS
+		/// 
 		/// </summary>
 		/// <param name="aCollision2D">A collision2 d.</param>
 		public void OnCollisionEnter2D (Collision2D aCollision2D)
 		{
-			BoundaryComponent boundaryComponent = aCollision2D.collider.gameObject.GetComponent<BoundaryComponent>();
 
-			if (boundaryComponent.boundaryType == BoundaryType.LeftGoal) {
+			//Debug.Log (aCollision2D.collider.gameObject.tag);
+			//
+			if (aCollision2D.collider.gameObject.tag == BoundaryComponent.TAG) {
 
-				Debug.Log ("OnCollisionEnter2D() " + boundaryComponent.boundaryType);
-			} else if (boundaryComponent.boundaryType == BoundaryType.RightGoal) {
+				//
+				BoundaryComponent boundaryComponent = aCollision2D.collider.gameObject.GetComponent<BoundaryComponent>();
+				//
+				if (boundaryComponent.boundaryType == BoundaryType.LeftGoal) {
 
-				Debug.Log ("OnCollisionEnter2D() " + boundaryComponent.boundaryType);
+					//Debug.Log ("OnCollisionEnter2D() " + boundaryComponent.boundaryType);
+				} else if (boundaryComponent.boundaryType == BoundaryType.RightGoal) {
+
+					//Debug.Log ("OnCollisionEnter2D() " + boundaryComponent.boundaryType);
+				}
 			}
 
 		}

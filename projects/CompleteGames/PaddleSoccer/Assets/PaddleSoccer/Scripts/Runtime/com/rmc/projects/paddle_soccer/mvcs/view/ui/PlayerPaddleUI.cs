@@ -98,8 +98,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		///<summary>
 		///	Use this for initialization
 		///</summary>
-		public void init () 
+		override public void init () 
 		{
+			base.init();
 			isRunningUpdate = false;
 
 		}

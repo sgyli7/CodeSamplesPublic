@@ -68,6 +68,12 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// </summary>
 		public BoundaryType boundaryType;
 
+		// PUBLIC STATIC
+		/// <summary>
+		/// The TAG
+		/// </summary>
+		public static string TAG = "BoundaryTag";
+
 		// PRIVATE
 		
 		// PRIVATE STATIC

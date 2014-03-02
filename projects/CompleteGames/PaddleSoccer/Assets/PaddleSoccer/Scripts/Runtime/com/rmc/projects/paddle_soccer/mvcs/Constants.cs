@@ -70,9 +70,13 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		//
 		public const string HUD_CLICK_ANYWHERE      = "Tap/Click Anywhere To Continue\n\n<size=15>Up Arrow, Down Arrow</size>\n<size=15>Return To Reset</size>";
 		public const string HUD_RIGHT_SCORE      	= "CPU: {0}";
+
 		public const string HUD_LEFT_SCORE      	= "Player: {0}";
 
-			
+
+		//
+		public static float PADDLE_Y_MINIMUM		= -3;
+		public static float PADDLE_Y_MAXIMUM		= 3;
 		
 		// PRIVATE
 		

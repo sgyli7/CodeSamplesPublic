@@ -183,7 +183,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			case MoveType.DownOneTick:
 				view.targetY -= aPlayerMoveVO.amount;
 				break;
-				break;
 			default:
 				#pragma warning disable 0162
 				throw new SwitchStatementException();

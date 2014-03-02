@@ -39,6 +39,8 @@ using com.rmc.projects.animation_monitor;
 //--------------------------------------
 using com.rmc.projects.paddle_soccer.mvcs.model.data;
 using com.rmc.utilities;
+using com.rmc.projects.paddle_soccer.mvcs.view.ui;
+using com.rmc.projects.paddle_soccer.mvcs;
 
 
 namespace com.rmc.projects.paddle_soccer.components
@@ -139,6 +141,19 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// When the _move speed_float.
 		/// </summary>
 		private float _moveSpeed_float;
+
+
+		/// <summary>
+		/// The _velocity_vector2.
+		/// 
+		/// </summary>
+		private Vector2 _velocity_vector2;
+
+
+		/// <summary>
+		/// The _last position_vector3.
+		/// </summary>
+		private Vector3 _lastPosition_vector3;
 		
 		
 		// PRIVATE STATIC
@@ -155,7 +170,7 @@ namespace com.rmc.projects.paddle_soccer.components
 			
 			animation 						= GetComponentInChildren<Animation>();
 			animationMonitor 				= GetComponentInChildren<AnimationMonitor>();
-			_yPosition_lerptarget 			= new LerpTarget (0, 0, -2.8f, 3.7f, 0.5f);
+			_yPosition_lerptarget 			= new LerpTarget (0, 0, -5, 5, 0.5f);
 
 			
 		}
@@ -248,10 +263,36 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// <summary>
 		/// Do move to target.
 		/// </summary>
-		public void _doMoveToTarget ()
+		private void _doMoveToTarget ()
 		{
-			transform.position = new Vector3 (transform.position.x, _yPosition_lerptarget.current, transform.position.z);
+			//
+			transform.position = new Vector3 (
+				transform.position.x, 
+				_getNewYPositionOnscreen(), 
+				transform.position.z);
+
+			//STORE FOR VELOCITY CHECK
+			_velocity_vector2 = transform.position - _lastPosition_vector3;
+			_lastPosition_vector3 = transform.position;
+		}
+
+
+		/// <summary>
+		/// _gets the new Y position onscreen.
+		/// </summary>
+		private float _getNewYPositionOnscreen ()
+		{
+			float newYPosition_float = _yPosition_lerptarget.current;
+			if (newYPosition_float < Constants.PADDLE_Y_MINIMUM) {
+				newYPosition_float = Constants.PADDLE_Y_MINIMUM;
+				_yPosition_lerptarget.targetValue = _yPosition_lerptarget.current;
+			} else if (newYPosition_float > Constants.PADDLE_Y_MAXIMUM) {
+				newYPosition_float = Constants.PADDLE_Y_MAXIMUM;
+				_yPosition_lerptarget.targetValue = _yPosition_lerptarget.current;
+			}
 			
+
+			return newYPosition_float;
 		}
 		
 		// PRIVATE STATIC
@@ -265,7 +306,28 @@ namespace com.rmc.projects.paddle_soccer.components
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
-		
+		/// <summary>
+		/// Raises the collision enter2 d event.
+		/// 
+		/// NOTE: This just detects soccer ball
+		/// 
+		/// </summary>
+		/// <param name="aCollision2D">A collision2 d.</param>
+		public void OnCollisionEnter2D (Collision2D aCollision2D)
+		{
+			
+			//Debug.Log (aCollision2D.collider.gameObject.tag);
+			//
+			if (aCollision2D.collider.gameObject.tag == SoccerBallUI.TAG) {
+				
+				//
+				SoccerBallUI soccerBallUI = aCollision2D.collider.gameObject.GetComponent<SoccerBallUI>();
+				//
+				soccerBallUI.doGiveEnglishFromPaddleVelocity (_velocity_vector2);
+
+			}
+			
+		}
 		
 	}
 }
