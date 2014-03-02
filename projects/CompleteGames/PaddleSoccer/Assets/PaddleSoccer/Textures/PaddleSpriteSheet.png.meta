@@ -72,18 +72,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 9
-        y: 333
+        y: 332
         width: 74
-        height: 19
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: PaddleBlue_05
       rect:
         serializedVersion: 2
         x: 9
-        y: 309
+        y: 308
         width: 74
-        height: 19
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: PaddleBlue_06
@@ -92,7 +92,7 @@ TextureImporter:
         x: 9
         y: 284
         width: 74
-        height: 19
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: PaddleBlue_07
@@ -144,9 +144,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8
-        y: 127
+        y: 126
         width: 74
-        height: 19
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: PaddleRed_05
