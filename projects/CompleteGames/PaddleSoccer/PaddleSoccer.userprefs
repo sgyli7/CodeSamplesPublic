@@ -1,8 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/PaddleSoccerContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/SoccerBallUI.cs">
     <Files>
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/PaddleSoccerContext.cs" Line="224" Column="3" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/SoccerBallUIMediator.cs" Line="162" Column="19" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/model/GameModel.cs" Line="105" Column="1" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/SoccerBallUI.cs" Line="149" Column="41" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/IntroUI.cs" Line="248" Column="1" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/HUDUI.cs" Line="292" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

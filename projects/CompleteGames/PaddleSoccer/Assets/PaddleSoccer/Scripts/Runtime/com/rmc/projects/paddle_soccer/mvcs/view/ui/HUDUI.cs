@@ -43,7 +43,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	public enum HUDMode
+	{
+		Show,
+		Skip
+	}
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -107,6 +111,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// When the FPS GUI text_game object.
 		/// </summary>
 		public GameObject fpsGUIText_gameObject;
+
+		/// <summary>
+		/// When the intro mode.
+		/// </summary>
+		public HUDMode hudMode = HUDMode.Show;
 
 		
 		// PUBLIC STATIC
@@ -279,6 +288,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			_lastPromptMessage_string = aMessage_string;
 
 
+			
+			//FOR DEVELOPMENT: ALLOW TO SKIP VIA INSPECTOR WINDOW DROPDOWN
+			float fadeInDuration_float;
+			float fadeOutDuration_float;
+			float fadeOutDelayDuration_float;
+			if (hudMode == HUDMode.Show) {
+				fadeInDuration_float = 0.5f;
+				fadeOutDuration_float = 0.5f;
+				fadeOutDelayDuration_float = 2f;
+			} else {
+				fadeInDuration_float = 0.1f;
+				fadeOutDuration_float = 0.1f;
+				fadeOutDelayDuration_float = .1f;
+			}
 
 
 			//SETUP: IMMEDIATLY SET ALPHA TO 0
@@ -294,7 +317,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			Hashtable fadeTo2_hashtable = new Hashtable();
 			fadeTo2_hashtable.Add(iT.FadeTo.delay,				.1f);
 			fadeTo2_hashtable.Add(iT.FadeTo.amount,				1);
-			fadeTo2_hashtable.Add(iT.FadeTo.time,  				.5);
+			fadeTo2_hashtable.Add(iT.FadeTo.time,  				fadeInDuration_float);
 			fadeTo2_hashtable.Add(iT.FadeTo.easetype, 			iTween.EaseType.linear);
 			//
 			iTween.FadeTo (promptGUIText_gameObject, 			fadeTo2_hashtable);
@@ -310,9 +333,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			if (aIsToFadeOutToo_boolean) {
 				Hashtable fadeTo3_hashtable = new Hashtable();
 				fadeTo3_hashtable.Add("name",						"fadeTo2");
-				fadeTo3_hashtable.Add(iT.FadeTo.delay, 				2);
+				fadeTo3_hashtable.Add(iT.FadeTo.delay, 				fadeOutDelayDuration_float);
 				fadeTo3_hashtable.Add(iT.FadeTo.alpha,				0);
-				fadeTo3_hashtable.Add(iT.FadeTo.time,  				.5);
+				fadeTo3_hashtable.Add(iT.FadeTo.time,  				fadeOutDuration_float);
 				fadeTo3_hashtable.Add(iT.FadeTo.easetype, 			iTween.EaseType.linear);
 				fadeTo3_hashtable.Add(iT.FadeTo.oncompletetarget, 	gameObject);
 				//

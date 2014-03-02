@@ -179,6 +179,7 @@
      <Compile Include="Assets\Community Assets\StrangeIoC\scripts\strange\framework\impl\SemiBinding.cs" />
      <Compile Include="Assets\Community Assets\iTween\Plugins\iTween.cs" />
      <Compile Include="Assets\Community Assets\iTween\Plugins\iTweenHinting.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\components\BoundaryComponent.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\components\PaddleComponent.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\components\effects\TurretBulletSpawnPointComponent.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\Constants.cs" />
@@ -222,6 +223,7 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\IntroUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\KeyboardControllerUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\PlayerPaddleUIMediator.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\SoccerBallUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\SoundManagerUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\TestUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\VirtualControllerUIMediator.cs" />
@@ -235,6 +237,7 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\IntroUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\KeyboardControllerUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\PlayerPaddleUI.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\SoccerBallUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\SoundManagerUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\TestUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\VirtualControllerUI.cs" />

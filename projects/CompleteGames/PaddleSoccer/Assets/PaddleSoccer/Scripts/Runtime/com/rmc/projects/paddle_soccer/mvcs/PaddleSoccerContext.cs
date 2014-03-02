@@ -168,6 +168,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 			//
 			mediationBinder.Bind<PlayerPaddleUI>().To<PlayerPaddleUIMediator>();
 			mediationBinder.Bind<CPUPaddleUI>().To<CPUPaddleUIMediator>();
+			mediationBinder.Bind<SoccerBallUI>().To<SoccerBallUIMediator>();
 			//
 			mediationBinder.Bind<VirtualControllerUI>().To<VirtualControllerUIMediator>();
 			mediationBinder.Bind<KeyboardControllerUI>().To<KeyboardControllerUIMediator>();
@@ -178,7 +179,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 			mediationBinder.Bind<SoundManagerUI>().To<SoundManagerUIMediator>();
 			//
 			//DEBUGGING
-			mediationBinder.Bind<TestUI>().To<TestUIMediator>();
 
 
 
