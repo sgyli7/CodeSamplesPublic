@@ -63,17 +63,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		// GETTER / SETTER
 
 
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.PlayerPaddleUI"/> is
-		/// running update.
-		/// 
-		/// NOTE: This is set by mediator based on GameState.
-		/// NOTE: Defaults to false
-		/// 
-		/// </summary>
-		/// <value><c>true</c> if is running update; otherwise, <c>false</c>.</value>
-		public bool isRunningUpdate {get;set;}
-
 		// PUBLIC
 
 
@@ -130,6 +119,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		}
 		
 		// PUBLIC
+
 
 
 		// PUBLIC STATIC

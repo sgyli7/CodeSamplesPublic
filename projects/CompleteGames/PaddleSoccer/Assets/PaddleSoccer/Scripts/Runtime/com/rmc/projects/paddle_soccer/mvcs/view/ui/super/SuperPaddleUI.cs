@@ -82,6 +82,18 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		
 		// PUBLIC
 		
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.PlayerPaddleUI"/> is
+		/// running update.
+		/// 
+		/// NOTE: This is set by mediator based on GameState.
+		/// NOTE: Defaults to false
+		/// 
+		/// </summary>
+		/// <value><c>true</c> if is running update; otherwise, <c>false</c>.</value>
+		public bool isRunningUpdate {get;set;}
+
+		
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -141,6 +153,27 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		
 		// PUBLIC
 		
+		/// <summary>
+		/// Dos the tween to starting position.
+		/// </summary>
+		/// <param name="aOffsetX_float">A offset x_float.</param>
+		public void doTweenToStartingPosition (float aOffsetX_float)
+		{
+			_paddleComponent.doTweenToStartingPosition (aOffsetX_float);
+		}
+
+		/// <summary>
+		/// Dos the tween to starting position.
+		/// </summary>
+		/// <param name="aOffsetX_float">A offset x_float.</param>
+		public void doTweenToOffscreenPosition (float aOffsetX_float)
+		{
+			//
+			_paddleComponent.doTweenToOffscreenPosition (aOffsetX_float);
+		}
+
+
+
 		// PUBLIC STATIC
 		
 		// PRIVATE

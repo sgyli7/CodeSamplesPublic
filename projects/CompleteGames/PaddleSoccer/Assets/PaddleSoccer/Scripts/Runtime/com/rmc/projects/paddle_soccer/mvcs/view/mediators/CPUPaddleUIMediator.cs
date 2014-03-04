@@ -89,6 +89,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		[Inject]
 		public IGameModel iGameModel { get; set; } 
 
+		
+		
+		/// <summary>
+		/// Gets or sets the game state changed signal.
+		/// </summary>
+		/// <value>The game state changed signal.</value>
+		[Inject]
+		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+
 
 		// PUBLIC
 
@@ -115,6 +124,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		{
 			view.init();
 			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
+			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 
 
 		}
@@ -124,7 +134,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		public override void OnRemove()
 		{
-
+			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 		}
 
 		/// <summary>
@@ -173,6 +183,28 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// When the game state changed signal.
+		/// </summary>
+		/// <param name="aGameState">A game state.</param>
+		private void _onGameStateChangedSignal (GameState aGameState)
+		{
+			//todo:change to
+			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+				view.isRunningUpdate = true;
+				view.doTweenToStartingPosition(0);
+			} else if (aGameState == GameState.ROUND_START) {
+				view.isRunningUpdate = false;
+			} else if (aGameState == GameState.GAME_START) {
+				view.doTweenToOffscreenPosition(1f);
+				
+			}
+			
+		}
+
+
+
 		/// <summary>
 		/// When the user interface animation complete signal.
 		/// </summary>

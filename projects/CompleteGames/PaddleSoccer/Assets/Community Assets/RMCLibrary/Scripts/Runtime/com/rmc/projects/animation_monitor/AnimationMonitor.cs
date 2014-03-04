@@ -65,11 +65,15 @@ namespace com.rmc.projects.animation_monitor
 		/// <value>The user interface animation monitor signal.</value>
 		public UIAnimationMonitorEventSignal uiAnimationMonitorSignal {set; get;}
 				
+		/// <summary>
+		/// The animation.
+		/// </summary>
+		private new Animation animation;
+		
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
-
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -102,7 +106,7 @@ namespace com.rmc.projects.animation_monitor
 		/// </summary>
 		public void Start ()
 		{
-
+			animation = GetComponent<Animation>();
 
 		}
 
@@ -144,6 +148,7 @@ namespace com.rmc.projects.animation_monitor
 			if (animation[aAnimationMonitorRequestVO.animationClipName] != null) {
 				animation.wrapMode = aAnimationMonitorRequestVO.wrapMode;
 				animation.Play (aAnimationMonitorRequestVO.animationClipName);
+				Debug.Log ("Play: " + aAnimationMonitorRequestVO.animationClipName);
 
 			} else {
 				//KEEP THIS
@@ -189,6 +194,7 @@ namespace com.rmc.projects.animation_monitor
 			
 			//SEND SIGNAL
 			uiAnimationMonitorSignal.Dispatch (new AnimationMonitorEventVO (AnimationMonitorEventType.COMPLETE, aAnimationMonitorRequestVO));
+
 			//THEN TACK ON SOME EXTRA DELAY FOR COSMETIC TWEAKING
 			yield return new WaitForSeconds (aAnimationMonitorRequestVO.delayAfterAnimation);
 			

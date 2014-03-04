@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox
+	xmlns:mx	= "http://www.adobe.com/2006/mxml"
+	xmlns:view	= "org.rivello.projects.PureMVCTemplate.view.*"
+	width 		= "300" 
+	height 		= "200"
+	horizontalAlign="center"
+	>
+
+	<mx:Script>
+		<![CDATA[
+		
+			//--------------------------------------
+			//  Imports
+			//--------------------------------------
+			import flash.events.Event;
+			import flash.events.MouseEvent;
+			import flash.events.EventDispatcher;
+	
+		
+			//--------------------------------------
+			//  Properties
+			//--------------------------------------
+			//PUBLIC GETTER/SETTERS
+		
+			//PUBLIC CONST
+			/**
+			 * Constant for the MAIN_BUTTON_CLICK event.
+			 * 
+			 * @default MAIN_BUTTON_CLICK 
+			*/
+			public static const MAIN_BUTTON_CLICK : String = "MAIN_BUTTON_CLICK";
+		
+			//PRIVATE
+			
+			
+			//--------------------------------------
+			//  Events
+			//--------------------------------------		
+			//EVENT DISPATCHERS
+			
+			//EVENT HANDLERS
+			/**
+			 * Handles the <code>Button</code>'s MouseEvent.CLICK event.
+			*/
+			private function onMainButtonClick (aEvent : MouseEvent) : void 
+			{				
+				dispatchEvent( new Event (MAIN_BUTTON_CLICK) );
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+	
+	<!-- Place any UI components here. -->	
+	<mx:Panel id = "panel" title = "PureMVCTemplate" width="100%" height="100%" layout="vertical" verticalAlign="middle" horizontalAlign="center" >
+		<mx:TextArea	id = "textarea"	borderStyle="solid"    width="250" height="50"/>
+		<mx:Button 		id = "button" 	click = "onMainButtonClick (event);"   width="250" height="50"/>
+	</mx:Panel>
+
+
+</mx:VBox>

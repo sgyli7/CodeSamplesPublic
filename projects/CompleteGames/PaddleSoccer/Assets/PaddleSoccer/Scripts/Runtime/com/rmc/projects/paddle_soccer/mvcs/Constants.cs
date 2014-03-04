@@ -76,7 +76,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 
 		//
 		public static float PADDLE_Y_MINIMUM		= -3;
+
 		public static float PADDLE_Y_MAXIMUM		= 3;
+
+		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_UP 	= "Up";
+		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_DOWN 	= "Down";
+		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_RESET 	= "Reset";
 		
 		// PRIVATE
 		

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas
+	xmlns:mx	= "http://www.adobe.com/2006/mxml" 
+	>	
+	
+	<mx:Script>
+		<![CDATA[	
+			//--------------------------------------
+			//  Imports
+			//--------------------------------------
+			import flash.events.Event;
+			import flash.events.EventDispatcher;
+	
+		
+			//--------------------------------------
+			//  Properties
+			//--------------------------------------
+			//PUBLIC GETTER/SETTERS
+			/**
+			 * This is the typical format of a simple comment for sample.
+			 * 
+			 * @default PUBLIC_STATIC_CONSTANT 
+			*/		
+			public function get sample () 					: String 	{ return _sample_str; }
+			public function set sample (aValue : String) 	: void 		{ _sample_str = aValue; }
+			private var _sample_str : String;
+		
+		
+			//PUBLIC CONST
+			/**
+			 * This is the typical format of a simple comment for <code>PUBLIC_STATIC_CONSTANT</code>.
+			 * 
+			 * @default PUBLIC_STATIC_CONSTANT 
+			*/
+			public static const PUBLIC_STATIC_CONSTANT : String = "PUBLIC_STATIC_CONSTANT";
+			
+		
+			//PRIVATE
+			/**
+			 * This is the typical format of a simple comment for _sample2_str.
+			*/
+			private var _sample2_str : String;		
+		
+			
+			//--------------------------------------
+			//  Methods
+			//--------------------------------------		
+			//PUBLIC	
+			/**
+			 * This is the typical format of a simple multiline comment
+			 * such as for a <code>sampleMethod</code> method.
+			 *
+			 * <span class="hide">Any hidden comments go here.</span>
+			 *
+			 * @param aArgument_str Describe here.
+			 * @param aArgument2_str Describe here.
+			 * 
+			 * @return void
+			*/
+			public function sampleMethod (aArgument_str : String, aArgument2_str : String) : void 
+			{
+				sampleMethod2(aArgument_str, aArgument2_str);
+			}
+			
+			
+			//PRIVATE	
+			/**
+			 * This is the typical format of a simple multiline comment
+			 * such as for a <code>sampleMethod2</code> method.
+			 *
+			 * <span class="hide">Any hidden comments go here.</span>
+			 *
+			 * @param aArgument_str Describe here.
+			 * @param aArgument2_str Describe here.
+			 * 
+			 * @return void
+			*/
+			private function sampleMethod2 (aArgument_str : String, aArgument2_str : String) : void 
+			{
+				dispatchSample();	
+			}
+			
+			
+			//--------------------------------------
+			//  Events
+			//--------------------------------------		
+			//EventDispatchers
+			/**
+			 * Handles the event: Event.SAMPLE
+			*/
+			[Event(name="SAMPLE", type="flash.events.Event")]
+			private function dispatchSample () : void
+			{
+				//dispatchEvent( new Event (Event.SAMPLE) );			
+			}
+	
+			
+			//EventHandlers
+			/**
+			 * Handles the event: Event.INIT
+			*/
+			private function onInit (aEvent : Event) : void 
+			{				
+				
+			}
+		]]>
+	</mx:Script>
+	
+	<!-- Add Any Components Here... -->
+	
+</mx:Canvas>

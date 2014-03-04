@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="com.adobe.flexbuilder.feature.core:3.0.194161"/>
+		<item value="com.adobe.flexbuilder.feature.standalone:3.0.194161"/>
+		<item value="com.interaktonline.jseclipse:1.5.5"/>
+		<item value="org.eclipse.birt.chart.cshelp:2.2.2.r22x_v20071015-11--w31181736"/>
+		<item value="org.eclipse.birt.chart.runtime:2.2.2.r22x_v20071015-7Y8l7DMVg4-_6uC7tmU8Y"/>
+		<item value="org.eclipse.birt.chart:2.2.2.r22x_v20071015-7979782epMz0t2ifpV9GJ8D8unV9"/>
+		<item value="org.eclipse.birt.cshelp:2.2.2.r22x_v20071015-11--w31181733"/>
+		<item value="org.eclipse.birt.doc:2.2.2.r22x_v20071015-110-s332Aw31181_2_"/>
+		<item value="org.eclipse.birt.example:2.2.2.r22x_v20071015-7C7C7A55QQBJZTFDqGIOV"/>
+		<item value="org.eclipse.birt.report.designer:2.2.2.r22x_v20071015-7U7U7TB8R573QDLV82yqWWX8fppV"/>
+		<item value="org.eclipse.birt.report.runtime:2.2.2.r22x_v20071015-7U7U7RBs-_N6u3VW7eooU"/>
+		<item value="org.eclipse.birt:2.2.2.r22x_v20071015-7M7M7L3OP4P3fZkIcJ9QOFI1cpYT"/>
+		<item value="org.eclipse.cdt:4.0.3.200802251018"/>
+		<item value="org.eclipse.cvs:1.0.1.R33x_r20070802-7C79_9_KKG-mDM9e3H5D"/>
+		<item value="org.eclipse.platform:3.3.1.R33x_r20070911-_19UEkpF-B7Uh2hKy75y"/>
+		<item value="org.eclipse.rcp:3.3.1.R33x_r20070802-8y8eE8sEV3Fz0z0GlHJrXvTAUS"/>
+	</list>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="225"/>
+		<item key="DIALOG_Y_ORIGIN" value="197"/>
+	</section>
+	<section name="org.eclipse.ui.views.problem">
+	</section>
+	<section name="ResourceNavigator">
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value=""/>
+		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
+	</section>
+</section>

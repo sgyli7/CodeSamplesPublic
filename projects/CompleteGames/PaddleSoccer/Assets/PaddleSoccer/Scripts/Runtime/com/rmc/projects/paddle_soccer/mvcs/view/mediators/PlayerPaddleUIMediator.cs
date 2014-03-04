@@ -161,10 +161,14 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		{
 			//todo:change to
 			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY || aGameState == GameState.ROUND_START) {
+			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				view.isRunningUpdate = true;
-			} else {
+				view.doTweenToStartingPosition(0);
+			} else if (aGameState == GameState.ROUND_START) {
 				view.isRunningUpdate = false;
+			} else if (aGameState == GameState.GAME_START) {
+				view.doTweenToOffscreenPosition(-1f);
+
 			}
 			
 		}

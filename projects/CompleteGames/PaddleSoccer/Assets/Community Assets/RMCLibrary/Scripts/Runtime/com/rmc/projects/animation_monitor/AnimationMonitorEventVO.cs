@@ -107,7 +107,7 @@ namespace com.rmc.projects.animation_monitor
 		public AnimationMonitorEventVO (AnimationMonitorEventType aUIAnimationMonitorEventType, AnimationMonitorRequestVO aanimationMonitorRequestVO )
 		{
 			animationMonitorEventType 	= aUIAnimationMonitorEventType;
-			animationMonitorRequestVO			= aanimationMonitorRequestVO;
+			animationMonitorRequestVO	= aanimationMonitorRequestVO;
 			
 		}
 		

@@ -72,9 +72,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		
 		// PRIVATE
 		/// <summary>
-		/// When the _is firing_boolean.
+		/// The _is currently down_boolean.
 		/// </summary>
-		bool _isCurrentlyFiring_boolean = true;
+		bool _isCurrentlyDown_boolean = true;
+
+		/// <summary>
+		/// The _is currently up_boolean.
+		/// </summary>
+		bool _isCurrentlyUp_boolean = true;
+
 		
 		// PRIVATE STATIC
 		private const float _SCREEN_TOP_MARGIN = 30;
@@ -131,19 +137,18 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		// PUBLIC STATIC
 		
 		// PRIVATE
-
 		/// <summary>
-		/// Do set is firing.
+		/// _dos the set is currently down.
 		/// </summary>
-		/// <param name="aIsFiring_boolean">If set to <c>true</c> a is firing_boolean.</param>
-		private void _doSetIsCurrentlyFiring (bool aIsCurrentlyFiring_boolean) 
+		/// <param name="aIsCurrentlyDown_boolean">If set to <c>true</c> a is currently down_boolean.</param>
+		private void _doSetIsCurrentlyDown (bool aIsCurrentlyDown_boolean) 
 		{
-			if (_isCurrentlyFiring_boolean != aIsCurrentlyFiring_boolean) {
-				_isCurrentlyFiring_boolean = aIsCurrentlyFiring_boolean;
-				if (_isCurrentlyFiring_boolean) {
-					_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownEnter);
+			if (_isCurrentlyDown_boolean != aIsCurrentlyDown_boolean) {
+				_isCurrentlyDown_boolean = aIsCurrentlyDown_boolean;
+				if (_isCurrentlyDown_boolean) {
+					_doUpdateUIInput (KeyCode.DownArrow, UIInputEventType.DownEnter);
 				} else {
-					_doUpdateUIInput (KeyCode.Space, UIInputEventType.DownExit);
+					_doUpdateUIInput (KeyCode.DownArrow, UIInputEventType.DownExit);
 				}
 			}
 			
@@ -151,51 +156,21 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 		// PRIVATE
 		/// <summary>
-		/// When the _is currently left_boolean.
-		/// </summary>
-		bool _isCurrentlyLeft_boolean = true;
-		
-		/// <summary>
-		/// Do set is currently left.
+		/// _dos the set is currently up.
 		/// </summary>
 		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
-		private void _doSetIsCurrentlyLeft (bool aIsCurrentlyLeft_boolean) 
+		private void _doSetIsCurrentlyUp (bool aIsCurrentlyUp_boolean) 
 		{
-			if (_isCurrentlyLeft_boolean != aIsCurrentlyLeft_boolean) {
-				_isCurrentlyLeft_boolean = aIsCurrentlyLeft_boolean;
-				if (_isCurrentlyLeft_boolean) {
-					_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownEnter);
+			if (_isCurrentlyUp_boolean != aIsCurrentlyUp_boolean) {
+				_isCurrentlyUp_boolean = aIsCurrentlyUp_boolean;
+				if (_isCurrentlyUp_boolean) {
+					_doUpdateUIInput (KeyCode.UpArrow, UIInputEventType.DownEnter);
 				} else {
-					_doUpdateUIInput (KeyCode.LeftArrow, UIInputEventType.DownExit);
+					_doUpdateUIInput (KeyCode.UpArrow, UIInputEventType.DownExit);
 				}
 			}
 			
 		}
-
-
-		// PRIVATE
-		/// <summary>
-		/// When the _is currently left_boolean.
-		/// </summary>
-		bool _isCurrentlyRight_boolean = true;
-		
-		/// <summary>
-		/// Do set is currently left.
-		/// </summary>
-		/// <param name="aIsCurrentlyLeft_boolean">If set to <c>true</c> a is currently left_boolean.</param>
-		private void _doSetIsCurrentlyRight (bool aIsCurrentlyRight_boolean) 
-		{
-			if (_isCurrentlyRight_boolean != aIsCurrentlyRight_boolean) {
-				_isCurrentlyRight_boolean = aIsCurrentlyRight_boolean;
-				if (_isCurrentlyRight_boolean) {
-					_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownEnter);
-				} else {
-					_doUpdateUIInput (KeyCode.RightArrow, UIInputEventType.DownExit);
-				}
-			}
-			
-		}
-
 
 
 		
@@ -231,29 +206,23 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 
 				//LEFT
-				if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Left")) {
-					_doSetIsCurrentlyLeft (true);
-				} else if (_isCurrentlyLeft_boolean && Event.current.type == EventType.repaint) { 
-					_doSetIsCurrentlyLeft (false);
+				if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), Constants.VIRTUAL_CONTROLLER_BUTTON_LABEL_UP)) {
+					_doSetIsCurrentlyUp (true);
+				} else if (_isCurrentlyUp_boolean && Event.current.type == EventType.repaint) { 
+					_doSetIsCurrentlyUp (false);
 				}
 
-				//RIGHT
-				if (GUI.RepeatButton (new Rect (_SCREEN_MARGIN + _SCREEN_MARGIN + _BUTTON_WIDTH, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Right")) {
-					_doSetIsCurrentlyRight (true);
-				} else if (_isCurrentlyRight_boolean && Event.current.type == EventType.repaint) { 
-					_doSetIsCurrentlyRight (false);
-				}
 
 				//RESET
-				if( GUI.RepeatButton (new Rect (Screen.width - (_BUTTON_WIDTH - _SCREEN_MARGIN)*3, Screen.height - _BUTTON_HEIGHT_SKINNY - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), "Reset")) {
+				if( GUI.RepeatButton (new Rect (Screen.width/2 - (_BUTTON_WIDTH/2), Screen.height - _BUTTON_HEIGHT_SKINNY - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT_SKINNY), Constants.VIRTUAL_CONTROLLER_BUTTON_LABEL_RESET)) {
 					_doUpdateUIInput (KeyCode.Return, UIInputEventType.DownEnter);
 				} 
 
 				//FIRE
-				if( GUI.RepeatButton (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), "Fire")) {
-					_doSetIsCurrentlyFiring (true);
-				} else if (_isCurrentlyFiring_boolean && Event.current.type == EventType.repaint) { 
-					_doSetIsCurrentlyFiring (false);
+				if( GUI.RepeatButton (new Rect (Screen.width - _BUTTON_WIDTH - _SCREEN_MARGIN, Screen.height - _BUTTON_HEIGHT - _SCREEN_MARGIN, _BUTTON_WIDTH, _BUTTON_HEIGHT), Constants.VIRTUAL_CONTROLLER_BUTTON_LABEL_DOWN)) {
+					_doSetIsCurrentlyDown (true);
+				} else if (_isCurrentlyDown_boolean && Event.current.type == EventType.repaint) { 
+					_doSetIsCurrentlyDown (false);
 
 				}
 

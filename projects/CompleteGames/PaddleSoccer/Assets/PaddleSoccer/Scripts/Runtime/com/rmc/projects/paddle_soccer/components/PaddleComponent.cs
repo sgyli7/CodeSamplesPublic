@@ -49,16 +49,6 @@ namespace com.rmc.projects.paddle_soccer.components
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum AnimationType
-	{
-		WALK,
-		ATTACK,
-		TAKE_HIT,
-		DIE,
-		IDLE,
-		JUMP
-		
-	}
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -96,11 +86,6 @@ namespace com.rmc.projects.paddle_soccer.components
 		// PUBLIC
 		
 		
-		/// <summary>
-		/// When the type of the _animation.
-		/// </summary>
-		public AnimationType animationType; 
-		
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -108,34 +93,13 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// When the turret spinning_lerptarget.
 		/// </summary>
 		private LerpTarget _yPosition_lerptarget;
-		
-		
-		/// <summary>
-		/// When the animation.
-		/// </summary>
-		new private Animation animation;
-		
-		/// <summary>
-		/// When the _animation binder.
-		/// 
-		/// NOTE: Notifies when an animation is complete
-		/// 
-		/// </summary>
-		public AnimationMonitor animationMonitor;
+
 		
 		/// <summary>
 		/// When the ANIMATION NAMES
 		/// </summary>
-		public const string ANIMATION_NAME_IDLE 		= "idle";	
-		public const string ANIMATION_NAME_JUMP 		= "jump";
-		public const string ANIMATION_NAME_WALK 		= "walk";	
-		public const string ANIMATION_NAME_ATTACK_1 	= "attack1";
-		public const string ANIMATION_NAME_ATTACK_2		= "attack2";
-		public const string ANIMATION_NAME_HIT_1 		= "hit1";
-		public const string ANIMATION_NAME_HIT_2 		= "hit2";
-		public const string ANIMATION_NAME_DEATH_1 		= "death1";
-		public const string ANIMATION_NAME_DEATH_2 		= "death2";
-		
+		public const string ANIMATION_NAME_PADDLE_RED_ANIMATION 		= "PaddleRedAnimation";	
+		public const string ANIMATION_NAME_PADDLE_BLUE_ANIMATION 		= "PaddleBlueAnimation";	
 		
 		/// <summary>
 		/// When the _move speed_float.
@@ -154,7 +118,21 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// The _last position_vector3.
 		/// </summary>
 		private Vector3 _lastPosition_vector3;
+
+		/// <summary>
+		/// The _starting x_ position.
+		/// </summary>
+		private float _startingXPosition_float;
+
 		
+		
+		/// <summary>
+		/// When the _animation binder.
+		/// 
+		/// NOTE: Notifies when an animation is complete
+		/// 
+		/// </summary>
+		private AnimationMonitor animationMonitor;
 		
 		// PRIVATE STATIC
 		
@@ -168,14 +146,26 @@ namespace com.rmc.projects.paddle_soccer.components
 		public void Start () 
 		{
 			
-			animation 						= GetComponentInChildren<Animation>();
 			animationMonitor 				= GetComponentInChildren<AnimationMonitor>();
-			_yPosition_lerptarget 			= new LerpTarget (0, 0, -5, 5, 0.5f);
+			_yPosition_lerptarget 			= new LerpTarget (0, 0, -10, 10, 0.5f);
+			doPlayAnimation (ANIMATION_NAME_PADDLE_RED_ANIMATION, 0, 0);
+			animationMonitor.uiAnimationMonitorSignal.AddListener (_onUAnimationMonitorSignal);
+			_startingXPosition_float = gameObject.transform.position.x;
 
 			
 		}
 		
-		
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		public void OnDestroy ()
+		{
+
+			animationMonitor.uiAnimationMonitorSignal.RemoveListener (_onUAnimationMonitorSignal);
+
+		}
+
+
 		///<summary>
 		///	Called once per frame
 		///</summary>
@@ -204,27 +194,11 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// <param name="aAnimationType">A animation type.</param>
 		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
 		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
-		public void doPlayAnimation (AnimationType aAnimationType, float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
+		public void doPlayAnimation (string aAnimationClipName_string, float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
 		{
 			//
-			animationType 	= aAnimationType;
-			
 			doStopAnimation();
-			
-			//
-			switch (animationType) {
-			case AnimationType.JUMP:
-				animationMonitor.playRequest ( new AnimationMonitorRequestVO (ANIMATION_NAME_JUMP, WrapMode.Default));
-				break;
-			case AnimationType.WALK:
-				animationMonitor.playRequest ( new AnimationMonitorRequestVO (ANIMATION_NAME_WALK, WrapMode.Loop));
-				break;
-			default:
-				#pragma warning disable 0162
-				throw new SwitchStatementException();
-				break;
-				#pragma warning restore 0162
-			}
+			animationMonitor.playRequest ( new AnimationMonitorRequestVO (aAnimationClipName_string, WrapMode.Loop));
 			
 			
 		}
@@ -243,16 +217,32 @@ namespace com.rmc.projects.paddle_soccer.components
 
 		
 		/// <summary>
-		/// Do tween to fall from sky.
+		/// Dos the tween to starting position.
 		/// </summary>
-		public void doTweenToFallFromSky ()
+		/// <param name="aOffsetX_float">A offset x_float.</param>
+		public void doTweenToStartingPosition (float aOffsetX_float)
 		{
 			//
-			//
 			Hashtable moveTo_hashtable 					= new Hashtable();
-			moveTo_hashtable.Add(iT.MoveTo.y,			0);
+			moveTo_hashtable.Add(iT.MoveTo.x,			_startingXPosition_float);
 			moveTo_hashtable.Add(iT.MoveTo.delay,  		0);
-			moveTo_hashtable.Add(iT.MoveTo.time,  		1);
+			moveTo_hashtable.Add(iT.MoveTo.time,  		0.25f);
+			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);
+			iTween.MoveTo (gameObject, 					moveTo_hashtable);
+		}
+
+		/// <summary>
+		/// Dos the tween to starting position.
+		/// </summary>
+		/// <param name="aOffsetX_float">A offset x_float.</param>
+		public void doTweenToOffscreenPosition (float aOffsetX_float)
+		{
+			//
+			gameObject.transform.position 				= new Vector3 (_startingXPosition_float, gameObject.transform.position.y, gameObject.transform.position.z);
+			Hashtable moveTo_hashtable 					= new Hashtable();
+			moveTo_hashtable.Add(iT.MoveTo.x,			_startingXPosition_float + aOffsetX_float);
+			moveTo_hashtable.Add(iT.MoveTo.delay,  		0);
+			moveTo_hashtable.Add(iT.MoveTo.time,  		0.25f);
 			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);
 			iTween.MoveTo (gameObject, 					moveTo_hashtable);
 		}
@@ -279,6 +269,9 @@ namespace com.rmc.projects.paddle_soccer.components
 
 		/// <summary>
 		/// _gets the new Y position onscreen.
+		/// 
+		/// NOTE: We also 'reset' the lerp target 
+		/// 
 		/// </summary>
 		private float _getNewYPositionOnscreen ()
 		{
@@ -307,7 +300,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		//
 		//--------------------------------------
 		/// <summary>
-		/// Raises the collision enter2 d event.
+		/// Raises the collision enter 2d event.
 		/// 
 		/// NOTE: This just detects soccer ball
 		/// 
@@ -327,6 +320,16 @@ namespace com.rmc.projects.paddle_soccer.components
 
 			}
 			
+		}
+
+		/// <summary>
+		/// Do the U animation monitor signal.
+		/// </summary>
+		public void _onUAnimationMonitorSignal (AnimationMonitorEventVO aAnimationMonitorEventVO)
+		{
+
+
+
 		}
 		
 	}

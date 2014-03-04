@@ -44,6 +44,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum SoundManagerMode
+	{
+		UnMuted,
+		Muted
+	}
 	
 	
 	//--------------------------------------
@@ -63,7 +68,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		// GETTER / SETTER
 		
 		// PUBLIC
-
+		/// <summary>
+		/// The sound manager mode.
+		/// </summary>
+		public SoundManagerMode soundManagerMode = SoundManagerMode.UnMuted;
 		
 		/// <summary>
 		/// When the audio clip_list.
@@ -132,48 +140,51 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			//Debug.Log ("playSound: " + aSoundPlayVO.soundType);
-			switch (aSoundPlayVO.soundType){
-			case SoundType.BUTTON_CLICK:
-				_getAudioSourceByIndex(1).clip = _getAudioClipByName ("ButtonClick01");
-				_getAudioSourceByIndex(1).Play ();
-				break;
-			case SoundType.TURRET_FIRE:
-				_getAudioSourceByIndex(2).clip = _getRandomAudioClipFromNameArray ( new string[] {"TurretFire01","TurretFire02"} );
-				_getAudioSourceByIndex(2).Play ();
-				break;
-			case SoundType.ENEMY_FOOSTEP:
-				_getAudioSourceByIndex(3).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyFootstep01","EnemyFootstep02"} );
-				_getAudioSourceByIndex(3).Play ();
-				break;
-			case SoundType.ENEMY_ATTACK:
-				_getAudioSourceByIndex(4).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyAttack01","EnemyAttack02"} );
-				_getAudioSourceByIndex(4).Play ();
-				break;
-			case SoundType.ENEMY_DAMAGED:
+			if (soundManagerMode == SoundManagerMode.UnMuted) {
+				//
+				switch (aSoundPlayVO.soundType){
+				case SoundType.BUTTON_CLICK:
+					_getAudioSourceByIndex(1).clip = _getAudioClipByName ("ButtonClick01");
+					_getAudioSourceByIndex(1).Play ();
+					break;
+				case SoundType.TURRET_FIRE:
+					_getAudioSourceByIndex(2).clip = _getRandomAudioClipFromNameArray ( new string[] {"TurretFire01","TurretFire02"} );
+					_getAudioSourceByIndex(2).Play ();
+					break;
+				case SoundType.ENEMY_FOOSTEP:
+					_getAudioSourceByIndex(3).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyFootstep01","EnemyFootstep02"} );
+					_getAudioSourceByIndex(3).Play ();
+					break;
+				case SoundType.ENEMY_ATTACK:
+					_getAudioSourceByIndex(4).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyAttack01","EnemyAttack02"} );
+					_getAudioSourceByIndex(4).Play ();
+					break;
+				case SoundType.ENEMY_DAMAGED:
 
-				//overlaps fire sound, so skip this?
-				//_getAudioSourceByIndex(5).clip = _getAudioClipByName ("ButtonClick01");
-				//_getAudioSourceByIndex(5).Play();
-				break;
+					//overlaps fire sound, so skip this?
+					//_getAudioSourceByIndex(5).clip = _getAudioClipByName ("ButtonClick01");
+					//_getAudioSourceByIndex(5).Play();
+					break;
 
-			case SoundType.ENEMY_DIE:
-				_getAudioSourceByIndex(5).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyDie01","EnemyDie02"});
-				_getAudioSourceByIndex(5).Play ();
+				case SoundType.ENEMY_DIE:
+					_getAudioSourceByIndex(5).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyDie01","EnemyDie02"});
+					_getAudioSourceByIndex(5).Play ();
 
-				break;
-			case SoundType.GAME_OVER_WIN:
-				_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverWin");
-				_getAudioSourceByIndex(6).Play ();
-				break;
-			case SoundType.GAME_OVER_LOSS:
-				_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverLoss");
-				_getAudioSourceByIndex(6).Play ();
-				break;
-			default:
-				#pragma warning disable 0162
-				throw new SwitchStatementException();
-				break;
-				#pragma warning restore 0162
+					break;
+				case SoundType.GAME_OVER_WIN:
+					_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverWin");
+					_getAudioSourceByIndex(6).Play ();
+					break;
+				case SoundType.GAME_OVER_LOSS:
+					_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverLoss");
+					_getAudioSourceByIndex(6).Play ();
+					break;
+				default:
+					#pragma warning disable 0162
+					throw new SwitchStatementException();
+					break;
+					#pragma warning restore 0162
+				}
 			}
 		}
 
@@ -182,9 +193,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// </summary>
 		public void playMusic ()
 		{
-			_getAudioSourceByIndex(0).clip = _getAudioClipByName ("BackgroundMusic01");
-			_getAudioSourceByIndex(0).loop = true;
-			_getAudioSourceByIndex(0).Play ();
+			if (soundManagerMode == SoundManagerMode.UnMuted) {
+				_getAudioSourceByIndex(0).clip = _getAudioClipByName ("BackgroundMusic01");
+				_getAudioSourceByIndex(0).loop = true;
+				_getAudioSourceByIndex(0).Play ();
+			}
 		}
 
 		// PUBLIC STATIC

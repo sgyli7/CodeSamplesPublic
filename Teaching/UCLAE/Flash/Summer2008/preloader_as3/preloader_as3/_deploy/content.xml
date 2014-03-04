@@ -1,0 +1,61 @@
+<nfl>
+	<conference name="NFC">
+		<division name="East">
+			<team name="Eagles"		location="Philadelphia" />
+			<team name="Giants"		location="New York" />
+			<team name="Redskins"	location="Washington" />
+			<team name="Cowboys"	location="Dallas" />
+		</division>
+
+		<division name="West">
+			<team name="Cardinals"	location="Arizona" />
+			<team name="49ers"		location="San Francisco" />
+			<team name="Seahawks"	location="Seattle" />
+			<team name="Rams"		location="St. Lous" />
+		</division>
+		
+		<division name="North">
+			<team name="Packers"	location="Green Bay" />
+			<team name="Vikings"	location="Minnesota" />
+			<team name="Bears"		location="Chicago" />
+			<team name="Lions"		location="Detroit" />
+		</division>
+		
+		<division name="South">
+			<team name="Saints"		location="New Orleans" />
+			<team name="Panthers"	location="Carolina" />
+			<team name="Falcons"	location="Atlanta" />
+			<team name="Buccanears"	location="Tampa Bay" />
+		</division>
+	</conference>
+	
+	<conference name="AFC">
+		<division name="East">
+			<team name="Patriots"	location="New England" />
+			<team name="Bills"		location="Carolina" />
+			<team name="Dolphins"	location="Atlanta" />
+			<team name="Jets"		location="Tampa Bay" />
+		</division>
+
+		<division name="West">
+			<team name="Chiefs"		location="Kansas City" />
+			<team name="Raiders"	location="Oakland" />
+			<team name="Chargers"	location="San Diego" />
+			<team name="Broncos"	location="Denver" />
+		</division>
+
+		<division name="North">
+			<team name="Ravens"		location="Baltimore" />
+			<team name="Bengals"	location="Cincinnati" />
+			<team name="Steelers"	location="Pittsburgh" />
+			<team name="Browns"		location="Cleveland" />
+		</division>
+
+		<division name="South">
+			<team name="Colts"		location="Indianapolis" />
+			<team name="Texans"		location="Houston" />
+			<team name="Titans"		location="Tennessee" />
+			<team name="Jaguars"	location="Jacksonville" />
+		</division>
+	</conference>
+</nfl>

@@ -1,0 +1,63 @@
+YOUR GRADE:
+25/25
+
+
+COMMENTS ON YOUR GRADE:
+None
+
+
+COMMENTS ON NEXT STEPS:
+None.  Coolio! Have a great future in Flash!
+
+
+YOU SUBMITTED THE PROJECT: 
+On Time!
+
+
+OVERVIEW OF POINT BREAKDOWN (NOT SPECIFIC TO YOU)
+23-25 Exceeds Expectations
+20-22 Meets All Requirements
+18-19 Meets Most Requirements
+10-17 Does Not Meet Requirements
+00-09 Project Incomplete
+
+OVERVIEW OF ASSIGMENT (NOT SPECIFIC TO YOU)
+25 Points total. 
+
+You have the choice of one of these 3 projects (Project Types).  It will be designed to run offline.  
+
+Project Requirements
+
+•	Be submitted as at least one FLA file and one SWF file
+•	Be 24 Frames per second
+•	Be 640x480 dimensions or larger
+•	Include a preloader
+•	Include at least one button which opens a new webpage.
+•	Include at least one Flash filter
+•	Include at least one use of ‘Runtime bitmap caching’ also known as ‘CacheAsBitmap’
+•	Include final, polished graphics.  Graphics may be created new or found from any source.
+•	Operate smoothly without any ‘bugs’
+
+•	Animated Introduction
+•	Required Buttons (Project Type Depending)
+
+
+Project Optionals
+•	Incorporate an external CSS StyleSheet with 2 or more CSS Styles
+•	In addition to submitting via FTP, also launch the project online
+
+WEBSITE
+•	Dynamically load any externalized content (SWF, FLV, MP3)
+•	Include more content sections
+
+MEDIA PLAYER	
+•	Include more video items in the playlist
+•	Load playlist information externally
+
+GAME
+•	Dynamically load any externalized content (SWF, FLV, MP3)
+•	Load all display text externally 
+
+
+
+

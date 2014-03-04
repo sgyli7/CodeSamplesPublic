@@ -54,7 +54,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class SoccerBallUI : SuperPaddleUI 
+	public class SoccerBallUI : View 
 	{
 		
 		//--------------------------------------
@@ -128,9 +128,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		///<summary>
 		///	Use this for initialization
 		///</summary>
-		override public void init () 
+		public void init () 
 		{
-			base.init();
 			isRunningUpdate = false;
 			rigidbody2D.fixedAngle = true;
 

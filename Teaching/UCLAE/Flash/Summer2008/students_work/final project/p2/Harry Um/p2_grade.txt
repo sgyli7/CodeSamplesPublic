@@ -1,0 +1,31 @@
+YOUR GRADE:
+5/8 but with lateness 0/8
+
+COMMENTS ON YOUR GRADE:
+Preloader not shown
+Intro Scene not shown
+
+
+COMMENTS ON NEXT STEPS:
+-Continue with project. Resubmitting P2 is not required.
+I recommend having only 3 buttons on right as shown and not making it more dynamic.
+-I recommend 'see more videos' open a new window to satisfy that requirment.
+-Fullscreen button is tricky but doable.  Google it and if you can't find a solution, drop it as a feature for this project.
+
+YOU SUBMITTED THE PROJECT: 
+5 days late, 5 pts per day subtracted.  
+
+
+OVERVIEW OF POINT BREAKDOWN (NOT SPECIFIC TO YOU)
+8- Complete and fully descriptive
+7- Complete but does not explain everything
+6- Fairly complete
+5- Less complete than desired
+0- Very incomplete Information
+
+
+OVERVIEW OF ASSIGMENT (NOT SPECIFIC TO YOU)
+8 Points total.  One FLA Submitted, outlining every user facing feature and all functional requirements.  It does not require any code or any final graphics. If something is on the stage it’s assumed that the user would see it.  If something is on the pasteboard it’s assumed that it’s a note to you (and me) but not for the user’s eyes. If I find something ‘missing’ that you agree is required for your final project, then this deliverable did not do its job. Full information was given on the syllabus and the written and verbal contents of class including Session #8. 
+
+
+
