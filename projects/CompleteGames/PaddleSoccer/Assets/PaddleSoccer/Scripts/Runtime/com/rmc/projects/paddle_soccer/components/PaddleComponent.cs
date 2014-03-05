@@ -85,6 +85,11 @@ namespace com.rmc.projects.paddle_soccer.components
 		
 		// PUBLIC
 		
+		/// <summary>
+		/// The velocity.
+		/// </summary>
+		public Vector2 velocity;
+
 		
 		// PUBLIC STATIC
 		
@@ -106,12 +111,6 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// </summary>
 		private float _moveSpeed_float;
 
-
-		/// <summary>
-		/// The _velocity_vector2.
-		/// 
-		/// </summary>
-		private Vector2 _velocity_vector2;
 
 
 		/// <summary>
@@ -262,7 +261,7 @@ namespace com.rmc.projects.paddle_soccer.components
 				transform.position.z);
 
 			//STORE FOR VELOCITY CHECK
-			_velocity_vector2 = transform.position - _lastPosition_vector3;
+			velocity = transform.position - _lastPosition_vector3;
 			_lastPosition_vector3 = transform.position;
 		}
 

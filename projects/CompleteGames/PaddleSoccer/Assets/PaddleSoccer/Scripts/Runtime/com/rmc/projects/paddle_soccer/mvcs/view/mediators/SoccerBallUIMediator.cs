@@ -157,13 +157,16 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			//WHAT DID WE HIT?
 			switch (aCollidedWith_gameobject.tag){
 			case CPUPaddleUI.TAG:
-				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.PADDLE_HIT));
-				break;
 			case PlayerPaddleUI.TAG:
+				//
+				PaddleComponent paddleComponent = aCollidedWith_gameobject.GetComponent<PaddleComponent>();
+				view.doHandleCollisionWithPaddle (paddleComponent.velocity);
+				//
 				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.PADDLE_HIT));
 				break;
-			case BoundaryComponent.TAG:
 
+
+			case BoundaryComponent.TAG:
 
 				//WHICH TYPE OF BOUNDARY WAS HIT?
 				BoundaryComponent boundaryComponent = aCollidedWith_gameobject.GetComponent<BoundaryComponent>();
