@@ -1,14 +1,48 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/projects/animation_monitor/AnimationMonitor.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/SoccerBallUI.cs">
     <Files>
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/components/PaddleComponent.cs" Line="195" Column="27" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/SoccerBallUI.cs" Line="1" Column="1" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/components/PaddleComponent.cs" Line="313" Column="1" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/PlayerPaddleUI.cs" Line="1" Column="1" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/PlayerPaddleUIMediator.cs" Line="1" Column="1" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/projects/animation_monitor/AnimationMonitor.cs" Line="67" Column="5" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/SoccerBallUI.cs" Line="244" Column="3" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/components/PaddleComponent.cs" Line="302" Column="3" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/signals/UICollisionEnter2DSignal.cs" Line="54" Column="56" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/SoccerBallUIMediator.cs" Line="161" Column="71" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/CPUPaddleUI.cs" Line="75" Column="15" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="PaddleSoccer" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Runtime" expanded="True">
+                  <Node name="com" expanded="True">
+                    <Node name="rmc" expanded="True">
+                      <Node name="projects" expanded="True">
+                        <Node name="paddle_soccer" expanded="True">
+                          <Node name="components" expanded="True" />
+                          <Node name="mvcs" expanded="True">
+                            <Node name="view" expanded="True">
+                              <Node name="mediators" expanded="True">
+                                <Node name="super" expanded="True" />
+                              </Node>
+                              <Node name="signals" expanded="True" />
+                              <Node name="ui" expanded="True">
+                                <Node name="super" expanded="True" />
+                                <Node name="SoccerBallUI.cs" selected="True" />
+                              </Node>
+                            </Node>
+                          </Node>
+                        </Node>
+                      </Node>
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

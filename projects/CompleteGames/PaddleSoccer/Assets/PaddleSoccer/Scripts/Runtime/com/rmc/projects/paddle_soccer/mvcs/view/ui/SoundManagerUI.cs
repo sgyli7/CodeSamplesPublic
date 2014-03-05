@@ -44,11 +44,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum SoundManagerMode
-	{
-		UnMuted,
-		Muted
-	}
 	
 	
 	//--------------------------------------
@@ -69,9 +64,14 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		
 		// PUBLIC
 		/// <summary>
-		/// The sound manager mode.
+		/// The is muted sound effects.
 		/// </summary>
-		public SoundManagerMode soundManagerMode = SoundManagerMode.UnMuted;
+		public bool isMutedSoundEffects = false;
+
+		/// <summary>
+		/// The is muted music.
+		/// </summary>
+		public bool isMutedMusic = false;
 		
 		/// <summary>
 		/// When the audio clip_list.
@@ -140,44 +140,37 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			//Debug.Log ("playSound: " + aSoundPlayVO.soundType);
-			if (soundManagerMode == SoundManagerMode.UnMuted) {
+			if (!isMutedSoundEffects) {
 				//
 				switch (aSoundPlayVO.soundType){
+					//
 				case SoundType.BUTTON_CLICK:
-					_getAudioSourceByIndex(1).clip = _getAudioClipByName ("ButtonClick01");
+					_getAudioSourceByIndex(1).clip = _getAudioClipByName (Constants.AUDIO_BUTTON_CLICK_01);
 					_getAudioSourceByIndex(1).Play ();
 					break;
-				case SoundType.TURRET_FIRE:
-					_getAudioSourceByIndex(2).clip = _getRandomAudioClipFromNameArray ( new string[] {"TurretFire01","TurretFire02"} );
+				case SoundType.GAME_OVER_WIN:
+					_getAudioSourceByIndex(2).clip = _getAudioClipByName (Constants.AUDIO_GAME_OVER_WIN_01 );
 					_getAudioSourceByIndex(2).Play ();
 					break;
-				case SoundType.ENEMY_FOOSTEP:
-					_getAudioSourceByIndex(3).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyFootstep01","EnemyFootstep02"} );
+				case SoundType.GAME_OVER_LOSS:
+					_getAudioSourceByIndex(3).clip = _getAudioClipByName (Constants.AUDIO_GAME_OVER_LOSS_01);
 					_getAudioSourceByIndex(3).Play ();
 					break;
-				case SoundType.ENEMY_ATTACK:
-					_getAudioSourceByIndex(4).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyAttack01","EnemyAttack02"} );
+				case SoundType.GOAL_WIN:
+					_getAudioSourceByIndex(4).clip = _getAudioClipByName (Constants.AUDIO_GOAL_WIN_01);
 					_getAudioSourceByIndex(4).Play ();
 					break;
-				case SoundType.ENEMY_DAMAGED:
-
-					//overlaps fire sound, so skip this?
-					//_getAudioSourceByIndex(5).clip = _getAudioClipByName ("ButtonClick01");
-					//_getAudioSourceByIndex(5).Play();
-					break;
-
-				case SoundType.ENEMY_DIE:
-					_getAudioSourceByIndex(5).clip = _getRandomAudioClipFromNameArray ( new string[] {"EnemyDie01","EnemyDie02"});
+				case SoundType.GOAL_LOSS:
+					_getAudioSourceByIndex(5).clip = _getAudioClipByName (Constants.AUDIO_GOAL_LOSS_01);
 					_getAudioSourceByIndex(5).Play ();
-
 					break;
-				case SoundType.GAME_OVER_WIN:
-					_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverWin");
+				case SoundType.PADDLE_HIT:
+					_getAudioSourceByIndex(6).clip = _getRandomAudioClipFromNameArray ( new string[] {Constants.AUDIO_PADDLE_HIT_01, Constants.AUDIO_PADDLE_HIT_02} );;
 					_getAudioSourceByIndex(6).Play ();
 					break;
-				case SoundType.GAME_OVER_LOSS:
-					_getAudioSourceByIndex(6).clip = _getAudioClipByName ("GameOverLoss");
-					_getAudioSourceByIndex(6).Play ();
+				case SoundType.ROUND_START:
+					_getAudioSourceByIndex(7).clip = _getAudioClipByName (Constants.AUDIO_ROUND_START_01);
+					_getAudioSourceByIndex(7).Play ();
 					break;
 				default:
 					#pragma warning disable 0162
@@ -193,8 +186,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// </summary>
 		public void playMusic ()
 		{
-			if (soundManagerMode == SoundManagerMode.UnMuted) {
-				_getAudioSourceByIndex(0).clip = _getAudioClipByName ("BackgroundMusic01");
+			if (!isMutedMusic) {
+				_getAudioSourceByIndex(0).clip = _getAudioClipByName (Constants.AUDIO_BACKGROUND_MUSIC_01);
 				_getAudioSourceByIndex(0).loop = true;
 				_getAudioSourceByIndex(0).Play ();
 			}

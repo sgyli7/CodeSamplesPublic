@@ -72,7 +72,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// <summary>
 		/// The TAG
 		/// </summary>
-		public static string TAG = "BoundaryTag";
+		public const string TAG = "BoundaryTag";
 
 		// PRIVATE
 		

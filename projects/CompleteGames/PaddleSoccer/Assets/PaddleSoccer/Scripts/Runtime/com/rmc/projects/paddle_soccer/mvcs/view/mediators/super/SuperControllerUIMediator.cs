@@ -140,8 +140,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 			view.init();
 			view.uiInputChangedSignal.AddListener (_onUIInputChangedSignal);
 			crossPlatformChangedSignal.AddListener (_onCrossPlatformChangedSignal);
-			
-		}
+	}
 		
 		/// <summary>
 		/// Raises the remove event.

@@ -55,7 +55,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CPUPaddleUI : SuperPaddleUI 
+	public class CPUPaddleUI : SuperPaddleUI, IPaddleUI
 	{
 		
 		//--------------------------------------
@@ -69,6 +69,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 
 		// PUBLIC STATIC
+		/// <summary>
+		/// The TAG
+		/// </summary>
+		public const string TAG = "CPUPaddleTag";
+
 
 		// PRIVATE
 

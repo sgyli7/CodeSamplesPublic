@@ -28,10 +28,8 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using strange.extensions.mediation.impl;
 using com.rmc.projects.paddle_soccer.mvcs.view.ui;
 using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
-using com.rmc.projects.paddle_soccer.mvcs.model.vo;
 using com.rmc.projects.paddle_soccer.mvcs.model;
 using com.rmc.projects.animation_monitor;
 
@@ -55,49 +53,29 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CPUPaddleUIMediator : Mediator
+	public class CPUPaddleUIMediator : SuperPaddleUIMediator
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 
-		/// <summary>
-		/// Gets or sets the view.
-		/// </summary>
-		/// <value>The view.</value>
+		/*
+		 * NOTE: According to my tests and
+		 * 		http://kendlj.wordpress.com/2014/01/03/unit-testing-strangeioc-mediator/
+		 * 
+		 * 		We cannot do "mediationBinder.Bind<IControllerUI>().To<VirtualControllerUIMediator>();
+		 * 
+		 * 		So this is a workaround
+		 * 
+		 **/
 		[Inject]
-		public CPUPaddleUI view 	{ get; set;}
-
-
-		/// <summary>
-		/// Gets or sets the sound play signal.
-		/// </summary>
-		/// <value>The sound play signal.</value>
-		[Inject]
-		public SoundPlaySignal soundPlaySignal { get; set;}
-		
-		/// <summary>
-		/// When the enemy died signal.
-		/// </summary>
-		[Inject]
-		public EnemyDiedSignal enemyDiedSignal {set; get;}
-
-		/// <summary>
-		/// MODEL: The main game data
-		/// </summary>
-		[Inject]
-		public IGameModel iGameModel { get; set; } 
-
-		
-		
-		/// <summary>
-		/// Gets or sets the game state changed signal.
-		/// </summary>
-		/// <value>The game state changed signal.</value>
-		[Inject]
-		public GameStateChangedSignal gameStateChangedSignal {set; get;}
-
+		public CPUPaddleUI viewConcrete 	
+		{ 
+			set {
+				view = value;
+			}
+		}
 
 		// PUBLIC
 
@@ -122,9 +100,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		public override void OnRegister()
 		{
-			view.init();
-			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
-			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
+			base.OnRegister();
+			//
 
 
 		}
@@ -134,7 +111,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		public override void OnRemove()
 		{
-			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
+			base.OnRemove();
 		}
 
 		/// <summary>
@@ -187,8 +164,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// When the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
-		private void _onGameStateChangedSignal (GameState aGameState)
+		override protected void _onGameStateChangedSignal (GameState aGameState)
 		{
+			//
+			base._onGameStateChangedSignal(aGameState);
+
 			//todo:change to
 			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
@@ -209,8 +189,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// When the user interface animation complete signal.
 		/// </summary>
 		/// <param name="aUIAnimationMonitorEventVO">A user interface animation monitor event V.</param>
-		private void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO )
+		override protected void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO )
 		{
+			//
+			base._onUIAnimationCompleteSignal(aUIAnimationMonitorEventVO);
 
 			/*
 			//MATCH CASE OF STRING

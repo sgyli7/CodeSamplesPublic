@@ -51,7 +51,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.data
 	/// <summary>
 	/// Storage of a min/max value and ability to get a random value out.
 	/// 
-	/// NOTE: This is usefull for the spider's min/max walking speed for ex.
+	/// NOTE: This is usefull for a characters min/max movement speed for ex.
 	/// 
 	/// </summary>
 	public class Range

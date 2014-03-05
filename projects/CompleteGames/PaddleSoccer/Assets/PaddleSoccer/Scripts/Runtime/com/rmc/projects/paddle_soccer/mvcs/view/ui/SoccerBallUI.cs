@@ -37,6 +37,8 @@ using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 //--------------------------------------
 using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
 using com.rmc.projects.paddle_soccer.components;
+using strange.extensions.signal.impl;
+using com.rmc.projects.paddle_soccer.mvcs.view.signals;
 
 
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
@@ -75,15 +77,18 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// <value><c>true</c> if is running update; otherwise, <c>false</c>.</value>
 		public bool isRunningUpdate {get;set;}
 
+
+		/// <summary>
+		/// Gets or sets the user interface collision enter2 D signal.
+		/// </summary>
+		/// <value>The user interface collision enter2 D signal.</value>
+		public UICollisionEnter2DSignal uiCollisionEnter2DSignal {get; set;}
+
 		// PUBLIC
 
 
 		// PUBLIC STATIC
-		/// <summary>
-		/// The TA.
-		/// </summary>
-		public static string TAG = "SoccerBallTag";
-		
+
 		// PRIVATE
 		/// <summary>
 		/// The _previous position_vector3.
@@ -132,6 +137,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 			isRunningUpdate = false;
 			rigidbody2D.fixedAngle = true;
+			uiCollisionEnter2DSignal = new UICollisionEnter2DSignal();
 
 		}
 
@@ -182,13 +188,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the give english from paddle velocity.
-		/// 
-		/// NOTE: English = (angled adjustment from moving paddle)
-		/// 
+		/// Dos the handle collision with paddle.
 		/// </summary>
 		/// <param name="aVelocity_vector2">A velocity_vector2.</param>
-		public void doGiveEnglishFromPaddleVelocity (Vector2 aVelocity_vector2)
+		public void doHandleCollisionWithPaddle (Vector2 aVelocity_vector2)
 		{
 			rigidbody2D.AddForce (new Vector2 (0, aVelocity_vector2.y*3000));
 		}
@@ -206,7 +209,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			_moveDirection_vector2 	= rigidbody2D.velocity.normalized;
 			_targetAngle_float 		= Mathf.Atan2(_moveDirection_vector2.y, _moveDirection_vector2.x) * Mathf.Rad2Deg - 180;
 			_turnSpeed_float 		= 10f * Time.deltaTime;
-			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, _targetAngle_float), _turnSpeed_float);
+			transform.rotation 		= Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, _targetAngle_float), _turnSpeed_float);
 			
 
 //			transform.rotation = Quaternion.LookRotation( transform.forward);
@@ -234,20 +237,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			//Debug.Log (aCollision2D.collider.gameObject.tag);
-			//
-			if (aCollision2D.collider.gameObject.tag == BoundaryComponent.TAG) {
+			uiCollisionEnter2DSignal.Dispatch (aCollision2D.collider.gameObject);
 
-				//
-				BoundaryComponent boundaryComponent = aCollision2D.collider.gameObject.GetComponent<BoundaryComponent>();
-				//
-				if (boundaryComponent.boundaryType == BoundaryType.LeftGoal) {
-
-					//Debug.Log ("OnCollisionEnter2D() " + boundaryComponent.boundaryType);
-				} else if (boundaryComponent.boundaryType == BoundaryType.RightGoal) {
-
-					//Debug.Log ("OnCollisionEnter2D() " + boundaryComponent.boundaryType);
-				}
-			}
 
 		}
 

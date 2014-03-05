@@ -39,6 +39,9 @@ using com.rmc.exceptions;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.animation_monitor;
+
+
 namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 {
 	
@@ -55,43 +58,37 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class PlayerPaddleUIMediator : Mediator
+	public class PlayerPaddleUIMediator : SuperPaddleUIMediator
 	{
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		
-		/// <summary>
-		/// Gets or sets the view.
-		/// </summary>
-		/// <value>The view.</value>
+		/*
+		 * NOTE: According to my tests and
+		 * 		http://kendlj.wordpress.com/2014/01/03/unit-testing-strangeioc-mediator/
+		 * 
+		 * 		We cannot do "mediationBinder.Bind<IControllerUI>().To<VirtualControllerUIMediator>();
+		 * 
+		 * 		So this is a workaround
+		 * 
+		 **/
 		[Inject]
-		public PlayerPaddleUI view 	{ get; set;}
-		
+		public PlayerPaddleUI viewConcrete 	
+		{ 
+			set {
+				view = value;
+			}
+		}
+
+
 		/// <summary>
 		/// Gets or sets the turret do move signal.
 		/// </summary>
 		/// <value>The turret do move signal.</value>
 		[Inject]
 		public PlayerDoMoveSignal playerDoMoveSignal 		{ get; set;}
-
-
-		/// <summary>
-		/// Gets or sets the sound play signal.
-		/// </summary>
-		/// <value>The sound play signal.</value>
-		[Inject]
-		public SoundPlaySignal soundPlaySignal { get; set;}
-
-		
-		/// <summary>
-		/// Gets or sets the game state changed signal.
-		/// </summary>
-		/// <value>The game state changed signal.</value>
-		[Inject]
-		public GameStateChangedSignal gameStateChangedSignal {set; get;}
-		
 
 
 		// PUBLIC
@@ -111,10 +108,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		public override void OnRegister()
 		{
+			base.OnRegister();
 			//
-			view.init();
 			playerDoMoveSignal.AddListener (_onPlayerDoMoveSignal);
-			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			
 		}
 		
@@ -123,9 +119,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		public override void OnRemove()
 		{
+			base.OnRemove();
 			//
 			playerDoMoveSignal.RemoveListener (_onPlayerDoMoveSignal);
-			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
 		}
 		
 		
@@ -157,8 +153,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// When the game state changed signal.
 		/// </summary>
 		/// <param name="aGameState">A game state.</param>
-		private void _onGameStateChangedSignal (GameState aGameState)
+		override protected void _onGameStateChangedSignal (GameState aGameState)
 		{
+
+			//
+			base._onGameStateChangedSignal (aGameState);
+
 			//todo:change to
 			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
@@ -180,6 +180,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <param name="aTurretMoveVO">A turret move V.</param>
 		private void _onPlayerDoMoveSignal (PlayerMoveVO aPlayerMoveVO) 
 		{
+
 			switch (aPlayerMoveVO.moveType) {
 			case MoveType.UpOneTick:
 				view.targetY += aPlayerMoveVO.amount;
@@ -193,6 +194,80 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 				break;
 				#pragma warning restore 0162
 			}
+		}
+
+
+		
+		/// <summary>
+		/// When the user interface animation complete signal.
+		/// </summary>
+		/// <param name="aUIAnimationMonitorEventVO">A user interface animation monitor event V.</param>
+		override protected void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO )
+		{
+			//
+			base._onUIAnimationCompleteSignal(aUIAnimationMonitorEventVO);
+			
+			/*
+			//MATCH CASE OF STRING
+			string animationClipNameUpper_string = view.animationType.ToString();
+
+
+			//WE MOSTLY CARE ABOUT WHEN THE ANIMATION IS OVER *INCLUDING* ANY COSMETIC DELAYS WE ADDED
+			if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.POST_COMPLETE) {
+
+				if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+
+					if (animationClipNameUpper_string == AnimationType.JUMP.ToString()) {
+
+						view.doPlayAnimation (AnimationType.WALK, 0, 0);
+
+					} else if (animationClipNameUpper_string == AnimationType.DIE.ToString()) {
+
+						//DESTROY OBJECT, UPDATE SCORE
+						enemyDiedSignal.Dispatch (view);
+
+						//PLAY SOUND
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
+
+					} else if (animationClipNameUpper_string == AnimationType.WALK.ToString()) {
+
+						//PLAY SOUND
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+
+					} else if (animationClipNameUpper_string == AnimationType.TAKE_HIT.ToString()) {
+
+						//
+						view.doPlayAnimation (AnimationType.WALK, 0, 0);
+
+					} else if (animationClipNameUpper_string == AnimationType.ATTACK.ToString()) {
+						
+						//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
+						_doInflictDamage();
+
+						//PLAY SOUND
+						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));
+
+						//
+						view.doPlayAnimation (AnimationType.ATTACK, 0, 0);
+					}
+				} else {
+					 
+					//
+					view.doStopAnimation();
+				}
+
+			} else if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.COMPLETE) {
+
+				//BUT SOMETIMES WE JUST WANT TO TRIGGER A SOUND
+
+				if (animationClipNameUpper_string == AnimationType.JUMP.ToString()) {
+
+					//PLAY SOUND
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
+					
+				} 
+			}
+			*/
 		}
 		
 	}

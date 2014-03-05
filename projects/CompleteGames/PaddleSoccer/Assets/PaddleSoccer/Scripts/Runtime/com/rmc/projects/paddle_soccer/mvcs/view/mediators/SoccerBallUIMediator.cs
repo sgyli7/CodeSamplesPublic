@@ -39,6 +39,9 @@ using com.rmc.exceptions;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.components;
+
+
 namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 {
 	
@@ -106,6 +109,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			//
 			view.init();
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
+			view.uiCollisionEnter2DSignal.AddListener (_onUICollisionEnter2DSignal);
 			
 		}
 		
@@ -116,6 +120,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		{
 			//
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
+			view.uiCollisionEnter2DSignal.RemoveListener (_onUICollisionEnter2DSignal);
 		}
 		
 		
@@ -142,7 +147,50 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		
+		/// <summary>
+		/// _ons the user interface collision enter2 D signal.
+		/// </summary>
+		/// <param name="aTag_string">A tag_string.</param>
+		private void _onUICollisionEnter2DSignal (GameObject aCollidedWith_gameobject) 
+		{
+
+			//WHAT DID WE HIT?
+			switch (aCollidedWith_gameobject.tag){
+			case CPUPaddleUI.TAG:
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.PADDLE_HIT));
+				break;
+			case PlayerPaddleUI.TAG:
+				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.PADDLE_HIT));
+				break;
+			case BoundaryComponent.TAG:
+
+
+				//WHICH TYPE OF BOUNDARY WAS HIT?
+				BoundaryComponent boundaryComponent = aCollidedWith_gameobject.GetComponent<BoundaryComponent>();
+				//
+				switch (boundaryComponent.boundaryType){
+				case BoundaryType.LeftGoal:
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GAME_OVER_WIN));
+					break;
+				case BoundaryType.RightGoal:
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GAME_OVER_LOSS));
+					break;
+				case BoundaryType.None:
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.PADDLE_HIT));
+					break;
+				default:
+					#pragma warning disable 0162
+					throw new SwitchStatementException();
+					break;
+					#pragma warning restore 0162    
+				}
+				break;
+
+			}
+
+		}
+
+
 		/// <summary>
 		/// When the game state changed signal.
 		/// </summary>

@@ -39,6 +39,16 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum SoundType
+	{
+		BUTTON_CLICK,
+		GAME_OVER_LOSS,
+		GAME_OVER_WIN,
+		GOAL_LOSS,
+		GOAL_WIN,
+		PADDLE_HIT,
+		ROUND_START
+	}
 
 	//--------------------------------------
 	//  Class Attributes
@@ -82,6 +92,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_UP 	= "Up";
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_DOWN 	= "Down";
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_RESET 	= "Reset";
+
+
+		//
+		public static string AUDIO_BACKGROUND_MUSIC_01 	= "BackgroundMusic01";
+		public static string AUDIO_BUTTON_CLICK_01 		= "ButtonClick01";
+		public static string AUDIO_GAME_OVER_LOSS_01 	= "GameOverLoss01";
+		public static string AUDIO_GAME_OVER_WIN_01 	= "GameOverWin01";
+		public static string AUDIO_GOAL_LOSS_01 		= "GoalLoss01";
+		public static string AUDIO_GOAL_WIN_01 			= "GoalWin01";
+		public static string AUDIO_PADDLE_HIT_01 		= "PaddleHit01";
+		public static string AUDIO_PADDLE_HIT_02 		= "PaddleHit02";
+		public static string AUDIO_ROUND_START_01 		= "RoundStart01";
+
+
 		
 		// PRIVATE
 		

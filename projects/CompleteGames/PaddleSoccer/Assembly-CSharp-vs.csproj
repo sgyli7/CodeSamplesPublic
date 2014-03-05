@@ -228,7 +228,9 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\TestUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\VirtualControllerUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\super\SuperControllerUIMediator.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\mediators\super\SuperPaddleUIMediator.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\signals\UIAnimationMonitorEventSignal.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\signals\UICollisionEnter2DSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\signals\UIInputChangedSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\signals\UIPromptEndedSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\CPUPaddleUI.cs" />
@@ -243,6 +245,7 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\VirtualControllerUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\IControllerUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\IDamageable.cs" />
+     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\IPaddleUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\SuperControllerUI.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\view\ui\super\SuperPaddleUI.cs" />
      <None Include="Assets\Community Assets\StrangeIoC\scripts\strange\extensions\ReadMe.txt" />

@@ -34,6 +34,7 @@ using com.rmc.projects.paddle_soccer.mvcs.view.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using strange.extensions.signal.impl;
 
 
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super

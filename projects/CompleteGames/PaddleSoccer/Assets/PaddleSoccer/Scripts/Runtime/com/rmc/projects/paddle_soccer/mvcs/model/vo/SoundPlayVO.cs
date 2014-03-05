@@ -40,17 +40,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	public enum SoundType
-	{
-		BUTTON_CLICK,
-		TURRET_FIRE,
-		ENEMY_FOOSTEP,
-		ENEMY_ATTACK,
-		ENEMY_DAMAGED,
-		ENEMY_DIE,
-		GAME_OVER_WIN,
-		GAME_OVER_LOSS,
-	}
 
 
 	//--------------------------------------

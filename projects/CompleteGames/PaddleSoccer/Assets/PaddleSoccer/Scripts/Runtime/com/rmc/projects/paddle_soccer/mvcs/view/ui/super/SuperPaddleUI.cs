@@ -36,6 +36,7 @@ using com.rmc.projects.paddle_soccer.components;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using strange.extensions.signal.impl;
 
 
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
@@ -93,6 +94,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		/// <value><c>true</c> if is running update; otherwise, <c>false</c>.</value>
 		public bool isRunningUpdate {get;set;}
 
+
+
 		
 		// PUBLIC STATIC
 		
@@ -101,6 +104,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		/// The _paddle component.
 		/// </summary>
 		protected PaddleComponent _paddleComponent;
+
+
+
 		
 		
 		
@@ -113,7 +119,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		/// </summary>
 		public virtual void init ()
 		{
-			
 		}
 		
 		
@@ -125,6 +130,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 			
 			base.Start();
 			_paddleComponent = GetComponent<PaddleComponent>();
+
 			
 			
 		}

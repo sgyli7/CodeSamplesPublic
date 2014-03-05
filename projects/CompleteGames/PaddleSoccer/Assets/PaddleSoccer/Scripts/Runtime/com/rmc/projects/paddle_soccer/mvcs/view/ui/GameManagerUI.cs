@@ -68,12 +68,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		
 		// PUBLIC
 		/// <summary>
-		/// When the enemy parent game object.
+		/// The paddle1_gameobject.
 		/// </summary>
 		public GameObject paddle1_gameobject;
 
 		/// <summary>
-		/// When the spider game object.
+		/// The paddle2_gameobject.
 		/// </summary>
 		public GameObject paddle2_gameobject;
 

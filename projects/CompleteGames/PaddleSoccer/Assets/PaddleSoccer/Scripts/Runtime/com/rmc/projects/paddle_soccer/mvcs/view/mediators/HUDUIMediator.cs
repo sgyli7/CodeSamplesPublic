@@ -39,6 +39,9 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.mvcs.model.vo;
+
+
 namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 {
 	
@@ -106,6 +109,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public GameStateChangedSignal gameStateChangedSignal {set; get;}
 
 		
+		
+		/// <summary>
+		/// Gets or sets the sound play signal.
+		/// </summary>
+		/// <value>The sound play signal.</value>
+		[Inject]
+		public SoundPlaySignal soundPlaySignal { get; set;}
+
+
 
 		// PUBLIC
 		
@@ -226,6 +238,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <param name="aNewValue_float">A new value_float.</param>
 		private void _onPromptStartSignal (string aMessage_string, bool aIsToFadeOutToo_boolean)
 		{
+			soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.ROUND_START));
 			view.doPromptStart (aMessage_string, aIsToFadeOutToo_boolean);
 			
 		}

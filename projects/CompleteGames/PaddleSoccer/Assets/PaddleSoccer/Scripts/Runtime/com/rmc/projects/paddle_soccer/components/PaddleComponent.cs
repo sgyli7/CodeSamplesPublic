@@ -299,28 +299,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		//		(This is a loose term for -- handling incoming messaging)
 		//
 		//--------------------------------------
-		/// <summary>
-		/// Raises the collision enter 2d event.
-		/// 
-		/// NOTE: This just detects soccer ball
-		/// 
-		/// </summary>
-		/// <param name="aCollision2D">A collision2 d.</param>
-		public void OnCollisionEnter2D (Collision2D aCollision2D)
-		{
-			
-			//Debug.Log (aCollision2D.collider.gameObject.tag);
-			//
-			if (aCollision2D.collider.gameObject.tag == SoccerBallUI.TAG) {
-				
-				//
-				SoccerBallUI soccerBallUI = aCollision2D.collider.gameObject.GetComponent<SoccerBallUI>();
-				//
-				soccerBallUI.doGiveEnglishFromPaddleVelocity (_velocity_vector2);
 
-			}
-			
-		}
 
 		/// <summary>
 		/// Do the U animation monitor signal.

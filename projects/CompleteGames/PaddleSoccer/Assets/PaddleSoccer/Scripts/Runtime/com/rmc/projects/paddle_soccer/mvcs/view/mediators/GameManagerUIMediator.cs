@@ -280,7 +280,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			//1. CONTINUE THIS ROUND
 			//
 			if (iGameModel.currentRoundDataVO.goalsCurrent < iGameModel.currentRoundDataVO.goalsRequired) {
-				//_doCreateNextSpiderBatch(iGameModel.currentRoundDataVO);
+				//
 
 			//
 			//2. GO TO NEXT ROUND
