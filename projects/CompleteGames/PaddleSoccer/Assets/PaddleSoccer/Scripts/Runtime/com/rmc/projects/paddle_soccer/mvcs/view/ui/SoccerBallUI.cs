@@ -83,15 +83,16 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 
 		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.SoccerBallUI"/> is
-		/// running update.
+		/// Gets or sets a value indicating whether this
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.SoccerBallUI"/> is enabled.
 		/// 
 		/// NOTE: This is set by mediator based on GameState.
 		/// NOTE: Defaults to false
 		/// 
+		/// 
 		/// </summary>
-		/// <value><c>true</c> if is running update; otherwise, <c>false</c>.</value>
-		public bool isRunningUpdate {get;set;}
+		/// <value><c>true</c> if is enabled; otherwise, <c>false</c>.</value>
+		public bool isEnabled {get;set;}
 
 
 		/// <summary>
@@ -138,6 +139,16 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 
 		// PRIVATE STATIC
+		/// <summary>
+		/// The _ STARTIN g_ PUS h_ x.
+		/// </summary>
+		private const int _STARTING_PUSH_X = 200;
+
+		/// <summary>
+		/// The _ STARTIN g_ PUS h_ y.
+		/// </summary>
+		private const int _STARTING_PUSH_Y = 50;
+
 		
 		//--------------------------------------
 		//  Methods
@@ -157,7 +168,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		///</summary>
 		public void init () 
 		{
-			isRunningUpdate = false;
+			isEnabled = false;
 			rigidbody2D.fixedAngle = true;
 			uiCollisionEnter2DSignal = new UICollisionEnter2DSignal();
 
@@ -170,11 +181,21 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			//
-			if (isRunningUpdate) {
+			if (isEnabled) {
 				_doLookInDirectionOfMovement();
+
+				//TURN ON THE ANIMATION
 				isRolling = true;
+
+				//TURN ON THE PHYICS
+				rigidbody2D.WakeUp();
 			} else {
+
+				//TURN OFF THE ANIMATION
 				isRolling = false;
+
+				//TURN OFF THE PHYSICS (SO IT DOESN'T BOUNCE OUT OF THE GOAL)
+				rigidbody2D.Sleep();
 			}
 
 
@@ -198,8 +219,18 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public void doResetToStartingPosition() 
 		{
 
+			//RESET THE POSITION TO CENTER
 			transform.position = new Vector3 (0, 0, transform.position.z);
+
+			//TURN OFF THE ANIMATION
 			isRolling = false;
+
+
+			//KEEP THIS
+			//RESETS ALL CURRENTLY ACTIVE PHYSICS ON THE BALL (SUCH AS FROM PREVIOUS MOVEMENT INTO THE GOAL)
+			gameObject.SetActive (false);
+			gameObject.SetActive (true);
+			rigidbody2D.isKinematic = false;
 
 
 		}
@@ -211,18 +242,36 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			//Debug.Log ("doGiveStartingPush()");
-			rigidbody2D.AddForce (new Vector2 (-200, 50));
+			int direction_int = Random.Range (1,4);
+
+			//pick one of four diagonal directions and 'push' the ball for kickoff
+			if (direction_int == 1) {
+				rigidbody2D.AddForce (new Vector2 (_STARTING_PUSH_X, _STARTING_PUSH_Y));
+			} else if (direction_int == 2) {
+				rigidbody2D.AddForce (new Vector2 (_STARTING_PUSH_X, -_STARTING_PUSH_Y));
+			} else if (direction_int == 3) {
+				rigidbody2D.AddForce (new Vector2 (-_STARTING_PUSH_X, _STARTING_PUSH_Y));
+			} else if (direction_int == 4) {
+				rigidbody2D.AddForce (new Vector2 (-_STARTING_PUSH_X, -_STARTING_PUSH_Y));
+
+			}
 			isRolling = true;
 
 		}
 
 		/// <summary>
 		/// Dos the handle collision with paddle.
+		/// 
+		/// NOTE: We put some english (curve) if the paddle is moving
+		/// NOTE: We add some speed, always to increase pace of current gameplay
+		/// 
 		/// </summary>
 		/// <param name="aVelocity_vector2">A velocity_vector2.</param>
 		public void doHandleCollisionWithPaddle (Vector2 aVelocity_vector2)
 		{
-			rigidbody2D.AddForce (new Vector2 (0, aVelocity_vector2.y*300));
+			float bounceSpeedX_float = rigidbody2D.velocity.x*5f;
+			float englishSpeedY_float = aVelocity_vector2.y*1000;
+			rigidbody2D.AddForce (new Vector2 (bounceSpeedX_float, englishSpeedY_float));
 		}
 		
 
@@ -265,9 +314,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public void OnCollisionEnter2D (Collision2D aCollision2D)
 		{
 
-			//Debug.Log (aCollision2D.collider.gameObject.tag);
-			uiCollisionEnter2DSignal.Dispatch (aCollision2D.collider.gameObject);
-
+			if (isEnabled) {
+				uiCollisionEnter2DSignal.Dispatch (aCollision2D.collider.gameObject);
+			}
 
 		}
 

@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Community Assets\FPS\Scripts\Components\FPSHUD.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\debug\Debug.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\exceptions\SwitchStatementException.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\AnimationExtensions.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\extension_methods\GameObjectExtensions.cs" />
@@ -181,7 +180,6 @@
      <Compile Include="Assets\Community Assets\iTween\Plugins\iTweenHinting.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\components\BoundaryComponent.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\components\PaddleComponent.cs" />
-     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\components\effects\TurretBulletSpawnPointComponent.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\Constants.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\PaddleSoccerContext.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\PaddleSoccerRoot.cs" />

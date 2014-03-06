@@ -138,9 +138,9 @@ namespace com.rmc.projects.paddle_soccer.components
 		private Vector3 _lastPosition_vector3;
 
 		/// <summary>
-		/// The _starting x_ position.
+		/// The _position at start_vector3.
 		/// </summary>
-		private float _startingXPosition_float;
+		private Vector3 _positionAtStart_vector3;
 
 		/// <summary>
 		/// The _animator.
@@ -164,7 +164,7 @@ namespace com.rmc.projects.paddle_soccer.components
 			
 			_yPosition_lerptarget 			= new LerpTarget (0, 0, Constants.PADDLE_Y_LERP_MINIMUM, Constants.PADDLE_Y_LERP_MAXIMUM, 2.5f);
 			_animator = GetComponent <Animator>();
-			_startingXPosition_float = gameObject.transform.position.x;
+			_positionAtStart_vector3 = gameObject.transform.position;
 
 			
 		}
@@ -186,10 +186,8 @@ namespace com.rmc.projects.paddle_soccer.components
 		{
 
 			//ROTATE THE BARREL IF FIRING
-			if (true) {
-				_yPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
-				_doMoveToTarget();
-			} 
+			_yPosition_lerptarget.lerpCurrentToTarget (Time.deltaTime);
+			_doMoveToTarget();
 
 
 
@@ -199,16 +197,23 @@ namespace com.rmc.projects.paddle_soccer.components
 		
 		// PUBLIC
 
+		/// <summary>
+		/// Dos the reset Y position.
+		/// </summary>
+		public void doResetYPosition ()
+		{
+			targetY =  _positionAtStart_vector3.y;
+		}
+
 		
 		/// <summary>
 		/// Dos the tween to starting position.
 		/// </summary>
-		/// <param name="aOffsetX_float">A offset x_float.</param>
-		public void doTweenToStartingPosition (float aOffsetX_float)
+		public void doTweenToStartingPosition ()
 		{
 			//
 			Hashtable moveTo_hashtable 					= new Hashtable();
-			moveTo_hashtable.Add(iT.MoveTo.x,			_startingXPosition_float);
+			moveTo_hashtable.Add(iT.MoveTo.x,			_positionAtStart_vector3.x);
 			moveTo_hashtable.Add(iT.MoveTo.delay,  		0);
 			moveTo_hashtable.Add(iT.MoveTo.time,  		0.25f);
 			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);
@@ -223,9 +228,9 @@ namespace com.rmc.projects.paddle_soccer.components
 		{
 
 			//
-			gameObject.transform.position 				= new Vector3 (_startingXPosition_float, gameObject.transform.position.y, gameObject.transform.position.z);
+			gameObject.transform.position 				= new Vector3 (_positionAtStart_vector3.x, gameObject.transform.position.y, gameObject.transform.position.z);
 			Hashtable moveTo_hashtable 					= new Hashtable();
-			moveTo_hashtable.Add(iT.MoveTo.x,			_startingXPosition_float + aOffsetX_float);
+			moveTo_hashtable.Add(iT.MoveTo.x,			_positionAtStart_vector3.x + aOffsetX_float);
 			moveTo_hashtable.Add(iT.MoveTo.delay,  		0);
 			moveTo_hashtable.Add(iT.MoveTo.time,  		0.25f);
 			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);

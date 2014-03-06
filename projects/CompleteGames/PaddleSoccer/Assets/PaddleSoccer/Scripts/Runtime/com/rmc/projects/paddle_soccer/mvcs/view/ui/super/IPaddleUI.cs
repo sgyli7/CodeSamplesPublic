@@ -77,15 +77,17 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		/// <summary>
 		/// Dos the tween to starting position.
 		/// </summary>
-		/// <param name="aValue_float">A value_float.</param>
-		void doTweenToStartingPosition(float aValue_float);
+		void doTweenToStartingPosition();
 
 		/// <summary>
 		/// Dos the tween to offscreen position.
 		/// </summary>
-		/// <param name="aValue_float">A value_float.</param>
-		void doTweenToOffscreenPosition(float aValue_float);
+		void doTweenToOffscreenPosition();
 
+		/// <summary>
+		/// Dos the reset Y position.
+		/// </summary>
+		void doResetYPosition ();
 
 		
 	}

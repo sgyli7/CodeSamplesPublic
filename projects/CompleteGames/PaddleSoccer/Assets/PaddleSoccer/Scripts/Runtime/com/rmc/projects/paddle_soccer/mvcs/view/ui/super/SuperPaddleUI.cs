@@ -45,7 +45,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	public enum PaddlePosition
+	{
+		ScreenLeft,
+		ScreenRight
+
+	}
 	
 	
 	//--------------------------------------
@@ -95,15 +100,24 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		public bool isRunningUpdate {get;set;}
 
 
-
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
+
 		/// <summary>
 		/// The _paddle component.
 		/// </summary>
 		protected PaddleComponent _paddleComponent;
+
+
+		/// <summary>
+		/// The _ paddle position.
+		/// 
+		/// NOTE: for Subclasses
+		/// 
+		/// </summary>
+		protected PaddlePosition _paddlePosition;
 
 
 
@@ -158,24 +172,33 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		}
 		
 		// PUBLIC
-		
 		/// <summary>
-		/// Dos the tween to starting position.
+		/// Dos the reset Y position.
 		/// </summary>
-		/// <param name="aOffsetX_float">A offset x_float.</param>
-		public void doTweenToStartingPosition (float aOffsetX_float)
+		public void doResetYPosition ()
 		{
-			_paddleComponent.doTweenToStartingPosition (aOffsetX_float);
+			_paddleComponent.doResetYPosition();
 		}
 
 		/// <summary>
 		/// Dos the tween to starting position.
 		/// </summary>
-		/// <param name="aOffsetX_float">A offset x_float.</param>
-		public void doTweenToOffscreenPosition (float aOffsetX_float)
+		public void doTweenToStartingPosition ()
+		{
+			_paddleComponent.doTweenToStartingPosition ();
+		}
+
+		/// <summary>
+		/// Dos the tween to starting position.
+		/// </summary>
+		public void doTweenToOffscreenPosition ()
 		{
 			//
-			_paddleComponent.doTweenToOffscreenPosition (aOffsetX_float);
+			if (_paddlePosition == PaddlePosition.ScreenLeft) {
+				_paddleComponent.doTweenToOffscreenPosition(-1f);
+			} else {
+				_paddleComponent.doTweenToOffscreenPosition(1f);
+			}
 		}
 
 

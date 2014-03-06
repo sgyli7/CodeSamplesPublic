@@ -95,7 +95,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("4. AllViewsInitializedCommand.Execute()");
+			//Debug.Log ("4. AllViewsInitializedCommand.Execute()");
 
 
 			//THE GAME MODEL HAS A SIMPLIFIED STATE MACHINE

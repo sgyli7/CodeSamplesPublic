@@ -117,6 +117,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// </summary>
 		public HUDMode hudMode = HUDMode.Show;
 
+		/// <summary>
+		/// The prompt message.
+		/// </summary>
+		public string promptMessage;
+
 		
 		// PUBLIC STATIC
 		
@@ -159,12 +164,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		private GUIText _fpsGUIText;
 
 
-		/// <summary>
-		/// When the _last prompt message_string.
-		/// 
-		/// NOTE: Store this for quick usage
-		/// </summary>
-		private string _lastPromptMessage_string;
+
 
 		// PRIVATE STATIC
 		
@@ -209,8 +209,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		void Update () 
 		{
 			//Debug.Log ("HUDUI.update!" + _scoreGUIText.text);
-			if (_paddleLeftGUIText.text != _lastPromptMessage_string) {
-				_setPromptText( _lastPromptMessage_string);
+			if (_paddleLeftGUIText.text != promptMessage) {
+				_setPromptText( promptMessage);
 			}
 
 			//Debug.Log ("HUD: " + gameObject);
@@ -285,7 +285,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			//DON'T SET IMMEDIATLY. SEE 'Update()' above
-			_lastPromptMessage_string = aMessage_string;
+			promptMessage = aMessage_string;
 
 
 			

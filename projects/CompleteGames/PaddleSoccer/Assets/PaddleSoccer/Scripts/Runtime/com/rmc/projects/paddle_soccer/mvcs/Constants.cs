@@ -74,6 +74,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		
 		// PUBLIC STATIC
 		public const string PROMPT_ROUND_START      = "Score {0} Goals To Win";
+
+		public const string PROMPT_DROP_BALL_START   = "Get Ready!";
+
 		//
 		public const string PROMPT_GAME_END_WIN 	= "You Won The Game!";
 		public const string PROMPT_GAME_END_LOSS	= "You Lost The Game!";

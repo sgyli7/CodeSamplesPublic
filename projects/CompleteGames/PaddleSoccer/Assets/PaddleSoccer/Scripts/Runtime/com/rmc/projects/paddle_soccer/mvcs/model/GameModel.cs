@@ -50,7 +50,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		INIT,
 		INTRO_START,
 		GAME_START,
-		ROUND_START,
+		ROUND_PROMPT_START,
+		ROUND_DROP_BALL_START,
+		ROUND_DROP_BALL_END,
 		ROUND_DURING_CORE_GAMEPLAY,
 		GAME_END
 
@@ -102,7 +104,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 
 				if (_gameState != value ) {
 					_gameState = value;
+
+					//KEEP THIS TRACE, VERY USEFUL
 					Debug.Log ("GM.GameState: " + _gameState);
+
+
+
 					//
 					switch (_gameState){
 					case GameState.INIT:
@@ -114,8 +121,14 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 					case GameState.GAME_START:
 						//MODEL DOES NOTHING
 						break;
-					case GameState.ROUND_START:
+					case GameState.ROUND_PROMPT_START:
 						doRoundStart();
+						break;
+					case GameState.ROUND_DROP_BALL_START:
+						//MODEL DOES NOTHING
+						break;
+					case GameState.ROUND_DROP_BALL_END:
+						//MODEL DOES NOTHING
 						break;
 					case GameState.ROUND_DURING_CORE_GAMEPLAY:
 						//MODEL DOES NOTHING
@@ -176,7 +189,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 				_leftPaddleScore_int = value;
 				_leftPaddleScore_int = Mathf.Clamp (_leftPaddleScore_int, 0, int.MaxValue);
 				leftPaddleScoreChangedSignal.Dispatch (_leftPaddleScore_int);
-				
 			}
 		}
 
@@ -236,6 +248,24 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// <returns><c>true</c>, if next level was hased, <c>false</c> otherwise.</returns>
 		public bool hasNextRound(){
 			return _currentRound_uint < _totalRoundsPerGame_uint;
+		}
+
+		/// <summary>
+		/// Hases the player won round.
+		/// </summary>
+		/// <returns><c>true</c>, if player won round was hased, <c>false</c> otherwise.</returns>
+		public bool hasPlayerWonRound()
+		{
+			return _currentRoundDataVO.playerGoalsScoredThisRound >= _currentRoundDataVO.playerGoalsRequiredToWin;
+		}
+
+		/// <summary>
+		/// Hases the player lost round.
+		/// </summary>
+		/// <returns><c>true</c>, if player lost round was hased, <c>false</c> otherwise.</returns>
+		public bool hasPlayerLostGame()
+		{
+			return _currentRoundDataVO.cpuGoalsScoredThisRound >= _currentRoundDataVO.cpuGoalsRequiredToLose;
 		}
 
 		

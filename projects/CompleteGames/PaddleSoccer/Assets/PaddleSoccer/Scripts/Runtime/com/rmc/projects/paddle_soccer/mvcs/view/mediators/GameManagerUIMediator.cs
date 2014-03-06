@@ -85,7 +85,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		/// <value>The left paddle score changed signal.</value>
 		[Inject]
-		public RightPaddleScoreChangedSignal leftPaddleScoreChangedSignal {set; get;}
+		public LeftPaddleScoreChangedSignal leftPaddleScoreChangedSignal {set; get;}
 		
 		
 		/// <summary>
@@ -204,12 +204,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <summary>
 		/// When the prompt ended signal.
 		/// </summary>
-		private void _onPromptEndedSignal ()
+		private void _onPromptEndedSignal (string aPromptMessage_string)
 		{
-			
-			//
-			if (iGameModel.gameState == GameState.ROUND_START) {
-				gameStateChangeSignal.Dispatch (GameState.ROUND_DURING_CORE_GAMEPLAY);
+
+			if (iGameModel.gameState == GameState.ROUND_PROMPT_START) {
+				gameStateChangeSignal.Dispatch (GameState.ROUND_DROP_BALL_START);
+				//
+			} else if (iGameModel.gameState == GameState.ROUND_DROP_BALL_START) {
+
+				gameStateChangeSignal.Dispatch (GameState.ROUND_DROP_BALL_END);
 			}
 			
 		}
@@ -225,24 +228,36 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			//
 			switch (aGameState){
 			case GameState.INIT:
-				gameStateChangeSignal.Dispatch (GameState.INTRO_START); //todo: uncomment, this line is required
+				gameStateChangeSignal.Dispatch (GameState.INTRO_START);
 				break;
 			case GameState.INTRO_START:
 				//WAITING FOR: INTRO ANIM TO FINISH
 				break;
 			case GameState.GAME_START:
-				gameStateChangeSignal.Dispatch (GameState.ROUND_START);
+				gameStateChangeSignal.Dispatch (GameState.ROUND_PROMPT_START);
 				//WAITING FOR: USER TO CLICK ANYWHERE
 				break;
-			case GameState.ROUND_START:
-				iGameModel.currentRoundDataVO.clearEnemies();
+			case GameState.ROUND_PROMPT_START:
 				promptStartSignal.Dispatch (String.Format
 				                            (
 					Constants.PROMPT_ROUND_START, 
 					iGameModel.currentRoundDataVO.playerGoalsRequiredToWin), 
+				                            true,
 				                            true
 				                            );
-				//WAITING FOR: PROMPT ANIM TO FINISH
+				//WAITING FOR: PROMPT ANIM TO FINISH FOR "ROUND START..."
+				break;
+			case GameState.ROUND_DROP_BALL_START:
+				promptStartSignal.Dispatch (
+											Constants.PROMPT_DROP_BALL_START, 
+											true, 
+											false
+											);
+				//WAITING FOR: PROMPT ANIM TO FINISH FOR "GET READY..."
+				break;
+			case GameState.ROUND_DROP_BALL_END:
+				//ADVANCE STATE
+				gameStateChangeSignal.Dispatch (GameState.ROUND_DURING_CORE_GAMEPLAY);
 				break;
 			case GameState.ROUND_DURING_CORE_GAMEPLAY:
 				break;
@@ -266,33 +281,53 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public void _doCheckRoundAndGameStatusAfterTime () 
 		{
 			//
-			Debug.Log (iGameModel.currentRoundDataVO.playerGoalsScoredThisRound + " and " +  iGameModel.currentRoundDataVO.playerGoalsRequiredToWin);
+			Debug.Log ("_doCheckRoundAndGameStatusAfterTime()");
+			Debug.Log ("Check Player, ("+iGameModel.currentRoundDataVO.playerGoalsScoredThisRound + " of " +  iGameModel.currentRoundDataVO.playerGoalsRequiredToWin + ")");
+			Debug.Log ("Check CPU   , ("+iGameModel.currentRoundDataVO.cpuGoalsScoredThisRound + " of " +  iGameModel.currentRoundDataVO.cpuGoalsRequiredToLose + ")");
+
 
 
 			//
-			//1. CONTINUE THIS ROUND
+			//1. LOST GAME
 			//
-			if (iGameModel.currentRoundDataVO.playerGoalsScoredThisRound < iGameModel.currentRoundDataVO.playerGoalsRequiredToWin) {
+			if (iGameModel.hasPlayerLostGame()) {
+
+				//DONE
+				gameStateChangeSignal.Dispatch ( GameState.GAME_END);
+				promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_LOSS, false, false);
+				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_LOSS));
+
+			//
+			//2. WON ROUND
+			//
+			} else if (iGameModel.hasPlayerWonRound()) {
+
+
 				//
+				//3. NEXT ROUND
+				//
+				if (iGameModel.hasNextRound()) {
+
+					gameStateChangeSignal.Dispatch (GameState.ROUND_PROMPT_START);
+
+				//
+				//4. WON GAME
+				//
+				} else {
+					//DONE
+					gameStateChangeSignal.Dispatch ( GameState.GAME_END);
+					promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_WIN, false, false);
+					soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
+				}
 
 			//
-			//2. GO TO NEXT ROUND
-			//
-			} else if (iGameModel.hasNextRound()) {
-
-				gameStateChangeSignal.Dispatch ( GameState.ROUND_START);
-
-			//
-			//3. END THE GAME
+			//5. NO WIN, NO LOSS, JUST PLAY NEXT ROUND
 			//
 			} else {
 
 
-				//DONE
-				gameStateChangeSignal.Dispatch ( GameState.GAME_END);
-				promptStartSignal.Dispatch (Constants.PROMPT_GAME_END_WIN, false);
-				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.GAME_OVER_WIN));
-				
+				gameStateChangeSignal.Dispatch (GameState.ROUND_DROP_BALL_START);
+
 			}
 			
 		}
@@ -301,21 +336,33 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		
 		/// <summary>
 		/// _ons the left paddle score changed signal.
+		/// 
+		/// NOTE: The player scored a point
+		/// 
 		/// </summary>
 		/// <param name="aLeftPaddleScore_int">A left paddle score_int.</param>
 		private void _onLeftPaddleScoreChangedSignal (int aLeftPaddleScore_int)
 		{
-			_doCheckRoundAndGameStatusAfterTime();
+			if (aLeftPaddleScore_int > 0) {
+				iGameModel.currentRoundDataVO.playerGoalsScoredThisRound++; //just add one
+				_doCheckRoundAndGameStatusAfterTime();
+			}
 			
 		}
 
 		/// <summary>
 		/// _ons the right paddle score changed signal.
+		/// 
+		///  NOTE: The CPU scored a point
+		/// 
 		/// </summary>
 		/// <param name="aRightPaddleScore_int">A right paddle score_int.</param>
 		private void _onRightPaddleScoreChangedSignal (int aRightPaddleScore_int)
 		{
-			_doCheckRoundAndGameStatusAfterTime();
+			if (aRightPaddleScore_int > 0) {
+				iGameModel.currentRoundDataVO.cpuGoalsScoredThisRound++; //just add one
+				_doCheckRoundAndGameStatusAfterTime();
+			}
 			
 		}
 

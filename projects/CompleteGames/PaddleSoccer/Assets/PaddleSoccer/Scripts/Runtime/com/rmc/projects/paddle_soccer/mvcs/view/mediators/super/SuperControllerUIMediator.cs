@@ -181,7 +181,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		/// <param name="aPlayerMoveVO">A player move V.</param>
 		private void _doSendMove (PlayerMoveVO aPlayerMoveVO) 
 		{
-
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
 				playerDoMoveSignal.Dispatch (aPlayerMoveVO);
 			}

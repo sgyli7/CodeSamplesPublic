@@ -76,6 +76,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		/// </summary>
 		public uint playerGoalsScoredThisRound;
 
+		/// <summary>
+		/// The cpu goals scored this round.
+		/// </summary>
+		public uint cpuGoalsScoredThisRound;
+
 		////
 	
 
@@ -115,6 +120,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 			cpuMoveSpeed_range				= aCPUMoveSpeed_range;
 			//
 			playerGoalsScoredThisRound 		= 0;
+			cpuGoalsScoredThisRound			= 0;
 			
 		}
 

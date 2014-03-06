@@ -50,7 +50,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class PromptEndedSignal : Signal
+	public class PromptEndedSignal : Signal<string>
 	{
 		
 		//--------------------------------------

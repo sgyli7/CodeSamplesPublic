@@ -99,6 +99,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// </summary>
 		/// <returns><c>true</c>, if next round was hased, <c>false</c> otherwise.</returns>
 		bool hasNextRound();
+		
+		/// <summary>
+		/// Hases the player won round.
+		/// </summary>
+		/// <returns><c>true</c>, if player won round was hased, <c>false</c> otherwise.</returns>
+		bool hasPlayerWonRound();
+		
+		/// <summary>
+		/// Hases the player lost round.
+		/// </summary>
+		/// <returns><c>true</c>, if player lost round was hased, <c>false</c> otherwise.</returns>
+		bool hasPlayerLostGame();
+
+
 
 		/// <summary>
 		/// Starts the next round.

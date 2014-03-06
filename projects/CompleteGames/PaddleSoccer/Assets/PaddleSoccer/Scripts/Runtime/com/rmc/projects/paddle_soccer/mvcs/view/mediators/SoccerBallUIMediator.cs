@@ -227,12 +227,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 
 			//todo:change to
 			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY ) {
-				view.isRunningUpdate = true;
+			if (aGameState == GameState.ROUND_DROP_BALL_START ) {
+				//RESET AT START OF ROUND
 				view.doResetToStartingPosition();
+			} else if (aGameState == GameState.ROUND_DROP_BALL_START) {
+				//RESET (AGAIN) AT START OF BALL DROP (IN CASE ITS WITHIN A GIVEN ROUND
+				view.doResetToStartingPosition();
+			} else if (aGameState == GameState.ROUND_DROP_BALL_END) {
+				//MOVE THE BALL
+				view.doResetToStartingPosition();
+				//MOVE THE BALL
+				view.isEnabled = true;
 				view.doGiveStartingPush();
 			} else {
-				view.isRunningUpdate = false;
+				view.isEnabled = false;
 			}
 			
 		}

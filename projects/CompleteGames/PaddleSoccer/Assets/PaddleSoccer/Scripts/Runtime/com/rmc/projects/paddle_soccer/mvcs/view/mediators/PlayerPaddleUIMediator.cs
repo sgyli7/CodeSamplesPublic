@@ -158,22 +158,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 
 			//
 			base._onGameStateChangedSignal (aGameState);
-
-			//HIDE
-			if (aGameState == GameState.INTRO_START) {
-				view.doTweenToOffscreenPosition(-1f);
-				//
-			} else if (aGameState == GameState.GAME_START) {
-				//
-			} else if (aGameState == GameState.ROUND_START) {
-				view.isRunningUpdate = false;
-				view.doTweenToStartingPosition(0);
-				//
-			} else if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				view.isRunningUpdate = true;
-
-			}
-			
 			
 		}
 
@@ -201,78 +185,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		}
 
 
-		
-		/// <summary>
-		/// When the user interface animation complete signal.
-		/// </summary>
-		/// <param name="aUIAnimationMonitorEventVO">A user interface animation monitor event V.</param>
-		override protected void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO )
-		{
-			//
-			base._onUIAnimationCompleteSignal(aUIAnimationMonitorEventVO);
-			
-			/*
-			//MATCH CASE OF STRING
-			string animationClipNameUpper_string = view.animationType.ToString();
-
-
-			//WE MOSTLY CARE ABOUT WHEN THE ANIMATION IS OVER *INCLUDING* ANY COSMETIC DELAYS WE ADDED
-			if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.POST_COMPLETE) {
-
-				if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-
-					if (animationClipNameUpper_string == AnimationType.JUMP.ToString()) {
-
-						view.doPlayAnimation (AnimationType.WALK, 0, 0);
-
-					} else if (animationClipNameUpper_string == AnimationType.DIE.ToString()) {
-
-						//DESTROY OBJECT, UPDATE SCORE
-						enemyDiedSignal.Dispatch (view);
-
-						//PLAY SOUND
-						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_DIE));
-
-					} else if (animationClipNameUpper_string == AnimationType.WALK.ToString()) {
-
-						//PLAY SOUND
-						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
-
-					} else if (animationClipNameUpper_string == AnimationType.TAKE_HIT.ToString()) {
-
-						//
-						view.doPlayAnimation (AnimationType.WALK, 0, 0);
-
-					} else if (animationClipNameUpper_string == AnimationType.ATTACK.ToString()) {
-						
-						//TODO, INFLICT DAMAGE LESS, ONLY WHEN ANIMATION 'LOOPS'
-						_doInflictDamage();
-
-						//PLAY SOUND
-						soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_ATTACK));
-
-						//
-						view.doPlayAnimation (AnimationType.ATTACK, 0, 0);
-					}
-				} else {
-					 
-					//
-					view.doStopAnimation();
-				}
-
-			} else if (aUIAnimationMonitorEventVO.animationMonitorEventType == AnimationMonitorEventType.COMPLETE) {
-
-				//BUT SOMETIMES WE JUST WANT TO TRIGGER A SOUND
-
-				if (animationClipNameUpper_string == AnimationType.JUMP.ToString()) {
-
-					//PLAY SOUND
-					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.ENEMY_FOOSTEP));
-					
-				} 
-			}
-			*/
-		}
 		
 	}
 }

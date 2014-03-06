@@ -88,6 +88,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		override public void init ()
 		{
 			base.init ();
+			_paddlePosition = PaddlePosition.ScreenRight;
 		}
 
 

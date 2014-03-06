@@ -202,7 +202,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
 			//
-			if (aGameState == GameState.ROUND_START) {
+			if (aGameState == GameState.ROUND_PROMPT_START || aGameState == GameState.ROUND_DROP_BALL_START) {
 
 				view.setVisibility (true);
 			}
@@ -236,9 +236,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// When the prompt start signal.
 		/// </summary>
 		/// <param name="aNewValue_float">A new value_float.</param>
-		private void _onPromptStartSignal (string aMessage_string, bool aIsToFadeOutToo_boolean)
+		private void _onPromptStartSignal (string aMessage_string, bool aIsToFadeOutToo_boolean, bool hasSound_boolean)
 		{
-			soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.ROUND_START));
+			if (hasSound_boolean) {
+				soundPlaySignal.Dispatch ( new SoundPlayVO (SoundType.ROUND_START));
+			}
 			view.doPromptStart (aMessage_string, aIsToFadeOutToo_boolean);
 			
 		}
@@ -248,7 +250,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// </summary>
 		private void _onUIPromptEndedSignal ()
 		{
-			promptEndedSignal.Dispatch ();
+			promptEndedSignal.Dispatch (view.promptMessage);
 			
 		}
 

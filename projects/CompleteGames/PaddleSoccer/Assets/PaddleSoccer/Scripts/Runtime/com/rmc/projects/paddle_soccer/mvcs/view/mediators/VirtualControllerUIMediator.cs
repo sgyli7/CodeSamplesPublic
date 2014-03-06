@@ -175,7 +175,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		private void _onGameStateChangedSignal (GameState aGameState)
 		{
 			//
-			if (aGameState == GameState.ROUND_START) {
+			if (aGameState == GameState.ROUND_PROMPT_START) {
 				view.isVisible = true;
 			}
 			

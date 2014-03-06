@@ -155,23 +155,38 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <param name="aGameState">A game state.</param>
 		virtual protected void _onGameStateChangedSignal (GameState aGameState)
 		{
-			//OVERRIDE FOR USAGE
+			
+			//HIDE
+			if (aGameState == GameState.INTRO_START) {
+				
+				//WHEN THE INTRO SHOWS, HIDE THE PADDLES
+				view.doTweenToOffscreenPosition();
+				//
+			} else if (aGameState == GameState.GAME_START) {
+				//WHEN THE GAME STARTS, MOVE THE PADDLES ON
+				view.isRunningUpdate = false;
+				view.doTweenToStartingPosition();
+				//
+			} else if (aGameState == GameState.ROUND_DROP_BALL_START) {
+				//DROPPING BALL, DISABLE
+				view.isRunningUpdate = false;
+				view.doResetYPosition();
+			} else if (aGameState == GameState.ROUND_DROP_BALL_END) {
+				//ALREADY DROPPED BALL, ENABLE
+				view.isRunningUpdate = true;
+				//
+			} else if (aGameState == GameState.GAME_END) {
+				//GAME OVER? THEN RESET POSITIONS AND STOP
+				view.doResetYPosition();
+				view.isRunningUpdate = false;
+				//
+			} 
 			
 		}
 
 
 
 
-
-		/// <summary>
-		/// When the user interface animation complete signal.
-		/// </summary>
-		/// <param name="aUIAnimationMonitorEventVO">A user interface animation monitor event V.</param>
-		virtual protected void _onUIAnimationCompleteSignal (AnimationMonitorEventVO aUIAnimationMonitorEventVO )
-		{
-			//OVERRIDE FOR USAGE
-
-		}
 	}
 }
 
