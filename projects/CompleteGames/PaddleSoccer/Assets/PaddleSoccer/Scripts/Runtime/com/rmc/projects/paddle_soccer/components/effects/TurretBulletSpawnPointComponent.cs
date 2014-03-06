@@ -90,15 +90,10 @@ namespace com.rmc.projects.paddle_soccer.components.effects
 		/// When the _ LIF e_ DURATIO n_ MINIMU.
 		/// </summary>
 		private const float _LIFE_DURATION = 0.1f;
-
+		
 		//--------------------------------------
-		//  Methods
-		//--------------------------------------	
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
+		//  Constructor / Destructor
+		//--------------------------------------
 		/// <summary>
 		/// Initializes a new instance of the
 		/// <see cref="com.rmc.projects.paddle_soccer.components.effects.TurretBulletSpawnPointComponent"/> class.
@@ -119,7 +114,10 @@ namespace com.rmc.projects.paddle_soccer.components.effects
 			
 		}
 
-
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+		
 		/// <summary>
 		/// Start this instance.
 		/// </summary>

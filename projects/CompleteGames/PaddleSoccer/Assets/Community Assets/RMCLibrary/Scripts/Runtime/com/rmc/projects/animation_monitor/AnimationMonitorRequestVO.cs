@@ -87,18 +87,15 @@ namespace com.rmc.projects.animation_monitor
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.animation_monitor.AnimationMonitorRequestVO"/> class.
+		/// </summary>
+		/// <param name="aAnimationClipName_string">A animation clip name_string.</param>
+		/// <param name="aWrapMode">A wrap mode.</param>
+		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
+		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
 		public AnimationMonitorRequestVO (string aAnimationClipName_string, WrapMode aWrapMode,  float aDelayBeforeAnimation_float = 0, float aDelayAfterAnimation_float = 0 )
 		{
 			animationClipName			= aAnimationClipName_string;
@@ -107,10 +104,25 @@ namespace com.rmc.projects.animation_monitor
 			delayAfterAnimation			= aDelayAfterAnimation_float;
 			
 		}		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.animation_monitor.AnimationMonitorRequestVO"/> is reclaimed by garbage collection.
+		/// </summary>
 		~AnimationMonitorRequestVO()
 		{
 			
 		}
+
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+		
+		
+		//--------------------------------------
+		//  Constructor / Destructor
+		//--------------------------------------
 		
 		// PUBLIC
 		

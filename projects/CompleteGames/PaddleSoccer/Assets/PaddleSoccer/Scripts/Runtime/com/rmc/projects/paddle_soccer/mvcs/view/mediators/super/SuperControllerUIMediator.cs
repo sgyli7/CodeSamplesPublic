@@ -176,14 +176,14 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		
 		// PRIVATE
 		/// <summary>
-		/// Do send move.
+		/// _dos the send move.
 		/// </summary>
-		/// <param name="aTurretMoveVO">A turret move V.</param>
-		private void _doSendMove (PlayerMoveVO aTurretMoveVO) 
+		/// <param name="aPlayerMoveVO">A player move V.</param>
+		private void _doSendMove (PlayerMoveVO aPlayerMoveVO) 
 		{
 
 			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				playerDoMoveSignal.Dispatch (aTurretMoveVO);
+				playerDoMoveSignal.Dispatch (aPlayerMoveVO);
 			}
 		
 		}

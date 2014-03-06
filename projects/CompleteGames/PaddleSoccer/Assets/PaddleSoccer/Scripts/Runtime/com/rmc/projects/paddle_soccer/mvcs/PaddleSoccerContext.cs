@@ -80,13 +80,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.PaddleSoccerContext"/> class.
 		/// </summary>
@@ -112,7 +107,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		{
 			
 		}
-		
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+
 		//	PUBLIC
 		
 		// PRIVATE
@@ -190,13 +189,14 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 			//	1. (MAPPED COMMANDS) 
 			commandBinder.Bind<StartSignal>().To<StartCommand>(); //TODO add once()
 			commandBinder.Bind<AllViewsInitializedSignal>().To<AllViewsInitializedCommand>();//TODO add once()
-			commandBinder.Bind<EnemyDiedSignal>().To<EnemyDiedCommand>();
-			commandBinder.Bind<PlayerDoMoveSignal>().To<TurretDoMoveCommand>();
 
 
 
 			//	2. (INJECTED SIGNALS - DIRECTLY OBSERVED)
 			injectionBinder.Bind<SoundPlaySignal>().ToSingleton();
+			//
+			injectionBinder.Bind<PlayerDoMoveSignal>().ToSingleton();
+
 			//
 			injectionBinder.Bind<PromptStartSignal>().ToSingleton();
 			injectionBinder.Bind<PromptEndedSignal>().ToSingleton();

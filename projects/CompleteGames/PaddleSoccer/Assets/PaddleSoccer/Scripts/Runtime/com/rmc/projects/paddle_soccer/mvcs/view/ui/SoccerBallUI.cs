@@ -222,7 +222,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// <param name="aVelocity_vector2">A velocity_vector2.</param>
 		public void doHandleCollisionWithPaddle (Vector2 aVelocity_vector2)
 		{
-			//rigidbody2D.AddForce (new Vector2 (0, aVelocity_vector2.y*3000));
+			rigidbody2D.AddForce (new Vector2 (0, aVelocity_vector2.y*300));
 		}
 		
 

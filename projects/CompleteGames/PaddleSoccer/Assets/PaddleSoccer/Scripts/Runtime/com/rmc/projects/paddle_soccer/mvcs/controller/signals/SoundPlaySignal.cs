@@ -67,13 +67,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the
 		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.controller.signals.SoundPlaySignal"/> class.
@@ -93,8 +88,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 			
 		}
 		
-		
-		//	PUBLIC
+		//--------------------------------------
+		//  Constructor / Destructor
+		//--------------------------------------
+		// PUBLIC
 		
 		// PRIVATE
 		

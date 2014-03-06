@@ -114,7 +114,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		
 		// PRIVATE
 		/// <summary>
-		/// When the turret spinning_lerptarget.
+		/// The _y position_lerptarget.
 		/// </summary>
 		private LerpTarget _yPosition_lerptarget;
 

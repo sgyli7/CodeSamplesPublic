@@ -67,68 +67,54 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		public uint currentRound_uint;
 
 		/// <summary>
-		/// When the total enemies to kill_uint.
+		/// The player goals required to win.
 		/// </summary>
-		public uint goalsRequired;
+		public uint playerGoalsRequiredToWin;
 
 		/// <summary>
-		/// When the enemies created.
+		/// The player goals scored this round.
 		/// </summary>
-		public uint goalsCurrent;
+		public uint playerGoalsScoredThisRound;
+
+		////
+	
 
 		/// <summary>
-		/// When the enemies spawned at once_range.
+		/// The cpu goals required to lose.
 		/// </summary>
-		public Range enemiesSpawnedAtOnceRange;
+		public uint cpuGoalsRequiredToLose;
 
 		/// <summary>
-		/// When the enemy speed_range.
+		/// The cpu move speed_range.
 		/// </summary>
-		public Range enemySpeedRange;
+		public Range cpuMoveSpeed_range;
 
-
-		/// <summary>
-		/// When the enemy health_range.
-		/// </summary>
-		public Range enemyHealthRange;
 
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// Gets or sets the enemies.
-		/// </summary>
-		/// <value>The enemies.</value>
-		private List<GameObject> enemies;
 		
 		
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.RoundDataVO"/> class.
 		/// </summary>
 		/// <param name="aCurrentRound_uint">A current round_uint.</param>
-		/// <param name="aTotalEnemiesToKill_uint">A total enemies to kill_uint.</param>
-		/// <param name="aEnemiesSpawnedAtOnce_range">A enemies spawned at once_range.</param>
-		/// <param name="aEnemyHealth_range">A enemy health_range.</param>
-		/// <param name="aEnemySpeed_range">A enemy speed_range.</param>
-		public RoundDataVO (uint aCurrentRound_uint, uint aTotalEnemiesToKill_uint, Range aEnemiesSpawnedAtOnce_range, Range aEnemyHealth_range, Range aEnemySpeed_range)
+		/// <param name="aPlayerGoalsRequiredToWin_uint">A player goals required to win_uint.</param>
+		/// <param name="aCPUGoalsRequiredToLose_uint">A CPU goals required to lose_uint.</param>
+		/// <param name="aCPUMoveSpeed_range">A CPU move speed_range.</param>
+		public RoundDataVO (uint aCurrentRound_uint, uint aPlayerGoalsRequiredToWin_uint, uint aCPUGoalsRequiredToLose_uint, Range aCPUMoveSpeed_range)
 		{
 			currentRound_uint 				= aCurrentRound_uint;
-			goalsRequired 			= aTotalEnemiesToKill_uint;
-			enemiesSpawnedAtOnceRange 		= aEnemiesSpawnedAtOnce_range;
-			enemySpeedRange					= aEnemySpeed_range;
-			enemyHealthRange				= aEnemyHealth_range;
+			playerGoalsRequiredToWin 		= aPlayerGoalsRequiredToWin_uint;
+			cpuGoalsRequiredToLose 			= aCPUGoalsRequiredToLose_uint;
+			cpuMoveSpeed_range				= aCPUMoveSpeed_range;
 			//
+			playerGoalsScoredThisRound 		= 0;
 			
 		}
 
@@ -140,39 +126,16 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		{
 			
 		}
-		
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+
 		// PUBLIC
 		
 		// PRIVATE
-		/// <summary>
-		/// Clears the enemies.
-		/// </summary>
-		public void clearEnemies ()
-		{
-			enemies = new List<GameObject>();
-			goalsCurrent = 0;
-		}
-		
-		/// <summary>
-		/// Adds the enemy.
-		/// </summary>
-		/// <param name="aGameObject">A game object.</param>
-		public void addEnemy (GameObject aGameObject)
-		{
-			enemies.Add (aGameObject);
-			//keep this count so even when we remove enemies, 
-			//		we know the total 'ever' created in this round
-			goalsCurrent ++; 
-		}
-		
-		/// <summary>
-		/// Removes the enemy.
-		/// </summary>
-		/// <param name="aGameObject">A game object.</param>
-		public void removeEnemy (GameObject aGameObject)
-		{
-			enemies.Remove (aGameObject);
-		}
+
+
 		
 		// PRIVATE STATIC
 		

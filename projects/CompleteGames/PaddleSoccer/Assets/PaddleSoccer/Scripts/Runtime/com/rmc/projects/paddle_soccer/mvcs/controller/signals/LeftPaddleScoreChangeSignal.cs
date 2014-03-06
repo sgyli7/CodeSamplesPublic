@@ -64,18 +64,13 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 		// PRIVATE
 		
 		// PRIVATE STATIC
-		
+
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the
-		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.controller.signals.ScoreChangeSignal"/> class.
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.controller.signals.LeftPaddleScoreChangeSignal"/> class.
 		/// </summary>
 		public LeftPaddleScoreChangeSignal( )
 		{
@@ -85,15 +80,18 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 
 		/// <summary>
 		/// Releases unmanaged resources and performs other cleanup operations before the
-		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.controller.signals.ScoreChangeSignal"/> is reclaimed by garbage collection.
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.controller.signals.LeftPaddleScoreChangeSignal"/> is reclaimed by
+		/// garbage collection.
 		/// </summary>
 		~LeftPaddleScoreChangeSignal()
 		{
 			
 		}
 		
-		
-		//	PUBLIC
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+		// PUBLIC
 		
 		// PRIVATE
 		

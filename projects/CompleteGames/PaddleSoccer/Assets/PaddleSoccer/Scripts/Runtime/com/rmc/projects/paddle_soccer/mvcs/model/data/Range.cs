@@ -79,15 +79,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.data
 		
 		// PRIVATE STATIC
 		
-		//--------------------------------------
-		//  Methods
-		//--------------------------------------
 		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
+		//--------------------------------------
+		//  Constructor / Destructor
+		//--------------------------------------
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.data.Range"/> class.
 		/// </summary>
@@ -108,7 +103,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.data
 		{
 			
 		}
-		
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+
 		// PUBLIC
 		/// <summary>
 		/// Gets the random float value within range.

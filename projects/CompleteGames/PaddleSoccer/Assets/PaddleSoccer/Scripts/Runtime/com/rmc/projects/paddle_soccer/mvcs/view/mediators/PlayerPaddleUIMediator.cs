@@ -84,9 +84,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 
 
 		/// <summary>
-		/// Gets or sets the turret do move signal.
+		/// Gets or sets the player do move signal.
 		/// </summary>
-		/// <value>The turret do move signal.</value>
+		/// <value>The player do move signal.</value>
 		[Inject]
 		public PlayerDoMoveSignal playerDoMoveSignal 		{ get; set;}
 
@@ -159,25 +159,29 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			//
 			base._onGameStateChangedSignal (aGameState);
 
-			//todo:change to
-			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				view.isRunningUpdate = true;
-				view.doTweenToStartingPosition(0);
+			//HIDE
+			if (aGameState == GameState.INTRO_START) {
+				view.doTweenToOffscreenPosition(-1f);
+				//
+			} else if (aGameState == GameState.GAME_START) {
+				//
 			} else if (aGameState == GameState.ROUND_START) {
 				view.isRunningUpdate = false;
-			} else if (aGameState == GameState.GAME_START) {
-				view.doTweenToOffscreenPosition(-1f);
+				view.doTweenToStartingPosition(0);
+				//
+			} else if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+				view.isRunningUpdate = true;
 
 			}
+			
 			
 		}
 
 
 		/// <summary>
-		/// When the turret do move signal.
+		/// _ons the player do move signal.
 		/// </summary>
-		/// <param name="aTurretMoveVO">A turret move V.</param>
+		/// <param name="aPlayerMoveVO">A player move V.</param>
 		private void _onPlayerDoMoveSignal (PlayerMoveVO aPlayerMoveVO) 
 		{
 

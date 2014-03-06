@@ -188,11 +188,14 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 				//
 				switch (boundaryComponent.boundaryType){
 				case BoundaryType.LeftGoal:
-					leftPaddleScoreChangeSignal.Dispatch (1);
+
+					//LEFT BOUND HIT? THEN REWARD RIGHT SCORE
+					rightPaddleScoreChangeSignal.Dispatch (1);
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GOAL_LOSS));
 					break;
 				case BoundaryType.RightGoal:
-					rightPaddleScoreChangeSignal.Dispatch (1);
+					//RIGHT BOUND HIT? THEN REWARD LEFT SCORE
+					leftPaddleScoreChangeSignal.Dispatch (1);
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GOAL_WIN));
 					break;
 				case BoundaryType.None:

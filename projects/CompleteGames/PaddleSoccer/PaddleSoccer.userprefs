@@ -1,17 +1,43 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/SoccerBallUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/PlayerPaddleUIMediator.cs">
     <Files>
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/SoccerBallUI.cs" Line="244" Column="3" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/components/PaddleComponent.cs" Line="302" Column="3" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/signals/UICollisionEnter2DSignal.cs" Line="54" Column="56" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/SoccerBallUIMediator.cs" Line="161" Column="71" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/ui/CPUPaddleUI.cs" Line="75" Column="15" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/model/GameModel.cs" Line="178" Column="33" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/PaddleSoccerContext.cs" Line="193" Column="1" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/CPUPaddleUIMediator.cs" Line="214" Column="7" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/GameManagerUIMediator.cs" Line="78" Column="26" />
+      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/view/mediators/PlayerPaddleUIMediator.cs" Line="227" Column="7" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Community Assets" expanded="True">
+              <Node name="RMCLibrary" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Runtime" expanded="True">
+                    <Node name="com" expanded="True">
+                      <Node name="rmc" expanded="True">
+                        <Node name="projects" expanded="True">
+                          <Node name="animation_monitor" expanded="True" />
+                        </Node>
+                      </Node>
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="StrangeIoC" expanded="True">
+                <Node name="scripts" expanded="True">
+                  <Node name="strange" expanded="True">
+                    <Node name="extensions" expanded="True">
+                      <Node name="injector" expanded="True">
+                        <Node name="impl" expanded="True" />
+                      </Node>
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
             <Node name="PaddleSoccer" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Runtime" expanded="True">
@@ -21,14 +47,19 @@
                         <Node name="paddle_soccer" expanded="True">
                           <Node name="components" expanded="True" />
                           <Node name="mvcs" expanded="True">
+                            <Node name="controller" expanded="True">
+                              <Node name="commands" expanded="True" />
+                              <Node name="signals" expanded="True" />
+                            </Node>
+                            <Node name="model" expanded="True" />
                             <Node name="view" expanded="True">
                               <Node name="mediators" expanded="True">
                                 <Node name="super" expanded="True" />
+                                <Node name="PlayerPaddleUIMediator.cs" selected="True" />
                               </Node>
                               <Node name="signals" expanded="True" />
                               <Node name="ui" expanded="True">
                                 <Node name="super" expanded="True" />
-                                <Node name="SoccerBallUI.cs" selected="True" />
                               </Node>
                             </Node>
                           </Node>

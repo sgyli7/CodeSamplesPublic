@@ -167,20 +167,23 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		override protected void _onGameStateChangedSignal (GameState aGameState)
 		{
 			//
-			base._onGameStateChangedSignal(aGameState);
-
-			//todo:change to
-			//if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-			if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-				view.isRunningUpdate = true;
-				view.doTweenToStartingPosition(0);
+			base._onGameStateChangedSignal (aGameState);
+			
+			//HIDE
+			if (aGameState == GameState.INTRO_START) {
+				view.doTweenToOffscreenPosition(1f);
+				//
+			} else if (aGameState == GameState.GAME_START) {
+				//
 			} else if (aGameState == GameState.ROUND_START) {
 				view.isRunningUpdate = false;
-			} else if (aGameState == GameState.GAME_START) {
-				view.doTweenToOffscreenPosition(1f);
+				view.doTweenToStartingPosition(0);
+				//
+			} else if (aGameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
+				view.isRunningUpdate = true;
 				
 			}
-			
+
 		}
 
 

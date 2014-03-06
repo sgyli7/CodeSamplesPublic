@@ -95,15 +95,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
 		/// <summary>
-		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> class.
+		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.PlayerMoveVO"/> class.
 		/// </summary>
 		/// <param name="aMoveType">A move type.</param>
 		public PlayerMoveVO (MoveType aMoveType )
@@ -113,7 +108,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> class.
+		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.PlayerMoveVO"/> class.
 		/// </summary>
 		/// <param name="aMoveType">A move type.</param>
 		/// <param name="aAmount_float">A amount_float.</param>
@@ -126,12 +121,16 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 
 		/// <summary>
 		/// Releases unmanaged resources and performs other cleanup operations before the
-		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.TurretMoveVO"/> is reclaimed by garbage collection.
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.PlayerMoveVO"/> is reclaimed by garbage collection.
 		/// </summary>
 		~PlayerMoveVO()
 		{
 			
 		}
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
 		
 		// PUBLIC
 		

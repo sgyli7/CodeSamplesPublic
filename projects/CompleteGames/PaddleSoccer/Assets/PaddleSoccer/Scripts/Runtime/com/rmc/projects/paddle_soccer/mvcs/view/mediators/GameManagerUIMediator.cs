@@ -71,13 +71,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		[Inject]
 		public GameManagerUI view 	{ get; set;}
 		
-		/// <summary>
-		/// When the enemy died signal.
-		/// </summary>
-		[Inject]
-		public EnemyDiedSignal enemyDiedSignal {set; get;}
-
-
 		
 		/// <summary>
 		/// Gets or sets the right paddle score changed signal.
@@ -88,9 +81,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 
 
 		/// <summary>
-		/// Gets or sets the player died signal.
+		/// Gets or sets the left paddle score changed signal.
 		/// </summary>
-		/// <value>The player died signal.</value>
+		/// <value>The left paddle score changed signal.</value>
 		[Inject]
 		public RightPaddleScoreChangedSignal leftPaddleScoreChangedSignal {set; get;}
 		
@@ -246,7 +239,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 				promptStartSignal.Dispatch (String.Format
 				                            (
 					Constants.PROMPT_ROUND_START, 
-					iGameModel.currentRoundDataVO.goalsRequired), 
+					iGameModel.currentRoundDataVO.playerGoalsRequiredToWin), 
 				                            true
 				                            );
 				//WAITING FOR: PROMPT ANIM TO FINISH
@@ -273,13 +266,13 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public void _doCheckRoundAndGameStatusAfterTime () 
 		{
 			//
-			//Debug.Log (iGameModel.currentRoundDataVO.enemiesCreated + " and " +  iGameModel.currentRoundDataVO.enemiesTotalToCreate);
+			Debug.Log (iGameModel.currentRoundDataVO.playerGoalsScoredThisRound + " and " +  iGameModel.currentRoundDataVO.playerGoalsRequiredToWin);
 
 
 			//
 			//1. CONTINUE THIS ROUND
 			//
-			if (iGameModel.currentRoundDataVO.goalsCurrent < iGameModel.currentRoundDataVO.goalsRequired) {
+			if (iGameModel.currentRoundDataVO.playerGoalsScoredThisRound < iGameModel.currentRoundDataVO.playerGoalsRequiredToWin) {
 				//
 
 			//
@@ -307,11 +300,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 
 		
 		/// <summary>
-		/// When the turret died signal.
+		/// _ons the left paddle score changed signal.
 		/// </summary>
+		/// <param name="aLeftPaddleScore_int">A left paddle score_int.</param>
 		private void _onLeftPaddleScoreChangedSignal (int aLeftPaddleScore_int)
 		{
-
+			_doCheckRoundAndGameStatusAfterTime();
 			
 		}
 
@@ -321,7 +315,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <param name="aRightPaddleScore_int">A right paddle score_int.</param>
 		private void _onRightPaddleScoreChangedSignal (int aRightPaddleScore_int)
 		{
-			
+			_doCheckRoundAndGameStatusAfterTime();
 			
 		}
 

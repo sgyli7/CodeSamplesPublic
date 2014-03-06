@@ -65,14 +65,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		
 		// PRIVATE STATIC
 		
+		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.PaddleSoccerRoot"/> class.
 		/// </summary>
@@ -91,6 +87,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 			
 		}
 		
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
 
 		//	PUBLIC
 		void Awake()

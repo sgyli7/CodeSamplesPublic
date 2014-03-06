@@ -187,17 +187,14 @@
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\PaddleSoccerRoot.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\AllViewsInitializedCommand.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\CrossPlatformChangeCommand.cs" />
-     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\EnemyDiedCommand.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\GameResetCommand.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\GameStateChangeCommand.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\LeftPaddleScoreChangeCommand.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\RightPaddleScoreChangeCommand.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\StartCommand.cs" />
-     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\commands\TurretDoMoveCommand.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\AllViewsInitializedSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\CrossPlatformChangeSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\CrossPlatformChangedSignal.cs" />
-     <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\EnemyDiedSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\GameResetSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\GameStateChangeSignal.cs" />
      <Compile Include="Assets\PaddleSoccer\Scripts\Runtime\com\rmc\projects\paddle_soccer\mvcs\controller\signals\GameStateChangedSignal.cs" />

@@ -140,18 +140,16 @@ namespace com.rmc.utilities
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.utilities.LerpTarget"/> class.
+		/// </summary>
+		/// <param name="aCurrent_float">A current_float.</param>
+		/// <param name="aTarget_float">A target_float.</param>
+		/// <param name="aMinimum_float">A minimum_float.</param>
+		/// <param name="aMaximum_float">A maximum_float.</param>
+		/// <param name="aAcceleration_float">A acceleration_float.</param>
 		public LerpTarget (float aCurrent_float, float aTarget_float, float aMinimum_float, float aMaximum_float, float aAcceleration_float)
 		{
 			current 		= aCurrent_float;
@@ -161,11 +159,20 @@ namespace com.rmc.utilities
 			acceleration  	= aAcceleration_float;
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.utilities.LerpTarget"/> is reclaimed by garbage collection.
+		/// </summary>
 		~LerpTarget()
 		{
 			
 		}
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+		
 		
 		// PUBLIC
 		/// <summary>

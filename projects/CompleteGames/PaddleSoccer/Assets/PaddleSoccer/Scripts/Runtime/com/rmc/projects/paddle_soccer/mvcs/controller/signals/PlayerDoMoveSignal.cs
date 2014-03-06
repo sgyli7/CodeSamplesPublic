@@ -67,31 +67,31 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.controller.signals.PlayerDoMoveSignal"/> class.
+		/// </summary>
 		public PlayerDoMoveSignal( )
 		{
 			//Debug.Log ("TurretDoMoveSignal.constructor()");
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.controller.signals.PlayerDoMoveSignal"/> is reclaimed by garbage collection.
+		/// </summary>
 		~PlayerDoMoveSignal()
 		{
 			
 		}
 		
-		
-		//	PUBLIC
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+		// PUBLIC
 		
 		// PRIVATE
 		

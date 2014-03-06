@@ -144,7 +144,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 
 
 		/// <summary>
-		/// When the _turret health_int.
+		/// The _right paddle score_int.
 		/// </summary>
 		private int _rightPaddleScore_int;
 		public int rightPaddleScore
@@ -155,22 +155,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 			set
 			{
 				_rightPaddleScore_int = value;
-				_rightPaddleScore_int = Mathf.Clamp (_rightPaddleScore_int, 0, 1000);
-				turretHealthChangedSignal.Dispatch (_rightPaddleScore_int);
-
-				if (_rightPaddleScore_int == 0) {
-					rightPaddleScoreChangedSignal.Dispatch (_rightPaddleScore_int);
-				}
+				_rightPaddleScore_int = Mathf.Clamp (_rightPaddleScore_int, 0, int.MaxValue);
+				rightPaddleScoreChangedSignal.Dispatch (_rightPaddleScore_int);
 				
 			}
 		}
-
-		/// <summary>
-		/// Gets or sets the turret health changed signal.
-		/// </summary>
-		/// <value>The turret health changed signal.</value>
-		[Inject]
-		public RightPaddleScoreChangedSignal turretHealthChangedSignal { get; set;}
 
 
 		/// <summary>
@@ -185,6 +174,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 			set
 			{
 				_leftPaddleScore_int = value;
+				_leftPaddleScore_int = Mathf.Clamp (_leftPaddleScore_int, 0, int.MaxValue);
 				leftPaddleScoreChangedSignal.Dispatch (_leftPaddleScore_int);
 				
 			}
@@ -253,17 +243,18 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// <summary>
 		/// When the _ ENEMIE s_ PE r_ ROUN.
 		/// </summary>
-		private const int _GOALS_REQUIRED_PER_ROUND = 2;
+		private const int _PLAYER_GOALS_REQUIRED_PER_ROUND_MULTIPLYER = 2;
+
+
+		/// <summary>
+		/// The _ CP u_ GOAL s_ REQUIRE d_ PE r_ ROUN.
+		/// </summary>
+		private const int _CPU_GOALS_REQUIRED_PER_ROUND = 1;
+		
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.GameModel"/> class.
 		/// </summary>
@@ -282,6 +273,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 			
 		}
 
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
 
 		/// <summary>
 		/// Posts the construct.
@@ -329,17 +323,17 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 			_currentRound_uint++;
 
 			//
-			uint goalsRequiredToWin_uint 			= _currentRound_uint*_GOALS_REQUIRED_PER_ROUND;
-			Range enemiesSpawnedAtOnce_range	= new Range (1, _currentRound_uint);
-			Range enemyHealth_range 			= new Range (11, 22);
-			Range enemySpeed_range				= new Range (1f, 2f);
+			uint currentRound_uint 				= _currentRound_uint;
+			uint playerGoalsRequiredToWin 		= _currentRound_uint*_PLAYER_GOALS_REQUIRED_PER_ROUND_MULTIPLYER;
+			uint cpuGoalsRequiredToLose 		= _CPU_GOALS_REQUIRED_PER_ROUND;
+			Range cpuMoveSpeed_range			= new Range (2f, 2f); //lock to one value, but you can put a range here (optional)
+
 			//
 			currentRoundDataVO = new RoundDataVO (
-				_currentRound_uint,
-				goalsRequiredToWin_uint,
-				enemiesSpawnedAtOnce_range,
-				enemyHealth_range,
-				enemySpeed_range
+				currentRound_uint,
+				playerGoalsRequiredToWin,
+				cpuGoalsRequiredToLose,
+				cpuMoveSpeed_range
 				);
 
 

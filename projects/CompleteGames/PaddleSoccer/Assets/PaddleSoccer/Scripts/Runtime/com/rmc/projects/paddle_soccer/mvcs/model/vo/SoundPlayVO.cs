@@ -67,14 +67,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.SoundPlayVO"/> class.
 		/// </summary>
@@ -94,7 +88,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		{
 			
 		}
-		
+
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+
 		// PUBLIC
 		
 		// PRIVATE

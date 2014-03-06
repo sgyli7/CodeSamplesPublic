@@ -80,30 +80,32 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.UIInputVO"/> class.
+		/// </summary>
+		/// <param name="aKeyCode">A key code.</param>
+		/// <param name="aUIInputEventType">A user interface input event type.</param>
 		public UIInputVO (KeyCode aKeyCode, UIInputEventType aUIInputEventType)
 		{
 			keyCode 			= aKeyCode;
 			uiInputEventType 	= aUIInputEventType;
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.model.vo.UIInputVO"/> is reclaimed by garbage collection.
+		/// </summary>
 		~UIInputVO()
 		{
 			
 		}
-		
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
 		// PUBLIC
 		
 		// PRIVATE

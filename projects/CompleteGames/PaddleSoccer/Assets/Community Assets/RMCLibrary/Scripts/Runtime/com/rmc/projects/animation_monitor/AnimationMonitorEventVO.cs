@@ -91,30 +91,35 @@ namespace com.rmc.projects.animation_monitor
 		
 		// PRIVATE STATIC
 		
-		//--------------------------------------
-		//  Methods
-		//--------------------------------------
 		
-		
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///<summary>
-		///	 Constructor
-		///</summary>
+		//--------------------------------------
+		//  Constructor / Destructor
+		//--------------------------------------
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.animation_monitor.AnimationMonitorEventVO"/> class.
+		/// </summary>
+		/// <param name="aUIAnimationMonitorEventType">A user interface animation monitor event type.</param>
+		/// <param name="aanimationMonitorRequestVO">Aanimation monitor request V.</param>
 		public AnimationMonitorEventVO (AnimationMonitorEventType aUIAnimationMonitorEventType, AnimationMonitorRequestVO aanimationMonitorRequestVO )
 		{
 			animationMonitorEventType 	= aUIAnimationMonitorEventType;
 			animationMonitorRequestVO	= aanimationMonitorRequestVO;
 			
 		}
-		
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.animation_monitor.AnimationMonitorEventVO"/> is reclaimed by garbage collection.
+		/// </summary>
 		~AnimationMonitorEventVO()
 		{
 			
 		}
+
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
 		
 		// PUBLIC
 		

@@ -64,15 +64,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.signals
 		// PRIVATE
 		
 		// PRIVATE STATIC
-		
+
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////
-		///			CONSTRUCTOR / DESTRUCTOR
-		///////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Initializes a new instance of the
 		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.view.signals.UIAnimationMonitorEventSignal"/> class.
@@ -92,9 +87,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.signals
 		{
 			
 		}
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
 		
-		
-		//	PUBLIC
+		// PUBLIC
 		
 		// PRIVATE
 		
