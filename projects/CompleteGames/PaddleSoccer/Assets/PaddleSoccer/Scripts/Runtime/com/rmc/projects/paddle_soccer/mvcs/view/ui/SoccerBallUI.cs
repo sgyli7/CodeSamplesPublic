@@ -65,6 +65,22 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		
 		// GETTER / SETTER
 
+		
+		/// <summary>
+		/// Gets or sets the is rolling.
+		/// </summary>
+		/// <value>The is rolling.</value>
+		public bool isRolling
+		{ 
+			get{
+				return _animator.GetBool ("isRolling_boolean");
+			}
+			set
+			{
+				_animator.SetBool ("isRolling_boolean", value);
+			}
+		}
+
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.SoccerBallUI"/> is
@@ -115,6 +131,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// </summary>
 		private float _turnSpeed_float;
 
+		/// <summary>
+		/// The _animator.
+		/// </summary>
+		private Animator _animator;
+
 
 		// PRIVATE STATIC
 		
@@ -127,6 +148,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		override protected void Start () 
 		{
 			base.Start();
+			_animator = GetComponent<Animator>();
 
 		}
 
@@ -150,9 +172,13 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			//
 			if (isRunningUpdate) {
 				_doLookInDirectionOfMovement();
-
+				isRolling = true;
+			} else {
+				isRolling = false;
 			}
-			
+
+
+
 		}
 		
 		/// <summary>
@@ -184,6 +210,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			rigidbody2D.AddForce (new Vector2 (-200, 0));
+			isRolling = true;
 
 		}
 
