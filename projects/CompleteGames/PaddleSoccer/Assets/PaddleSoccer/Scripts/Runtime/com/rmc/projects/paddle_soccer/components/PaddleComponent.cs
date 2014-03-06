@@ -162,7 +162,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		public void Start () 
 		{
 			
-			_yPosition_lerptarget 			= new LerpTarget (0, 0, -10, 10, 0.5f);
+			_yPosition_lerptarget 			= new LerpTarget (0, 0, Constants.PADDLE_Y_LERP_MINIMUM, Constants.PADDLE_Y_LERP_MAXIMUM, 2.5f);
 			_animator = GetComponent <Animator>();
 			_startingXPosition_float = gameObject.transform.position.x;
 
@@ -290,16 +290,15 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// </summary>
 		private float _getNewYPositionOnscreen ()
 		{
+			//GET & CORRECT CURRENT
 			float newYPosition_float = _yPosition_lerptarget.current;
-			if (newYPosition_float < Constants.PADDLE_Y_MINIMUM) {
-				newYPosition_float = Constants.PADDLE_Y_MINIMUM;
-				_yPosition_lerptarget.targetValue = _yPosition_lerptarget.current;
-			} else if (newYPosition_float > Constants.PADDLE_Y_MAXIMUM) {
-				newYPosition_float = Constants.PADDLE_Y_MAXIMUM;
-				_yPosition_lerptarget.targetValue = _yPosition_lerptarget.current;
+			if (newYPosition_float < Constants.PADDLE_Y_TARGET_MINIMUM) {
+				newYPosition_float = Constants.PADDLE_Y_TARGET_MINIMUM;
+			} else if (newYPosition_float > Constants.PADDLE_Y_TARGET_MAXIMUM) {
+				newYPosition_float = Constants.PADDLE_Y_TARGET_MAXIMUM;
 			}
-			
 
+			//RETURN CURRENT
 			return newYPosition_float;
 		}
 		

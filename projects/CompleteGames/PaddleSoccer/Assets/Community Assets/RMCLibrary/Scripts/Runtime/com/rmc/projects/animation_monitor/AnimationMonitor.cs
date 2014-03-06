@@ -148,7 +148,7 @@ namespace com.rmc.projects.animation_monitor
 			if (animation[aAnimationMonitorRequestVO.animationClipName] != null) {
 				animation.wrapMode = aAnimationMonitorRequestVO.wrapMode;
 				animation.Play (aAnimationMonitorRequestVO.animationClipName);
-				Debug.Log ("Play: " + aAnimationMonitorRequestVO.animationClipName);
+				//Debug.Log ("Play: " + aAnimationMonitorRequestVO.animationClipName);
 
 			} else {
 				//KEEP THIS

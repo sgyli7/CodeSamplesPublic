@@ -49,7 +49,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class LeftPaddleScoreChangeSignal : Signal<float>
+	public class LeftPaddleScoreChangeSignal : Signal<int>
 	{
 		
 		//--------------------------------------

@@ -85,9 +85,13 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 
 
 		//
-		public static float PADDLE_Y_MINIMUM		= -3;
+		public static float PADDLE_Y_TARGET_MINIMUM		= -3; //GOVERNS ACTUAL POSITION LIMITS
+		public static float PADDLE_Y_TARGET_MAXIMUM		= 3;  //GOVERNS ACTUAL POSITION
+		public static float PADDLE_Y_LERP_MINIMUM		= PADDLE_Y_TARGET_MINIMUM - 1;  //GOVERNS ACCELERATION TO LIMITS
+		public static float PADDLE_Y_LERP_MAXIMUM		= PADDLE_Y_TARGET_MAXIMUM + 1;  //GOVERNS ACCELERATION TO LIMITS
 
-		public static float PADDLE_Y_MAXIMUM		= 3;
+
+
 
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_UP 	= "Up";
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_DOWN 	= "Down";

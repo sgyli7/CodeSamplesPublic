@@ -89,7 +89,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.commands
 		///</summary>
 		public override void Execute()
 		{
-			Debug.Log ("4. CrossPlatformChangeCommand.Execute()");
+			//Debug.Log ("4. CrossPlatformChangeCommand.Execute()");
 
 			
 			/*

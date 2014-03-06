@@ -127,7 +127,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		/// <summary>
 		/// Spin amount per click
 		/// </summary>
-		private const float _PADDLE_MOVE_PER_TICK = 1.2f;
+		private const float _PADDLE_MOVE_PER_TICK = 0.25f;
 		
 		//--------------------------------------
 		//  Methods
@@ -244,7 +244,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 				//KEYSTAY
 				switch (aUIInputVO.keyCode) {
 					case KeyCode.UpArrow:
-						_doSendMove (new PlayerMoveVO( MoveType.UpOneTick, _PADDLE_MOVE_PER_TICK));
+						_doSendMove (		 new PlayerMoveVO( MoveType.UpOneTick, _PADDLE_MOVE_PER_TICK));
 						break;
 					case KeyCode.DownArrow:
 						_doSendMove (new PlayerMoveVO( MoveType.DownOneTick, _PADDLE_MOVE_PER_TICK));

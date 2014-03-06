@@ -199,6 +199,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 
 			transform.position = new Vector3 (0, 0, transform.position.z);
+			isRolling = false;
 
 
 		}
@@ -209,7 +210,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public void doGiveStartingPush ()
 		{
 
-			rigidbody2D.AddForce (new Vector2 (-200, 0));
+			//Debug.Log ("doGiveStartingPush()");
+			rigidbody2D.AddForce (new Vector2 (-200, 50));
 			isRolling = true;
 
 		}
@@ -220,7 +222,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// <param name="aVelocity_vector2">A velocity_vector2.</param>
 		public void doHandleCollisionWithPaddle (Vector2 aVelocity_vector2)
 		{
-			rigidbody2D.AddForce (new Vector2 (0, aVelocity_vector2.y*3000));
+			//rigidbody2D.AddForce (new Vector2 (0, aVelocity_vector2.y*3000));
 		}
 		
 

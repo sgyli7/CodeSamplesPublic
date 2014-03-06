@@ -86,7 +86,21 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		/// <value>The game state changed signal.</value>
 		[Inject]
 		public GameStateChangedSignal gameStateChangedSignal {set; get;}
+
+		/// <summary>
+		/// Gets or sets the right paddle score change signal.
+		/// </summary>
+		/// <value>The right paddle score change signal.</value>
+		[Inject]
+		public RightPaddleScoreChangeSignal rightPaddleScoreChangeSignal { get; set;}
 		
+		
+		/// <summary>
+		/// Gets or sets the left paddle score change signal.
+		/// </summary>
+		/// <value>The left paddle score change signal.</value>
+		[Inject]
+		public LeftPaddleScoreChangeSignal leftPaddleScoreChangeSignal { get; set;}
 
 
 		// PUBLIC
@@ -174,10 +188,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 				//
 				switch (boundaryComponent.boundaryType){
 				case BoundaryType.LeftGoal:
-					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GAME_OVER_WIN));
+					leftPaddleScoreChangeSignal.Dispatch (1);
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GOAL_LOSS));
 					break;
 				case BoundaryType.RightGoal:
-					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GAME_OVER_LOSS));
+					rightPaddleScoreChangeSignal.Dispatch (1);
+					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.GOAL_WIN));
 					break;
 				case BoundaryType.None:
 					soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.PADDLE_HIT));

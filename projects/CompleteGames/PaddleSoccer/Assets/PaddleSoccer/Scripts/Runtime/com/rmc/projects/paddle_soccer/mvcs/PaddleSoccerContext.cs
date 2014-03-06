@@ -196,8 +196,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 
 
 			//	2. (INJECTED SIGNALS - DIRECTLY OBSERVED)
-			injectionBinder.Bind<RightPaddleScoreChangedSignal>().ToSingleton();
-			//
 			injectionBinder.Bind<SoundPlaySignal>().ToSingleton();
 			//
 			injectionBinder.Bind<PromptStartSignal>().ToSingleton();
@@ -208,8 +206,8 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 
 			//	3. (PAIRS OF MAPPED/INJECTED SIGNALS)
 			//
-			//commandBinder.Bind<RightPaddleScoreChangeSignal>().To<RightPaddleScoreChangeCommand>();
-			//injectionBinder.Bind<RightPaddleScoreChangedSignal>().ToSingleton(); 
+			commandBinder.Bind<RightPaddleScoreChangeSignal>().To<RightPaddleScoreChangeCommand>();
+			injectionBinder.Bind<RightPaddleScoreChangedSignal>().ToSingleton(); 
 			//
 			commandBinder.Bind<LeftPaddleScoreChangeSignal>().To<LeftPaddleScoreChangeCommand>();
 			injectionBinder.Bind<LeftPaddleScoreChangedSignal>().ToSingleton();
