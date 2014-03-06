@@ -149,6 +149,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// </summary>
 		private const int _STARTING_PUSH_Y = 50;
 
+
+		/// <summary>
+		/// The _ ROTATIO n_ SPEE.
+		/// </summary>
+		private const float _ROTATION_SPEED = 30f;
+
 		
 		//--------------------------------------
 		//  Methods
@@ -286,7 +292,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			// calculates the angle we should turn towards, - 90 makes the sprite rotate
 			_moveDirection_vector2 	= rigidbody2D.velocity.normalized;
 			_targetAngle_float 		= Mathf.Atan2(_moveDirection_vector2.y, _moveDirection_vector2.x) * Mathf.Rad2Deg - 180;
-			_turnSpeed_float 		= 10f * Time.deltaTime;
+			_turnSpeed_float 		= _ROTATION_SPEED * Time.deltaTime;
 			transform.rotation 		= Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, _targetAngle_float), _turnSpeed_float);
 			
 
