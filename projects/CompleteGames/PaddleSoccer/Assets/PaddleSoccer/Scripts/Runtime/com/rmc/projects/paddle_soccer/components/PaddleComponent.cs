@@ -66,6 +66,25 @@ namespace com.rmc.projects.paddle_soccer.components
 		
 		// GETTER / SETTER
 
+		
+		/// <summary>
+		/// Gets or sets a value indicating whether this
+		/// <see cref="com.rmc.projects.paddle_soccer.components.PaddleComponent"/> is spinning.
+		/// </summary>
+		/// <value><c>true</c> if is spinning; otherwise, <c>false</c>.</value>
+		public bool isSpinning
+		{ 
+			get{
+				return _animator.GetBool ("isSpinning_boolean");
+			}
+			set
+			{
+				_animator.SetBool ("isSpinning_boolean", value);
+			}
+		}
+
+
+
 		/// <summary>
 		/// The _target y_float.
 		/// </summary>
@@ -123,15 +142,13 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// </summary>
 		private float _startingXPosition_float;
 
+		/// <summary>
+		/// The _animator.
+		/// </summary>
+		private Animator _animator;
 		
 		
 		/// <summary>
-		/// When the _animation binder.
-		/// 
-		/// NOTE: Notifies when an animation is complete
-		/// 
-		/// </summary>
-		private AnimationMonitor animationMonitor;
 		
 		// PRIVATE STATIC
 		
@@ -145,10 +162,8 @@ namespace com.rmc.projects.paddle_soccer.components
 		public void Start () 
 		{
 			
-			animationMonitor 				= GetComponentInChildren<AnimationMonitor>();
 			_yPosition_lerptarget 			= new LerpTarget (0, 0, -10, 10, 0.5f);
-			doPlayAnimation (ANIMATION_NAME_PADDLE_RED_ANIMATION, 0, 0);
-			animationMonitor.uiAnimationMonitorSignal.AddListener (_onUAnimationMonitorSignal);
+			_animator = GetComponent <Animator>();
 			_startingXPosition_float = gameObject.transform.position.x;
 
 			
@@ -160,7 +175,6 @@ namespace com.rmc.projects.paddle_soccer.components
 		public void OnDestroy ()
 		{
 
-			animationMonitor.uiAnimationMonitorSignal.RemoveListener (_onUAnimationMonitorSignal);
 
 		}
 
@@ -185,35 +199,6 @@ namespace com.rmc.projects.paddle_soccer.components
 		
 		// PUBLIC
 
-
-		
-		/// <summary>
-		/// Do play animation.
-		/// </summary>
-		/// <param name="aAnimationType">A animation type.</param>
-		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
-		/// <param name="aDelayAfterAnimation_float">A delay after animation_float.</param>
-		public void doPlayAnimation (string aAnimationClipName_string, float aDelayBeforeAnimation_float, float aDelayAfterAnimation_float) 
-		{
-			//
-			doStopAnimation();
-			animationMonitor.playRequest ( new AnimationMonitorRequestVO (aAnimationClipName_string, WrapMode.Loop));
-			
-			
-		}
-		
-		
-		
-		/// <summary>
-		/// Do stop animation.
-		/// </summary>
-		public void doStopAnimation()
-		{
-			animation.Stop();
-			
-			
-		}
-
 		
 		/// <summary>
 		/// Dos the tween to starting position.
@@ -236,6 +221,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		/// <param name="aOffsetX_float">A offset x_float.</param>
 		public void doTweenToOffscreenPosition (float aOffsetX_float)
 		{
+
 			//
 			gameObject.transform.position 				= new Vector3 (_startingXPosition_float, gameObject.transform.position.y, gameObject.transform.position.z);
 			Hashtable moveTo_hashtable 					= new Hashtable();
@@ -244,6 +230,36 @@ namespace com.rmc.projects.paddle_soccer.components
 			moveTo_hashtable.Add(iT.MoveTo.time,  		0.25f);
 			moveTo_hashtable.Add(iT.MoveTo.easetype, 	iTween.EaseType.linear);
 			iTween.MoveTo (gameObject, 					moveTo_hashtable);
+		}
+
+		/// <summary>
+		/// Dos the spin once.
+		/// </summary>
+		public void doSpinOnce () 
+		{
+			
+			StartCoroutine (doSpinOnce_Coroutine());
+			
+		}
+
+
+		/// <summary>
+		/// Dos the spin once.
+		/// 
+		/// NOTE:  Animator hinges on the parameter isSpinning_boolean
+		/// 		So we toggle that true, then upon animation completion, false
+		/// 
+		/// </summary>
+		/// <returns>The spin once.</returns>
+		private IEnumerator doSpinOnce_Coroutine () 
+		{
+			
+			isSpinning = true;
+			
+			yield return new WaitForSeconds (_animator.GetCurrentAnimatorStateInfo(0).length);
+			
+			isSpinning = false;
+			
 		}
 		
 		// PUBLIC STATIC
@@ -299,16 +315,6 @@ namespace com.rmc.projects.paddle_soccer.components
 		//
 		//--------------------------------------
 
-
-		/// <summary>
-		/// Do the U animation monitor signal.
-		/// </summary>
-		public void _onUAnimationMonitorSignal (AnimationMonitorEventVO aAnimationMonitorEventVO)
-		{
-
-
-
-		}
 		
 	}
 }

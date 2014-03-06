@@ -161,6 +161,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 				//
 				PaddleComponent paddleComponent = aCollidedWith_gameobject.GetComponent<PaddleComponent>();
 				view.doHandleCollisionWithPaddle (paddleComponent.velocity);
+				paddleComponent.doSpinOnce();
 				//
 				soundPlaySignal.Dispatch (new SoundPlayVO (SoundType.PADDLE_HIT));
 				break;

@@ -55,7 +55,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	[RequireComponent (typeof(Animation), typeof(AnimationMonitor))]
+	[RequireComponent (typeof(Animator))]
 	public class SuperPaddleUI : View 
 	{
 		
