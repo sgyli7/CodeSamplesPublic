@@ -74,7 +74,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.signals
 		/// </summary>
 		public UIAnimationMonitorEventSignal( )
 		{
-			//Debug.Log ("UIAnimationCompleteSignal.constructor()");
+			//Debug.Log ("UIAnimationMonitorEventSignal.constructor()");
 			
 		}
 

@@ -62,7 +62,7 @@ namespace com.rmc.templates
 		//--------------------------------------
 				
 		/// <summary>
-		/// Dos something.
+		/// Do something.
 		/// </summary>
 		//void doSomething();
 		

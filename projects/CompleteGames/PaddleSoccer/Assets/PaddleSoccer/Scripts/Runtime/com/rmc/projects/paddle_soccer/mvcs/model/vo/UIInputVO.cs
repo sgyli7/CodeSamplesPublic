@@ -39,6 +39,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// User interface input event type.
+	/// </summary>
 	public enum UIInputEventType
 	{
 		DownEnter,

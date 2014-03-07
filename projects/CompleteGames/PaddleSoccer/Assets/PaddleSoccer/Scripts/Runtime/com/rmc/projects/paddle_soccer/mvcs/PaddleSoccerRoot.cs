@@ -92,7 +92,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		//  Methods
 		//--------------------------------------
 
-		//	PUBLIC
+		// PUBLIC
+		/// <summary>
+		/// Awake this instance.
+		/// </summary>
 		void Awake()
 		{
 

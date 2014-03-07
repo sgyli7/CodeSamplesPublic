@@ -29,8 +29,6 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.mediation.api;
-using com.rmc.projects.paddle_soccer.mvcs.view.signals;
-using strange.extensions.signal.impl;
 
 //--------------------------------------
 //  Namespace
@@ -75,17 +73,17 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		void init();
 
 		/// <summary>
-		/// Dos the tween to starting position.
+		/// Do the tween to starting position.
 		/// </summary>
 		void doTweenToStartingPosition();
 
 		/// <summary>
-		/// Dos the tween to offscreen position.
+		/// Do the tween to offscreen position.
 		/// </summary>
 		void doTweenToOffscreenPosition();
 
 		/// <summary>
-		/// Dos the reset Y position.
+		/// Do the reset Y position.
 		/// </summary>
 		void doResetYPosition ();
 

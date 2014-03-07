@@ -29,8 +29,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
-using System.Collections.Generic;
 using com.rmc.projects.paddle_soccer.mvcs.model.data;
 
 

@@ -44,6 +44,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// Game state.
+	/// </summary>
 	public enum GameState
 	{
 		NULL,
@@ -326,7 +329,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 
 
 		/// <summary>
-		/// Dos the reset model.
+		/// Do the reset model.
 		/// 
 		/// 
 		/// 
@@ -356,7 +359,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 			uint currentRound_uint 				= _currentRound_uint;
 			uint playerGoalsRequiredToWin 		= _currentRound_uint*_PLAYER_GOALS_REQUIRED_PER_ROUND_MULTIPLYER;
 			uint cpuGoalsRequiredToLose 		= _CPU_GOALS_REQUIRED_PER_ROUND;
-			Range cpuMoveSpeed_range			= new Range (2f, 2f); //lock to one value, but you can put a range here (optional)
+			Range cpuMoveSpeed_range			= new Range (
+				Constants.PADDLE_Y_LERP_ACCELERATION_DEFAULT_MINIMUM,
+				Constants.PADDLE_Y_LERP_ACCELERATION_DEFAULT_MAXIMUM
+				); //lock to one value, but you can put a range here (optional)
 
 			//
 			currentRoundDataVO = new RoundDataVO (

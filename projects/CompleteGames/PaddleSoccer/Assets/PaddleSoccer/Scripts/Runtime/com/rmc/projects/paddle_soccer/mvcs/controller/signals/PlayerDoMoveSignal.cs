@@ -75,7 +75,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 		/// </summary>
 		public PlayerDoMoveSignal( )
 		{
-			//Debug.Log ("TurretDoMoveSignal.constructor()");
+			//Debug.Log ("PlayerDoMoveSignal.constructor()");
 			
 		}
 

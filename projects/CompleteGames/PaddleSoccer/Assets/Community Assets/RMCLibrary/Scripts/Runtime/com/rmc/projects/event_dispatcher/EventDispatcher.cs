@@ -68,11 +68,12 @@ namespace com.rmc.projects.event_dispatcher
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.event_dispatcher.EventDispatcher"/> class.
+		/// </summary>
+		/// <param name="aTarget_object">A target_object.</param>
 		public EventDispatcher (object aTarget_object )
 		{
 			//
@@ -82,14 +83,18 @@ namespace com.rmc.projects.event_dispatcher
 		}
 		
 		/// <summary>
-		/// Deconstructor
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.event_dispatcher.EventDispatcher"/> is reclaimed by garbage collection.
 		/// </summary>
-		//~EventDispatcher ( )
-		//{
-		//	Debug.Log ("EventDispatcher.deconstructor()");
+		~EventDispatcher ( )
+		{
+			Debug.Log ("EventDispatcher.deconstructor()");
 			
-		//}
-		
+		}
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------	
 		
 		/// <summary>
 		/// Adds the event listener.

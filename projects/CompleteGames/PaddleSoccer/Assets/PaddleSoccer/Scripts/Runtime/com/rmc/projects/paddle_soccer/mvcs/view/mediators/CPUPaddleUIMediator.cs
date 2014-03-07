@@ -29,10 +29,7 @@
 //  Imports
 //--------------------------------------
 using com.rmc.projects.paddle_soccer.mvcs.view.ui;
-using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 using com.rmc.projects.paddle_soccer.mvcs.model;
-using com.rmc.projects.animation_monitor;
-
 
 //--------------------------------------
 //  Namespace
@@ -128,28 +125,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public void Update()
 		{
 
-			//*************************************************
-			//******* CORE LOGIC                     **********
-			//*************************************************
-			if (iGameModel.gameState == GameState.ROUND_DURING_CORE_GAMEPLAY) {
-
-				//view.doMoveToTarget();
-
-			}
-			//*************************************************
-			//*************************************************
-			//*************************************************
-			
-
 
 		}
 		
-		//	PUBLIC
-		
+		// PUBLIC
 		
 		// PRIVATE
-
-
 
 		// PRIVATE STATIC
 		

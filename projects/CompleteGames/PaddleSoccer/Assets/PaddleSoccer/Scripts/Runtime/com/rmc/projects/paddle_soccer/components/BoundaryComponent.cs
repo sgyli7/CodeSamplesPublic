@@ -39,6 +39,9 @@ namespace com.rmc.projects.paddle_soccer.components
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// Boundary type.
+	/// </summary>
 	public enum BoundaryType
 	{
 		None,

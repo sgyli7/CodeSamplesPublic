@@ -90,7 +90,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		//--------------------------------------
 
 		/// <summary>
-		/// Dos the reset model.
+		/// Do the reset model.
 		/// </summary>
 		void doResetModel();
 

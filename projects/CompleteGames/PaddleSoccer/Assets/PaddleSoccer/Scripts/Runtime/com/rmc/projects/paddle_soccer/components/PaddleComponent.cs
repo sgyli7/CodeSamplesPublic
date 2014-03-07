@@ -28,21 +28,13 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.exceptions;
 using System.Collections;
-using com.rmc.projects.animation_monitor;
-
-
+using com.rmc.utilities;
+using com.rmc.projects.paddle_soccer.mvcs;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.mvcs.model.data;
-using com.rmc.utilities;
-using com.rmc.projects.paddle_soccer.mvcs.view.ui;
-using com.rmc.projects.paddle_soccer.mvcs;
-
-
 namespace com.rmc.projects.paddle_soccer.components
 {
 	
@@ -211,7 +203,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		// PUBLIC
 
 		/// <summary>
-		/// Dos the reset Y position.
+		/// Do the reset Y position.
 		/// </summary>
 		public void doResetYPosition ()
 		{
@@ -220,7 +212,7 @@ namespace com.rmc.projects.paddle_soccer.components
 
 		
 		/// <summary>
-		/// Dos the tween to starting position.
+		/// Do the tween to starting position.
 		/// </summary>
 		public void doTweenToStartingPosition ()
 		{
@@ -234,7 +226,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		}
 
 		/// <summary>
-		/// Dos the tween to starting position.
+		/// Do the tween to starting position.
 		/// </summary>
 		/// <param name="aOffsetX_float">A offset x_float.</param>
 		public void doTweenToOffscreenPosition (float aOffsetX_float)
@@ -251,7 +243,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		}
 
 		/// <summary>
-		/// Dos the spin once.
+		/// Do the spin once.
 		/// </summary>
 		public void doSpinOnce () 
 		{
@@ -262,7 +254,7 @@ namespace com.rmc.projects.paddle_soccer.components
 
 
 		/// <summary>
-		/// Dos the spin once.
+		/// Do the spin once.
 		/// 
 		/// NOTE:  Animator hinges on the parameter isSpinning_boolean
 		/// 		So we toggle that true, then upon animation completion, false

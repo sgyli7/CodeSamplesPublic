@@ -29,18 +29,12 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
-using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
+using com.rmc.projects.paddle_soccer.mvcs.view.signals;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
-using com.rmc.projects.paddle_soccer.components;
-using strange.extensions.signal.impl;
-using com.rmc.projects.paddle_soccer.mvcs.view.signals;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 {
 	
@@ -220,7 +214,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		
 		// PUBLIC
 		/// <summary>
-		/// Dos the reset to starting position.
+		/// Do the reset to starting position.
 		/// </summary>
 		public void doResetToStartingPosition() 
 		{
@@ -242,7 +236,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the give starting push.
+		/// Do the give starting push.
 		/// </summary>
 		public void doGiveStartingPush ()
 		{
@@ -266,7 +260,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the handle collision with paddle.
+		/// Do the handle collision with paddle.
 		/// 
 		/// NOTE: We put some english (curve) if the paddle is moving
 		/// NOTE: We add some speed, always to increase pace of current gameplay

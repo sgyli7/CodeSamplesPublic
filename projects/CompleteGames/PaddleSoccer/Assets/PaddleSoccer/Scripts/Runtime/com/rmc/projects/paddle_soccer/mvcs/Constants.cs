@@ -39,6 +39,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// Sound type.
+	/// </summary>
 	public enum SoundType
 	{
 		BUTTON_CLICK,
@@ -73,20 +76,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		// PUBLIC
 		
 		// PUBLIC STATIC
+		//
 		public const string PROMPT_ROUND_START      = "Score {0} Goals To Win";
-
-		public const string PROMPT_DROP_BALL_START   = "Get Ready!";
+		public const string PROMPT_DROP_BALL_START  = "Get Ready!";
 
 		//
 		public const string PROMPT_GAME_END_WIN 	= "You Won The Game!";
 		public const string PROMPT_GAME_END_LOSS	= "You Lost The Game!";
 		//
-		public const string HUD_CLICK_ANYWHERE      = "Tap/Click Anywhere To Continue\n\n<size=15>Up Arrow, Down Arrow</size>\n<size=15>Return To Reset</size>";
+		public const string HUD_CLICK_ANYWHERE      		= "Tap/Click Anywhere To Continue\n\n<size=15>Up Arrow, Down Arrow</size>\n<size=15>Return To Reset</size>";
 		public const string HUD_CLICK_RESTART_KEYBOARD     	= "Press 'Return' To Reset";
 		public const string HUD_CLICK_RESTART_VIRTUAL     	= "Press 'Reset' Buttton";
 
+		//
 		public const string HUD_RIGHT_SCORE      	= "CPU: {0}";
-
 		public const string HUD_LEFT_SCORE      	= "Player: {0}";
 
 
@@ -96,11 +99,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		public static float PADDLE_Y_LERP_MINIMUM		= PADDLE_Y_TARGET_MINIMUM - 1;  //GOVERNS ACCELERATION TO LIMITS
 		public static float PADDLE_Y_LERP_MAXIMUM		= PADDLE_Y_TARGET_MAXIMUM + 1;  //GOVERNS ACCELERATION TO LIMITS
 		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT  = 2.5f; //FOR PLAYER
-		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT_MINIMUM  = 1.5f; //FOR CPU RANGE
-		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT_MAXIMUM  = 3.5f; //FOR CPU RANGE
+		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT_MINIMUM  = 2.5f; //FOR CPU RANGE
+		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT_MAXIMUM  = 3f; //FOR CPU RANGE
 
 
-
+		//
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_UP 	= "Up";
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_DOWN 	= "Down";
 		public static string VIRTUAL_CONTROLLER_BUTTON_LABEL_RESET 	= "Reset";

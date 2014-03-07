@@ -96,10 +96,8 @@ namespace com.rmc.projects.event_dispatcher
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		// PUBLIC
-		
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.event_dispatcher.Event"/> class.
 		/// </summary>
@@ -123,7 +121,12 @@ namespace com.rmc.projects.event_dispatcher
 			
 		}
 		
-		
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------	
+
+		// PUBLIC
+
 		// PUBLIC STATIC
 		
 		// PRIVATE

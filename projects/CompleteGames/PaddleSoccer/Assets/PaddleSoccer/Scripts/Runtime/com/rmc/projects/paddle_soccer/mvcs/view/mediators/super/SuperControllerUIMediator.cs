@@ -31,19 +31,15 @@
 using UnityEngine;
 using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 using strange.extensions.mediation.impl;
-using com.rmc.projects.paddle_soccer.mvcs.view.ui;
-using com.rmc.exceptions;
 using com.rmc.projects.paddle_soccer.mvcs.model.vo;
 using com.rmc.projects.paddle_soccer.mvcs.model;
+using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 {
 	
@@ -101,12 +97,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		public GameResetSignal gameResetSignal 		{ get; set;}
 
 
-
 		/// <summary>
 		/// MODEL: The main game data
 		/// </summary>
 		[Inject]
 		public IGameModel iGameModel { get; set; } 
+
 
 		/// <summary>
 		/// Gets or sets the cross platform changed signal.
@@ -162,7 +158,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators.super
 		}
 		
 		
-		//	PUBLIC
+		// PUBLIC
 		/// <summary>
 		/// Resets the game.
 		/// 

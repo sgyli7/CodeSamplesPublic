@@ -36,17 +36,14 @@ using strange.extensions.context.impl;
 using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 using com.rmc.projects.paddle_soccer.mvcs.controller.commands;
 using com.rmc.projects.paddle_soccer.mvcs.view.ui;
-using com.rmc.projects.paddle_soccer.mvcs.view;
 using com.rmc.projects.paddle_soccer.mvcs.model;
+using com.rmc.projects.paddle_soccer.mvcs.view.mediators;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.mvcs.view.mediators;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs
 {
 	
@@ -112,7 +109,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		//  Methods
 		//--------------------------------------
 
-		//	PUBLIC
+		// PUBLIC
 		
 		// PRIVATE
 		

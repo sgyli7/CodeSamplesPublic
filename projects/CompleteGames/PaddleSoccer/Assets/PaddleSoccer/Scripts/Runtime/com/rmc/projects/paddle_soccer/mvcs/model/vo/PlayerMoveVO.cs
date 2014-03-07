@@ -40,6 +40,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// Move type.
+	/// </summary>
 	public enum MoveType
 	{
 		UpOneTick,
@@ -61,6 +64,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
+		/// <summary>
+		/// The type of the _move.
+		/// </summary>
 		private MoveType _moveType;
 		public MoveType moveType { 
 			get
@@ -72,7 +78,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 				_moveType = value;
 			}
 		}
-		
+
+
+		/// <summary>
+		/// The _amount_float.
+		/// </summary>
 		private float _amount_float;
 		public float amount {
 			get

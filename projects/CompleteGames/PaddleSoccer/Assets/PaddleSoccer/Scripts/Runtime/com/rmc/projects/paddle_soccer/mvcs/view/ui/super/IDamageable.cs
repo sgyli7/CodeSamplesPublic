@@ -55,6 +55,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+		/// <summary>
+		/// Do the take damage.
+		/// </summary>
+		/// <param name="aDamageAmount_float">A damage amount_float.</param>
 		void doTakeDamage (float aDamageAmount_float);
 		
 	}

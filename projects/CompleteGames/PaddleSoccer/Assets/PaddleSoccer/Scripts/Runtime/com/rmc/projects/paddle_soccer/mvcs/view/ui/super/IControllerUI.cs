@@ -34,9 +34,6 @@ using com.rmc.projects.paddle_soccer.mvcs.view.signals;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using strange.extensions.signal.impl;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 {
 	
@@ -62,7 +59,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this
-		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.IControllerUI"/> is visible.
+		/// <see cref="com.rmc.projects.paddle_soccer.mvcs.view.ui.super.IControllerUI"/> is visible.
 		/// </summary>
 		/// <value><c>true</c> if is visible; otherwise, <c>false</c>.</value>
 		bool isVisible { get; set;}
@@ -71,6 +68,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
+		/// <summary>
+		/// Init this instance.
+		/// </summary>
 		void init();
 		
 	}

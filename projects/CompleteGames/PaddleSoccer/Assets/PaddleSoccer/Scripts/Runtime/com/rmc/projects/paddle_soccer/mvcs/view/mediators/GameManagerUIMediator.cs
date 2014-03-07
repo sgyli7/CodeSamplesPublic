@@ -35,7 +35,6 @@ using UnityEngine;
 using com.rmc.projects.paddle_soccer.mvcs.model.vo;
 using com.rmc.projects.paddle_soccer.mvcs.model;
 using com.rmc.exceptions;
-using System.Collections;
 using System;
 
 
@@ -186,7 +185,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			
 		}
 		
-		//	PUBLIC
+		// PUBLIC
 		
 		
 		// PRIVATE
@@ -274,12 +273,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		}
 		
 		/// <summary>
-		/// Do check round and game status after time.
-		/// 
-		/// NOTE: Must be public
-		/// 
+		/// _dos the check round and game status after time.
 		/// </summary>
-		public void _doCheckRoundAndGameStatusAfterTime () 
+		private void _doCheckRoundAndGameStatusAfterTime () 
 		{
 			//
 			//Debug.Log ("_doCheckRoundAndGameStatusAfterTime()");

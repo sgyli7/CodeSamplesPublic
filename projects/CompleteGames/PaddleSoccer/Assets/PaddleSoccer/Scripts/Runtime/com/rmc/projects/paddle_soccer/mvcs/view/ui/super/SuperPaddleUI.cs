@@ -29,22 +29,21 @@
 //--------------------------------------
 using UnityEngine;
 using strange.extensions.mediation.impl;
-using com.rmc.projects.animation_monitor;
 using com.rmc.projects.paddle_soccer.components;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using strange.extensions.signal.impl;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// Paddle position.
+	/// </summary>
 	public enum PaddlePosition
 	{
 		ScreenLeft,
@@ -173,7 +172,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		
 		// PUBLIC
 		/// <summary>
-		/// Dos the reset Y position.
+		/// Do the reset Y position.
 		/// </summary>
 		public void doResetYPosition ()
 		{
@@ -181,7 +180,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		}
 
 		/// <summary>
-		/// Dos the tween to starting position.
+		/// Do the tween to starting position.
 		/// </summary>
 		public void doTweenToStartingPosition ()
 		{
@@ -189,7 +188,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui.super
 		}
 
 		/// <summary>
-		/// Dos the tween to starting position.
+		/// Do the tween to starting position.
 		/// </summary>
 		public void doTweenToOffscreenPosition ()
 		{

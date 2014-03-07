@@ -28,7 +28,6 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.mvcs.model;
 using strange.extensions.command.impl;
 using UnityEngine;
 using com.rmc.projects.paddle_soccer.mvcs.controller.signals;

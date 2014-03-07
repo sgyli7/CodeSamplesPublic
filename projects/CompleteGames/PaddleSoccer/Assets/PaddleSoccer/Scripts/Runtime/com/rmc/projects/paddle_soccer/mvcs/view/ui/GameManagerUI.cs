@@ -31,20 +31,20 @@ using UnityEngine;
 using strange.extensions.mediation.impl;
 using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 using System.Collections;
-using com.rmc.projects.paddle_soccer.mvcs.model.vo;
+using com.rmc.projects.paddle_soccer.components;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.components;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// Enemy placement.
+	/// </summary>
 	public enum EnemyPlacement
 	{
 		DEBUG,

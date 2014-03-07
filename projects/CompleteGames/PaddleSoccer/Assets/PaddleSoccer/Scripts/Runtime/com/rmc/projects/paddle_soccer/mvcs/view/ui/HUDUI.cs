@@ -43,6 +43,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// HUD mode.
+	/// </summary>
 	public enum HUDMode
 	{
 		Show,
@@ -325,7 +328,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the prompt start.
+		/// Do the prompt start.
 		/// </summary>
 		/// <param name="aMessage_string">A message_string.</param>
 		public void doPromptStart (string aMessage_string, bool aIsToFadeOutToo_boolean) 

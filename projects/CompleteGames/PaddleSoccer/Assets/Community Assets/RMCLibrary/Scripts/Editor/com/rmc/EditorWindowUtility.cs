@@ -32,7 +32,6 @@ using UnityEngine;
 using UnityEditor;
 using System.Reflection;
 using System.Linq;
-using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
@@ -207,6 +206,12 @@ namespace com.rmc.utilities
 		//**	HIERARCHY WINDOW UTILITIES
 		//*********************************************************************
 		//*********************************************************************
+		/// <summary>
+		/// Gets all hierarchy scripts by super class and interface.
+		/// </summary>
+		/// <returns>The all hierarchy scripts by super class and interface.</returns>
+		/// <param name="aSuperClassType">A super class type.</param>
+		/// <param name="aInterfaceType">A interface type.</param>
 		public static Object[] GetAllHierarchyScriptsBySuperClassAndInterface (System.Type aSuperClassType, System.Type aInterfaceType)
 		{
 			

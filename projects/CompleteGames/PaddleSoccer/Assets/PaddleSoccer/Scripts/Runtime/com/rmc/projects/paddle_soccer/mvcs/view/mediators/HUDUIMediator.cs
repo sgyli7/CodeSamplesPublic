@@ -109,7 +109,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public GameStateChangedSignal gameStateChangedSignal {set; get;}
 
 		
-		
 		/// <summary>
 		/// Gets or sets the sound play signal.
 		/// </summary>
@@ -197,7 +196,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		}
 		
 		
-		//	PUBLIC
+		// PUBLIC
 		
 		
 		// PRIVATE

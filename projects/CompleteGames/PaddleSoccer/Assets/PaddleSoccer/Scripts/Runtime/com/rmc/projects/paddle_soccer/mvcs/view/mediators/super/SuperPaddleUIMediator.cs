@@ -30,9 +30,7 @@
 //--------------------------------------
 using strange.extensions.mediation.impl;
 using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
-using com.rmc.projects.paddle_soccer.mvcs.model.vo;
 using com.rmc.projects.paddle_soccer.mvcs.model;
-using com.rmc.projects.animation_monitor;
 using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
 
 
@@ -115,7 +113,6 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public override void OnRegister()
 		{
 			view.init();
-			//Debug.Log ("test: " + view.animation.getUIAnimationCompleteSignal() );
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
 			
 
@@ -128,12 +125,11 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public override void OnRemove()
 		{
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
-			
 
 		}
 
 		
-		//	PUBLIC
+		// PUBLIC
 		
 		
 		// PRIVATE

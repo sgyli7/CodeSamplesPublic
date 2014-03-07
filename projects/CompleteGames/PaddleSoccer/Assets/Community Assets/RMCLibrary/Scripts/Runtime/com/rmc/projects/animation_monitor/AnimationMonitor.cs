@@ -75,12 +75,10 @@ namespace com.rmc.projects.animation_monitor
 		
 		// PRIVATE
 		// PRIVATE STATIC
-		
+
 		//--------------------------------------
-		//  Methods
-		//--------------------------------------	
-		
-		// PUBLIC
+		//  Constructor / Destructor
+		//--------------------------------------
 		/// <summary>
 		/// Initializes a new instance of the <see cref="com.rmc.projects.animation_monitor.AnimationMonitor"/> class.
 		/// </summary>
@@ -100,6 +98,9 @@ namespace com.rmc.projects.animation_monitor
 			
 		}
 
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------	
 
 		/// <summary>
 		/// Start this instance.

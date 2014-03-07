@@ -33,8 +33,6 @@ using com.rmc.projects.paddle_soccer.mvcs.view.signals;
 using com.rmc.utilities;
 using com.rmc.projects.paddle_soccer.mvcs.model.vo;
 using com.rmc.projects.animation_monitor;
-using System.Collections;
-
 
 
 //--------------------------------------
@@ -46,6 +44,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	/// <summary>
+	/// Intro mode.
+	/// </summary>
 	public enum IntroMode
 	{
 		Show,
@@ -234,7 +235,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 
 		
 		/// <summary>
-		/// Dos the play animation.
+		/// Do the play animation.
 		/// </summary>
 		/// <param name="aAnimationType">A animation type.</param>
 		/// <param name="aDelayBeforeAnimation_float">A delay before animation_float.</param>
@@ -259,7 +260,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		}
 
 		/// <summary>
-		/// Dos the stop animation.
+		/// Do the stop animation.
 		/// </summary>
 		public void doStopAnimation()
 		{

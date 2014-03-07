@@ -60,7 +60,6 @@ public class TemplateManagerComponent : MonoBehaviour
 		
 		// GETTER / SETTER
 		templateComponent.samplePublic2 = "test2";
-		Debug.Log("samplePublic2: " + templateComponent.samplePublic2);
 			
 		// PUBLIC STATIC
 		TemplateComponent.SamplePublicStatic_str = "test3";

@@ -30,8 +30,6 @@
 //  Imports
 //--------------------------------------
 using strange.extensions.signal.impl;
-using com.rmc.projects.paddle_soccer.mvcs.model.vo;
-using com.rmc.projects.paddle_soccer.mvcs.view.ui;
 
 //--------------------------------------
 //  Namespace

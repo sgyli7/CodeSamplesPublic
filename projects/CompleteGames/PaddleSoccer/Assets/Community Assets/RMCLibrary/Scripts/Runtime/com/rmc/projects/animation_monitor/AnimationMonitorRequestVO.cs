@@ -29,7 +29,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 
 //--------------------------------------
 //  Namespace

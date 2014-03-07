@@ -134,11 +134,15 @@ namespace com.rmc.projects.event_dispatcher
 		// PRIVATE STATIC
 		
 		//--------------------------------------
-		//  Methods
+		//  Constructor / Destructor
 		//--------------------------------------
-		///<summary>
-		///	 Constructor
-		///</summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.event_dispatcher.EventListenerData"/> class.
+		/// </summary>
+		/// <param name="aEventListener">A event listener.</param>
+		/// <param name="aEventName_string">A event name_string.</param>
+		/// <param name="aEventDelegate">A event delegate.</param>
+		/// <param name="aEventListeningMode">A event listening mode.</param>
 		public EventListenerData (object aEventListener, string aEventName_string, EventDelegate aEventDelegate, EventDispatcherAddMode aEventListeningMode )
 		{
 			_eventListener 		= aEventListener;
@@ -151,14 +155,20 @@ namespace com.rmc.projects.event_dispatcher
 		}
 		
 		/// <summary>
-		/// Deconstructor
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// <see cref="com.rmc.projects.event_dispatcher.EventListenerData"/> is reclaimed by garbage collection.
 		/// </summary>
-		//~EventListenerData ( )
-		//{
+		~EventListenerData ( )
+		{
 			//Debug.Log ("EventListenerData.deconstructor()");
 			
-		//}
+		}
 		
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+
+		// PUBLIC
 		
 		// PUBLIC STATIC
 		

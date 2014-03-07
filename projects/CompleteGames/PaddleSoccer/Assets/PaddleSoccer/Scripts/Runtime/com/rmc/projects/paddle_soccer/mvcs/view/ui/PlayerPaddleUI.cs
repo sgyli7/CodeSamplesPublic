@@ -27,17 +27,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
 using UnityEngine;
-using strange.extensions.mediation.impl;
-using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.mvcs.view.ui.super;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 {
 	

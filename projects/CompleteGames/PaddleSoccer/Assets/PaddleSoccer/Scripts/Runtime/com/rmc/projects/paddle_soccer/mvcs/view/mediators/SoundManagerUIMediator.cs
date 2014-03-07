@@ -129,7 +129,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		}
 		
 		
-		//	PUBLIC
+		// PUBLIC
 		
 		
 		// PRIVATE

@@ -74,7 +74,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.controller.signals
 		/// </summary>
 		public RightPaddleScoreChangeSignal( )
 		{
-			//Debug.Log ("TurretHealthChangeSignal.constructor()");
+			//Debug.Log ("RightPaddleScoreChangeSignal.constructor()");
 			
 		}
 

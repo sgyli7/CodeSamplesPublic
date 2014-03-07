@@ -29,20 +29,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.paddle_soccer.mvcs.controller.signals;
-using strange.extensions.mediation.impl;
 using com.rmc.projects.paddle_soccer.mvcs.view.ui;
-using com.rmc.exceptions;
-using com.rmc.projects.paddle_soccer.mvcs.model.vo;
+using com.rmc.projects.paddle_soccer.mvcs.view.mediators.super;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.paddle_soccer.mvcs.view.mediators.super;
-
-
 namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 {
 	
@@ -114,7 +108,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		}
 		
 		
-		//	PUBLIC
+		// PUBLIC
 		
 		
 		// PRIVATE
