@@ -1,12 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/model/GameModel.cs">
-    <Files>
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/model/vo/RoundDataVO.cs" Line="32" Column="1" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Editor/com/rmc/ScriptableObjectUtility.cs" Line="2" Column="31" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/model/GameModel.cs" Line="361" Column="57" />
-      <File FileName="Assets/PaddleSoccer/Scripts/Runtime/com/rmc/projects/paddle_soccer/mvcs/Constants.cs" Line="98" Column="65" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -17,10 +11,13 @@
                   <Node name="Runtime" expanded="True">
                     <Node name="com" expanded="True">
                       <Node name="rmc" expanded="True">
+                        <Node name="exceptions" expanded="True" />
                         <Node name="extension_methods" expanded="True" />
                         <Node name="projects" expanded="True">
+                          <Node name="animation_monitor" expanded="True" />
                           <Node name="event_dispatcher" expanded="True" />
                         </Node>
+                        <Node name="templates" expanded="True" />
                         <Node name="utilities" expanded="True" />
                       </Node>
                     </Node>
@@ -44,7 +41,6 @@
                             <Node name="model" expanded="True">
                               <Node name="data" expanded="True" />
                               <Node name="vo" expanded="True" />
-                              <Node name="GameModel.cs" selected="True" />
                             </Node>
                             <Node name="view" expanded="True">
                               <Node name="mediators" expanded="True">
@@ -55,6 +51,7 @@
                                 <Node name="super" expanded="True" />
                               </Node>
                             </Node>
+                            <Node name="PaddleSoccerContext.cs" selected="True" />
                           </Node>
                         </Node>
                       </Node>
