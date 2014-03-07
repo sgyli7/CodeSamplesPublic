@@ -245,6 +245,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 				                            true,
 				                            true
 				                            );
+				view.cpuPaddleComponent.accelerationY = iGameModel.currentRoundDataVO.getRandomCPUMovementSpeedWithinRange();
 				//WAITING FOR: PROMPT ANIM TO FINISH FOR "ROUND START..."
 				break;
 			case GameState.ROUND_DROP_BALL_START:
@@ -281,9 +282,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public void _doCheckRoundAndGameStatusAfterTime () 
 		{
 			//
-			Debug.Log ("_doCheckRoundAndGameStatusAfterTime()");
-			Debug.Log ("Check Player, ("+iGameModel.currentRoundDataVO.playerGoalsScoredThisRound + " of " +  iGameModel.currentRoundDataVO.playerGoalsRequiredToWin + ")");
-			Debug.Log ("Check CPU   , ("+iGameModel.currentRoundDataVO.cpuGoalsScoredThisRound + " of " +  iGameModel.currentRoundDataVO.cpuGoalsRequiredToLose + ")");
+			//Debug.Log ("_doCheckRoundAndGameStatusAfterTime()");
+			//Debug.Log ("Check Player, ("+iGameModel.currentRoundDataVO.playerGoalsScoredThisRound + " of " +  iGameModel.currentRoundDataVO.playerGoalsRequiredToWin + ")");
+			//Debug.Log ("Check CPU   , ("+iGameModel.currentRoundDataVO.cpuGoalsScoredThisRound + " of " +  iGameModel.currentRoundDataVO.cpuGoalsRequiredToLose + ")");
 
 
 

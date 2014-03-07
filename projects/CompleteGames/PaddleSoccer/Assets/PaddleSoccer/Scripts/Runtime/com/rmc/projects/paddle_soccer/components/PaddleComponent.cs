@@ -126,9 +126,22 @@ namespace com.rmc.projects.paddle_soccer.components
 		public const string ANIMATION_NAME_PADDLE_BLUE_ANIMATION 		= "PaddleBlueAnimation";	
 		
 		/// <summary>
-		/// When the _move speed_float.
+		/// Gets or sets the acceleration y.
 		/// </summary>
-		private float _moveSpeed_float;
+		/// <value>The acceleration y.</value>
+		public float accelerationY
+		{ 
+			get{
+				return _yPosition_lerptarget.acceleration;
+			}
+			set
+			{
+				_yPosition_lerptarget.acceleration = value;
+				
+			}
+		}
+
+
 
 
 
@@ -162,7 +175,7 @@ namespace com.rmc.projects.paddle_soccer.components
 		public void Start () 
 		{
 			
-			_yPosition_lerptarget 			= new LerpTarget (0, 0, Constants.PADDLE_Y_LERP_MINIMUM, Constants.PADDLE_Y_LERP_MAXIMUM, 2.5f);
+			_yPosition_lerptarget 			= new LerpTarget (0, 0, Constants.PADDLE_Y_LERP_MINIMUM, Constants.PADDLE_Y_LERP_MAXIMUM, Constants.PADDLE_Y_LERP_ACCELERATION_DEFAULT);
 			_animator = GetComponent <Animator>();
 			_positionAtStart_vector3 = gameObject.transform.position;
 

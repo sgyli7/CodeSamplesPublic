@@ -107,6 +107,20 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		/// </summary>
 		public GameObject promptGUIText2_gameObject;
 
+		
+		/// <summary>
+		/// The restart GUI text_game object.
+		/// </summary>
+		public GameObject restartGUIText_gameObject;
+		
+		
+		/// <summary>
+		/// The restart GUI text2_game object.
+		/// </summary>
+		public GameObject restartGUIText2_gameObject;
+
+
+
 		/// <summary>
 		/// When the FPS GUI text_game object.
 		/// </summary>
@@ -159,6 +173,19 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		private GUIText _promptGUIText2;
 
 		/// <summary>
+		/// The _restart GUI text.
+		/// </summary>
+		private GUIText _restartGUIText;
+		
+		
+		/// <summary>
+		/// The _restart GUI text2.
+		/// </summary>
+		private GUIText _restartGUIText2;
+
+
+
+		/// <summary>
 		/// When the FPS GUI text.
 		/// </summary>
 		private GUIText _fpsGUIText;
@@ -195,6 +222,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			_paddleLeftGUIText2 	= paddleLeftGUIText2_gameobject.GetComponent<GUIText>();
 			_promptGUIText			= promptGUIText_gameObject.GetComponent<GUIText>();
 			_promptGUIText2			= promptGUIText2_gameObject.GetComponent<GUIText>();
+			_restartGUIText			= restartGUIText_gameObject.GetComponent<GUIText>();
+			_restartGUIText2		= restartGUIText2_gameObject.GetComponent<GUIText>();
+			//
 			_fpsGUIText         	= fpsGUIText_gameObject.GetComponent<GUIText>();
 
 			//CLEAR PROMPT BEFORE ITS FIRST USE
@@ -209,14 +239,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		void Update () 
 		{
 			//Debug.Log ("HUDUI.update!" + _scoreGUIText.text);
+			//todo: remove this
 			if (_paddleLeftGUIText.text != promptMessage) {
 				_setPromptText( promptMessage);
-			}
-
-			//Debug.Log ("HUD: " + gameObject);
-			if (gameObject == null || this == null) {
-				Debug.Log ("!!!!!!1HUDUI.Update: " + gameObject);
-				Debug.Log ("!!!!!!2HUDUI.Update: " + this);
 			}
 
 		}
@@ -239,11 +264,12 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		public void setVisibility (bool aIsVisible_boolean)
 		{
 
-			RendererUtility.SetMaterialVisibility (_paddleLeftGUIText.guiText.material, 		aIsVisible_boolean);
+			RendererUtility.SetMaterialVisibility (_paddleLeftGUIText.guiText.material, 	aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_paddleLeftGUIText2.guiText.material, 	aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_paddleRightGUIText.guiText.material, 	aIsVisible_boolean);
 			RendererUtility.SetMaterialVisibility (_paddleRightGUIText2.guiText.material, 	aIsVisible_boolean);
-			RendererUtility.SetMaterialVisibility (_fpsGUIText.guiText.material, 		aIsVisible_boolean);
+
+			RendererUtility.SetMaterialVisibility (_fpsGUIText.guiText.material, 			aIsVisible_boolean);
 
 			//KEEP HERE AS REMINDER
 			//SINCE WE FADE THIS TEXT MANUALLY, DON'T SET VISIBILITY HERE
@@ -251,8 +277,29 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 			//RendererUtility.SetMaterialVisibility (_promptGUIText2.guiText.material, 	aIsVisible_boolean);
 
 		}
+
+
+		/// <summary>
+		/// Sets the visibility for restart GU.
+		/// </summary>
+		/// <param name="aIsVisible_boolean">If set to <c>true</c> a is visible_boolean.</param>
+		public void setVisibilityForRestartGUI (bool aIsVisible_boolean)
+		{
+			
+			RendererUtility.SetMaterialVisibility (_restartGUIText.guiText.material, 	aIsVisible_boolean);
+			RendererUtility.SetMaterialVisibility (_restartGUIText2.guiText.material, 	aIsVisible_boolean);
+		}
 		
-		// PUBLIC
+		/// <summary>
+		/// Sets the score text.
+		/// </summary>
+		/// <param name="aMessage_string">A message_string.</param>
+		public void setTextForRestartGUI (string aMessage_string)
+		{
+			_restartGUIText.text = aMessage_string;
+			_restartGUIText2.text = aMessage_string;
+			
+		}
 
 		/// <summary>
 		/// Sets the score text.

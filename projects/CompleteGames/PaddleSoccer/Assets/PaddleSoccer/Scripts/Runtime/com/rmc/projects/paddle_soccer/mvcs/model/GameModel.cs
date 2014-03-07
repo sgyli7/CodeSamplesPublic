@@ -279,7 +279,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model
 		/// <summary>
 		/// The _ CP u_ GOAL s_ REQUIRE d_ PE r_ ROUN.
 		/// </summary>
-		private const int _CPU_GOALS_REQUIRED_PER_ROUND = 1;
+		private const int _CPU_GOALS_REQUIRED_PER_ROUND = 2;
 		
 		
 		//--------------------------------------

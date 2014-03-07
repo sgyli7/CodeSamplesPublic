@@ -82,6 +82,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		public const string PROMPT_GAME_END_LOSS	= "You Lost The Game!";
 		//
 		public const string HUD_CLICK_ANYWHERE      = "Tap/Click Anywhere To Continue\n\n<size=15>Up Arrow, Down Arrow</size>\n<size=15>Return To Reset</size>";
+		public const string HUD_CLICK_RESTART_KEYBOARD     	= "Press 'Return' To Reset";
+		public const string HUD_CLICK_RESTART_VIRTUAL     	= "Press 'Reset' Buttton";
+
 		public const string HUD_RIGHT_SCORE      	= "CPU: {0}";
 
 		public const string HUD_LEFT_SCORE      	= "Player: {0}";
@@ -92,7 +95,9 @@ namespace com.rmc.projects.paddle_soccer.mvcs
 		public static float PADDLE_Y_TARGET_MAXIMUM		= 3;  //GOVERNS ACTUAL POSITION
 		public static float PADDLE_Y_LERP_MINIMUM		= PADDLE_Y_TARGET_MINIMUM - 1;  //GOVERNS ACCELERATION TO LIMITS
 		public static float PADDLE_Y_LERP_MAXIMUM		= PADDLE_Y_TARGET_MAXIMUM + 1;  //GOVERNS ACCELERATION TO LIMITS
-
+		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT  = 2.5f; //FOR PLAYER
+		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT_MINIMUM  = 1.5f; //FOR CPU RANGE
+		public static float PADDLE_Y_LERP_ACCELERATION_DEFAULT_MAXIMUM  = 3.5f; //FOR CPU RANGE
 
 
 

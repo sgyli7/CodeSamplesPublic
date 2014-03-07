@@ -94,6 +94,16 @@ namespace com.rmc.projects.paddle_soccer.mvcs.model.vo
 		/// </summary>
 		public Range cpuMoveSpeed_range;
 
+		/// <summary>
+		/// Gets the random CPU movement speed within range.
+		/// </summary>
+		/// <returns>The random CPU movement speed within range.</returns>
+		public float getRandomCPUMovementSpeedWithinRange () 
+		{
+			return cpuMoveSpeed_range.getRandomFloatValueWithinRange();
+
+		}
+
 
 		// PUBLIC STATIC
 		

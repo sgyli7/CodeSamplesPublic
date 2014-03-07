@@ -36,6 +36,9 @@ using com.rmc.projects.paddle_soccer.mvcs.model.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.paddle_soccer.components;
+
+
 namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 {
 	
@@ -68,14 +71,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		
 		// PUBLIC
 		/// <summary>
-		/// The paddle1_gameobject.
+		/// The player paddle_gameobject.
 		/// </summary>
-		public GameObject paddle1_gameobject;
+		public GameObject playerPaddle_gameobject;
 
 		/// <summary>
-		/// The paddle2_gameobject.
+		/// The cpu paddle_gameobject.
 		/// </summary>
-		public GameObject paddle2_gameobject;
+		public GameObject cpuPaddle_gameobject;
+
 
 		/// <summary>
 		/// When the intro user interface game object.
@@ -94,6 +98,17 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		// PUBLIC STATIC
 		
 		// PRIVATE
+
+		/// <summary>
+		/// The cpu paddle component.
+		/// </summary>
+		public PaddleComponent cpuPaddleComponent {set; get;}
+
+		/// <summary>
+		/// The player paddle component.
+		/// </summary>
+		public PaddleComponent playerPaddleComponent {set; get;}
+
 		
 		// PRIVATE STATIC
 		
@@ -107,13 +122,17 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.ui
 		{
 			
 			base.Start();
-			StartCoroutine ( Wait_ThenAllViewsInitializedSignal ());
+
+			//
+			cpuPaddleComponent 		= cpuPaddle_gameobject.GetComponent<PaddleComponent>();
+			playerPaddleComponent	= playerPaddle_gameobject.GetComponent<PaddleComponent>();
 
 			//WE DISABLE THE INTRO TO EASE THE USE OF THE UNITY IDE
 			//HERE WE ENABLE IT
 			introUIGameObject.SetActive (true);
 
-
+			//
+			StartCoroutine ( Wait_ThenAllViewsInitializedSignal ());
 		}
 
 

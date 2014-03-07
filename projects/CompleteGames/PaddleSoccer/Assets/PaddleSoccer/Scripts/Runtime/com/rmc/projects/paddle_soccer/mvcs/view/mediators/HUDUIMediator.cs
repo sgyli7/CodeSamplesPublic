@@ -118,6 +118,15 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public SoundPlaySignal soundPlaySignal { get; set;}
 
 
+		/// <summary>
+		/// Gets or sets the cross platform changed signal.
+		/// </summary>
+		/// <value>The cross platform changed signal.</value>
+		[Inject]
+		public CrossPlatformChangedSignal crossPlatformChangedSignal {get;set;}
+		
+
+
 
 		// PUBLIC
 		
@@ -125,6 +134,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _restart GUI message_string.
+		/// </summary>
+		private string _restartGUIMessage_string;
 		
 		// PRIVATE STATIC
 		
@@ -144,6 +157,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			promptStartSignal.AddListener (_onPromptStartSignal);
 			view.uiPromptEndedSignal.AddListener (_onUIPromptEndedSignal);
 			gameStateChangedSignal.AddListener (_onGameStateChangedSignal);
+			crossPlatformChangedSignal.AddListener (_onCrossPlatformChangedSignal);
 
 
 			
@@ -159,6 +173,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			promptStartSignal.RemoveListener (_onPromptStartSignal);
 			view.uiPromptEndedSignal.RemoveListener (_onUIPromptEndedSignal);
 			gameStateChangedSignal.RemoveListener (_onGameStateChangedSignal);
+			crossPlatformChangedSignal.RemoveListener (_onCrossPlatformChangedSignal);
 		}
 		
 		/// <summary>
@@ -167,6 +182,7 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 		public void Start()
 		{
 			view.setVisibility (false);
+			view.setVisibilityForRestartGUI (false);
 		}
 
 
@@ -205,6 +221,10 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			if (aGameState == GameState.ROUND_PROMPT_START || aGameState == GameState.ROUND_DROP_BALL_START) {
 
 				view.setVisibility (true);
+			} else if (aGameState == GameState.GAME_END) {
+				view.setVisibilityForRestartGUI (true);
+
+				view.setTextForRestartGUI (_restartGUIMessage_string);
 			}
 			
 		}
@@ -254,6 +274,25 @@ namespace com.rmc.projects.paddle_soccer.mvcs.view.mediators
 			
 		}
 
+		/// When the cross platform changed signal fires.
+		/// 
+		/// NOTE: 	During startup we dispatch this signal based on
+		/// 		Application.platform so obvservers can handle themselves.
+		/// 
+		/// </summary>
+		/// <param name="aRuntimePlatform">A runtime platform.</param>
+		private void _onCrossPlatformChangedSignal (RuntimePlatform aRuntimePlatform)
+		{
+			//THIS FUNCTIONALITY SHOULD RUN ONLY ON SOME PLATFORMS.
+			if (aRuntimePlatform != RuntimePlatform.IPhonePlayer) {
+				
+				_restartGUIMessage_string = Constants.HUD_CLICK_RESTART_KEYBOARD;
+			} else {
+				_restartGUIMessage_string = Constants.HUD_CLICK_RESTART_VIRTUAL;
+			}
+
+			
+		}
 		
 	}
 }
