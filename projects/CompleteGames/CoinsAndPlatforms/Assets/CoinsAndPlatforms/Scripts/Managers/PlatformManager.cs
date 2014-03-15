@@ -136,7 +136,9 @@ namespace com.rmc.projects.berlinminijam
 
 			_platformsList_gameobject.Add (gameObject);
 
-			doRandomizeAllPlatformsRotation();
+
+			//DISABLE ROTATIONS FOR THIS DEMO
+			//doRandomizeAllPlatformsRotation();
 
 		}
 		
