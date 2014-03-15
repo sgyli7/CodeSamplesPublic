@@ -1,14 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/ScientificCalculatorModel.cs">
     <Files>
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/ScientificCalculatorContext.cs" Line="182" Column="75" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/ScientificCalculatorModel.cs" Line="263" Column="43" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/view/mediators/core/SuperControllerUIMediator.cs" Line="270" Column="72" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/LogOperatorInstruction.cs" Line="102" Column="24" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/DecimalOperatorInstruction.cs" Line="105" Column="11" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/core/Instruction.cs" Line="113" Column="23" />
-      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/ClearOperatorInstruction.cs" Line="102" Column="24" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/core/Instruction.cs" Line="76" Column="3" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/core/ScientificInstructionsProcessor.cs" Line="127" Column="16" />
+      <File FileName="Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/ScientificCalculatorModel.cs" Line="277" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

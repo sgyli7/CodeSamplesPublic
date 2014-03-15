@@ -35,6 +35,7 @@ using com.rmc.projects.scientific_calculator.mvcs.model.vo;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.scientific_calculator.mvcs.model.instructions;
+using com.rmc.projects.scientific_calculator.mvcs.model.instructions.core;
 
 
 namespace com.rmc.projects.scientific_calculator.mvcs.model
@@ -69,6 +70,20 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 		/// </summary>
 		/// <value>The calculator mode.</value>
 		CalculatorMode calculatorMode { set; get;}
+
+
+		/// <summary>
+		/// Gets or sets the state of the calculator.
+		/// </summary>
+		/// <value>The state of the calculator.</value>
+		CalculatorState calculatorState { set; get;}
+
+
+		/// <summary>
+		/// Gets or sets the display value.
+		/// </summary>
+		/// <value>The display value.</value>
+		float displayValue {set; get;}
 
 
 		/// <summary>

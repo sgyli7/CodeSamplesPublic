@@ -33,7 +33,7 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.scientific_calculator.mvcs.model.instructions
+namespace com.rmc.projects.scientific_calculator.mvcs.model.instructions.core
 {
 	
 	//--------------------------------------
@@ -72,6 +72,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model.instructions
 		/// The type of the instruction.
 		/// </summary>
 		public InstructionType instructionType;
+
 
 		// PUBLIC STATIC
 		

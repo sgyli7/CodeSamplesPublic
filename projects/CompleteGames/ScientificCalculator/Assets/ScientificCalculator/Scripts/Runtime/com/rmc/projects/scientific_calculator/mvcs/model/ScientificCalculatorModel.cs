@@ -38,6 +38,7 @@ using com.rmc.exceptions;
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.scientific_calculator.mvcs.model.instructions;
+using com.rmc.projects.scientific_calculator.mvcs.model.instructions.core;
 
 
 namespace com.rmc.projects.scientific_calculator.mvcs.model
@@ -90,6 +91,14 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 			{
 				_calculatorMode = value;
 				calculatorModeChangedSignal.Dispatch (_calculatorMode);
+				//
+				if (_calculatorMode == CalculatorMode.Scientific) {
+					_iInstructionsProcessor = new ScientificInstructionsProcessor(this);
+
+				} else {
+					_iInstructionsProcessor = new LinearEquationsInstructionsProcessor(this);
+
+				}
 
 				
 			}
@@ -164,12 +173,42 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 			}
 		}
 
+		/// <summary>
+		/// The __instructions stack.
+		/// 
+		/// NOTE: All private
+		/// 
+		/// </summary>
+		private IInstructionsProcessor __iInstructionsProcessor;
+		private IInstructionsProcessor _iInstructionsProcessor
+		{ 
+			get{
+				return __iInstructionsProcessor;
+			}
+			set
+			{
+				//clear stack so we forget all history once you toggle mode
+				doClearInstructionsStack();
+
+
+				//add new processor
+				__iInstructionsProcessor = value;
+
+			}
+		}
+
 
 		// PUBLIC
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
+
+
+		/// <summary>
+		/// The _instructions stack.
+		/// </summary>
+		private InstructionsStack _instructionsStack;
 
 		// PRIVATE STATIC
 
@@ -240,6 +279,15 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 			calculatorState = CalculatorState.AppendingOperands;
 		}
 
+		/// <summary>
+		/// Dos the clear instructions stack.
+		/// </summary>
+		public void doClearInstructionsStack ()
+		{
+			_instructionsStack = new InstructionsStack();
+			displayText 	= "";
+		}
+
 
 		/// <summary>
 		/// Dos the enter instruction.
@@ -248,22 +296,9 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 		public void doEnterInstruction (Instruction aInstruction) {
 
 
-			if (aInstruction.instructionType == InstructionType.Operand) {
+			//HANDLE INSTRUCTIONS UNIQUELY DEPENDING ON CalculatorMode
+			displayValue = _iInstructionsProcessor.doEnterInstruction(aInstruction);
 
-				//PUT NEW # TO THE RIGHT OF THE EXISTING DISPLAY #
-				if (calculatorState == CalculatorState.AppendingOperands) {
-					displayValue 	= float.Parse (displayValue.ToString() + Constants.GetOperandValueByKeyCode (aInstruction.keyCode).ToString());
-				} else {
-					displayValue 	= float.Parse (Constants.GetOperandValueByKeyCode (aInstruction.keyCode).ToString());
-					calculatorState = CalculatorState.AppendingOperands;
-				}
-
-			} else {
-
-				displayValue = (float)aInstruction.execute (displayValue);
-				calculatorState = CalculatorState.NotAppendingOperands;
-
-			}
 
 		}
 		
@@ -278,6 +313,7 @@ namespace com.rmc.projects.scientific_calculator.mvcs.model
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+
 	}
 }
 

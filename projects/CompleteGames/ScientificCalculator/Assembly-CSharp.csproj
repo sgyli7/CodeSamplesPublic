@@ -289,8 +289,12 @@
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\EnterOperatorInstruction.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\LogOperatorInstruction.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\OperandInstruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\IInstructionsProcessor.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\Instruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\InstructionsStack.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\LinearEquationsInstructionsProcessor.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\OperatorInstruction.cs" />
+     <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\instructions\core\ScientificInstructionsProcessor.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\vo\SoundPlayVO.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\model\vo\UIInputVO.cs" />
      <Compile Include="Assets\ScientificCalculator\Scripts\Runtime\com\rmc\projects\scientific_calculator\mvcs\view\mediators\DebugPanelUIMediator.cs" />

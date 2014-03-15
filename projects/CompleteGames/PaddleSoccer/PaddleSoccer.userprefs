@@ -1,82 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Community Assets" expanded="True">
-              <Node name="RMCLibrary" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="Runtime" expanded="True">
-                    <Node name="com" expanded="True">
-                      <Node name="rmc" expanded="True">
-                        <Node name="exceptions" expanded="True" />
-                        <Node name="extension_methods" expanded="True" />
-                        <Node name="projects" expanded="True">
-                          <Node name="animation_monitor" expanded="True" />
-                          <Node name="event_dispatcher" expanded="True" />
-                        </Node>
-                        <Node name="templates" expanded="True" />
-                        <Node name="utilities" expanded="True" />
-                      </Node>
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-            <Node name="PaddleSoccer" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Runtime" expanded="True">
-                  <Node name="com" expanded="True">
-                    <Node name="rmc" expanded="True">
-                      <Node name="projects" expanded="True">
-                        <Node name="paddle_soccer" expanded="True">
-                          <Node name="components" expanded="True" />
-                          <Node name="mvcs" expanded="True">
-                            <Node name="controller" expanded="True">
-                              <Node name="commands" expanded="True" />
-                              <Node name="signals" expanded="True" />
-                            </Node>
-                            <Node name="model" expanded="True">
-                              <Node name="data" expanded="True" />
-                              <Node name="vo" expanded="True" />
-                            </Node>
-                            <Node name="view" expanded="True">
-                              <Node name="mediators" expanded="True">
-                                <Node name="super" expanded="True" />
-                              </Node>
-                              <Node name="signals" expanded="True" />
-                              <Node name="ui" expanded="True">
-                                <Node name="super" expanded="True" />
-                              </Node>
-                            </Node>
-                            <Node name="PaddleSoccerContext.cs" selected="True" />
-                          </Node>
-                        </Node>
-                      </Node>
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Community Assets" expanded="True">
-              <Node name="RMCLibrary" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="Editor" expanded="True">
-                    <Node name="com" expanded="True">
-                      <Node name="rmc" expanded="True" />
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../ScientificCalculator/Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/ScientificCalculatorModel.cs">
+    <Files>
+      <File FileName="../ScientificCalculator/Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/core/Instruction.cs" Line="76" Column="3" />
+      <File FileName="../ScientificCalculator/Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/instructions/core/ScientificInstructionsProcessor.cs" Line="127" Column="16" />
+      <File FileName="../ScientificCalculator/Assets/ScientificCalculator/Scripts/Runtime/com/rmc/projects/scientific_calculator/mvcs/model/ScientificCalculatorModel.cs" Line="277" Column="21" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

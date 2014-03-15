@@ -33,6 +33,9 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.scientific_calculator.mvcs.model.instructions.core;
+
+
 namespace com.rmc.projects.scientific_calculator.mvcs.model.instructions
 {
 	

@@ -35,6 +35,9 @@ using com.rmc.projects.scientific_calculator.mvcs.model.instructions;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.scientific_calculator.mvcs.model.instructions.core;
+
+
 namespace com.rmc.projects.scientific_calculator.mvcs.controller.signals
 {
 	
