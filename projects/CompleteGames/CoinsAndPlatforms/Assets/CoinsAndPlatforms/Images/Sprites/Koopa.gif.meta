@@ -1,0 +1,2115 @@
+fileFormatVersion: 2
+guid: 0a1ecae2997ce4815b9b1a044dfa0e02
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 20
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Koopa_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 595
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 595
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_4
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 595
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_5
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_6
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_7
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_8
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 595
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_9
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_10
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_11
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 595
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_12
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 595
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_Idle_01
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 595
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_01
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 595
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_02
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_03
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_04
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 595
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_05
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_06
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_07
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_08
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 595
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_09
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 595
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_010
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_011
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 595
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Walk_012
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 595
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Koopa_26
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 566
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_27
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 566
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_28
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 566
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_29
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 566
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_30
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 531
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_31
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 531
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_32
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 531
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_33
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 531
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_34
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 531
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_35
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 531
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_36
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 531
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_37
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 531
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_38
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 531
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_39
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 531
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_40
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 531
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_41
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 531
+        width: 17
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_42
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 531
+        width: 17
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_43
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 531
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_44
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 531
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_45
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 531
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_46
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 531
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_47
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 531
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_48
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 496
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_49
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 496
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_50
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 496
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_51
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 496
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_52
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 496
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_53
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 496
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_54
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 496
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_55
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 496
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_56
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 496
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_57
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 496
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_58
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 496
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_59
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 496
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_60
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 496
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_61
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 496
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_62
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 496
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_63
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 496
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_64
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 478
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_65
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_66
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_67
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_68
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 478
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_69
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_70
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_71
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_72
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_73
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_74
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_75
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 478
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_76
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_77
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_78
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 478
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_79
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 478
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_80
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 444
+        width: 26
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_81
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 444
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_82
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 444
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_83
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 444
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_84
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 444
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_85
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 444
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_86
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 444
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_87
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 444
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_88
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 444
+        width: 27
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_89
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 444
+        width: 26
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_90
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 420
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_91
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 420
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_92
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 420
+        width: 26
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_93
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 420
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_94
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 420
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_95
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 420
+        width: 26
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_96
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 420
+        width: 24
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_97
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 420
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_98
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 359
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_99
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 357
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_100
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 370
+        width: 50
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_101
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 371
+        width: 54
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_102
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 371
+        width: 53
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_103
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 371
+        width: 40
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_104
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 371
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_105
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 371
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_106
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 371
+        width: 40
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_107
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 371
+        width: 53
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_108
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 371
+        width: 54
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_109
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 370
+        width: 50
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_110
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 357
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_111
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 359
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_112
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 308
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_113
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 308
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_114
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 308
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_115
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 308
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_116
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 308
+        width: 52
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_117
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 308
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_118
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 308
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_119
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 308
+        width: 52
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_120
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 308
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_121
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 308
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_122
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 308
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_123
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 308
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_124
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 273
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_125
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 273
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_126
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 273
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_127
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 273
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_128
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 273
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_129
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 273
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_130
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 273
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_131
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 273
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_132
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 273
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_133
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 273
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_134
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 273
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_135
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 273
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_136
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 273
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_137
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 273
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_138
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 273
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_139
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 273
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_140
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 243
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_141
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 242
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_142
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 242
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_143
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 243
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_144
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 208
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_145
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 208
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_146
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 208
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_147
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 208
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_148
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 208
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_149
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 208
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_150
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 208
+        width: 18
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_151
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 208
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_152
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 208
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_153
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 208
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_154
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 208
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_155
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 208
+        width: 18
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_156
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 208
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_157
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 208
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_158
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 208
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_159
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 208
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_160
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 208
+        width: 18
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_161
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 208
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_162
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 173
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_163
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 173
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_164
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 173
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_165
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 173
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_166
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 173
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_167
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 173
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_168
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 173
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_169
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 173
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_170
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 173
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_171
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 173
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_172
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 173
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_173
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 173
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_174
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 173
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_175
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 173
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_176
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 173
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_177
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 173
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_178
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 155
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_179
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_180
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_181
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_182
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 155
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_183
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_184
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_185
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_186
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_187
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_188
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_189
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 155
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_190
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_191
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_192
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 155
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_193
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 155
+        width: 18
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_194
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 121
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_195
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 121
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_196
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 121
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_197
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 121
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_198
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 121
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_199
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 121
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_200
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 121
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_201
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 121
+        width: 29
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_202
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 121
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_203
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 121
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_204
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 101
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_205
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 101
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_206
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 101
+        width: 26
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_207
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 101
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_208
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 101
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_209
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 101
+        width: 26
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_210
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 101
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_211
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 101
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_212
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 51
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_213
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 52
+        width: 54
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_214
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 52
+        width: 48
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_215
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 52
+        width: 40
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_216
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 52
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_217
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 52
+        width: 36
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_218
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 52
+        width: 40
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_219
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 52
+        width: 48
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_220
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 52
+        width: 54
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_221
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 51
+        width: 50
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_222
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 16
+        width: 50
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_223
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 16
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_224
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 4
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_225
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 1
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_226
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_227
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 4
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_228
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 16
+        width: 52
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Koopa_229
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 16
+        width: 50
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

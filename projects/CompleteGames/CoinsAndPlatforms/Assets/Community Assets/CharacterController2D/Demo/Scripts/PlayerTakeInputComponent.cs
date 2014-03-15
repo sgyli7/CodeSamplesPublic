@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using com.rmc.projects.berlinminijam;
+using com.rmc.projects.coins_and_platforms;
+using com.rmc.projects.coins_and_platforms.managers;
 
 
 public class PlayerTakeInputComponent : MonoBehaviour
@@ -49,7 +50,7 @@ public class PlayerTakeInputComponent : MonoBehaviour
 
 		if( _characterController2D.isGrounded ) {
 			if (velocity.y != 0) {
-				//SimpleGameManagerComponent.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_LANDS);
+				//SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_LANDS);
 			}
 			velocity.y = 0;
 		}
@@ -82,7 +83,7 @@ public class PlayerTakeInputComponent : MonoBehaviour
 		{
 
 			velocity.y = Mathf.Sqrt( 2f * targetJumpHeight * -gravity );
-			SimpleGameManagerComponent.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
+			SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
 		}
 
 

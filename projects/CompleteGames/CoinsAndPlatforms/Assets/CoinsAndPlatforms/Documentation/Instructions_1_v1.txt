@@ -1,0 +1,28 @@
+Unity Scene Test
+
+
+1. Instructions (Original Text):
+
+Here are the specifications for a Unity project:
+
+Simple Mario-style platformer
+-Forward running platformer
+-Collectibles for score
+-Mario-style enemies moving back and forth
+-Menu with Play/Restart/Quit
+
+ 
+2. Instructions (Updated Upon Completion, As Checklist):
+
+Simple Mario-style platformer [STATUS: XXXXX]
+-Forward running platformer [STATUS: XXXXX]
+-Collectibles for score [STATUS: XXXXX]
+-Mario-style enemies moving back and forth [STATUS: XXXXX]
+-Menu with Play/Restart/Quit [STATUS: XXXXX]
+
+3. Extras (NOT Requested nor Required)
+-SpawnPoint [STATUS: XXXXX]
+-CheckPoint [STATUS: XXXXX]
+-EndPoint [STATUS: XXXXX]
+-Player kills enemy by landing from above [STATUS: XXXXX]
+-Enemy kills player by any other collision [STATUS: XXXXX]
