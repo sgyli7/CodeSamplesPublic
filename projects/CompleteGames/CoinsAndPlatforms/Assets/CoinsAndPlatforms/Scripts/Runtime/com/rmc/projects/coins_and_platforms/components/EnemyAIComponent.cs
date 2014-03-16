@@ -61,10 +61,15 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		// GETTER / SETTER
 		
 		// PUBLIC
+		/// <summary>
+		/// The run speed_float.
+		/// </summary>
+		public float runSpeed_float = 8f;
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		private bool _wasGrounded_boolean = false;
 		
 		// PRIVATE STATIC
 		
@@ -99,7 +104,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		void Start () 
 		{
-			
+			normalizedHorizontalSpeed = 1;
 		}
 		
 		
@@ -110,19 +115,36 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		void Update()
 		{
 			//PREPARE FOR CALCULATIONS
-			_currentVelocityForCalculations_vector3 = _getCurrentVelocityBeforeModifications();
+			_velocity_vector3 = _getCurrentVelocityBeforeModifications();
 			
 
 			//DO CALCULATIONS
 			
-			//ON THE GROUND
-			if( _characterController2D.isGrounded ) {
-				normalizedHorizontalSpeed = 1;
+			//**JUST** REACHED EDGE
+			if(!_characterController2D.isGrounded && !_wasGrounded_boolean) {
+				normalizedHorizontalSpeed = -normalizedHorizontalSpeed;
 			}
 			
 
+			//MOVE RIGHT
+			_velocity_vector3 = _doUpdateHorizontalVelocity 
+				(
+					_velocity_vector3,
+					normalizedHorizontalSpeed,
+					runSpeed_float
+				);
+
+			//MOVE DOWN
+			_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
+
+
+
 			//USE CALCULATIONS
-			_setCurrentVelocityAfterModifications (_currentVelocityForCalculations_vector3);
+			_setCurrentVelocityAfterModifications (_velocity_vector3);
+
+
+			//
+			_wasGrounded_boolean = _characterController2D.isGrounded;
 		}
 		
 		// PUBLIC

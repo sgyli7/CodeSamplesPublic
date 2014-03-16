@@ -14,10 +14,11 @@ using com.rmc.projects.coins_and_platforms.components.super;
 public class PlayerInputComponent : SuperMovementComponent
 {
 	// movement config
-	public float gravity = -15f;
-	public float runSpeed = 8f;
-	public float groundDamping = 20f; // how fast do we change direction? higher means faster
-	public float inAirDamping = 5f;
+
+	/// <summary>
+	/// The run speed_float.
+	/// </summary>
+	public float runSpeed_float = 8f;
 	public float targetJumpHeight = 4f;
 
 	public RaycastHit2D lastControllerColliderHit;
@@ -32,16 +33,16 @@ public class PlayerInputComponent : SuperMovementComponent
 	void Update()
 	{
 		//PREPARE FOR CALCULATIONS
-		_currentVelocityForCalculations_vector3 = _getCurrentVelocityBeforeModifications();
+		_velocity_vector3 = _getCurrentVelocityBeforeModifications();
 		
 		
 
 		//DO CALCULATIONS
 		if( _characterController2D.isGrounded ) {
-			if (_currentVelocityForCalculations_vector3.y != 0) {
+			if (_velocity_vector3.y != 0) {
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_LANDS);
 				_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
-				_currentVelocityForCalculations_vector3.y = 0;
+				_velocity_vector3.y = 0;
 			}
 		}
 
@@ -77,29 +78,26 @@ public class PlayerInputComponent : SuperMovementComponent
 		if( Input.GetKeyDown( KeyCode.UpArrow ) && _characterController2D.isGrounded )
 		{
 			_setAnimationTrigger (MainConstants.JUMPING_TRIGGER);
-			_currentVelocityForCalculations_vector3.y = Mathf.Sqrt( 2f * targetJumpHeight * -gravity );
+			_velocity_vector3.y = Mathf.Sqrt( 2f * targetJumpHeight * GRAVITY_Y );
 			SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
 		}
 
 
-		_currentVelocityForCalculations_vector3 = _doUpdateHorizontalVelocity 
+		//MOVE RIGHT
+		_velocity_vector3 = _doUpdateHorizontalVelocity 
 			(
-				_currentVelocityForCalculations_vector3,
-				groundDamping,
-				inAirDamping,
+				_velocity_vector3,
 				normalizedHorizontalSpeed,
-				runSpeed
-			);
-		_currentVelocityForCalculations_vector3 = _doUpdateVerticalVelocity 
-			(
-				_currentVelocityForCalculations_vector3,
-				gravity
+				runSpeed_float
 				);
+		
+		//MOVE DOWN
+		_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
 
 
 
 		//USE CALCULATIONS
-		_setCurrentVelocityAfterModifications (_currentVelocityForCalculations_vector3);
+		_setCurrentVelocityAfterModifications (_velocity_vector3);
 	}
 
 }

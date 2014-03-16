@@ -84,7 +84,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The current velocity for calculations_vector3.
 		/// </summary>
-		protected Vector3 _currentVelocityForCalculations_vector3;
+		protected Vector3 _velocity_vector3;
 
 		/// <summary>
 		/// The normalized horizontal speed.
@@ -95,8 +95,24 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The raw movement direction.
 		/// </summary>
-		public static float rawMovementDirection = 1;
-		
+		public static float RAW_MOVE_DIRECTION = 1;
+
+		/// <summary>
+		/// The GROUN d_ DAMPIN.
+		/// </summary>
+		public static float GROUND_DAMPING = 1;
+
+		/// <summary>
+		/// The NO t_ GROUN d_ DAMPIN.
+		/// </summary>
+		public static float NOT_GROUND_DAMPING = 1;
+
+
+		/// <summary>
+		/// The GRAVIT y_ y.
+		/// </summary>
+		public static float GRAVITY_Y = -15f;
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -187,15 +203,15 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// </summary>
 		/// <returns>The update horizontal velocity.</returns>
 		/// <param name="aVelocity_vector3">A velocity_vector3.</param>
-		/// <param name="aGroundDamping_float">A ground damping_float.</param>
-		/// <param name="aInAirDamping_float">A in air damping_float.</param>
 		/// <param name="aNormalizedMovement_float">A normalized movement_float.</param>
-		protected Vector3 _doUpdateHorizontalVelocity (Vector3 aVelocity_vector3, float aGroundDamping_float, float aInAirDamping_float, float aNormalizedMovement_float, float aRunSpeed_float)
+		/// <param name="arunSpeed_float_float">A run speed_float.</param>
+		protected Vector3 _doUpdateHorizontalVelocity (Vector3 aVelocity_vector3, float aNormalizedMovement_float, float arunSpeed_float_float)
 		{
 			// apply horizontal speed smoothing it
-			var smoothedMovementFactor = _characterController2D.isGrounded ? aGroundDamping_float : aInAirDamping_float; // how fast do we change direction?
-			aVelocity_vector3.x = Mathf.Lerp( aVelocity_vector3.x, aNormalizedMovement_float * rawMovementDirection * aRunSpeed_float, Time.deltaTime * smoothedMovementFactor );
-			
+			float smoothedMovementFactor_float = _characterController2D.isGrounded ? GROUND_DAMPING : NOT_GROUND_DAMPING; // how fast do we change direction?
+			aVelocity_vector3.x = Mathf.Lerp( aVelocity_vector3.x, aNormalizedMovement_float * RAW_MOVE_DIRECTION * arunSpeed_float_float, Time.deltaTime * smoothedMovementFactor_float );
+
+			//
 			return aVelocity_vector3;
 		}
 
@@ -205,11 +221,11 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <returns>The update vertical velocity.</returns>
 		/// <param name="aVelocity_float">A velocity_float.</param>
 		/// <param name="aGravity_float">A gravity_float.</param>
-		protected Vector3 _doUpdateVerticalVelocity (Vector3 aVelocity_float, float aGravity_float)
+		protected Vector3 _doUpdateVerticalVelocity (Vector3 aVelocity_float)
 		{
 			
 			// apply gravity before moving
-			aVelocity_float.y += aGravity_float * Time.deltaTime;
+			aVelocity_float.y += GRAVITY_Y * Time.deltaTime;
 			return aVelocity_float;
 		}
 
