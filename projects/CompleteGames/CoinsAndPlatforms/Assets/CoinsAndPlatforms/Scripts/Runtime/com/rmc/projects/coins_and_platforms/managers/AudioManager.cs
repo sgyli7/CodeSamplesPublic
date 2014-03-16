@@ -129,15 +129,16 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		void Start () 
 		{
 
+			return;
 			_audioSource = gameObject.AddComponent <AudioSource>();
 			//
-			_buttonClick_audioclip 			= Resources.Load("PlayerJumpFromGround") as AudioClip;
-			_playerJumps_audioclip			= Resources.Load("PlayerLandOnGround") as AudioClip;
-			_playerLands_audioclip 			= Resources.Load("PlayerLandOnGround") as AudioClip;
-			_playerKillsEnemy_audioclip 	= Resources.Load("PlayerHitByBarrel") as AudioClip;
-			_enemyKillsPlayer_audioclip     = Resources.Load("PlayerHitByBarrel") as AudioClip;
-			_gameOverWin_audioclip 			= Resources.Load("CoverCloses") as AudioClip;
-			_gameOverLoss_audioclip 		= Resources.Load("BossThrowsBarrel") as AudioClip;
+			_buttonClick_audioclip 			= _loadAudioClipByName ("PlayerJumpFromGround");
+			_playerJumps_audioclip			= _loadAudioClipByName ("PlayerLandOnGround");
+			_playerLands_audioclip 			= _loadAudioClipByName ("PlayerLandOnGround");
+			_playerKillsEnemy_audioclip 	= _loadAudioClipByName ("PlayerHitByBarrel");
+			_enemyKillsPlayer_audioclip     = _loadAudioClipByName ("PlayerHitByBarrel");
+			_gameOverWin_audioclip 			= _loadAudioClipByName ("CoverCloses");
+			_gameOverLoss_audioclip 		= _loadAudioClipByName ("BossThrowsBarrel");
 
 		}
 
@@ -159,6 +160,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public void doPlaySound (CLIP_NAME aClipName)
 		{
 
+			return;
 			//Debug.Log ("playing : " + aClipName);
 
 			switch (aClipName) {
@@ -190,6 +192,19 @@ namespace com.rmc.projects.coins_and_platforms.managers
 				#pragma warning restore 0162
 			}
 			
+
+		}
+
+
+
+		/// <summary>
+		/// _loads the name of the audio clip by.
+		/// </summary>
+		/// <returns>The audio clip by name.</returns>
+		/// <param name="aAudioClipName_string">A audio clip name_string.</param>
+		private AudioClip _loadAudioClipByName (string aAudioClipName_string)
+		{
+			return _loadAudioClipByName ("/Audio/SoundEffects/" + aAudioClipName_string) as AudioClip;
 
 		}
 		
