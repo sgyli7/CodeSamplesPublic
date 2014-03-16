@@ -164,9 +164,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 		
 		
-		///<summary>
-		///	 Destroy Instance
-		///</summary>
+		/// <summary>
+		/// Raises the application quit event.
+		/// </summary>
 		public void OnApplicationQuit() 
 		{ 
 			//

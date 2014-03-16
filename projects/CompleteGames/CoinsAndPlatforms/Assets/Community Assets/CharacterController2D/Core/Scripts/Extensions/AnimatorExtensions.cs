@@ -9,7 +9,6 @@ public static class AnimatorExtensions
 	/// </summary>
 	public static void goToStateIfNotAlreadyThere( this Animator self, int stateHash )
 	{
-		Debug.Log ("stateHash: " + stateHash);
 		if( self.GetCurrentAnimatorStateInfo( 0 ).nameHash != stateHash )
 			self.Play( stateHash );
 	}

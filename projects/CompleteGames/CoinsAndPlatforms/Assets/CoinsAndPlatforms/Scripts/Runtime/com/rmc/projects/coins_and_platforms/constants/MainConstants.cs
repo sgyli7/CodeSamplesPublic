@@ -65,10 +65,20 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		
 		// PRIVATE STATIC
 
-		public static string BARREL_PREFAB 		= "RollingBarrelPrefab";
-		public static string ENEMY_LAYER 		= "EnemyLayer";
-		public static string END_WAYPOINT_LAYER = "EndWaypointLayer";
-		public static string PICKUP_LAYER 		= "PickupLayer";
+		//
+		public static string BARREL_PREFAB 			= "RollingBarrelPrefab";
+
+		//
+		public static string ENEMY_LAYER 			= "EnemyLayer";
+		public static string END_WAYPOINT_LAYER 	= "EndWaypointLayer";
+		public static string PICKUP_LAYER 			= "PickupLayer";
+
+
+		//
+		public static string WALKING_TRIGGER 		= "WalkingTrigger";
+		public static string IDLE_TRIGGER 			= "IdleTrigger";
+		public static string JUMPING_TRIGGER 		= "JumpingTrigger";
+
 
 
 		

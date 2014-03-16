@@ -102,7 +102,9 @@ namespace com.rmc.projects.coins_and_platforms.components
 			
 		}
 		
-		
+		/// <summary>
+		/// Raises the application quit event.
+		/// </summary>
 		void OnApplicationQuit() 
 		{
 			

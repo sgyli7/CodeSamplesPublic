@@ -1,84 +1,145 @@
-using UnityEngine;
-using System.Collections;
-
-
-public class EnemyAIComponent : MonoBehaviour
-{
-	// movement config
-	public float gravity = -15f;
-	public float runSpeed = 8f;
-	public float groundDamping = 20f; // how fast do we change direction? higher means faster
-	public float inAirDamping = 5f;
-	public float targetJumpHeight = 4f;
-	
-	[HideInInspector]
-	public float rawMovementDirection = 1;
-	//[HideInInspector]
-	public float normalizedHorizontalSpeed = 0;
-	
-	CharacterController2D _characterController2D;
-	public RaycastHit2D lastControllerColliderHit;
-	
-	[HideInInspector]
-	public Vector3 velocity;
-	
-	
-	void Awake()
-	{
-		_characterController2D = GetComponent<CharacterController2D>();
-		_characterController2D.onControllerCollidedEvent += onControllerCollider;
-
-		normalizedHorizontalSpeed = 0.5f;
-	}
-	
-	
-	void onControllerCollider( RaycastHit2D hit )
-	{
-		// bail out on plain old ground hits
-		if( hit.normal.y == 1f )
-			return;
-		
-		// logs any collider hits
-		//Debug.Log( "flags: " + _characterController2D.collisionState + ", hit.normal: " + hit.normal );
-	}
-	
-	
-	void Update()
-	{
-		// grab our current velocity to use as a base for all calculations
-		velocity = _characterController2D.velocity;
-		
-		if( _characterController2D.isGrounded ) {
-			velocity.y = 0;
-		}
-		
-		/*
-		if( Input.GetKey( KeyCode.RightArrow ) )
-		{
-			normalizedHorizontalSpeed = 1;
-			if( transform.localScale.x < 0f )
-				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
-		}
-		else if( Input.GetKey( KeyCode.LeftArrow ) )
-		{
-			normalizedHorizontalSpeed = -1;
-			if( transform.localScale.x > 0f )
-				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
-		}
-		else
-		{
-			normalizedHorizontalSpeed = 0;
-		}
+/**
+* Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
+* code [at] RivelloMultimediaConsulting [dot] com                                                  
+*                                                                      
+* Permission is hereby granted, free of charge, to any person obtaining
+* a copy of this software and associated documentation files (the      
+* "Software"), to deal in the Software without restriction, including  
+* without limitation the rights to use, copy, modify, merge, publish,  
+* distribute, sublicense, and#or sell copies of the Software, and to   
+* permit persons to whom the Software is furnished to do so, subject to
+* the following conditions:                                            
+*                                                                      
+* The above copyright notice and this permission notice shall be       
+* included in all copies or substantial portions of the Software.      
+*                                                                      
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,      
+* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF   
+* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+* IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR    
+* OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+* ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+* OTHER DEALINGS IN THE SOFTWARE.                                      
 */
-		
-		// apply horizontal speed smoothing it
-		var smoothedMovementFactor = _characterController2D.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
-		velocity.x = Mathf.Lerp( velocity.x, normalizedHorizontalSpeed * rawMovementDirection * runSpeed, Time.deltaTime * smoothedMovementFactor );
-		
-		// apply gravity before moving
-		velocity.y += gravity * Time.deltaTime;
-		
-		_characterController2D.move( velocity * Time.deltaTime );
-	}
+// Marks the right margin of code *******************************************************************
+
+
+//--------------------------------------
+//  Imports
+//--------------------------------------
+using UnityEngine;
+
+//--------------------------------------
+//  Namespace
+//--------------------------------------
+
+
+namespace com.rmc.projects.coins_and_platforms.components.super
+{
 	
+	//--------------------------------------
+	//  Namespace Properties
+	//--------------------------------------
+	
+	
+	//--------------------------------------
+	//  Class Attributes
+	//--------------------------------------
+	
+	
+	//--------------------------------------
+	//  Class
+	//--------------------------------------
+	public class EnemyAIComponent : SuperMovementComponent 
+	{
+		
+		
+		//--------------------------------------
+		//  Properties
+		//--------------------------------------
+		
+		// GETTER / SETTER
+		
+		// PUBLIC
+		
+		// PUBLIC STATIC
+		
+		// PRIVATE
+		
+		// PRIVATE STATIC
+		
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------	
+		// PUBLIC
+		
+		///<summary>
+		///	 Constructor
+		///</summary>
+		public EnemyAIComponent ()
+		{
+			
+			
+		}
+		
+		/// <summary>
+		/// Deconstructor
+		/// </summary>
+		~EnemyAIComponent ( )
+		{
+			
+			
+		}
+
+		
+		
+		
+		///<summary>
+		///	Use this for initialization
+		///</summary>
+		void Start () 
+		{
+			
+		}
+		
+		
+		
+		/// <summary>
+		/// Called once per frame
+		/// </summary>
+		void Update()
+		{
+			//PREPARE FOR CALCULATIONS
+			_currentVelocityForCalculations_vector3 = _getCurrentVelocityBeforeModifications();
+			
+
+			//DO CALCULATIONS
+			
+			//ON THE GROUND
+			if( _characterController2D.isGrounded ) {
+				normalizedHorizontalSpeed = 1;
+			}
+			
+
+			//USE CALCULATIONS
+			_setCurrentVelocityAfterModifications (_currentVelocityForCalculations_vector3);
+		}
+		
+		// PUBLIC
+		
+		// PUBLIC STATIC
+		
+		// PRIVATE
+		
+		// PRIVATE STATIC
+		
+		// PRIVATE COROUTINE
+		
+		// PRIVATE INVOKE
+		
+		//--------------------------------------
+		//  Events
+		//--------------------------------------
+		
+	}
 }
