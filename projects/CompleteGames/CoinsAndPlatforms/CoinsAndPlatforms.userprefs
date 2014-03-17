@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/AudioManager.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Documentation/Instructions_1_v1.txt">
     <Files>
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlayerInputComponent.cs" Line="95" Column="40" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/EnemyAIComponent.cs" Line="107" Column="30" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/super/SuperMovementComponent.cs" Line="224" Column="3" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/AudioManager.cs" Line="205" Column="54" />
+      <File FileName="Assets/CoinsAndPlatforms/Documentation/Instructions_1_v1.txt" Line="7" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
