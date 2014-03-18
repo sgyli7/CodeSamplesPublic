@@ -99,6 +99,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 					//SWITCH
 					switch (_gameState)
 					{
+					case GameState.NULL:
+						break;
 					case GameState.MENU:
 						//TODO
 						//MENU WILL DO THIS PART
@@ -182,6 +184,16 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		private GUIText _livesGUIText;
 
+		/// <summary>
+		/// The _start waypoint_gameobject.
+		/// </summary>
+		private GameObject _startWaypoint_gameobject;
+
+		/// <summary>
+		/// The _start waypoint_gameobject.
+		/// </summary>
+		private GameObject _player_gameobject;
+
 
 		// PRIVATE STATIC
 		
@@ -235,8 +247,10 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private void _doSetBrittleReferences()
 		{
 
-			_scoreGUIText = GameObject.Find ("ScoreGUIText").GetComponent<GUIText>();
-			_livesGUIText = GameObject.Find ("LivesGUIText").GetComponent<GUIText>();
+			_scoreGUIText 				= GameObject.Find ("ScoreGUIText").GetComponent<GUIText>();
+			_livesGUIText 				= GameObject.Find ("LivesGUIText").GetComponent<GUIText>();
+			_startWaypoint_gameobject 	= GameObject.Find ("StartWaypoint");
+			_player_gameobject 			= GameObject.Find ("PlayerUnPrefab");
 
 		}
 		
@@ -256,6 +270,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		public void doRestartGame () 
 		{
+
+			gameState = GameState.NULL;
 			Application.LoadLevel (Application.loadedLevel);
 			
 		}
@@ -335,6 +351,14 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private void _doResetPlayer() 
 		{
 
+			//SET TO THE LEFT OF THE WAYPOINT FLAG
+			_player_gameobject.transform.position 		= new Vector3 
+				(
+					_startWaypoint_gameobject.transform.position.x - _player_gameobject.transform.localScale.x,
+					_startWaypoint_gameobject.transform.position.y,
+					_startWaypoint_gameobject.transform.position.z
+				);
+					
 			
 		}
 

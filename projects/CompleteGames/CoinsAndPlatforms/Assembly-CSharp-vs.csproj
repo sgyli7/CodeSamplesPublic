@@ -55,10 +55,10 @@
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlatformComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayGameButtonClickComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerDetectEnemyComponent.cs" />
-     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerDetectWaypointsComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerInputComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\SnapMeComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\ViewInstructionsButtonClickComponent.cs" />
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\WaypointComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\core\SuperMovementComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\configurations\MainConfiguration.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\constants\MainConstants.cs" />

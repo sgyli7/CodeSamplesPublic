@@ -72,12 +72,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The height of the _target jump.
 		/// </summary>
-		private float _targetJumpHeight = 4f;
-		
-		/// <summary>
-		/// The _target jump multiplyer.
-		/// </summary>
-		private float _targetJumpMultiplyer = 20f;
+		private float _targetJumpHeight = 8f;
 		
 		/// <summary>
 		/// The _last controller collider hit.
@@ -187,7 +182,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			if( Input.GetKeyDown( KeyCode.UpArrow ) && _characterController2D.isGrounded )
 			{
 				_setAnimationTrigger (MainConstants.JUMPING_TRIGGER);
-				_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpMultiplyer * _targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
+				_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
 			}
 

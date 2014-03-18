@@ -27,19 +27,29 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
-using com.rmc.projects.coins_and_platforms.managers;
-using com.rmc.projects.coins_and_platforms.constants;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.coins_and_platforms.components
+using com.rmc.projects.coins_and_platforms.constants;
+using com.rmc.projects.coins_and_platforms.managers;
+
+
+namespace com.rmc.projects.coins_and_platforms.components.super
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum WaypointType 
+	{
+		START,
+		MID,
+		END
+
+	}
 	
 	
 	//--------------------------------------
@@ -50,7 +60,8 @@ namespace com.rmc.projects.coins_and_platforms.components
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class PlayerDetectWaypointsComponent : MonoBehaviour 
+	[RequireComponent (typeof (BoxCollider2D), typeof (Rigidbody2D))]
+	public class WaypointComponent : MonoBehaviour 
 	{
 		
 		
@@ -61,10 +72,10 @@ namespace com.rmc.projects.coins_and_platforms.components
 		// GETTER / SETTER
 		
 		// PUBLIC
-		
-		// PUBLIC STATIC
-		
-		// PRIVATE
+		/// <summary>
+		/// The type of the waypoint.
+		/// </summary>
+		public WaypointType waypointType;
 		
 		// PRIVATE STATIC
 		
@@ -76,7 +87,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public PlayerDetectWaypointsComponent ()
+		public WaypointComponent ()
 		{
 			
 			
@@ -85,27 +96,31 @@ namespace com.rmc.projects.coins_and_platforms.components
 		/// <summary>
 		/// Deconstructor
 		/// </summary>
-		~PlayerDetectWaypointsComponent ( )
+		~WaypointComponent ( )
 		{
 			
 			
 		}
+		
+		
+		
 		
 		///<summary>
 		///	Use this for initialization
 		///</summary>
 		void Start () 
 		{
-			
+
 		}
 		
-
+		
+		
 		/// <summary>
-		/// Raises the application quit event.
+		/// Called once per frame
 		/// </summary>
-		void OnApplicationQuit() 
+		void Update()
 		{
-			
+
 		}
 		
 		// PUBLIC
@@ -123,14 +138,21 @@ namespace com.rmc.projects.coins_and_platforms.components
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		void OnTriggerEnter2D(Collider2D aCollider2D)
+		/// <summary>
+		/// Raises the trigger enter2 d event.
+		/// </summary>
+		/// <param name="collider2D">Collider2 d.</param>
+		public void OnTriggerEnter2D (Collider2D collider2D)
 		{
-			if (aCollider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.END_WAYPOINT_LAYER)) {
-				SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_KILLS_ENEMY);
-				SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.LOSS);
+			if (waypointType == WaypointType.END) {
+				//
+				if (collider2D.collider.gameObject.tag == MainConstants.PLAYER_TAG) {
+					SimpleGameManager.Instance.gameManager.doRestartGame();
+				}
+
 			}
-			
-			
+
 		}
+		
 	}
 }

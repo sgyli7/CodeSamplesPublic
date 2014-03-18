@@ -68,6 +68,11 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		//
 		public static string BARREL_PREFAB 			= "RollingBarrelPrefab";
 
+
+		//
+		public static string PLAYER_TAG				= "Player";
+
+
 		//
 		public static string ENEMY_LAYER 			= "EnemyLayer";
 		public static string END_WAYPOINT_LAYER 	= "EndWaypointLayer";
