@@ -34,6 +34,7 @@ using UnityEngine;
 //  Namespace
 //--------------------------------------
 using com.rmc.exceptions;
+using com.rmc.projects.coins_and_platforms.constants;
 
 
 namespace com.rmc.projects.coins_and_platforms.managers
@@ -56,6 +57,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		NULL,
 		MENU,
 		GAME_BEGIN,
+		LIVE_BEGIN,
 		GAME,
 		GAME_END
 	}
@@ -78,7 +80,14 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		
 		// GETTER / SETTER
 		/// <summary>
-		/// The state of the _game.
+		/// This is the gamestate
+		/// 
+		/// NOTE: Here we have a simple state machine
+		/// 		* when a state is set, something may happen
+		/// 		* if that is more than one line, we create a method for organization sake
+		/// 		* the machine may immediatly advance state (otherwise some other scope will advance it)
+		/// 
+		/// 
 		/// </summary>
 		private GameState _gameState;
 		public GameState gameState
@@ -100,6 +109,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 					switch (_gameState)
 					{
 					case GameState.NULL:
+						//NOT USED DIRECTLY
 						break;
 					case GameState.MENU:
 						//TODO
@@ -107,7 +117,11 @@ namespace com.rmc.projects.coins_and_platforms.managers
 						gameState = GameState.GAME_BEGIN;
 						break;
 					case GameState.GAME_BEGIN:
+						_checkPoint_gameobject = _startWaypoint_gameobject;
 						_doResetGUI();
+						gameState = GameState.LIVE_BEGIN;
+						break;
+					case GameState.LIVE_BEGIN:
 						_doResetPlayer();
 						//KEEP THIS
 						gameState = GameState.GAME;
@@ -158,6 +172,22 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			set {
 				_lives_float = value;
 				_doRefreshGUI();
+			}
+			
+		}
+
+		
+		/// <summary>
+		/// The _check point_gameobject.
+		/// </summary>
+		private GameObject  _checkPoint_gameobject;
+		public GameObject checkPoint
+		{
+			get {
+				return _checkPoint_gameobject;
+			}
+			set {
+				_checkPoint_gameobject = value;
 			}
 			
 		}
@@ -247,10 +277,10 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private void _doSetBrittleReferences()
 		{
 
-			_scoreGUIText 				= GameObject.Find ("ScoreGUIText").GetComponent<GUIText>();
-			_livesGUIText 				= GameObject.Find ("LivesGUIText").GetComponent<GUIText>();
-			_startWaypoint_gameobject 	= GameObject.Find ("StartWaypoint");
-			_player_gameobject 			= GameObject.Find ("PlayerUnPrefab");
+			_scoreGUIText 				= GameObject.Find (MainConstants.ScoreGUIText).GetComponent<GUIText>();
+			_livesGUIText 				= GameObject.Find (MainConstants.LivesGUIText).GetComponent<GUIText>();
+			_startWaypoint_gameobject 	= GameObject.Find (MainConstants.StartWaypoint);
+			_player_gameobject 			= GameObject.Find (MainConstants.PlayerUnPrefab);
 
 		}
 		
@@ -264,6 +294,17 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 		
 		// PUBLIC
+
+		/// <summary>
+		/// Dos the kill player.
+		/// </summary>
+		public void doKillPlayer ()
+		{
+			lives--;
+			gameState = GameState.LIVE_BEGIN;
+		}
+
+
 
 		/// <summary>
 		/// Dos the restart game.
@@ -283,7 +324,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_doGameOverImmediate();
 
 		}
-
 
 
 		/// <summary>
@@ -354,12 +394,16 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			//SET TO THE LEFT OF THE WAYPOINT FLAG
 			_player_gameobject.transform.position 		= new Vector3 
 				(
-					_startWaypoint_gameobject.transform.position.x - _player_gameobject.transform.localScale.x,
-					_startWaypoint_gameobject.transform.position.y,
-					_startWaypoint_gameobject.transform.position.z
+					_checkPoint_gameobject.transform.position.x - _player_gameobject.transform.localScale.x,
+					_checkPoint_gameobject.transform.position.y,
+					_checkPoint_gameobject.transform.position.z
 				);
 					
-			
+			//TODO:MAKE THIS A PLAYER COMPONENT METHOD
+			//CANCEL CURRENT MOTION IN PHYSICS
+			CharacterController2D characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
+			characterController2D.velocity = Vector2.zero;
+
 		}
 
 

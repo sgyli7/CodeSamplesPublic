@@ -146,8 +146,17 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		{
 			if (waypointType == WaypointType.END) {
 				//
-				if (collider2D.collider.gameObject.tag == MainConstants.PLAYER_TAG) {
+				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
 					SimpleGameManager.Instance.gameManager.doRestartGame();
+				}
+
+			} else if (waypointType == WaypointType.MID) {
+
+				//
+				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
+					Debug.Log ("set midpoint");
+					SimpleGameManager.Instance.gameManager.checkPoint = gameObject;
+				
 				}
 
 			}

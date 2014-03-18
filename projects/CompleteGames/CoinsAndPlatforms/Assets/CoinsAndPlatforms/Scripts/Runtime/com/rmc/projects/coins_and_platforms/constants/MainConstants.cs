@@ -66,8 +66,10 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		// PRIVATE STATIC
 
 		//
-		public static string BARREL_PREFAB 			= "RollingBarrelPrefab";
-
+		public static string ScoreGUIText 			= "ScoreGUIText";
+		public static string LivesGUIText 			= "LivesGUIText";
+		public static string StartWaypoint 			= "StartWaypoint";
+		public static string PlayerUnPrefab 		= "PlayerUnPrefab";
 
 		//
 		public static string PLAYER_TAG				= "Player";

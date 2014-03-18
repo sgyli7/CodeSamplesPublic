@@ -1,6 +1,9 @@
 /**
 * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
 * code [at] RivelloMultimediaConsulting [dot] com                                                  
+/**
+* Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
+* code [at] RivelloMultimediaConsulting [dot] com                                                  
 *                                                                      
 * Permission is hereby granted, free of charge, to any person obtaining
 * a copy of this software and associated documentation files (the      
@@ -27,19 +30,29 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.coins_and_platforms.components.super
+using com.rmc.projects.coins_and_platforms.constants;
+using com.rmc.projects.coins_and_platforms.managers;
+
+
+namespace com.rmc.projects.coins_and_platforms.components
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	public enum BoundaryType
+	{
+		TOP,
+		BOTTOM,
+		LEFT,
+		RIGHT
+	}
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -49,7 +62,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class EnemyAIComponent : SuperMovementComponent 
+	public class BoundaryComponent : MonoBehaviour 
 	{
 		
 		
@@ -58,17 +71,16 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		//--------------------------------------
 		
 		// GETTER / SETTER
-		
+
 		// PUBLIC
 		/// <summary>
-		/// The run speed_float.
+		/// The type of the _boundary.
 		/// </summary>
-		public float runSpeed_float = 8f;
+		public BoundaryType _boundaryType;
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		private bool _wasGrounded_boolean = false;
 		
 		// PRIVATE STATIC
 		
@@ -80,7 +92,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public EnemyAIComponent ()
+		public BoundaryComponent ()
 		{
 			
 			
@@ -89,61 +101,26 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// Deconstructor
 		/// </summary>
-		~EnemyAIComponent ( )
+		~BoundaryComponent ( )
 		{
 			
 			
 		}
-
-		
-		
 		
 		///<summary>
 		///	Use this for initialization
 		///</summary>
 		void Start () 
 		{
-			_normalizedHorizontalSpeed_float = 1;
+			
 		}
 		
 		
-		
-		/// <summary>
-		/// Called once per frame
-		/// </summary>
-		void Update()
+		///<summary>
+		///	Called once per frame
+		///</summary>
+		void Update () 
 		{
-			//PREPARE FOR CALCULATIONS
-			_velocity_vector3 = _getCurrentVelocityBeforeModifications();
-			
-
-			//DO CALCULATIONS
-			
-			//**JUST** REACHED EDGE
-			if(!_characterController2D.isGrounded && !_wasGrounded_boolean) {
-				_normalizedHorizontalSpeed_float = -_normalizedHorizontalSpeed_float;
-			}
-			
-
-			//MOVE RIGHT
-			_velocity_vector3 = _doUpdateHorizontalVelocity 
-				(
-					_velocity_vector3,
-					_normalizedHorizontalSpeed_float,
-					runSpeed_float
-				);
-
-			//MOVE DOWN
-			_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
-
-
-
-			//USE CALCULATIONS
-			_setCurrentVelocityAfterModifications (_velocity_vector3);
-
-
-			//
-			_wasGrounded_boolean = _characterController2D.isGrounded;
 		}
 		
 		// PUBLIC
@@ -161,6 +138,22 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
+		/// <summary>
+		/// Raises the trigger enter2 d event.
+		/// </summary>
+		/// <param name="collider2D">Collider2 d.</param>
+		public void OnTriggerEnter2D (Collider2D collider2D)
+		{
+			if (_boundaryType == BoundaryType.BOTTOM) {
+				//
+				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
+					SimpleGameManager.Instance.gameManager.doKillPlayer();
+				}
+				
+			}
+
+		}
+		
 		
 	}
 }

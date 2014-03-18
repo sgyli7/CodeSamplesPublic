@@ -172,10 +172,10 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public GameObject doSpawn (Vector3 aPosition_vector3)
 		{
 			//UPDATE COUNT
-			GameObject newBarrel_gameobject = SimpleGameManager.Instance.instantiateDynamicPrefab (MainConstants.BARREL_PREFAB, aPosition_vector3);
-			_barrel_list.Add (newBarrel_gameobject);
+			//GameObject newBarrel_gameobject = SimpleGameManager.Instance.instantiateDynamicPrefab (MainConstants.BARREL_PREFAB, aPosition_vector3);
+			//_barrel_list.Add (newBarrel_gameobject);
 
-			return newBarrel_gameobject;
+			return null; //newBarrel_gameobject;
 		}
 
 
