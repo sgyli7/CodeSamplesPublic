@@ -27,6 +27,7 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
 
 //--------------------------------------
@@ -104,7 +105,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		void Start () 
 		{
-			normalizedHorizontalSpeed = 1;
+			_normalizedHorizontalSpeed_float = 1;
 		}
 		
 		
@@ -122,7 +123,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			
 			//**JUST** REACHED EDGE
 			if(!_characterController2D.isGrounded && !_wasGrounded_boolean) {
-				normalizedHorizontalSpeed = -normalizedHorizontalSpeed;
+				_normalizedHorizontalSpeed_float = -_normalizedHorizontalSpeed_float;
 			}
 			
 
@@ -130,7 +131,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			_velocity_vector3 = _doUpdateHorizontalVelocity 
 				(
 					_velocity_vector3,
-					normalizedHorizontalSpeed,
+					_normalizedHorizontalSpeed_float,
 					runSpeed_float
 				);
 

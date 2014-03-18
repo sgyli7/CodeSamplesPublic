@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Documentation/Instructions_1_v1.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/EnemyAIComponent.cs">
     <Files>
-      <File FileName="Assets/CoinsAndPlatforms/Documentation/Instructions_1_v1.txt" Line="7" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GameManager.cs" Line="136" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlayerInputComponent.cs" Line="14" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/EnemyAIComponent.cs" Line="106" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

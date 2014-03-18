@@ -52,16 +52,14 @@
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\EnemyAIComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\EnemyPrefabWalkingComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\InfiniteScrollSpriteComponent.cs" />
-     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PauseButtonClickComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlatformComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayGameButtonClickComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerDetectEnemyComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerDetectWaypointsComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerInputComponent.cs" />
-     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\ScreenWrapComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\SnapMeComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\ViewInstructionsButtonClickComponent.cs" />
-     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\super\SuperMovementComponent.cs" />
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\core\SuperMovementComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\configurations\MainConfiguration.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\constants\MainConstants.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\managers\AudioManager.cs" />

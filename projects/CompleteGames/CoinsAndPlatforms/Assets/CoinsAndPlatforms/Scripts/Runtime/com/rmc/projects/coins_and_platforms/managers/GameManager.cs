@@ -28,19 +28,37 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.exceptions;
+
+
 namespace com.rmc.projects.coins_and_platforms.managers
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+	public enum GameOverReason
+	{	
+		WIN,
+		LOSS
+	}
+
+	/// <summary>
+	/// Game state.
+	/// </summary>
+	public enum GameState
+	{
+		NULL,
+		MENU,
+		GAME_BEGIN,
+		GAME,
+		GAME_END
+	}
 	
 	
 	//--------------------------------------
@@ -60,20 +78,110 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		//--------------------------------------
 		
 		// GETTER / SETTER
+		/// <summary>
+		/// The state of the _game.
+		/// </summary>
+		private GameState _gameState;
+		public GameState gameState
+		{
+			get {
+				return _gameState;
+			}
+			set {
+
+				if (_gameState != value) {
+
+					//SET
+					_gameState = value;
+
+					//KEEP TRACE
+					Debug.Log ("_gameState: " + _gameState);
+
+					//SWITCH
+					switch (_gameState)
+					{
+					case GameState.MENU:
+						//TODO
+						//MENU WILL DO THIS PART
+						gameState = GameState.GAME_BEGIN;
+						break;
+					case GameState.GAME_BEGIN:
+						_doResetGUI();
+						_doResetPlayer();
+						//KEEP THIS
+						gameState = GameState.GAME;
+						break;
+					case GameState.GAME:
+						break;
+					case GameState.GAME_END:
+						break;
+					default:
+						#pragma warning disable 0162
+						throw new SwitchStatementException();
+						break;
+						#pragma warning restore 0162
+
+					}
+
+				}
+			}
+
+		}
+
+		/// <summary>
+		/// The _score_float.
+		/// </summary>
+		private float _score_float;
+		public float score
+		{
+			get {
+				return _score_float;
+			}
+			set {
+				_score_float = value;
+				_doRefreshGUI();
+			}
+			
+		}
+
+
+		/// <summary>
+		/// The _lives_float.
+		/// </summary>
+		private float _lives_float;
+		public float lives
+		{
+			get {
+				return _lives_float;
+			}
+			set {
+				_lives_float = value;
+				_doRefreshGUI();
+			}
+			
+		}
+
 		
 		// PUBLIC
 		
 		// PUBLIC STATIC
-		public enum GameOverReason
-		{	
-			WIN,
-			LOSS
-		}
 
 		// PRIVATE
+		/// <summary>
+		/// The _last game over reason.
+		/// </summary>
 		private GameOverReason _lastGameOverReason;
 
+		/// <summary>
+		/// The _score GUI text.
+		/// </summary>
 		private GUIText _scoreGUIText;
+
+
+		/// <summary>
+		/// The _lives GUI text.
+		/// </summary>
+		private GUIText _livesGUIText;
 
 
 		// PRIVATE STATIC
@@ -106,8 +214,31 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		///</summary>
 		void Start () 
 		{
-			//TODO, REFRENCE THIS WITHOUT HACKY INDEX #
-			_scoreGUIText = GameObject.Find ("_GUI").GetComponentsInChildren<GUIText>()[0];
+			//
+			_doSetBrittleReferences();
+
+			//
+			gameState = GameState.MENU;
+		}
+
+
+		/// <summary>
+		/// _dos the set brittle references.
+		/// 
+		/// NOTE: For simplicity, this brittle approach is used instead of alternatives;
+		/// 		* public transform references, set via dragging from hierarchy items
+		/// 		* Inversion Of Control (StrangeIoC) where less GameObject-to-GameObject references are needed.
+		/// 		* Manager dynamically spawning via Instantiate()
+		/// 		* Etc...
+		/// 
+		/// 
+		/// </summary>
+		private void _doSetBrittleReferences()
+		{
+
+			_scoreGUIText = GameObject.Find ("ScoreGUIText").GetComponent<GUIText>();
+			_livesGUIText = GameObject.Find ("LivesGUIText").GetComponent<GUIText>();
+
 		}
 		
 		
@@ -138,10 +269,10 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 			switch (_lastGameOverReason) {
 			case GameOverReason.WIN:
-				_doSetScore ("You Win!");
+				//_doSetScore ("You Win!");
 				break;
 			case GameOverReason.LOSS:
-				_doSetScore("You Lose!");
+				//_doSetScore("You Lose!");
 				break;
 			}
 
@@ -177,15 +308,42 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 
 		}
+
 		/// <summary>
-		/// _dos the set score.
+		/// _dos the reset GU.
 		/// </summary>
-		/// <param name="aMessage_string">A message_string.</param>
-		private void _doSetScore (string aMessage_string) 
+		private void _doResetGUI() 
+		{
+			score = 0;
+			lives = 1;
+
+		}
+
+		/// <summary>
+		/// _dos the reset player.
+		/// </summary>
+		private void _doResetPlayer() 
+		{
+
+			
+		}
+
+
+
+
+		/// <summary>
+		/// _dos the refresh GUI
+		/// </summary>
+		private void _doRefreshGUI () 
 		{
 			if (_scoreGUIText) {
-				_scoreGUIText.text = "Score: " + aMessage_string;
+				_scoreGUIText.text = "Score: " + score.ToString();
 			}
+
+			if (_livesGUIText) {
+				_livesGUIText.text = "Lives: " + lives.ToString();
+			}
+
 		}
 
 		//PRIVATE

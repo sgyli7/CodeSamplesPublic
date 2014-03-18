@@ -127,7 +127,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		{
 			if (aCollider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.END_WAYPOINT_LAYER)) {
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_KILLS_ENEMY);
-				SimpleGameManager.Instance.gameManager.doGameOver (GameManager.GameOverReason.LOSS);
+				SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.LOSS);
 			}
 			
 			

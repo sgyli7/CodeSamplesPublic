@@ -34,7 +34,7 @@ using UnityEngine;
 //--------------------------------------
 
 
-namespace com.rmc.projects.coins_and_platforms.components.super
+namespace com.rmc.projects.coins_and_platforms.components.core
 {
 	
 	//--------------------------------------
@@ -89,7 +89,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The normalized horizontal speed.
 		/// </summary>
-		protected float normalizedHorizontalSpeed = 0;
+		protected float _normalizedHorizontalSpeed_float = 0;
 
 		// PRIVATE STATIC
 		/// <summary>
