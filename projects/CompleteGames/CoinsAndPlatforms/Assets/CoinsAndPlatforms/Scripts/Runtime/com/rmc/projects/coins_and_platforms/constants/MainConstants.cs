@@ -68,6 +68,7 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		//
 		public static string ScoreGUIText 			= "ScoreGUIText";
 		public static string LivesGUIText 			= "LivesGUIText";
+		public static string PromptGUIText 			= "PromptGUIText";
 		public static string StartWaypoint 			= "StartWaypoint";
 		public static string PlayerUnPrefab 		= "PlayerUnPrefab";
 
@@ -85,6 +86,12 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string WALKING_TRIGGER 		= "WalkingTrigger";
 		public static string IDLE_TRIGGER 			= "IdleTrigger";
 		public static string JUMPING_TRIGGER 		= "JumpingTrigger";
+
+		//
+		public static string PROMPT_GAME_OVER_WIN   = "You Won!\n\nPress Space To Restart";
+		public static string PROMPT_GAME_OVER_LOSS   = "You Lost...\n\nPress Space To Restart";
+	
+
 
 
 

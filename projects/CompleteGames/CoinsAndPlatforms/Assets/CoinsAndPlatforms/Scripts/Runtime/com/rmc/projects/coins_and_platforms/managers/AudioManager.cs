@@ -67,11 +67,13 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		// PUBLIC
 		
 		// PUBLIC STATIC
+		//todo: move this to MainConstants?
 		public enum CLIP_NAME
 		{
 			BUTTON_CLICK,
 			PLAYER_JUMPS,
 			PLAYER_LANDS,
+			COIN_COLLECTED,
 			PLAYER_KILLS_ENEMY,
 			ENEMY_KILLS_PLAYER,
 			GAME_OVER_WIN,
@@ -92,6 +94,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private AudioClip _playerJumps_audioclip;
 		private AudioClip _playerLands_audioclip;
 		private AudioClip _playerKillsEnemy_audioclip;
+		private AudioClip _coinCollected_audioclip;
 		private AudioClip _enemyKillsPlayer_audioclip;
 		private AudioClip _gameOverWin_audioclip;
 		private AudioClip _gameOverLoss_audioclip;
@@ -136,6 +139,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_playerJumps_audioclip			= _loadAudioClipByName ("PlayerLandOnGround");
 			_playerLands_audioclip 			= _loadAudioClipByName ("PlayerLandOnGround");
 			_playerKillsEnemy_audioclip 	= _loadAudioClipByName ("PlayerHitByBarrel");
+			_coinCollected_audioclip 		= _loadAudioClipByName ("CoinCollected");
 			_enemyKillsPlayer_audioclip     = _loadAudioClipByName ("PlayerHitByBarrel");
 			_gameOverWin_audioclip 			= _loadAudioClipByName ("CoverCloses");
 			_gameOverLoss_audioclip 		= _loadAudioClipByName ("BossThrowsBarrel");
@@ -175,6 +179,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 				break;
 			case CLIP_NAME.PLAYER_KILLS_ENEMY:
 				_audioSource.PlayOneShot (_playerKillsEnemy_audioclip);
+				break;
+			case CLIP_NAME.COIN_COLLECTED:
+				_audioSource.PlayOneShot (_coinCollected_audioclip);
 				break;
 			case CLIP_NAME.ENEMY_KILLS_PLAYER:
 				_audioSource.PlayOneShot (_enemyKillsPlayer_audioclip);

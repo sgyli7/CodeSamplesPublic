@@ -235,7 +235,9 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		protected void _setCurrentVelocityAfterModifications (Vector3 aVelocity_vector3)
 		{
 
-			_characterController2D.move( aVelocity_vector3 * Time.deltaTime );
+			if (_characterController2D.enabled) {
+				_characterController2D.move( aVelocity_vector3 * Time.deltaTime );
+			}
 		}
 
 

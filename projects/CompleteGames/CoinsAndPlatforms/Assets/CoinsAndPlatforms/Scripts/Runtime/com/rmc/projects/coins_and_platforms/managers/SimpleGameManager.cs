@@ -174,7 +174,17 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			
 			//TODO, SHOULD IT DELETE FROM HIERARCHY?
 		}
-		
+
+		/// <summary>
+		/// Dos the restart level.
+		/// </summary>
+		public void doRestartLevel() 
+		{ 
+			//
+			_Instance.destroy();
+			Application.LoadLevel (Application.loadedLevel);
+		}
+
 		
 		
 		/// <summary>
@@ -388,6 +398,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 				
 				//IF THERE IS NOT ALREADY AN INSTANCE CREATED
 				if (_Instance == null) {
+
+
 					
 					//1. CREATE A GAME OBJECT (IF MISSING)
 					GameObject simpleGameManager =  GameObject.Find (SimpleGameManager._NAME_SIMPLE_GAME_MANAGER);
@@ -401,6 +413,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 					//3. CREATE A COMPONENT ON THE GAME OBJECT
 					_Instance = simpleGameManager.GetComponent<SimpleGameManager>();
 					if (_Instance == null) {
+						//KEEP
+						Debug.Log ("SimpleGameManager.created()");
 						_Instance = simpleGameManager.AddComponent<SimpleGameManager>(); 	
 					}
 					

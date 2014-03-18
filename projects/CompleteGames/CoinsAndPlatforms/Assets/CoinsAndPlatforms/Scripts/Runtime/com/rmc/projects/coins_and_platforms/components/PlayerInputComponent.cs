@@ -138,79 +138,85 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		{
 
 
-			//PREPARE FOR CALCULATIONS
-			_velocity_vector3 = _getCurrentVelocityBeforeModifications();
 			
-			//DO CALCULATIONS
-			if( _characterController2D.isGrounded ) {
-				if (_velocity_vector3.y != 0) {
-					SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_LANDS);
-					_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
-					_velocity_vector3.y = 0;
-				}
-			}
-			
-			
-			
-			if( Input.GetKey( KeyCode.RightArrow ) )
-			{
-				_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
-				_normalizedHorizontalSpeed_float = 1;
-				if( transform.localScale.x < 0f )
-					transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
-			}
-			else if( Input.GetKey( KeyCode.LeftArrow ) )
-			{
-				_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
-				_normalizedHorizontalSpeed_float = -1;
-				if( transform.localScale.x > 0f )
-					transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
-			}
-			else
-			{
-				_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
-				_normalizedHorizontalSpeed_float = 0;
-			}
-			
-			
-			/*
-			*  DO NOT ALLOW DOUBLE JUMP (YET?)
-			* 
-			* 
-			* 
-			*/
-			if( Input.GetKeyDown( KeyCode.UpArrow ) && _characterController2D.isGrounded )
-			{
-				_setAnimationTrigger (MainConstants.JUMPING_TRIGGER);
-				_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
-				SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
-			}
-
-
-			//
+			//ALWAYS ALLOW RESTART
 			if( Input.GetKeyDown( KeyCode.Space ))
 			{
 				SimpleGameManager.Instance.gameManager.doRestartGame();
 			}
-			
-			
-			//MOVE RIGHT
-			_velocity_vector3 = _doUpdateHorizontalVelocity 
-				(
-					_velocity_vector3,
-					_normalizedHorizontalSpeed_float,
-					_runSpeed_float
-					);
-			
-			//MOVE DOWN
-			_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
-			
-			
-			
-			//USE CALCULATIONS
-			_setCurrentVelocityAfterModifications (_velocity_vector3);
 
 
+
+			//IF ENABLED, TAKE INPUT....
+			if (_characterController2D.enabled) {
+
+				//PREPARE FOR CALCULATIONS
+				_velocity_vector3 = _getCurrentVelocityBeforeModifications();
+				
+				//DO CALCULATIONS
+				if( _characterController2D.isGrounded ) {
+					if (_velocity_vector3.y != 0) {
+						SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_LANDS);
+						_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
+						_velocity_vector3.y = 0;
+					}
+				}
+				
+				
+				
+				if( Input.GetKey( KeyCode.RightArrow ) )
+				{
+					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
+					_normalizedHorizontalSpeed_float = 1;
+					if( transform.localScale.x < 0f )
+						transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+				}
+				else if( Input.GetKey( KeyCode.LeftArrow ) )
+				{
+					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
+					_normalizedHorizontalSpeed_float = -1;
+					if( transform.localScale.x > 0f )
+						transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+				}
+				else
+				{
+					_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
+					_normalizedHorizontalSpeed_float = 0;
+				}
+				
+				
+				/*
+				*  DO NOT ALLOW DOUBLE JUMP (YET?)
+				* 
+				* 
+				* 
+				*/
+				if( Input.GetKeyDown( KeyCode.UpArrow ) && _characterController2D.isGrounded )
+				{
+					_setAnimationTrigger (MainConstants.JUMPING_TRIGGER);
+					_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
+					SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
+				}
+
+
+				
+				//MOVE RIGHT
+				_velocity_vector3 = _doUpdateHorizontalVelocity 
+					(
+						_velocity_vector3,
+						_normalizedHorizontalSpeed_float,
+						_runSpeed_float
+						);
+				
+				//MOVE DOWN
+				_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
+				
+				
+				
+				//USE CALCULATIONS
+				_setCurrentVelocityAfterModifications (_velocity_vector3);
+
+			}
 
 		}
 		// PRIVATE STATIC

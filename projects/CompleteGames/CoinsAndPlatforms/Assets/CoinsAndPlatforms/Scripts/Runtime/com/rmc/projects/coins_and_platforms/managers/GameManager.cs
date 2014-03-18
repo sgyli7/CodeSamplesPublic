@@ -103,7 +103,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 					_gameState = value;
 
 					//KEEP TRACE
-					Debug.Log ("_gameState: " + _gameState);
+					//Debug.Log ("_gameState: " + _gameState);
 
 					//SWITCH
 					switch (_gameState)
@@ -129,6 +129,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 					case GameState.GAME:
 						break;
 					case GameState.GAME_END:
+						_doDisablePlayer();
 						break;
 					default:
 						#pragma warning disable 0162
@@ -176,6 +177,22 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			
 		}
 
+		/// <summary>
+		/// The _prompt message_string.
+		/// </summary>
+		private string _promptMessage_string;
+		public string promptMessage
+		{
+			get {
+				return _promptMessage_string;
+			}
+			set {
+				_promptMessage_string = value;
+				_doRefreshGUI();
+			}
+			
+		}
+
 		
 		/// <summary>
 		/// The _check point_gameobject.
@@ -213,6 +230,11 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// The _lives GUI text.
 		/// </summary>
 		private GUIText _livesGUIText;
+
+		/// <summary>
+		/// The _prompt GUI text.
+		/// </summary>
+		private GUIText _promptGUIText;
 
 		/// <summary>
 		/// The _start waypoint_gameobject.
@@ -279,6 +301,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 			_scoreGUIText 				= GameObject.Find (MainConstants.ScoreGUIText).GetComponent<GUIText>();
 			_livesGUIText 				= GameObject.Find (MainConstants.LivesGUIText).GetComponent<GUIText>();
+			_promptGUIText 				= GameObject.Find (MainConstants.PromptGUIText).GetComponent<GUIText>();
 			_startWaypoint_gameobject 	= GameObject.Find (MainConstants.StartWaypoint);
 			_player_gameobject 			= GameObject.Find (MainConstants.PlayerUnPrefab);
 
@@ -301,7 +324,12 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public void doKillPlayer ()
 		{
 			lives--;
-			gameState = GameState.LIVE_BEGIN;
+			//
+			if (lives > 0) {
+				gameState = GameState.LIVE_BEGIN;
+			} else {
+				doGameOver (GameOverReason.LOSS);
+			}
 		}
 
 
@@ -313,15 +341,20 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		{
 
 			gameState = GameState.NULL;
-			Application.LoadLevel (Application.loadedLevel);
+			gameState = GameState.MENU;
+			SimpleGameManager.Instance.doRestartLevel();
 			
 		}
 
 
+		/// <summary>
+		/// Dos the game over.
+		/// </summary>
+		/// <param name="aGameOverReason">A game over reason.</param>
 		public void doGameOver (GameOverReason aGameOverReason) 
 		{
 			_lastGameOverReason = aGameOverReason;
-			_doGameOverImmediate();
+			_doGameOver_Part1();
 
 		}
 
@@ -329,28 +362,30 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// <summary>
 		/// _dos the game over immediate.
 		/// </summary>
-		private void _doGameOverImmediate()
+		private void _doGameOver_Part1()
 		{
 			//Time.timeScale = .1f;
+			gameState = GameState.GAME_END;
 
+			//
 			switch (_lastGameOverReason) {
 			case GameOverReason.WIN:
-				//_doSetScore ("You Win!");
+				promptMessage = MainConstants.PROMPT_GAME_OVER_WIN;
 				break;
 			case GameOverReason.LOSS:
-				//_doSetScore("You Lose!");
+				promptMessage = MainConstants.PROMPT_GAME_OVER_LOSS;
 				break;
 			}
 
 
-			Invoke ("_doGameOverAfterPause", 0.25f);
+			Invoke ("_doGameOver_Part2", 0.25f);
 		}
 
 
 		/// <summary>
 		/// _dos the game over after pause.
 		/// </summary>
-		private void _doGameOverAfterPause()
+		private void _doGameOver_Part2()
 		{
 
 			//Time.timeScale = 1;
@@ -359,19 +394,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			SimpleGameManager.Instance.enemyManager.doDespawnAllEnemies();
 			SimpleGameManager.Instance.enemyManager.doDeListAllBosses();
 			SimpleGameManager.Instance.platformManager.doDeListAllPlatforms();
-
-
-			switch (_lastGameOverReason) {
-				case GameOverReason.WIN:
-					//SimpleGameManager.Instance.loadCurrentLevelAgain();
-					Application.LoadLevel (Application.loadedLevel);
-					break;
-				case GameOverReason.LOSS:
-					//SimpleGameManager.Instance.loadCurrentLevelAgain();
-					Application.LoadLevel (Application.loadedLevel);
-					break;
-			}
-
 
 		}
 
@@ -382,6 +404,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		{
 			score = 0;
 			lives = 1;
+			promptMessage = "";
 
 		}
 
@@ -403,9 +426,20 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			//CANCEL CURRENT MOTION IN PHYSICS
 			CharacterController2D characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
 			characterController2D.velocity = Vector2.zero;
+			characterController2D.enabled = true;
 
 		}
 
+		/// <summary>
+		/// _dos the disable player.
+		/// </summary>
+		private void _doDisablePlayer ()
+		{
+			CharacterController2D characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
+			characterController2D.velocity = Vector2.zero;
+			characterController2D.enabled = false;
+
+		}
 
 
 
@@ -414,14 +448,11 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		private void _doRefreshGUI () 
 		{
-			if (_scoreGUIText) {
-				_scoreGUIText.text = "Score: " + score.ToString();
-			}
+			_scoreGUIText.text = "Score: " + score.ToString();
 
-			if (_livesGUIText) {
-				_livesGUIText.text = "Lives: " + lives.ToString();
-			}
+			_livesGUIText.text = "Lives: " + lives.ToString();
 
+			_promptGUIText.text = _promptMessage_string;
 		}
 
 		//PRIVATE

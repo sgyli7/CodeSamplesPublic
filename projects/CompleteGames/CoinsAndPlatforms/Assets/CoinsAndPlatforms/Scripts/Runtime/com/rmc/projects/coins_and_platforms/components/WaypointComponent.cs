@@ -147,7 +147,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			if (waypointType == WaypointType.END) {
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
-					SimpleGameManager.Instance.gameManager.doRestartGame();
+					SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.WIN);
 				}
 
 			} else if (waypointType == WaypointType.MID) {
