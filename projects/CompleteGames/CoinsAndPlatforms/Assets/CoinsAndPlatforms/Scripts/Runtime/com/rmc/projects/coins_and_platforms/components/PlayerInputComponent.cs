@@ -20,6 +20,7 @@ public class PlayerInputComponent : SuperMovementComponent
 	/// </summary>
 	public float runSpeed_float = 8f;
 	public float targetJumpHeight = 4f;
+	public float targetJumpMultiplyer = 20f;
 
 	public RaycastHit2D lastControllerColliderHit;
 
@@ -78,7 +79,11 @@ public class PlayerInputComponent : SuperMovementComponent
 		if( Input.GetKeyDown( KeyCode.UpArrow ) && _characterController2D.isGrounded )
 		{
 			_setAnimationTrigger (MainConstants.JUMPING_TRIGGER);
-			_velocity_vector3.y = Mathf.Sqrt( 2f * targetJumpHeight * GRAVITY_Y );
+			_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(targetJumpMultiplyer * targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
+			Debug.Log ("ok1: " + targetJumpMultiplyer );
+			Debug.Log ("ok2: " + targetJumpHeight );
+			Debug.Log ("ok3: " + targetJumpMultiplyer * targetJumpHeight * SuperMovementComponent.GRAVITY_Y );
+			Debug.Log ("ok4: " + _velocity_vector3 );
 			SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
 		}
 
