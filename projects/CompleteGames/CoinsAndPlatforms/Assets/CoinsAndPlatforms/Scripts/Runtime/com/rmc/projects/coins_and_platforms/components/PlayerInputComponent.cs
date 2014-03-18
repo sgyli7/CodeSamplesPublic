@@ -190,6 +190,13 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpMultiplyer * _targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
 			}
+
+
+			//
+			if( Input.GetKeyDown( KeyCode.Space ))
+			{
+				SimpleGameManager.Instance.gameManager.doRestartGame();
+			}
 			
 			
 			//MOVE RIGHT

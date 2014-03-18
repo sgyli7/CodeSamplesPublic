@@ -72,7 +72,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 	public class GameManager : MonoBehaviour 
 	{
 		
-		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
@@ -251,6 +250,17 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 		
 		// PUBLIC
+
+		/// <summary>
+		/// Dos the restart game.
+		/// </summary>
+		public void doRestartGame () 
+		{
+			Application.LoadLevel (Application.loadedLevel);
+			
+		}
+
+
 		public void doGameOver (GameOverReason aGameOverReason) 
 		{
 			_lastGameOverReason = aGameOverReason;
