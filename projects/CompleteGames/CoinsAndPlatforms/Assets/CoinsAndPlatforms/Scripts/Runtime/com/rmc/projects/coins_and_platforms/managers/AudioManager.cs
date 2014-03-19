@@ -49,10 +49,10 @@ namespace com.rmc.projects.coins_and_platforms.managers
 	public enum AudioClipType
 	{
 		BUTTON_CLICK,
+		WAYPOINT_TRIGGERED,
 		PLAYER_JUMPS,
 		PLAYER_LANDS,
 		PLAYER_KILLS_ENEMY,
-		PLAYER_CHECKPOINT_UPDATED,
 		COIN_COLLECTED,
 		ENEMY_KILLS_PLAYER,
 		GAME_OVER_WIN,
@@ -95,7 +95,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private AudioClip _buttonClick_audioclip;
 		private AudioClip _playerJumps_audioclip;
 		private AudioClip _playerLands_audioclip;
-		private AudioClip _playerCheckpointUpdated;
+		private AudioClip _waypointTriggered_audioclip;
 		private AudioClip _playerKillsEnemy_audioclip;
 		private AudioClip _coinCollected_audioclip;
 		private AudioClip _enemyKillsPlayer_audioclip;
@@ -138,10 +138,10 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_audioSource = gameObject.AddComponent <AudioSource>();
 			//
 			_buttonClick_audioclip 			= _doLoadAudioClipByName ("ButtonClick01");
+			_waypointTriggered_audioclip 	= _doLoadAudioClipByName ("WaypointTriggered01");
 			_playerJumps_audioclip			= _doLoadAudioClipByName ("PlayerJumps01");
 			_playerLands_audioclip 			= _doLoadAudioClipByName ("PlayerLands01");
 			_playerKillsEnemy_audioclip 	= _doLoadAudioClipByName ("PlayerKillsEnemy01");
-			_playerCheckpointUpdated    	= _doLoadAudioClipByName ("PlayerCheckpointUpdated01");
 			_coinCollected_audioclip 		= _doLoadAudioClipByName ("CoinCollected01");
 			_enemyKillsPlayer_audioclip     = _doLoadAudioClipByName ("EnemyKillsPlayer01");
 			_gameOverWin_audioclip 			= _doLoadAudioClipByName ("GameOverWin01");
@@ -174,6 +174,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			case AudioClipType.BUTTON_CLICK:
 				_audioSource.PlayOneShot (_buttonClick_audioclip);
 				break;
+			case AudioClipType.WAYPOINT_TRIGGERED:
+				_audioSource.PlayOneShot (_waypointTriggered_audioclip);
+				break;
 			case AudioClipType.PLAYER_JUMPS:
 				_audioSource.PlayOneShot (_playerJumps_audioclip);
 				break;
@@ -184,9 +187,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 				break;
 			case AudioClipType.PLAYER_KILLS_ENEMY:
 				_audioSource.PlayOneShot (_playerKillsEnemy_audioclip);
-				break;
-			case AudioClipType.PLAYER_CHECKPOINT_UPDATED:
-				_audioSource.PlayOneShot (_playerCheckpointUpdated);
 				break;
 			case AudioClipType.COIN_COLLECTED:
 				_audioSource.PlayOneShot (_coinCollected_audioclip);

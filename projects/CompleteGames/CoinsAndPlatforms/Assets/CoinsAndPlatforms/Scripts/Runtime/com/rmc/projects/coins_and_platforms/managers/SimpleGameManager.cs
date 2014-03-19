@@ -185,6 +185,19 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			Application.LoadLevel (Application.loadedLevel);
 		}
 
+		/// <summary>
+		/// Dos the refresh instance.
+		/// 
+		/// NOTE: In some scopes we have not yet addressed Instance, so this 'wakes up' the whole system.
+		/// 
+		/// NOTE: Todo: have the SGM class use '[PostProcessScene(-1)]' to eliminate the need for doRefreshInstance()
+		/// 
+		/// </summary>
+		public SimpleGameManager doRefreshInstance() 
+		{ 
+			return _Instance;
+		}
+
 		
 		
 		/// <summary>

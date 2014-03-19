@@ -91,7 +91,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		public PlayerInputComponent ()
 		{
-			
+
 			
 		}
 		
@@ -112,6 +112,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		void Start () 
 		{
+			SimpleGameManager.Instance.doRefreshInstance();
 			_normalizedHorizontalSpeed_float = 1;
 		}
 		

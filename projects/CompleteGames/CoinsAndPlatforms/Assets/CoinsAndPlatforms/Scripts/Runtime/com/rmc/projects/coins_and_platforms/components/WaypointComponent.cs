@@ -76,6 +76,14 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// </summary>
 		public WaypointType waypointType;
 
+
+		
+		/// <summary>
+		/// The animator.
+		/// </summary>
+		private Animator _animator;
+
+
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -110,6 +118,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		void Start () 
 		{
 			wasTriggered = false;
+			_animator = GetComponent <Animator>();
 		}
 		
 		
@@ -127,6 +136,16 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// _dos the trigger waypoing.
+		/// </summary>
+		private void _doTriggerWaypoint ()
+		{
+			wasTriggered = true;
+			_animator.SetTrigger ("wasCollectedTrigger");
+			SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.WAYPOINT_TRIGGERED);
+
+		}
 		
 		// PRIVATE STATIC
 		
@@ -147,7 +166,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
 					if (!wasTriggered) {
-						wasTriggered = true;
+						_doTriggerWaypoint();
 						SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.WIN);
 					}
 				}
@@ -157,10 +176,8 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
 					if (!wasTriggered) {
-						wasTriggered = true;
-						Debug.Log ("set midpoint");
+						_doTriggerWaypoint();
 						SimpleGameManager.Instance.gameManager.checkPoint = gameObject;
-						SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_CHECKPOINT_UPDATED);
 					}
 				}
 

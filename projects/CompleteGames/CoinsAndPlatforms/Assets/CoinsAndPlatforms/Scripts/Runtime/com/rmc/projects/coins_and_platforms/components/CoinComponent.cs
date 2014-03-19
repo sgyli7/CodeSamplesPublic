@@ -86,6 +86,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// </summary>
 		private static float _MOVE_DURATION = 0.2f;
 
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -117,7 +118,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		void Start () 
 		{
-			
 		}
 		
 		

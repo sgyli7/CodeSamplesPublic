@@ -483,7 +483,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_player_gameobject.transform.position 		= new Vector3 
 				(
 					_checkPoint_gameobject.transform.position.x - _player_gameobject.transform.localScale.x,
-					_checkPoint_gameobject.transform.position.y + _checkPoint_gameobject.transform.localScale.y,
+					_checkPoint_gameobject.transform.position.y + 8,
 					_checkPoint_gameobject.transform.position.z
 				);
 					
