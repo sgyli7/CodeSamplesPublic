@@ -67,12 +67,12 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The _run speed_float.
 		/// </summary>
-		private float _runSpeed_float = 80f;
+		private float _runSpeed_float = 60f;
 		
 		/// <summary>
 		/// The height of the _target jump.
 		/// </summary>
-		private float _targetJumpHeight = 80f;
+		private float _targetJumpHeight = 40f;
 		
 		/// <summary>
 		/// The _last controller collider hit.

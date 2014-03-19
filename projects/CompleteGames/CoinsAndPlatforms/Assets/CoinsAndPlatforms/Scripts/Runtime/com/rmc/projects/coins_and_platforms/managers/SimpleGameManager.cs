@@ -109,7 +109,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public GameManager gameManager;
 
 		public AudioManager audioManager;
-		
+
 		// PUBLIC STATIC
 		
 		// PRIVATE

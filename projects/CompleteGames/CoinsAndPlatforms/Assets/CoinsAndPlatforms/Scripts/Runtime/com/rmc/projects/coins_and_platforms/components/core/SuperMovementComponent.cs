@@ -111,7 +111,7 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// <summary>
 		/// The GRAVIT y_ y.
 		/// </summary>
-		public static float GRAVITY_Y = -75f;
+		public static float GRAVITY_Y = -40f;
 
 		//--------------------------------------
 		//  Methods

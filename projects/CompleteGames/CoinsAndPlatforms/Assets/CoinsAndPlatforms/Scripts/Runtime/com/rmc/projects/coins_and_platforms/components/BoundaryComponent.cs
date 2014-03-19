@@ -145,12 +145,17 @@ namespace com.rmc.projects.coins_and_platforms.components
 		/// <param name="collider2D">Collider2 d.</param>
 		public void OnTriggerEnter2D (Collider2D collider2D)
 		{
-			if (_boundaryType == BoundaryType.BOTTOM) {
+
+			//NOTE: CURRENTLY ALL WALL TYPES 'KILL' YOU.
+			//TODO: Perhaps make only BOTTOM kill and the rest just do nothing (bounce player via physics
+			if (_boundaryType == BoundaryType.TOP ||
+			    _boundaryType == BoundaryType.BOTTOM || 
+			    _boundaryType == BoundaryType.LEFT ||
+			    _boundaryType == BoundaryType.RIGHT) {
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
 					if (!wasTriggered) {
 						wasTriggered = true;
-						Debug.Log ("kill");
 						SimpleGameManager.Instance.gameManager.doKillPlayer();
 					}
 				}

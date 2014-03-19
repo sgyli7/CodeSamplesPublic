@@ -35,6 +35,7 @@ using UnityEngine;
 //--------------------------------------
 using com.rmc.exceptions;
 using com.rmc.projects.coins_and_platforms.constants;
+using System;
 
 
 namespace com.rmc.projects.coins_and_platforms.managers
@@ -300,12 +301,30 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private void _doSetBrittleReferences()
 		{
 
-			_scoreGUIText 				= GameObject.Find (MainConstants.ScoreGUIText).GetComponent<GUIText>();
-			_livesGUIText 				= GameObject.Find (MainConstants.LivesGUIText).GetComponent<GUIText>();
-			_promptGUIText 				= GameObject.Find (MainConstants.PromptGUIText).GetComponent<GUIText>();
-			_startWaypoint_gameobject 	= GameObject.Find (MainConstants.StartWaypoint);
-			_player_gameobject 			= GameObject.Find (MainConstants.PlayerUnPrefab);
+			Debug.Log ("ref");
+			_scoreGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.ScoreGUIText).GetComponent<GUIText>()) as GUIText;
+			_livesGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.LivesGUIText).GetComponent<GUIText>()) as GUIText;
+			_promptGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.PromptGUIText).GetComponent<GUIText>()) as GUIText;
+			_startWaypoint_gameobject 	= _doThrowErrorIfNull (GameObject.Find (MainConstants.StartWaypoint)) as GameObject;
+			_player_gameobject 			= _doThrowErrorIfNull (GameObject.Find (MainConstants.PlayerUnPrefab)) as GameObject;
 
+		}
+
+
+		/// <summary>
+		/// Throws the error if null.
+		/// </summary>
+		/// <returns>The error if null.</returns>
+		/// <param name="aToCheck_object">A to check_object.</param>
+		private UnityEngine.Object _doThrowErrorIfNull(UnityEngine.Object aToCheck_object)
+		{
+			
+			if (aToCheck_object == null) {
+				throw new Exception ("Must not be null : " + aToCheck_object);
+			}
+
+			return aToCheck_object;
+			
 		}
 		
 		
