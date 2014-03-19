@@ -440,12 +440,28 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			case GameOverReason.WIN:
 				promptMessage = MainConstants.PROMPT_GAME_OVER_WIN;
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.GAME_OVER_WIN);
+
 				break;
 			case GameOverReason.LOSS:
 				promptMessage = MainConstants.PROMPT_GAME_OVER_LOSS;
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.GAME_OVER_LOSS);
 				break;
+			default:
+				#pragma warning disable 0162
+				throw new SwitchStatementException();
+				break;
+				#pragma warning restore 0162
 			}
+
+
+			//
+			PlayerInputComponent playerInputComponent = _player_gameobject.GetComponent<PlayerInputComponent>();
+			playerInputComponent.doResetPhysicsAndAnimation();
+			//
+			CharacterController2D _characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
+			_characterController2D.enabled = false;
+			//playerInputComponent.enabled = false;
+			//playerInputComponent.enabled = false;
 
 
 			Invoke ("_doGameOver_Part2", 0.25f);
@@ -458,12 +474,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private void _doGameOver_Part2()
 		{
 
-			//Time.timeScale = 1;
-
-			//clean up
-			SimpleGameManager.Instance.enemyManager.doDespawnAllEnemies();
-			SimpleGameManager.Instance.enemyManager.doDeListAllBosses();
-			SimpleGameManager.Instance.platformManager.doDeListAllPlatforms();
+			//cleanup anything?
 
 		}
 
@@ -472,7 +483,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		/// todo: order these methods better
 		private void _doResetGUI() 
-		{
+		{ 
 			score = 0;
 			lives = 2;
 			promptMessage = "";

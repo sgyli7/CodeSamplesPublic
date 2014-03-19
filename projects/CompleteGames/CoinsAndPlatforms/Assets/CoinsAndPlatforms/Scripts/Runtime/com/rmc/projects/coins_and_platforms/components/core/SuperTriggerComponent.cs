@@ -65,7 +65,7 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// The _was triggered_boolean.
 		/// </summary>
 		private bool _wasTriggered_boolean = false;
-		public bool wasTriggered
+		protected bool _wasTriggered
 		{
 			get {
 				return _wasTriggered_boolean;

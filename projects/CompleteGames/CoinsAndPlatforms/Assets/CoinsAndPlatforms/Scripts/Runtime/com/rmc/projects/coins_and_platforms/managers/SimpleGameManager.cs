@@ -102,10 +102,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		
 		
 		*/
-		public EnemyManager enemyManager;
-		
-		public PlatformManager platformManager;
-
 		public GameManager gameManager;
 
 		public AudioManager audioManager;
@@ -439,14 +435,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 					//5
 					
 					//TODO: AGAIN, MOVE THIS GAME SPECIFIC LOGIC OUT, PERHAPS CREATE A managers_list permanently here.
-					if (!_Instance.enemyManager) {
-						_Instance.enemyManager = simpleGameManager.AddComponent<EnemyManager>();
-					}
 					
-					if (!_Instance.platformManager) {
-						_Instance.platformManager = simpleGameManager.AddComponent<PlatformManager>();
-					}
-
 					if (!_Instance.gameManager) {
 						_Instance.gameManager = simpleGameManager.AddComponent<GameManager>();
 					}

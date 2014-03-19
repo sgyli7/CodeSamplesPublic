@@ -1,9 +1,6 @@
 ﻿/**
 * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
 * code [at] RivelloMultimediaConsulting [dot] com                                                  
-/**
-* Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
-* code [at] RivelloMultimediaConsulting [dot] com                                                  
 *                                                                      
 * Permission is hereby granted, free of charge, to any person obtaining
 * a copy of this software and associated documentation files (the      
@@ -30,20 +27,20 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.components.core;
+using com.rmc.projects.coins_and_platforms.constants;
+using com.rmc.projects.coins_and_platforms.managers;
 using UnityEngine;
-using System.Collections;
-
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.coins_and_platforms.components
+namespace com.rmc.projects.coins_and_platforms.components.super
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -53,7 +50,8 @@ namespace com.rmc.projects.coins_and_platforms.components
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class EnemyPrefabWalkingComponent : MonoBehaviour 
+	[RequireComponent (typeof (EnemyAIComponent))]
+	public class EnemyDetectPlayerTriggerComponent : SuperTriggerComponent 
 	{
 		
 		
@@ -62,56 +60,14 @@ namespace com.rmc.projects.coins_and_platforms.components
 		//--------------------------------------
 		
 		// GETTER / SETTER
-		/// <summary>
-		/// Gets or sets the spawner.
-		/// </summary>
-		/// <value>The spawner.</value>
-		private GameObject _spawner_gameobject;
-		public GameObject spawner 
-		{
-			get
-			{
-				return _spawner_gameobject;
-			}
-			set
-			{
-				_spawner_gameobject = value;
-				
-			}
-		}
-		
-		private bool _isFacingRight_boolean;
-		public bool isFacingRight 
-		{
-			get
-			{
-				return _isFacingRight_boolean;
-			}
-			set
-			{
-				_isFacingRight_boolean = value;
-				//
-				if (_isFacingRight_boolean) {
-					_movement_vector3 = new Vector3 (0.03f, 0, 0); //MOVE RIGHT
-					transform.localScale = new Vector3 (1, 1, 1);
-				} else {
-					_movement_vector3 = new Vector3 (-0.03f, 0, 0);
-					transform.localScale = new Vector3 (-1, 1, 1);
-				}
-				
-			}
-		}
 		
 		// PUBLIC
 		
-		// PUBLIC STATIC
-		
-		// PRIVATE
 		/// <summary>
-		/// Enemies the prefab walking component.
+		/// The _enemy AI component.
 		/// </summary>
-		/// <returns>The prefab walking component.</returns>
-		private Vector3 _movement_vector3;
+		private EnemyAIComponent _enemyAIComponent;
+		
 		
 		// PRIVATE STATIC
 		
@@ -123,7 +79,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public EnemyPrefabWalkingComponent ()
+		public EnemyDetectPlayerTriggerComponent ()
 		{
 			
 			
@@ -132,45 +88,67 @@ namespace com.rmc.projects.coins_and_platforms.components
 		/// <summary>
 		/// Deconstructor
 		/// </summary>
-		~EnemyPrefabWalkingComponent ( )
+		~EnemyDetectPlayerTriggerComponent ( )
 		{
 			
 			
 		}
+		
+		
+		
 		
 		///<summary>
 		///	Use this for initialization
 		///</summary>
 		void Start () 
 		{
-			
+			_wasTriggered = false;
+			_enemyAIComponent = GetComponent <EnemyAIComponent>();
 		}
 		
 		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		void Update () 
+		
+		/// <summary>
+		/// Called once per frame
+		/// </summary>
+		void Update()
 		{
 			
-			transform.Translate (_movement_vector3);
 		}
 		
 		// PUBLIC
 		/// <summary>
-		/// Dos the change walking direction.
+		/// Dos the refresh 
 		/// </summary>
-		public void doChangeWalkingDirection ()
+		public void doRefreshEnemy ()
 		{
-			Debug.Log ("--");
-			Debug.Log ("was: " + _movement_vector3);
-			isFacingRight = !isFacingRight;
-			Debug.Log ("is: " + _movement_vector3);
+			_wasTriggered = false;
+			
 		}
 		
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// _dos the trigger waypoing.
+		/// 
+		/// NOTE: We crudely evaluate victory here. Todo: More checks could be added (player velocity.y)
+		/// 
+		/// </summary>
+		private void _doTriggerWaypoint (bool isEnemyVictorious_boolean)
+		{
+			_wasTriggered = true;
+			Invoke ("doRefreshEnemy",1f);
+			//
+			if (isEnemyVictorious_boolean) {
+				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.ENEMY_KILLS_PLAYER);
+				SimpleGameManager.Instance.gameManager.doKillPlayer();
+			} else {
+				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_KILLS_ENEMY);
+				_enemyAIComponent.doKillEnemy();
+			}
+			
+		}
 		
 		// PRIVATE STATIC
 		
@@ -181,7 +159,20 @@ namespace com.rmc.projects.coins_and_platforms.components
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		
+		/// <summary>
+		/// Raises the trigger enter2 d event.
+		/// </summary>
+		/// <param name="collider2D">Collider2 d.</param>
+		public void OnTriggerEnter2D (Collider2D collider2D)
+		{
+			if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
+				if (!_wasTriggered) {
+					CharacterController2D _characterController2D = collider2D.gameObject.GetComponent<CharacterController2D>();
+					_doTriggerWaypoint(_characterController2D.isGrounded);
+				}
+			}
+			
+		}
 		
 	}
 }

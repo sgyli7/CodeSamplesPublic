@@ -76,10 +76,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// </summary>
 		private static float _SCALE_UP_DURATION = 0.1f;
 
-		/// <summary>
-		/// The _ SCAL e_ U p_ DURATIO.
-		/// </summary>
-		private static float _SCALE_DOWN_DURATION = 0.2f;
 
 		/// <summary>
 		/// The _ SCAL e_ U p_ DURATIO.
@@ -178,17 +174,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 
 			return;
 
-			//
-			//
-			Hashtable scaleDown_hashtable 					= new Hashtable();
-			scaleDown_hashtable.Add(iT.ScaleTo.x,			0);
-			scaleDown_hashtable.Add(iT.ScaleTo.y,			0);
-			scaleDown_hashtable.Add(iT.ScaleTo.time,  		_SCALE_DOWN_DURATION);
-			scaleDown_hashtable.Add(iT.ScaleTo.easetype, 	iTween.EaseType.easeInExpo);
-			scaleDown_hashtable.Add(iT.ScaleTo.oncomplete, 	"_doRewardPoints");
-			iTween.ScaleTo (gameObject, 					scaleDown_hashtable);
-			
-			
 		}
 
 		/// <summary>
@@ -220,8 +205,8 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			//
 			if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
 
-				if (!wasTriggered) {
-					wasTriggered = true;
+				if (!_wasTriggered) {
+					_wasTriggered = true;
 					_doScaleUp();
 				}
 			}

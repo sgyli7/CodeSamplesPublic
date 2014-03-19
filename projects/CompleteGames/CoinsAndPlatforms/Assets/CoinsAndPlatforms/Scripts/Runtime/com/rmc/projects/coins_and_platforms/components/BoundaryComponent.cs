@@ -131,7 +131,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		/// </summary>
 		public void doRefreshBoundary ()
 		{
-			wasTriggered = false;
+			_wasTriggered = false;
 
 		}
 		
@@ -163,11 +163,12 @@ namespace com.rmc.projects.coins_and_platforms.components
 			    _boundaryType == BoundaryType.RIGHT) {
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
-					if (!wasTriggered) {
-						wasTriggered = true;
+					if (!_wasTriggered) {
+						_wasTriggered = true;
+						Invoke ("doRefreshBoundary",1f);
 						SimpleGameManager.Instance.gameManager.doKillPlayer();
 						SimpleGameManager.Instance.audioManager.doPlaySound(AudioClipType.PLAYER_FALLS_OFFSCREEN);
-						Invoke ("doRefreshBoundary",1f);
+
 					}
 				} else if (collider2D.gameObject.tag == MainConstants.ENEMY_TAG) {
 					EnemyAIComponent enemyAIComponent = collider2D.gameObject.GetComponent<EnemyAIComponent>();

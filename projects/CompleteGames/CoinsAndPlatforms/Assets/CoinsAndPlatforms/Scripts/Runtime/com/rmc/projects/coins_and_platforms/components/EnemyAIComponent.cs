@@ -156,6 +156,16 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		}
 
 		/// <summary>
+		/// Dos the kill enemy.
+		/// </summary>
+		public void doKillEnemy ()
+		{
+			//TODO, SHOW A SHELL ANIMATION AND FLY OFFSCREEN (IMMEDIATY OUT OF 'PLAY' (DON'T SLIDE THE SHELL)
+			_characterController2D.enabled = false;
+			transform.Rotate (new Vector3 (1, 0, 0));
+		}
+
+		/// <summary>
 		/// Dos the reset to spawn point.
 		/// </summary>
 		public void doResetToSpawnPoint ()

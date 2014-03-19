@@ -1,14 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/constants/MainConstants.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlatformComponent.cs">
     <Files>
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlayerInputComponent.cs" Line="115" Column="51" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/core/SuperMovementComponent.cs" Line="102" Column="17" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GameManager.cs" Line="351" Column="85" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/WaypointComponent.cs" Line="160" Column="41" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/AudioManager.cs" Line="196" Column="62" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/BoundaryComponent.cs" Line="124" Column="4" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/constants/MainConstants.cs" Line="74" Column="38" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/core/SuperMovementComponent.cs" Line="253" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/WaypointComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/AudioManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/BoundaryComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GameManager.cs" Line="480" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlayerInputComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/EnemyAIComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/EnemyDetectPlayerTriggerComponent.cs" Line="130" Column="89" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/SimpleGameManager.cs" Line="219" Column="4" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlatformComponent.cs" Line="57" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

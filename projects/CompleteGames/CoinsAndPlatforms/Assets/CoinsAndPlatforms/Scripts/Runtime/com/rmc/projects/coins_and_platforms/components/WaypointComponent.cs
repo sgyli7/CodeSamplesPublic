@@ -117,7 +117,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		void Start () 
 		{
-			wasTriggered = false;
+			_wasTriggered = false;
 			_animator = GetComponent <Animator>();
 		}
 		
@@ -141,7 +141,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// </summary>
 		private void _doTriggerWaypoint ()
 		{
-			wasTriggered = true;
+			_wasTriggered = true;
 			_animator.SetTrigger ("wasCollectedTrigger");
 			SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.WAYPOINT_TRIGGERED);
 
@@ -165,7 +165,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			if (waypointType == WaypointType.END) {
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
-					if (!wasTriggered) {
+					if (!_wasTriggered) {
 						_doTriggerWaypoint();
 						SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.WIN);
 					}
@@ -175,7 +175,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
-					if (!wasTriggered) {
+					if (!_wasTriggered) {
 						_doTriggerWaypoint();
 						SimpleGameManager.Instance.gameManager.checkPoint = gameObject;
 					}
