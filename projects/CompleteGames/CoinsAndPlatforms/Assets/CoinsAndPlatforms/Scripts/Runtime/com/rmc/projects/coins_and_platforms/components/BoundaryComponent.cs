@@ -38,6 +38,7 @@ using UnityEngine;
 //--------------------------------------
 using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.managers;
+using com.rmc.projects.coins_and_platforms.components.core;
 
 
 namespace com.rmc.projects.coins_and_platforms.components
@@ -62,7 +63,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class BoundaryComponent : MonoBehaviour 
+	public class BoundaryComponent : SuperTriggerComponent 
 	{
 		
 		
@@ -147,7 +148,11 @@ namespace com.rmc.projects.coins_and_platforms.components
 			if (_boundaryType == BoundaryType.BOTTOM) {
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
-					SimpleGameManager.Instance.gameManager.doKillPlayer();
+					if (!wasTriggered) {
+						wasTriggered = true;
+						Debug.Log ("kill");
+						SimpleGameManager.Instance.gameManager.doKillPlayer();
+					}
 				}
 				
 			}

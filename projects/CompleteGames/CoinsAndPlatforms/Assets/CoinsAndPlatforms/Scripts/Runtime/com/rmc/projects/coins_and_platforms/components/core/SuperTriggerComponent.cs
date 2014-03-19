@@ -1,6 +1,9 @@
 /**
 * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
 * code [at] RivelloMultimediaConsulting [dot] com                                                  
+/**
+* Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
+* code [at] RivelloMultimediaConsulting [dot] com                                                  
 *                                                                      
 * Permission is hereby granted, free of charge, to any person obtaining
 * a copy of this software and associated documentation files (the      
@@ -27,18 +30,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.constants;
-using com.rmc.projects.coins_and_platforms.managers;
-using System.Collections;
-
-
-namespace com.rmc.projects.coins_and_platforms.components.super
+namespace com.rmc.projects.coins_and_platforms.components.core
 {
 	
 	//--------------------------------------
@@ -53,7 +51,8 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class CoinComponent : SuperTriggerComponent 
+	[RequireComponent (typeof (BoxCollider2D), typeof (Rigidbody2D))]
+	public class SuperTriggerComponent : MonoBehaviour 
 	{
 		
 		
@@ -62,26 +61,30 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		//--------------------------------------
 		
 		// GETTER / SETTER
+		/// <summary>
+		/// The _was triggered_boolean.
+		/// </summary>
+		private bool _wasTriggered_boolean = false;
+		public bool wasTriggered
+		{
+			get {
+				return _wasTriggered_boolean;
+			}
+			set {
+				_wasTriggered_boolean = value;
+			}
+			
+		}
+
 		
 		// PUBLIC
+
+		// PUBLIC STATIC
+		
+		// PRIVATE
 		
 		// PRIVATE STATIC
-		/// <summary>
-		/// The POINT s_ PE r_ COI.
-		/// </summary>
-		private static uint POINTS_PER_COIN = 100;
-
-		/// <summary>
-		/// The _ SCAL e_ U p_ DURATIO.
-		/// </summary>
-		private static float _SCALE_UP_DURATION = 0.3f;
-
-		/// <summary>
-		/// The _ SCAL e_ U p_ DURATIO.
-		/// </summary>
-		private static float _SCALE_DOWN_DURATION = 0.3f;
-
-
+		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -90,7 +93,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///<summary>
 		///	 Constructor
 		///</summary>
-		public CoinComponent ()
+		public SuperTriggerComponent ()
 		{
 			
 			
@@ -99,14 +102,11 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// Deconstructor
 		/// </summary>
-		~CoinComponent ( )
+		~SuperTriggerComponent ( )
 		{
 			
 			
 		}
-		
-		
-		
 		
 		///<summary>
 		///	Use this for initialization
@@ -117,13 +117,11 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		}
 		
 		
-		
-		/// <summary>
-		/// Called once per frame
-		/// </summary>
-		void Update()
+		///<summary>
+		///	Called once per frame
+		///</summary>
+		void Update () 
 		{
-			
 		}
 		
 		// PUBLIC
@@ -131,57 +129,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// _dos the fade out.
-		/// </summary>
-		private void _doScaleUp ()
-		{
-			//
-			//
-			Hashtable scaleUp_hashtable 				= new Hashtable();
-			scaleUp_hashtable.Add(iT.ScaleTo.x,			1.8);
-			scaleUp_hashtable.Add(iT.ScaleTo.y,			1.8);
-			scaleUp_hashtable.Add(iT.ScaleTo.time,  	_SCALE_UP_DURATION);
-			scaleUp_hashtable.Add(iT.ScaleTo.easetype, 	iTween.EaseType.easeInExpo);
-			scaleUp_hashtable.Add(iT.ScaleTo.oncompletetarget, 	gameObject);
-			scaleUp_hashtable.Add(iT.ScaleTo.oncomplete, 		"_doScaleDown");
-			iTween.ScaleTo (gameObject, 				scaleUp_hashtable);
-
-
-		}
-
-		/// <summary>
-		/// _dos the fade out.
-		/// </summary>
-		public void _doScaleDown ()
-		{
-
-			SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.COIN_COLLECTED);
-
-
-			//
-			//
-			Hashtable scaleDown_hashtable 					= new Hashtable();
-			scaleDown_hashtable.Add(iT.ScaleTo.x,			0);
-			scaleDown_hashtable.Add(iT.ScaleTo.y,			0);
-			scaleDown_hashtable.Add(iT.ScaleTo.time,  		_SCALE_DOWN_DURATION);
-			scaleDown_hashtable.Add(iT.ScaleTo.easetype, 	iTween.EaseType.easeInExpo);
-			scaleDown_hashtable.Add(iT.ScaleTo.oncomplete, 	"_doRewardPoints");
-			iTween.ScaleTo (gameObject, 					scaleDown_hashtable);
-			
-			
-		}
-
-		/// <summary>
-		/// _dos the reward points.
-		/// </summary>
-		public void _doRewardPoints ()
-		{
-			SimpleGameManager.Instance.gameManager.score += POINTS_PER_COIN;
-			DestroyImmediate (gameObject);
-
-
-		}
 		
 		// PRIVATE STATIC
 		
@@ -192,22 +139,8 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		//--------------------------------------
 		//  Events
 		//--------------------------------------
-		/// <summary>
-		/// Raises the trigger enter2 d event.
-		/// </summary>
-		/// <param name="collider2D">Collider2 d.</param>
-		public void OnTriggerEnter2D (Collider2D collider2D)
-		{
-			//
-			if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
 
-				if (!wasTriggered) {
-					wasTriggered = true;
-					_doScaleUp();
-				}
-			}
-			
-		}
+		
 		
 	}
 }

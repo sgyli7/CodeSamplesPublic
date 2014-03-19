@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Editor\com\rmc\projects\coins_and_platforms\CustomInitializeOnLoad.cs" />
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Editor\com\rmc\projects\coins_and_platforms\components\SnapMeComponentEditor.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\CreateDefaultFoldersMenu.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\EditorWindowUtility.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\ScriptableObjectUtility.cs" />

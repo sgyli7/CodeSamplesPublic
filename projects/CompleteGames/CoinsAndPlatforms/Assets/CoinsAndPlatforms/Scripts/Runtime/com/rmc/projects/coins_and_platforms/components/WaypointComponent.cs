@@ -60,8 +60,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	[RequireComponent (typeof (BoxCollider2D), typeof (Rigidbody2D))]
-	public class WaypointComponent : MonoBehaviour 
+	public class WaypointComponent : SuperTriggerComponent 
 	{
 		
 		
@@ -76,7 +75,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// The type of the waypoint.
 		/// </summary>
 		public WaypointType waypointType;
-		
+
 		// PRIVATE STATIC
 		
 		//--------------------------------------
@@ -110,7 +109,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		void Start () 
 		{
-
+			wasTriggered = false;
 		}
 		
 		
@@ -147,16 +146,22 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			if (waypointType == WaypointType.END) {
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
-					SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.WIN);
+					if (!wasTriggered) {
+						wasTriggered = true;
+						SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.WIN);
+					}
 				}
 
 			} else if (waypointType == WaypointType.MID) {
 
 				//
 				if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
-					Debug.Log ("set midpoint");
-					SimpleGameManager.Instance.gameManager.checkPoint = gameObject;
-				
+					if (!wasTriggered) {
+						wasTriggered = true;
+						Debug.Log ("set midpoint");
+						SimpleGameManager.Instance.gameManager.checkPoint = gameObject;
+						SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_CHECKPOINT_UPDATED);
+					}
 				}
 
 			}

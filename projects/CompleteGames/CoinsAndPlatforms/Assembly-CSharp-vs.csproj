@@ -62,6 +62,7 @@
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\ViewInstructionsButtonClickComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\WaypointComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\core\SuperMovementComponent.cs" />
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\core\SuperTriggerComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\configurations\MainConfiguration.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\constants\MainConstants.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\managers\AudioManager.cs" />

@@ -172,6 +172,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			}
 			set {
 				_lives_float = value;
+				Debug.Log ("lives: " + _lives_float);
 				_doRefreshGUI();
 			}
 			

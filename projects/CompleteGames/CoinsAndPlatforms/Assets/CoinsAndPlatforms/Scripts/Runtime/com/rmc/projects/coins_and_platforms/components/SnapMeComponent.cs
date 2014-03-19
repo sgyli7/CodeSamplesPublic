@@ -59,23 +59,6 @@ namespace com.rmc.projects.coins_and_platforms.components
 		//--------------------------------------
 		
 		// GETTER / SETTER
-		///<summary>
-		///	This is a sample getter/setter property.
-		///</summary>
-		private string samplePublic2_str;
-		private string samplePublic2 { 
-			get 
-			{ 
-				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-				return samplePublic2_str; 
-			}
-			set 
-			{ 
-				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-				samplePublic2_str = value; 
-			}
-		}
-		
 		
 		// PUBLIC
 		
@@ -125,7 +108,6 @@ namespace com.rmc.projects.coins_and_platforms.components
 		void Update () 
 		{
 			
-			_doSnapMe();
 			hideFlags = HideFlags.None;
 			
 		}
@@ -138,7 +120,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		/// <summary>
 		/// _dos the snap me.
 		/// </summary>
-		private void _doSnapMe () 
+		public void doSnapMe () 
 		{
 			float xPos = transform.position.x;
 			float yPos = transform.position.y;
