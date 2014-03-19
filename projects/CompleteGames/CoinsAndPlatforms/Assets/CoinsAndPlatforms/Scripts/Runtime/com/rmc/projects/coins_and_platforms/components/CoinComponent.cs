@@ -74,13 +74,17 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The _ SCAL e_ U p_ DURATIO.
 		/// </summary>
-		private static float _SCALE_UP_DURATION = 0.3f;
+		private static float _SCALE_UP_DURATION = 0.1f;
 
 		/// <summary>
 		/// The _ SCAL e_ U p_ DURATIO.
 		/// </summary>
-		private static float _SCALE_DOWN_DURATION = 0.3f;
+		private static float _SCALE_DOWN_DURATION = 0.2f;
 
+		/// <summary>
+		/// The _ SCAL e_ U p_ DURATIO.
+		/// </summary>
+		private static float _MOVE_DURATION = 0.2f;
 
 		//--------------------------------------
 		//  Methods
@@ -138,14 +142,14 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		{
 			//
 			//
-			Hashtable scaleUp_hashtable 				= new Hashtable();
-			scaleUp_hashtable.Add(iT.ScaleTo.x,			1.8);
-			scaleUp_hashtable.Add(iT.ScaleTo.y,			1.8);
-			scaleUp_hashtable.Add(iT.ScaleTo.time,  	_SCALE_UP_DURATION);
-			scaleUp_hashtable.Add(iT.ScaleTo.easetype, 	iTween.EaseType.easeInExpo);
+			Hashtable scaleUp_hashtable 						= new Hashtable();
+			scaleUp_hashtable.Add(iT.ScaleTo.x,					.8);
+			scaleUp_hashtable.Add(iT.ScaleTo.y,					.8);
+			scaleUp_hashtable.Add(iT.ScaleTo.time,  			_SCALE_UP_DURATION);
+			scaleUp_hashtable.Add(iT.ScaleTo.easetype, 			iTween.EaseType.easeInExpo);
 			scaleUp_hashtable.Add(iT.ScaleTo.oncompletetarget, 	gameObject);
 			scaleUp_hashtable.Add(iT.ScaleTo.oncomplete, 		"_doScaleDown");
-			iTween.ScaleTo (gameObject, 				scaleUp_hashtable);
+			iTween.ScaleTo (gameObject, 						scaleUp_hashtable);
 
 
 		}
@@ -158,6 +162,21 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 
 			SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.COIN_COLLECTED);
 
+
+
+			Vector2 coinDestination_vector2 = SimpleGameManager.Instance.gameManager.getCollectedCoinDestination(gameObject.transform);
+
+			//
+			//
+			Hashtable moveTo_hashtable 						= new Hashtable();
+			moveTo_hashtable.Add(iT.MoveTo.x,				coinDestination_vector2.x);
+			moveTo_hashtable.Add(iT.MoveTo.y,				coinDestination_vector2.y);
+			moveTo_hashtable.Add(iT.ScaleTo.time,  			_MOVE_DURATION);
+			moveTo_hashtable.Add(iT.ScaleTo.easetype, 		iTween.EaseType.linear);
+			moveTo_hashtable.Add(iT.ScaleTo.oncomplete, 	"_doRewardPoints");
+			iTween.MoveTo (gameObject, 						moveTo_hashtable);
+
+			return;
 
 			//
 			//

@@ -211,6 +211,44 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			
 		}
 
+		/// <summary>
+		/// Gets the collected coin destination.
+		/// 
+		/// NOTE: We try 2 techniques. 
+		/// 
+		/// 	1)The first fails because the destination must be updated *as* the camera moves. TODO: Consider doing that.
+		/// 
+		/// 	2)The second is coin-relative, so it always works. Keep that for now.
+		/// 
+		/// 
+		/// 
+		/// 
+		/// </summary>
+		/// <returns>The collected coin destination.</returns>
+		public Vector2 getCollectedCoinDestination (Transform aCurrentCoinPTransform)
+		{
+
+
+
+
+			//1) MOVE TO THE SCORE TEXT ON THE HUD
+			/*
+			Vector3 collectedCoinDestination_vector3 = Camera.main.ViewportToWorldPoint (new Vector3 (0.3f,.85f,0));
+			//
+			return new Vector2 (
+				collectedCoinDestination_vector3.x, 
+				collectedCoinDestination_vector3.y);
+			*/
+
+
+			//OR 2) MOVE 'UP' A LITTLE
+			//1) MOVE TO THE SCORE TEXT ON THE HUD
+			//
+			return new Vector2 (
+				aCurrentCoinPTransform.position.x, 
+				aCurrentCoinPTransform.position.y + aCurrentCoinPTransform.lossyScale.y*4);
+
+		}
 		
 		// PUBLIC
 		
@@ -226,12 +264,14 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// The _score GUI text.
 		/// </summary>
 		private GUIText _scoreGUIText;
+		private GUIText _scoreGUIText2;
 
 
 		/// <summary>
 		/// The _lives GUI text.
 		/// </summary>
 		private GUIText _livesGUIText;
+		private GUIText _livesGUIText2;
 
 		/// <summary>
 		/// The _prompt GUI text.
@@ -301,10 +341,12 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private void _doSetBrittleReferences()
 		{
 
-			Debug.Log ("ref");
 			_scoreGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.ScoreGUIText).GetComponent<GUIText>()) as GUIText;
+			_scoreGUIText2 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.ScoreGUIText2).GetComponent<GUIText>()) as GUIText;
 			_livesGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.LivesGUIText).GetComponent<GUIText>()) as GUIText;
+			_livesGUIText2 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.LivesGUIText2).GetComponent<GUIText>()) as GUIText;
 			_promptGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.PromptGUIText).GetComponent<GUIText>()) as GUIText;
+			//
 			_startWaypoint_gameobject 	= _doThrowErrorIfNull (GameObject.Find (MainConstants.StartWaypoint)) as GameObject;
 			_player_gameobject 			= _doThrowErrorIfNull (GameObject.Find (MainConstants.PlayerUnPrefab)) as GameObject;
 
@@ -441,7 +483,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_player_gameobject.transform.position 		= new Vector3 
 				(
 					_checkPoint_gameobject.transform.position.x - _player_gameobject.transform.localScale.x,
-					_checkPoint_gameobject.transform.position.y,
+					_checkPoint_gameobject.transform.position.y + _checkPoint_gameobject.transform.localScale.y,
 					_checkPoint_gameobject.transform.position.z
 				);
 					
@@ -471,10 +513,13 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		private void _doRefreshGUI () 
 		{
-			_scoreGUIText.text = "Score: " + score.ToString();
-
-			_livesGUIText.text = "Lives: " + lives.ToString();
-
+			//
+			_scoreGUIText.text 	= "Score: " + score.ToString();
+			_scoreGUIText2.text = "Score: " + score.ToString();
+			//
+			_livesGUIText.text 	= "Lives: " + lives.ToString();
+			_livesGUIText2.text = "Lives: " + lives.ToString();
+			//
 			_promptGUIText.text = _promptMessage_string;
 		}
 

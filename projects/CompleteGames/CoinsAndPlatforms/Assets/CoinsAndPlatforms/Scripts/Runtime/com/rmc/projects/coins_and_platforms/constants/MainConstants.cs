@@ -67,7 +67,9 @@ namespace com.rmc.projects.coins_and_platforms.constants
 
 		//
 		public static string ScoreGUIText 			= "ScoreGUIText";
+		public static string ScoreGUIText2 			= "ScoreGUIText2";
 		public static string LivesGUIText 			= "LivesGUIText";
+		public static string LivesGUIText2 			= "LivesGUIText2";
 		public static string PromptGUIText 			= "PromptGUIText";
 		public static string StartWaypoint 			= "StartWaypoint";
 		public static string PlayerUnPrefab 		= "PlayerUnPrefab";
