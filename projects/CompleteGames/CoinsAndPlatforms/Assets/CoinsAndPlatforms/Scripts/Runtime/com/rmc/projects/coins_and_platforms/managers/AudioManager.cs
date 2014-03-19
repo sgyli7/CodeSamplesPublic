@@ -36,6 +36,7 @@ using System.Collections;
 //  Namespace
 //--------------------------------------
 using com.rmc.exceptions;
+using System;
 
 
 namespace com.rmc.projects.coins_and_platforms.managers
@@ -44,7 +45,20 @@ namespace com.rmc.projects.coins_and_platforms.managers
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	//todo: move this to MainConstants?
+	public enum AudioClipType
+	{
+		BUTTON_CLICK,
+		PLAYER_JUMPS,
+		PLAYER_LANDS,
+		PLAYER_KILLS_ENEMY,
+		PLAYER_CHECKPOINT_UPDATED,
+		COIN_COLLECTED,
+		ENEMY_KILLS_PLAYER,
+		GAME_OVER_WIN,
+		GAME_OVER_LOSS
+		
+	}
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -67,19 +81,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		// PUBLIC
 		
 		// PUBLIC STATIC
-		//todo: move this to MainConstants?
-		public enum CLIP_NAME
-		{
-			BUTTON_CLICK,
-			PLAYER_JUMPS,
-			PLAYER_LANDS,
-			COIN_COLLECTED,
-			PLAYER_KILLS_ENEMY,
-			ENEMY_KILLS_PLAYER,
-			GAME_OVER_WIN,
-			GAME_OVER_LOSS
 
-		}
 
 		// PRIVATE
 		/// <summary>
@@ -93,6 +95,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private AudioClip _buttonClick_audioclip;
 		private AudioClip _playerJumps_audioclip;
 		private AudioClip _playerLands_audioclip;
+		private AudioClip _playerCheckpointUpdated;
 		private AudioClip _playerKillsEnemy_audioclip;
 		private AudioClip _coinCollected_audioclip;
 		private AudioClip _enemyKillsPlayer_audioclip;
@@ -132,17 +135,18 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		void Start () 
 		{
 
-			return;
 			_audioSource = gameObject.AddComponent <AudioSource>();
 			//
-			_buttonClick_audioclip 			= _loadAudioClipByName ("PlayerJumpFromGround");
-			_playerJumps_audioclip			= _loadAudioClipByName ("PlayerLandOnGround");
-			_playerLands_audioclip 			= _loadAudioClipByName ("PlayerLandOnGround");
-			_playerKillsEnemy_audioclip 	= _loadAudioClipByName ("PlayerHitByBarrel");
-			_coinCollected_audioclip 		= _loadAudioClipByName ("CoinCollected");
-			_enemyKillsPlayer_audioclip     = _loadAudioClipByName ("PlayerHitByBarrel");
-			_gameOverWin_audioclip 			= _loadAudioClipByName ("CoverCloses");
-			_gameOverLoss_audioclip 		= _loadAudioClipByName ("BossThrowsBarrel");
+			_buttonClick_audioclip 			= _doLoadAudioClipByName ("ButtonClick01");
+			_playerJumps_audioclip			= _doLoadAudioClipByName ("PlayerJumps01");
+			_playerLands_audioclip 			= _doLoadAudioClipByName ("PlayerLands01");
+			_playerKillsEnemy_audioclip 	= _doLoadAudioClipByName ("PlayerKillsEnemy01");
+			_playerCheckpointUpdated    	= _doLoadAudioClipByName ("PlayerCheckpointUpdated01");
+			_coinCollected_audioclip 		= _doLoadAudioClipByName ("CoinCollected01");
+			_enemyKillsPlayer_audioclip     = _doLoadAudioClipByName ("EnemyKillsPlayer01");
+			_gameOverWin_audioclip 			= _doLoadAudioClipByName ("GameOverWin01");
+			_gameOverLoss_audioclip 		= _doLoadAudioClipByName ("GameOverLoss01");
+			Debug.Log ("is: " + _gameOverLoss_audioclip);
 
 		}
 
@@ -161,35 +165,39 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// Dos the play sound.
 		/// </summary>
 		/// <param name="aClipName">A clip name.</param>
-		public void doPlaySound (CLIP_NAME aClipName)
+		public void doPlaySound (AudioClipType aClipName)
 		{
 
-			return;
 			//Debug.Log ("playing : " + aClipName);
 
 			switch (aClipName) {
-			case CLIP_NAME.BUTTON_CLICK:
+			case AudioClipType.BUTTON_CLICK:
 				_audioSource.PlayOneShot (_buttonClick_audioclip);
 				break;
-			case CLIP_NAME.PLAYER_JUMPS:
+			case AudioClipType.PLAYER_JUMPS:
 				_audioSource.PlayOneShot (_playerJumps_audioclip);
 				break;
-			case CLIP_NAME.PLAYER_LANDS:
-				_audioSource.PlayOneShot (_playerLands_audioclip);
+			case AudioClipType.PLAYER_LANDS:
+				//todo, fix ground detection so this is called less often.
+				//todo, then uncomment here.
+				//_audioSource.PlayOneShot (_playerLands_audioclip);
 				break;
-			case CLIP_NAME.PLAYER_KILLS_ENEMY:
+			case AudioClipType.PLAYER_KILLS_ENEMY:
 				_audioSource.PlayOneShot (_playerKillsEnemy_audioclip);
 				break;
-			case CLIP_NAME.COIN_COLLECTED:
+			case AudioClipType.PLAYER_CHECKPOINT_UPDATED:
+				_audioSource.PlayOneShot (_playerCheckpointUpdated);
+				break;
+			case AudioClipType.COIN_COLLECTED:
 				_audioSource.PlayOneShot (_coinCollected_audioclip);
 				break;
-			case CLIP_NAME.ENEMY_KILLS_PLAYER:
+			case AudioClipType.ENEMY_KILLS_PLAYER:
 				_audioSource.PlayOneShot (_enemyKillsPlayer_audioclip);
 				break;
-			case CLIP_NAME.GAME_OVER_WIN:
+			case AudioClipType.GAME_OVER_WIN:
 				_audioSource.PlayOneShot (_gameOverWin_audioclip);
 				break;
-			case CLIP_NAME.GAME_OVER_LOSS:
+			case AudioClipType.GAME_OVER_LOSS:
 				_audioSource.PlayOneShot (_gameOverLoss_audioclip);
 				break;
 			default:
@@ -209,9 +217,15 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		/// <returns>The audio clip by name.</returns>
 		/// <param name="aAudioClipName_string">A audio clip name_string.</param>
-		private AudioClip _loadAudioClipByName (string aAudioClipName_string)
+		private AudioClip _doLoadAudioClipByName (string aAudioClipName_string)
 		{
-			return _loadAudioClipByName ("/Audio/SoundEffects/" + aAudioClipName_string) as AudioClip;
+			AudioClip audioClip = Resources.Load ("Audio/SoundEffects/" + aAudioClipName_string) as AudioClip;
+
+			if (audioClip == null) {
+				throw new Exception ("AudioClip '"+aAudioClipName_string+"' Cannot Be Null. Choose new path name");
+			}
+
+			return audioClip;
 
 		}
 		

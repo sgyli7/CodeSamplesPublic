@@ -164,7 +164,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		public void _doScaleDown ()
 		{
 
-			SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
+			SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.COIN_COLLECTED);
 
 
 			//

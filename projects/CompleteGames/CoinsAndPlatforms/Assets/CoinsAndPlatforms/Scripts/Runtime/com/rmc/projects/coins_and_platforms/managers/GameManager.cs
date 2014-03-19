@@ -371,9 +371,11 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			switch (_lastGameOverReason) {
 			case GameOverReason.WIN:
 				promptMessage = MainConstants.PROMPT_GAME_OVER_WIN;
+				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.GAME_OVER_WIN);
 				break;
 			case GameOverReason.LOSS:
 				promptMessage = MainConstants.PROMPT_GAME_OVER_LOSS;
+				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.GAME_OVER_LOSS);
 				break;
 			}
 
@@ -400,10 +402,11 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// <summary>
 		/// _dos the reset GU.
 		/// </summary>
+		/// todo: order these methods better
 		private void _doResetGUI() 
 		{
 			score = 0;
-			lives = 1;
+			lives = 2;
 			promptMessage = "";
 
 		}

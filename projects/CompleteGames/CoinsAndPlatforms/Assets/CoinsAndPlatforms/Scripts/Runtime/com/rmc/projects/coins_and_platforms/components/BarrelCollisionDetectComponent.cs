@@ -130,13 +130,13 @@ namespace com.rmc.projects.coins_and_platforms.components
 		{
 
 			//HAPPENS TOO OFTEN.
-			//SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.BARREL_LANDS);
+			//SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.BARREL_LANDS);
 			
 		}
 
 		void OnTriggerEnter2D(Collider2D aCollider2D)
 		{
-			SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_KILLS_ENEMY);
+			SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_KILLS_ENEMY);
 			
 		}
 	}

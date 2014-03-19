@@ -129,7 +129,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 
 			GameObject enemyPrefab_gameobject = SimpleGameManager.Instance.enemyManager.doSpawn (gameObject.transform.position + new Vector3 (-1.5f, 0, 0) );
 
-			//SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.BOSS_THROWS_BARREL);
+			//SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.BOSS_THROWS_BARREL);
 		}
 		
 		// PUBLIC STATIC

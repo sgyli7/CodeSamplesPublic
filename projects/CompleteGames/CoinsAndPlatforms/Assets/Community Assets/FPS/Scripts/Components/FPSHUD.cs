@@ -24,6 +24,11 @@ public class FPSHUD : MonoBehaviour
 	private float timeleft; // Left time for current interval
 
 
+	public bool isRounded_boolean = false;
+
+	//
+	public Color defaultFontColor = Color.green;
+
 	void Awake()
 	{
 		Application.targetFrameRate = 60;
@@ -54,7 +59,15 @@ public class FPSHUD : MonoBehaviour
 	    {
 	        // display two fractional digits (f2 format)
 		    float fps = accum/frames;
-		    string format = System.String.Format("{0:F2} FPS",fps);
+			string format;
+			if (isRounded_boolean) {
+				fps = Mathf.RoundToInt (fps);
+				format = System.String.Format("{0} FPS", fps);
+			} else {
+
+				format = System.String.Format("{0:F2} FPS", fps);
+
+			}
 		    guiText.text = format;
 
 		    if( fps < 20 )
@@ -66,7 +79,7 @@ public class FPSHUD : MonoBehaviour
 		        if( fps < 10 )
 		            guiText.material.color = Color.red;
 		        else
-		            guiText.material.color = Color.green;
+					guiText.material.color = defaultFontColor;
 	
 		        timeleft = updateInterval;
 		        accum = 0.0F;

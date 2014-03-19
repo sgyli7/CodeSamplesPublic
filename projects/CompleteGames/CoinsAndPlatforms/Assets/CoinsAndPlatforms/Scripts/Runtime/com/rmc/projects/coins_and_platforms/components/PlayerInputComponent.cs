@@ -156,7 +156,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				//DO CALCULATIONS
 				if( _characterController2D.isGrounded ) {
 					if (_velocity_vector3.y != 0) {
-						SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_LANDS);
+						SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_LANDS);
 						_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
 						_velocity_vector3.y = 0;
 					}
@@ -195,7 +195,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				{
 					_setAnimationTrigger (MainConstants.JUMPING_TRIGGER);
 					_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
-					SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_JUMPS);
+					SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_JUMPS);
 				}
 
 

@@ -212,7 +212,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		
 		public void destroy()
 		{
-			Debug.Log ("SimpleGameManager.destroy(): " + gameObject);
+			Debug.Log ("SimpleGameManager.destroy()");
 			DestroyImmediate (gameObject);	
 		}
 		

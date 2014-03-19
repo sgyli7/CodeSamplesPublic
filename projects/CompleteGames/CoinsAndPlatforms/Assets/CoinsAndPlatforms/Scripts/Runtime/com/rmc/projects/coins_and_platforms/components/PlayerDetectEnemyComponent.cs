@@ -139,10 +139,10 @@ namespace com.rmc.projects.coins_and_platforms.components
 
 				if (isPlayerOnOffense_boolean) {
 
-					SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.PLAYER_KILLS_ENEMY);
+					SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_KILLS_ENEMY);
 					SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.LOSS);
 				} else {
-					SimpleGameManager.Instance.audioManager.doPlaySound (AudioManager.CLIP_NAME.ENEMY_KILLS_PLAYER);
+					SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.ENEMY_KILLS_PLAYER);
 					SimpleGameManager.Instance.gameManager.doGameOver (GameOverReason.WIN);
 
 				}
