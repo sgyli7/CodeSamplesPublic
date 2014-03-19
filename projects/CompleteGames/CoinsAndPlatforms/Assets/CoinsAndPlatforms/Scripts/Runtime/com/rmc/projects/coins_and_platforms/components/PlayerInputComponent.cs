@@ -72,7 +72,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The height of the _target jump.
 		/// </summary>
-		private float _targetJumpHeight = 40f;
+		private float _targetJumpHeight = 50f;
 		
 		/// <summary>
 		/// The _last controller collider hit.
