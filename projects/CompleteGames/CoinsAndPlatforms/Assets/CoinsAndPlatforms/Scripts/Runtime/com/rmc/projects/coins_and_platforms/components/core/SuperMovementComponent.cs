@@ -100,18 +100,18 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// <summary>
 		/// The GROUN d_ DAMPIN.
 		/// </summary>
-		public static float GROUND_DAMPING = 1;
+		public static float GROUND_DAMPING = 10;
 
 		/// <summary>
 		/// The NO t_ GROUN d_ DAMPIN.
 		/// </summary>
-		public static float NOT_GROUND_DAMPING = 1;
+		public static float NOT_GROUND_DAMPING = 10;
 
 
 		/// <summary>
 		/// The GRAVIT y_ y.
 		/// </summary>
-		public static float GRAVITY_Y = -15f;
+		public static float GRAVITY_Y = -75f;
 
 		//--------------------------------------
 		//  Methods

@@ -67,6 +67,13 @@ namespace com.rmc.projects.coins_and_platforms.components
 		// PRIVATE
 		
 		// PRIVATE STATIC
+		/// <summary>
+		/// The _ SNA p_ FACTO.
+		/// 
+		/// NOTE: Larger value is more dramatic movement when snapping
+		/// 
+		/// </summary>
+		private static float _SNAP_FACTOR = 0.1f; 
 		
 		//--------------------------------------
 		//  Methods
@@ -108,8 +115,6 @@ namespace com.rmc.projects.coins_and_platforms.components
 		void Update () 
 		{
 			
-			hideFlags = HideFlags.None;
-			
 		}
 		
 		// PUBLIC
@@ -118,16 +123,23 @@ namespace com.rmc.projects.coins_and_platforms.components
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the snap me.
+		/// Snap Position of 2D Tiles to save time during manual layout.
+		/// 
+		/// NOTE: We may want to do more here.
+		/// 
+		/// NOTE: The SnapMeComponentEditor helps and calls this during update during EDIT & PLAY mode
+		/// 
+		/// NOTE: Todo:This is constant update is NOT EFFICIENT, AND NOT OPTIMIZED YET. But it makes level design a 'snap' (hahahahaha. Pun intended)
+		/// 
 		/// </summary>
 		public void doSnapMe () 
 		{
 			float xPos = transform.position.x;
 			float yPos = transform.position.y;
 			float zPos = transform.position.z;
-			xPos = Mathf.Round(xPos * 4) / 4;
-			yPos = Mathf.Round(yPos * 4) / 4;
-			zPos = Mathf.Round(zPos * 4) / 4;
+			xPos = Mathf.Round(xPos * _SNAP_FACTOR) / _SNAP_FACTOR;
+			yPos = Mathf.Round(yPos * _SNAP_FACTOR) / _SNAP_FACTOR;
+			zPos = Mathf.Round(zPos * _SNAP_FACTOR) / _SNAP_FACTOR;
 			transform.position = new Vector3 (xPos, yPos, zPos);
 			
 		}
