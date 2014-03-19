@@ -71,8 +71,22 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string LivesGUIText 			= "LivesGUIText";
 		public static string LivesGUIText2 			= "LivesGUIText2";
 		public static string PromptGUIText 			= "PromptGUIText";
+		public static string PromptGUIText2 		= "PromptGUIText2";
 		public static string StartWaypoint 			= "StartWaypoint";
 		public static string PlayerUnPrefab 		= "PlayerUnPrefab";
+		//
+		public static string AUDIO_BUTTON_CLICK_01 				= "ButtonClick01";
+		public static string AUDIO_WAYPOINT_TRIGGERED_01		= "WaypointTriggered01";
+		public static string AUDIO_PLAYER_FALLS_OFFSCREEN_01	= "PlayerFallsOffscreen01";
+		public static string AUDIO_PLAYER_JUMPS_01 				= "PlayerJumps01";
+		public static string AUDIO_PLAYER_LANDS_01 				= "PlayerLands01";
+		public static string AUDIO_PLAYER_KILLS_ENEMY_01 		= "PlayerKillsEnemy01";
+		public static string AUDIO_COINS_COLLECTED_01			= "CoinCollected01";
+		public static string AUDIO_ENEMY_KILLS_PLAYER_01 		= "EnemyKillsPlayer01";
+		public static string AUDIO_GAME_OVER_WIN_01				= "GameOverWin01";
+		public static string AUDIO_GAME_OVER_LOSS_01			= "GameOverLoss01";
+
+
 
 		//
 		public static string PLAYER_TAG				= "Player";
@@ -92,6 +106,7 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		//
 		public static string PROMPT_GAME_OVER_WIN   = "You Won!\n\nPress Space To Restart";
 		public static string PROMPT_GAME_OVER_LOSS   = "You Lost...\n\nPress Space To Restart";
+		//
 	
 
 

@@ -277,6 +277,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// The _prompt GUI text.
 		/// </summary>
 		private GUIText _promptGUIText;
+		private GUIText _promptGUIText2;
 
 		/// <summary>
 		/// The _start waypoint_gameobject.
@@ -337,6 +338,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// 		* Etc...
 		/// 
 		/// 
+		/// NOTE: We could shift this code to a newly created GUIManager. For now its fine.
+		/// 
+		/// 
 		/// </summary>
 		private void _doSetBrittleReferences()
 		{
@@ -346,6 +350,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_livesGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.LivesGUIText).GetComponent<GUIText>()) as GUIText;
 			_livesGUIText2 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.LivesGUIText2).GetComponent<GUIText>()) as GUIText;
 			_promptGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.PromptGUIText).GetComponent<GUIText>()) as GUIText;
+			_promptGUIText2 			= _doThrowErrorIfNull (GameObject.Find (MainConstants.PromptGUIText2).GetComponent<GUIText>()) as GUIText;
 			//
 			_startWaypoint_gameobject 	= _doThrowErrorIfNull (GameObject.Find (MainConstants.StartWaypoint)) as GameObject;
 			_player_gameobject 			= _doThrowErrorIfNull (GameObject.Find (MainConstants.PlayerUnPrefab)) as GameObject;
@@ -513,7 +518,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		private void _doRefreshGUI () 
 		{
-			//
+			//BLINDLY UPDATE *ALL* UI. NOT EFFICIENT AT RUNTIME, BUT ITS FAST TO DEVELOP. FINE FOR NOW.
 			_scoreGUIText.text 	= "Score: " + score.ToString();
 			_scoreGUIText2.text = "Score: " + score.ToString();
 			//
@@ -521,6 +526,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_livesGUIText2.text = "Lives: " + lives.ToString();
 			//
 			_promptGUIText.text = _promptMessage_string;
+			_promptGUIText2.text = _promptMessage_string;
 		}
 
 		//PRIVATE

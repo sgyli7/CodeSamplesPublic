@@ -113,7 +113,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		///</summary>
 		void Start () 
 		{
-			
+			doRefreshBoundary();
 		}
 		
 		
@@ -125,6 +125,14 @@ namespace com.rmc.projects.coins_and_platforms.components
 		}
 		
 		// PUBLIC
+		/// <summary>
+		/// Dos the refresh boundary.
+		/// </summary>
+		public void doRefreshBoundary ()
+		{
+			wasTriggered = false;
+
+		}
 		
 		// PUBLIC STATIC
 		
@@ -157,6 +165,8 @@ namespace com.rmc.projects.coins_and_platforms.components
 					if (!wasTriggered) {
 						wasTriggered = true;
 						SimpleGameManager.Instance.gameManager.doKillPlayer();
+						SimpleGameManager.Instance.audioManager.doPlaySound(AudioClipType.PLAYER_FALLS_OFFSCREEN);
+						Invoke ("doRefreshBoundary",1f);
 					}
 				}
 				

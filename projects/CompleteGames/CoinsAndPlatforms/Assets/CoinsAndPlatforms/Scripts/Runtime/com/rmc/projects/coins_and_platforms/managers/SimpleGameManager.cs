@@ -55,7 +55,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		///<summary>
+		///<summary> 
 		///	 Current Level
 		///</summary>
 		private string _currentLevel;
@@ -260,12 +260,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public void loadNextLevel ()
 		{
 
-			Debug.Log ("NEXT: " + currentLevel + " is " + _listOtherScenes[0]);
-
 			// WHEN WE FIRST START WE ARE ALREADY 'IN' THE 0 INDEX LEVEL
 			if (_currentLevel == null) {
 				currentLevel = _listOtherScenes[0];
-				Debug.Log ("in here");
 			} 
 
 			//
@@ -420,7 +417,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 						simpleGameManager = new GameObject (SimpleGameManager._NAME_SIMPLE_GAME_MANAGER);
 					
 						//2. ADD FLAGS TO HIDE EVERYTHING FROM HIERARCHY (OPTIONAL)
-						//simpleGameManager.hideFlags = HideFlags.HideInHierarchy;
+						simpleGameManager.hideFlags = HideFlags.HideInHierarchy;
 					}
 					
 					//3. CREATE A COMPONENT ON THE GAME OBJECT
