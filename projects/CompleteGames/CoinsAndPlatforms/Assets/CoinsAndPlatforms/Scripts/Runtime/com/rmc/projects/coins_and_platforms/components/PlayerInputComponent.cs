@@ -80,7 +80,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		private RaycastHit2D _lastControllerColliderHit;
 
 		// PRIVATE STATIC
-		
+
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
@@ -220,6 +220,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			}
 
 		}
+
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE

@@ -39,6 +39,7 @@ using UnityEngine;
 using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.managers;
 using com.rmc.projects.coins_and_platforms.components.core;
+using com.rmc.projects.coins_and_platforms.components.super;
 
 
 namespace com.rmc.projects.coins_and_platforms.components
@@ -168,6 +169,9 @@ namespace com.rmc.projects.coins_and_platforms.components
 						SimpleGameManager.Instance.audioManager.doPlaySound(AudioClipType.PLAYER_FALLS_OFFSCREEN);
 						Invoke ("doRefreshBoundary",1f);
 					}
+				} else if (collider2D.gameObject.tag == MainConstants.ENEMY_TAG) {
+					EnemyAIComponent enemyAIComponent = collider2D.gameObject.GetComponent<EnemyAIComponent>();
+					enemyAIComponent.doResetToSpawnPoint();
 				}
 				
 			}

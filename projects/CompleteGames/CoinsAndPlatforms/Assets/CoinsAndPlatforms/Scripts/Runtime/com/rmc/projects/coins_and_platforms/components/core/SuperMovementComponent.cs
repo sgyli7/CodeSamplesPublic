@@ -32,6 +32,7 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.constants;
 
 
 namespace com.rmc.projects.coins_and_platforms.components.core
@@ -241,6 +242,19 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		}
 
 
+		/// <summary>
+		/// Dos the reset physics and animation.
+		/// </summary>
+		public void doResetPhysicsAndAnimation ()
+		{
+			//PHYSICS
+			_characterController2D.velocity = Vector2.zero;
+			_characterController2D.enabled = true;
+
+			//ANIMATION
+			_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
+			
+		}
 		
 		// PRIVATE STATIC
 		

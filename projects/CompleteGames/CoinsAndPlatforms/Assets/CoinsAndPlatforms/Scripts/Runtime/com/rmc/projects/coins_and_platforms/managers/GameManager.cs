@@ -36,6 +36,7 @@ using UnityEngine;
 using com.rmc.exceptions;
 using com.rmc.projects.coins_and_platforms.constants;
 using System;
+using com.rmc.projects.coins_and_platforms.components.super;
 
 
 namespace com.rmc.projects.coins_and_platforms.managers
@@ -123,7 +124,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 						gameState = GameState.LIVE_BEGIN;
 						break;
 					case GameState.LIVE_BEGIN:
-						_doResetPlayer();
+						_doResetPlayerOverall();
 						//KEEP THIS
 						gameState = GameState.GAME;
 						break;
@@ -481,24 +482,34 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// <summary>
 		/// _dos the reset player.
 		/// </summary>
-		private void _doResetPlayer() 
+		private void _doResetPlayerOverall() 
 		{
 
+			_doResetPlayer_Position();
+
+			//
+			PlayerInputComponent playerInputComponent = _player_gameobject.GetComponent<PlayerInputComponent>();
+			playerInputComponent.doResetPhysicsAndAnimation();
+
+		}
+
+		/// <summary>
+		/// _dos the reset player.
+		/// </summary>
+		private void _doResetPlayer_Position() 
+		{
+			
 			//SET TO THE LEFT OF THE WAYPOINT FLAG
 			_player_gameobject.transform.position 		= new Vector3 
 				(
 					_checkPoint_gameobject.transform.position.x - _player_gameobject.transform.localScale.x,
 					_checkPoint_gameobject.transform.position.y + 8,
 					_checkPoint_gameobject.transform.position.z
-				);
-					
-			//TODO:MAKE THIS A PLAYER COMPONENT METHOD
-			//CANCEL CURRENT MOTION IN PHYSICS
-			CharacterController2D characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
-			characterController2D.velocity = Vector2.zero;
-			characterController2D.enabled = true;
-
+					);
 		}
+
+
+
 
 		/// <summary>
 		/// _dos the disable player.

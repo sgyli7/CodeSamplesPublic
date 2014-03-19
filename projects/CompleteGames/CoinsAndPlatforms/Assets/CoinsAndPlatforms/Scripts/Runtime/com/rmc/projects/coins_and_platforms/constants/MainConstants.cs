@@ -90,6 +90,7 @@ namespace com.rmc.projects.coins_and_platforms.constants
 
 		//
 		public static string PLAYER_TAG				= "Player";
+		public static string ENEMY_TAG				= "Enemy";
 
 
 		//

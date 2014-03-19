@@ -68,7 +68,15 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		// PUBLIC STATIC
 		
 		// PRIVATE
+		/// <summary>
+		/// The _was grounded_boolean.
+		/// </summary>
 		private bool _wasGrounded_boolean = false;
+
+		/// <summary>
+		/// The _spawn point position_vector3.
+		/// </summary>
+		private Vector3 _spawnPointPosition_vector3;
 		
 		// PRIVATE STATIC
 		
@@ -104,6 +112,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		void Start () 
 		{
 			_normalizedHorizontalSpeed_float = 1;
+			_spawnPointPosition_vector3 = transform.position;
 		}
 		
 		
@@ -145,6 +154,15 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			//
 			_wasGrounded_boolean = _characterController2D.isGrounded;
 		}
+
+		/// <summary>
+		/// Dos the reset to spawn point.
+		/// </summary>
+		public void doResetToSpawnPoint ()
+		{
+			gameObject.transform.position = _spawnPointPosition_vector3;
+			doResetPhysicsAndAnimation();
+		}
 		
 		// PUBLIC
 		
@@ -162,5 +180,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		//  Events
 		//--------------------------------------
 		
+	
 	}
 }
