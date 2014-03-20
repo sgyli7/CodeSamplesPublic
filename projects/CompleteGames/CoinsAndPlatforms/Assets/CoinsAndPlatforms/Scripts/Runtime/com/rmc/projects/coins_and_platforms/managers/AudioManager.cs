@@ -57,6 +57,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		PLAYER_FALLS_OFFSCREEN,
 		COIN_COLLECTED,
 		ENEMY_KILLS_PLAYER,
+		GAME_START,
 		GAME_OVER_WIN,
 		GAME_OVER_LOSS
 		
@@ -102,6 +103,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		private AudioClip _playerKillsEnemy_audioclip;
 		private AudioClip _coinCollected_audioclip;
 		private AudioClip _enemyKillsPlayer_audioclip;
+		private AudioClip _gameStart_audioclip;
 		private AudioClip _gameOverWin_audioclip;
 		private AudioClip _gameOverLoss_audioclip;
 
@@ -148,9 +150,13 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_playerKillsEnemy_audioclip 	= _doLoadAudioClipByName (MainConstants.AUDIO_PLAYER_KILLS_ENEMY_01);
 			_coinCollected_audioclip 		= _doLoadAudioClipByName (MainConstants.AUDIO_COINS_COLLECTED_01);
 			_enemyKillsPlayer_audioclip     = _doLoadAudioClipByName (MainConstants.AUDIO_ENEMY_KILLS_PLAYER_01);
+			_gameStart_audioclip 			= _doLoadAudioClipByName (MainConstants.AUDIO_GAME_START_01);
 			_gameOverWin_audioclip 			= _doLoadAudioClipByName (MainConstants.AUDIO_GAME_OVER_WIN_01);
 			_gameOverLoss_audioclip 		= _doLoadAudioClipByName (MainConstants.AUDIO_GAME_OVER_LOSS_01);
-			Debug.Log ("is: " + _gameOverLoss_audioclip);
+
+
+			//
+			SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.GAME_START);
 
 		}
 
@@ -201,6 +207,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			case AudioClipType.ENEMY_KILLS_PLAYER:
 				_audioSource.PlayOneShot (_enemyKillsPlayer_audioclip);
 				break;
+			case AudioClipType.GAME_START:
+				_audioSource.PlayOneShot (_gameStart_audioclip);
+				break;
 			case AudioClipType.GAME_OVER_WIN:
 				_audioSource.PlayOneShot (_gameOverWin_audioclip);
 				break;
@@ -226,7 +235,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// <param name="aAudioClipName_string">A audio clip name_string.</param>
 		private AudioClip _doLoadAudioClipByName (string aAudioClipName_string)
 		{
-			AudioClip audioClip = Resources.Load ("Audio/SoundEffects/" + aAudioClipName_string) as AudioClip;
+			AudioClip audioClip = Resources.Load (aAudioClipName_string) as AudioClip;
 
 			if (audioClip == null) {
 				throw new Exception ("AudioClip '"+aAudioClipName_string+"' Cannot Be Null. Choose new path name");

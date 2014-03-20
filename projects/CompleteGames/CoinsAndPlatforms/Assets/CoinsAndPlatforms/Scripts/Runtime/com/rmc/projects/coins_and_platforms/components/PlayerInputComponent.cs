@@ -147,7 +147,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			}
 
 
-
 			//IF ENABLED, TAKE INPUT....
 			if (_characterController2D.enabled) {
 
@@ -169,15 +168,17 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				{
 					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
 					_normalizedHorizontalSpeed_float = 1;
-					if( transform.localScale.x < 0f )
+					if( transform.localScale.x < 0f ) {
 						transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+					}
 				}
 				else if( Input.GetKey( KeyCode.LeftArrow ) )
 				{
 					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
 					_normalizedHorizontalSpeed_float = -1;
-					if( transform.localScale.x > 0f )
+					if( transform.localScale.x > 0f ) {
 						transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+					}
 				}
 				else
 				{

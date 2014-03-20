@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\BackgroundIntroPrefabComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\BoundaryComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\CoinComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\DetectHeadBumpFromPlayerComponent.cs" />
@@ -53,7 +54,7 @@
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\EnemyDetectPlayerTriggerComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\GroundDetectorComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\InfiniteScrollSpriteComponent.cs" />
-     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayGameButtonClickComponent.cs" />
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\IntroGUIComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerDetectEnemyComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\PlayerInputComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\RisingPointsPrefabComponent.cs" />
@@ -65,6 +66,7 @@
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\configurations\MainConfiguration.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\constants\MainConstants.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\managers\AudioManager.cs" />
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\managers\GUIManager.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\managers\GameManager.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\managers\SimpleGameManager.cs" />
      <Compile Include="Assets\Community Assets\CharacterController2D\Core\Scripts\CharacterController2D.cs" />

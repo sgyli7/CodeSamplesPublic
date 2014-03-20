@@ -157,7 +157,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			}
 			set {
 				_score_float = value;
-				_doRefreshGUI();
+				SimpleGameManager.Instance.guiManager.setScoreText (_score_float.ToString());
 			}
 			
 		}
@@ -175,7 +175,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			set {
 				_lives_float = value;
 				Debug.Log ("lives: " + _lives_float);
-				_doRefreshGUI();
+				SimpleGameManager.Instance.guiManager.setLivesText (_lives_float.ToString());
 			}
 			
 		}
@@ -191,7 +191,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			}
 			set {
 				_promptMessage_string = value;
-				_doRefreshGUI();
+				SimpleGameManager.Instance.guiManager.setPromptText (_promptMessage_string);
 			}
 			
 		}
@@ -261,24 +261,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		private GameOverReason _lastGameOverReason;
 
-		/// <summary>
-		/// The _score GUI text.
-		/// </summary>
-		private GUIText _scoreGUIText;
-		private GUIText _scoreGUIText2;
-
-
-		/// <summary>
-		/// The _lives GUI text.
-		/// </summary>
-		private GUIText _livesGUIText;
-		private GUIText _livesGUIText2;
-
-		/// <summary>
-		/// The _prompt GUI text.
-		/// </summary>
-		private GUIText _promptGUIText;
-		private GUIText _promptGUIText2;
 
 		/// <summary>
 		/// The _start waypoint_gameobject.
@@ -321,11 +303,13 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		///</summary>
 		void Start () 
 		{
-			//
+
+			Debug.Log ("GM start()");
 			_doSetBrittleReferences();
 
 			//
 			gameState = GameState.MENU;
+
 		}
 
 
@@ -345,17 +329,10 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		private void _doSetBrittleReferences()
 		{
-
-			_scoreGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.ScoreGUIText).GetComponent<GUIText>()) as GUIText;
-			_scoreGUIText2 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.ScoreGUIText2).GetComponent<GUIText>()) as GUIText;
-			_livesGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.LivesGUIText).GetComponent<GUIText>()) as GUIText;
-			_livesGUIText2 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.LivesGUIText2).GetComponent<GUIText>()) as GUIText;
-			_promptGUIText 				= _doThrowErrorIfNull (GameObject.Find (MainConstants.PromptGUIText).GetComponent<GUIText>()) as GUIText;
-			_promptGUIText2 			= _doThrowErrorIfNull (GameObject.Find (MainConstants.PromptGUIText2).GetComponent<GUIText>()) as GUIText;
 			//
 			_startWaypoint_gameobject 	= _doThrowErrorIfNull (GameObject.Find (MainConstants.StartWaypoint)) as GameObject;
 			_player_gameobject 			= _doThrowErrorIfNull (GameObject.Find (MainConstants.PlayerUnPrefab)) as GameObject;
-
+			
 		}
 
 
@@ -422,7 +399,13 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 			gameState = GameState.NULL;
 			gameState = GameState.MENU;
-			SimpleGameManager.Instance.doRestartLevel();
+
+			//FOR DEBUGGING, RELOAD CURRENT SCENE
+			//SimpleGameManager.Instance.doRestartScene();
+
+			//FOR PRODUCTION, RELOAD AND SHOW MENU
+			SimpleGameManager.Instance.doRestartApplication();
+
 			
 		}
 
@@ -545,23 +528,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 		}
 
-
-
-		/// <summary>
-		/// _dos the refresh GUI
-		/// </summary>
-		private void _doRefreshGUI () 
-		{
-			//BLINDLY UPDATE *ALL* UI. NOT EFFICIENT AT RUNTIME, BUT ITS FAST TO DEVELOP. FINE FOR NOW.
-			_scoreGUIText.text 	= "Score: " + score.ToString();
-			_scoreGUIText2.text = "Score: " + score.ToString();
-			//
-			_livesGUIText.text 	= "Lives: " + lives.ToString();
-			_livesGUIText2.text = "Lives: " + lives.ToString();
-			//
-			_promptGUIText.text = _promptMessage_string;
-			_promptGUIText2.text = _promptMessage_string;
-		}
 
 		//PRIVATE
 		

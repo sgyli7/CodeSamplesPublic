@@ -21,8 +21,8 @@ Simple Mario-style platformer [STATUS: XXXXX]
 -Menu with Play/Restart/Quit [STATUS: XXXXX]
 
 3. Extras (NOT Requested nor Required)
--SpawnPoint [STATUS: XXXXX]
--CheckPoint [STATUS: XXXXX]
--EndPoint [STATUS: XXXXX]
+-PlayerSpawnPoint [STATUS: XXXXX]
+-PlayerSaveProgressCheckPoint [STATUS: XXXXX]
+-PlayerWinEndPoint [STATUS: XXXXX]
 -Player kills enemy by landing from above [STATUS: XXXXX]
 -Enemy kills player by any other collision [STATUS: XXXXX]

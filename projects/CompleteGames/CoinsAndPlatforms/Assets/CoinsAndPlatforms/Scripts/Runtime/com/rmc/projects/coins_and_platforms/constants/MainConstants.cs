@@ -78,16 +78,18 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string RisingPointsPrefab   	= "Prefabs/RisingPointsPrefab";
 		//
 		//
-		public static string AUDIO_BUTTON_CLICK_01 				= "ButtonClick01";
-		public static string AUDIO_WAYPOINT_TRIGGERED_01		= "WaypointTriggered01";
-		public static string AUDIO_PLAYER_FALLS_OFFSCREEN_01	= "PlayerFallsOffscreen01";
-		public static string AUDIO_PLAYER_JUMPS_01 				= "PlayerJumps01";
-		public static string AUDIO_PLAYER_LANDS_01 				= "PlayerLands01";
-		public static string AUDIO_PLAYER_KILLS_ENEMY_01 		= "PlayerKillsEnemy01";
-		public static string AUDIO_COINS_COLLECTED_01			= "CoinCollected01";
-		public static string AUDIO_ENEMY_KILLS_PLAYER_01 		= "EnemyKillsPlayer01";
-		public static string AUDIO_GAME_OVER_WIN_01				= "GameOverWin01";
-		public static string AUDIO_GAME_OVER_LOSS_01			= "GameOverLoss01";
+		public static string AUDIO_BUTTON_CLICK_01 				= "Audio/SoundEffects/ButtonClick01";
+		public static string AUDIO_WAYPOINT_TRIGGERED_01		= "Audio/SoundEffects/WaypointTriggered01";
+		public static string AUDIO_PLAYER_FALLS_OFFSCREEN_01	= "Audio/SoundEffects/PlayerFallsOffscreen01";
+		public static string AUDIO_PLAYER_JUMPS_01 				= "Audio/SoundEffects/PlayerJumps01";
+		public static string AUDIO_PLAYER_LANDS_01 				= "Audio/SoundEffects/PlayerLands01";
+		public static string AUDIO_PLAYER_KILLS_ENEMY_01 		= "Audio/SoundEffects/PlayerKillsEnemy01";
+		public static string AUDIO_COINS_COLLECTED_01			= "Audio/SoundEffects/CoinCollected01";
+		public static string AUDIO_ENEMY_KILLS_PLAYER_01 		= "Audio/SoundEffects/EnemyKillsPlayer01";
+		public static string AUDIO_GAME_OVER_WIN_01				= "Audio/SoundEffects/GameOverWin01";
+		public static string AUDIO_GAME_OVER_LOSS_01			= "Audio/SoundEffects/GameOverLoss01";
+		public static string AUDIO_GAME_START_01				= "Audio/SoundEffects/GameStart01";
+		public static string AUDIO_BACKGROUND_MUSIC_01			= "Audio/Music/BackgroundMusic01";
 
 
 
@@ -108,8 +110,8 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string JUMPING_TRIGGER 		= "JumpingTrigger";
 
 		//
-		public static string PROMPT_GAME_OVER_WIN   = "You Won!\n\nPress Space To Restart";
-		public static string PROMPT_GAME_OVER_LOSS   = "You Lost...\n\nPress Space To Restart";
+		public static string PROMPT_GAME_OVER_WIN   = "You Won!";
+		public static string PROMPT_GAME_OVER_LOSS   = "You Lost...";
 		//
 	
 

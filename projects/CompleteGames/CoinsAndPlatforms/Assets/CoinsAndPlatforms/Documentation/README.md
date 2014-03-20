@@ -7,4 +7,10 @@ TODO LIST
 # revise all comments, everywhere
 
 
+# player - fix walking
+# player - fix landing sound (play once only now)
+# enemy - everything!
+
+
+
 

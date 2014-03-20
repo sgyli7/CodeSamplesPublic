@@ -27,16 +27,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.components.core;
-using com.rmc.projects.coins_and_platforms.constants;
-using com.rmc.projects.coins_and_platforms.managers;
 using System.Collections;
 using UnityEngine;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.coins_and_platforms.components.super
+namespace com.rmc.projects.coins_and_platforms.components
 {
 	
 	//--------------------------------------

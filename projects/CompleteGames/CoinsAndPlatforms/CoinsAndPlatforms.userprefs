@@ -1,12 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/CoinComponent.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GUIManager.cs">
     <Files>
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/CoinComponent.cs" Line="188" Column="4" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/core/SuperMovementComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/WaypointComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/BoundaryComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GameManager.cs" Line="414" Column="79" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/BackgroundIntroPrefabComponent.cs" Line="112" Column="26" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/IntroGUIComponent.cs" Line="112" Column="64" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GameManager.cs" Line="306" Column="30" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GUIManager.cs" Line="205" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

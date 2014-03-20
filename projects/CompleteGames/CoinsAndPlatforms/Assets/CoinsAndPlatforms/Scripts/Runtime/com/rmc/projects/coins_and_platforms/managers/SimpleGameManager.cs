@@ -55,44 +55,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		//  Properties
 		//--------------------------------------
 		// GETTER / SETTER
-		///<summary> 
-		///	 Current Level
-		///</summary>
-		private string _currentLevel;
-		public string currentLevel 
-		{
-			get 
-			{
-				return _currentLevel;
-			}
-			set 
-			{
-				_currentLevel = value;
-				Application.LoadLevel (_currentLevel);
-			}
-		}
-
-
-		///<summary>
-		///	 Current Level
-		///</summary>
-		/// 
-		/*
-		private List<MonoBehaviour> _managers;
-		public List<MonoBehaviour> managers 
-		{
-			get 
-			{
-				return _managers;
-			}
-			set 
-			{
-				_managers = value;
-			}
-		}
-
-		*/
-
 
 		// PUBLIC
 		/*
@@ -103,18 +65,14 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		
 		*/
 		public GameManager gameManager;
-
 		public AudioManager audioManager;
+		public GUIManager guiManager;
 
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		///<summary>
-		///	 Put a list of all the scene names that you'd like to navigate to. Don't list the current scene
-		///</summary>
-		public List<string> _listOtherScenes = new List<string>();
-		
-		
+
+
 		// PRIVATE STATIC
 		///<summary>
 		///	 NAME: GameObject contianing the SimpleGameManager
@@ -174,11 +132,21 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// <summary>
 		/// Dos the restart level.
 		/// </summary>
-		public void doRestartLevel() 
+		public void doRestartScene() 
 		{ 
 			//
 			_Instance.destroy();
-			Application.LoadLevel (Application.loadedLevel);
+			_Instance.loadCurrentLevelAgain();
+		}
+
+		/// <summary>
+		/// Dos the restart level.
+		/// </summary>
+		public void doRestartApplication() 
+		{ 
+			//
+			_Instance.destroy();
+			_Instance.loadPreviousLevel();
 		}
 
 		/// <summary>
@@ -231,23 +199,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		///			LEVEL FUNCTIONALITY
 		///////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////
-		
-		///<summary>
-		///	 Level
-		///</summary>
-		public void loadPreviousLevel ()
-		{
-			if (_currentLevel == null) {
-				currentLevel = _listOtherScenes[0];
-			} else {
-				//CURRENT
-				int currentIndex_int = _listOtherScenes.IndexOf (currentLevel);
-				//NEXT
-				currentIndex_int--;
-				//CORRECT
-				currentLevel = _getCorrectedLevelNameByIndex(currentIndex_int);
-			}
-		}
+
 	
 		
 		///<summary>
@@ -256,21 +208,16 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public void loadNextLevel ()
 		{
 
-			// WHEN WE FIRST START WE ARE ALREADY 'IN' THE 0 INDEX LEVEL
-			if (_currentLevel == null) {
-				currentLevel = _listOtherScenes[0];
-			} 
+			Application.LoadLevel (Application.loadedLevel + 1);
+		}
 
-			//
-			// THEN - JUST ALWAYS GO TO THE NEXT IN THE LIST
-			//
+		/// <summary>
+		/// Loads the previous level.
+		/// </summary>
+		public void loadPreviousLevel ()
+		{
 
-			//CURRENT
-			int currentIndex_int = _listOtherScenes.IndexOf (currentLevel);
-			//NEXT
-			currentIndex_int++;
-			//CORRECT
-			currentLevel = _getCorrectedLevelNameByIndex(currentIndex_int);
+			Application.LoadLevel (Application.loadedLevel - 1);
 		}
 
 		/// <summary>
@@ -278,28 +225,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		public void loadCurrentLevelAgain ()
 		{
-			int currentIndex_int = _listOtherScenes.IndexOf (currentLevel);
-			currentLevel = _getCorrectedLevelNameByIndex(currentIndex_int);
+			Application.LoadLevel (Application.loadedLevel);
 		}
 
-		
-		///<summary>
-		///	 Level
-		///</summary>
-		public string _getCorrectedLevelNameByIndex (int aDesiredIndex_int)
-		{
-			int correctedIndex_int;
-			//
-			if (aDesiredIndex_int < 0) {
-				correctedIndex_int = _listOtherScenes.Count-1;
-			} else if (aDesiredIndex_int >= _listOtherScenes.Count) {
-				correctedIndex_int = 0;
-			} else {
-				correctedIndex_int = aDesiredIndex_int;
-			}
-			return _listOtherScenes[correctedIndex_int];
-		}
-		
 
 	
 		///////////////////////////////////////////////////////////////////////////
@@ -435,13 +363,25 @@ namespace com.rmc.projects.coins_and_platforms.managers
 					//5
 					
 					//TODO: AGAIN, MOVE THIS GAME SPECIFIC LOGIC OUT, PERHAPS CREATE A managers_list permanently here.
+
+
+					/**
+					 * 
+					 * NOTE: Order is important here...
+					 * 
+					 * 
+					 **/
+					if (!_Instance.audioManager) {
+						_Instance.audioManager = simpleGameManager.AddComponent<AudioManager>();
+					}
+
+					if (!_Instance.guiManager) {
+						_Instance.guiManager = simpleGameManager.AddComponent<GUIManager>();
+					}
+
 					
 					if (!_Instance.gameManager) {
 						_Instance.gameManager = simpleGameManager.AddComponent<GameManager>();
-					}
-
-					if (!_Instance.audioManager) {
-						_Instance.audioManager = simpleGameManager.AddComponent<AudioManager>();
 					}
 
 
