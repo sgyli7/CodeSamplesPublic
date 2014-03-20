@@ -75,6 +75,9 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string StartWaypoint 			= "StartWaypoint";
 		public static string PlayerUnPrefab 		= "PlayerUnPrefab";
 		//
+		public static string RisingPointsPrefab   	= "Prefabs/RisingPointsPrefab";
+		//
+		//
 		public static string AUDIO_BUTTON_CLICK_01 				= "ButtonClick01";
 		public static string AUDIO_WAYPOINT_TRIGGERED_01		= "WaypointTriggered01";
 		public static string AUDIO_PLAYER_FALLS_OFFSCREEN_01	= "PlayerFallsOffscreen01";
@@ -96,7 +99,7 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		//
 		public static string ENEMY_LAYER 			= "EnemyLayer";
 		public static string END_WAYPOINT_LAYER 	= "EndWaypointLayer";
-		public static string PICKUP_LAYER 			= "PickupLayer";
+		public static string PLATFORM_LAYER 		= "PlatformLayer";
 
 
 		//

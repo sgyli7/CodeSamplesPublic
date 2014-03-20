@@ -80,7 +80,12 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <summary>
 		/// The _ SCAL e_ U p_ DURATIO.
 		/// </summary>
-		private static float _MOVE_DURATION = 0.2f;
+		private static float _MOVE_DURATION = 0.4f;
+
+		/// <summary>
+		/// The _ MOV e_ y_ AMOUN.
+		/// </summary>
+		private static float _POINTS_PREFAB_STARTING_Y_DELTA = 7;
 
 
 		//--------------------------------------
@@ -181,7 +186,9 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// </summary>
 		public void _doRewardPoints ()
 		{
-			SimpleGameManager.Instance.gameManager.score += POINTS_PER_COIN;
+			//center the rising points with the coin, and put it higher onscreen than the coin
+			Vector3 risingPointsPrefabPosition_vector3 = gameObject.transform.position + new Vector3 ( - gameObject.transform.localScale.x*2, _POINTS_PREFAB_STARTING_Y_DELTA, 0);
+			SimpleGameManager.Instance.gameManager.doRewardScore (POINTS_PER_COIN, risingPointsPrefabPosition_vector3);
 			DestroyImmediate (gameObject);
 
 

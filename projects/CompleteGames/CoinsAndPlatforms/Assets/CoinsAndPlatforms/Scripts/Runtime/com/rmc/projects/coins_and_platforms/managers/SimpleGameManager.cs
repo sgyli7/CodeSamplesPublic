@@ -362,7 +362,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// Instantiates the dynamic prefab.
 		/// </summary>
 		/// <returns>The dynamic prefab.</returns>
-		public GameObject instantiateDynamicPrefab (string aPrefabName_string, Vector3 aPosition_vector3)
+		public GameObject doInstantiateDynamicPrefab (string aPrefabName_string, Vector3 aPosition_vector3)
 		{
 
 			//CREATE OBJECT FROM RESOURCES FOLDER

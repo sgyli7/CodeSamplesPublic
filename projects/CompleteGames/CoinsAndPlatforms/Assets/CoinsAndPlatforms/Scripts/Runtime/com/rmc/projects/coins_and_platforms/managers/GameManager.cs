@@ -247,7 +247,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			//
 			return new Vector2 (
 				aCurrentCoinPTransform.position.x, 
-				aCurrentCoinPTransform.position.y + aCurrentCoinPTransform.lossyScale.y*4);
+				aCurrentCoinPTransform.position.y + aCurrentCoinPTransform.lossyScale.y*8);
 
 		}
 		
@@ -400,7 +400,19 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			}
 		}
 
+		/// <summary>
+		/// Dos the reward score.
+		/// 
+		/// NOTE: Handles "100 points" floating text too
+		/// 
+		/// </summary>
+		/// <param name="aScore_float">A score_float.</param>
+		public void doRewardScore (float aScore_float, Vector3 aPosition_vector3)
+		{
 
+			score += aScore_float;
+			SimpleGameManager.Instance.doInstantiateDynamicPrefab (MainConstants.RisingPointsPrefab, aPosition_vector3);
+		}
 
 		/// <summary>
 		/// Dos the restart game.
