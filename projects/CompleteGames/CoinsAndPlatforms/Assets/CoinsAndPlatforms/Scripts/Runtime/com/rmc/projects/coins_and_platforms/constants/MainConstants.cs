@@ -134,7 +134,11 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string TEXT_LIVES   					= "Lives: ";
 		//
 	
-
+		//*************************
+		//  MODEL DATA
+		//*************************
+		public static float GAME_MODEL_INITIAL_SCORE		= 0;
+		public static float GAME_MODEL_INITIAL_LIVES		= 3;
 
 
 

@@ -1,34 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Editor/com/rmc/projects/coins_and_platforms/components/SnapMeComponentEditor.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/enemy/EnemyDetectPlayerTriggerComponent.cs">
     <Files>
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/BackgroundIntroPrefabComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/BoundaryComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/CoinComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/EnemyAIComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/EnemyDetectPlayerTriggerComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/GroundDetectorComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/IntroGUIComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlayerDetectEnemyComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/PlayerInputComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/RisingPointsPrefabComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/SnapMeComponent.cs" Line="3" Column="14" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/WaypointComponent.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/core/SuperMovementComponent.cs" Line="3" Column="13" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/core/SuperMovementComponent.cs" Line="90" Column="17" />
+      <File FileName="Assets/CoinsAndPlatforms/Documentation/Instructions_1_v1.txt" Line="8" Column="1" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GameManager.cs" Line="456" Column="19" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/constants/MainConstants.cs" Line="121" Column="15" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/enemy/EnemyAIComponent.cs" Line="37" Column="64" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/enemy/EnemyDetectPlayerTriggerComponent.cs" Line="176" Column="17" />
       <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/core/SuperTriggerComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/configurations/MainConfiguration.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/constants/MainConstants.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/AudioManager.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GUIManager.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/GameManager.cs" Line="3" Column="13" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/managers/SimpleGameManager.cs" Line="3" Column="14" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/exceptions/SwitchStatementException.cs" Line="3" Column="14" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/templates/TemplateComponent.cs" Line="3" Column="14" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/templates/TemplateInterface.cs" Line="3" Column="14" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/templates/TemplateManagerComponent.cs" Line="3" Column="14" />
-      <File FileName="Assets/Community Assets/RMCLibrary/Scripts/Runtime/com/rmc/utilities/RendererUtility.cs" Line="3" Column="14" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Editor/com/rmc/projects/coins_and_platforms/CustomInitializeOnLoad.cs" Line="1" Column="1" />
-      <File FileName="Assets/CoinsAndPlatforms/Scripts/Editor/com/rmc/projects/coins_and_platforms/components/SnapMeComponentEditor.cs" Line="3" Column="14" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/enemy/GroundDetectorComponent.cs" Line="36" Column="64" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/gui/BackgroundIntroPrefabComponent.cs" Line="36" Column="62" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/gui/IntroGUIComponent.cs" Line="38" Column="62" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/player/PlayerInputComponent.cs" Line="38" Column="65" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/tiles/BoundaryComponent.cs" Line="173" Column="16" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/tiles/CoinComponent.cs" Line="39" Column="64" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/tiles/RisingPointsPrefabComponent.cs" Line="36" Column="64" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/tiles/SnapMeComponent.cs" Line="36" Column="64" />
+      <File FileName="Assets/CoinsAndPlatforms/Scripts/Runtime/com/rmc/projects/coins_and_platforms/components/tiles/WaypointComponent.cs" Line="34" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

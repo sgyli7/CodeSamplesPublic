@@ -88,14 +88,14 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// <summary>
 		/// The normalized horizontal speed.
 		/// </summary>
-		protected float _normalizedHorizontalSpeed_float = 0;
-		public float normalizedHorizontalSpeed
+		protected int _normalizedHorizontalSpeed_int = 0;
+		public int normalizedHorizontalSpeed
 		{
 			get{
-				return _normalizedHorizontalSpeed_float;
+				return _normalizedHorizontalSpeed_int;
 			} 
 			set {
-				_normalizedHorizontalSpeed_float = value;
+				_normalizedHorizontalSpeed_int = value;
 			}
 		}
 
@@ -229,11 +229,11 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// <param name="aVelocity_vector3">A velocity_vector3.</param>
 		/// <param name="aNormalizedMovement_float">A normalized movement_float.</param>
 		/// <param name="arunSpeed_float_float">Arun speed_float_float.</param>
-		protected Vector3 _doUpdateHorizontalVelocity (Vector3 aVelocity_vector3, float aNormalizedMovement_float, float arunSpeed_float_float)
+		protected Vector3 _doUpdateHorizontalVelocity (Vector3 aVelocity_vector3, int aNormalizedMovement_int, float arunSpeed_float_float)
 		{
 			// apply horizontal speed smoothing it
 			float smoothedMovementFactor_float = _characterController2D.isGrounded ? GROUND_DAMPING : NOT_GROUND_DAMPING; // how fast do we change direction?
-			aVelocity_vector3.x = Mathf.Lerp( aVelocity_vector3.x, aNormalizedMovement_float * RAW_MOVE_DIRECTION * arunSpeed_float_float, Time.deltaTime * smoothedMovementFactor_float );
+			aVelocity_vector3.x = Mathf.Lerp( aVelocity_vector3.x, aNormalizedMovement_int * RAW_MOVE_DIRECTION * arunSpeed_float_float, Time.deltaTime * smoothedMovementFactor_float );
 
 			//
 			return aVelocity_vector3;
@@ -244,14 +244,14 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// Does set scale from horizontal velocity.
 		/// </summary>
 		/// <param name="aNormalizedMovement_float">A normalized movement_float.</param>
-		protected void _doSetScaleFromHorizontalVelocity (float aNormalizedMovement_float) 
+		protected void _doSetScaleFromHorizontalVelocity (int aNormalizedMovement_int) 
 		{
 
-			if (aNormalizedMovement_float > 0) {
+			if (aNormalizedMovement_int > 0) {
 				if( transform.localScale.x < 0f ) {
 					transform.localScale = new Vector3( Mathf.Abs (transform.localScale.x), transform.localScale.y, transform.localScale.z );
 				}
-			} else if (aNormalizedMovement_float < 0) {
+			} else if (aNormalizedMovement_int < 0) {
 				if( transform.localScale.x > 0f ) {
 					transform.localScale = new Vector3( -Mathf.Abs (transform.localScale.x), transform.localScale.y, transform.localScale.z );
 				}
@@ -310,6 +310,15 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 			
 			// logs any collider hits
 			//Debug.Log( "flags: " + _characterController2D.collisionState + ", hit.normal: " + hit.normal );
+		}
+
+
+		/// <summary>
+		/// Ons the boundary hit.
+		/// </summary>
+		virtual public void onBoundaryHit ()
+		{
+			//OVERRIDE AS NEEDED
 		}
 
 	}

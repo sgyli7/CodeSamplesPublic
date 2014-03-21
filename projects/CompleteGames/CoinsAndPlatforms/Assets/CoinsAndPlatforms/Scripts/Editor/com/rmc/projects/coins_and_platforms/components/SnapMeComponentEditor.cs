@@ -33,6 +33,9 @@ using UnityEditor;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.components.tiles;
+
+
 namespace com.rmc.projects.coins_and_platforms.components
 {
 	
@@ -79,7 +82,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		//  Methods
 		//--------------------------------------	
 		// PUBLIC
-		
+		 
 		///<summary>
 		///	 Constructor
 		///</summary>

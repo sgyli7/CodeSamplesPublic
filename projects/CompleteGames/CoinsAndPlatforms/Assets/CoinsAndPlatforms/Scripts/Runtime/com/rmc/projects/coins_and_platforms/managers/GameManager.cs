@@ -31,13 +31,15 @@ using UnityEngine;
 using com.rmc.exceptions;
 using com.rmc.projects.coins_and_platforms.constants;
 using System;
-using com.rmc.projects.coins_and_platforms.components.super;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.components.player;
+
+
 namespace com.rmc.projects.coins_and_platforms.managers
 {
 	
@@ -306,7 +308,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		void Start () 
 		{
 
-			Debug.Log ("GM start()");
 			_doSetBrittleReferences();
 
 			//
@@ -481,8 +482,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// todo: order these methods better
 		private void _doResetGUI() 
 		{ 
-			score = 0;
-			lives = 2;
+			score = MainConstants.GAME_MODEL_INITIAL_SCORE;
+			lives = MainConstants.GAME_MODEL_INITIAL_LIVES;
 			promptMessage = "";
 
 		}
