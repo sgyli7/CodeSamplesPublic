@@ -72,6 +72,7 @@
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateComponent.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateInterface.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\templates\TemplateManagerComponent.cs" />
+     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\MathUtility.cs" />
      <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Runtime\com\rmc\utilities\RendererUtility.cs" />
      <Compile Include="Assets\Community Assets\SmoothFollow\SmoothFollowTargetComponent.cs" />
      <Compile Include="Assets\Community Assets\iTween\iTween.cs" />

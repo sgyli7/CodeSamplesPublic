@@ -32,6 +32,7 @@ using com.rmc.exceptions;
 using com.rmc.projects.coins_and_platforms.constants;
 using System;
 using com.rmc.projects.coins_and_platforms.components.player;
+using com.rmc.projects.coins_and_platforms.components.tiles;
 
 
 
@@ -396,7 +397,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		{
 
 			score += aScore_float;
-			SimpleGameManager.Instance.doInstantiateDynamicPrefab (MainConstants.RisingPointsPrefab, aPosition_vector3);
+			GameObject risingPointsPrefab_gameobject =  SimpleGameManager.Instance.doInstantiateDynamicPrefab (MainConstants.RisingPointsPrefab, aPosition_vector3);
+			RisingPointsPrefabComponent risingPointsPrefabComponent = risingPointsPrefab_gameobject.GetComponent<RisingPointsPrefabComponent>();
+			risingPointsPrefabComponent.score = aScore_float;
 		}
 
 		/// <summary>
@@ -514,9 +517,11 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_player_gameobject.transform.position 		= new Vector3 
 				(
 					_checkPoint_gameobject.transform.position.x - _player_gameobject.transform.localScale.x,
-					_checkPoint_gameobject.transform.position.y + 8,
+					_checkPoint_gameobject.transform.position.y + 6,
 					_checkPoint_gameobject.transform.position.z
 					);
+
+			_playerInputComponent.setVerticalScale (true);
 		}
 
 

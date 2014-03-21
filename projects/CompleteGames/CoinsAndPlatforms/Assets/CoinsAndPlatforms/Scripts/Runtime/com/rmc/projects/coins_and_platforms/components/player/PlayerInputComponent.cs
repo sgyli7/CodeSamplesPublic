@@ -31,6 +31,7 @@ using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
 using com.rmc.projects.coins_and_platforms.managers;
 using com.rmc.projects.coins_and_platforms.constants;
+using com.rmc.utilities;
 
 //--------------------------------------
 //  Namespace
@@ -126,7 +127,7 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 		void Start () 
 		{
 			SimpleGameManager.Instance.doRefreshInstance();
-			_normalizedHorizontalSpeed_int = 1;
+			normalizedHorizontalSpeed = 1;
 		}
 		
 		
@@ -171,43 +172,59 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 				//PREPARE FOR CALCULATIONS
 				_velocity_vector3 = _getCurrentVelocityBeforeModifications();
 				
-				//DO CALCULATIONS
-				if( _characterController2D.isGrounded ) {
-					if (_velocity_vector3.y != 0) {
-						_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
-						_velocity_vector3.y = 0;
-					}
-				}
-				
-				
-				
+
+				//*************************
+				//  PREPARE MOVEMENT
+				//************************
 				if( Input.GetKey( KeyCode.RightArrow ) ){
-					//
-					_setAnimationTrigger (MainConstants.UNIVERSAL_WALKING_TRIGGER);
-					_normalizedHorizontalSpeed_int = 1;
-
+					normalizedHorizontalSpeed = 1;
 				} else if( Input.GetKey( KeyCode.LeftArrow ) ) {
-					//
-					_setAnimationTrigger (MainConstants.UNIVERSAL_WALKING_TRIGGER);
-					_normalizedHorizontalSpeed_int = -1;
-
+					normalizedHorizontalSpeed = -1;
 				} else {
-
-					_normalizedHorizontalSpeed_int = 0;
+					normalizedHorizontalSpeed = 0;
 
 				}
+
 				
+				//*************************
+				//  PREPARE ANIMATION STATES
+				//************************
+				if( Input.GetKeyDown( KeyCode.RightArrow ) || Input.GetKeyDown( KeyCode.LeftArrow ) ) {
+					_onState_JustStartedWalking();
+				}
+
+				//UPDATE ANIMATOR WITH MOVEMENT (BESIDES THIS VAR, IT LISTENS ONLY FOR TRIGGERS)
+				_animator.SetBool 		("isGrounded", _characterController2D.isGrounded);
+
+				//DO CALCULATIONS
+				//Debug.Log ("g: " +  _characterController2D.isGrounded);
+				if( _characterController2D.isGrounded ) {
+
+					//CORRECT VALUE
+					if (!MathUtility.IsFloatZero(_velocity_vector3.y)) {
+						_velocity_vector3.y = 0;
+						_onState_JustLanded();
+					}
+					
+				}
+
+				
+				//*************************
+				//  UPDATE ANIMATION
+				//*************************
+				if ( normalizedHorizontalSpeed == 0 &&  _characterController2D.isGrounded) {
+					_onState_WhileStandingStillOnGround();
+				}
 				
 				//*************************
 				//  JUMPING (NO DOUBLE JUMP)
 				//*************************
 				if( Input.GetKeyDown( KeyCode.UpArrow ) && _characterController2D.isGrounded )
 				{
-					_setAnimationTrigger (MainConstants.PLAYER_JUMPING_TRIGGER);
+					_onState_JustJumped();
 					_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
 					SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_JUMPS);
 				}
-
 
 				
 				//*************************
@@ -216,21 +233,15 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 				_velocity_vector3 = _doUpdateHorizontalVelocity 
 					(
 						_velocity_vector3,
-						_normalizedHorizontalSpeed_int,
+						normalizedHorizontalSpeed,
 						_runSpeed_float
 						);
 
 
 				//
-				_doSetScaleFromHorizontalVelocity(_normalizedHorizontalSpeed_int);
+				_doSetScaleFromHorizontalVelocity(normalizedHorizontalSpeed);
 
-				//*************************
-				//  UPDATE ANIMATION
-				//*************************
-				if ( _normalizedHorizontalSpeed_int == 0 &&  _characterController2D.isGrounded) {
-					_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
-				}
-				
+
 				//*************************
 				//  MOVE V
 				//*************************
@@ -243,12 +254,14 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 				//*************************
 				_setCurrentVelocityAfterModifications (_velocity_vector3);
 
+
 				//*************************
 				//  PLAY SOUND UNIQUELY AS WE LAND
 				//*************************
 				if (!_wasGrounded_boolean && _characterController2D.isGrounded) {
 					SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_LANDS);
 				}
+
 
 				//*************************
 				//  STORE
@@ -266,7 +279,21 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 		{
 			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
 			_setAnimationTrigger (MainConstants.UNIVERSAL_DYING_TRIGGER);
+			setVerticalScale (false);
 			_characterController2D.clearCurrentPlatformMask();
+		}
+
+
+		/// <summary>
+		/// Dos the die.
+		/// </summary>
+		public void setVerticalScale (bool aHeadsUp_boolean)
+		{
+			if (aHeadsUp_boolean) {
+				transform.localScale = new Vector3( transform.localScale.x, Mathf.Abs (transform.localScale.y), transform.localScale.z );
+			} else {
+				transform.localScale = new Vector3( transform.localScale.x, -Mathf.Abs (transform.localScale.y), transform.localScale.z );
+			}
 		}
 
 		/// <summary>
@@ -278,16 +305,9 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 
 			base.doResetPhysicsAndAnimation();
 
-
-			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
-
 			//PHYSICS
 			_characterController2D.revertToOriginalCurrentPlatformMask();
-
-
-
-			//
-			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
+			_doStopAnimation();
 		}
 		// PRIVATE STATIC
 		
@@ -307,6 +327,52 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 			SimpleGameManager.Instance.gameManager.doKillPlayer();
 			SimpleGameManager.Instance.audioManager.doPlaySound(AudioClipType.PLAYER_FALLS_OFFSCREEN);
 		}
+
+
+		//--------------------------------------
+		//  Animation State Cues
+		//--------------------------------------
+		/// <summary>
+		/// Marks Cue: For just landed.
+		/// </summary>
+		private void _onState_JustLanded() 
+		{
+			//Debug.Log ("_onState_JustLanded");
+			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
+
+		}
+
+		/// <summary>
+		/// Marks Cue: For just jumped.
+		/// </summary>
+		private void _onState_JustJumped() 
+		{
+			//Debug.Log ("_onState_JustJumped");
+			_setAnimationTrigger (MainConstants.PLAYER_JUMPING_TRIGGER);
+		}
+
+		/// <summary>
+		/// Marks Cue: For just started walking.
+		/// </summary>
+		private void _onState_JustStartedWalking() 
+		{
+			//Debug.Log ("_onState_JustStartedWalking");
+			_setAnimationTrigger (MainConstants.UNIVERSAL_WALKING_TRIGGER);
+		}
+
+		/// <summary>
+		/// Marks Cue: For while standing still on ground.
+		/// </summary>
+		private void _onState_WhileStandingStillOnGround() 
+		{
+			//Debug.Log ("_onState_WhileStandingStillOnGround");
+			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER, true);
+
+		}
+
+
+
+
 		
 	}
 }

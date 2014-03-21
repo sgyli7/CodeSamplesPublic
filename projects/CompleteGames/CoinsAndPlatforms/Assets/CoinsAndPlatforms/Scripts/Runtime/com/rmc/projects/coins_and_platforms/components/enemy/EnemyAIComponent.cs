@@ -115,7 +115,7 @@ namespace com.rmc.projects.coins_and_platforms.components.enemy
 		void Start () 
 		{
 			_isAlive_boolean = true;
-			_normalizedHorizontalSpeed_int = 1;
+			normalizedHorizontalSpeed = 1;
 			_spawnPointPosition_vector3 = transform.position;
 		}
 		
@@ -137,7 +137,7 @@ namespace com.rmc.projects.coins_and_platforms.components.enemy
 			_velocity_vector3 = _doUpdateHorizontalVelocity 
 				(
 					_velocity_vector3,
-					_normalizedHorizontalSpeed_int,
+					normalizedHorizontalSpeed,
 					runSpeed_float
 				);
 
@@ -145,7 +145,7 @@ namespace com.rmc.projects.coins_and_platforms.components.enemy
 			//*************************
 			//  FACE FORWARD
 			//*************************
-			_doSetScaleFromHorizontalVelocity (_normalizedHorizontalSpeed_int);
+			_doSetScaleFromHorizontalVelocity (normalizedHorizontalSpeed);
 
 			//*************************
 			//  MOVE V

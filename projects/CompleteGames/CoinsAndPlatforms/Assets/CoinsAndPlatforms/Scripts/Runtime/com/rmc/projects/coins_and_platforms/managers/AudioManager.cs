@@ -174,7 +174,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public void doPlaySound (AudioClipType aClipName)
 		{
 
-			Debug.Log ("playing : " + aClipName);
+			//Debug.Log ("playing : " + aClipName);
 
 			switch (aClipName) {
 			case AudioClipType.BUTTON_CLICK:

@@ -49,7 +49,7 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	[RequireComponent (typeof (CharacterController2D) )]
+	[RequireComponent (typeof (CharacterController2D), typeof (Animator) )]
 	public class SuperMovementComponent : MonoBehaviour 
 	{
 		
@@ -96,14 +96,15 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// <summary>
 		/// The normalized horizontal speed.
 		/// </summary>
-		protected int _normalizedHorizontalSpeed_int = 0;
+		private int __normalizedHorizontalSpeed_int = 0;
 		public int normalizedHorizontalSpeed
 		{
 			get{
-				return _normalizedHorizontalSpeed_int;
+				return __normalizedHorizontalSpeed_int;
 			} 
 			set {
-				_normalizedHorizontalSpeed_int = value;
+				__normalizedHorizontalSpeed_int = value;
+				_animator.SetInteger 	("_normalizedHorizontalSpeed_int", __normalizedHorizontalSpeed_int);
 			}
 		}
 
@@ -217,18 +218,30 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// _sets the animation trigger.
 		/// </summary>
 		/// <param name="aTriggerName_string">A trigger name_string.</param>
-		protected void _setAnimationTrigger (string aTriggerName_string) 
+		protected void _setAnimationTrigger (string aTriggerName_string, bool isForcingTriggerChange_boollean = false) 
 		{
 
 			//todo: fix repeatedely starting the walk animation on key-hold-down
-			//Debug.Log (aTriggerName_string + " and " + _currentTriggerName_string);
-			if (aTriggerName_string != _currentTriggerName_string) {
+			//Debug.Log ("from: " + _currentTriggerName_string + " to " + aTriggerName_string);
+			if (aTriggerName_string != _currentTriggerName_string || isForcingTriggerChange_boollean) {
 
 				_animator.SetTrigger (aTriggerName_string);
 				_currentTriggerName_string = aTriggerName_string;
 			}
 
 		}
+
+		/// <summary>
+		/// Does stop animation.
+		/// </summary>
+		protected void _doStopAnimation ()
+		{
+			normalizedHorizontalSpeed = 0;
+			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
+
+
+		}
+
 
 		/// <summary>
 		/// Does update horizontal velocity.

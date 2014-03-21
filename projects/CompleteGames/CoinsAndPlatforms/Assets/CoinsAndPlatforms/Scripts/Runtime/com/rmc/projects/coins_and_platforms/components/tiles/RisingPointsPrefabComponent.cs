@@ -34,6 +34,9 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.constants;
+
+
 namespace com.rmc.projects.coins_and_platforms.components.tiles
 {
 	
@@ -58,6 +61,12 @@ namespace com.rmc.projects.coins_and_platforms.components.tiles
 		//--------------------------------------
 		
 		// GETTER / SETTER
+		public float score {
+			set {
+
+				GetComponentInChildren<TextMesh>().text = value.ToString() + MainConstants.TEXT_POINTS;
+			}
+		}
 		
 		// PUBLIC
 		
@@ -66,12 +75,14 @@ namespace com.rmc.projects.coins_and_platforms.components.tiles
 		/// <summary>
 		/// TIMING FOR ANIMATION
 		/// </summary>
-		private static float _MOVE_DURATION = 0.2f;
+		private static float _MOVE_DURATION = 0.6f;
+
+
 
 		/// <summary>
 		/// TIMING FOR ANIMATION
 		/// </summary>
-		private static float _MOVE_Y_AMOUNT = 7;
+		private static float _MOVE_Y_AMOUNT = 4;
 		
 		//--------------------------------------
 		//  Methods
