@@ -123,15 +123,14 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// </summary>
 		void Update()
 		{
-			//PREPARE FOR CALCULATIONS
+			//*************************
+			//  PREPARE
+			//*************************
 			_velocity_vector3 = _getCurrentVelocityBeforeModifications();
 			
-
-			//DO CALCULATIONS
-			
-			//**JUST** REACHED EDGE
-
-			//MOVE RIGHT
+			//*************************
+			//  MOVE H
+			//*************************
 			_velocity_vector3 = _doUpdateHorizontalVelocity 
 				(
 					_velocity_vector3,
@@ -140,17 +139,25 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				);
 
 
-			//FACE FORWARD
+			//*************************
+			//  FACE FORWARD
+			//*************************
 			_doSetScaleFromHorizontalVelocity (_normalizedHorizontalSpeed_float);
 
-			//MOVE DOWN
+			//*************************
+			//  MOVE V
+			//*************************
 			_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
 
-			//USE CALCULATIONS
+			//*************************
+			//  UPDATE
+			//*************************
 			_setCurrentVelocityAfterModifications (_velocity_vector3);
 
 
-			//STORE VALUE
+			//*************************
+			//  STORE
+			//*************************
 			_wasGrounded_boolean = _characterController2D.isGrounded;
 		}
 

@@ -65,23 +65,23 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		
 		// PRIVATE STATIC
 		/// <summary>
-		/// The POINT s_ PE r_ COI.
+		/// POINTS
 		/// </summary>
 		private static uint POINTS_PER_COIN = 100;
 
 		/// <summary>
-		/// The _ SCAL e_ U p_ DURATIO.
+		/// ANIMATION TIMING
 		/// </summary>
 		private static float _SCALE_UP_DURATION = 0.1f;
 
 
 		/// <summary>
-		/// The _ SCAL e_ U p_ DURATIO.
+		/// ANIMATION TIMING
 		/// </summary>
 		private static float _MOVE_DURATION = 0.4f;
 
 		/// <summary>
-		/// The _ MOV e_ y_ AMOUN.
+		/// OFFSET FOR POINTS '100 PTS' MESSAGE
 		/// </summary>
 		private static float _POINTS_PREFAB_STARTING_Y_DELTA = 7;
 

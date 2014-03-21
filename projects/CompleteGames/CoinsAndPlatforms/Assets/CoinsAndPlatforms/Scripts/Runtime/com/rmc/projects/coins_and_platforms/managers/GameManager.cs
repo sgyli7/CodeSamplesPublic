@@ -476,7 +476,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 
 		/// <summary>
-		/// Does reset GU.
+		/// Does reset GUI.
 		/// </summary>
 		/// todo: order these methods better
 		private void _doResetGUI() 
