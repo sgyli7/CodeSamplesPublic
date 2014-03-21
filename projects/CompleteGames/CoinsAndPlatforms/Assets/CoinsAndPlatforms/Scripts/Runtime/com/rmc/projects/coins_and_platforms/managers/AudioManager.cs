@@ -174,7 +174,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public void doPlaySound (AudioClipType aClipName)
 		{
 
-			//Debug.Log ("playing : " + aClipName);
+			Debug.Log ("playing : " + aClipName);
 
 			switch (aClipName) {
 			case AudioClipType.BUTTON_CLICK:
@@ -187,9 +187,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 				_audioSource.PlayOneShot (_playerJumps_audioclip);
 				break;
 			case AudioClipType.PLAYER_LANDS:
-				//todo, fix ground detection so this is called less often.
-				//todo, then uncomment here.
-				//_audioSource.PlayOneShot (_playerLands_audioclip);
+				_audioSource.PlayOneShot (_playerLands_audioclip);
 				break;
 			case AudioClipType.PLAYER_KILLS_ENEMY:
 				_audioSource.PlayOneShot (_playerKillsEnemy_audioclip);

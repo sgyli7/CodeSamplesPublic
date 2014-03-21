@@ -32,9 +32,6 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.managers;
-
-
 namespace com.rmc.projects.coins_and_platforms.components.gui
 {
 	

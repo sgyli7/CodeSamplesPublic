@@ -31,15 +31,13 @@ using UnityEngine;
 using com.rmc.exceptions;
 using com.rmc.projects.coins_and_platforms.constants;
 using System;
+using com.rmc.projects.coins_and_platforms.components.player;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.components.player;
-
-
 namespace com.rmc.projects.coins_and_platforms.managers
 {
 	
@@ -275,6 +273,9 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// The _start waypoint_gameobject.
 		/// </summary>
 		private GameObject _player_gameobject;
+		private PlayerInputComponent _playerInputComponent;
+		private CharacterController2D _characterController2D;
+
 
 
 		// PRIVATE STATIC
@@ -457,10 +458,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 
 			//
-			PlayerInputComponent playerInputComponent = _player_gameobject.GetComponent<PlayerInputComponent>();
-			playerInputComponent.doResetPhysicsAndAnimation();
-			//
-			CharacterController2D _characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
+			_playerInputComponent.doResetPhysicsAndAnimation();
 			_characterController2D.enabled = false;
 
 
@@ -499,8 +497,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			_doResetPlayer_Position();
 
 			//
-			PlayerInputComponent playerInputComponent = _player_gameobject.GetComponent<PlayerInputComponent>();
-			playerInputComponent.doResetPhysicsAndAnimation();
+			_playerInputComponent.doResetPhysicsAndAnimation();
 
 		}
 
@@ -528,9 +525,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// </summary>
 		private void _doDisablePlayer ()
 		{
-			CharacterController2D characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
-			characterController2D.velocity = Vector2.zero;
-			characterController2D.enabled = false;
+			_characterController2D.velocity = Vector2.zero;
+			_characterController2D.enabled = false;
 
 		}
 

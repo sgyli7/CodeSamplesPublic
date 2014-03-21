@@ -28,14 +28,12 @@
 //  Imports
 //--------------------------------------
 using UnityEditor;
+using com.rmc.projects.coins_and_platforms.components.tiles;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.components.tiles;
-
-
 namespace com.rmc.projects.coins_and_platforms.components
 {
 	

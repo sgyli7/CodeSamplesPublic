@@ -49,7 +49,7 @@
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\core\SuperMovementComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\core\SuperTriggerComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\enemy\EnemyAIComponent.cs" />
-     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\enemy\EnemyDetectPlayerTriggerComponent.cs" />
+     <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\enemy\EnemyDetectPlayerComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\enemy\GroundDetectorComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\gui\BackgroundIntroPrefabComponent.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Runtime\com\rmc\projects\coins_and_platforms\components\gui\IntroGUIComponent.cs" />

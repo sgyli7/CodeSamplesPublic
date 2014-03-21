@@ -30,6 +30,9 @@
 using UnityEngine;
 using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.components.core;
+using com.rmc.projects.coins_and_platforms.components.player;
+using com.rmc.projects.coins_and_platforms.components.enemy;
+
 
 
 
@@ -37,10 +40,6 @@ using com.rmc.projects.coins_and_platforms.components.core;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.components.player;
-using com.rmc.projects.coins_and_platforms.components.enemy;
-
-
 namespace com.rmc.projects.coins_and_platforms.components.tiles
 {
 	

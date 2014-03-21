@@ -67,8 +67,20 @@ public class CharacterController2D : MonoBehaviour
 
 	/// <summary>
 	/// mask with all layers that the player should interact with
+	/// 
+	/// NOTE: Set through inspector
+	/// 
 	/// </summary>
 	public LayerMask platformMask = 0;
+
+	/// <summary>
+	/// The current platform mask.
+	/// 
+	/// NOTE: This is set/unset when the character is knocked out.
+	/// 
+	/// </summary>
+	private LayerMask _currentPlatformMask;
+
 
 	/// <summary>
 	/// mask with all layers that should act as one-way platforms. Note that one-way platforms should always be EdgeCollider2Ds
@@ -125,6 +137,7 @@ public class CharacterController2D : MonoBehaviour
 	void Awake()
 	{
 		// add our one-way platforms to our normal platform mask so that we can land on them from above
+		_currentPlatformMask = platformMask;
 		platformMask |= oneWayPlatformMask;
 
 		// cache some components
@@ -290,7 +303,7 @@ public class CharacterController2D : MonoBehaviour
 		var initialRayOrigin = isGoingUp ? _raycastOrigins.topLeft : _raycastOrigins.bottomLeft;
 
 		// if we are moving up, we should ignore the layers in oneWayPlatformMask
-		var mask = platformMask;
+		var mask = _currentPlatformMask;
 		if( isGoingUp )
 			mask &= ~oneWayPlatformMask;
 		
@@ -331,6 +344,21 @@ public class CharacterController2D : MonoBehaviour
 	
 	#endregion
 
+	/// <summary>
+	/// Clears the current platform mask.
+	/// </summary>
+	public void clearCurrentPlatformMask ()
+	{
+		_currentPlatformMask = 0;
+	}
+
+	/// <summary>
+	/// Reverts to original current platform mask.
+	/// </summary>
+	public void revertToOriginalCurrentPlatformMask ()
+	{
+		_currentPlatformMask = platformMask;
+	}
 
 	public void move( Vector3 deltaMovement )
 	{

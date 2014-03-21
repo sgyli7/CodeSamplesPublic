@@ -86,6 +86,14 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		protected Vector3 _velocity_vector3;
 
 		/// <summary>
+		/// The _was grounded_boolean.
+		/// </summary>
+		protected bool _wasGrounded_boolean = false;
+		
+
+
+
+		/// <summary>
 		/// The normalized horizontal speed.
 		/// </summary>
 		protected int _normalizedHorizontalSpeed_int = 0;
@@ -179,12 +187,12 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// <summary>
 		/// Dos the reset physics and animation.
 		/// </summary>
-		public void doResetPhysicsAndAnimation ()
+		virtual public void doResetPhysicsAndAnimation ()
 		{
 			//PHYSICS
 			_characterController2D.velocity = Vector2.zero;
 			_characterController2D.enabled = true;
-			
+
 			//ANIMATION
 			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
 			

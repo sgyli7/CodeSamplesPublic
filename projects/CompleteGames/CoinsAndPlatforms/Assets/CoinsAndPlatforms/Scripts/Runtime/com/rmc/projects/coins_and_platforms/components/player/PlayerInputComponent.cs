@@ -77,7 +77,8 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 		/// <value><c>true</c> if is vulnerable to enemy; otherwise, <c>false</c>.</value>
 		public bool isVulnerableToEnemy {
 			get {
-				return false;
+				//IF PLAYER IS MOVING DOWNWARD AND NOT ON THE GROUND IT IS ATTACKING!
+				return !(_characterController2D.velocity.y < -10 && !_characterController2D.isGrounded);
 			}
 		}
 		
@@ -135,6 +136,7 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 		/// </summary>
 		void Update()
 		{
+
 			_doHandleMovement();
 		}
 		
@@ -172,7 +174,6 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 				//DO CALCULATIONS
 				if( _characterController2D.isGrounded ) {
 					if (_velocity_vector3.y != 0) {
-						SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_LANDS);
 						_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
 						_velocity_vector3.y = 0;
 					}
@@ -242,10 +243,44 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 				//*************************
 				_setCurrentVelocityAfterModifications (_velocity_vector3);
 
+				//*************************
+				//  PLAY SOUND UNIQUELY AS WE LAND
+				//*************************
+				if (!_wasGrounded_boolean && _characterController2D.isGrounded) {
+					SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_LANDS);
+				}
+
+				//*************************
+				//  STORE
+				//*************************
+				_wasGrounded_boolean = _characterController2D.isGrounded;
+
 			}
 
 		}
 
+		/// <summary>
+		/// Dos the die.
+		/// </summary>
+		public void doKnockOut ()
+		{
+			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
+			_setAnimationTrigger (MainConstants.UNIVERSAL_DYING_TRIGGER);
+			_characterController2D.clearCurrentPlatformMask();
+		}
+
+		/// <summary>
+		/// Dos the reset physics and animation.
+		/// </summary>
+		override public void doResetPhysicsAndAnimation ()
+		{
+			base.doResetPhysicsAndAnimation();
+
+			//PHYSICS
+			_characterController2D.revertToOriginalCurrentPlatformMask();
+			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
+			
+		}
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE

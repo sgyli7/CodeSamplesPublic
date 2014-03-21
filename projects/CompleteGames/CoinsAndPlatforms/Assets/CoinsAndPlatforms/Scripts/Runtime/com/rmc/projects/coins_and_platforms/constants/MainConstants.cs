@@ -123,7 +123,7 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string UNIVERSAL_WALKING_TRIGGER 		= "WalkingTrigger";
 		public static string UNIVERSAL_IDLE_TRIGGER 		= "IdleTrigger";
 		public static string PLAYER_JUMPING_TRIGGER 		= "JumpingTrigger";
-		public static string ENEMY_DYING_TRIGGER 			= "DyingTrigger";
+		public static string UNIVERSAL_DYING_TRIGGER 			= "DyingTrigger";
 
 		//*************************
 		//  DISPLAY TEXT

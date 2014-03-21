@@ -31,6 +31,7 @@ using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
 
+
 //--------------------------------------
 //  Namespace
 //--------------------------------------
@@ -69,11 +70,6 @@ namespace com.rmc.projects.coins_and_platforms.components.enemy
 		// PUBLIC STATIC
 		
 		// PRIVATE
-		/// <summary>
-		/// The _was grounded_boolean.
-		/// </summary>
-		private bool _wasGrounded_boolean = false;
-
 
 		/// <summary>
 		/// The _is alive_boolean.
@@ -171,15 +167,14 @@ namespace com.rmc.projects.coins_and_platforms.components.enemy
 		/// <summary>
 		/// Dos the kill enemy.
 		/// </summary>
-		public void doDie ()
+		public void doKnockOut ()
 		{
 			_isAlive_boolean = false;
 
 			//TODO, SHOW A SHELL ANIMATION AND FLY OFFSCREEN (IMMEDIATY OUT OF 'PLAY' (DON'T SLIDE THE SHELL)
 			//_characterController2D.enabled = false;
-			transform.Rotate (new Vector3 (1, 0, 0));
-			_setAnimationTrigger (MainConstants.ENEMY_DYING_TRIGGER);
-			_characterController2D.platformMask = 0;
+			_setAnimationTrigger (MainConstants.UNIVERSAL_DYING_TRIGGER);
+			_characterController2D.clearCurrentPlatformMask();
 		}
 
 
