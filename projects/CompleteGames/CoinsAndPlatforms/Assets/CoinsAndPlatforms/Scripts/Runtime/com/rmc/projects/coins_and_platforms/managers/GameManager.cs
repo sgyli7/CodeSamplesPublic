@@ -457,11 +457,13 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			}
 
 
-			//
+			//ORDER MATTERS HERE
 			_playerInputComponent.doResetPhysicsAndAnimation();
 			_characterController2D.enabled = false;
 
 
+
+			//
 			Invoke ("_doGameOver_Part2", 0.25f);
 		}
 

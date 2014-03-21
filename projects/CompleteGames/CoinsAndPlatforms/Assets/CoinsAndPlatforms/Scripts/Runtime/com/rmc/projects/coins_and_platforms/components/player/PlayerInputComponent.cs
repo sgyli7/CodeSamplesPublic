@@ -274,12 +274,20 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 		/// </summary>
 		override public void doResetPhysicsAndAnimation ()
 		{
+
+
 			base.doResetPhysicsAndAnimation();
+
+
+			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
 
 			//PHYSICS
 			_characterController2D.revertToOriginalCurrentPlatformMask();
+
+
+
+			//
 			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
-			
 		}
 		// PRIVATE STATIC
 		
