@@ -212,10 +212,14 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 				//*************************
 				//  UPDATE ANIMATION
 				//*************************
-				if ( normalizedHorizontalSpeed == 0 &&  _characterController2D.isGrounded) {
-					_onState_WhileStandingStillOnGround();
+				if ( _characterController2D.isGrounded) {
+					if ( normalizedHorizontalSpeed == 0) {
+						_onState_WhileStandingStillOnGround();
+					} else {
+						_onState_WhileWalkingOnGround();
+					}
 				}
-				
+					
 				//*************************
 				//  JUMPING (NO DOUBLE JUMP)
 				//*************************
@@ -359,6 +363,17 @@ namespace com.rmc.projects.coins_and_platforms.components.player
 			//Debug.Log ("_onState_JustStartedWalking");
 			_setAnimationTrigger (MainConstants.UNIVERSAL_WALKING_TRIGGER);
 		}
+
+		/// <summary>
+		/// Marks Cue: For while walking on ground.
+		/// </summary>
+		private void _onState_WhileWalkingOnGround() 
+		{
+			//Debug.Log ("_onState_WhileWalkingOnGround");
+			_setAnimationTrigger (MainConstants.UNIVERSAL_WALKING_TRIGGER, true);
+			
+		}
+
 
 		/// <summary>
 		/// Marks Cue: For while standing still on ground.

@@ -146,7 +146,7 @@ namespace com.rmc.projects.coins_and_platforms.components.enemy
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.ENEMY_KILLS_PLAYER);
 				aPlayerInputComponent.doKnockOut();
 				//BUT REFRESH QUICKLY COLLISION FLAG FOR ANY SUBSEQUENT INTERACTION
-				Invoke ("doRefreshEnemy", 0.25f);
+				Invoke ("doRefreshEnemy", 1f);
 			} else {
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_KILLS_ENEMY);
 				_enemyAIComponent.doKnockOut();
