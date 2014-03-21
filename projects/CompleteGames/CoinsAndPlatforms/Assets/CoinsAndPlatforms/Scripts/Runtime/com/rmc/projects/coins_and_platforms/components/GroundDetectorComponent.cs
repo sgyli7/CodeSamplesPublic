@@ -52,7 +52,8 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class GroundDetectorComponent : SuperTriggerComponent 
+	[RequireComponent (typeof (Rigidbody2D), typeof(BoxCollider2D))]
+	public class GroundDetectorComponent : MonoBehaviour 
 	{
 		
 		
@@ -64,15 +65,22 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		
 		// PUBLIC
 		/// <summary>
-		/// The is walking toward solid ground_boolean.
+		/// The _is detecting platform_boolean.
 		/// </summary>
-		private bool _isWalkingTowardSolidGround_boolean = true;
+		private bool _isDetectingPlatform_boolean = true;
 
 		// PRIVATE STATIC
 
 		// PRIVATE
+
+		/// <summary>
+		/// The _character controller2 d.
+		/// </summary>
 		private CharacterController2D _characterController2D;
 
+		/// <summary>
+		/// The _enemy AI component.
+		/// </summary>
 		private EnemyAIComponent _enemyAIComponent;
 
 		//--------------------------------------
@@ -106,7 +114,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		///</summary>
 		void Start () 
 		{
-			_wasTriggered = false;
 			_characterController2D 	= gameObject.transform.parent.GetComponent<CharacterController2D>();
 			_enemyAIComponent 		= gameObject.transform.parent.GetComponent<EnemyAIComponent>();
 			
@@ -120,15 +127,44 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		void Update()
 		{
 
-			if (!_isWalkingTowardSolidGround_boolean) {
+			//UPDATE COLORATION FOR DEBUGGING
+			if (!_isDetectingPlatform_boolean) {
+				renderer.material.color = Color.red;
 
-				Debug.Log ("must turn");
+			} else {
 
-				_enemyAIComponent.runSpeed_float = -_enemyAIComponent.runSpeed_float;
-				_isWalkingTowardSolidGround_boolean = true;
+				renderer.material.color = Color.green;
+
 			}
 
+
+			//REVERSE DIRECTION IF...
+			// 1) ENEMY IS ON THE GROUND
+			// 2) ENEMY IS NOT DETECTING A PLATFORM
+			if (_characterController2D.isGrounded && !_isDetectingPlatform_boolean) {
+				_doReverseWalkingDirection();
+			}
+
+
+
+
 		}
+
+
+
+
+		/// <summary>
+		/// Fixeds the update.
+		/// </summary>
+		void FixedUpdate()
+		{
+			//ALWAYS RESET, SO THAT WE *MUST* RE-DETECT THAT WE ARE TOUCHING A PLATFORM **EVERY FRAME**
+			_isDetectingPlatform_boolean = false;
+
+
+		}
+
+
 		
 		// PUBLIC
 		
@@ -136,12 +172,11 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the trigger waypoing.
+		/// _dos the reverse walking direction.
 		/// </summary>
-		private void _doTriggerWaypoint ()
+		private void _doReverseWalkingDirection ()
 		{
-			_wasTriggered = true;
-
+			_enemyAIComponent.normalizedHorizontalSpeed = - _enemyAIComponent.normalizedHorizontalSpeed;
 		}
 		
 		// PRIVATE STATIC
@@ -159,14 +194,24 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <param name="collider2D">Collider2 d.</param>
 		public void OnTriggerEnter2D (Collider2D collider2D)
 		{
-			if (_characterController2D.isGrounded || true) {
-				if (collider2D.gameObject.layer != LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
-					Debug.Log ("enter: " + collider2D.gameObject.layer);
-					_isWalkingTowardSolidGround_boolean = true;
-				}
-
+			if (collider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
+				Debug.Log ("enter: " + collider2D.gameObject.layer);
+				_isDetectingPlatform_boolean = true;
 			}
 
+		}
+
+		/// <summary>
+		/// Raises the trigger stay2 d event.
+		/// </summary>
+		/// <param name="collider2D">Collider2 d.</param>
+		public void OnTriggerStay2D (Collider2D collider2D)
+		{
+			if (collider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
+				Debug.Log ("stay: " + collider2D.gameObject.layer);
+				_isDetectingPlatform_boolean = true;
+			}
+			
 		}
 
 		/// <summary>
@@ -175,14 +220,11 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// <param name="collider2D">Collider2 d.</param>
 		public void OnTriggerExit2D (Collider2D collider2D)
 		{
-			if (_characterController2D.isGrounded || true) {
-				if (collider2D.gameObject.layer != LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
-					Debug.Log ("exit: " + collider2D.gameObject.layer);
-					_isWalkingTowardSolidGround_boolean = false;
-				}
-				
+			if (collider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
+				Debug.Log ("exit: " + collider2D.gameObject.layer);
+				_isDetectingPlatform_boolean = false;
 			}
-
+				
 		}
 		
 	}

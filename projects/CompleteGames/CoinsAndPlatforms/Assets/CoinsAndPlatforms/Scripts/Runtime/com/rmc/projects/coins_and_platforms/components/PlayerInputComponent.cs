@@ -68,6 +68,17 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// The _run speed_float.
 		/// </summary>
 		private float _runSpeed_float = 60f;
+
+		/// <summary>
+		/// Gets or sets a value indicating whether this
+		/// <see cref="com.rmc.projects.coins_and_platforms.components.super.PlayerInputComponent"/> is vulnerable to enemy.
+		/// </summary>
+		/// <value><c>true</c> if is vulnerable to enemy; otherwise, <c>false</c>.</value>
+		public bool isVulnerableToEnemy {
+			get {
+				return false;
+			}
+		}
 		
 		/// <summary>
 		/// The height of the _target jump.
@@ -164,26 +175,20 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				
 				
 				
-				if( Input.GetKey( KeyCode.RightArrow ) )
-				{
+				if( Input.GetKey( KeyCode.RightArrow ) ){
+					//
 					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
 					_normalizedHorizontalSpeed_float = 1;
-					if( transform.localScale.x < 0f ) {
-						transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
-					}
-				}
-				else if( Input.GetKey( KeyCode.LeftArrow ) )
-				{
+
+				} else if( Input.GetKey( KeyCode.LeftArrow ) ) {
+					//
 					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
 					_normalizedHorizontalSpeed_float = -1;
-					if( transform.localScale.x > 0f ) {
-						transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
-					}
-				}
-				else
-				{
-					_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
+
+				} else {
+
 					_normalizedHorizontalSpeed_float = 0;
+
 				}
 				
 				
@@ -209,6 +214,15 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 						_normalizedHorizontalSpeed_float,
 						_runSpeed_float
 						);
+
+
+				//
+				_doSetScaleFromHorizontalVelocity(_normalizedHorizontalSpeed_float);
+
+				//RETURN TO IDLE BASED ON VELOCITY (NOT KEYPRESSES, IN CASE WE ADD FRICTION LATER)
+				if (_normalizedHorizontalSpeed_float == 0 &&  _characterController2D.isGrounded) {
+					_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
+				}
 				
 				//MOVE DOWN
 				_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );

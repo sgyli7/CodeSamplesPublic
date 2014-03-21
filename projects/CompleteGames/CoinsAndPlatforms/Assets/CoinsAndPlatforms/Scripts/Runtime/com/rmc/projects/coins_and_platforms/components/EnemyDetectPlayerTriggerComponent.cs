@@ -135,17 +135,19 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		/// NOTE: We crudely evaluate victory here. Todo: More checks could be added (player velocity.y)
 		/// 
 		/// </summary>
-		private void _doTriggerWaypoint (bool isEnemyVictorious_boolean)
+		private void _doTriggerCollisionWithPlayer (bool isEnemyVictorious_boolean)
 		{
+
+			//FLAG THE COLLISION BUT REFRESH QUICKLY FOR ANY SUBSEQUENT INTERACTION
 			_wasTriggered = true;
-			Invoke ("doRefreshEnemy",1f);
+			Invoke ("doRefreshEnemy", 0.25f);
 			//
 			if (isEnemyVictorious_boolean) {
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.ENEMY_KILLS_PLAYER);
 				SimpleGameManager.Instance.gameManager.doKillPlayer();
 			} else {
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_KILLS_ENEMY);
-				_enemyAIComponent.doKillEnemy();
+				_enemyAIComponent.doDie();
 			}
 			
 		}
@@ -167,8 +169,8 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		{
 			if (collider2D.gameObject.tag == MainConstants.PLAYER_TAG) {
 				if (!_wasTriggered) {
-					CharacterController2D _characterController2D = collider2D.gameObject.GetComponent<CharacterController2D>();
-					_doTriggerWaypoint(_characterController2D.isGrounded);
+					PlayerInputComponent playerInputComponent = collider2D.gameObject.GetComponent<PlayerInputComponent>();
+					_doTriggerCollisionWithPlayer(playerInputComponent.isVulnerableToEnemy);
 				}
 			}
 			

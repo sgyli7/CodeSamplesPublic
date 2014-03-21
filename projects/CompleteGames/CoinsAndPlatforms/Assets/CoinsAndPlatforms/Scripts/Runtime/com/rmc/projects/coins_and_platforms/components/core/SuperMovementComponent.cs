@@ -91,6 +91,15 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// The normalized horizontal speed.
 		/// </summary>
 		protected float _normalizedHorizontalSpeed_float = 0;
+		public float normalizedHorizontalSpeed
+		{
+			get{
+				return _normalizedHorizontalSpeed_float;
+			} 
+			set {
+				_normalizedHorizontalSpeed_float = value;
+			}
+		}
 
 		// PRIVATE STATIC
 		/// <summary>
@@ -214,6 +223,27 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 
 			//
 			return aVelocity_vector3;
+		}
+
+
+		/// <summary>
+		/// _dos the set scale from horizontal velocity.
+		/// </summary>
+		/// <param name="aVelocity_vector3">A velocity_vector3.</param>
+		protected void _doSetScaleFromHorizontalVelocity (float aNormalizedMovement_float) 
+		{
+
+			if (aNormalizedMovement_float > 0) {
+				if( transform.localScale.x < 0f ) {
+					transform.localScale = new Vector3( Mathf.Abs (transform.localScale.x), transform.localScale.y, transform.localScale.z );
+				}
+			} else if (aNormalizedMovement_float < 0) {
+				if( transform.localScale.x > 0f ) {
+					transform.localScale = new Vector3( -Mathf.Abs (transform.localScale.x), transform.localScale.y, transform.localScale.z );
+				}
+
+			}
+
 		}
 
 		/// <summary>

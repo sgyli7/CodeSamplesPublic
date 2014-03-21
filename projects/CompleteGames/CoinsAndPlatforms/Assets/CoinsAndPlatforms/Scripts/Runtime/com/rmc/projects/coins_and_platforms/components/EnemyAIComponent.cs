@@ -129,10 +129,6 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			//DO CALCULATIONS
 			
 			//**JUST** REACHED EDGE
-			if(!_characterController2D.isGrounded && !_wasGrounded_boolean) {
-				_normalizedHorizontalSpeed_float = -_normalizedHorizontalSpeed_float;
-			}
-			
 
 			//MOVE RIGHT
 			_velocity_vector3 = _doUpdateHorizontalVelocity 
@@ -142,23 +138,25 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 					runSpeed_float
 				);
 
+
+			//FACE FORWARD
+			_doSetScaleFromHorizontalVelocity (_normalizedHorizontalSpeed_float);
+
 			//MOVE DOWN
 			_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
-
-
 
 			//USE CALCULATIONS
 			_setCurrentVelocityAfterModifications (_velocity_vector3);
 
 
-			//
+			//STORE VALUE
 			_wasGrounded_boolean = _characterController2D.isGrounded;
 		}
 
 		/// <summary>
 		/// Dos the kill enemy.
 		/// </summary>
-		public void doKillEnemy ()
+		public void doDie ()
 		{
 			//TODO, SHOW A SHELL ANIMATION AND FLY OFFSCREEN (IMMEDIATY OUT OF 'PLAY' (DON'T SLIDE THE SHELL)
 			_characterController2D.enabled = false;

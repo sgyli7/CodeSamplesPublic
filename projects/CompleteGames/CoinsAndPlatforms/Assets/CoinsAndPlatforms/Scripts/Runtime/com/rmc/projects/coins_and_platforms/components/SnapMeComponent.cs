@@ -59,9 +59,14 @@ namespace com.rmc.projects.coins_and_platforms.components
 		//--------------------------------------
 		
 		// GETTER / SETTER
+
 		
 		// PUBLIC
-		
+		/// <summary>
+		/// The enabled.
+		/// </summary>
+		public bool isSnapping = true;
+
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -134,13 +139,15 @@ namespace com.rmc.projects.coins_and_platforms.components
 		/// </summary>
 		public void doSnapMe () 
 		{
-			float xPos = transform.position.x;
-			float yPos = transform.position.y;
-			float zPos = transform.position.z;
-			xPos = Mathf.Round(xPos * _SNAP_FACTOR) / _SNAP_FACTOR;
-			yPos = Mathf.Round(yPos * _SNAP_FACTOR) / _SNAP_FACTOR;
-			zPos = Mathf.Round(zPos * _SNAP_FACTOR) / _SNAP_FACTOR;
-			transform.position = new Vector3 (xPos, yPos, zPos);
+			if (isSnapping) {
+				float xPos = transform.position.x;
+				float yPos = transform.position.y;
+				float zPos = transform.position.z;
+				xPos = Mathf.Round(xPos * _SNAP_FACTOR) / _SNAP_FACTOR;
+				yPos = Mathf.Round(yPos * _SNAP_FACTOR) / _SNAP_FACTOR;
+				zPos = Mathf.Round(zPos * _SNAP_FACTOR) / _SNAP_FACTOR;
+				transform.position = new Vector3 (xPos, yPos, zPos);
+			}
 			
 		}
 		
