@@ -335,7 +335,11 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			//
 			_startWaypoint_gameobject 	= _doThrowErrorIfNull (GameObject.Find (MainConstants.StartWaypoint)) as GameObject;
 			_player_gameobject 			= _doThrowErrorIfNull (GameObject.Find (MainConstants.PlayerUnPrefab)) as GameObject;
-			
+
+			//
+			_playerInputComponent = _player_gameobject.GetComponent<PlayerInputComponent>();
+			_characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
+
 		}
 
 
@@ -458,8 +462,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			//
 			CharacterController2D _characterController2D = _player_gameobject.GetComponent<CharacterController2D>();
 			_characterController2D.enabled = false;
-			//playerInputComponent.enabled = false;
-			//playerInputComponent.enabled = false;
 
 
 			Invoke ("_doGameOver_Part2", 0.25f);
