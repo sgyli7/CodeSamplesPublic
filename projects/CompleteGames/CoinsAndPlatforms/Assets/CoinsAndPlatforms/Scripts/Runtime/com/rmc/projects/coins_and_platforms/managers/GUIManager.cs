@@ -28,13 +28,8 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using com.rmc.exceptions;
 using System;
 using com.rmc.projects.coins_and_platforms.constants;
-
-
 
 
 //--------------------------------------
@@ -145,8 +140,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		/// <param name="aMessage_string">A message_string.</param>
 		public void setScoreText (string aMessage_string)
 		{
-			_scoreGUIText.text 	= "Score: " + aMessage_string;
-			_scoreGUIText2.text = "Score: " + aMessage_string;
+			_scoreGUIText.text 	= MainConstants.TEXT_SCORE + aMessage_string;
+			_scoreGUIText2.text = MainConstants.TEXT_SCORE + aMessage_string;
 
 		}
 
@@ -158,8 +153,8 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		public void setLivesText (string aMessage_string)
 		{
 			//
-			_livesGUIText.text 	= "Lives: " + aMessage_string;
-			_livesGUIText2.text = "Lives: " + aMessage_string;
+			_livesGUIText.text 	=  MainConstants.TEXT_LIVES + aMessage_string;
+			_livesGUIText2.text = MainConstants.TEXT_LIVES + aMessage_string;
 			
 		}
 
@@ -180,7 +175,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		
 		
 		/// <summary>
-		/// _dos the set brittle references.
+		/// Does set brittle references.
 		/// 
 		/// NOTE: For simplicity, this brittle approach is used instead of alternatives;
 		/// 		* public transform references, set via dragging from hierarchy items

@@ -1,9 +1,6 @@
 /**
  * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
-/**
- * Copyright (C) 2005-2013 by Rivello Multimedia Consulting (RMC).                    
- * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the      
@@ -30,9 +27,7 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using UnityEngine;
 using UnityEditor;
-using System.Collections;
 
 //--------------------------------------
 //  Namespace

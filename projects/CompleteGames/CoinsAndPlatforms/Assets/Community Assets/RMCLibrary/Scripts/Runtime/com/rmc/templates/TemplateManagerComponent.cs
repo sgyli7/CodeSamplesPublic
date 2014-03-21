@@ -28,7 +28,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections;
 
 //--------------------------------------
 //  Class

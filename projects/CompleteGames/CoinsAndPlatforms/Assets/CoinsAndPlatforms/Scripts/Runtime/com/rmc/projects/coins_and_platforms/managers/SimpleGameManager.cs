@@ -29,7 +29,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
@@ -57,15 +56,20 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		// GETTER / SETTER
 
 		// PUBLIC
-		/*
-		
-		
-			TODO: THESE MANAGERS SHOULD BE DECLARED ELSEWHERE (NOT REUSABLE THIS WAY FOR OTHER PROJECTS)
-		
-		
-		*/
+		/// <summary>
+		/// The game manager.
+		/// </summary>
 		public GameManager gameManager;
+
+		/// <summary>
+		/// The audio manager.
+		/// </summary>
 		public AudioManager audioManager;
+
+
+		/// <summary>
+		/// The GUI manager.
+		/// </summary>
 		public GUIManager guiManager;
 
 		// PUBLIC STATIC
@@ -130,7 +134,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 
 		/// <summary>
-		/// Dos the restart level.
+		/// Dos the restart scene.
 		/// </summary>
 		public void doRestartScene() 
 		{ 
@@ -140,7 +144,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 
 		/// <summary>
-		/// Dos the restart level.
+		/// Dos the restart application.
 		/// </summary>
 		public void doRestartApplication() 
 		{ 

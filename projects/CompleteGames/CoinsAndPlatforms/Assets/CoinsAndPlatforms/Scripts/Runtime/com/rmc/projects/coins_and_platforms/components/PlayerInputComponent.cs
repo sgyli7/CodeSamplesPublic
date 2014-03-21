@@ -144,21 +144,25 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		// PRIVATE
 
 		/// <summary>
-		/// _dos the handle movement.
+		/// Does handle movement.
 		/// </summary>
 		private void _doHandleMovement()
 		{
 
 
 			
-			//ALWAYS ALLOW RESTART
+			//*************************
+			//  ALWAYS ALLOW RESTART
+			//*************************
 			if( Input.GetKeyDown( KeyCode.Space ))
 			{
 				SimpleGameManager.Instance.gameManager.doRestartGame();
 			}
 
 
-			//IF ENABLED, TAKE INPUT....
+			//*************************
+			//  TAKE INPUT
+			//*************************
 			if (_characterController2D.enabled) {
 
 				//PREPARE FOR CALCULATIONS
@@ -168,7 +172,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				if( _characterController2D.isGrounded ) {
 					if (_velocity_vector3.y != 0) {
 						SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_LANDS);
-						_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
+						_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
 						_velocity_vector3.y = 0;
 					}
 				}
@@ -177,12 +181,12 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				
 				if( Input.GetKey( KeyCode.RightArrow ) ){
 					//
-					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
+					_setAnimationTrigger (MainConstants.UNIVERSAL_WALKING_TRIGGER);
 					_normalizedHorizontalSpeed_float = 1;
 
 				} else if( Input.GetKey( KeyCode.LeftArrow ) ) {
 					//
-					_setAnimationTrigger (MainConstants.WALKING_TRIGGER);
+					_setAnimationTrigger (MainConstants.UNIVERSAL_WALKING_TRIGGER);
 					_normalizedHorizontalSpeed_float = -1;
 
 				} else {
@@ -192,22 +196,21 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				}
 				
 				
-				/*
-				*  DO NOT ALLOW DOUBLE JUMP (YET?)
-				* 
-				* 
-				* 
-				*/
+				//*************************
+				//  JUMPING (NO DOUBLE JUMP)
+				//*************************
 				if( Input.GetKeyDown( KeyCode.UpArrow ) && _characterController2D.isGrounded )
 				{
-					_setAnimationTrigger (MainConstants.JUMPING_TRIGGER);
+					_setAnimationTrigger (MainConstants.PLAYER_JUMPING_TRIGGER);
 					_velocity_vector3.y = Mathf.Sqrt( Mathf.Abs(_targetJumpHeight * SuperMovementComponent.GRAVITY_Y) );
 					SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_JUMPS);
 				}
 
 
 				
-				//MOVE RIGHT
+				//*************************
+				//  MOVE H
+				//*************************
 				_velocity_vector3 = _doUpdateHorizontalVelocity 
 					(
 						_velocity_vector3,
@@ -219,17 +222,23 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 				//
 				_doSetScaleFromHorizontalVelocity(_normalizedHorizontalSpeed_float);
 
-				//RETURN TO IDLE BASED ON VELOCITY (NOT KEYPRESSES, IN CASE WE ADD FRICTION LATER)
+				//*************************
+				//  UPDATE ANIMATION
+				//*************************
 				if (_normalizedHorizontalSpeed_float == 0 &&  _characterController2D.isGrounded) {
-					_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
+					_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
 				}
 				
-				//MOVE DOWN
+				//*************************
+				//  MOVE V
+				//*************************
 				_velocity_vector3 = _doUpdateVerticalVelocity (	_velocity_vector3 );
 				
 				
 				
-				//USE CALCULATIONS
+				//*************************
+				//  UPDATE
+				//*************************
 				_setCurrentVelocityAfterModifications (_velocity_vector3);
 
 			}

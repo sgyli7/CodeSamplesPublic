@@ -1,9 +1,6 @@
 /**
 * Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
 * code [at] RivelloMultimediaConsulting [dot] com                                                  
-/**
-* Copyright (C) 2005-2014 by Rivello Multimedia Consulting (RMC).                    
-* code [at] RivelloMultimediaConsulting [dot] com                                                  
 *                                                                      
 * Permission is hereby granted, free of charge, to any person obtaining
 * a copy of this software and associated documentation files (the      
@@ -31,17 +28,17 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.managers;
 using com.rmc.projects.coins_and_platforms.components.core;
 using com.rmc.projects.coins_and_platforms.components.super;
 
 
+
+
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.coins_and_platforms.components
 {
 	

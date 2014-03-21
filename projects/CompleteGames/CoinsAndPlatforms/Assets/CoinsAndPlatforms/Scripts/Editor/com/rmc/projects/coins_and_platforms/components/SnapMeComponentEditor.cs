@@ -27,7 +27,6 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using UnityEngine;
 using UnityEditor;
 
 
@@ -126,7 +125,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		}
 		
 		/// <summary>
-		/// Raises the scene GU event.
+		/// Raises the scene GUI event.
 		/// </summary>
 		void OnSceneGUI () {
 			

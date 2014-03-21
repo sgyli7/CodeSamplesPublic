@@ -63,12 +63,12 @@ namespace com.rmc.projects.coins_and_platforms.components
 		// PRIVATE STATIC
 		
 		/// <summary>
-		/// The _ SCAL e_ U p_ DURATIO.
+		/// TIMING FOR ANIMATION
 		/// </summary>
 		private static float _MOVE_DURATION = 0.2f;
 
 		/// <summary>
-		/// The _ MOV e_ y_ AMOUN.
+		/// TIMING FOR ANIMATION
 		/// </summary>
 		private static float _MOVE_Y_AMOUNT = 7;
 		
@@ -122,7 +122,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the fade out.
+		/// Does fade out.
 		/// </summary>
 		private void _doMoveUp ()
 		{
@@ -144,7 +144,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		}
 		
 		/// <summary>
-		/// _dos the move up complete.
+		/// Does move up complete.
 		/// </summary>
 		public void _doMoveUpComplete ()
 		{

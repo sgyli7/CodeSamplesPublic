@@ -66,7 +66,7 @@ namespace com.rmc.exceptions
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------	
-		public SwitchStatementException () : base ("Reaching the default for this switch is not acceptable.")
+		public SwitchStatementException () : base ("Reaching the default for this 'switch statement' is not acceptable.")
 		{
 
 

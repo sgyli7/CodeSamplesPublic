@@ -130,7 +130,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the trigger waypoing.
+		/// Does trigger waypoing.
 		/// 
 		/// NOTE: We crudely evaluate victory here. Todo: More checks could be added (player velocity.y)
 		/// 
@@ -138,13 +138,14 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		private void _doTriggerCollisionWithPlayer (bool isEnemyVictorious_boolean)
 		{
 
-			//FLAG THE COLLISION BUT REFRESH QUICKLY FOR ANY SUBSEQUENT INTERACTION
+			//FLAG THE COLLISION
 			_wasTriggered = true;
-			Invoke ("doRefreshEnemy", 0.25f);
 			//
 			if (isEnemyVictorious_boolean) {
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.ENEMY_KILLS_PLAYER);
 				SimpleGameManager.Instance.gameManager.doKillPlayer();
+				//BUT REFRESH QUICKLY COLLISION FLAG FOR ANY SUBSEQUENT INTERACTION
+				Invoke ("doRefreshEnemy", 0.25f);
 			} else {
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.PLAYER_KILLS_ENEMY);
 				_enemyAIComponent.doDie();

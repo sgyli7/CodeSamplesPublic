@@ -28,15 +28,13 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
+using com.rmc.projects.coins_and_platforms.managers;
+using com.rmc.projects.coins_and_platforms.constants;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.managers;
-using com.rmc.projects.coins_and_platforms.constants;
 namespace com.rmc.projects.coins_and_platforms.components
 {
 	
@@ -103,13 +101,6 @@ namespace com.rmc.projects.coins_and_platforms.components
 		}
 		
 
-		/// <summary>
-		/// Raises the application quit event.
-		/// </summary>
-		void OnApplicationQuit() 
-		{
-			
-		}
 		
 		// PUBLIC
 		

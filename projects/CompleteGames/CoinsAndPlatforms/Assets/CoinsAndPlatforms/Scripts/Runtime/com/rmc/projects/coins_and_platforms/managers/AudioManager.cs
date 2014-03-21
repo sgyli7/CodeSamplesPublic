@@ -28,18 +28,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.exceptions;
 using System;
 using com.rmc.projects.coins_and_platforms.constants;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.coins_and_platforms.managers
 {
 	

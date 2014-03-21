@@ -58,7 +58,14 @@ namespace com.rmc.projects.coins_and_platforms.configurations
 		// GETTER / SETTER
 		
 		// PUBLIC
+		/// <summary>
+		/// The waypoint start.
+		/// </summary>
 		public static GameObject waypointStart;
+
+		/// <summary>
+		/// The waypoint end.
+		/// </summary>
 		public static GameObject waypointEnd;
 		
 		// PUBLIC STATIC

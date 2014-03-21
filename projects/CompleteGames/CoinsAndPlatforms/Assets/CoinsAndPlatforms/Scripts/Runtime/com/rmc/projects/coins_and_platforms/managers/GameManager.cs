@@ -28,23 +28,26 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.exceptions;
 using com.rmc.projects.coins_and_platforms.constants;
 using System;
 using com.rmc.projects.coins_and_platforms.components.super;
 
 
+
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.coins_and_platforms.managers
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+
+	/// <summary>
+	/// Game over reason.
+	/// </summary>
 	public enum GameOverReason
 	{	
 		WIN,
@@ -174,7 +177,6 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			}
 			set {
 				_lives_float = value;
-				Debug.Log ("lives: " + _lives_float);
 				SimpleGameManager.Instance.guiManager.setLivesText (_lives_float.ToString());
 			}
 			
@@ -314,7 +316,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 
 		/// <summary>
-		/// _dos the set brittle references.
+		/// Does set brittle references.
 		/// 
 		/// NOTE: For simplicity, this brittle approach is used instead of alternatives;
 		/// 		* public transform references, set via dragging from hierarchy items
@@ -423,7 +425,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 
 		/// <summary>
-		/// _dos the game over immediate.
+		/// Does game over immediate.
 		/// </summary>
 		private void _doGameOver_Part1()
 		{
@@ -433,12 +435,12 @@ namespace com.rmc.projects.coins_and_platforms.managers
 			//
 			switch (_lastGameOverReason) {
 			case GameOverReason.WIN:
-				promptMessage = MainConstants.PROMPT_GAME_OVER_WIN;
+				promptMessage = MainConstants.TEXT_PROMPT_GAME_OVER_WIN;
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.GAME_OVER_WIN);
 
 				break;
 			case GameOverReason.LOSS:
-				promptMessage = MainConstants.PROMPT_GAME_OVER_LOSS;
+				promptMessage = MainConstants.TEXT_PROMPT_GAME_OVER_LOSS;
 				SimpleGameManager.Instance.audioManager.doPlaySound (AudioClipType.GAME_OVER_LOSS);
 				break;
 			default:
@@ -464,7 +466,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 
 		/// <summary>
-		/// _dos the game over after pause.
+		/// Does game over after pause.
 		/// </summary>
 		private void _doGameOver_Part2()
 		{
@@ -474,7 +476,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 
 		/// <summary>
-		/// _dos the reset GU.
+		/// Does reset GU.
 		/// </summary>
 		/// todo: order these methods better
 		private void _doResetGUI() 
@@ -486,7 +488,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 
 		/// <summary>
-		/// _dos the reset player.
+		/// Does reset player.
 		/// </summary>
 		private void _doResetPlayerOverall() 
 		{
@@ -500,11 +502,12 @@ namespace com.rmc.projects.coins_and_platforms.managers
 		}
 
 		/// <summary>
-		/// _dos the reset player.
+		/// Does reset player.
 		/// </summary>
 		private void _doResetPlayer_Position() 
 		{
-			
+
+
 			//SET TO THE LEFT OF THE WAYPOINT FLAG
 			_player_gameobject.transform.position 		= new Vector3 
 				(
@@ -518,7 +521,7 @@ namespace com.rmc.projects.coins_and_platforms.managers
 
 
 		/// <summary>
-		/// _dos the disable player.
+		/// Does disable player.
 		/// </summary>
 		private void _doDisablePlayer ()
 		{

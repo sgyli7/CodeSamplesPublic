@@ -49,7 +49,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_1
       rect:
         serializedVersion: 2
@@ -58,7 +58,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_2
       rect:
         serializedVersion: 2
@@ -67,7 +67,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_3
       rect:
         serializedVersion: 2
@@ -76,7 +76,7 @@ TextureImporter:
         width: 24
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_4
       rect:
         serializedVersion: 2
@@ -85,7 +85,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_5
       rect:
         serializedVersion: 2
@@ -94,7 +94,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_6
       rect:
         serializedVersion: 2
@@ -103,7 +103,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_7
       rect:
         serializedVersion: 2
@@ -112,7 +112,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_8
       rect:
         serializedVersion: 2
@@ -121,7 +121,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_9
       rect:
         serializedVersion: 2
@@ -130,7 +130,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_10
       rect:
         serializedVersion: 2
@@ -139,7 +139,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_11
       rect:
         serializedVersion: 2
@@ -148,7 +148,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_12
       rect:
         serializedVersion: 2
@@ -157,7 +157,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_Idle_01
       rect:
         serializedVersion: 2
@@ -283,7 +283,7 @@ TextureImporter:
         width: 24
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_27
       rect:
         serializedVersion: 2
@@ -292,8 +292,8 @@ TextureImporter:
         width: 24
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Koopa_28
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Dying01
       rect:
         serializedVersion: 2
         x: 341
@@ -301,8 +301,8 @@ TextureImporter:
         width: 24
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Koopa_29
+      pivot: {x: .5, y: .5}
+    - name: Koopa_Dying02
       rect:
         serializedVersion: 2
         x: 368
@@ -310,7 +310,7 @@ TextureImporter:
         width: 24
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_30
       rect:
         serializedVersion: 2
@@ -319,7 +319,7 @@ TextureImporter:
         width: 20
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_31
       rect:
         serializedVersion: 2
@@ -328,7 +328,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_32
       rect:
         serializedVersion: 2
@@ -337,7 +337,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_33
       rect:
         serializedVersion: 2
@@ -346,7 +346,7 @@ TextureImporter:
         width: 24
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_34
       rect:
         serializedVersion: 2
@@ -355,7 +355,7 @@ TextureImporter:
         width: 23
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_35
       rect:
         serializedVersion: 2
@@ -364,7 +364,7 @@ TextureImporter:
         width: 17
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_36
       rect:
         serializedVersion: 2
@@ -373,7 +373,7 @@ TextureImporter:
         width: 17
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_37
       rect:
         serializedVersion: 2
@@ -382,7 +382,7 @@ TextureImporter:
         width: 19
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_38
       rect:
         serializedVersion: 2
@@ -391,7 +391,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_39
       rect:
         serializedVersion: 2
@@ -400,7 +400,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_40
       rect:
         serializedVersion: 2
@@ -409,7 +409,7 @@ TextureImporter:
         width: 19
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_41
       rect:
         serializedVersion: 2
@@ -418,7 +418,7 @@ TextureImporter:
         width: 17
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_42
       rect:
         serializedVersion: 2
@@ -427,7 +427,7 @@ TextureImporter:
         width: 17
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_43
       rect:
         serializedVersion: 2
@@ -436,7 +436,7 @@ TextureImporter:
         width: 23
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_44
       rect:
         serializedVersion: 2
@@ -445,7 +445,7 @@ TextureImporter:
         width: 24
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_45
       rect:
         serializedVersion: 2
@@ -454,7 +454,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_46
       rect:
         serializedVersion: 2
@@ -463,7 +463,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_47
       rect:
         serializedVersion: 2
@@ -472,7 +472,7 @@ TextureImporter:
         width: 20
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_48
       rect:
         serializedVersion: 2
@@ -481,7 +481,7 @@ TextureImporter:
         width: 25
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_49
       rect:
         serializedVersion: 2
@@ -490,7 +490,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_50
       rect:
         serializedVersion: 2
@@ -499,7 +499,7 @@ TextureImporter:
         width: 27
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_51
       rect:
         serializedVersion: 2
@@ -508,7 +508,7 @@ TextureImporter:
         width: 21
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_52
       rect:
         serializedVersion: 2
@@ -517,7 +517,7 @@ TextureImporter:
         width: 22
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_53
       rect:
         serializedVersion: 2
@@ -526,7 +526,7 @@ TextureImporter:
         width: 23
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_54
       rect:
         serializedVersion: 2
@@ -535,7 +535,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_55
       rect:
         serializedVersion: 2
@@ -544,7 +544,7 @@ TextureImporter:
         width: 23
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_56
       rect:
         serializedVersion: 2
@@ -553,7 +553,7 @@ TextureImporter:
         width: 23
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_57
       rect:
         serializedVersion: 2
@@ -562,7 +562,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_58
       rect:
         serializedVersion: 2
@@ -571,7 +571,7 @@ TextureImporter:
         width: 23
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_59
       rect:
         serializedVersion: 2
@@ -580,7 +580,7 @@ TextureImporter:
         width: 22
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_60
       rect:
         serializedVersion: 2
@@ -589,7 +589,7 @@ TextureImporter:
         width: 21
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_61
       rect:
         serializedVersion: 2
@@ -598,7 +598,7 @@ TextureImporter:
         width: 27
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_62
       rect:
         serializedVersion: 2
@@ -607,7 +607,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_63
       rect:
         serializedVersion: 2
@@ -616,7 +616,7 @@ TextureImporter:
         width: 25
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_64
       rect:
         serializedVersion: 2
@@ -625,7 +625,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_65
       rect:
         serializedVersion: 2
@@ -634,7 +634,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_66
       rect:
         serializedVersion: 2
@@ -643,7 +643,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_67
       rect:
         serializedVersion: 2
@@ -652,7 +652,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_68
       rect:
         serializedVersion: 2
@@ -661,7 +661,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_69
       rect:
         serializedVersion: 2
@@ -670,7 +670,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_70
       rect:
         serializedVersion: 2
@@ -679,7 +679,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_71
       rect:
         serializedVersion: 2
@@ -688,7 +688,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_72
       rect:
         serializedVersion: 2
@@ -697,7 +697,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_73
       rect:
         serializedVersion: 2
@@ -706,7 +706,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_74
       rect:
         serializedVersion: 2
@@ -715,7 +715,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_75
       rect:
         serializedVersion: 2
@@ -724,7 +724,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_76
       rect:
         serializedVersion: 2
@@ -733,7 +733,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_77
       rect:
         serializedVersion: 2
@@ -742,7 +742,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_78
       rect:
         serializedVersion: 2
@@ -751,7 +751,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_79
       rect:
         serializedVersion: 2
@@ -760,7 +760,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_80
       rect:
         serializedVersion: 2
@@ -769,7 +769,7 @@ TextureImporter:
         width: 26
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_81
       rect:
         serializedVersion: 2
@@ -778,7 +778,7 @@ TextureImporter:
         width: 27
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_82
       rect:
         serializedVersion: 2
@@ -787,7 +787,7 @@ TextureImporter:
         width: 27
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_83
       rect:
         serializedVersion: 2
@@ -796,7 +796,7 @@ TextureImporter:
         width: 28
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_84
       rect:
         serializedVersion: 2
@@ -805,7 +805,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_85
       rect:
         serializedVersion: 2
@@ -814,7 +814,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_86
       rect:
         serializedVersion: 2
@@ -823,7 +823,7 @@ TextureImporter:
         width: 28
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_87
       rect:
         serializedVersion: 2
@@ -832,7 +832,7 @@ TextureImporter:
         width: 27
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_88
       rect:
         serializedVersion: 2
@@ -841,7 +841,7 @@ TextureImporter:
         width: 27
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_89
       rect:
         serializedVersion: 2
@@ -850,7 +850,7 @@ TextureImporter:
         width: 26
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_90
       rect:
         serializedVersion: 2
@@ -859,7 +859,7 @@ TextureImporter:
         width: 28
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_91
       rect:
         serializedVersion: 2
@@ -868,7 +868,7 @@ TextureImporter:
         width: 24
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_92
       rect:
         serializedVersion: 2
@@ -877,7 +877,7 @@ TextureImporter:
         width: 26
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_93
       rect:
         serializedVersion: 2
@@ -886,7 +886,7 @@ TextureImporter:
         width: 24
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_94
       rect:
         serializedVersion: 2
@@ -895,7 +895,7 @@ TextureImporter:
         width: 24
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_95
       rect:
         serializedVersion: 2
@@ -904,7 +904,7 @@ TextureImporter:
         width: 26
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_96
       rect:
         serializedVersion: 2
@@ -913,7 +913,7 @@ TextureImporter:
         width: 24
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_97
       rect:
         serializedVersion: 2
@@ -922,7 +922,7 @@ TextureImporter:
         width: 28
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_98
       rect:
         serializedVersion: 2
@@ -931,7 +931,7 @@ TextureImporter:
         width: 44
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_99
       rect:
         serializedVersion: 2
@@ -940,7 +940,7 @@ TextureImporter:
         width: 42
         height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_100
       rect:
         serializedVersion: 2
@@ -949,7 +949,7 @@ TextureImporter:
         width: 50
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_101
       rect:
         serializedVersion: 2
@@ -958,7 +958,7 @@ TextureImporter:
         width: 54
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_102
       rect:
         serializedVersion: 2
@@ -967,7 +967,7 @@ TextureImporter:
         width: 53
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_103
       rect:
         serializedVersion: 2
@@ -976,7 +976,7 @@ TextureImporter:
         width: 40
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_104
       rect:
         serializedVersion: 2
@@ -985,7 +985,7 @@ TextureImporter:
         width: 36
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_105
       rect:
         serializedVersion: 2
@@ -994,7 +994,7 @@ TextureImporter:
         width: 36
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_106
       rect:
         serializedVersion: 2
@@ -1003,7 +1003,7 @@ TextureImporter:
         width: 40
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_107
       rect:
         serializedVersion: 2
@@ -1012,7 +1012,7 @@ TextureImporter:
         width: 53
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_108
       rect:
         serializedVersion: 2
@@ -1021,7 +1021,7 @@ TextureImporter:
         width: 54
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_109
       rect:
         serializedVersion: 2
@@ -1030,7 +1030,7 @@ TextureImporter:
         width: 50
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_110
       rect:
         serializedVersion: 2
@@ -1039,7 +1039,7 @@ TextureImporter:
         width: 42
         height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_111
       rect:
         serializedVersion: 2
@@ -1048,7 +1048,7 @@ TextureImporter:
         width: 44
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_112
       rect:
         serializedVersion: 2
@@ -1057,7 +1057,7 @@ TextureImporter:
         width: 52
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_113
       rect:
         serializedVersion: 2
@@ -1066,7 +1066,7 @@ TextureImporter:
         width: 52
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_114
       rect:
         serializedVersion: 2
@@ -1075,7 +1075,7 @@ TextureImporter:
         width: 40
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_115
       rect:
         serializedVersion: 2
@@ -1084,7 +1084,7 @@ TextureImporter:
         width: 36
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_116
       rect:
         serializedVersion: 2
@@ -1093,7 +1093,7 @@ TextureImporter:
         width: 52
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_117
       rect:
         serializedVersion: 2
@@ -1102,7 +1102,7 @@ TextureImporter:
         width: 52
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_118
       rect:
         serializedVersion: 2
@@ -1111,7 +1111,7 @@ TextureImporter:
         width: 52
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_119
       rect:
         serializedVersion: 2
@@ -1120,7 +1120,7 @@ TextureImporter:
         width: 52
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_120
       rect:
         serializedVersion: 2
@@ -1129,7 +1129,7 @@ TextureImporter:
         width: 36
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_121
       rect:
         serializedVersion: 2
@@ -1138,7 +1138,7 @@ TextureImporter:
         width: 40
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_122
       rect:
         serializedVersion: 2
@@ -1147,7 +1147,7 @@ TextureImporter:
         width: 52
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_123
       rect:
         serializedVersion: 2
@@ -1156,7 +1156,7 @@ TextureImporter:
         width: 52
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_124
       rect:
         serializedVersion: 2
@@ -1165,7 +1165,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_125
       rect:
         serializedVersion: 2
@@ -1174,7 +1174,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_126
       rect:
         serializedVersion: 2
@@ -1183,7 +1183,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_127
       rect:
         serializedVersion: 2
@@ -1192,7 +1192,7 @@ TextureImporter:
         width: 24
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_128
       rect:
         serializedVersion: 2
@@ -1201,7 +1201,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_129
       rect:
         serializedVersion: 2
@@ -1210,7 +1210,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_130
       rect:
         serializedVersion: 2
@@ -1219,7 +1219,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_131
       rect:
         serializedVersion: 2
@@ -1228,7 +1228,7 @@ TextureImporter:
         width: 21
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_132
       rect:
         serializedVersion: 2
@@ -1237,7 +1237,7 @@ TextureImporter:
         width: 21
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_133
       rect:
         serializedVersion: 2
@@ -1246,7 +1246,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_134
       rect:
         serializedVersion: 2
@@ -1255,7 +1255,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_135
       rect:
         serializedVersion: 2
@@ -1264,7 +1264,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_136
       rect:
         serializedVersion: 2
@@ -1273,7 +1273,7 @@ TextureImporter:
         width: 24
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_137
       rect:
         serializedVersion: 2
@@ -1282,7 +1282,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_138
       rect:
         serializedVersion: 2
@@ -1291,7 +1291,7 @@ TextureImporter:
         width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_139
       rect:
         serializedVersion: 2
@@ -1300,7 +1300,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_140
       rect:
         serializedVersion: 2
@@ -1309,7 +1309,7 @@ TextureImporter:
         width: 24
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_141
       rect:
         serializedVersion: 2
@@ -1318,7 +1318,7 @@ TextureImporter:
         width: 24
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_142
       rect:
         serializedVersion: 2
@@ -1327,7 +1327,7 @@ TextureImporter:
         width: 24
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_143
       rect:
         serializedVersion: 2
@@ -1336,7 +1336,7 @@ TextureImporter:
         width: 24
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_144
       rect:
         serializedVersion: 2
@@ -1345,7 +1345,7 @@ TextureImporter:
         width: 20
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_145
       rect:
         serializedVersion: 2
@@ -1354,7 +1354,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_146
       rect:
         serializedVersion: 2
@@ -1363,7 +1363,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_147
       rect:
         serializedVersion: 2
@@ -1372,7 +1372,7 @@ TextureImporter:
         width: 24
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_148
       rect:
         serializedVersion: 2
@@ -1381,7 +1381,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_149
       rect:
         serializedVersion: 2
@@ -1390,7 +1390,7 @@ TextureImporter:
         width: 19
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_150
       rect:
         serializedVersion: 2
@@ -1399,7 +1399,7 @@ TextureImporter:
         width: 18
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_151
       rect:
         serializedVersion: 2
@@ -1408,7 +1408,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_152
       rect:
         serializedVersion: 2
@@ -1417,7 +1417,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_153
       rect:
         serializedVersion: 2
@@ -1426,7 +1426,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_154
       rect:
         serializedVersion: 2
@@ -1435,7 +1435,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_155
       rect:
         serializedVersion: 2
@@ -1444,7 +1444,7 @@ TextureImporter:
         width: 18
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_156
       rect:
         serializedVersion: 2
@@ -1453,7 +1453,7 @@ TextureImporter:
         width: 19
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_157
       rect:
         serializedVersion: 2
@@ -1462,7 +1462,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_158
       rect:
         serializedVersion: 2
@@ -1471,7 +1471,7 @@ TextureImporter:
         width: 24
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_159
       rect:
         serializedVersion: 2
@@ -1480,7 +1480,7 @@ TextureImporter:
         width: 21
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_160
       rect:
         serializedVersion: 2
@@ -1489,7 +1489,7 @@ TextureImporter:
         width: 18
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_161
       rect:
         serializedVersion: 2
@@ -1498,7 +1498,7 @@ TextureImporter:
         width: 20
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_162
       rect:
         serializedVersion: 2
@@ -1507,7 +1507,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_163
       rect:
         serializedVersion: 2
@@ -1516,7 +1516,7 @@ TextureImporter:
         width: 25
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_164
       rect:
         serializedVersion: 2
@@ -1525,7 +1525,7 @@ TextureImporter:
         width: 27
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_165
       rect:
         serializedVersion: 2
@@ -1534,7 +1534,7 @@ TextureImporter:
         width: 21
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_166
       rect:
         serializedVersion: 2
@@ -1543,7 +1543,7 @@ TextureImporter:
         width: 22
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_167
       rect:
         serializedVersion: 2
@@ -1552,7 +1552,7 @@ TextureImporter:
         width: 23
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_168
       rect:
         serializedVersion: 2
@@ -1561,7 +1561,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_169
       rect:
         serializedVersion: 2
@@ -1570,7 +1570,7 @@ TextureImporter:
         width: 25
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_170
       rect:
         serializedVersion: 2
@@ -1579,7 +1579,7 @@ TextureImporter:
         width: 25
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_171
       rect:
         serializedVersion: 2
@@ -1588,7 +1588,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_172
       rect:
         serializedVersion: 2
@@ -1597,7 +1597,7 @@ TextureImporter:
         width: 23
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_173
       rect:
         serializedVersion: 2
@@ -1606,7 +1606,7 @@ TextureImporter:
         width: 22
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_174
       rect:
         serializedVersion: 2
@@ -1615,7 +1615,7 @@ TextureImporter:
         width: 21
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_175
       rect:
         serializedVersion: 2
@@ -1624,7 +1624,7 @@ TextureImporter:
         width: 27
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_176
       rect:
         serializedVersion: 2
@@ -1633,7 +1633,7 @@ TextureImporter:
         width: 25
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_177
       rect:
         serializedVersion: 2
@@ -1642,7 +1642,7 @@ TextureImporter:
         width: 22
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_178
       rect:
         serializedVersion: 2
@@ -1651,7 +1651,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_179
       rect:
         serializedVersion: 2
@@ -1660,7 +1660,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_180
       rect:
         serializedVersion: 2
@@ -1669,7 +1669,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_181
       rect:
         serializedVersion: 2
@@ -1678,7 +1678,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_182
       rect:
         serializedVersion: 2
@@ -1687,7 +1687,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_183
       rect:
         serializedVersion: 2
@@ -1696,7 +1696,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_184
       rect:
         serializedVersion: 2
@@ -1705,7 +1705,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_185
       rect:
         serializedVersion: 2
@@ -1714,7 +1714,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_186
       rect:
         serializedVersion: 2
@@ -1723,7 +1723,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_187
       rect:
         serializedVersion: 2
@@ -1732,7 +1732,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_188
       rect:
         serializedVersion: 2
@@ -1741,7 +1741,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_189
       rect:
         serializedVersion: 2
@@ -1750,7 +1750,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_190
       rect:
         serializedVersion: 2
@@ -1759,7 +1759,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_191
       rect:
         serializedVersion: 2
@@ -1768,7 +1768,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_192
       rect:
         serializedVersion: 2
@@ -1777,7 +1777,7 @@ TextureImporter:
         width: 19
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_193
       rect:
         serializedVersion: 2
@@ -1786,7 +1786,7 @@ TextureImporter:
         width: 18
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_194
       rect:
         serializedVersion: 2
@@ -1795,7 +1795,7 @@ TextureImporter:
         width: 27
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_195
       rect:
         serializedVersion: 2
@@ -1804,7 +1804,7 @@ TextureImporter:
         width: 28
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_196
       rect:
         serializedVersion: 2
@@ -1813,7 +1813,7 @@ TextureImporter:
         width: 29
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_197
       rect:
         serializedVersion: 2
@@ -1822,7 +1822,7 @@ TextureImporter:
         width: 31
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_198
       rect:
         serializedVersion: 2
@@ -1831,7 +1831,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_199
       rect:
         serializedVersion: 2
@@ -1840,7 +1840,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_200
       rect:
         serializedVersion: 2
@@ -1849,7 +1849,7 @@ TextureImporter:
         width: 31
         height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_201
       rect:
         serializedVersion: 2
@@ -1858,7 +1858,7 @@ TextureImporter:
         width: 29
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_202
       rect:
         serializedVersion: 2
@@ -1867,7 +1867,7 @@ TextureImporter:
         width: 28
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_203
       rect:
         serializedVersion: 2
@@ -1876,7 +1876,7 @@ TextureImporter:
         width: 27
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_204
       rect:
         serializedVersion: 2
@@ -1885,7 +1885,7 @@ TextureImporter:
         width: 28
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_205
       rect:
         serializedVersion: 2
@@ -1894,7 +1894,7 @@ TextureImporter:
         width: 24
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_206
       rect:
         serializedVersion: 2
@@ -1903,7 +1903,7 @@ TextureImporter:
         width: 26
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_207
       rect:
         serializedVersion: 2
@@ -1912,7 +1912,7 @@ TextureImporter:
         width: 24
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_208
       rect:
         serializedVersion: 2
@@ -1921,7 +1921,7 @@ TextureImporter:
         width: 24
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_209
       rect:
         serializedVersion: 2
@@ -1930,7 +1930,7 @@ TextureImporter:
         width: 26
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_210
       rect:
         serializedVersion: 2
@@ -1939,7 +1939,7 @@ TextureImporter:
         width: 24
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_211
       rect:
         serializedVersion: 2
@@ -1948,7 +1948,7 @@ TextureImporter:
         width: 28
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_212
       rect:
         serializedVersion: 2
@@ -1957,7 +1957,7 @@ TextureImporter:
         width: 50
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_213
       rect:
         serializedVersion: 2
@@ -1966,7 +1966,7 @@ TextureImporter:
         width: 54
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_214
       rect:
         serializedVersion: 2
@@ -1975,7 +1975,7 @@ TextureImporter:
         width: 48
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_215
       rect:
         serializedVersion: 2
@@ -1984,7 +1984,7 @@ TextureImporter:
         width: 40
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_216
       rect:
         serializedVersion: 2
@@ -1993,7 +1993,7 @@ TextureImporter:
         width: 36
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_217
       rect:
         serializedVersion: 2
@@ -2002,7 +2002,7 @@ TextureImporter:
         width: 36
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_218
       rect:
         serializedVersion: 2
@@ -2011,7 +2011,7 @@ TextureImporter:
         width: 40
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_219
       rect:
         serializedVersion: 2
@@ -2020,7 +2020,7 @@ TextureImporter:
         width: 48
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_220
       rect:
         serializedVersion: 2
@@ -2029,7 +2029,7 @@ TextureImporter:
         width: 54
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_221
       rect:
         serializedVersion: 2
@@ -2038,7 +2038,7 @@ TextureImporter:
         width: 50
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_222
       rect:
         serializedVersion: 2
@@ -2047,7 +2047,7 @@ TextureImporter:
         width: 50
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_223
       rect:
         serializedVersion: 2
@@ -2056,7 +2056,7 @@ TextureImporter:
         width: 52
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_224
       rect:
         serializedVersion: 2
@@ -2065,7 +2065,7 @@ TextureImporter:
         width: 44
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_225
       rect:
         serializedVersion: 2
@@ -2074,7 +2074,7 @@ TextureImporter:
         width: 42
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_226
       rect:
         serializedVersion: 2
@@ -2083,7 +2083,7 @@ TextureImporter:
         width: 42
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_227
       rect:
         serializedVersion: 2
@@ -2092,7 +2092,7 @@ TextureImporter:
         width: 44
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_228
       rect:
         serializedVersion: 2
@@ -2101,7 +2101,7 @@ TextureImporter:
         width: 52
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: Koopa_229
       rect:
         serializedVersion: 2
@@ -2110,6 +2110,6 @@ TextureImporter:
         width: 50
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 

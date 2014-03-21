@@ -27,15 +27,12 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.components.core;
+using com.rmc.projects.coins_and_platforms.constants;
 using UnityEngine;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.constants;
-
-
 namespace com.rmc.projects.coins_and_platforms.components.super
 {
 	
@@ -172,7 +169,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the reverse walking direction.
+		/// Does reverse walking direction.
 		/// </summary>
 		private void _doReverseWalkingDirection ()
 		{
@@ -195,7 +192,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		public void OnTriggerEnter2D (Collider2D collider2D)
 		{
 			if (collider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
-				Debug.Log ("enter: " + collider2D.gameObject.layer);
+				//Debug.Log ("enter: " + collider2D.gameObject.layer);
 				_isDetectingPlatform_boolean = true;
 			}
 
@@ -208,7 +205,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		public void OnTriggerStay2D (Collider2D collider2D)
 		{
 			if (collider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
-				Debug.Log ("stay: " + collider2D.gameObject.layer);
+				//Debug.Log ("stay: " + collider2D.gameObject.layer);
 				_isDetectingPlatform_boolean = true;
 			}
 			
@@ -221,7 +218,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		public void OnTriggerExit2D (Collider2D collider2D)
 		{
 			if (collider2D.gameObject.layer == LayerMask.NameToLayer (MainConstants.PLATFORM_LAYER)) {
-				Debug.Log ("exit: " + collider2D.gameObject.layer);
+				//Debug.Log ("exit: " + collider2D.gameObject.layer);
 				_isDetectingPlatform_boolean = false;
 			}
 				

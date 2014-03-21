@@ -48,9 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Editor\com\rmc\projects\coins_and_platforms\CustomInitializeOnLoad.cs" />
      <Compile Include="Assets\CoinsAndPlatforms\Scripts\Editor\com\rmc\projects\coins_and_platforms\components\SnapMeComponentEditor.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\CreateDefaultFoldersMenu.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\EditorWindowUtility.cs" />
-     <Compile Include="Assets\Community Assets\RMCLibrary\Scripts\Editor\com\rmc\ScriptableObjectUtility.cs" />
      <None Include="Assets\CoinsAndPlatforms\Documentation\Instructions_1_v1.txt" />
  <Reference Include="\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs">
  <HintPath>\Applications\Unity4.3.4_PRODUCTION\Unity4.3.4_PRODUCTION.app\Contents\Frameworks\Managed\UnityEditor.Graphs.dll</HintPath>

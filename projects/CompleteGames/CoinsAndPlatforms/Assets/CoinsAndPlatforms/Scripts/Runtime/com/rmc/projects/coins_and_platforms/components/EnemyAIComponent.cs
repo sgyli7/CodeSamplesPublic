@@ -27,6 +27,7 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
 
@@ -161,6 +162,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 			//TODO, SHOW A SHELL ANIMATION AND FLY OFFSCREEN (IMMEDIATY OUT OF 'PLAY' (DON'T SLIDE THE SHELL)
 			_characterController2D.enabled = false;
 			transform.Rotate (new Vector3 (1, 0, 0));
+			_setAnimationTrigger (MainConstants.ENEMY_DYING_TRIGGER);
 		}
 
 		/// <summary>

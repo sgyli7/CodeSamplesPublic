@@ -28,7 +28,6 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections;
 
 
 //--------------------------------------
@@ -124,9 +123,7 @@ namespace com.rmc.projects.coins_and_platforms.components
 		
 		// PUBLIC
 		
-		// PUBLIC STATIC
-		
-		// PRIVATE
+
 		/// <summary>
 		/// Snap Position of 2D Tiles to save time during manual layout.
 		/// 
@@ -150,6 +147,10 @@ namespace com.rmc.projects.coins_and_platforms.components
 			}
 			
 		}
+
+		// PUBLIC STATIC
+		
+		// PRIVATE
 		
 		// PRIVATE STATIC
 		

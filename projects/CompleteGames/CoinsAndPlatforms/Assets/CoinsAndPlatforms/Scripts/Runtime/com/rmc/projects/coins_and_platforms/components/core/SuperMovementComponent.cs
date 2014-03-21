@@ -28,13 +28,11 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using com.rmc.projects.coins_and_platforms.constants;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.coins_and_platforms.constants;
-
-
 namespace com.rmc.projects.coins_and_platforms.components.core
 {
 	
@@ -103,23 +101,23 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 
 		// PRIVATE STATIC
 		/// <summary>
-		/// The raw movement direction.
+		/// The raw movement direction. 1 = RIGHT
 		/// </summary>
 		public static float RAW_MOVE_DIRECTION = 1;
 
 		/// <summary>
-		/// The GROUN d_ DAMPIN.
+		/// FRICTION ON GROUND
 		/// </summary>
 		public static float GROUND_DAMPING = 60;
 
 		/// <summary>
-		/// The NO t_ GROUN d_ DAMPIN.
+		/// FRICTION IN AIR
 		/// </summary>
 		public static float NOT_GROUND_DAMPING = 100;
 
 
 		/// <summary>
-		/// The GRAVIT y_ y.
+		/// MAIN GRAVITY
 		/// </summary>
 		public static float GRAVITY_Y = -90;
 
@@ -177,6 +175,22 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		
 		// PUBLIC
 		
+		
+		/// <summary>
+		/// Dos the reset physics and animation.
+		/// </summary>
+		public void doResetPhysicsAndAnimation ()
+		{
+			//PHYSICS
+			_characterController2D.velocity = Vector2.zero;
+			_characterController2D.enabled = true;
+			
+			//ANIMATION
+			_setAnimationTrigger (MainConstants.UNIVERSAL_IDLE_TRIGGER);
+			
+		}
+
+		
 		// PUBLIC STATIC
 		
 		// PRIVATE
@@ -209,12 +223,12 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		}
 
 		/// <summary>
-		/// _dos the update horizontal velocity.
+		/// Does update horizontal velocity.
 		/// </summary>
 		/// <returns>The update horizontal velocity.</returns>
 		/// <param name="aVelocity_vector3">A velocity_vector3.</param>
 		/// <param name="aNormalizedMovement_float">A normalized movement_float.</param>
-		/// <param name="arunSpeed_float_float">A run speed_float.</param>
+		/// <param name="arunSpeed_float_float">Arun speed_float_float.</param>
 		protected Vector3 _doUpdateHorizontalVelocity (Vector3 aVelocity_vector3, float aNormalizedMovement_float, float arunSpeed_float_float)
 		{
 			// apply horizontal speed smoothing it
@@ -227,9 +241,9 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 
 
 		/// <summary>
-		/// _dos the set scale from horizontal velocity.
+		/// Does set scale from horizontal velocity.
 		/// </summary>
-		/// <param name="aVelocity_vector3">A velocity_vector3.</param>
+		/// <param name="aNormalizedMovement_float">A normalized movement_float.</param>
 		protected void _doSetScaleFromHorizontalVelocity (float aNormalizedMovement_float) 
 		{
 
@@ -247,11 +261,10 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		}
 
 		/// <summary>
-		/// _dos the update vertical velocity.
+		/// Does update vertical velocity.
 		/// </summary>
 		/// <returns>The update vertical velocity.</returns>
 		/// <param name="aVelocity_float">A velocity_float.</param>
-		/// <param name="aGravity_float">A gravity_float.</param>
 		protected Vector3 _doUpdateVerticalVelocity (Vector3 aVelocity_float)
 		{
 			
@@ -263,6 +276,7 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 		/// <summary>
 		/// _sets the current velocity after modifications.
 		/// </summary>
+		/// <param name="aVelocity_vector3">A velocity_vector3.</param>
 		protected void _setCurrentVelocityAfterModifications (Vector3 aVelocity_vector3)
 		{
 
@@ -271,21 +285,6 @@ namespace com.rmc.projects.coins_and_platforms.components.core
 			}
 		}
 
-
-		/// <summary>
-		/// Dos the reset physics and animation.
-		/// </summary>
-		public void doResetPhysicsAndAnimation ()
-		{
-			//PHYSICS
-			_characterController2D.velocity = Vector2.zero;
-			_characterController2D.enabled = true;
-
-			//ANIMATION
-			_setAnimationTrigger (MainConstants.IDLE_TRIGGER);
-			
-		}
-		
 		// PRIVATE STATIC
 		
 		// PRIVATE COROUTINE

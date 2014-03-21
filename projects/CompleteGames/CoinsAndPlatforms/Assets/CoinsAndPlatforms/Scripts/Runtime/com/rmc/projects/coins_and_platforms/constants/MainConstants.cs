@@ -65,7 +65,9 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		
 		// PRIVATE STATIC
 
-		//
+		//*************************
+		//  GAME OBJECT NAMES
+		//*************************
 		public static string ScoreGUIText 			= "ScoreGUIText";
 		public static string ScoreGUIText2 			= "ScoreGUIText2";
 		public static string LivesGUIText 			= "LivesGUIText";
@@ -74,10 +76,17 @@ namespace com.rmc.projects.coins_and_platforms.constants
 		public static string PromptGUIText2 		= "PromptGUIText2";
 		public static string StartWaypoint 			= "StartWaypoint";
 		public static string PlayerUnPrefab 		= "PlayerUnPrefab";
-		//
+
+		
+		//*************************
+		//  RESOURCES: PREFABS
+		//*************************
 		public static string RisingPointsPrefab   	= "Prefabs/RisingPointsPrefab";
-		//
-		//
+
+		
+		//*************************
+		//  RESOURCES: SOUNDS
+		//*************************
 		public static string AUDIO_BUTTON_CLICK_01 				= "Audio/SoundEffects/ButtonClick01";
 		public static string AUDIO_WAYPOINT_TRIGGERED_01		= "Audio/SoundEffects/WaypointTriggered01";
 		public static string AUDIO_PLAYER_FALLS_OFFSCREEN_01	= "Audio/SoundEffects/PlayerFallsOffscreen01";
@@ -93,25 +102,36 @@ namespace com.rmc.projects.coins_and_platforms.constants
 
 
 
-		//
+		//*************************
+		//  TAGS
+		//*************************
 		public static string PLAYER_TAG				= "Player";
 		public static string ENEMY_TAG				= "Enemy";
 
 
-		//
+		//*************************
+		//  LAYERS
+		//*************************
 		public static string ENEMY_LAYER 			= "EnemyLayer";
 		public static string END_WAYPOINT_LAYER 	= "EndWaypointLayer";
 		public static string PLATFORM_LAYER 		= "PlatformLayer";
 
 
-		//
-		public static string WALKING_TRIGGER 		= "WalkingTrigger";
-		public static string IDLE_TRIGGER 			= "IdleTrigger";
-		public static string JUMPING_TRIGGER 		= "JumpingTrigger";
+		//*************************
+		//  TRIGGERS
+		//*************************
+		public static string UNIVERSAL_WALKING_TRIGGER 		= "WalkingTrigger";
+		public static string UNIVERSAL_IDLE_TRIGGER 		= "IdleTrigger";
+		public static string PLAYER_JUMPING_TRIGGER 		= "JumpingTrigger";
+		public static string ENEMY_DYING_TRIGGER 			= "DyingTrigger";
 
-		//
-		public static string PROMPT_GAME_OVER_WIN   = "You Won!";
-		public static string PROMPT_GAME_OVER_LOSS   = "You Lost...";
+		//*************************
+		//  DISPLAY TEXT
+		//*************************
+		public static string TEXT_PROMPT_GAME_OVER_WIN  	 = "You Won!";
+		public static string TEXT_PROMPT_GAME_OVER_LOSS   	= "You Lost...";
+		public static string TEXT_SCORE  	 				= "Score: ";
+		public static string TEXT_LIVES   					= "Lives: ";
 		//
 	
 

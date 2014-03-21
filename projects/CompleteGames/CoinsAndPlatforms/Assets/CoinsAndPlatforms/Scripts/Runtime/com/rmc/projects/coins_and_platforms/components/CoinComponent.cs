@@ -29,15 +29,13 @@
 //--------------------------------------
 using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.managers;
 using System.Collections;
 
-
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.coins_and_platforms.components.super
 {
 	
@@ -137,7 +135,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the fade out.
+		/// Does fade out.
 		/// </summary>
 		private void _doScaleUp ()
 		{
@@ -156,7 +154,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		}
 
 		/// <summary>
-		/// _dos the fade out.
+		/// Does fade out.
 		/// </summary>
 		public void _doScaleDown ()
 		{
@@ -182,7 +180,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		}
 
 		/// <summary>
-		/// _dos the reward points.
+		/// Does reward points.
 		/// </summary>
 		public void _doRewardPoints ()
 		{

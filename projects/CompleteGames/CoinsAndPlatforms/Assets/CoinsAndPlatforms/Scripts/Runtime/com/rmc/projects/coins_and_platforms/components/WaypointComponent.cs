@@ -29,14 +29,13 @@
 //--------------------------------------
 using com.rmc.projects.coins_and_platforms.components.core;
 using UnityEngine;
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.coins_and_platforms.constants;
 using com.rmc.projects.coins_and_platforms.managers;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.coins_and_platforms.components.super
 {
 	
@@ -137,7 +136,7 @@ namespace com.rmc.projects.coins_and_platforms.components.super
 		
 		// PRIVATE
 		/// <summary>
-		/// _dos the trigger waypoing.
+		/// Does trigger waypoing.
 		/// </summary>
 		private void _doTriggerWaypoint ()
 		{
