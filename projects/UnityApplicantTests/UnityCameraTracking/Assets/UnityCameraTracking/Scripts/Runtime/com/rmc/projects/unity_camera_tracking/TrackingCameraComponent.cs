@@ -568,7 +568,7 @@ namespace com.rmc.projects.unity_camera_tracking
 		private void _doUpdateZPositionTargetValue (bool aIsCurrentTargetRectWithinBoundary_boolean, bool aAreAllHighAndLowTrackableObjectsInView_boolean,  float aChangeAmount_float)
 		{
 
-			Debug.Log (aChangeAmount_float);
+			//Debug.Log (aChangeAmount_float);
 			if (Mathf.Sign (aChangeAmount_float) < 0) {
 				_currentZoomMode = ZoomMode.ZoomingOut;
 			} else {
