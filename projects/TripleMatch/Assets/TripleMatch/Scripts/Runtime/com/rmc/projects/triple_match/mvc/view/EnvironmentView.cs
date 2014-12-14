@@ -12,13 +12,7 @@ namespace com.rmc.projects.triple_match.view
 	{
 		
 		[SerializeField]
-		public Text _titleText;
-		
-		[SerializeField]
-		public Text _scoreText;
-		
-		[SerializeField]
-		public Text _gameResetText;
+		public GameObject _gemsParent;
 		
 		
 		/// <summary>
@@ -60,6 +54,26 @@ namespace com.rmc.projects.triple_match.view
 		/// </summary>
 		private void _RenderGems (GemVO[,] gemVOs)
 		{
+
+			GemVO nextGemVO;
+			GameObject nextGemViewPrefab;
+			GemView nextGemView;
+			for (int rowIndex_int = 0; rowIndex_int < gemVOs.GetLength(0); rowIndex_int += 1) 
+			{
+				for (int columnIndex_int = 0; columnIndex_int < gemVOs.GetLength(1); columnIndex_int += 1) 
+				{
+					nextGemVO = gemVOs[rowIndex_int,columnIndex_int];
+
+					//	CREATE AND REPARENT
+					nextGemViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_GEM_VIEW_PREFAB)) as GameObject;
+					nextGemViewPrefab.transform.parent = _gemsParent.transform;
+
+					//	INITIALIZE WITH DATA VO
+					nextGemView = nextGemViewPrefab.GetComponent<GemView>();
+					nextGemView.Initialize (nextGemVO);
+				}
+			}
+
 
 		}
 		

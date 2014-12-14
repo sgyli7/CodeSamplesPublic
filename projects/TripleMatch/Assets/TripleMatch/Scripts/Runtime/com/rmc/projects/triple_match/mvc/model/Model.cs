@@ -128,11 +128,11 @@ namespace com.rmc.projects.triple_match.model
 			string s = "";
 			s+= "[Model] (Single Click For *Gem* Grid Output)";
 			s+= "\n";
-			for (int x = 0; x < _gemVOs.GetLength(0); x += 1) 
+			for (int rowIndex_int = 0; rowIndex_int < _gemVOs.GetLength(0); rowIndex_int += 1) 
 			{
-				for (int y = 0; y < _gemVOs.GetLength(1); y += 1) 
+				for (int columnIndex_int = 0; columnIndex_int < _gemVOs.GetLength(1); columnIndex_int += 1) 
 				{
-					s += _gemVOs[x,y].GemTypeIndex;
+					s += _gemVOs[rowIndex_int,columnIndex_int].GemTypeIndex;
 				}
 				s += "\n";
 			}
