@@ -22,8 +22,37 @@ namespace com.rmc.projects.triple_match.model
 		}
 
 
-		//
+		
+		/// <summary>
+		/// 
+		/// SelectedGemVO
+		/// 
+		/// 	Model - stores it
+		/// 	View - displays it (via delegate listening)
+		/// 	Controller - updates it
+		/// 
+		/// </summary>
+		public delegate void OnSelectedGemVOChangedDelegate (GemVO gemVO);
+		public OnSelectedGemVOChangedDelegate OnSelectedGemVOChanged;
+		private GemVO _selectedGemVO;
+		public GemVO SelectedGemVO {
+			get
+			{
+				return _selectedGemVO;
+			}
+			set
+			{
+				_selectedGemVO = value;
 
+				if (OnSelectedGemVOChanged != null)
+				{
+					OnSelectedGemVOChanged (_selectedGemVO);
+				}
+
+			}
+		}
+
+		//
 		public delegate void OnGameResettedDelegate ();
 		public OnGameResettedDelegate OnGameResetted;
 
@@ -31,6 +60,7 @@ namespace com.rmc.projects.triple_match.model
 		/// <summary>
 		/// 
 		/// Score
+		/// 
 		/// 	Model - stores it
 		/// 	View - displays it (via delegate listening)
 		/// 	Controller - updates it
@@ -80,7 +110,7 @@ namespace com.rmc.projects.triple_match.model
 		{
 
 			Score = 0;
-
+			SelectedGemVO = null;
 
 
 			//	CLEAR EXISTING GEMS
