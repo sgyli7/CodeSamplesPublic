@@ -1,4 +1,4 @@
-﻿/**
+ /**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -27,14 +27,13 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
+using UnityEngine;
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using UnityEngine;
-
-
-namespace com.rmc.support
+namespace com.rmc.templates
 {
 	
 	//--------------------------------------
@@ -45,45 +44,38 @@ namespace com.rmc.support
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
-	
+		
 	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBehaviour
+	public class TemplateComponent : MonoBehaviour 
 	{
 		
-		
+
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		
-		//	GETTER / SETTER
-		//	TODO: Suppress. warning here. Harmless
-		private static T _Instance;
-		public static T Instance
-		{
-			get
-			{
-				return _Instance;
-			}
-			set
-			{
-				_Instance = value;
-			}
-			
-		}
-
-
+		// GETTER / SETTER
 		/// <summary>
-		/// Determines if is instantiated.
+		/// The _sample public text_string.
 		/// </summary>
-		/// <returns><c>true</c> if is instantiated; otherwise, <c>false</c>.</returns>
-		public static bool IsInstantiated()
-		{
-			return _Instance != null;
+		private string _samplePublicText_string;
+		public string SamplePublicText 
+		{ 
+			get 
+			{ 
+				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
+				return _samplePublicText_string; 
+			}
+			set 
+			{ 
+				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
+				_samplePublicText_string = value; 
+			}
 		}
-		
+			
 		
 		// 	PUBLIC
 		
@@ -95,45 +87,67 @@ namespace com.rmc.support
 		// 	Constructor / Creation
 		//--------------------------------------	
 
-		
-		/// <summary>
-		/// Instantiate this instance. Creates new model
-		/// </summary>
-		public static T Instantiate ()
-		{
-			
-			if (!IsInstantiated())
-			{
-				GameObject go = new GameObject ();
-				_Instance = go.AddComponent<T>();
-				go.name = _Instance.GetType().FullName;
-				DontDestroyOnLoad (go);
-				
-			}
-			return _Instance;
-		}
-		
+
 		//--------------------------------------
 		// 	Unity Methods
 		//--------------------------------------
+		
+		///<summary>
+		///	Use this for initialization
+		///</summary>
+		protected void Start () 
+		{
+
+
+		}
+
+		
+		///<summary>
+		///	Called once per frame
+		///</summary>
+		protected void Update () 
+		{
+			
+			
+		}
 		
 		
 		//--------------------------------------
 		// 	Methods
 		//--------------------------------------
-
-		//	PUBLIC
+		
+		
+		// PUBLIC
+	
+		/// <summary>
+		/// Samples the public method.
+		/// </summary>
+		/// <returns>The public method.</returns>
+		/// <param name="message_string">Message_string.</param>
+		public string SamplePublicMethod (string message_string) 
+		{
+			return message_string;
+			
+		}
 		
 		
 		//	PRIVATE
-		
-		
-		
-		
+
+
+
+
 		
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
+		/// <summary>
+		/// Handles the Event
+		/// </summary>
+		/// <param name="message_string">Message_string.</param>
+		public void _OnEventOccurred (string message_string) 
+		{
+			Debug.Log ("_OnEventOccurred(): " + message_string);
+			
+		}
 	}
 }
-
