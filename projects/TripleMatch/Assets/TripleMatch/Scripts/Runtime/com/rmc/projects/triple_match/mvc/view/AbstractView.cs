@@ -28,14 +28,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.triple_match.model;
-using com.rmc.projects.triple_match.controller;
+using com.rmc.projects.triple_match.mvc.model;
+using com.rmc.projects.triple_match.mvc.controller;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.view
+namespace com.rmc.projects.triple_match.mvc.view
 {
 	
 	//--------------------------------------

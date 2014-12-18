@@ -28,14 +28,14 @@
 //  Imports
 //--------------------------------------
 using com.rmc.support;
-using com.rmc.projects.triple_match.model;
-using com.rmc.projects.triple_match.model.data;
+using com.rmc.projects.triple_match.mvc.model;
+using com.rmc.projects.triple_match.mvc.model.data;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.controller
+namespace com.rmc.projects.triple_match.mvc.controller
 {
 	
 	//--------------------------------------

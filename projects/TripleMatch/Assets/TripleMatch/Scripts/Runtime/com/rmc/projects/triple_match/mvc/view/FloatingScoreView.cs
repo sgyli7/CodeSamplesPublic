@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,19 +28,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections.Generic;
-using com.rmc.projects.triple_match.mvc.model;
-using com.rmc.projects.triple_match.mvc.controller;
-using com.rmc.projects.triple_match.mvc.view;
-using com.rmc.support;
-using System.Collections;
+using UnityEngine.UI;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.mvc
+namespace com.rmc.projects.triple_match.mvc.view
 {
 	
 	//--------------------------------------
@@ -56,7 +51,7 @@ namespace com.rmc.projects.triple_match.mvc
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TripleMatchCore : SingletonMonobehavior<TripleMatchCore>  
+	public class FloatingScoreView : MonoBehaviour
 	{
 		
 		
@@ -66,15 +61,11 @@ namespace com.rmc.projects.triple_match.mvc
 		
 		// GETTER / SETTER
 		
-		/// <summary>
-		/// All views for the game
-		/// </summary>
-		[SerializeField]
-		private List<AbstractView> _abstractViews;
-
-		
 		// 	PUBLIC
 		
+		
+		[SerializeField]
+		public Text _text;
 		
 		// 	PRIVATE
 		
@@ -82,52 +73,31 @@ namespace com.rmc.projects.triple_match.mvc
 		//--------------------------------------
 		// 	Constructor / Creation
 		//--------------------------------------	
+
+		/// <summary>
+		/// Initialize the specified score, initialPosition_vector3 and targetPosition_vector3.
+		/// </summary>
+		public void Initialize (float score_float, Vector3 initialPosition_vector3, Vector3 targetPosition_vector3)
+		{
+			//
+			_text.text = score_float + TripleMatchConstants.TEXT_POINTS;
+			
+			//
+			transform.localPosition = initialPosition_vector3; 
+			TweenToNewPosition(targetPosition_vector3);
+		}
+		
 		
 		
 		//--------------------------------------
 		// 	Unity Methods
 		//--------------------------------------
 		
-		
 		/// <summary>
-		/// Start this instance.
+		/// Raises the destroy event.
 		/// </summary>
-		protected void Start () 
+		protected void OnDestroy () 
 		{
-			
-			//	MODEL
-			Model.Instantiate();
-			
-			//	CONTROLLER
-			Controller.Instantiate();
-			Controller.Instance.Initialize (Model.Instance);
-			
-			
-			//	VIEW
-			foreach (AbstractView abstractview in _abstractViews)
-			{
-				// NOTE: In a more mature MVC, the model could...
-				//			1. listen to model events
-				//			2. get (but not set) values of the model
-				//			3. use events instead of having a reference to Controller.
-				//			** But this project represents a looser, easier, faster MVC-with-growth-potential approach.
-				abstractview.Initialize (Model.Instance, Controller.Instance);
-			}
-			
-			//	Mimic 'Game Reset' Click
-			//	After short delay ...
-			//		1. of 1 frame or more for View to be 'ready'
-			//		2. and its also a delay for cosmetics
-			StartCoroutine (_StartGame_Coroutine());
-		}
-
-		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		protected void Update () 
-		{
-			
 			
 		}
 		
@@ -140,32 +110,44 @@ namespace com.rmc.projects.triple_match.mvc
 		// PUBLIC
 		
 		
-		//	PRIVATE
 		
-
-
-		//--------------------------------------
-		// 	Coroutines
-		//--------------------------------------
-
 		/// <summary>
-		/// Starts the game after short delay.
+		/// Destroy this instance.
 		/// </summary>
-		private IEnumerator _StartGame_Coroutine ()
+		public void Destroy ()
 		{
-			yield return new WaitForSeconds (TripleMatchConstants.DELAY_TO_START_GAME);
-			
-			//	Mimic 'Game Reset' Click
-			Controller.Instance.GameReset();
-			
-			yield return 0;
+			Destroy (gameObject);
 		}
 		
+		
+		
+		/// <summary>
+		/// Tweens to new position.
+		/// </summary>
+		public void TweenToNewPosition (Vector3 targetPosition_vector3)
+		{
+			
+			iTween.MoveTo(
+				gameObject,
+				iTween.Hash
+				(
+				iT.MoveTo.x, 		targetPosition_vector3.x,
+				iT.MoveTo.y,		targetPosition_vector3.y,
+				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
+				iT.MoveTo.time,		TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT,
+				iT.MoveTo.islocal,	 true
+				)
+				);
+			
+		}
+		
+		
+		//	PRIVATE
 		
 		
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
+		
 	}
 }
-

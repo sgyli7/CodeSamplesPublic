@@ -29,14 +29,14 @@
 //--------------------------------------
 using UnityEngine;
 using System.Collections.Generic;
-using com.rmc.projects.triple_match.model.data;
+using com.rmc.projects.triple_match.mvc.model.data;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.view
+namespace com.rmc.projects.triple_match.mvc.view
 {
 
 	//--------------------------------------
@@ -52,7 +52,7 @@ namespace com.rmc.projects.triple_match.view
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class GemView : AbstractView
+	public class GemView : MonoBehaviour
 	{
 		
 		
@@ -99,7 +99,6 @@ namespace com.rmc.projects.triple_match.view
 		// 	Constructor / Creation
 		//--------------------------------------	
 
-
 		public void Initialize (GemVO gemVO, Vector3 initialLocalPositionVector3)
 		{
 			_gemVO = gemVO;
@@ -121,7 +120,7 @@ namespace com.rmc.projects.triple_match.view
 		/// <summary>
 		/// Raises the destroy event.
 		/// </summary>
-		override protected void OnDestroy () 
+		protected void OnDestroy () 
 		{
 
 		}

@@ -28,9 +28,9 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.projects.triple_match.model;
-using com.rmc.projects.triple_match.controller;
-using com.rmc.projects.triple_match.model.data;
+using com.rmc.projects.triple_match.mvc.model;
+using com.rmc.projects.triple_match.mvc.controller;
+using com.rmc.projects.triple_match.mvc.model.data;
 using System.Collections.Generic;
 
 
@@ -38,7 +38,7 @@ using System.Collections.Generic;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.view
+namespace com.rmc.projects.triple_match.mvc.view
 {
 	
 	//--------------------------------------
@@ -74,6 +74,12 @@ namespace com.rmc.projects.triple_match.view
 		/// </summary>
 		[SerializeField]
 		public GameObject _gemsParent;
+
+		/// <summary>
+		/// The _hud view.
+		/// </summary>
+		[SerializeField]
+		public HUDView _hudView;
 		
 		/// <summary>
 		/// The _gem views.
@@ -99,6 +105,7 @@ namespace com.rmc.projects.triple_match.view
 			
 			_model.OnGameResetted += _OnGameResetted;
 			_model.OnSelectedGemVOChanged += _OnSelectedGemVOChanged;
+			_model.OnGemVOsMarkedForDeletionChanged += _OnGemVOsMarkedForDeletionChanged;
 		}
 		
 
@@ -123,8 +130,9 @@ namespace com.rmc.projects.triple_match.view
 		///</summary>
 		protected void Update () 
 		{
-			
-			
+
+
+
 		}
 
 		/// <summary>
@@ -134,7 +142,8 @@ namespace com.rmc.projects.triple_match.view
 		{
 			_model.OnGameResetted -= _OnGameResetted;
 			_model.OnSelectedGemVOChanged -= _OnSelectedGemVOChanged;
-			
+			_model.OnGemVOsMarkedForDeletionChanged -= _OnGemVOsMarkedForDeletionChanged;
+
 			foreach (GemView gemView in _gemViews)
 			{
 				gemView.OnClicked -= _OnGemViewClicked;
@@ -278,6 +287,29 @@ namespace com.rmc.projects.triple_match.view
 			gemVO2.ColumnIndex = columnIndex;
 			_GetGemViewForGemVo (gemVO2).TweenToNewPosition();
 		}
+
+		/// <summary>
+		/// Reward one match.
+		/// </summary>
+		private void _RewardOneMatch (List<GemView> gemViewsInOneMatch)
+		{
+			//	TODO: find center point of all 3+ gems
+			Debug.Log ("ok: " + gemViewsInOneMatch.Count);
+			Debug.Log ("ok: " + gemViewsInOneMatch[1]);
+			Vector3 centerPointOfMatch_vector3 = gemViewsInOneMatch[0].gameObject.transform.localPosition;
+
+			//	CREATE AND REPARENT
+			_hudView.RewardOneMatch (999, centerPointOfMatch_vector3, new Vector3 (0,0, centerPointOfMatch_vector3.z));
+
+
+		}
+		
+		
+		
+		//--------------------------------------
+		// 	Event Handlers
+		//--------------------------------------
+
 		
 		/// <summary>
 		/// _ons the game resetted.
@@ -317,9 +349,20 @@ namespace com.rmc.projects.triple_match.view
 			}
 			else if (_IsGemVOSwappableWithSelectedGemVO (gemView.GemVO))
 			{
+
+
+				//	TODO: Move this based on model input NOT here in the view
+				List<GemView> gemViewsInOneMatch = new List<GemView>();
+				Debug.Log ("tt: " + _model.SelectedGemVO);
+				Debug.Log ("tt: " + _GetGemViewForGemVo (_model.SelectedGemVO));
+				gemViewsInOneMatch.Add (_GetGemViewForGemVo (_model.SelectedGemVO));
+				gemViewsInOneMatch.Add (gemView);
+				_RewardOneMatch (gemViewsInOneMatch);
+
 				//	3. SWAP FIRST & SECOND GEM IN A PAIR
 				_SwapTwoGemVOs (_model.SelectedGemVO, gemView.GemVO);
 				_controller.SelectedGemVO = null;
+
 			}
 			else 
 			{
@@ -351,11 +394,30 @@ namespace com.rmc.projects.triple_match.view
 		}
 		
 		
+		/// <summary>
+		/// _s the on gem V os marked for deletion changed.
+		/// </summary>
+		/// <param name="gemVOs">Gem V os.</param>
+		private void _OnGemVOsMarkedForDeletionChanged (List<GemVO> gemVOs)
+		{
+
+			//	1. deselect all
+			foreach (GemView gemView in _gemViews)
+			{
+				
+				gemView.SetIsHighlighted (false);
+			}
+
+			//	2. select some
+			foreach (GemVO gemVO in gemVOs)
+			{
+				
+				_GetGemViewForGemVo(gemVO).SetIsHighlighted (true);
+			}
+		}
 		
-		
-		//--------------------------------------
-		// 	Event Handlers
-		//--------------------------------------
+
+
 	}
 }
 

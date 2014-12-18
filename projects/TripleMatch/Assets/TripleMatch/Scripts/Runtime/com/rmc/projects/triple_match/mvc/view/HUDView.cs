@@ -29,15 +29,15 @@
 //--------------------------------------
 using UnityEngine;
 using UnityEngine.UI;
-using com.rmc.projects.triple_match.model;
-using com.rmc.projects.triple_match.controller;
+using com.rmc.projects.triple_match.mvc.model;
+using com.rmc.projects.triple_match.mvc.controller;
 
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.view
+namespace com.rmc.projects.triple_match.mvc.view
 {
 	
 	//--------------------------------------
@@ -65,6 +65,9 @@ namespace com.rmc.projects.triple_match.view
 
 		
 		// 	PUBLIC
+
+		[SerializeField]
+		public Canvas _canvas;
 
 		[SerializeField]
 		public Text _titleText;
@@ -105,13 +108,30 @@ namespace com.rmc.projects.triple_match.view
 			_model.OnScoreChanged -= _OnScoreChanged;
 		}
 
+
 		
 		//--------------------------------------
 		// 	Methods
 		//--------------------------------------
 		
 		
-		// PUBLIC
+		// 	PUBLIC
+
+		/// <summary>
+		/// Rewards the one match.
+		/// </summary>
+		public void RewardOneMatch (float score_float, Vector3 initialPosition_vector3, Vector3 targetPosition_vector3)
+		{
+			GameObject floatingScoreViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_FLOATING_SCORE_VIEW_PREFAB)) as GameObject;
+			floatingScoreViewPrefab.gameObject.transform.parent = _canvas.gameObject.transform;
+			floatingScoreViewPrefab.transform.position = initialPosition_vector3;
+			FloatingScoreView floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreView>();
+			floatingScoreView.Initialize (score_float, initialPosition_vector3, targetPosition_vector3);
+		}
+
+		//	PRIVATE
+
+
 		/// <summary>
 		/// _renders the title text.
 		/// </summary>

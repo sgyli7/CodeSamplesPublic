@@ -72,14 +72,16 @@ namespace com.rmc.projects.triple_match
 		public static float DURATION_GEM_TWEEN_SWAP = 0.5f;
 		public static float DURATION_GEM_TWEEN_ENTRY = 0.5f;
 		public static float DURATION_GEM_TWEEN_EXIT = 0.5f;
+		public static float DURATION_FLOATING_SCORE_EXIT = 0.5f;
 		//
 		public static string TEXT_TITLE = "Triple Match";
 		public static string TEXT_GAME_RESET_TEXT = "Reset Game";
 		public static string TEXT_SCORE_LABEL = "Score: ";
-
+		public static string TEXT_POINTS = " Pts";
 
 		//
 		public static string PATH_GEM_VIEW_PREFAB = "Prefabs/GemViewPrefab";
+		public static string PATH_FLOATING_SCORE_VIEW_PREFAB = "Prefabs/FloatingScoreViewPrefab";
 	}
 
 }

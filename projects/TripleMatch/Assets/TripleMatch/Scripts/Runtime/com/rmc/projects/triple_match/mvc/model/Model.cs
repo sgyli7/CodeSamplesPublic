@@ -29,13 +29,14 @@
 //--------------------------------------
 using UnityEngine;
 using com.rmc.support;
-using com.rmc.projects.triple_match.model.data;
-
+using com.rmc.projects.triple_match.mvc.model.data;
+using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.model
+
+namespace com.rmc.projects.triple_match.mvc.model
 {
 	
 	//--------------------------------------
@@ -106,7 +107,10 @@ namespace com.rmc.projects.triple_match.model
 		//
 		public delegate void OnGameResettedDelegate ();
 		public OnGameResettedDelegate OnGameResetted;
-		
+
+		public delegate void OnGemVOsMarkedForDeletionChangedDelegate (List<GemVO> gemVOs);
+		public OnGemVOsMarkedForDeletionChangedDelegate OnGemVOsMarkedForDeletionChanged;
+
 		
 		/// <summary>
 		/// 
@@ -155,13 +159,42 @@ namespace com.rmc.projects.triple_match.model
 			Debug.Log ("Model.Start()");
 			_gemVOs = new GemVO[TripleMatchConstants.MAX_ROWS, TripleMatchConstants.MAX_COLUMNS];
 		}
-		
+
+
+
+		/// <summary>
+		/// Debug only
+		/// </summary>
+		private bool _debugging_HasCheckedForMatches = false;
+
+
 		///<summary>
 		///	Called once per frame
 		///</summary>
 		protected void Update () 
 		{
+
+
 			
+			if (Input.GetKeyDown (KeyCode.Space))
+			{
+				if (!_debugging_HasCheckedForMatches)
+				{
+					_CheckForMatches();
+				}
+				else
+				{
+					//CLEAR THOSE MARKED
+					List<GemVO> gemVOsMarkedForDeletion = new List<GemVO>();
+					if (OnGemVOsMarkedForDeletionChanged != null)
+					{
+						OnGemVOsMarkedForDeletionChanged (gemVOsMarkedForDeletion);
+					}
+				}
+				_debugging_HasCheckedForMatches = ! _debugging_HasCheckedForMatches;
+				
+			}
+
 			
 		}
 		
@@ -240,10 +273,49 @@ namespace com.rmc.projects.triple_match.model
 			return s;
 			
 		}
-		
+
+	
 		
 		//	PRIVATE
-		
+		private void _CheckForMatches ()
+		{
+			Debug.Log ("_CheckForMatches()");
+
+			List<GemVO> gemVOsMarkedForDeletion = new List<GemVO>();
+			GemVO prevGemVO;
+			GemVO nextGemVO;
+			//HORIZONTAL
+			for (int rowIndex_int = 0; rowIndex_int < _gemVOs.GetLength(0); rowIndex_int += 1) 
+			{
+				//VERTICAL (Start at index 1)
+				for (int columnIndex_int = 1; columnIndex_int < _gemVOs.GetLength(1); columnIndex_int += 1) 
+				{
+					nextGemVO = _gemVOs[rowIndex_int,columnIndex_int];
+					prevGemVO = _gemVOs[rowIndex_int,columnIndex_int-1];
+
+					//TODO: CHECK FOR MORE THAN 2
+					if (nextGemVO.GemTypeIndex == prevGemVO.GemTypeIndex)
+					{
+
+						if (!gemVOsMarkedForDeletion.Contains (prevGemVO))
+						{
+							gemVOsMarkedForDeletion.Add (prevGemVO);
+						}
+						if (!gemVOsMarkedForDeletion.Contains (nextGemVO))
+						{
+							gemVOsMarkedForDeletion.Add (nextGemVO);
+						}
+
+					}
+				}
+			}
+
+			if (OnGemVOsMarkedForDeletionChanged != null)
+			{
+				OnGemVOsMarkedForDeletionChanged (gemVOsMarkedForDeletion);
+			}
+
+		}	
 		
 		//--------------------------------------
 		// 	Event Handlers
