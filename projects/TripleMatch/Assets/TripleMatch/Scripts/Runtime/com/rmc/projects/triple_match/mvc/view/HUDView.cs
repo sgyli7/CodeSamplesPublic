@@ -37,6 +37,9 @@ using com.rmc.projects.triple_match.mvc.controller;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.audio;
+
+
 namespace com.rmc.projects.triple_match.mvc.view
 {
 	
@@ -71,7 +74,10 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 		[SerializeField]
 		public Text _titleText;
-		
+
+		[SerializeField]
+		public Text _timeText;
+
 		[SerializeField]
 		public Text _scoreText;
 		
@@ -86,13 +92,19 @@ namespace com.rmc.projects.triple_match.mvc.view
 		// 	Constructor / Creation
 		//--------------------------------------	
 
-
+		/// <summary>
+		/// Initialize the specified model and controller.
+		/// </summary>
+		/// <param name="model">Model.</param>
+		/// <param name="controller">Controller.</param>
 		override public void Initialize (Model model, Controller controller)
 		{
 			base.Initialize (model, controller);
 			
 			_model.OnGameResetted += _OnGameResetted;
 			_model.OnScoreChanged += _OnScoreChanged;
+			_model.OnTimeLeftInRoundChanged += _OnTimeLeftInRoundChanged;
+			_model.OnTimeLeftInRoundExpired += _OnTimeLeftInRoundExpired;
 		}
 		
 		//--------------------------------------
@@ -106,6 +118,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			_model.OnGameResetted -= _OnGameResetted;
 			_model.OnScoreChanged -= _OnScoreChanged;
+			_model.OnTimeLeftInRoundChanged -= _OnTimeLeftInRoundChanged;
+			_model.OnTimeLeftInRoundExpired -= _OnTimeLeftInRoundExpired;
 		}
 
 
@@ -140,13 +154,21 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			_titleText.text = titleText_string;
 		}
-		
+
+		/// <summary>
+		/// _renders the time text.
+		/// </summary>
+		private void _RenderTimeText (int time_int)
+		{
+			_timeText.text = string.Format (TripleMatchConstants.TEXT_TIME_TOKEN, time_int);
+		}
+
 		/// <summary>
 		/// _renders the title text.
 		/// </summary>
 		private void _RenderScoreText (int score_int)
 		{
-			_scoreText.text = TripleMatchConstants.TEXT_SCORE_LABEL + score_int;
+			_scoreText.text = string.Format (TripleMatchConstants.TEXT_SCORE_TOKEN, score_int); 
 		}
 		
 		/// <summary>
@@ -173,7 +195,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 		public void OnGameResetButtonClicked()
 		{
 			
-			Debug.Log ("OnGameResetButtonClicked()");
 			_controller.GameReset();
 			
 		}
@@ -191,8 +212,33 @@ namespace com.rmc.projects.triple_match.mvc.view
 			_RenderGameResetText (TripleMatchConstants.TEXT_GAME_RESET_TEXT);
 			_RenderTitleText (TripleMatchConstants.TEXT_TITLE );
 			_RenderScoreText (0);
+
 		}
+
 		
+		/// <summary>
+		/// _s the on time left in round changed.
+		/// </summary>
+		/// <param name="timeLeft_int">Time left_int.</param>
+		private void _OnTimeLeftInRoundChanged (int timeLeft_int)
+		{
+			_RenderTimeText (timeLeft_int);	
+		}
+
+		/// <summary>
+		/// _s the on time left in round expired.
+		/// </summary>
+		private void _OnTimeLeftInRoundExpired ()
+		{
+			//	SOUND
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_TIME_LEFT_IN_ROUND_EXPIRED_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
+			}
+
+		}
+
+
 		/// <summary>
 		/// _s the on score changed.
 		/// </summary>
@@ -200,5 +246,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			_RenderScoreText (score_int);	
 		}
+
 	}
 }

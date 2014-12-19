@@ -75,6 +75,7 @@ namespace com.rmc.core.support
 		}
 
 
+				
 		/// <summary>
 		/// Determines if is instantiated.
 		/// </summary>
@@ -86,6 +87,12 @@ namespace com.rmc.core.support
 		
 		
 		// 	PUBLIC
+
+		/// <summary>
+		/// The on instantiate completed.
+		/// </summary>
+		public delegate void OnInstantiateCompletedDelegate (T instance);
+		public static OnInstantiateCompletedDelegate OnInstantiateCompleted;
 		
 		
 		// 	PRIVATE
@@ -108,7 +115,11 @@ namespace com.rmc.core.support
 				_Instance = go.AddComponent<T>();
 				go.name = _Instance.GetType().FullName;
 				DontDestroyOnLoad (go);
-				
+
+				if (OnInstantiateCompleted != null)
+				{
+					OnInstantiateCompleted (_Instance);
+				}
 			}
 			return _Instance;
 		}

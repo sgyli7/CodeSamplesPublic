@@ -120,6 +120,7 @@ namespace com.rmc.projects.triple_match.mvc.controller
 		/// </summary>
 		public void GameReset ()
 		{
+			
 			_model.GameReset();
 		}
 		

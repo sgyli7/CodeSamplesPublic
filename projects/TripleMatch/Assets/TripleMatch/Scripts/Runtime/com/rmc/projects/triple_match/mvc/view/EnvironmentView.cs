@@ -38,6 +38,9 @@ using System.Collections.Generic;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.audio;
+
+
 namespace com.rmc.projects.triple_match.mvc.view
 {
 	
@@ -104,6 +107,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			base.Initialize (model, controller);
 			
 			_model.OnGameResetted += _OnGameResetted;
+			_model.OnScoreChanged += _OnScoreChanged;
 			_model.OnSelectedGemVOChanged += _OnSelectedGemVOChanged;
 			_model.OnGemVOsMarkedForDeletionChanged += _OnGemVOsMarkedForDeletionChanged;
 		}
@@ -143,6 +147,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			_model.OnGameResetted -= _OnGameResetted;
 			_model.OnSelectedGemVOChanged -= _OnSelectedGemVOChanged;
 			_model.OnGemVOsMarkedForDeletionChanged -= _OnGemVOsMarkedForDeletionChanged;
+			_model.OnScoreChanged -= _OnScoreChanged;
 
 			foreach (GemView gemView in _gemViews)
 			{
@@ -283,11 +288,12 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//
 			gemVO1.RowIndex = gemVO2.RowIndex;
 			gemVO1.ColumnIndex = gemVO2.ColumnIndex;
-			_GetGemViewForGemVo (gemVO1).TweenToNewPosition();
+			_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap();
 			//
 			gemVO2.RowIndex = rowIndex;
 			gemVO2.ColumnIndex = columnIndex;
-			_GetGemViewForGemVo (gemVO2).TweenToNewPosition();
+			_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap();
+
 		}
 
 		/// <summary>
@@ -324,6 +330,17 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 			//	RENDER
 			_DoLayoutGems (_model.GemVOs);
+
+			//	SOUND
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.StopAudioResourcePath (TripleMatchConstants.PATH_GAME_RESET_AUDIO);
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GAME_RESET_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
+
+				AudioManager.Instance.StopAudioResourcePath (TripleMatchConstants.PATH_BACKGROUND_MUSIC_AUDIO);
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_BACKGROUND_MUSIC_AUDIO, TripleMatchConstants.VOLUME_SCALE_MUSIC);
+			}
+
 		}
 		
 		/// <summary>
@@ -331,7 +348,11 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		private void _OnScoreChanged (int score_int)
 		{
-			
+			//	SOUND
+			if (AudioManager.IsInstantiated() && score_int > 0)
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_SCORE_INCREASE_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_2);
+			}
 		}
 		
 		/// <summary>
@@ -340,50 +361,56 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <param name="gemView">Gem view.</param>
 		private void _OnGemViewClicked (GemView gemView)
 		{
+
 			
-			if (_model.SelectedGemVO == null)
-			{
-				//	1. SELECT FIRST GEM IN A PAIR
-				_controller.SelectedGemVO = gemView.GemVO;
-			}
-			else if (_model.SelectedGemVO == gemView.GemVO)
-			{
-				//	2. DESELECT FIRST GEM IN A PAIR
-				_controller.SelectedGemVO = null;
-				
-			}
-			else if (_IsGemVOSwappableWithSelectedGemVO (gemView.GemVO))
+			if (_model.GameState == GameState.PLAYING)
 			{
 
-
-				//	TODO: Move this based on model input NOT here in the view
-				List<GemView> gemViewsInOneMatch = new List<GemView>();
-				gemViewsInOneMatch.Add (_GetGemViewForGemVo (_model.SelectedGemVO));
-				gemViewsInOneMatch.Add (gemView);
-				_RewardOneMatch (gemViewsInOneMatch);
-
-				//	TODO: Score points from model, not from here
-				_model.SetScore 
-					( 
-				    	_model.Score + TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViewsInOneMatch.Count), 
-					 	TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT
-					 );
-
-
+				if (_model.SelectedGemVO == null)
+				{
+					//	1. SELECT FIRST GEM IN A PAIR
+					_controller.SelectedGemVO = gemView.GemVO;
+				}
+				else if (_model.SelectedGemVO == gemView.GemVO)
+				{
+					//	2. DESELECT FIRST GEM IN A PAIR
+					_controller.SelectedGemVO = null;
+					
+				}
+				else if (_IsGemVOSwappableWithSelectedGemVO (gemView.GemVO))
+				{
 
 
+					//	TODO: Move this based on model input NOT here in the view
+					List<GemView> gemViewsInOneMatch = new List<GemView>();
+					gemViewsInOneMatch.Add (_GetGemViewForGemVo (_model.SelectedGemVO));
+					gemViewsInOneMatch.Add (gemView);
+					_RewardOneMatch (gemViewsInOneMatch);
+
+					//	TODO: Score points from model, not from here
+					_model.SetScore 
+						( 
+					    	_model.Score + TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViewsInOneMatch.Count), 
+						 	TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT
+						 );
 
 
 
-				//	3. SWAP FIRST & SECOND GEM IN A PAIR
-				_SwapTwoGemVOs (_model.SelectedGemVO, gemView.GemVO);
-				_controller.SelectedGemVO = null;
 
-			}
-			else 
-			{
-				//	4. DESELECTED ALL
-				_controller.SelectedGemVO = null;
+
+
+
+					//	3. SWAP FIRST & SECOND GEM IN A PAIR
+					_SwapTwoGemVOs (_model.SelectedGemVO, gemView.GemVO);
+					_controller.SelectedGemVO = null;
+
+				}
+				else 
+				{
+					//	4. DESELECTED ALL
+					_controller.SelectedGemVO = null;
+				}
+
 			}
 		}
 		

@@ -40,6 +40,9 @@ using System.Collections;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.audio;
+
+
 namespace com.rmc.projects.triple_match.mvc
 {
 	
@@ -94,6 +97,10 @@ namespace com.rmc.projects.triple_match.mvc
 		/// </summary>
 		protected void Start () 
 		{
+
+			//	MANAGERS
+			AudioManager.OnInstantiateCompleted += _OnAudioManagerInstantiateCompleted;
+			AudioManager.Instantiate();
 			
 			//	MODEL
 			Model.Instantiate();
@@ -113,12 +120,9 @@ namespace com.rmc.projects.triple_match.mvc
 				//			** But this project represents a looser, easier, faster MVC-with-growth-potential approach.
 				abstractview.Initialize (Model.Instance, Controller.Instance);
 			}
-			
-			//	Mimic 'Game Reset' Click
-			//	After short delay ...
-			//		1. of 1 frame or more for View to be 'ready'
-			//		2. and its also a delay for cosmetics
-			StartCoroutine (_StartGame_Coroutine());
+
+
+
 		}
 
 		
@@ -166,6 +170,22 @@ namespace com.rmc.projects.triple_match.mvc
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
+
+		/// <summary>
+		/// _s the on audio manager instantiate completed.
+		/// </summary>
+		/// <param name="audioManager">Audio manager.</param>
+		private void _OnAudioManagerInstantiateCompleted (AudioManager audioManager)
+		{
+			AudioManager.OnInstantiateCompleted -= _OnAudioManagerInstantiateCompleted;
+
+			
+			//	Mimic 'Game Reset' Click
+			//	After short delay ...
+			//		1. of 1 frame or more for View to be 'ready'
+			//		2. and its also a delay for cosmetics
+			StartCoroutine (_StartGame_Coroutine());
+		}
 	}
 }
 

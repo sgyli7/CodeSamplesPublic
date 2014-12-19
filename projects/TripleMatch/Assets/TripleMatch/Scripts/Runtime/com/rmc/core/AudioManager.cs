@@ -28,38 +28,20 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-
+using com.rmc.core.support;
+using System;
+using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.support;
-using com.rmc.core.exceptions;
-using System;
-
-
 namespace com.rmc.core.audio
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	//todo: move this to MainConstants?
-	public enum AudioClipType
-	{
-		BUTTON_CLICK,
-		WAYPOINT_TRIGGERED,
-		PLAYER_JUMPS,
-		PLAYER_LANDS,
-		PLAYER_KILLS_ENEMY,
-		PLAYER_FALLS_OFFSCREEN,
-		COIN_COLLECTED,
-		ENEMY_KILLS_PLAYER,
-		GAME_START,
-		GAME_OVER_WIN,
-		GAME_OVER_LOSS
-		
-	}
+
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -86,14 +68,9 @@ namespace com.rmc.core.audio
 
 		// PRIVATE
 		/// <summary>
-		/// The _audio source.
+		/// The _audio sources_dictionary.
 		/// </summary>
-		private AudioSource _audioSource;
-
-		/// <summary>
-		/// ALL THE CLIPS
-		/// </summary>
-		private AudioClip _buttonClick_audioclip;
+		private Dictionary<string, AudioSource> _audioSources_dictionary;
 
 
 		// PRIVATE STATIC
@@ -102,14 +79,6 @@ namespace com.rmc.core.audio
 		//  Constructor / Creation
 		//--------------------------------------	
 		
-		/// <summary>
-		/// Initialize the specified instance.
-		/// </summary>
-		/// <param name="instance">Instance.</param>
-		public void Initialize ()
-		{
-
-		}
 
 
 		//--------------------------------------
@@ -121,10 +90,6 @@ namespace com.rmc.core.audio
 		///</summary>
 		void Start () 
 		{
-
-			_audioSource = gameObject.AddComponent <AudioSource>();
-			//
-			_buttonClick_audioclip 	= _doLoadAudioClipByName ("Audio/SoundEffects/ButtonClick01");
 
 		}
 
@@ -148,47 +113,64 @@ namespace com.rmc.core.audio
 
 
 		/// <summary>
-		/// Dos the play sound.
+		/// Plaies the sound.
 		/// </summary>
-		/// <param name="aClipName">A clip name.</param>
-		public void PlaySound (AudioClipType audioClipType)
+		/// <returns>The sound.</returns>
+		/// <param name="audioResourcePath_string">Audio resource path_string.</param>
+		public AudioSource PlayAudioResourcePath (string audioResourcePath_string, float volumeScale_float = 1 )
 		{
 
-			//Debug.Log ("playing : " + aClipName);
-
-			switch (audioClipType) {
-			case AudioClipType.BUTTON_CLICK:
-				_audioSource.PlayOneShot (_buttonClick_audioclip);
-				break;
-			default:
-				#pragma warning disable 0162
-				throw new SwitchStatementException();
-				break;
-				#pragma warning restore 0162
-			}
-			
-
+			AudioSource audioSource = GetAudioSourceByResourcePath (audioResourcePath_string);
+			//Debug.Log ("playing : " + audioSource.clip);
+			audioSource.PlayOneShot (audioSource.clip, volumeScale_float);
+			return audioSource;
 		}
-
-
 
 		/// <summary>
-		/// _loads the name of the audio clip by.
+		/// Stops the audio resource path.
 		/// </summary>
-		/// <returns>The audio clip by name.</returns>
-		/// <param name="aAudioClipName_string">A audio clip name_string.</param>
-		private AudioClip _doLoadAudioClipByName (string audioClipName_string)
+		/// <returns>The audio resource path.</returns>
+		/// <param name="pATH_GAME_RESET_AUDIO">P AT h_ GAM e_ RESE t_ AUDI.</param>
+		public AudioSource StopAudioResourcePath (string audioResourcePath_string)
 		{
-			AudioClip audioClip = Resources.Load (audioClipName_string) as AudioClip;
+			AudioSource audioSource = GetAudioSourceByResourcePath (audioResourcePath_string);
+			audioSource.Stop();
+			return audioSource;
+		}
 
-			if (audioClip == null) {
-				throw new Exception ("AudioClip '"+audioClipName_string+"' Cannot Be Null. Choose new path name");
+		/// <summary>
+		/// Gets the audio source by resource path.
+		/// </summary>
+		/// <returns>The audio source by resource path.</returns>
+		/// <param name="audioResourcePath_string">Audio resource path_string.</param>
+		public AudioSource GetAudioSourceByResourcePath (string audioResourcePath_string)
+		{
+
+			AudioSource audioSource = new AudioSource ();
+
+			//	CREATE AND POPULATE A DICTIONARY OF AUDIO SOURCES (EACH CONTAINING ONE CLIP)
+			//	ONLY POPULATES EACH INDEX ONE TIME (OPTIMIZATION)
+			if (_audioSources_dictionary == null)
+			{
+				_audioSources_dictionary = new Dictionary<string, AudioSource>();
+			}
+			if (!_audioSources_dictionary.ContainsKey (audioResourcePath_string))
+			{
+				_audioSources_dictionary[audioResourcePath_string] = gameObject.AddComponent<AudioSource>();
+				_audioSources_dictionary[audioResourcePath_string].clip = Resources.Load (audioResourcePath_string) as AudioClip;
 			}
 
-			return audioClip;
+			//
+			audioSource = _audioSources_dictionary[audioResourcePath_string];
 
+			if (audioSource == null) {
+				throw new Exception ("AudioClip '"+audioResourcePath_string+"' Cannot Be Found. Choose new path name.");
+			}
+
+			return audioSource;
 		}
-		
+
+
 		// PUBLIC
 		//--------------------------------------
 		//  Events

@@ -80,7 +80,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		public void Initialize (int score_int, Vector3 initialPosition_vector3)
 		{
 			//
-			_text.text = score_int + TripleMatchConstants.TEXT_POINTS;
+			_text.text = string.Format (TripleMatchConstants.TEXT_POINTS_TOKEN, score_int);
 			
 			//	CONVERT: 3D V3 to 2D V3
 			Vector3 initialPositionPixels_vector3 = Camera.main.WorldToScreenPoint(initialPosition_vector3);

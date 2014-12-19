@@ -42,7 +42,14 @@ namespace com.rmc.projects.triple_match.mvc.model
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
+	public enum GameState
+	{
+		UNKOWN,
+		INITIALIZED,
+		PLAYING,
+		GAME_OVER
+
+	}
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -74,7 +81,23 @@ namespace com.rmc.projects.triple_match.mvc.model
 			
 		}
 
-		
+		private GameState _gameState = GameState.UNKOWN;
+		public GameState GameState 
+		{
+			get
+			{
+				return _gameState;
+			}
+			set
+			{
+				_gameState = value;
+
+				//Option: Dispatch game state? Not needed for demo, but will help when scaling up the project
+				
+			}
+		}
+
+
 		/// <summary>
 		/// 
 		/// SelectedGemVO
@@ -87,7 +110,8 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public delegate void OnSelectedGemVOChangedDelegate (GemVO gemVO);
 		public OnSelectedGemVOChangedDelegate OnSelectedGemVOChanged;
 		private GemVO _selectedGemVO;
-		public GemVO SelectedGemVO {
+		public GemVO SelectedGemVO 
+			{
 			get
 			{
 				return _selectedGemVO;
@@ -153,9 +177,35 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 
 
-
-
-
+		/// <summary>
+		/// 
+		/// TimeLeftInRound -- The game has 1 minute long rounds. At the end the game is over, regardless of performance
+		/// 
+		/// 	Model - stores it, updates it
+		/// 	View - displays it (via delegate listening)
+		/// 	Controller - Nothing. (It could listen for OnTimeLeftInRoundExpired and coordinate more complex reactions if needed)
+		/// 
+		/// </summary>
+		public delegate void OnTimeLeftInRoundExpiredDelegate ();
+		public OnTimeLeftInRoundExpiredDelegate OnTimeLeftInRoundExpired;
+		public delegate void OnTimeLeftInRoundChangedDelegate (int timeLeftInRound_int);
+		public OnTimeLeftInRoundChangedDelegate OnTimeLeftInRoundChanged;
+		private int _timeLeftInRound_int;
+		public int TimeLeftInRound
+		{
+			get
+			{
+				return _timeLeftInRound_int;
+			}
+			private set
+			{
+				_timeLeftInRound_int = value;
+				if (OnTimeLeftInRoundChanged != null)
+				{
+					OnTimeLeftInRoundChanged (_timeLeftInRound_int);
+				}
+			}
+		}
 
 
 		// 	PUBLIC
@@ -176,8 +226,8 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// </summary>
 		protected void Start () 
 		{
-			Debug.Log ("Model.Start()");
 			_gemVOs = new GemVO[TripleMatchConstants.MAX_ROWS, TripleMatchConstants.MAX_COLUMNS];
+			GameState = GameState.INITIALIZED;
 		}
 
 
@@ -195,24 +245,26 @@ namespace com.rmc.projects.triple_match.mvc.model
 		{
 
 
-			
-			if (Input.GetKeyDown (KeyCode.Space))
+			if (GameState == GameState.PLAYING)
 			{
-				if (!_debugging_HasCheckedForMatches)
+				if (Input.GetKeyDown (KeyCode.Space))
 				{
-					_CheckForMatches();
-				}
-				else
-				{
-					//CLEAR THOSE MARKED
-					List<GemVO> gemVOsMarkedForDeletion = new List<GemVO>();
-					if (OnGemVOsMarkedForDeletionChanged != null)
+					if (!_debugging_HasCheckedForMatches)
 					{
-						OnGemVOsMarkedForDeletionChanged (gemVOsMarkedForDeletion);
+						_CheckForMatches();
 					}
+					else
+					{
+						//CLEAR THOSE MARKED
+						List<GemVO> gemVOsMarkedForDeletion = new List<GemVO>();
+						if (OnGemVOsMarkedForDeletionChanged != null)
+						{
+							OnGemVOsMarkedForDeletionChanged (gemVOsMarkedForDeletion);
+						}
+					}
+					_debugging_HasCheckedForMatches = ! _debugging_HasCheckedForMatches;
+					
 				}
-				_debugging_HasCheckedForMatches = ! _debugging_HasCheckedForMatches;
-				
 			}
 
 			
@@ -232,8 +284,12 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// </summary>
 		public void GameReset ()
 		{
-			
+
+			GameState = GameState.PLAYING;
 			Score = 0;
+			TimeLeftInRound = TripleMatchConstants.DURATION_TIME_LEFT_IN_ROUND_MAX;
+			StopCoroutine ("_TimeLeftInRoundDecrement_Coroutine");
+			StartCoroutine ("_TimeLeftInRoundDecrement_Coroutine");
 			SelectedGemVO = null;
 			
 			
@@ -336,7 +392,51 @@ namespace com.rmc.projects.triple_match.mvc.model
 			}
 
 		}	
-		
+
+		//--------------------------------------
+		// 	Coroutines
+		//--------------------------------------
+
+		/// <summary>
+		/// Times the left in round decrement_ coroutine.
+		/// </summary>
+		/// <returns>The left in round decrement_ coroutine.</returns>
+		private IEnumerator _TimeLeftInRoundDecrement_Coroutine ()
+		{
+
+			//	TIMING ON 'SECONDS' IS LESS ACCURATE THAN FIXED UPDATE, BUT THIS IS ACCEPTABLE FOR DEMO USE
+			yield return new WaitForSeconds (TripleMatchConstants.DURATION_TIME_LEFT_IN_ROUND_TICK);
+			int nextTimeLeftInRound_int = Mathf.CeilToInt(TimeLeftInRound - TripleMatchConstants.TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK);
+
+			//	CORRECT NEGATIVE TIME WITHOUT DISPATCHING DELEGATE
+			if (nextTimeLeftInRound_int <= 0) 
+			{
+				nextTimeLeftInRound_int = 0;
+			}
+
+			TimeLeftInRound = nextTimeLeftInRound_int;
+
+			if (TimeLeftInRound == 0)
+			{
+				if (OnTimeLeftInRoundExpired != null)
+				{
+
+					GameState = GameState.GAME_OVER;
+					OnTimeLeftInRoundExpired();
+				}
+
+			}
+			else
+			{
+				StopCoroutine ("_TimeLeftInRoundDecrement_Coroutine");
+				StartCoroutine ("_TimeLeftInRoundDecrement_Coroutine");
+			}
+
+
+
+		}
+
+
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------

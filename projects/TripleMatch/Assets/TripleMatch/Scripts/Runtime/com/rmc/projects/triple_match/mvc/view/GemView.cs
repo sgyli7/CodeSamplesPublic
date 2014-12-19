@@ -36,6 +36,9 @@ using com.rmc.projects.triple_match.mvc.model.data;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.audio;
+
+
 namespace com.rmc.projects.triple_match.mvc.view
 {
 
@@ -108,7 +111,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 			//
 			transform.localPosition = initialLocalPositionVector3; 
-			TweenToNewPosition();
+			TweenToNewPositionEntry();
 		}
 		
 
@@ -148,7 +151,31 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// Tweens to new position.
 		/// </summary>
-		public void TweenToNewPosition ()
+		public void TweenToNewPositionEntry ()
+		{
+			_TweenToNewPosition (TripleMatchConstants.GetGemTweenEntryDelay(_gemVO));
+			
+		}
+
+		/// <summary>
+		/// Tweens to new position.
+		/// </summary>
+		public void TweenToNewPositionSwap ()
+		{
+			_TweenToNewPosition (0);
+
+			//	SOUND
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_SWAP_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
+			}
+			
+		}
+
+		/// <summary>
+		/// Tweens to new position.
+		/// </summary>
+		public void _TweenToNewPosition (float durationGemTweenDelay_float)
 		{
 			Vector3 newPosition = _GetTargetPosition();
 			
@@ -160,7 +187,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 				iT.MoveTo.y,		newPosition.y,
 				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
 				iT.MoveTo.time,		TripleMatchConstants.DURATION_GEM_TWEEN_SWAP,
-				iT.MoveTo.delay, 	TripleMatchConstants.GetGemTweenEntryDelay(_gemVO),
+				iT.MoveTo.delay, 	durationGemTweenDelay_float,
 				iT.MoveTo.islocal,	 true
 				)
 				);
