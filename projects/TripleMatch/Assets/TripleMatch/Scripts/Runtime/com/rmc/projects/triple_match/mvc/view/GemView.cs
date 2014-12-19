@@ -160,6 +160,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 				iT.MoveTo.y,		newPosition.y,
 				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
 				iT.MoveTo.time,		TripleMatchConstants.DURATION_GEM_TWEEN_SWAP,
+				iT.MoveTo.delay, 	TripleMatchConstants.GetGemTweenEntryDelay(_gemVO),
 				iT.MoveTo.islocal,	 true
 				)
 				);

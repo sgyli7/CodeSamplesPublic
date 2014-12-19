@@ -77,14 +77,24 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// Initialize the specified score, initialPosition_vector3 and targetPosition_vector3.
 		/// </summary>
-		public void Initialize (float score_float, Vector3 initialPosition_vector3, Vector3 targetPosition_vector3)
+		public void Initialize (int score_int, Vector3 initialPosition_vector3)
 		{
 			//
-			_text.text = score_float + TripleMatchConstants.TEXT_POINTS;
+			_text.text = score_int + TripleMatchConstants.TEXT_POINTS;
 			
+			//	CONVERT: 3D V3 to 2D V3
+			Vector3 initialPositionPixels_vector3 = Camera.main.WorldToScreenPoint(initialPosition_vector3);
+
+			transform.position = initialPositionPixels_vector3; 
+
 			//
-			transform.localPosition = initialPosition_vector3; 
-			TweenToNewPosition(targetPosition_vector3);
+			Vector3 targetPositionPixels_vector3 = new Vector3 
+				(
+					initialPositionPixels_vector3.x, 
+					initialPositionPixels_vector3.y + TripleMatchConstants.POSITION_OFFSET_FLOATING_SCORE_VIEW_Y, 
+					initialPositionPixels_vector3.z
+				);
+			TweenToNewPosition(targetPositionPixels_vector3);
 		}
 		
 		
@@ -110,17 +120,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 		// PUBLIC
 		
 		
-		
-		/// <summary>
-		/// Destroy this instance.
-		/// </summary>
-		public void Destroy ()
-		{
-			Destroy (gameObject);
-		}
-		
-		
-		
 		/// <summary>
 		/// Tweens to new position.
 		/// </summary>
@@ -135,7 +134,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 				iT.MoveTo.y,		targetPosition_vector3.y,
 				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
 				iT.MoveTo.time,		TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT,
-				iT.MoveTo.islocal,	 true
+				iT.MoveTo.islocal,	 false,
+				iT.MoveTo.oncomplete, "_OnTweenToNewPositionCompleted",
+				iT.MoveTo.oncompletetarget, gameObject
 				)
 				);
 			
@@ -148,6 +149,17 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
+
+		/// <summary>
+		/// _s the on tween to new position completed.
+		/// </summary>
+		private void _OnTweenToNewPositionCompleted ()
+		{
+			//Debug.Log ("_OnTweenToNewPositionCompleted()");
+			Destroy (gameObject);
+
+
+		}
 		
 	}
 }

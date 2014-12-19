@@ -120,13 +120,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// Rewards the one match.
 		/// </summary>
-		public void RewardOneMatch (float score_float, Vector3 initialPosition_vector3, Vector3 targetPosition_vector3)
+		public void RewardOneMatch (int score_int, Vector3 initialPosition_vector3)
 		{
+
 			GameObject floatingScoreViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_FLOATING_SCORE_VIEW_PREFAB)) as GameObject;
-			floatingScoreViewPrefab.gameObject.transform.parent = _canvas.gameObject.transform;
-			floatingScoreViewPrefab.transform.position = initialPosition_vector3;
+			floatingScoreViewPrefab.gameObject.transform.SetParent (_canvas.gameObject.transform);
 			FloatingScoreView floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreView>();
-			floatingScoreView.Initialize (score_float, initialPosition_vector3, targetPosition_vector3);
+			floatingScoreView.Initialize (score_int, initialPosition_vector3);
+
 		}
 
 		//	PRIVATE
@@ -183,7 +184,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		private void _OnGameResetted ()
 		{
 			
-			Debug.Log ("HUD: Resetted");
+			//Debug.Log ("HUD: Resetted");
 			
 			//	RENDER DISPLAY TEXT
 			//		OPTIONAL: REPLACE STATIC CONST WITH STATIC METHOD TO ADD LOCALIZATION BY SPOKEN LANGUAGE
@@ -195,9 +196,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// _s the on score changed.
 		/// </summary>
-		private void _OnScoreChanged (int score)
+		private void _OnScoreChanged (int score_int)
 		{
-			
+			_RenderScoreText (score_int);	
 		}
 	}
 }

@@ -192,12 +192,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			GemVO nextGemVO;
 			GameObject nextGemViewPrefab;
 			GemView nextGemView;
-			Vector3 spawnPointForGemsVector3 = new Vector3 
-				(
-					(TripleMatchConstants.MAX_ROWS/2 - 0.5f)*TripleMatchConstants.ROW_SIZE, 
-					(TripleMatchConstants.MAX_COLUMNS/2 - 0.5f)*TripleMatchConstants.COLUMN_SIZE, 
-					transform.localPosition.z
-					);
+			Vector3 spawnPointForGemsVector3;
 			
 			//
 			for (int rowIndex_int = 0; rowIndex_int < gemVOs.GetLength(0); rowIndex_int += 1) 
@@ -213,7 +208,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 					//	INITIALIZE WITH DATA VO
 					nextGemView = nextGemViewPrefab.GetComponent<GemView>();
 					
-					
+
+					//
+					spawnPointForGemsVector3 = new Vector3 
+						(
+							TripleMatchConstants.ROW_SIZE * rowIndex_int, 
+							5, 
+							transform.localPosition.z
+						);
 					//
 					nextGemView.Initialize (nextGemVO, spawnPointForGemsVector3);
 					nextGemView.OnClicked += _OnGemViewClicked;
@@ -294,12 +296,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 		private void _RewardOneMatch (List<GemView> gemViewsInOneMatch)
 		{
 			//	TODO: find center point of all 3+ gems
-			Debug.Log ("ok: " + gemViewsInOneMatch.Count);
-			Debug.Log ("ok: " + gemViewsInOneMatch[1]);
-			Vector3 centerPointOfMatch_vector3 = gemViewsInOneMatch[0].gameObject.transform.localPosition;
+			Vector3 centerPointOfMatch_vector3 = gemViewsInOneMatch[0].gameObject.transform.position;
+
 
 			//	CREATE AND REPARENT
-			_hudView.RewardOneMatch (999, centerPointOfMatch_vector3, new Vector3 (0,0, centerPointOfMatch_vector3.z));
+			_hudView.RewardOneMatch 
+				(
+					TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViewsInOneMatch.Count), 
+					centerPointOfMatch_vector3
+				);
 
 
 		}
@@ -324,7 +329,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// _s the on score changed.
 		/// </summary>
-		private void _OnScoreChanged (int score)
+		private void _OnScoreChanged (int score_int)
 		{
 			
 		}
@@ -353,11 +358,22 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 				//	TODO: Move this based on model input NOT here in the view
 				List<GemView> gemViewsInOneMatch = new List<GemView>();
-				Debug.Log ("tt: " + _model.SelectedGemVO);
-				Debug.Log ("tt: " + _GetGemViewForGemVo (_model.SelectedGemVO));
 				gemViewsInOneMatch.Add (_GetGemViewForGemVo (_model.SelectedGemVO));
 				gemViewsInOneMatch.Add (gemView);
 				_RewardOneMatch (gemViewsInOneMatch);
+
+				//	TODO: Score points from model, not from here
+				_model.SetScore 
+					( 
+				    	_model.Score + TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViewsInOneMatch.Count), 
+					 	TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT
+					 );
+
+
+
+
+
+
 
 				//	3. SWAP FIRST & SECOND GEM IN A PAIR
 				_SwapTwoGemVOs (_model.SelectedGemVO, gemView.GemVO);

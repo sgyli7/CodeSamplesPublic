@@ -32,6 +32,9 @@
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.triple_match.mvc.model.data;
+
+
 namespace com.rmc.projects.triple_match
 {
 
@@ -82,6 +85,37 @@ namespace com.rmc.projects.triple_match
 		//
 		public static string PATH_GEM_VIEW_PREFAB = "Prefabs/GemViewPrefab";
 		public static string PATH_FLOATING_SCORE_VIEW_PREFAB = "Prefabs/FloatingScoreViewPrefab";
+
+		//
+		public static float POSITION_OFFSET_FLOATING_SCORE_VIEW_Y = 30;
+
+		//
+		public static int SCORE_POINTS_PER_GEM = 50;
+		public static int SCORE_MULTIPLYER_PER_GEM = 2;
+
+
+		//--------------------------------------
+		//  Methods
+		//--------------------------------------
+
+
+		//	PUBLIC STATIC
+
+		/// <summary>
+		/// Gets the length of the score reward for match of.
+		/// </summary>
+		public static int GetScoreRewardForMatchOfLength (int gemCount_int)
+		{
+			return gemCount_int * TripleMatchConstants.SCORE_POINTS_PER_GEM * TripleMatchConstants.SCORE_MULTIPLYER_PER_GEM;
+		}
+
+		/// <summary>
+		/// Gets the gem tween entry delay.
+		/// </summary>
+		public static float GetGemTweenEntryDelay (GemVO gemVO)
+		{
+			return (gemVO.ColumnIndex) * 0.05f;
+		}
 	}
 
 }

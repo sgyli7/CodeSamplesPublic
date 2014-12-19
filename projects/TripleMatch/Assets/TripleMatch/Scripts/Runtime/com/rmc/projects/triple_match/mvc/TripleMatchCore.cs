@@ -32,7 +32,7 @@ using System.Collections.Generic;
 using com.rmc.projects.triple_match.mvc.model;
 using com.rmc.projects.triple_match.mvc.controller;
 using com.rmc.projects.triple_match.mvc.view;
-using com.rmc.support;
+using com.rmc.core.support;
 using System.Collections;
 
 

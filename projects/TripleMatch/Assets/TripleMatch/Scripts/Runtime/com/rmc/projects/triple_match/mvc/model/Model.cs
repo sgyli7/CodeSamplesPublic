@@ -28,14 +28,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.support;
 using com.rmc.projects.triple_match.mvc.model.data;
 using System.Collections.Generic;
+using System.Collections;
+using com.rmc.core.support;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-
 namespace com.rmc.projects.triple_match.mvc.model
 {
 	
@@ -121,27 +121,47 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// 	Controller - updates it
 		/// 
 		/// </summary>
-		public delegate void OnScoreChangedDelegate (int newScore);
+		public delegate void OnScoreChangedDelegate (int score_int);
 		public OnScoreChangedDelegate OnScoreChanged;
-		private int _score;
+		private int _score_int;
 		public int Score 
 		{
 			get
 			{
-				return _score;
+				return _score_int;
 			}
-			set
+			private set
 			{
-				_score = value;
+				_score_int = value;
 				if (OnScoreChanged != null)
 				{
-					OnScoreChanged (_score);
+					OnScoreChanged (_score_int);
 				}
 			}
 		}
-		
+		public void SetScore (int score_int, float delayUntilSet_float = 0)
+		{
+			StartCoroutine (ScoreScore_Coroutine(score_int, delayUntilSet_float));
+		}
+		private IEnumerator ScoreScore_Coroutine (int score_int, float delayUntilSet_float)
+		{
+			yield return new WaitForSeconds (delayUntilSet_float);
+
+			//
+			Score = score_int;
+
+		}
+
+
+
+
+
+
+
 		// 	PUBLIC
-		
+
+
+
 		
 		// 	PRIVATE
 		
@@ -260,7 +280,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		override public string ToString ()
 		{
 			string s = "";
-			s+= "[Model] (Single Click For *Gem* Grid Output)";
+			s+= "[Model] (Single Click Here For *Gem* Grid Output)";
 			s+= "\n";
 			for (int rowIndex_int = 0; rowIndex_int < _gemVOs.GetLength(0); rowIndex_int += 1) 
 			{
