@@ -41,7 +41,7 @@ namespace com.rmc.core.audio
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-
+	
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -51,7 +51,7 @@ namespace com.rmc.core.audio
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class AudioManager : SingletonMonobehavior<AudioManager> 
+	public class NoteComponent : MonoBehaviour 
 	{
 		
 		
@@ -64,114 +64,30 @@ namespace com.rmc.core.audio
 		// 	PUBLIC
 		
 		// 	PUBLIC STATIC
-
-
+		
 		// 	PRIVATE
-		/// <summary>
-		/// The _audio sources_dictionary.
-		/// </summary>
-		private Dictionary<string, AudioSource> _audioSources_dictionary;
-
-
-		// 	PRIVATE STATIC
+		
+		//	PRIVATE STATIC
 		
 		//--------------------------------------
 		//  Constructor / Creation
 		//--------------------------------------	
 		
-
-
+		
+		
 		//--------------------------------------
 		//  Unity Methods
 		//--------------------------------------
-
-		///<summary>
-		///	Use this for initialization
-		///</summary>
-		void Start () 
-		{
-
-		}
-
-
-		
-		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		void Update () 
-		{
-			
-		}
-
-
 		
 		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-
-
-		/// <summary>
-		/// Plaies the sound.
-		/// </summary>
-		/// <returns>The sound.</returns>
-		/// <param name="audioResourcePath_string">Audio resource path_string.</param>
-		public AudioSource PlayAudioResourcePath (string audioResourcePath_string, float volumeScale_float = 1 )
-		{
-
-			AudioSource audioSource = GetAudioSourceByResourcePath (audioResourcePath_string);
-			//Debug.Log ("playing : " + audioSource.clip);
-			audioSource.PlayOneShot (audioSource.clip, volumeScale_float);
-			return audioSource;
-		}
-
-		/// <summary>
-		/// Stops the audio resource path.
-		/// </summary>
-		/// <returns>The audio resource path.</returns>
-		/// <param name="pATH_GAME_RESET_AUDIO">P AT h_ GAM e_ RESE t_ AUDI.</param>
-		public AudioSource StopAudioResourcePath (string audioResourcePath_string)
-		{
-			AudioSource audioSource = GetAudioSourceByResourcePath (audioResourcePath_string);
-			audioSource.Stop();
-			return audioSource;
-		}
-
-		/// <summary>
-		/// Gets the audio source by resource path.
-		/// </summary>
-		/// <returns>The audio source by resource path.</returns>
-		/// <param name="audioResourcePath_string">Audio resource path_string.</param>
-		public AudioSource GetAudioSourceByResourcePath (string audioResourcePath_string)
-		{
-
-			AudioSource audioSource = new AudioSource ();
-
-			//	CREATE AND POPULATE A DICTIONARY OF AUDIO SOURCES (EACH CONTAINING ONE CLIP)
-			//	ONLY POPULATES EACH INDEX ONE TIME (OPTIMIZATION)
-			if (_audioSources_dictionary == null)
-			{
-				_audioSources_dictionary = new Dictionary<string, AudioSource>();
-			}
-			if (!_audioSources_dictionary.ContainsKey (audioResourcePath_string))
-			{
-				_audioSources_dictionary[audioResourcePath_string] = gameObject.AddComponent<AudioSource>();
-				_audioSources_dictionary[audioResourcePath_string].clip = Resources.Load (audioResourcePath_string) as AudioClip;
-			}
-
-			//
-			audioSource = _audioSources_dictionary[audioResourcePath_string];
-
-			if (audioSource == null) {
-				throw new Exception ("AudioClip '"+audioResourcePath_string+"' Cannot Be Found. Choose new path name.");
-			}
-
-			return audioSource;
-		}
-
-
+		
+		
 		// 	PUBLIC
+
+		//	PRIVATE
 		//--------------------------------------
 		//  Events
 		//--------------------------------------

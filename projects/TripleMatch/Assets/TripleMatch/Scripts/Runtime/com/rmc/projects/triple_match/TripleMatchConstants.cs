@@ -33,6 +33,7 @@
 //  Namespace
 //--------------------------------------
 using com.rmc.projects.triple_match.mvc.model.data;
+using UnityEngine;
 
 
 namespace com.rmc.projects.triple_match
@@ -65,6 +66,8 @@ namespace com.rmc.projects.triple_match
 		public const int MAX_ROWS = 8;
 		public const int MAX_COLUMNS = 8;
 		public const int MAX_GEM_TYPE_INDEX = 5;
+		public const int MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD = 3; //axis-specific for easy debugging
+		public const int MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD = 3; //axis-specific for easy debugging
 
 		//
 		public static float ROW_SIZE = 0.4f;
@@ -77,20 +80,29 @@ namespace com.rmc.projects.triple_match
 		public static float DURATION_GEM_TWEEN_EXIT = 0.5f;
 		public static float DURATION_FLOATING_SCORE_EXIT = 0.5f;
 		//
-		public static int DURATION_TIME_LEFT_IN_ROUND_MAX  = 5;	//60 SECONDS
+		public static int DURATION_TIME_LEFT_IN_ROUND_MAX  = 60;	//For Production: Use 60 SECONDS
 		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = 1; //easily accelerate time for debugging
 		public static float TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK = 1;//easily accelerate time for debugging
-
+		//
+		public static string SORTING_LAYER_PARTICLE_EFFECTS = "ParticleEffectsSortingLayer";
 
 		//
+
+		public static string TEXT_EMPTY = ""; //easy programmatic search for references for debugging
 		public static string TEXT_TITLE = "Triple Match";
 		public static string TEXT_GAME_RESET_TEXT = "Reset Game";
 		public static string TEXT_SCORE_TOKEN = "Score: {0}";
 		public static string TEXT_TIME_TOKEN = "Time: {0}";
 		public static string TEXT_POINTS_TOKEN = "{0} Pts";
+		//
+		public static string TEXT_INSTRUCTIONS_GAME_START = "Set Resolution to 1:1. Enjoy!";
+		public static string TEXT_INSTRUCTIONS_GAME_OVER = "Click '"+ TripleMatchConstants.TEXT_GAME_RESET_TEXT+"' to try again.";
+
+
 
 		//
 		public static string PATH_GEM_VIEW_PREFAB = "Prefabs/GemViewPrefab";
+		public static string PATH_GEM_EXPLOSION_PREFAB = "Prefabs/GemExplosionPrefab";
 		public static string PATH_FLOATING_SCORE_VIEW_PREFAB = "Prefabs/FloatingScoreViewPrefab";
 		//
 		//
@@ -138,7 +150,26 @@ namespace com.rmc.projects.triple_match
 		/// </summary>
 		public static float GetGemTweenEntryDelay (GemVO gemVO)
 		{
-			return (gemVO.ColumnIndex) * 0.05f;
+			return (TripleMatchConstants.MAX_ROWS - gemVO.RowIndex) * 0.1f;
+		}
+
+		/// <summary>
+		/// Gets the gem exit physics force.
+		/// </summary>
+		/// <returns>The gem exit physics force.</returns>
+		public static Vector2 GetGemExitPhysicsForce ()
+		{
+			int sign_int;
+			if (Random.Range (0, 2) == 1)
+			{
+				sign_int = 1;
+			}
+			else
+			{
+				sign_int = -1;
+			}
+			
+			return new Vector2 (sign_int* 30, 70);
 		}
 	}
 

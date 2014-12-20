@@ -30,16 +30,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using com.rmc.projects.triple_match.mvc.model.data;
-
+using com.rmc.core.audio;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.audio;
-
-
-namespace com.rmc.projects.triple_match.mvc.view
+namespace com.rmc.projects.triple_match.mvc.view.view_components
 {
 
 	//--------------------------------------
@@ -55,7 +52,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class GemView : MonoBehaviour
+	public class GemViewComponent : MonoBehaviour
 	{
 		
 		
@@ -63,7 +60,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//  Properties
 		//--------------------------------------
 		
-		// GETTER / SETTER
+		// 	GETTER / SETTER
 
 		private GemVO _gemVO;
 		public GemVO GemVO
@@ -79,29 +76,33 @@ namespace com.rmc.projects.triple_match.mvc.view
 		}
 
 		
+
+
 		// 	PUBLIC
-
-		
-		[SerializeField]
-		public SpriteRenderer _gemSpriteRenderer;
-		
-		[SerializeField]
-		public SpriteRenderer _reticleSpriteRenderer;
-		
-		[SerializeField]
-		public List<Sprite> _sprites;
-
-		public delegate void OnClickedDelegate (GemView gemView);
+		public delegate void OnClickedDelegate (GemViewComponent gemView);
 		public OnClickedDelegate OnClicked;
 
 		
 		// 	PRIVATE
+		[SerializeField]
+		private SpriteRenderer _gemSpriteRenderer;
 		
+		[SerializeField]
+		private SpriteRenderer _reticleSpriteRenderer;
+		
+		[SerializeField]
+		private List<Sprite> _sprites;
+
 		
 		//--------------------------------------
 		// 	Constructor / Creation
 		//--------------------------------------	
 
+		/// <summary>
+		/// Initialize the specified gemVO and initialLocalPositionVector3.
+		/// </summary>
+		/// <param name="gemVO">Gem V.</param>
+		/// <param name="initialLocalPositionVector3">Initial local position vector3.</param>
 		public void Initialize (GemVO gemVO, Vector3 initialLocalPositionVector3)
 		{
 			_gemVO = gemVO;
@@ -117,7 +118,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 		
 		//--------------------------------------
-		// 	Unity Methods
+		//	Unity Methods
 		//--------------------------------------
 		
 		/// <summary>
@@ -134,7 +135,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//--------------------------------------
 		
 		
-		// PUBLIC
+		//	PUBLIC
 		
 
 
@@ -153,16 +154,16 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		public void TweenToNewPositionEntry ()
 		{
-			_TweenToNewPosition (TripleMatchConstants.GetGemTweenEntryDelay(_gemVO));
+			_TweenToNewPosition (TripleMatchConstants.GetGemTweenEntryDelay(_gemVO), _GetTargetPosition());
 			
 		}
 
 		/// <summary>
 		/// Tweens to new position.
 		/// </summary>
-		public void TweenToNewPositionSwap ()
+		public void TweenToNewPositionSwap (float delayToStart_float)
 		{
-			_TweenToNewPosition (0);
+			_TweenToNewPosition (delayToStart_float, _GetTargetPosition());
 
 			//	SOUND
 			if (AudioManager.IsInstantiated())
@@ -172,19 +173,57 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 		}
 
+
+		/// <summary>
+		/// Tweens to new position exit.
+		/// </summary>
+		public void TweenToNewPositionExit ()
+		{
+
+			//	ADD PHYSICS TO THIS (OTHERWISE NON-PHYSICS GAME) JUST TO GET A NICE FALLING GEM APPEARANCE
+			//gameObject.AddComponent<Rigidbody2D>();
+			//gameObject.GetComponent<BoxCollider2D>().enabled = false;
+			//gameObject.GetComponent<Rigidbody2D>().AddForce ( TripleMatchConstants.GetGemExitPhysicsForce());
+			_ShrinkAndExplode();
+		}
+
+
+
+
+
+		//	PRIVATE
+
+		private void _ShrinkAndExplode ()
+		{
+
+			iTween.ScaleTo(
+				_gemSpriteRenderer.gameObject,
+				iTween.Hash
+				(
+				iT.ScaleTo.x, 		0.6f,
+				iT.ScaleTo.y,		0.6f,
+				iT.ScaleTo.easetype, iTween.EaseType.easeInOutExpo,
+				iT.ScaleTo.time,	0.5f,
+				iT.ScaleTo.delay, 	0
+				)
+				);
+
+			GameObject gemExplosionPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_GEM_EXPLOSION_PREFAB)) as GameObject;
+			gemExplosionPrefab.transform.parent = gameObject.transform;
+
+		}
+
 		/// <summary>
 		/// Tweens to new position.
 		/// </summary>
-		public void _TweenToNewPosition (float durationGemTweenDelay_float)
+		private void _TweenToNewPosition (float durationGemTweenDelay_float, Vector3 targetPosition_vector3)
 		{
-			Vector3 newPosition = _GetTargetPosition();
-			
 			iTween.MoveTo(
 				gameObject,
 				iTween.Hash
 				(
-				iT.MoveTo.x, 		newPosition.x,
-				iT.MoveTo.y,		newPosition.y,
+				iT.MoveTo.x, 		targetPosition_vector3.x,
+				iT.MoveTo.y,		targetPosition_vector3.y,
 				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
 				iT.MoveTo.time,		TripleMatchConstants.DURATION_GEM_TWEEN_SWAP,
 				iT.MoveTo.delay, 	durationGemTweenDelay_float,
@@ -234,8 +273,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 		private Vector3 _GetTargetPosition ()
 		{
 			return new Vector3 (
-				_gemVO.RowIndex*TripleMatchConstants.ROW_SIZE, 
 				_gemVO.ColumnIndex*TripleMatchConstants.COLUMN_SIZE, 
+				-_gemVO.RowIndex*TripleMatchConstants.ROW_SIZE, 
 				transform.localPosition.z);
 		}
 
@@ -243,7 +282,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		
 		
 		//--------------------------------------
-		// 	Event Handlers
+		//	Event Handlers
 		//--------------------------------------
 
 		/// <summary>

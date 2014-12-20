@@ -38,6 +38,7 @@ using com.rmc.projects.triple_match.mvc.controller;
 //  Namespace
 //--------------------------------------
 using com.rmc.core.audio;
+using com.rmc.projects.triple_match.mvc.view.view_components;
 
 
 namespace com.rmc.projects.triple_match.mvc.view
@@ -80,6 +81,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 		[SerializeField]
 		public Text _scoreText;
+
+		[SerializeField]
+		public Text _instructionsText;
 		
 		[SerializeField]
 		public Text _gameResetText;
@@ -100,6 +104,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 		override public void Initialize (Model model, Controller controller)
 		{
 			base.Initialize (model, controller);
+
+			_RenderInstructionsText (TripleMatchConstants.TEXT_EMPTY);
 			
 			_model.OnGameResetted += _OnGameResetted;
 			_model.OnScoreChanged += _OnScoreChanged;
@@ -139,7 +145,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 			GameObject floatingScoreViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_FLOATING_SCORE_VIEW_PREFAB)) as GameObject;
 			floatingScoreViewPrefab.gameObject.transform.SetParent (_canvas.gameObject.transform);
-			FloatingScoreView floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreView>();
+			FloatingScoreViewComponent floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreViewComponent>();
 			floatingScoreView.Initialize (score_int, initialPosition_vector3);
 
 		}
@@ -150,9 +156,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// _renders the title text.
 		/// </summary>
-		private void _RenderTitleText (string titleText_string)
+		private void _RenderTitleText (string text_string)
 		{
-			_titleText.text = titleText_string;
+			_titleText.text = text_string;
 		}
 
 		/// <summary>
@@ -174,11 +180,21 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// _renders the title text.
 		/// </summary>
-		private void _RenderGameResetText (string gameResetText_string)
+		private void _RenderGameResetText (string text_string)
 		{
-			_gameResetText.text = gameResetText_string; 
+			_gameResetText.text = text_string; 
 		}
-		
+
+
+		/// <summary>
+		/// _renders the instructions text.
+		/// </summary>
+		private void _RenderInstructionsText (string text_string)
+		{
+			_instructionsText.text = text_string; 
+		}
+
+
 		
 		//	PRIVATE
 		
@@ -194,28 +210,56 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		public void OnGameResetButtonClicked()
 		{
+
+			Debug.Log ("click2");
+
+			//This Animator State Machine will call OnCoverFadeInComplete()
+			gameObject.GetComponent<Animator>().SetTrigger ("StartGameTrigger");
+
+
+		}
+
+
+		
+		/// <summary>
+		/// Raises the cover fade in complete event.
+		/// 
+		/// NOTE: Must be public for Unity 4.6.x State Machine Events
+		/// 
+		/// </summary>
+		public void OnCoverFadeInComplete()
+		{
 			
+			//Debug.Log ("HUD: Resetted");
 			_controller.GameReset();
 			
+
+			
 		}
+
+
 		
 		/// <summary>
 		/// _ons the game resetted.
 		/// </summary>
 		private void _OnGameResetted ()
 		{
-			
-			//Debug.Log ("HUD: Resetted");
-			
+
 			//	RENDER DISPLAY TEXT
 			//		OPTIONAL: REPLACE STATIC CONST WITH STATIC METHOD TO ADD LOCALIZATION BY SPOKEN LANGUAGE
 			_RenderGameResetText (TripleMatchConstants.TEXT_GAME_RESET_TEXT);
 			_RenderTitleText (TripleMatchConstants.TEXT_TITLE );
 			_RenderScoreText (0);
+			_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_GAME_START);
+			
+			//	HIDE GLOW ON RESTART BUTTON 
+			gameObject.GetComponent<Animator>().SetBool ("IsGameOver", false);
+
+
 
 		}
 
-		
+
 		/// <summary>
 		/// _s the on time left in round changed.
 		/// </summary>
@@ -235,6 +279,12 @@ namespace com.rmc.projects.triple_match.mvc.view
 			{
 				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_TIME_LEFT_IN_ROUND_EXPIRED_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
 			}
+
+			//	SHOW GLOW ON RESTART BUTTON TO ATTRACT USER ATTENTION
+			gameObject.GetComponent<Animator>().SetBool ("IsGameOver", true);
+
+			//
+			_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_GAME_OVER);
 
 		}
 

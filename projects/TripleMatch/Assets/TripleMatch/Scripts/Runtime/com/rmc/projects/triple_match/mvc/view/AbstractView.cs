@@ -110,7 +110,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//--------------------------------------
 		
 		
-		// PUBLIC
+		// 	PUBLIC
 
 		/// <summary>
 		/// Initialize the specified model and controller.

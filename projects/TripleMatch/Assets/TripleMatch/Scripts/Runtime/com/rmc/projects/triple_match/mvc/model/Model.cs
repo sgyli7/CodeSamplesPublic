@@ -132,7 +132,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public delegate void OnGameResettedDelegate ();
 		public OnGameResettedDelegate OnGameResetted;
 
-		public delegate void OnGemVOsMarkedForDeletionChangedDelegate (List<GemVO> gemVOs);
+		public delegate void OnGemVOsMarkedForDeletionChangedDelegate (List<List<GemVO>> gemVOs);
 		public OnGemVOsMarkedForDeletionChangedDelegate OnGemVOsMarkedForDeletionChanged;
 
 		
@@ -207,6 +207,31 @@ namespace com.rmc.projects.triple_match.mvc.model
 			}
 		}
 
+		public static bool AreGemVOsSwappable (GemVO gemVO1, GemVO gemVO2)
+		{
+			
+			bool areGemVOsSwappable = false;
+			
+			//	Are Neighbors?
+			//		off by exactly one in EITHER row OR column
+			//
+			//	Use if/else-if to ease debugging of each axis indivisually
+			//
+			if (gemVO1.RowIndex == gemVO2.RowIndex &&
+			    Mathf.Abs (gemVO1.ColumnIndex - gemVO2.ColumnIndex) == 1)
+			{
+				areGemVOsSwappable = true;
+			}
+			else if (gemVO1.ColumnIndex == gemVO2.ColumnIndex &&
+			         Mathf.Abs (gemVO1.RowIndex - gemVO2.RowIndex) == 1) 
+			{
+				areGemVOsSwappable = true;
+			}
+			
+			return areGemVOsSwappable;
+		}
+
+
 
 		// 	PUBLIC
 
@@ -256,7 +281,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 					else
 					{
 						//CLEAR THOSE MARKED
-						List<GemVO> gemVOsMarkedForDeletion = new List<GemVO>();
+						List<List<GemVO>> gemVOsMarkedForDeletion = new List<List<GemVO>>();
 						if (OnGemVOsMarkedForDeletionChanged != null)
 						{
 							OnGemVOsMarkedForDeletionChanged (gemVOsMarkedForDeletion);
@@ -276,7 +301,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		//--------------------------------------
 		
 		
-		// PUBLIC
+		// 	PUBLIC
 		
 		
 		/// <summary>
@@ -303,17 +328,17 @@ namespace com.rmc.projects.triple_match.mvc.model
 			
 			//	CREATE ALL NEW GEMS
 			GemVO nextGemVO;
-			int nextGemTypeIndex;
+			int nextGemTypeIndex_int;
 			//
 			for (int rowIndex_int = 0; rowIndex_int < TripleMatchConstants.MAX_ROWS; rowIndex_int++)
 			{
 				for (int columnIndex_int = 0; columnIndex_int < TripleMatchConstants.MAX_COLUMNS; columnIndex_int++)
 				{
 					//	SET INDEX (THIS MEANS THE COLOR)
-					nextGemTypeIndex = Random.Range (0, TripleMatchConstants.MAX_GEM_TYPE_INDEX);
+					nextGemTypeIndex_int = Random.Range (0, TripleMatchConstants.MAX_GEM_TYPE_INDEX);
 					
 					//	CREATE 1 NEW GEM
-					nextGemVO = new GemVO (rowIndex_int, columnIndex_int, nextGemTypeIndex);
+					nextGemVO = new GemVO (rowIndex_int, columnIndex_int, nextGemTypeIndex_int);
 					_gemVOs[rowIndex_int, columnIndex_int] = nextGemVO;
 				}
 			}
@@ -327,7 +352,23 @@ namespace com.rmc.projects.triple_match.mvc.model
 			}
 		}
 		
-		
+		/// <summary>
+		/// Determines if is there A match containing either gem V the specified gemVO1 gemVO2.
+		/// 
+		/// </summary>
+		/// <returns><c>true</c> if is there A match containing either gem V the specified gemVO1 gemVO2; otherwise, <c>false</c>.</returns>
+		/// <param name="gemVO1">Gem V o1.</param>
+		/// <param name="gemVO2">Gem V o2.</param>
+		public bool IsThereAMatchContainingEitherGemVO (GemVO gemVO1, GemVO gemVO2)
+		{
+			
+			//TODO: Get the list of all matches and if one of these exists in it then return true.
+			//for now, just FALSE
+			bool isThereAMatchContainingEitherGemVO = false;
+			
+			
+			return isThereAMatchContainingEitherGemVO;
+		}
 		
 		
 		/// <summary>
@@ -353,45 +394,163 @@ namespace com.rmc.projects.triple_match.mvc.model
 	
 		
 		//	PRIVATE
+
+		
+		/// <summary>
+		/// _s the check for matches.
+		/// </summary>
 		private void _CheckForMatches ()
 		{
 			Debug.Log ("_CheckForMatches()");
+			
+			List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists = new List<List<GemVO>>();
+			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesHorizontal());
+			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesVertical());
+			
+			if (OnGemVOsMarkedForDeletionChanged != null)
+			{
+				Debug.Log ("ALL Match : " + gemVOsMatchingInAllChecksListOfLists.Count);
+				OnGemVOsMarkedForDeletionChanged (gemVOsMatchingInAllChecksListOfLists);
+			}
+			
+			
+		}
 
-			List<GemVO> gemVOsMarkedForDeletion = new List<GemVO>();
-			GemVO prevGemVO;
-			GemVO nextGemVO;
+		/// <summary>
+		/// _s the check for matches horizontal.
+		/// </summary>
+		private List<List<GemVO>> _CheckForMatchesHorizontal ()
+		{
+
+
+			List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists = new List<List<GemVO>>();
 			//HORIZONTAL
 			for (int rowIndex_int = 0; rowIndex_int < _gemVOs.GetLength(0); rowIndex_int += 1) 
 			{
-				//VERTICAL (Start at index 1)
-				for (int columnIndex_int = 1; columnIndex_int < _gemVOs.GetLength(1); columnIndex_int += 1) 
+
+				//clear matches
+				List<GemVO> gemVOsMatchingInCurrentCheck = new List<GemVO>();
+
+				//Debug.Log ("CHECK: " + _gemVOs.GetLength(1));
+				//VERTICAL
+				for (int columnIndex_int = 0; columnIndex_int < _gemVOs.GetLength(1); columnIndex_int += 1) 
 				{
-					nextGemVO = _gemVOs[rowIndex_int,columnIndex_int];
-					prevGemVO = _gemVOs[rowIndex_int,columnIndex_int-1];
 
-					//TODO: CHECK FOR MORE THAN 2
-					if (nextGemVO.GemTypeIndex == prevGemVO.GemTypeIndex)
+
+
+					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
+					GemVO nextGemVO = _gemVOs[rowIndex_int, columnIndex_int];
+					Debug.Log ("	... [" + nextGemVO);
+
+					//	FIRST CHECK IN THIS AXIS?, ADD IT!
+					if (gemVOsMatchingInCurrentCheck.Count == 0)
 					{
-
-						if (!gemVOsMarkedForDeletion.Contains (prevGemVO))
-						{
-							gemVOsMarkedForDeletion.Add (prevGemVO);
-						}
-						if (!gemVOsMarkedForDeletion.Contains (nextGemVO))
-						{
-							gemVOsMarkedForDeletion.Add (nextGemVO);
-						}
+						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+					}
+					//	NOT THE FIRST CHECK IN THIS AXIS?, CHECK FOR MATCHING TYPE!
+					else if (gemVOsMatchingInCurrentCheck[0].GemTypeIndex == nextGemVO.GemTypeIndex)
+					{
+						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+						Debug.Log ("\tMatches last t=" + nextGemVO.GemTypeIndex  + " C=" + gemVOsMatchingInCurrentCheck.Count);
 
 					}
+
+
+					//	NEXT DOESN'T MATCH PREVIOUS,...
+					//	OR END OF THE AXIS?
+					if (gemVOsMatchingInCurrentCheck[0].GemTypeIndex != nextGemVO.GemTypeIndex ||
+					    columnIndex_int == _gemVOs.GetLength(1) -1)
+					{
+						//	DO WE HAVE ENOUGH TO MAKE A REWARD?
+						if (gemVOsMatchingInCurrentCheck.Count >= TripleMatchConstants.MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD)
+						{
+							Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
+							gemVOsMatchingInAllChecksListOfLists.Add (gemVOsMatchingInCurrentCheck);
+						}
+
+						//	CLEAR OUT CURRENT LIST
+						gemVOsMatchingInCurrentCheck = new List<GemVO>();
+						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+					}
+
 				}
 			}
 
-			if (OnGemVOsMarkedForDeletionChanged != null)
-			{
-				OnGemVOsMarkedForDeletionChanged (gemVOsMarkedForDeletion);
-			}
+			return gemVOsMatchingInAllChecksListOfLists;
+		}
 
+
+		/// <summary>
+		/// _s the check for matches vertical.
+		/// </summary>
+		private List<List<GemVO>> _CheckForMatchesVertical()
+		{
+
+			List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists = new List<List<GemVO>>();
+
+			//VERTICAL
+			for (int columnIndex_int = 0; columnIndex_int < _gemVOs.GetLength(1); columnIndex_int += 1) 
+			{
+
+				//clear matches
+				List<GemVO> gemVOsMatchingInCurrentCheck = new List<GemVO>();
+				
+				//Debug.Log ("CHECK: " + _gemVOs.GetLength(1));
+				//HORIZONTAL
+				for (int rowIndex_int = 0; rowIndex_int < _gemVOs.GetLength(0); rowIndex_int += 1) 
+				{
+					
+					
+					
+					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
+					GemVO nextGemVO = _gemVOs[rowIndex_int, columnIndex_int];
+					Debug.Log ("	... [" + nextGemVO);
+					
+					//	FIRST CHECK IN THIS AXIS?, ADD IT!
+					if (gemVOsMatchingInCurrentCheck.Count == 0)
+					{
+						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+					}
+					//	NOT THE FIRST CHECK IN THIS AXIS?, CHECK FOR MATCHING TYPE!
+					else if (gemVOsMatchingInCurrentCheck[0].GemTypeIndex == nextGemVO.GemTypeIndex)
+					{
+						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+						Debug.Log ("\tMatches last t=" + nextGemVO.GemTypeIndex  + " C=" + gemVOsMatchingInCurrentCheck.Count);
+						
+					}
+					
+					
+					//	NEXT DOESN'T MATCH PREVIOUS,...
+					//	OR END OF THE AXIS?
+					if (gemVOsMatchingInCurrentCheck[0].GemTypeIndex != nextGemVO.GemTypeIndex ||
+					    rowIndex_int == _gemVOs.GetLength(0) -1)
+					{
+						//	DO WE HAVE ENOUGH TO MAKE A REWARD?
+						if (gemVOsMatchingInCurrentCheck.Count >= TripleMatchConstants.MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD)
+						{
+							Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
+							gemVOsMatchingInAllChecksListOfLists.Add (gemVOsMatchingInCurrentCheck);
+						}
+						
+						//	CLEAR OUT CURRENT LIST
+						gemVOsMatchingInCurrentCheck = new List<GemVO>();
+						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+
+						if (rowIndex_int == _gemVOs.GetLength(1) -1)
+						{
+							Debug.Log ("******** END: " + rowIndex_int);
+
+						}
+					}
+					
+				}
+			}
+			
+			return gemVOsMatchingInAllChecksListOfLists;
+			
 		}	
+
+
 
 		//--------------------------------------
 		// 	Coroutines

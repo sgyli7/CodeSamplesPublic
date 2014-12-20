@@ -1,4 +1,4 @@
- /**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,12 +28,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using UnityEngine.UI;
+
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.templates
+namespace com.rmc.projects.triple_match.mvc.view.view_components
 {
 	
 	//--------------------------------------
@@ -44,41 +46,26 @@ namespace com.rmc.templates
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
-		
+	
 	
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TemplateComponent : MonoBehaviour 
+	public class FloatingScoreViewComponent : MonoBehaviour
 	{
 		
-
+		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 		
 		// GETTER / SETTER
-		/// <summary>
-		/// The _sample public text_string.
-		/// </summary>
-		private string _samplePublicText_string;
-		public string SamplePublicText 
-		{ 
-			get 
-			{ 
-				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-				return _samplePublicText_string; 
-			}
-			set 
-			{ 
-				//OPTIONAL: CONTROLL ACCESS TO PRIVATE VALUE
-				_samplePublicText_string = value; 
-			}
-		}
-			
 		
 		// 	PUBLIC
 		
+		
+		[SerializeField]
+		private Text _text;
 		
 		// 	PRIVATE
 		
@@ -87,27 +74,40 @@ namespace com.rmc.templates
 		// 	Constructor / Creation
 		//--------------------------------------	
 
+		/// <summary>
+		/// Initialize the specified score, initialPosition_vector3 and targetPosition_vector3.
+		/// </summary>
+		public void Initialize (int score_int, Vector3 initialPosition_vector3)
+		{
+			//
+			_text.text = string.Format (TripleMatchConstants.TEXT_POINTS_TOKEN, score_int);
+			
+			//	CONVERT: 3D V3 to 2D V3
+			Vector3 initialPositionPixels_vector3 = Camera.main.WorldToScreenPoint(initialPosition_vector3);
 
+			transform.position = initialPositionPixels_vector3; 
+
+			//
+			Vector3 targetPositionPixels_vector3 = new Vector3 
+				(
+					initialPositionPixels_vector3.x, 
+					initialPositionPixels_vector3.y + TripleMatchConstants.POSITION_OFFSET_FLOATING_SCORE_VIEW_Y, 
+					initialPositionPixels_vector3.z
+				);
+			TweenToNewPosition(targetPositionPixels_vector3);
+		}
+		
+		
+		
 		//--------------------------------------
 		// 	Unity Methods
 		//--------------------------------------
 		
-		///<summary>
-		///	Use this for initialization
-		///</summary>
-		protected void Start () 
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		protected void OnDestroy () 
 		{
-
-
-		}
-
-		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		protected void Update () 
-		{
-			
 			
 		}
 		
@@ -118,36 +118,48 @@ namespace com.rmc.templates
 		
 		
 		// 	PUBLIC
-	
+		
+		
 		/// <summary>
-		/// Samples the public method.
+		/// Tweens to new position.
 		/// </summary>
-		/// <returns>The public method.</returns>
-		/// <param name="message_string">Message_string.</param>
-		public string SamplePublicMethod (string message_string) 
+		public void TweenToNewPosition (Vector3 targetPosition_vector3)
 		{
-			return message_string;
+			
+			iTween.MoveTo(
+				gameObject,
+				iTween.Hash
+				(
+				iT.MoveTo.x, 		targetPosition_vector3.x,
+				iT.MoveTo.y,		targetPosition_vector3.y,
+				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
+				iT.MoveTo.time,		TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT,
+				iT.MoveTo.islocal,	 false,
+				iT.MoveTo.oncomplete, "_OnTweenToNewPositionCompleted",
+				iT.MoveTo.oncompletetarget, gameObject
+				)
+				);
 			
 		}
 		
 		
 		//	PRIVATE
-
-
-
-
+		
 		
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
+
 		/// <summary>
-		/// Handles the Event
+		/// _s the on tween to new position completed.
 		/// </summary>
-		/// <param name="message_string">Message_string.</param>
-		public void _OnEventOccurred (string message_string) 
+		private void _OnTweenToNewPositionCompleted ()
 		{
-			Debug.Log ("_OnEventOccurred(): " + message_string);
-			
+			//Debug.Log ("_OnTweenToNewPositionCompleted()");
+			Destroy (gameObject);
+
+
 		}
+		
 	}
 }

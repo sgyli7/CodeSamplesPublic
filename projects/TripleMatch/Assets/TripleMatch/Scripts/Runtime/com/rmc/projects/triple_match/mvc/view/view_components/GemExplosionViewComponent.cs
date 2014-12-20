@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,14 +28,11 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using UnityEngine.UI;
-
-
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.mvc.view
+namespace com.rmc.projects.triple_match.mvc.view.view_components
 {
 	
 	//--------------------------------------
@@ -51,7 +48,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class FloatingScoreView : MonoBehaviour
+	public class GemExplosionViewComponent : MonoBehaviour
 	{
 		
 		
@@ -59,50 +56,36 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//  Properties
 		//--------------------------------------
 		
-		// GETTER / SETTER
+		// 	GETTER / SETTER
 		
 		// 	PUBLIC
-		
-		
-		[SerializeField]
-		public Text _text;
+
 		
 		// 	PRIVATE
 		
+		[SerializeField]
+		private ParticleSystem _particleSystem;
 		
 		//--------------------------------------
 		// 	Constructor / Creation
 		//--------------------------------------	
+		
+		
+		//--------------------------------------
+		//	Unity Methods
+		//--------------------------------------
 
 		/// <summary>
-		/// Initialize the specified score, initialPosition_vector3 and targetPosition_vector3.
+		/// Start this instance.
 		/// </summary>
-		public void Initialize (int score_int, Vector3 initialPosition_vector3)
+		protected void Start () 
 		{
-			//
-			_text.text = string.Format (TripleMatchConstants.TEXT_POINTS_TOKEN, score_int);
-			
-			//	CONVERT: 3D V3 to 2D V3
-			Vector3 initialPositionPixels_vector3 = Camera.main.WorldToScreenPoint(initialPosition_vector3);
 
-			transform.position = initialPositionPixels_vector3; 
-
-			//
-			Vector3 targetPositionPixels_vector3 = new Vector3 
-				(
-					initialPositionPixels_vector3.x, 
-					initialPositionPixels_vector3.y + TripleMatchConstants.POSITION_OFFSET_FLOATING_SCORE_VIEW_Y, 
-					initialPositionPixels_vector3.z
-				);
-			TweenToNewPosition(targetPositionPixels_vector3);
+			//	FOR SHURIKEN PARTICLE EFFECTS ON TOP OF UNITY 4.6.X 2D, WE MUST ADJUST THE SORTING LAYER
+			_particleSystem.renderer.sortingLayerName = TripleMatchConstants.SORTING_LAYER_PARTICLE_EFFECTS;
+			_particleSystem.renderer.sortingOrder = 1;
 		}
-		
-		
-		
-		//--------------------------------------
-		// 	Unity Methods
-		//--------------------------------------
-		
+
 		/// <summary>
 		/// Raises the destroy event.
 		/// </summary>
@@ -117,49 +100,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//--------------------------------------
 		
 		
-		// PUBLIC
-		
-		
-		/// <summary>
-		/// Tweens to new position.
-		/// </summary>
-		public void TweenToNewPosition (Vector3 targetPosition_vector3)
-		{
-			
-			iTween.MoveTo(
-				gameObject,
-				iTween.Hash
-				(
-				iT.MoveTo.x, 		targetPosition_vector3.x,
-				iT.MoveTo.y,		targetPosition_vector3.y,
-				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
-				iT.MoveTo.time,		TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT,
-				iT.MoveTo.islocal,	 false,
-				iT.MoveTo.oncomplete, "_OnTweenToNewPositionCompleted",
-				iT.MoveTo.oncompletetarget, gameObject
-				)
-				);
-			
-		}
+		//	PUBLIC
 		
 		
 		//	PRIVATE
 		
 		
 		//--------------------------------------
-		// 	Event Handlers
+		//	Event Handlers
 		//--------------------------------------
-
-		/// <summary>
-		/// _s the on tween to new position completed.
-		/// </summary>
-		private void _OnTweenToNewPositionCompleted ()
-		{
-			//Debug.Log ("_OnTweenToNewPositionCompleted()");
-			Destroy (gameObject);
-
-
-		}
-		
 	}
 }

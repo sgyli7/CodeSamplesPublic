@@ -25,57 +25,16 @@
 
 
 //--------------------------------------
-//  Imports
+//  TODO: Before Submission
 //--------------------------------------
-using System;
+
+* Update 100% of comments
+* Move all ‘usings’ to the // IMPORT section (some are a few lines below
+
+
 
 //--------------------------------------
-//  Namespace
+//  TODO: Theoretical future features / fixes
 //--------------------------------------
-namespace com.rmc.core.exceptions
-{
-	
-	//--------------------------------------
-	//  Namespace Properties
-	//--------------------------------------
-	
-	//--------------------------------------
-	//  Class Attributes
-	//--------------------------------------
-	
-	//--------------------------------------
-	//  Class
-	//--------------------------------------
-	public class SwitchStatementException : Exception 
-	{
-		
-		//--------------------------------------
-		//  Properties
-		//--------------------------------------
-		
-		// 	GETTER / SETTER
-		
-		// 	PUBLIC
-		
-		// 	PRIVATE
-		
-		//--------------------------------------
-		//  Methods
-		//--------------------------------------	
-
-		// 	PUBLIC
-
-		public SwitchStatementException () : base ("Reaching the default for this 'switch statement' is not acceptable.")
-		{
 
 
-		}
-
-
-		//--------------------------------------
-		//  Events 
-		//--------------------------------------
-		
-	}
-	
-}

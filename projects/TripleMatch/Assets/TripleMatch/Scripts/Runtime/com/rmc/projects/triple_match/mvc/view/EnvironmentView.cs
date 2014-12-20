@@ -39,6 +39,8 @@ using System.Collections.Generic;
 //  Namespace
 //--------------------------------------
 using com.rmc.core.audio;
+using System.Linq;
+using com.rmc.projects.triple_match.mvc.view.view_components;
 
 
 namespace com.rmc.projects.triple_match.mvc.view
@@ -87,7 +89,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// The _gem views.
 		/// </summary>
-		private List<GemView> _gemViews;
+		private List<GemViewComponent> _gemViews;
 		
 		
 		// 	PRIVATE
@@ -149,7 +151,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			_model.OnGemVOsMarkedForDeletionChanged -= _OnGemVOsMarkedForDeletionChanged;
 			_model.OnScoreChanged -= _OnScoreChanged;
 
-			foreach (GemView gemView in _gemViews)
+			foreach (GemViewComponent gemView in _gemViews)
 			{
 				gemView.OnClicked -= _OnGemViewClicked;
 				
@@ -162,7 +164,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//--------------------------------------
 		
 		
-		// PUBLIC
+		// 	PUBLIC
 
 
 
@@ -182,7 +184,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//	CLEAR OUT GEMS
 			if (_gemViews != null)
 			{
-				foreach (GemView gemView in _gemViews)
+				foreach (GemViewComponent gemView in _gemViews)
 				{
 					gemView.Destroy();
 					gemView.OnClicked -= _OnGemViewClicked;
@@ -190,13 +192,13 @@ namespace com.rmc.projects.triple_match.mvc.view
 				}
 			}
 			
-			_gemViews = new List<GemView>();
+			_gemViews = new List<GemViewComponent>();
 			
 			
 			//
 			GemVO nextGemVO;
 			GameObject nextGemViewPrefab;
-			GemView nextGemView;
+			GemViewComponent nextGemView;
 			Vector3 spawnPointForGemsVector3;
 			
 			//
@@ -211,13 +213,13 @@ namespace com.rmc.projects.triple_match.mvc.view
 					nextGemViewPrefab.transform.parent = _gemsParent.transform;
 					
 					//	INITIALIZE WITH DATA VO
-					nextGemView = nextGemViewPrefab.GetComponent<GemView>();
+					nextGemView = nextGemViewPrefab.GetComponent<GemViewComponent>();
 					
 
 					//
 					spawnPointForGemsVector3 = new Vector3 
 						(
-							TripleMatchConstants.ROW_SIZE * rowIndex_int, 
+							TripleMatchConstants.COLUMN_SIZE * columnIndex_int, 
 							5, 
 							transform.localPosition.z
 						);
@@ -232,40 +234,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 		}
 		
 
-		/// <summary>
-		/// _s the is gem VO swappable with selected gem V.
-		/// </summary>
-		private bool _IsGemVOSwappableWithSelectedGemVO (GemVO gemVO)
-		{
-			bool isGemVOSwappableWithSelectedGemVO = false;
-			
-			//	Are Neighbors?
-			//		off by exactly one in EITHER row OR column
-			//
-			//	Use if/else-if to ease debugging of each axis indivisually
-			//
-			if (_model.SelectedGemVO.RowIndex == gemVO.RowIndex &&
-			    Mathf.Abs (_model.SelectedGemVO.ColumnIndex - gemVO.ColumnIndex) == 1)
-			{
-				isGemVOSwappableWithSelectedGemVO = true;
-			}
-			else if (_model.SelectedGemVO.ColumnIndex == gemVO.ColumnIndex &&
-			         Mathf.Abs (_model.SelectedGemVO.RowIndex - gemVO.RowIndex) == 1) 
-			{
-				isGemVOSwappableWithSelectedGemVO = true;
-			}
-			
-			return isGemVOSwappableWithSelectedGemVO;
-		}
 		
 		
 		/// <summary>
 		/// _s the get gem view for gem vo.
 		/// </summary>
-		private GemView _GetGemViewForGemVo (GemVO gemVO)
+		private GemViewComponent _GetGemViewForGemVo (GemVO gemVO)
 		{
-			GemView gemViewFound = null;
-			foreach (GemView gemView in _gemViews)
+			GemViewComponent gemViewFound = null;
+			foreach (GemViewComponent gemView in _gemViews)
 			{
 				if (gemView.GemVO == gemVO)
 				{
@@ -281,37 +258,73 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// _s the swap two gem V os.
 		/// </summary>
-		private void _SwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
+		private void _AttemptSwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
 		{
 			int rowIndex = gemVO1.RowIndex;
 			int columnIndex = gemVO1.ColumnIndex;
 			//
 			gemVO1.RowIndex = gemVO2.RowIndex;
 			gemVO1.ColumnIndex = gemVO2.ColumnIndex;
-			_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap();
+			_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap(0);
 			//
 			gemVO2.RowIndex = rowIndex;
 			gemVO2.ColumnIndex = columnIndex;
-			_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap();
+			_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap(0);
+
+			//NO MATCH, THEN SWAP BACK
+			if (!_model.IsThereAMatchContainingEitherGemVO(gemVO1, gemVO2))
+			{
+
+				//local variable used for code-readability
+				float delayToStart_float = TripleMatchConstants.DURATION_GEM_TWEEN_SWAP;
+
+				int rowIndex2 = gemVO1.RowIndex;
+				int columnIndex2 = gemVO1.ColumnIndex;
+				//
+				gemVO1.RowIndex = gemVO2.RowIndex;
+				gemVO1.ColumnIndex = gemVO2.ColumnIndex;
+				_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap(delayToStart_float);
+				//
+				gemVO2.RowIndex = rowIndex2;
+				gemVO2.ColumnIndex = columnIndex2;
+				_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap(delayToStart_float);
+			}
+			else 
+			{
+				//TODO, CHECK FOR MATCHES?
+			
+			}
 
 		}
 
 		/// <summary>
 		/// Reward one match.
 		/// </summary>
-		private void _RewardOneMatch (List<GemView> gemViewsInOneMatch)
+		private void _RewardOneMatchFromGemVOList (List<GemVO> gemVOs)
 		{
+			List<GemViewComponent> gemViews = new List<GemViewComponent>();
+
+			//TODO: replace with linq for brevity
+			foreach (GemVO gemVO in gemVOs)
+			{
+				gemViews.Add (_GetGemViewForGemVo (gemVO));
+			}
+
 			//	TODO: find center point of all 3+ gems
-			Vector3 centerPointOfMatch_vector3 = gemViewsInOneMatch[0].gameObject.transform.position;
+			Vector3 centerPointOfMatch_vector3 = gemViews[0].gameObject.transform.position;
 
 
 			//	CREATE AND REPARENT
 			_hudView.RewardOneMatch 
 				(
-					TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViewsInOneMatch.Count), 
+					TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViews.Count), 
 					centerPointOfMatch_vector3
 				);
 
+			foreach (GemViewComponent gemView in gemViews)
+			{
+				gemView.TweenToNewPositionExit();
+			}
 
 		}
 		
@@ -359,10 +372,19 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// _s the on gem clicked.
 		/// </summary>
 		/// <param name="gemView">Gem view.</param>
-		private void _OnGemViewClicked (GemView gemView)
+		private void _OnGemViewClicked (GemViewComponent gemView)
 		{
 
-			
+			Debug.Log ("clicked: " + gemView.GemVO);
+
+			//TODO: ONLY EXIT AFTER A MATCH, NOT HERE
+			gemView.TweenToNewPositionExit();
+			return;
+
+
+
+
+			//
 			if (_model.GameState == GameState.PLAYING)
 			{
 
@@ -377,31 +399,10 @@ namespace com.rmc.projects.triple_match.mvc.view
 					_controller.SelectedGemVO = null;
 					
 				}
-				else if (_IsGemVOSwappableWithSelectedGemVO (gemView.GemVO))
+				else if (Model.AreGemVOsSwappable (_model.SelectedGemVO, gemView.GemVO))
 				{
-
-
-					//	TODO: Move this based on model input NOT here in the view
-					List<GemView> gemViewsInOneMatch = new List<GemView>();
-					gemViewsInOneMatch.Add (_GetGemViewForGemVo (_model.SelectedGemVO));
-					gemViewsInOneMatch.Add (gemView);
-					_RewardOneMatch (gemViewsInOneMatch);
-
-					//	TODO: Score points from model, not from here
-					_model.SetScore 
-						( 
-					    	_model.Score + TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViewsInOneMatch.Count), 
-						 	TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT
-						 );
-
-
-
-
-
-
-
 					//	3. SWAP FIRST & SECOND GEM IN A PAIR
-					_SwapTwoGemVOs (_model.SelectedGemVO, gemView.GemVO);
+					_AttemptSwapTwoGemVOs (_model.SelectedGemVO, gemView.GemVO);
 					_controller.SelectedGemVO = null;
 
 				}
@@ -422,7 +423,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			if (_gemViews != null)
 			{
-				foreach (GemView gemView in _gemViews)
+				foreach (GemViewComponent gemView in _gemViews)
 				{
 					//	1. DESELECT EXACTLY ALL GEMS (EXCEPT 1)
 					gemView.SetIsHighlighted (false);
@@ -441,21 +442,28 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// _s the on gem V os marked for deletion changed.
 		/// </summary>
 		/// <param name="gemVOs">Gem V os.</param>
-		private void _OnGemVOsMarkedForDeletionChanged (List<GemVO> gemVOs)
+		private void _OnGemVOsMarkedForDeletionChanged (List<List<GemVO>> gemVOListOfLists)
 		{
 
 			//	1. deselect all
-			foreach (GemView gemView in _gemViews)
+			foreach (GemViewComponent gemView in _gemViews)
 			{
 				
 				gemView.SetIsHighlighted (false);
 			}
 
 			//	2. select some
-			foreach (GemVO gemVO in gemVOs)
+			foreach (List<GemVO> gemVOList in gemVOListOfLists)
 			{
-				
-				_GetGemViewForGemVo(gemVO).SetIsHighlighted (true);
+
+				_RewardOneMatchFromGemVOList (gemVOList);
+
+
+				//TODO: REMOVE HIGHLIGHTING, ITS FOR DEBUGGING ONLY
+				foreach (GemVO gemVO in gemVOList)
+				{
+					_GetGemViewForGemVo(gemVO).SetIsHighlighted (true);
+				}
 			}
 		}
 		
