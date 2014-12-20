@@ -25,6 +25,14 @@
 
 
 //--------------------------------------
+//  Error Suppression Needed?
+// #pragma warning disable xxxx
+// #pragma warning restore xxxx
+//--------------------------------------
+
+
+
+//--------------------------------------
 //  Imports
 //--------------------------------------
 using UnityEngine;

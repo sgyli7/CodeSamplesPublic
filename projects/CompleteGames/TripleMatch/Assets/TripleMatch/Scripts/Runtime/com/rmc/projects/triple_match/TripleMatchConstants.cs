@@ -34,6 +34,7 @@
 //--------------------------------------
 using com.rmc.projects.triple_match.mvc.model.data;
 using UnityEngine;
+using com.rmc.core.exceptions;
 
 
 namespace com.rmc.projects.triple_match
@@ -112,6 +113,8 @@ namespace com.rmc.projects.triple_match
 		public static string PATH_GAME_RESET_AUDIO = "Audio/SoundEffects/GameStart01";
 		public static string PATH_SCORE_INCREASE_AUDIO = "Audio/SoundEffects/ScoreIncrease01";
 		public static string PATH_GEM_SWAP_AUDIO = "Audio/SoundEffects/GemSwap01";
+		public static string PATH_GEM_EXPLOSION_AUDIO = "Audio/SoundEffects/GemExit01";
+
 		public static string PATH_TIME_LEFT_IN_ROUND_EXPIRED_AUDIO = "Audio/SoundEffects/TimeLeftInRoundExpired01";
 
 
@@ -170,6 +173,55 @@ namespace com.rmc.projects.triple_match
 			}
 			
 			return new Vector2 (sign_int* 30, 70);
+		}
+
+		/// <summary>
+		/// Gets the gem color by gem V. Since our list of gems is finite and permanent, manually listing the colors is fast/fun.
+		/// 
+		/// Option: Alternative, Pass GemViewComponent instance instead and take a sample of its pixel colors dynamically.
+		/// 
+		/// </summary>
+		/// <returns>The gem color by gem V.</returns>
+		/// <param name="_gemVO">_gem V.</param>
+		public static Color GetGemColorByGemVO (GemVO _gemVO)
+		{
+			Color colorByGemVO = new Color(0,0,0); //create non-null default
+
+			if (_gemVO != null)
+			{
+				switch (_gemVO.GemTypeIndex)
+				{
+				case 0:
+					//	blue
+					colorByGemVO = Color.blue;
+					break;
+				case 1:
+					//	green
+					colorByGemVO = Color.green;
+					break;
+				case 2:
+					//	purple
+					colorByGemVO = Color.magenta;
+					break;
+				case 3:
+					//	red
+					colorByGemVO = Color.red;
+					break;
+				case 4:
+					//	yellow
+					colorByGemVO = Color.yellow;
+					break;
+				default:
+					#pragma warning disable 0162
+					throw new SwitchStatementException ();
+					#pragma warning restore 0162
+					break;
+
+				}
+			}
+
+			return colorByGemVO;
+
 		}
 	}
 

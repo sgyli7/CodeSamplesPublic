@@ -36,7 +36,9 @@ public class CFX_SpawnSystemEditor : Editor
 			{
 				Object preloadedObject = (this.target as CFX_SpawnSystem).objectsToPreload[i];
 				string objectName = (preloadedObject == null) ? "" : preloadedObject.name;
+				#pragma warning disable 0618
 				Undo.RegisterUndo(target, string.Format("Remove {0} from Spawn System", objectName));
+				#pragma warning restore 0618
 				
 				ArrayUtility.RemoveAt<GameObject>(ref (this.target as CFX_SpawnSystem).objectsToPreload, i);
 				ArrayUtility.RemoveAt<int>(ref (this.target as CFX_SpawnSystem).objectsToPreloadTimes, i);
@@ -70,8 +72,10 @@ public class CFX_SpawnSystemEditor : Editor
 						
 						if(!already)
 						{
+							#pragma warning disable 0618
 							Undo.RegisterUndo(target, string.Format("Add {0} to Spawn System", o.name));
-							
+							#pragma warning restore 0618
+
 							ArrayUtility.Add<GameObject>(ref (this.target as CFX_SpawnSystem).objectsToPreload, (GameObject)o);
 							ArrayUtility.Add<int>(ref (this.target as CFX_SpawnSystem).objectsToPreloadTimes, 1);
 							

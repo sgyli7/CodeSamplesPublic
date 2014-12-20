@@ -1,4 +1,4 @@
-/**
+ /**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -25,16 +25,9 @@
 
 
 //--------------------------------------
-//  TODO: Before Submission
-//--------------------------------------
-
-* Update 100% of comments
-* Move all ‘usings’ to the // IMPORT section (some are a few lines below
-* Remove 100% of warnings and errors
-
-
-//--------------------------------------
-//  TODO: Theoretical future features / fixes
+//  Error Suppression Needed?
+// #pragma warning disable xxxx
+// #pragma warning restore xxxx
 //--------------------------------------
 
 

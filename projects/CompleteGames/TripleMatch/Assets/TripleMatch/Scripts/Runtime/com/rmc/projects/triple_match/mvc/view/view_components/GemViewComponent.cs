@@ -209,6 +209,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 				);
 
 			GameObject gemExplosionPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_GEM_EXPLOSION_PREFAB)) as GameObject;
+			gemExplosionPrefab.GetComponent<GemExplosionViewComponent>().Initialize (_gemVO);
 			gemExplosionPrefab.transform.SetParent (transform, false);
 
 		}

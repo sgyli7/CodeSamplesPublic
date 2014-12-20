@@ -28,10 +28,13 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.projects.triple_match.mvc.model.data;
+
 namespace com.rmc.projects.triple_match.mvc.view.view_components
 {
 	
@@ -50,6 +53,8 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 	//--------------------------------------
 	public class GemExplosionViewComponent : MonoBehaviour
 	{
+
+
 		
 		
 		//--------------------------------------
@@ -62,17 +67,31 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 
 		
 		// 	PRIVATE
-		
-		[SerializeField]
-		private GameObject _particleSystemPrefab;
+		/// <summary>
+		/// The _gem V.
+		/// </summary>
+		private GemVO _gemVO;
 
-		//
-		private ParticleSystem _particleSystem;
-		
+		/// <summary>
+		/// Add one or more particle system prefabs. Each will be added upon start. EXPLODE!!!
+		/// </summary>
+		[SerializeField]
+		private List<GameObject> _particleSystemPrefabs;
+
+
 		//--------------------------------------
 		// 	Constructor / Creation
-		//--------------------------------------	
-		
+		//--------------------------------------
+		/// <summary>
+		/// Initialize the specified gemVO.
+		/// </summary>
+		/// <param name="gemVO">Gem V.</param>
+		public void Initialize (GemVO gemVO)
+		{
+			_gemVO = gemVO;
+
+
+		}
 		
 		//--------------------------------------
 		//	Unity Methods
@@ -84,14 +103,31 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		protected void Start () 
 		{
 
-			GameObject particleSystemPrefabInstance = Instantiate (_particleSystemPrefab) as GameObject;
-			particleSystemPrefabInstance.transform.SetParent (transform, false);
+			ParticleSystem _particleSystem;
+			GameObject particleSystemPrefabInstance;
+			int particleSystemPrefabIndex_int = 0;
+			foreach (GameObject particleSystemPrefab in _particleSystemPrefabs)
+			{
+				particleSystemPrefabInstance = Instantiate (particleSystemPrefab) as GameObject;
+				particleSystemPrefabInstance.transform.localPosition = new Vector3 (0,0,0); //Some CFX prefabs are not at 0,0,0. Correct that.
+				particleSystemPrefabInstance.transform.SetParent (transform, false);
+				
+				//
+				_particleSystem = particleSystemPrefabInstance.GetComponent<ParticleSystem>();
+				
+				//	COLOR EFFECT TO MATCH GEM, DON'T RECOLOR THE FIRST PREFAB (THE SMOKE)
+				if (particleSystemPrefabIndex_int > 0)
+				{
+					_particleSystem.startColor = TripleMatchConstants.GetGemColorByGemVO (_gemVO);
+				}
 
-			_particleSystem = particleSystemPrefabInstance.GetComponent<ParticleSystem>();
+				//	FOR SHURIKEN PARTICLE EFFECTS ON TOP OF UNITY 4.6.X 2D, WE MUST ADJUST THE SORTING LAYER
+				_particleSystem.renderer.sortingLayerName = TripleMatchConstants.SORTING_LAYER_PARTICLE_EFFECTS;
+				_particleSystem.renderer.sortingOrder = 1;
 
-			//	FOR SHURIKEN PARTICLE EFFECTS ON TOP OF UNITY 4.6.X 2D, WE MUST ADJUST THE SORTING LAYER
-			_particleSystem.renderer.sortingLayerName = TripleMatchConstants.SORTING_LAYER_PARTICLE_EFFECTS;
-			_particleSystem.renderer.sortingOrder = 1;
+				particleSystemPrefabIndex_int++;
+			}
+
 		}
 
 		/// <summary>

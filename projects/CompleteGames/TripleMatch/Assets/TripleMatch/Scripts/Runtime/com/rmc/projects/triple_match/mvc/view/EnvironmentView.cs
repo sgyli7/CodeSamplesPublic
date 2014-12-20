@@ -326,6 +326,12 @@ namespace com.rmc.projects.triple_match.mvc.view
 				gemView.TweenToNewPositionExit();
 			}
 
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_EXPLOSION_AUDIO);
+			}
+
+
 		}
 		
 		
@@ -376,13 +382,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 
 			Debug.Log ("clicked: " + gemView.GemVO);
-
-			//TODO: ONLY EXIT AFTER A MATCH, NOT HERE
-			gemView.TweenToNewPositionExit();
-			return;
-
-
-
 
 			//
 			if (_model.GameState == GameState.PLAYING)
