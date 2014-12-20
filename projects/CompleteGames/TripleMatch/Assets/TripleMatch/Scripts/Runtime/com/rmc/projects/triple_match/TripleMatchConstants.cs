@@ -63,9 +63,9 @@ namespace com.rmc.projects.triple_match
 		
 		// 	PUBLIC
 		
-		public const int MAX_ROWS = 8;
-		public const int MAX_COLUMNS = 8;
-		public const int MAX_GEM_TYPE_INDEX = 5;
+		public const int MAX_ROWS = 8; //For Production, 8
+		public const int MAX_COLUMNS = 8; //For Production, 8
+		public const int MAX_GEM_TYPE_INDEX = 5; //For Production, 5
 		public const int MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD = 3; //axis-specific for easy debugging
 		public const int MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD = 3; //axis-specific for easy debugging
 

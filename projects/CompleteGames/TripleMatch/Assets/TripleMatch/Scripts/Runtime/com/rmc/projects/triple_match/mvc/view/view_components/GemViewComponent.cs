@@ -181,9 +181,9 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		{
 
 			//	ADD PHYSICS TO THIS (OTHERWISE NON-PHYSICS GAME) JUST TO GET A NICE FALLING GEM APPEARANCE
-			//gameObject.AddComponent<Rigidbody2D>();
-			//gameObject.GetComponent<BoxCollider2D>().enabled = false;
-			//gameObject.GetComponent<Rigidbody2D>().AddForce ( TripleMatchConstants.GetGemExitPhysicsForce());
+			gameObject.AddComponent<Rigidbody2D>();
+			gameObject.GetComponent<BoxCollider2D>().enabled = false;
+			gameObject.GetComponent<Rigidbody2D>().AddForce ( TripleMatchConstants.GetGemExitPhysicsForce());
 			_ShrinkAndExplode();
 		}
 
@@ -209,7 +209,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 				);
 
 			GameObject gemExplosionPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_GEM_EXPLOSION_PREFAB)) as GameObject;
-			gemExplosionPrefab.transform.parent = gameObject.transform;
+			gemExplosionPrefab.transform.SetParent (transform, false);
 
 		}
 

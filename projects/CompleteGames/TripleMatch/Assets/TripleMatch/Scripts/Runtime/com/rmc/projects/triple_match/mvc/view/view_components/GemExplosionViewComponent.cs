@@ -64,6 +64,9 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		// 	PRIVATE
 		
 		[SerializeField]
+		private GameObject _particleSystemPrefab;
+
+		//
 		private ParticleSystem _particleSystem;
 		
 		//--------------------------------------
@@ -80,6 +83,11 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		/// </summary>
 		protected void Start () 
 		{
+
+			GameObject particleSystemPrefabInstance = Instantiate (_particleSystemPrefab) as GameObject;
+			particleSystemPrefabInstance.transform.SetParent (transform, false);
+
+			_particleSystem = particleSystemPrefabInstance.GetComponent<ParticleSystem>();
 
 			//	FOR SHURIKEN PARTICLE EFFECTS ON TOP OF UNITY 4.6.X 2D, WE MUST ADJUST THE SORTING LAYER
 			_particleSystem.renderer.sortingLayerName = TripleMatchConstants.SORTING_LAYER_PARTICLE_EFFECTS;
