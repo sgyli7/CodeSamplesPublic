@@ -59,12 +59,18 @@ namespace com.rmc.core.support
 		//--------------------------------------
 		
 		//	GETTER / SETTER
-		//	TODO: Suppress. warning here. Harmless
-		private static T _Instance;
+		/// <summary>
+		/// Do not call this from another scope within OnDestroy(). Instead use IsInstantiated()
+		/// </summary>
+		private static T _Instance; //harmless warning
 		public static T Instance
 		{
 			get
 			{
+				if (!IsInstantiated())
+				{
+					Instantiate();
+				}
 				return _Instance;
 			}
 			set

@@ -123,7 +123,14 @@ namespace com.rmc.projects.triple_match.mvc.controller
 			
 			_model.GameReset();
 		}
-		
+
+		/// <summary>
+		/// Checks for matches.
+		/// </summary>
+		public void CheckForMatches ()
+		{
+			_model.CheckForMatches();
+		}		
 		
 		/// <summary>
 		/// Selecteds the gem V.

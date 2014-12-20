@@ -259,6 +259,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 		/// <summary>
 		/// Debug only
+		/// TODO: REmove this
 		/// </summary>
 		private bool _debugging_HasCheckedForMatches = false;
 
@@ -272,11 +273,13 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 			if (GameState == GameState.PLAYING)
 			{
+
+				//TODO: REMOVE THIS DEBUGGING INPUT
 				if (Input.GetKeyDown (KeyCode.Space))
 				{
 					if (!_debugging_HasCheckedForMatches)
 					{
-						_CheckForMatches();
+						CheckForMatches();
 					}
 					else
 					{
@@ -350,6 +353,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			{
 				OnGameResetted ();
 			}
+
 		}
 		
 		/// <summary>
@@ -392,16 +396,14 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 
 	
-		
-		//	PRIVATE
 
 		
 		/// <summary>
 		/// _s the check for matches.
 		/// </summary>
-		private void _CheckForMatches ()
+		public void CheckForMatches ()
 		{
-			Debug.Log ("_CheckForMatches()");
+			Debug.Log ("CheckForMatches()");
 			
 			List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists = new List<List<GemVO>>();
 			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesHorizontal());
@@ -415,6 +417,10 @@ namespace com.rmc.projects.triple_match.mvc.model
 			
 			
 		}
+
+		
+		//	PRIVATE
+
 
 		/// <summary>
 		/// _s the check for matches horizontal.
@@ -440,7 +446,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
 					GemVO nextGemVO = _gemVOs[rowIndex_int, columnIndex_int];
-					Debug.Log ("	... [" + nextGemVO);
+					//Debug.Log ("	... [" + nextGemVO);
 
 					//	FIRST CHECK IN THIS AXIS?, ADD IT!
 					if (gemVOsMatchingInCurrentCheck.Count == 0)
@@ -451,7 +457,6 @@ namespace com.rmc.projects.triple_match.mvc.model
 					else if (gemVOsMatchingInCurrentCheck[0].GemTypeIndex == nextGemVO.GemTypeIndex)
 					{
 						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
-						Debug.Log ("\tMatches last t=" + nextGemVO.GemTypeIndex  + " C=" + gemVOsMatchingInCurrentCheck.Count);
 
 					}
 
@@ -504,7 +509,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 					
 					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
 					GemVO nextGemVO = _gemVOs[rowIndex_int, columnIndex_int];
-					Debug.Log ("	... [" + nextGemVO);
+					//Debug.Log ("	... [" + nextGemVO);
 					
 					//	FIRST CHECK IN THIS AXIS?, ADD IT!
 					if (gemVOsMatchingInCurrentCheck.Count == 0)

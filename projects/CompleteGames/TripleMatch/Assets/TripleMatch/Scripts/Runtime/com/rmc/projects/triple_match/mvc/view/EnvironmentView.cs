@@ -38,9 +38,11 @@ using System.Collections.Generic;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.audio;
 using System.Linq;
 using com.rmc.projects.triple_match.mvc.view.view_components;
+using System.Collections;
+using System;
+using com.rmc.core.managers;
 
 
 namespace com.rmc.projects.triple_match.mvc.view
@@ -186,8 +188,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 			{
 				foreach (GemViewComponent gemView in _gemViews)
 				{
-					gemView.Destroy();
 					gemView.OnClicked -= _OnGemViewClicked;
+					gemView.OnTweenToNewPositionEntryCompleted -= _OnGemTweenToNewPositionEntryCompleted;
+					gemView.Destroy(0);
 					
 				}
 			}
@@ -200,7 +203,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 			GameObject nextGemViewPrefab;
 			GemViewComponent nextGemView;
 			Vector3 spawnPointForGemsVector3;
-			
 			//
 			for (int rowIndex_int = 0; rowIndex_int < gemVOs.GetLength(0); rowIndex_int += 1) 
 			{
@@ -224,12 +226,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 							transform.localPosition.z
 						);
 					//
-					nextGemView.Initialize (nextGemVO, spawnPointForGemsVector3);
+					nextGemView.OnTweenToNewPositionEntryCompleted += _OnGemTweenToNewPositionEntryCompleted;
 					nextGemView.OnClicked += _OnGemViewClicked;
+					nextGemView.Initialize (nextGemVO, spawnPointForGemsVector3);
+
 					_gemViews.Add (nextGemView);
 				}
 			}
-			
+
 			
 		}
 		
@@ -333,14 +337,32 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 
 		}
-		
-		
-		
+
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
 
+		/// <summary>
+		/// _s the on tween to new position entry completed.
+		/// </summary>
+		/// <param name="gemView">Gem view.</param>
+		private void _OnGemTweenToNewPositionEntryCompleted (GemViewComponent gemView)
+		{
+			gemView.OnTweenToNewPositionEntryCompleted -= _OnGemTweenToNewPositionEntryCompleted;
+
+			//	ARE 100% IN PROPER TARGET POSITION?
+			if (_gemViews.Where (nextGemView => nextGemView.IsAtTargetPosition()).Count() == _gemViews.Count)
+			{
+
+				CoroutineManager.Instance.WaitForSecondsToCall (_controller.CheckForMatches, TripleMatchConstants.DURATION_DELAY_BEFORE_CHECK_FOR_MATCHES);
+
+			}
+		}
+
 		
+		//
+
+
 		/// <summary>
 		/// _ons the game resetted.
 		/// </summary>

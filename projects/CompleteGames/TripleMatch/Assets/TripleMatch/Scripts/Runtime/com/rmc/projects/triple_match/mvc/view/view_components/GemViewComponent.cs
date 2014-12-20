@@ -30,12 +30,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 using com.rmc.projects.triple_match.mvc.model.data;
-using com.rmc.core.audio;
-
-
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.managers;
+
+
 namespace com.rmc.projects.triple_match.mvc.view.view_components
 {
 
@@ -81,6 +81,19 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		// 	PUBLIC
 		public delegate void OnClickedDelegate (GemViewComponent gemView);
 		public OnClickedDelegate OnClicked;
+
+		public delegate void OnTweenToNewPositionCompletedDelegate (GemViewComponent gemView);
+		public OnTweenToNewPositionCompletedDelegate OnTweenToNewPositionEntryCompleted;
+
+
+		/// <summary>
+		/// Determines whether this instance is at target position.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is at target position; otherwise, <c>false</c>.</returns>
+		public bool IsAtTargetPosition ()
+		{
+			return transform.localPosition == _GetTargetPosition();
+		}
 
 		
 		// 	PRIVATE
@@ -136,15 +149,13 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		
 		
 		//	PUBLIC
-		
-
-
 		/// <summary>
-		/// Destroy this instance.
+		/// Destroy the specified delayBeforeDestroy_float.
 		/// </summary>
-		public void Destroy ()
+		/// <param name="delayBeforeDestroy_float">Delay before destroy_float.</param>
+		public void Destroy (float delayBeforeDestroy_float)
 		{
-			Destroy (gameObject);
+			Destroy (gameObject, delayBeforeDestroy_float);
 		}
 
 		
@@ -154,8 +165,9 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		/// </summary>
 		public void TweenToNewPositionEntry ()
 		{
-			_TweenToNewPosition (TripleMatchConstants.GetGemTweenEntryDelay(_gemVO), _GetTargetPosition());
-			
+			_TweenToNewPosition (TripleMatchConstants.GetGemTweenEntryDelay(_gemVO), _GetTargetPosition(), "_OnTweenToNewPositionEntryCompleted" );
+
+
 		}
 
 		/// <summary>
@@ -163,7 +175,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		/// </summary>
 		public void TweenToNewPositionSwap (float delayToStart_float)
 		{
-			_TweenToNewPosition (delayToStart_float, _GetTargetPosition());
+			_TweenToNewPosition (delayToStart_float, _GetTargetPosition(), "_OnTweenToNewPositionSwapCompleted");
 
 			//	SOUND
 			if (AudioManager.IsInstantiated())
@@ -184,6 +196,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 			gameObject.AddComponent<Rigidbody2D>();
 			gameObject.GetComponent<BoxCollider2D>().enabled = false;
 			gameObject.GetComponent<Rigidbody2D>().AddForce ( TripleMatchConstants.GetGemExitPhysicsForce());
+			Destroy (gameObject, 3);
 			_ShrinkAndExplode();
 		}
 
@@ -217,7 +230,8 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		/// <summary>
 		/// Tweens to new position.
 		/// </summary>
-		private void _TweenToNewPosition (float durationGemTweenDelay_float, Vector3 targetPosition_vector3)
+		private void _TweenToNewPosition (float durationGemTweenDelay_float, Vector3 targetPosition_vector3, 
+		                                  string onTweenCompletedFunctionName_string )
 		{
 			iTween.MoveTo(
 				gameObject,
@@ -228,6 +242,8 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
 				iT.MoveTo.time,		TripleMatchConstants.DURATION_GEM_TWEEN_SWAP,
 				iT.MoveTo.delay, 	durationGemTweenDelay_float,
+				iT.MoveTo.oncompletetarget, gameObject,
+				iT.MoveTo.oncomplete, onTweenCompletedFunctionName_string,
 				iT.MoveTo.islocal,	 true
 				)
 				);
@@ -285,6 +301,27 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		//--------------------------------------
 		//	Event Handlers
 		//--------------------------------------
+
+
+		/// <summary>
+		/// _s the on tween to new position entry completed.
+		/// </summary>
+		public void _OnTweenToNewPositionEntryCompleted ()
+		{
+			if (OnTweenToNewPositionEntryCompleted != null)
+			{
+				OnTweenToNewPositionEntryCompleted (this);
+			}
+		}
+
+		/// <summary>
+		/// _s the on tween to new position swap completed.
+		/// </summary>
+		public void _OnTweenToNewPositionSwapCompleted ()
+		{
+			//TODO: Dispatch something?
+		}
+
 
 		/// <summary>
 		/// Raises the mouse down event.

@@ -30,18 +30,18 @@
 using UnityEngine;
 using com.rmc.core.support;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.core.audio
+namespace com.rmc.core.managers
 {
 	
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-
+	
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -51,7 +51,15 @@ namespace com.rmc.core.audio
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class AudioManager : SingletonMonobehavior<AudioManager> 
+	/// <summary>
+	/// Coroutine manager. Main purpose;
+	/// 
+	/// 	1. Allow non-monobehavior classes to call coroutines easily
+	/// 	2. Allow monobehavior classes to call methods after a delay (with less boilerplate code)
+	/// 	
+	/// 
+	/// </summary>
+	public class CoroutineManager : SingletonMonobehavior<CoroutineManager> 
 	{
 		
 		
@@ -64,36 +72,31 @@ namespace com.rmc.core.audio
 		// 	PUBLIC
 		
 		// 	PUBLIC STATIC
-
-
+		
+		
 		// 	PRIVATE
-		/// <summary>
-		/// The _audio sources_dictionary.
-		/// </summary>
-		private Dictionary<string, AudioSource> _audioSources_dictionary;
-
-
+		
 		// 	PRIVATE STATIC
 		
 		//--------------------------------------
 		//  Constructor / Creation
 		//--------------------------------------	
 		
-
-
+		
+		
 		//--------------------------------------
 		//  Unity Methods
 		//--------------------------------------
-
+		
 		///<summary>
 		///	Use this for initialization
 		///</summary>
 		void Start () 
 		{
-
+			
 		}
-
-
+		
+		
 		
 		
 		///<summary>
@@ -103,8 +106,6 @@ namespace com.rmc.core.audio
 		{
 			
 		}
-
-
 		
 		
 		//--------------------------------------
@@ -113,64 +114,28 @@ namespace com.rmc.core.audio
 
 
 		/// <summary>
-		/// Plaies the sound.
+		/// Waits for seconds to call.
 		/// </summary>
-		/// <returns>The sound.</returns>
-		/// <param name="audioResourcePath_string">Audio resource path_string.</param>
-		public AudioSource PlayAudioResourcePath (string audioResourcePath_string, float volumeScale_float = 1 )
+		/// <param name="callback">Callback.</param>
+		/// <param name="delayBeforeCalling_float">Delay before calling_float.</param>
+		public void WaitForSecondsToCall(Action callback_action, float delayBeforeCalling_float)
 		{
-
-			AudioSource audioSource = GetAudioSourceByResourcePath (audioResourcePath_string);
-			//Debug.Log ("playing : " + audioSource.clip);
-			audioSource.PlayOneShot (audioSource.clip, volumeScale_float);
-			return audioSource;
+			StartCoroutine (_WaitForSecondsToCall (callback_action, delayBeforeCalling_float));
 		}
 
 		/// <summary>
-		/// Stops the audio resource path.
+		/// _s the wait for seconds to call.
 		/// </summary>
-		/// <returns>The audio resource path.</returns>
-		/// <param name="pATH_GAME_RESET_AUDIO">P AT h_ GAM e_ RESE t_ AUDI.</param>
-		public AudioSource StopAudioResourcePath (string audioResourcePath_string)
+		/// <returns>The wait for seconds to call.</returns>
+		/// <param name="callback">Callback.</param>
+		/// <param name="delayBeforeCalling_float">Delay before calling_float.</param>
+		private IEnumerator _WaitForSecondsToCall(Action callback_action, float delayBeforeCalling_float)
 		{
-			AudioSource audioSource = GetAudioSourceByResourcePath (audioResourcePath_string);
-			audioSource.Stop();
-			return audioSource;
+			yield return new WaitForSeconds (delayBeforeCalling_float);
+			callback_action();
 		}
-
-		/// <summary>
-		/// Gets the audio source by resource path.
-		/// </summary>
-		/// <returns>The audio source by resource path.</returns>
-		/// <param name="audioResourcePath_string">Audio resource path_string.</param>
-		public AudioSource GetAudioSourceByResourcePath (string audioResourcePath_string)
-		{
-
-			AudioSource audioSource = new AudioSource ();
-
-			//	CREATE AND POPULATE A DICTIONARY OF AUDIO SOURCES (EACH CONTAINING ONE CLIP)
-			//	ONLY POPULATES EACH INDEX ONE TIME (OPTIMIZATION)
-			if (_audioSources_dictionary == null)
-			{
-				_audioSources_dictionary = new Dictionary<string, AudioSource>();
-			}
-			if (!_audioSources_dictionary.ContainsKey (audioResourcePath_string))
-			{
-				_audioSources_dictionary[audioResourcePath_string] = gameObject.AddComponent<AudioSource>();
-				_audioSources_dictionary[audioResourcePath_string].clip = Resources.Load (audioResourcePath_string) as AudioClip;
-			}
-
-			//
-			audioSource = _audioSources_dictionary[audioResourcePath_string];
-
-			if (audioSource == null) {
-				throw new Exception ("AudioClip '"+audioResourcePath_string+"' Cannot Be Found. Choose new path name.");
-			}
-
-			return audioSource;
-		}
-
-
+				
+		
 		// 	PUBLIC
 		//--------------------------------------
 		//  Events

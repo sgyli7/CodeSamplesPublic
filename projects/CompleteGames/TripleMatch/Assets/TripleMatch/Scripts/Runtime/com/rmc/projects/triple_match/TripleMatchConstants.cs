@@ -75,7 +75,8 @@ namespace com.rmc.projects.triple_match
 		public static float COLUMN_SIZE = 0.4f;
 
 		//
-		public static float DELAY_TO_START_GAME = 0.25f;
+		public static float DURATION_DELAY_TO_START_GAME = 0.25f;
+		public static float DURATION_DELAY_BEFORE_CHECK_FOR_MATCHES = 0.25f;
 		public static float DURATION_GEM_TWEEN_SWAP = 0.5f;
 		public static float DURATION_GEM_TWEEN_ENTRY = 0.5f;
 		public static float DURATION_GEM_TWEEN_EXIT = 0.5f;

@@ -31,6 +31,8 @@
 * Update 100% of comments
 * Move all ‘usings’ to the // IMPORT section (some are a few lines below
 * Remove 100% of warnings and errors
+* Update diagram
+* replace 100% of art? Maybe not.
 
 
 //--------------------------------------

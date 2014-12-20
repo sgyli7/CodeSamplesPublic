@@ -40,8 +40,7 @@ using System.Collections;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.audio;
-
+using com.rmc.core.managers;
 
 namespace com.rmc.projects.triple_match.mvc
 {
@@ -147,25 +146,6 @@ namespace com.rmc.projects.triple_match.mvc
 		//	PRIVATE
 		
 
-
-		//--------------------------------------
-		// 	Coroutines
-		//--------------------------------------
-
-		/// <summary>
-		/// Starts the game after short delay.
-		/// </summary>
-		private IEnumerator _StartGame_Coroutine ()
-		{
-			yield return new WaitForSeconds (TripleMatchConstants.DELAY_TO_START_GAME);
-			
-			//	Mimic 'Game Reset' Click
-			Controller.Instance.GameReset();
-			
-			yield return 0;
-		}
-		
-		
 		
 		//--------------------------------------
 		// 	Event Handlers
@@ -184,7 +164,9 @@ namespace com.rmc.projects.triple_match.mvc
 			//	After short delay ...
 			//		1. of 1 frame or more for View to be 'ready'
 			//		2. and its also a delay for cosmetics
-			StartCoroutine (_StartGame_Coroutine());
+			CoroutineManager.Instance.WaitForSecondsToCall (Controller.Instance.GameReset, TripleMatchConstants.DURATION_DELAY_TO_START_GAME);
+
+
 		}
 	}
 }
