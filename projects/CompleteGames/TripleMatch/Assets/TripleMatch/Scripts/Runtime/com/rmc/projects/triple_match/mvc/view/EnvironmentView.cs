@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -114,6 +114,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			_model.OnScoreChanged += _OnScoreChanged;
 			_model.OnSelectedGemVOChanged += _OnSelectedGemVOChanged;
 			_model.OnGemVOsMarkedForDeletionChanged += _OnGemVOsMarkedForDeletionChanged;
+			_model.OnGemVOsMarkedForShiftingDownChanged += _OnGemVOsMarkedForShiftingDownChanged;
 		}
 		
 
@@ -131,13 +132,41 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 			
 		}
+
+
+		/// <summary>
+		/// Debug only
+		/// TODO: REmove this
+		/// </summary>
+		private bool _debugging_HasFilledGapsWithGems = false;
 		
+
 		
 		///<summary>
 		///	Called once per frame
 		///</summary>
 		protected void Update () 
 		{
+			
+	
+			if (_model.GameState == GameState.PLAYING)
+			{
+				
+				//TODO: REMOVE THIS DEBUGGING INPUT
+				if (Input.GetKeyDown (KeyCode.Space))
+				{
+					if (!_debugging_HasFilledGapsWithGems)
+					{
+						_controller.DoFillGapsInGems();
+					}
+					else
+					{
+						
+					}
+					
+				}
+			}
+				
 
 
 
@@ -151,6 +180,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			_model.OnGameResetted -= _OnGameResetted;
 			_model.OnSelectedGemVOChanged -= _OnSelectedGemVOChanged;
 			_model.OnGemVOsMarkedForDeletionChanged -= _OnGemVOsMarkedForDeletionChanged;
+			_model.OnGemVOsMarkedForShiftingDownChanged -= _OnGemVOsMarkedForShiftingDownChanged;
 			_model.OnScoreChanged -= _OnScoreChanged;
 
 			foreach (GemViewComponent gemView in _gemViews)
@@ -487,7 +517,19 @@ namespace com.rmc.projects.triple_match.mvc.view
 				}
 			}
 		}
-		
+
+		private void _OnGemVOsMarkedForShiftingDownChanged (List<GemVO> gemVOs)
+		{
+			
+			//	2. select some
+			foreach (GemVO gemVO in gemVOs)
+			{
+				Debug.Log ("tweening : "+ _GetGemViewForGemVo (gemVO));
+				_GetGemViewForGemVo (gemVO).TweenToNewPositionSwap (0);
+			}
+		}
+
+
 
 
 	}

@@ -130,7 +130,18 @@ namespace com.rmc.projects.triple_match.mvc.controller
 		public void CheckForMatches ()
 		{
 			_model.CheckForMatches();
-		}		
+		}
+
+
+		/// <summary>
+		/// Adds the gems to fill gaps.
+		/// </summary>
+		public void DoFillGapsInGems ()
+		{
+			_model.DoFillGapsInGems();
+		}
+
+	
 		
 		/// <summary>
 		/// Selecteds the gem V.

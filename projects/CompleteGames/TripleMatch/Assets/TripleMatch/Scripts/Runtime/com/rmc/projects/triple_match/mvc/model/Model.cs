@@ -135,6 +135,10 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public delegate void OnGemVOsMarkedForDeletionChangedDelegate (List<List<GemVO>> gemVOs);
 		public OnGemVOsMarkedForDeletionChangedDelegate OnGemVOsMarkedForDeletionChanged;
 
+		public delegate void OnGemVOsMarkedForShiftingDownChangedDelegate (List<GemVO> gemVOs);
+		public OnGemVOsMarkedForShiftingDownChangedDelegate OnGemVOsMarkedForShiftingDownChanged;
+
+
 		
 		/// <summary>
 		/// 
@@ -257,43 +261,11 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 
 
-		/// <summary>
-		/// Debug only
-		/// TODO: REmove this
-		/// </summary>
-		private bool _debugging_HasCheckedForMatches = false;
-
-
 		///<summary>
 		///	Called once per frame
 		///</summary>
 		protected void Update () 
 		{
-
-
-			if (GameState == GameState.PLAYING)
-			{
-
-				//TODO: REMOVE THIS DEBUGGING INPUT
-				if (Input.GetKeyDown (KeyCode.Space))
-				{
-					if (!_debugging_HasCheckedForMatches)
-					{
-						CheckForMatches();
-					}
-					else
-					{
-						//CLEAR THOSE MARKED
-						List<List<GemVO>> gemVOsMarkedForDeletion = new List<List<GemVO>>();
-						if (OnGemVOsMarkedForDeletionChanged != null)
-						{
-							OnGemVOsMarkedForDeletionChanged (gemVOsMarkedForDeletion);
-						}
-					}
-					_debugging_HasCheckedForMatches = ! _debugging_HasCheckedForMatches;
-					
-				}
-			}
 
 			
 		}
@@ -404,11 +376,37 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public void CheckForMatches ()
 		{
 			Debug.Log ("CheckForMatches()");
-			
+
+
+			//	1. BUILD LIST OF MATCHES
 			List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists = new List<List<GemVO>>();
 			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesHorizontal());
 			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesVertical());
-			
+
+
+			//	2. REMOVE FROM MASTER LIST, NOW THE MODEL HAS NO RECORD OF THEM ANYMORE. THAT IS OK, JUST REMEMBER THAT
+			foreach (List<GemVO> gemVOList in gemVOsMatchingInAllChecksListOfLists)
+			{
+				foreach (GemVO gemVO in gemVOList)
+				{
+					//
+					for (int rowIndex_int = 0; rowIndex_int < TripleMatchConstants.MAX_ROWS; rowIndex_int++)
+					{
+						for (int columnIndex_int = 0; columnIndex_int < TripleMatchConstants.MAX_COLUMNS; columnIndex_int++)
+						{
+							
+							if (_gemVOs[rowIndex_int, columnIndex_int] == gemVO)
+							{
+								Debug.Log ("FOUND: " + gemVO + " replaced with null");
+								_gemVOs[rowIndex_int, columnIndex_int] = null;
+							};
+						
+						}
+					}
+				}
+			}
+
+			//	4. SEND SMALL COPIED LIST TO VIEW FOR DELETION
 			if (OnGemVOsMarkedForDeletionChanged != null)
 			{
 				Debug.Log ("ALL Match : " + gemVOsMatchingInAllChecksListOfLists.Count);
@@ -418,8 +416,6 @@ namespace com.rmc.projects.triple_match.mvc.model
 			
 		}
 
-		
-		//	PRIVATE
 
 
 		/// <summary>
@@ -469,7 +465,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 						//	DO WE HAVE ENOUGH TO MAKE A REWARD?
 						if (gemVOsMatchingInCurrentCheck.Count >= TripleMatchConstants.MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD)
 						{
-							Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
+							//Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
 							gemVOsMatchingInAllChecksListOfLists.Add (gemVOsMatchingInCurrentCheck);
 						}
 
@@ -520,7 +516,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 					else if (gemVOsMatchingInCurrentCheck[0].GemTypeIndex == nextGemVO.GemTypeIndex)
 					{
 						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
-						Debug.Log ("\tMatches last t=" + nextGemVO.GemTypeIndex  + " C=" + gemVOsMatchingInCurrentCheck.Count);
+						//Debug.Log ("\tMatches last t=" + nextGemVO.GemTypeIndex  + " C=" + gemVOsMatchingInCurrentCheck.Count);
 						
 					}
 					
@@ -533,7 +529,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 						//	DO WE HAVE ENOUGH TO MAKE A REWARD?
 						if (gemVOsMatchingInCurrentCheck.Count >= TripleMatchConstants.MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD)
 						{
-							Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
+							//Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
 							gemVOsMatchingInAllChecksListOfLists.Add (gemVOsMatchingInCurrentCheck);
 						}
 						
@@ -541,11 +537,6 @@ namespace com.rmc.projects.triple_match.mvc.model
 						gemVOsMatchingInCurrentCheck = new List<GemVO>();
 						gemVOsMatchingInCurrentCheck.Add (nextGemVO);
 
-						if (rowIndex_int == _gemVOs.GetLength(1) -1)
-						{
-							Debug.Log ("******** END: " + rowIndex_int);
-
-						}
 					}
 					
 				}
@@ -555,6 +546,109 @@ namespace com.rmc.projects.triple_match.mvc.model
 			
 		}	
 
+		
+		
+		/// <summary>
+		/// Adds the gems to fill gaps.
+		/// </summary>
+		public void DoFillGapsInGems ()
+		{
+			
+			
+			//todo: Remove this 
+			//3. Count the gaps. This is for debugging only
+			//
+			int totalAmountRemoved = 0;
+			for (int rowIndex_int = 0; rowIndex_int < TripleMatchConstants.MAX_ROWS; rowIndex_int++)
+			{
+				for (int columnIndex_int = 0; columnIndex_int < TripleMatchConstants.MAX_COLUMNS; columnIndex_int++)
+				{
+					
+					if (_gemVOs[rowIndex_int, columnIndex_int] == null)
+					{
+						totalAmountRemoved++;
+					};
+					
+				}
+			}
+			
+			Debug.Log ("totalAmountRemoved: " + totalAmountRemoved);
+			
+			if (totalAmountRemoved > 0)
+			{
+				Debug.Log ("fill gaps");
+				_DoShiftGemsDownToFillGaps();
+				_DoAddNewGemsToFillGaps();
+			}
+
+
+
+		}
+		
+		
+		//	PRIVATE
+		
+		/// <summary>
+		/// _s the do shift gems down to fill gaps.
+		/// </summary>
+		private void _DoShiftGemsDownToFillGaps ()
+		{
+
+			List<GemVO> gemVOsMarkedForShiftingDownChanged = new List<GemVO>();
+
+			// START AT THE BOTTOM ROW
+			for (int rowIndexToCheck_int = TripleMatchConstants.MAX_ROWS -1; rowIndexToCheck_int >= 0; rowIndexToCheck_int--)
+			{
+				//	CHECK LEFT TO RIGHT
+				for (int columnIndexToCheck_int = 0; columnIndexToCheck_int < TripleMatchConstants.MAX_COLUMNS; columnIndexToCheck_int++)
+				{
+
+					//IS A SPOT NULL?
+					Debug.Log ("found : " + _gemVOs[rowIndexToCheck_int, columnIndexToCheck_int]);
+					if (_gemVOs[rowIndexToCheck_int, columnIndexToCheck_int] == null)
+					{
+						Debug.Log ("1found null: " + rowIndexToCheck_int + "," +  columnIndexToCheck_int);
+						//...THEN CHECK EACH SPOT ABOVE
+						for (int rowIndexToFind_int = rowIndexToCheck_int; rowIndexToFind_int >= 0; rowIndexToFind_int--)
+						{
+							// ...AND SWAP FIRST NON-NULL (above) INTO THE NULL SPOT (Below)
+							if (_gemVOs[rowIndexToFind_int, columnIndexToCheck_int] != null)
+							{
+
+								Debug.Log ("2found NOT null: " + rowIndexToCheck_int + " , " +  columnIndexToCheck_int);
+
+								//COPY THE OLD TO THE NEW
+								_gemVOs[rowIndexToCheck_int, columnIndexToCheck_int] = _gemVOs[rowIndexToFind_int, columnIndexToCheck_int];
+								gemVOsMarkedForShiftingDownChanged.Add (_gemVOs[rowIndexToCheck_int, columnIndexToCheck_int]);
+								_gemVOs[rowIndexToFind_int, columnIndexToCheck_int] = null; //CLEAR OUT THE OLD 
+
+								//UPDATE THE PROPERTIES WITHIN THE NEW, SO THE VIEW CAN TWEEN TO NEW POSITION
+								_gemVOs[rowIndexToCheck_int, columnIndexToCheck_int].RowIndex = rowIndexToCheck_int;
+								_gemVOs[rowIndexToCheck_int, columnIndexToCheck_int].ColumnIndex = columnIndexToCheck_int;
+
+								break;
+							}
+							
+						}
+					};
+					
+				}
+			}
+
+			Debug.Log ("Marked for shift: " + gemVOsMarkedForShiftingDownChanged.Count);
+
+			if (OnGemVOsMarkedForShiftingDownChanged != null)
+			{
+				OnGemVOsMarkedForShiftingDownChanged (gemVOsMarkedForShiftingDownChanged);
+			}
+		}
+		
+		/// <summary>
+		/// _s the do add new gems to fill gaps.
+		/// </summary>
+		private void _DoAddNewGemsToFillGaps ()
+		{
+		}
 
 
 		//--------------------------------------
