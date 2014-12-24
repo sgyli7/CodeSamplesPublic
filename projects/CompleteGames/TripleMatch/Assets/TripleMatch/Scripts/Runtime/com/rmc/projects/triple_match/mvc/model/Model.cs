@@ -586,7 +586,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 							
 							if (_gemVOs[rowIndex_int, columnIndex_int] == gemVO)
 							{
-								Debug.Log ("FOUND: " + gemVO + " replaced with null");
+								//Debug.Log ("FOUND: " + gemVO + " replaced with null");
 								_gemVOs[rowIndex_int, columnIndex_int] = null;
 							};
 						}

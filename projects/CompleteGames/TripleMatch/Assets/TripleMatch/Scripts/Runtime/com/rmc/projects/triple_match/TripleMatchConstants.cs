@@ -74,6 +74,7 @@ namespace com.rmc.projects.triple_match
 		//
 		public static float DURATION_DELAY_TO_START_GAME = 0.25f;
 		public static float DURATION_DELAY_BEFORE_CHECK_FOR_MATCHES = 0.25f;
+		public static float DURATION_DELAY_BEFORE_FILL_GAPS_IN_GEMS = 0.25f;
 		public static float DURATION_GEM_TWEEN_SWAP = 0.5f;
 		public static float DURATION_GEM_TWEEN_ENTRY = 0.5f;
 		public static float DURATION_GEM_TWEEN_EXIT = 0.5f;
@@ -99,7 +100,8 @@ namespace com.rmc.projects.triple_match
 
 
 
-		//
+		//PATH REQUIRED FOR Instantiate() calls. Those are deprecated in this game.
+		//NAME REQUIRED FOR PoolingSystem calls.
 		public static string PATH_GEM_VIEW_PREFAB = "Prefabs/GemViewPrefab";
 		public static string PATH_GEM_EXPLOSION_PREFAB = "Prefabs/GemExplosionPrefab";
 		public static string PATH_FLOATING_SCORE_VIEW_PREFAB = "Prefabs/FloatingScoreViewPrefab";

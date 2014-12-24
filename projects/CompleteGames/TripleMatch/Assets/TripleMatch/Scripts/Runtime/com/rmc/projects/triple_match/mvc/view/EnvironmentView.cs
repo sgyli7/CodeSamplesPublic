@@ -159,7 +159,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 				{
 					if (!_debugging_HasFilledGapsWithGems)
 					{
-						_controller.DoFillGapsInGems();
+					//	_controller.DoFillGapsInGems();
 					}
 					else
 					{
@@ -387,6 +387,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			
 			//	CREATE AND REPARENT
+
 			GameObject nextGemViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_GEM_VIEW_PREFAB)) as GameObject;
 			nextGemViewPrefab.transform.parent = _gemsParent.transform;
 			
@@ -417,7 +418,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			gemView.OnClicked -= _OnGemViewClicked;
 			gemView.OnTweenToNewPositionEntryCompleted -= _OnGemTweenToNewPositionEntryCompleted;
-			gemView.Destroy(0);
+			gemView.Destroy();
 			_gemViews.Remove (gemView);
 		}
 
@@ -531,7 +532,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 				foreach (GemViewComponent gemView in _gemViews)
 				{
 					//	1. DESELECT ALL GEMS
-					Debug.Log ("gemView: " + gemView);
 					gemView.SetIsHighlighted (false);
 				}
 				
@@ -564,6 +564,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 				//3. Inside here, also removes each from _gemViews
 				_RewardOneMatchFromGemVOList (gemVOList);
+			}
+
+
+			//	3. IF THERE WAS 1 OR MORE REWARDS, THEN SHIFT GEMS FOR A FULL BOARD
+			if (gemVOListOfLists.Count > 0)
+			{
+				CoroutineManager.Instance.WaitForSecondsToCall (_controller.DoFillGapsInGems, TripleMatchConstants.DURATION_DELAY_BEFORE_FILL_GAPS_IN_GEMS);
+
+
 			}
 		}
 

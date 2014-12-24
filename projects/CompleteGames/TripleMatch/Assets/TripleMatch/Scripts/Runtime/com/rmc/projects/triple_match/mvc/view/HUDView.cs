@@ -143,10 +143,11 @@ namespace com.rmc.projects.triple_match.mvc.view
 		public void RewardOneMatch (int score_int, Vector3 initialPosition_vector3)
 		{
 
-			GameObject floatingScoreViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_FLOATING_SCORE_VIEW_PREFAB)) as GameObject;
+			GameObject floatingScoreViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_FLOATING_SCORE_VIEW_PREFAB)) as GameObject;;
 			floatingScoreViewPrefab.gameObject.transform.SetParent (_canvas.gameObject.transform);
 			FloatingScoreViewComponent floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreViewComponent>();
 			floatingScoreView.Initialize (score_int, initialPosition_vector3);
+			_controller.SetScore (_model.Score + score_int, TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT);
 
 		}
 

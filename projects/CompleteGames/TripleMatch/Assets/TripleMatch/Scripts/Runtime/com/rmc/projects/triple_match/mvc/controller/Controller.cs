@@ -141,6 +141,16 @@ namespace com.rmc.projects.triple_match.mvc.controller
 			_model.DoFillGapsInGems();
 		}
 
+
+		/// <summary>
+		/// Sets the score.
+		/// </summary>
+		/// <param name="score_int">Score_int.</param>
+		/// <param name="delayUntilSet_float">Delay until set_float.</param>
+		public void SetScore (int score_int, float delayUntilSet_float)
+		{
+			_model.SetScore (score_int, delayUntilSet_float);
+		}
 	
 		
 		/// <summary>

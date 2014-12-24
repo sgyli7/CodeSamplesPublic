@@ -150,12 +150,11 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		
 		//	PUBLIC
 		/// <summary>
-		/// Destroy the specified delayBeforeDestroy_float.
+		/// Destroy 
 		/// </summary>
-		/// <param name="delayBeforeDestroy_float">Delay before destroy_float.</param>
-		public void Destroy (float delayBeforeDestroy_float)
+		public void Destroy ()
 		{
-			Destroy (gameObject, delayBeforeDestroy_float);
+			Destroy (gameObject, 0);
 		}
 
 		
