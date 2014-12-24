@@ -36,6 +36,9 @@ using com.rmc.core.support;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.managers;
+
+
 namespace com.rmc.projects.triple_match.mvc.model
 {
 	
@@ -44,8 +47,9 @@ namespace com.rmc.projects.triple_match.mvc.model
 	//--------------------------------------
 	public enum GameState
 	{
-		UNKOWN,
+		UNKNOWN,
 		INITIALIZED,
+		RESETTING,
 		PLAYING,
 		GAME_OVER
 
@@ -105,7 +109,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			return gemVOsList;
 		}
 
-		private GameState _gameState = GameState.UNKOWN;
+		private GameState _gameState = GameState.UNKNOWN;
 		public GameState GameState 
 		{
 			get
@@ -116,7 +120,32 @@ namespace com.rmc.projects.triple_match.mvc.model
 			{
 				_gameState = value;
 
-				//Option: Dispatch game state? Not needed for demo, but will help when scaling up the project
+				Debug.Log ("_gameState: " + _gameState);
+				//Option: Dispatch delegate? Not needed for demo, but will help when scaling up the project
+				
+			}
+		}
+
+
+
+		public delegate void OnIsInputEnabledChangedDelegate (bool isInputEnabled);
+		public OnIsInputEnabledChangedDelegate OnIsInputEnabledChanged;
+		private bool _IsInputEnabled = false;
+		public bool IsInputEnabled 
+		{
+			get
+			{
+				return _IsInputEnabled;
+			}
+			set
+			{
+				_IsInputEnabled = value;
+				
+				Debug.Log ("_IsInputEnabled: " + IsInputEnabled);
+				if (OnIsInputEnabledChanged != null)
+				{
+					OnIsInputEnabledChanged (IsInputEnabled);
+				}
 				
 			}
 		}
@@ -147,7 +176,6 @@ namespace com.rmc.projects.triple_match.mvc.model
 				if (OnSelectedGemVOChanged != null)
 				{
 					//NOTE: We pass null and not-null values here. That is good. Just FYI
-					Debug.Log ("passing... " + _selectedGemVO);
 					OnSelectedGemVOChanged (_selectedGemVO);
 				}
 				
@@ -326,7 +354,9 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public void GameReset ()
 		{
 
-			GameState = GameState.PLAYING;
+			GameState = GameState.RESETTING;
+			IsInputEnabled = false;
+			//
 			Score = 0;
 			TimeLeftInRound = TripleMatchConstants.DURATION_TIME_LEFT_IN_ROUND_MAX;
 			StopCoroutine ("_TimeLeftInRoundDecrement_Coroutine");
@@ -413,6 +443,8 @@ namespace com.rmc.projects.triple_match.mvc.model
 			{
 				OnGameResetted ();
 			}
+
+			GameState = GameState.PLAYING;
 
 		}
 		
@@ -523,7 +555,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesVertical());
 			_DoMarkGemVOsForDeletion (gemVOsMatchingInAllChecksListOfLists);
 
-			
+
 		}
 
 		/// <summary>
@@ -550,12 +582,13 @@ namespace com.rmc.projects.triple_match.mvc.model
 				}
 			}
 			
-			Debug.Log ("totalAmountRemoved: " + totalAmountRemoved);
+			//Debug.Log ("totalAmountRemoved: " + totalAmountRemoved);
 			
 			if (totalAmountRemoved > 0)
 			{
 				_DoShiftGemsDownToFillGaps();
 				_DoAddNewGemsToFillGaps();
+
 			}
 
 
@@ -783,7 +816,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 				}
 			}
 
-			Debug.Log ("Marked for shift: " + gemVOsMarkedForShiftingDownChanged.Count);
+			//Debug.Log ("Marked for shift: " + gemVOsMarkedForShiftingDownChanged.Count);
 
 			if (OnGemVOsMarkedForShiftingDownChanged != null)
 			{

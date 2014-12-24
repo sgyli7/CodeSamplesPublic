@@ -109,6 +109,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 			_model.OnGameResetted += _OnGameResetted;
 			_model.OnScoreChanged += _OnScoreChanged;
+			_model.OnIsInputEnabledChanged += _OnIsInputEnabledChanged;
 			_model.OnTimeLeftInRoundChanged += _OnTimeLeftInRoundChanged;
 			_model.OnTimeLeftInRoundExpired += _OnTimeLeftInRoundExpired;
 		}
@@ -123,6 +124,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		override protected void OnDestroy () 
 		{
 			_model.OnGameResetted -= _OnGameResetted;
+			_model.OnIsInputEnabledChanged -= _OnIsInputEnabledChanged;
 			_model.OnScoreChanged -= _OnScoreChanged;
 			_model.OnTimeLeftInRoundChanged -= _OnTimeLeftInRoundChanged;
 			_model.OnTimeLeftInRoundExpired -= _OnTimeLeftInRoundExpired;
@@ -212,8 +214,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 		public void OnGameResetButtonClicked()
 		{
 
-			Debug.Log ("click2");
-
 			//This Animator State Machine will call OnCoverFadeInComplete()
 			gameObject.GetComponent<Animator>().SetTrigger ("StartGameTrigger");
 
@@ -251,14 +251,31 @@ namespace com.rmc.projects.triple_match.mvc.view
 			_RenderGameResetText (TripleMatchConstants.TEXT_GAME_RESET_TEXT);
 			_RenderTitleText (TripleMatchConstants.TEXT_TITLE );
 			_RenderScoreText (0);
-			_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_GAME_START);
+			_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_ENABLED);
 			
 			//	HIDE GLOW ON RESTART BUTTON 
 			gameObject.GetComponent<Animator>().SetBool ("IsGameOver", false);
 
-
-
 		}
+
+		/// <summary>
+		/// _ons the game resetted.
+		/// </summary>
+		private void _OnIsInputEnabledChanged (bool isInputEnabled)
+		{
+
+			if (isInputEnabled)
+			{
+				_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_ENABLED);
+			}
+			else
+			{
+				_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_DISABLED);
+			}
+			
+		}
+
+
 
 
 		/// <summary>
@@ -269,6 +286,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			_RenderTimeText (timeLeft_int);	
 		}
+
+
 
 		/// <summary>
 		/// _s the on time left in round expired.

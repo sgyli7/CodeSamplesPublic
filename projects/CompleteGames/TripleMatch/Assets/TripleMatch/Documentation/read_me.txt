@@ -43,5 +43,6 @@
 //--------------------------------------
 * Show a hint to user of what match is best to make next
 * End the game if there are no possible matches that can be made via swap
+* Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start and then never create/destroy more.
 
 

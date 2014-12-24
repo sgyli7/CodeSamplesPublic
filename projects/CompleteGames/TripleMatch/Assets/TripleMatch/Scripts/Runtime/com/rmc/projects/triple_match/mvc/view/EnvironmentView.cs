@@ -305,7 +305,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			else 
 			{
 				//	CHECK FOR MATCHES after a cosmetic delay
-				CoroutineManager.Instance.WaitForSecondsToCall (_model.CheckForMatches, TripleMatchConstants.DURATION_GEM_TWEEN_SWAP);
+				CoroutineManager.Instance.WaitForSecondsToCall (_controller.CheckForMatches, TripleMatchConstants.DURATION_GEM_TWEEN_SWAP);
 			
 			}
 
@@ -351,6 +351,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_EXPLOSION_AUDIO);
 			}
 
+			
+			
+			
+			_controller.SetIsInputEnabledToFalse();
+			//local variable for readability
+			bool willAllowConcurrentCalls_bool = false;
+			CoroutineManager.Instance.WaitForSecondsToCall (_controller.SetIsInputEnabledToTrue, TripleMatchConstants.DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED, willAllowConcurrentCalls_bool);
+	
+		
 		}
 
 		
@@ -483,11 +492,13 @@ namespace com.rmc.projects.triple_match.mvc.view
 		private void _OnGemViewClicked (GemViewComponent gemView)
 		{
 
-			Debug.Log ("clicked: " + gemView.GemVO);
+
 
 			//
-			if (_model.GameState == GameState.PLAYING)
+			if (_model.GameState == GameState.PLAYING && _model.IsInputEnabled)
 			{
+
+				Debug.Log ("clicked: " + gemView.GemVO);
 
 				if (_model.SelectedGemVO == null)
 				{

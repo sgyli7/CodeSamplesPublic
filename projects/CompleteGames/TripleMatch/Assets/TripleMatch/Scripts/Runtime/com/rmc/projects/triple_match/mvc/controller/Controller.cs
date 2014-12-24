@@ -151,6 +151,24 @@ namespace com.rmc.projects.triple_match.mvc.controller
 		{
 			_model.SetScore (score_int, delayUntilSet_float);
 		}
+
+
+		/// <summary>
+		/// Sets the is input enabled to false.
+		/// </summary>
+		public void SetIsInputEnabledToFalse()
+		{
+			_model.IsInputEnabled = false;
+		}
+
+		
+		/// <summary>
+		/// Sets the is input enabled to false.
+		/// </summary>
+		public void SetIsInputEnabledToTrue()
+		{
+			_model.IsInputEnabled = true;
+		}
 	
 		
 		/// <summary>

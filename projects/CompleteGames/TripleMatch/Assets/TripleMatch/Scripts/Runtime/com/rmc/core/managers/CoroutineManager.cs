@@ -32,6 +32,21 @@ using com.rmc.core.support;
 using System;
 using System.Collections;
 
+
+class WaitForSecondsToCallArguments
+{
+	public Action Callback_action ;
+	public float DelayBeforeCalling_float;
+	
+	public WaitForSecondsToCallArguments ( Action callback_action, float delayBeforeCalling_float)
+	{
+		Callback_action = callback_action ;
+		DelayBeforeCalling_float = delayBeforeCalling_float;
+	}
+	
+}
+
+
 //--------------------------------------
 //  Namespace
 //--------------------------------------
@@ -46,8 +61,8 @@ namespace com.rmc.core.managers
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
-	
-	
+
+
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
@@ -118,21 +133,25 @@ namespace com.rmc.core.managers
 		/// </summary>
 		/// <param name="callback">Callback.</param>
 		/// <param name="delayBeforeCalling_float">Delay before calling_float.</param>
-		public void WaitForSecondsToCall(Action callback_action, float delayBeforeCalling_float)
+		public void WaitForSecondsToCall(Action callback_action, float delayBeforeCalling_float, bool willAllowConcurrentCalls_bool = true)
 		{
-			StartCoroutine (_WaitForSecondsToCall (callback_action, delayBeforeCalling_float));
+			if (!willAllowConcurrentCalls_bool)
+			{
+				StopCoroutine ("_WaitForSecondsToCall");
+			}
+
+			StartCoroutine ("_WaitForSecondsToCall", new WaitForSecondsToCallArguments (callback_action, delayBeforeCalling_float));
 		}
 
 		/// <summary>
 		/// _s the wait for seconds to call.
 		/// </summary>
 		/// <returns>The wait for seconds to call.</returns>
-		/// <param name="callback">Callback.</param>
-		/// <param name="delayBeforeCalling_float">Delay before calling_float.</param>
-		private IEnumerator _WaitForSecondsToCall(Action callback_action, float delayBeforeCalling_float)
+		/// <param name="parameters_array">Parameters_array.</param>
+		private IEnumerator _WaitForSecondsToCall(WaitForSecondsToCallArguments waitForSecondsToCallArguments)
 		{
-			yield return new WaitForSeconds (delayBeforeCalling_float);
-			callback_action();
+			yield return new WaitForSeconds (waitForSecondsToCallArguments.DelayBeforeCalling_float);
+			waitForSecondsToCallArguments.Callback_action();
 		}
 				
 		
