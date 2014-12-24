@@ -70,6 +70,9 @@ namespace com.rmc.projects.triple_match.mvc.model
 		// GETTER / SETTER
 		/// <summary>
 		/// The _gem V os.
+		/// 
+		/// NOTE: We keep them as 2-dimensional array for 'check my neighbor' type grid-checking
+		/// 
 		/// </summary>
 		private GemVO[,] _gemVOs;
 		public GemVO[,] GemVOs
@@ -79,6 +82,28 @@ namespace com.rmc.projects.triple_match.mvc.model
 				return _gemVOs;
 			}
 			
+		}
+
+		/// <summary>
+		/// _s the get gem V os list from gem VO array.
+		/// 
+		/// NOTE: Generating a list is more useful than a 2-dimensional array for some operations.
+		/// 
+		/// </summary>
+		/// <param name="_gemVOs">_gem V os.</param>
+		private List<GemVO> _GetGemVOsListFromGemVOArray (GemVO[,] _gemVOsArray)
+		{
+			List<GemVO> gemVOsList = new List<GemVO>();
+			//
+			for (int rowIndex_int = 0; rowIndex_int < _gemVOsArray.GetLength(0); rowIndex_int += 1) 
+			{
+				for (int columnIndex_int = 0; columnIndex_int < _gemVOsArray.GetLength(1); columnIndex_int += 1) 
+				{
+					gemVOsList.Add ( _gemVOsArray[rowIndex_int,columnIndex_int]);
+				}
+			}
+
+			return gemVOsList;
 		}
 
 		private GameState _gameState = GameState.UNKOWN;
@@ -122,6 +147,8 @@ namespace com.rmc.projects.triple_match.mvc.model
 				
 				if (OnSelectedGemVOChanged != null)
 				{
+					//NOTE: We pass null and not-null values here. That is good. Just FYI
+					Debug.Log ("passing... " + _selectedGemVO);
 					OnSelectedGemVOChanged (_selectedGemVO);
 				}
 				
@@ -132,11 +159,26 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public delegate void OnGameResettedDelegate ();
 		public OnGameResettedDelegate OnGameResetted;
 
-		public delegate void OnGemVOsMarkedForDeletionChangedDelegate (List<List<GemVO>> gemVOs);
-		public OnGemVOsMarkedForDeletionChangedDelegate OnGemVOsMarkedForDeletionChanged;
+
+		/// <summary>
+		/// This is a list of lists so each inner list can be rewarded as a group (point multipliers, etc...)
+		/// </summary>
+		public delegate void OnGemVOsMarkedForRewardAndRemovalChangedDelegate (List<List<GemVO>> gemVOs);
+		public OnGemVOsMarkedForRewardAndRemovalChangedDelegate OnGemVOsMarkedForRewardAndRemovalChanged;
+
+		/// <summary>
+		/// This is a list of gemVOs that are removed without points scored. Used during reset 
+		/// </summary>
+		public delegate void OnGemVOsMarkedForRemovalChangedDelegate (List<GemVO> gemVOs);
+		public OnGemVOsMarkedForRemovalChangedDelegate OnGemVOsMarkedForRemovalChanged;
 
 		public delegate void OnGemVOsMarkedForShiftingDownChangedDelegate (List<GemVO> gemVOs);
 		public OnGemVOsMarkedForShiftingDownChangedDelegate OnGemVOsMarkedForShiftingDownChanged;
+
+		public delegate void OnGemVOsAddedToFillGapsChangedDelegate (List<GemVO> gemVOs);
+		public OnGemVOsAddedToFillGapsChangedDelegate OnGemVOsAddedToFillGapsChanged;
+		
+
 
 
 		
@@ -293,11 +335,17 @@ namespace com.rmc.projects.triple_match.mvc.model
 			SelectedGemVO = null;
 			
 			
-			//	CLEAR EXISTING GEMS
-			foreach (GemVO gemVO in _gemVOs)
+			//	CLEAR EXISTING GEMS (IF ANY GEMS EXIST)
+			if (_gemVOs != null && _gemVOs.GetLength (0) > 0 && _gemVOs.GetLength (1) > 0)
 			{
-				//	TODO: CLEAR EACH
+				if (OnGemVOsMarkedForRemovalChanged != null)
+				{
+					OnGemVOsMarkedForRemovalChanged (_GetGemVOsListFromGemVOArray(_gemVOs));
+				}
 			}
+
+
+			//	CREATE NEW LIST
 			_gemVOs = new GemVO[TripleMatchConstants.MAX_ROWS, TripleMatchConstants.MAX_COLUMNS];
 			
 			
@@ -382,36 +430,8 @@ namespace com.rmc.projects.triple_match.mvc.model
 			List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists = new List<List<GemVO>>();
 			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesHorizontal());
 			gemVOsMatchingInAllChecksListOfLists.AddRange (_CheckForMatchesVertical());
+			_DoMarkGemVOsForDeletion (gemVOsMatchingInAllChecksListOfLists);
 
-
-			//	2. REMOVE FROM MASTER LIST, NOW THE MODEL HAS NO RECORD OF THEM ANYMORE. THAT IS OK, JUST REMEMBER THAT
-			foreach (List<GemVO> gemVOList in gemVOsMatchingInAllChecksListOfLists)
-			{
-				foreach (GemVO gemVO in gemVOList)
-				{
-					//
-					for (int rowIndex_int = 0; rowIndex_int < TripleMatchConstants.MAX_ROWS; rowIndex_int++)
-					{
-						for (int columnIndex_int = 0; columnIndex_int < TripleMatchConstants.MAX_COLUMNS; columnIndex_int++)
-						{
-							
-							if (_gemVOs[rowIndex_int, columnIndex_int] == gemVO)
-							{
-								Debug.Log ("FOUND: " + gemVO + " replaced with null");
-								_gemVOs[rowIndex_int, columnIndex_int] = null;
-							};
-						
-						}
-					}
-				}
-			}
-
-			//	4. SEND SMALL COPIED LIST TO VIEW FOR DELETION
-			if (OnGemVOsMarkedForDeletionChanged != null)
-			{
-				Debug.Log ("ALL Match : " + gemVOsMatchingInAllChecksListOfLists.Count);
-				OnGemVOsMarkedForDeletionChanged (gemVOsMatchingInAllChecksListOfLists);
-			}
 			
 			
 		}
@@ -546,6 +566,40 @@ namespace com.rmc.projects.triple_match.mvc.model
 			
 		}	
 
+		/// <summary>
+		/// _s the do mark gem V os for deletion.
+		/// </summary>
+		/// <param name="gemVOsMatchingInAllChecksListOfLists">Gem V os matching in all checks list of lists.</param>
+		private void _DoMarkGemVOsForDeletion (List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists)
+		{
+			
+			//	1. REMOVE FROM MASTER LIST, NOW THE MODEL HAS NO RECORD OF THEM ANYMORE. THAT IS OK, JUST REMEMBER THAT
+			foreach (List<GemVO> gemVOList in gemVOsMatchingInAllChecksListOfLists)
+			{
+				foreach (GemVO gemVO in gemVOList)
+				{
+					//
+					for (int rowIndex_int = 0; rowIndex_int < TripleMatchConstants.MAX_ROWS; rowIndex_int++)
+					{
+						for (int columnIndex_int = 0; columnIndex_int < TripleMatchConstants.MAX_COLUMNS; columnIndex_int++)
+						{
+							
+							if (_gemVOs[rowIndex_int, columnIndex_int] == gemVO)
+							{
+								Debug.Log ("FOUND: " + gemVO + " replaced with null");
+								_gemVOs[rowIndex_int, columnIndex_int] = null;
+							};
+						}
+					}
+				}
+			}
+			
+			//	2. SEND SMALL COPIED LIST TO VIEW FOR DELETION
+			if (OnGemVOsMarkedForRewardAndRemovalChanged != null)
+			{
+				OnGemVOsMarkedForRewardAndRemovalChanged (gemVOsMatchingInAllChecksListOfLists);
+			}
+		}
 		
 		
 		/// <summary>
@@ -576,7 +630,6 @@ namespace com.rmc.projects.triple_match.mvc.model
 			
 			if (totalAmountRemoved > 0)
 			{
-				Debug.Log ("fill gaps");
 				_DoShiftGemsDownToFillGaps();
 				_DoAddNewGemsToFillGaps();
 			}
@@ -648,6 +701,37 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// </summary>
 		private void _DoAddNewGemsToFillGaps ()
 		{
+
+			List<GemVO> gemVOsAddedToFillGapsChanged = new List<GemVO>();
+			GemVO nextGemVO;
+			int nextGemTypeIndex_int;
+
+			// START AT THE BOTTOM ROW
+			for (int rowIndex_int = TripleMatchConstants.MAX_ROWS -1; rowIndex_int >= 0; rowIndex_int--)
+			{
+				//	CHECK LEFT TO RIGHT
+				for (int columnIndex_int = 0; columnIndex_int < TripleMatchConstants.MAX_COLUMNS; columnIndex_int++)
+				{
+					if (_gemVOs[rowIndex_int, columnIndex_int] == null)
+					{
+						//	SET INDEX (THIS MEANS THE COLOR)
+						nextGemTypeIndex_int = Random.Range (0, TripleMatchConstants.MAX_GEM_TYPE_INDEX);
+						
+						//	CREATE 1 NEW GEM
+						nextGemVO = new GemVO (rowIndex_int, columnIndex_int, nextGemTypeIndex_int);
+						_gemVOs[rowIndex_int, columnIndex_int] = nextGemVO;
+						gemVOsAddedToFillGapsChanged.Add (nextGemVO);
+					}
+				}
+			}
+			
+			Debug.Log ("Marked for add: " + gemVOsAddedToFillGapsChanged.Count);
+			
+			if (OnGemVOsAddedToFillGapsChanged != null)
+			{
+				OnGemVOsAddedToFillGapsChanged (gemVOsAddedToFillGapsChanged);
+			}
+
 		}
 
 

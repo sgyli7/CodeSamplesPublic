@@ -26,17 +26,14 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-
-
-
-//--------------------------------------
-//  Namespace
-//--------------------------------------
 using com.rmc.projects.triple_match.mvc.model.data;
 using UnityEngine;
 using com.rmc.core.exceptions;
 
 
+//--------------------------------------
+//  Namespace
+//--------------------------------------
 namespace com.rmc.projects.triple_match
 {
 

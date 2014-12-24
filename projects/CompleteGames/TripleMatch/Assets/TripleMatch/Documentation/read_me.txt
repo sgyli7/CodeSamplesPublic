@@ -23,17 +23,16 @@
  */
 // Marks the right margin of code *******************************************************************
 
-
 //--------------------------------------
 //  TODO: Before Submission
 //--------------------------------------
-
 * Update 100% of comments
 * Move all ‘usings’ to the // IMPORT section (some are a few lines below
 * Remove 100% of warnings and errors
 * Update diagram
 * replace 100% of art? Maybe not.
-
+* Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
+* remove pooling library or not?
 
 //--------------------------------------
 //  TODO: Theoretical future features / fixes
