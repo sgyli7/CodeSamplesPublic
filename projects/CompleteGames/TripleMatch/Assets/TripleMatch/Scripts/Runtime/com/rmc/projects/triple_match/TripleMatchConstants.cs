@@ -26,7 +26,7 @@
 //--------------------------------------
 //  Imports
 //--------------------------------------
-using com.rmc.projects.triple_match.mvc.model.data;
+using com.rmc.projects.triple_match.mvc.model.data.vo;
 using UnityEngine;
 using com.rmc.core.exceptions;
 
@@ -70,6 +70,8 @@ namespace com.rmc.projects.triple_match
 		//
 		public static float ROW_SIZE = 0.4f;
 		public static float COLUMN_SIZE = 0.4f;
+		//
+		public static bool SETTING_GAMEPLAY_WILL_ALLOW_INSTANT_MATCHES_ON_GAME_RESET = true; //TODO: setting to false 'works' but not well.
 
 		//
 		public static float DURATION_DELAY_TO_START_GAME = 0.25f;
@@ -90,7 +92,7 @@ namespace com.rmc.projects.triple_match
 
 		public static string TEXT_EMPTY = ""; //easy programmatic search for references for debugging
 		public static string TEXT_TITLE = "Triple Match";
-		public static string TEXT_GAME_RESET_TEXT = "Reset Game";
+		public static string TEXT_GAME_RESET_TEXT = "Reset Game!";
 		public static string TEXT_SCORE_TOKEN = "Score: {0}";
 		public static string TEXT_TIME_TOKEN = "Time: {0}";
 		public static string TEXT_POINTS_TOKEN = "{0} Pts";

@@ -33,7 +33,7 @@ using UnityEngine;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.mvc.model.data
+namespace com.rmc.projects.triple_match.mvc.model.data.vo
 {
 	
 	//--------------------------------------

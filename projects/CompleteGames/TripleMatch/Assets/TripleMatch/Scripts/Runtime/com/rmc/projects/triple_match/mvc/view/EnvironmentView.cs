@@ -30,7 +30,7 @@
 using UnityEngine;
 using com.rmc.projects.triple_match.mvc.model;
 using com.rmc.projects.triple_match.mvc.controller;
-using com.rmc.projects.triple_match.mvc.model.data;
+using com.rmc.projects.triple_match.mvc.model.data.vo;
 using System.Collections.Generic;
 
 
@@ -279,38 +279,33 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		private void _AttemptSwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
 		{
-			int rowIndex = gemVO1.RowIndex;
-			int columnIndex = gemVO1.ColumnIndex;
-			//
-			gemVO1.RowIndex = gemVO2.RowIndex;
-			gemVO1.ColumnIndex = gemVO2.ColumnIndex;
+			//SWAP THE DATA MODEL (INSTANT)
+			_model.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
+
+			//SWAP THE VISUALS (OVER X SECONDS)
 			_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap(0);
-			//
-			gemVO2.RowIndex = rowIndex;
-			gemVO2.ColumnIndex = columnIndex;
 			_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap(0);
 
 			//NO MATCH, THEN SWAP BACK
 			if (!_model.IsThereAMatchContainingEitherGemVO(gemVO1, gemVO2))
 			{
 
+				Debug.Log ("there is no MATCH between those 2, but hasmatch : " + _model.HasMatches());
+
 				//local variable used for code-readability
 				float delayToStart_float = TripleMatchConstants.DURATION_GEM_TWEEN_SWAP;
 
-				int rowIndex2 = gemVO1.RowIndex;
-				int columnIndex2 = gemVO1.ColumnIndex;
-				//
-				gemVO1.RowIndex = gemVO2.RowIndex;
-				gemVO1.ColumnIndex = gemVO2.ColumnIndex;
+				//SWAP THE DATA MODEL (INSTANT)
+				_model.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
+				
+				//SWAP THE VISUALS (OVER X SECONDS)
 				_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap(delayToStart_float);
-				//
-				gemVO2.RowIndex = rowIndex2;
-				gemVO2.ColumnIndex = columnIndex2;
 				_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap(delayToStart_float);
 			}
 			else 
 			{
-				//TODO, CHECK FOR MATCHES?
+				//	CHECK FOR MATCHES after a cosmetic delay
+				CoroutineManager.Instance.WaitForSecondsToCall (_model.CheckForMatches, TripleMatchConstants.DURATION_GEM_TWEEN_SWAP);
 			
 			}
 

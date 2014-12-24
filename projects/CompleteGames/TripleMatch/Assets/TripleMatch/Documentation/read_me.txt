@@ -33,9 +33,15 @@
 * replace 100% of art? Maybe not.
 * Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
 * remove pooling library or not?
+* Revisit all commented out Debug.log statements. Keep some? Wrap some in a special debug log? Remove all? TBD
+* fix the 'prevent matches upon reset game' functionality
+
+
 
 //--------------------------------------
-//  TODO: Theoretical future features / fixes
+//  TODO: Theoretical Features For AFTER Submission
 //--------------------------------------
+* Show a hint to user of what match is best to make next
+* End the game if there are no possible matches that can be made via swap
 
 

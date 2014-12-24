@@ -29,7 +29,7 @@
 //--------------------------------------
 using UnityEngine;
 using System.Collections.Generic;
-using com.rmc.projects.triple_match.mvc.model.data;
+using com.rmc.projects.triple_match.mvc.model.data.vo;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
