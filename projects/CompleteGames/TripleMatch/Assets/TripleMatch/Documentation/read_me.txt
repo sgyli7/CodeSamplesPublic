@@ -35,7 +35,7 @@
 * remove pooling library or not?
 * Revisit all commented out Debug.log statements. Keep some? Wrap some in a special debug log? Remove all? TBD
 * fix the 'prevent matches upon reset game' functionality
-
+* add comment to every class. Fit within 3 lines of overview; model, view, controller
 
 
 //--------------------------------------

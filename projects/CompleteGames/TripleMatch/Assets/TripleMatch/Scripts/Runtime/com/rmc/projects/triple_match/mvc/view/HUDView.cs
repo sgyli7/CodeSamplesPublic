@@ -39,6 +39,7 @@ using com.rmc.projects.triple_match.mvc.controller;
 //--------------------------------------
 using com.rmc.projects.triple_match.mvc.view.view_components;
 using com.rmc.core.managers;
+using System;
 
 
 namespace com.rmc.projects.triple_match.mvc.view
@@ -90,6 +91,12 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 		
 		// 	PRIVATE
+
+		/// <summary>
+		/// The _current score_int.
+		/// </summary>
+		private int _currentScore_int = 0;
+
 		
 		
 		//--------------------------------------
@@ -175,9 +182,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// _renders the title text.
 		/// </summary>
-		private void _RenderScoreText (int score_int)
+		private void _RenderScoreTextFromCurrentScore ()
 		{
-			_scoreText.text = string.Format (TripleMatchConstants.TEXT_SCORE_TOKEN, score_int); 
+			_scoreText.text = string.Format (TripleMatchConstants.TEXT_SCORE_TOKEN, _currentScore_int); 
 		}
 		
 		/// <summary>
@@ -250,7 +257,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//		OPTIONAL: REPLACE STATIC CONST WITH STATIC METHOD TO ADD LOCALIZATION BY SPOKEN LANGUAGE
 			_RenderGameResetText (TripleMatchConstants.TEXT_GAME_RESET_TEXT);
 			_RenderTitleText (TripleMatchConstants.TEXT_TITLE );
-			_RenderScoreText (0);
+			_currentScore_int = 0;
+			_RenderScoreTextFromCurrentScore ();
 			_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_ENABLED);
 			
 			//	HIDE GLOW ON RESTART BUTTON 
@@ -308,14 +316,41 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 		}
 
+		/// <summary>
+		/// When the model's score changes, we capture the new target value 
+		/// and slowly over x seconds we tween the display text to that value
+		/// </summary>
+		private void _OnScoreChanged (int targetScore_int)
+		{
+			iTween.ValueTo
+				(gameObject, 
+				 iTween.Hash
+				 	(
+					iT.ValueTo.from, _currentScore_int,
+					iT.ValueTo.to, targetScore_int,
+					iT.ValueTo.delay, 0,
+					iT.ValueTo.time, TripleMatchConstants.DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE,
+					iT.ValueTo.easetype, iTween.EaseType.easeInExpo,
+					iT.ValueTo.onupdatetarget, gameObject,
+					iT.ValueTo.onupdate, "_OnScoreChangedUpdated"
+					)
+				 );
+		}
+
 
 		/// <summary>
-		/// _s the on score changed.
+		/// Every 'tick' of the tween, we update the display text to the new current value
 		/// </summary>
-		private void _OnScoreChanged (int score_int)
+		/// <param name="newScore_int">New score_int.</param>
+		private void _OnScoreChangedUpdated (int newScore_int)
 		{
-			_RenderScoreText (score_int);	
+			Debug.Log ("update " + newScore_int);
+			_currentScore_int = newScore_int;
+			_RenderScoreTextFromCurrentScore ();	
+
 		}
+
+
 
 	}
 }

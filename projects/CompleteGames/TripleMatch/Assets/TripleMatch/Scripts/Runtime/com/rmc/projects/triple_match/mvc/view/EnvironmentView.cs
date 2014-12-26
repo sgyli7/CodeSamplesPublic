@@ -290,7 +290,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			if (!_model.IsThereAMatchContainingEitherGemVO(gemVO1, gemVO2))
 			{
 
-				Debug.Log ("there is no MATCH between those 2, but hasmatch : " + _model.HasMatches());
+				//Debug.Log ("there is no MATCH between those 2, but hasmatch : " + _model.HasMatches());
 
 				//local variable used for code-readability
 				float delayToStart_float = TripleMatchConstants.DURATION_GEM_TWEEN_SWAP;

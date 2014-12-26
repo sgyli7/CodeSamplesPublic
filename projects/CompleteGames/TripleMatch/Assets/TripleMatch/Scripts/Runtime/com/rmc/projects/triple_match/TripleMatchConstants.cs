@@ -82,6 +82,7 @@ namespace com.rmc.projects.triple_match
 		public static float DURATION_GEM_TWEEN_EXIT = 0.5f;
 		public static float DURATION_FLOATING_SCORE_EXIT = 0.5f;
 		public static float DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED = 2f;
+		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1.25f;
 		//
 		public static int DURATION_TIME_LEFT_IN_ROUND_MAX  = 60;	//For Production: Use 60 SECONDS
 		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = 1; //easily accelerate time for debugging

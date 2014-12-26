@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,21 +28,14 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using System.Collections.Generic;
 using com.rmc.projects.triple_match.mvc.model;
 using com.rmc.projects.triple_match.mvc.controller;
-using com.rmc.projects.triple_match.mvc.view;
-using com.rmc.core.support;
-using System.Collections;
-
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.managers;
-
-namespace com.rmc.projects.triple_match.mvc
+namespace com.rmc.projects.triple_match.mvc.view
 {
 	
 	//--------------------------------------
@@ -58,7 +51,7 @@ namespace com.rmc.projects.triple_match.mvc
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class TripleMatchCore : SingletonMonobehavior<TripleMatchCore>  
+	public class DynamiteFuseView : AbstractView
 	{
 		
 		
@@ -67,72 +60,63 @@ namespace com.rmc.projects.triple_match.mvc
 		//--------------------------------------
 		
 		// GETTER / SETTER
-		
+
+
+
+		// 	PUBLIC
+
+		// 	PRIVATE
 		/// <summary>
-		/// All views for the game
+		/// The _transforms.
 		/// </summary>
 		[SerializeField]
-		private List<AbstractView> _abstractViews;
+		public Transform[] _waypoint_transforms;
 
-		
-		// 	PUBLIC
-		
-		
-		// 	PRIVATE
 		
 		
 		//--------------------------------------
-		// 	Constructor / Creation
+		// 	Constructor
 		//--------------------------------------	
+
+		/// <summary>
+		/// Initialize the specified model and controller.
+		/// </summary>
+		/// <param name="model">Model.</param>
+		/// <param name="controller">Controller.</param>
+		override public void Initialize (Model model, Controller controller)
+		{
+			base.Initialize (model, controller);
+			
+			_model.OnTimeLeftInRoundChanged += _OnTimeLeftInRoundChanged;
+			_model.OnTimeLeftInRoundExpired += _OnTimeLeftInRoundExpired;
+		}
 		
+
+
 		
 		//--------------------------------------
 		// 	Unity Methods
 		//--------------------------------------
 		
-		
-		/// <summary>
-		/// Start this instance.
-		/// </summary>
+		///<summary>
+		///	Use this for initialization
+		///</summary>
 		protected void Start () 
 		{
-
-			//	MANAGERS
-			AudioManager.OnInstantiateCompleted += _OnAudioManagerInstantiateCompleted;
-			AudioManager.Instantiate();
-			
-			//	MODEL
-			Model.Instantiate();
-			
-			//	CONTROLLER
-			Controller.Instantiate();
-			Controller.Instance.Initialize (Model.Instance);
 			
 			
-			//	VIEW
-			//	- WE SET THE VIEWS THROUGH THE INSPECTOR FOR MORE FLEXIBILITIES
-			foreach (AbstractView abstractview in _abstractViews)
-			{
-				// NOTE: In a more mature MVC, the model could...
-				//			1. listen to model events
-				//			2. get (but not set) values of the model
-				//			3. use events instead of having a reference to Controller.
-				//			** But this project represents a looser, easier, faster MVC-with-growth-potential approach.
-				abstractview.Initialize (Model.Instance, Controller.Instance);
-			}
-
-
-
 		}
 
 		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		protected void Update () 
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		override protected void OnDestroy () 
 		{
-			
-			
+
+			_model.OnTimeLeftInRoundChanged -= _OnTimeLeftInRoundChanged;
+			_model.OnTimeLeftInRoundExpired -= _OnTimeLeftInRoundExpired;
+
 		}
 		
 		
@@ -142,33 +126,36 @@ namespace com.rmc.projects.triple_match.mvc
 		
 		
 		// 	PUBLIC
-		
-		
+
+
 		//	PRIVATE
 		
 
-		
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
 
 		/// <summary>
-		/// _s the on audio manager instantiate completed.
+		/// _s the on time left in round changed.
 		/// </summary>
-		/// <param name="audioManager">Audio manager.</param>
-		private void _OnAudioManagerInstantiateCompleted (AudioManager audioManager)
+		/// <param name="timeLeft_int">Time left_int.</param>
+		private void _OnTimeLeftInRoundChanged (int timeLeft_int)
 		{
-			AudioManager.OnInstantiateCompleted -= _OnAudioManagerInstantiateCompleted;
-
-			
-			//	Mimic 'Game Reset' Click
-			//	After short delay ...
-			//		1. of 1 frame or more for View to be 'ready'
-			//		2. and its also a delay for cosmetics
-			CoroutineManager.Instance.WaitForSecondsToCall (Controller.Instance.GameReset, TripleMatchConstants.DURATION_DELAY_TO_START_GAME);
 
 
 		}
+		
+		
+		
+		/// <summary>
+		/// _s the on time left in round expired.
+		/// </summary>
+		private void _OnTimeLeftInRoundExpired ()
+		{
+			
+		}
+
+
 	}
 }
 
