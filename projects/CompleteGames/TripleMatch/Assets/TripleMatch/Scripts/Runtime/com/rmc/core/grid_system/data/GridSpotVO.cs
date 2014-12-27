@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,13 +28,12 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
+
+
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.grid_system.data;
-
-
-namespace com.rmc.projects.triple_match.mvc.model.data.vo
+namespace com.rmc.core.grid_system.data
 {
 	
 	//--------------------------------------
@@ -50,7 +49,7 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class GemVO : GridSpotVO
+	public class GridSpotVO 
 	{
 		
 		
@@ -62,14 +61,9 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 		
 		
 		// 	PUBLIC
-		public int GemTypeIndex
-		{
-			get
-			{
-				return TypeIndex;
-			}
-
-		}
+		public int RowIndex;
+		public int ColumnIndex;
+		public int TypeIndex;
 		
 		// 	PRIVATE
 		
@@ -78,12 +72,31 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 		// 	Constructor / Creation
 		//--------------------------------------	
 
-		public GemVO ()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.core.grid_system.data.GridSpotVO"/> class.
+		/// </summary>
+		public GridSpotVO ()
 		{
 			//parameterless to assist generics
 		}
-		
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.core.grid_system.data.GridSpotVO"/> class.
+		/// </summary>
+		/// <param name="rowIndex">Row index.</param>
+		/// <param name="columnIndex">Column index.</param>
+		/// <param name="typeIndex">Type index.</param>
+		public void Initialize (int rowIndex, int columnIndex, int typeIndex)
+		{
+			
+			RowIndex = rowIndex;
+			ColumnIndex = columnIndex;
+			TypeIndex = typeIndex;
+			
+			//
+			//Debug.Log (this);
+		}
+		
 		//--------------------------------------
 		// 	Methods
 		//--------------------------------------
@@ -96,7 +109,7 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 		/// </summary>
 		override public string ToString ()
 		{
-			return "[GemVO (r="+RowIndex+", c="+ColumnIndex+", gti="+GemTypeIndex+")]";
+			return "[GemVO (r="+RowIndex+", c="+ColumnIndex+", t="+TypeIndex+")]";
 			
 		}
 		

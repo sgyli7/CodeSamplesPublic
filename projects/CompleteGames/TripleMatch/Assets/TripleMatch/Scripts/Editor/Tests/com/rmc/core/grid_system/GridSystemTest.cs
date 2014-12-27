@@ -35,9 +35,11 @@ using System.Threading;
 //  Namespace
 //--------------------------------------
 using UnityEngine;
+using com.rmc.projects.triple_match.mvc.model.data.vo;
+using com.rmc.projects.triple_match;
 
 
-namespace com.rmc.projects.triple_match.mvc.model
+namespace com.rmc.core.grid_system
 {
 	
 	//--------------------------------------
@@ -52,7 +54,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 	//  Class
 	//--------------------------------------
 	[TestFixture]
-	public class ModelTest
+	public class GridSystemTest
 	{
 		
 
@@ -60,26 +62,34 @@ namespace com.rmc.projects.triple_match.mvc.model
 		//  Setup
 		//--------------------------------------
 		
-		//PROPERTIES TO REUSE
+		//	PROPERTIES TO REUSE ACROSS TESTS
+		private GridSystem<GemVO> _gridSystem;
 
-		private Model _modelInstance;
-
-		//CALLED BEFORE EVERY 'TEST' METHOD IN THIS FIXTURE
+		//	CALLED BEFORE EVERY 'TEST' METHOD IN THIS FIXTURE
 		[SetUp] 
-		public void setUp()
+		public void SetUp()
 		{
-			_modelInstance = Model.Instantiate();
+			_gridSystem = new GridSystem<GemVO>
+				(
+					TripleMatchConstants.MAX_ROWS, 
+					TripleMatchConstants.MAX_COLUMNS,
+					TripleMatchConstants.MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD,
+					TripleMatchConstants.MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD,
+					TripleMatchConstants.MAX_GEM_TYPE_INDEX
+				);
 			
 			
 		}
 		
 		
-		//CALLED AFTER EVERY 'TEST' METHOD IN THIS FIXTURE
+		//	CALLED AFTER EVERY 'TEST' METHOD IN THIS FIXTURE
 		[TearDown] 
-		public void tearDown()
+		public void TearDown()
 		{
-			Model.Destroy();
+			_gridSystem = null;
 		}
+
+
 		//--------------------------------------
 		//  SampleTests
 		//--------------------------------------
@@ -87,32 +97,32 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public void InstantiationTest ()
 		{
 
-			Assert.Pass();
+			Assert.NotNull (_gridSystem);
 		}
 
 		[Test]
 		public void GameResetTest ()
 		{
-			_modelInstance.GameReset();
+			_gridSystem.Reset(Frequency.Sometimes);
 			int expectedValue = TripleMatchConstants.MAX_ROWS * TripleMatchConstants.MAX_COLUMNS;
-			int actualValue = _modelInstance.GemVOCount();
+			int actualValue = _gridSystem.GridSpotVOList().Count;
 			Assert.AreEqual (expectedValue, actualValue);
 		}
 
 		[Test]
-		public void FindMatchesWithSuccessTest ()
+		public void FindMatchesAlwaysWithSuccessTest ()
 		{
-			_modelInstance.GameReset();
-			_modelInstance.WillAllowInstantMatchesOnGameReset = TripleMatchConstants.Frequency.Always;
+			_gridSystem.Reset(Frequency.Always);
 
-			int expectedValue = TripleMatchConstants.MAX_ROWS * TripleMatchConstants.MAX_COLUMNS;
-			int actualValue = _modelInstance.GemVOCount();
-			Assert.AreEqual (expectedValue, actualValue);
+			//	REPEATING X TIMES IS A GOOD TEST FOR FREQUENCY
+			for (var i=0; i < 10; i++)
+			{
+				int expectedValue = 0; //we expect one or more matches
+				int actualValue = _gridSystem.GetMatches().Count;
+				Assert.Greater (actualValue, expectedValue);
+			}
 		}
-		
 
-
-		
 		
 		//--------------------------------------
 		//  More Tests

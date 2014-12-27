@@ -459,7 +459,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			
 			//	RENDER
-			_DoLayoutGems (_model.GemVOs);
+			_DoLayoutGems (_model.GemVOArray);
 
 			//	SOUND
 			if (AudioManager.IsInstantiated())

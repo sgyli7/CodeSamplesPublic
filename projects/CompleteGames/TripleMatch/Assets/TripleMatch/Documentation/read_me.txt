@@ -37,7 +37,11 @@
 * fix the 'prevent matches upon reset game' functionality
 * add comment to every class. Fit within 3 lines of overview; model, view, controller
 * initialize everything in start (not in declaration). Is that a good readability upgrade?
-
+* Remove 'gem' from grid system naming/comments
+* Change GridSpotVO to iGridSpotVO interface. Nice! Remove 'gemtype' or not since it depends on the view (vice versa?)
+* use maxrows/maxcolums ONLY when creting grid. otherwise use getlength()
+* show users all time high score
+* make a 'bonk' noise if you click a gem but the gem cannot accept a move (like when the matches are blowing up)
 
 //--------------------------------------
 //  TODO: Theoretical Features For AFTER Submission

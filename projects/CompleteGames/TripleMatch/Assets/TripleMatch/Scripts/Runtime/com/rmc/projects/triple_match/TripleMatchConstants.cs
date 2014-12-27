@@ -34,6 +34,9 @@ using com.rmc.core.exceptions;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.grid_system;
+
+
 namespace com.rmc.projects.triple_match
 {
 
@@ -53,25 +56,12 @@ namespace com.rmc.projects.triple_match
 	public class TripleMatchConstants 
 	{ 
 
-
-
-		public enum Frequency
-		{
-			Always,
-			Sometimes,
-			Never
-			
-		}
-		
-
-
-
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
 
 		//
-		public static Frequency SETTING_GAMEPLAY_WILL_ALLOW_INSTANT_MATCHES_ON_GAME_RESET = Frequency.Sometimes; //TODO: setting to false 'works' but not well.
+		public static Frequency FREQUENCY_OF_INSTANT_MATCHES_UPON_RESET = Frequency.Sometimes; //TODO: setting to false 'works' but not well.
 
 
 		// 	PUBLIC
@@ -79,8 +69,8 @@ namespace com.rmc.projects.triple_match
 		public const int MAX_ROWS = 8; //For Production, 8
 		public const int MAX_COLUMNS = 8; //For Production, 8
 		public const int MAX_GEM_TYPE_INDEX = 5; //For Production, 5
-		public const int MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD = 3; //axis-specific for easy debugging
-		public const int MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD = 3; //axis-specific for easy debugging
+		public const int MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD = 3; //For Production, 3, axis-specific for easy debugging
+		public const int MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD = 3; //For Production, 3, axis-specific for easy debugging
 
 		//
 		public static float ROW_SIZE = 0.4f;
