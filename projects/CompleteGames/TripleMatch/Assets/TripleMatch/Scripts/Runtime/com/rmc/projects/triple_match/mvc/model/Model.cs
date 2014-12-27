@@ -88,6 +88,16 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 
 		/// <summary>
+		/// Gems the VO count.
+		/// </summary>
+		/// <returns>The VO count.</returns>
+		public int GemVOCount ()
+		{
+
+			return _GetGemVOsListFromGemVOArray(_gemVOs).Count;
+		}
+
+		/// <summary>
 		/// _s the get gem V os list from gem VO array.
 		/// 
 		/// NOTE: Generating a list is more useful than a 2-dimensional array for some operations.
@@ -108,6 +118,24 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 			return gemVOsList;
 		}
+
+
+		/// <summary>
+		/// The _will allow instant matches on game reset.
+		/// </summary>
+		private TripleMatchConstants.Frequency _willAllowInstantMatchesOnGameReset = TripleMatchConstants.Frequency.Sometimes;
+		public TripleMatchConstants.Frequency WillAllowInstantMatchesOnGameReset 
+		{
+			get
+			{
+				return _willAllowInstantMatchesOnGameReset;
+			}
+			set
+			{
+				_willAllowInstantMatchesOnGameReset = value;
+			}
+		}
+
 
 		private GameState _gameState = GameState.UNKNOWN;
 		public GameState GameState 
@@ -141,7 +169,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			{
 				_IsInputEnabled = value;
 				
-				Debug.Log ("_IsInputEnabled: " + IsInputEnabled);
+				//Debug.Log ("_IsInputEnabled: " + IsInputEnabled);
 				if (OnIsInputEnabledChanged != null)
 				{
 					OnIsInputEnabledChanged (IsInputEnabled);
@@ -261,7 +289,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// </summary>
 		public delegate void OnTimeLeftInRoundExpiredDelegate ();
 		public OnTimeLeftInRoundExpiredDelegate OnTimeLeftInRoundExpired;
-		public delegate void OnTimeLeftInRoundChangedDelegate (int timeLeftInRound_int);
+		public delegate void OnTimeLeftInRoundChangedDelegate (int timeLeftInRound_int, int timeTotalInRound_int);
 		public OnTimeLeftInRoundChangedDelegate OnTimeLeftInRoundChanged;
 		private int _timeLeftInRound_int;
 		public int TimeLeftInRound
@@ -275,7 +303,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 				_timeLeftInRound_int = value;
 				if (OnTimeLeftInRoundChanged != null)
 				{
-					OnTimeLeftInRoundChanged (_timeLeftInRound_int);
+					OnTimeLeftInRoundChanged (_timeLeftInRound_int, TripleMatchConstants.DURATION_TIME_TOTAL_IN_ROUND);
 				}
 			}
 		}
@@ -326,6 +354,11 @@ namespace com.rmc.projects.triple_match.mvc.model
 		{
 			_gemVOs = new GemVO[TripleMatchConstants.MAX_ROWS, TripleMatchConstants.MAX_COLUMNS];
 			GameState = GameState.INITIALIZED;
+
+			//THIS IS THE DEFAULT, CHANGE THE VALUE IN TripleMatchConstants if needed
+			//UnitTests may set this externally too
+			WillAllowInstantMatchesOnGameReset =  TripleMatchConstants.SETTING_GAMEPLAY_WILL_ALLOW_INSTANT_MATCHES_ON_GAME_RESET;
+
 		}
 
 
@@ -358,7 +391,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			IsInputEnabled = false;
 			//
 			Score = 0;
-			TimeLeftInRound = TripleMatchConstants.DURATION_TIME_LEFT_IN_ROUND_MAX;
+			TimeLeftInRound = TripleMatchConstants.DURATION_TIME_TOTAL_IN_ROUND;
 			StopCoroutine ("_TimeLeftInRoundDecrement_Coroutine");
 			StartCoroutine ("_TimeLeftInRoundDecrement_Coroutine");
 			SelectedGemVO = null;
@@ -395,7 +428,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 					//
 					//	OPTION 1: ALLOW POSSIBLE MATCHES
 					//
-					if (TripleMatchConstants.SETTING_GAMEPLAY_WILL_ALLOW_INSTANT_MATCHES_ON_GAME_RESET)
+					if (_willAllowInstantMatchesOnGameReset == TripleMatchConstants.Frequency.Sometimes)
 					{
 						//	choose 'any' gem type and don't worry if it matches a neighbor
 						nextGemTypeIndex_int = Random.Range (0, TripleMatchConstants.MAX_GEM_TYPE_INDEX);
@@ -406,7 +439,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 					//
 					//	OPTION 2: DO NOT ALLOW POSSIBLE MATCHES
 					//
-					else
+					else if (_willAllowInstantMatchesOnGameReset == TripleMatchConstants.Frequency.Never)
 					{
 						//BUILD A LIST OF POSSIBLE GEMTYPES
 						List<int> nextGemTypeIndexList = new List<int> ();
@@ -429,9 +462,13 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 						} while (HasMatches() && nextGemTypeIndexList.Count > 0);
 					}
+					else
+					{
+						//100% ALWAYS START WITH AT LEAST ONE MATCH?
+						throw new System.NotImplementedException ("TODO: Code later if desired.");
 
+					}
 
-					
 				
 				}
 			}
@@ -447,6 +484,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			GameState = GameState.PLAYING;
 
 		}
+
 		
 		/// <summary>
 		/// Determines if is there A match containing either gem V the specified gemVO1 gemVO2.

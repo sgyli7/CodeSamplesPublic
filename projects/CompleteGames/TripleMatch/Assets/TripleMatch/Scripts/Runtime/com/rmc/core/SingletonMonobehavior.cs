@@ -129,6 +129,22 @@ namespace com.rmc.core.support
 			}
 			return _Instance;
 		}
+
+		/// <summary>
+		/// Destroys all memory/references associated with the instance
+		/// </summary>
+		public static void Destroy()
+		{
+			
+			if (IsInstantiated())
+			{
+				// NOTE: Use 'DestroyImmediate'. At runtime its less important, but occasionally editor classes will call Destroy();
+				DestroyImmediate (_Instance.gameObject);
+				_Instance = null;
+			}
+
+
+		}
 		
 		//--------------------------------------
 		// 	Unity Methods

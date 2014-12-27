@@ -36,6 +36,7 @@
 * Revisit all commented out Debug.log statements. Keep some? Wrap some in a special debug log? Remove all? TBD
 * fix the 'prevent matches upon reset game' functionality
 * add comment to every class. Fit within 3 lines of overview; model, view, controller
+* initialize everything in start (not in declaration). Is that a good readability upgrade?
 
 
 //--------------------------------------

@@ -64,7 +64,7 @@ namespace com.rmc.core.debug
 		/// This class simply allows the developer to put a note (for documentation) in the inspector of a GameObject.
 		/// </summary>
 		[SerializeField]
-		private string _note;
+		public string _note;
 		
 		// 	PUBLIC STATIC
 		

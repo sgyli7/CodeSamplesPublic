@@ -35,6 +35,9 @@ using com.rmc.projects.triple_match.mvc.controller;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using com.rmc.core.managers;
+
+
 namespace com.rmc.projects.triple_match.mvc.view
 {
 	
@@ -70,9 +73,27 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// The _transforms.
 		/// </summary>
 		[SerializeField]
-		public Transform[] _waypoint_transforms;
+		private Transform[] _waypoint_transforms;
 
-		
+		/// <summary>
+		/// The _spark_gameobject.
+		/// </summary>
+		[SerializeField]
+		private GameObject _spark_gameobject;
+
+
+		/// <summary>
+		/// The _dynamite_gameobject.
+		/// </summary>
+		[SerializeField]
+		private GameObject _dynamite_gameobject;
+
+
+		/// <summary>
+		/// The current path percent_float.
+		/// </summary>
+		private float _sparksPercentageThroughPath_float;
+
 		
 		//--------------------------------------
 		// 	Constructor
@@ -89,6 +110,21 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 			_model.OnTimeLeftInRoundChanged += _OnTimeLeftInRoundChanged;
 			_model.OnTimeLeftInRoundExpired += _OnTimeLeftInRoundExpired;
+			_model.OnGameResetted			+= _OnGameResetted;
+
+			_sparksPercentageThroughPath_float = 0;
+
+			ParticleSystem spark_particlesystem = _spark_gameobject.GetComponentInChildren<ParticleSystem>();
+			TripleMatchConstants.InitializeParticleSystemForUnity46X (spark_particlesystem);
+			//
+			//DYNAMITE IS 2+ PREFABS, SO SET EACH UP AND PLAY THEM LATER
+			foreach (ParticleSystem particleSystemInstance in _dynamite_gameobject.GetComponentsInChildren<ParticleSystem>())
+			{
+				TripleMatchConstants.InitializeParticleSystemForUnity46X (particleSystemInstance);
+				particleSystemInstance.Stop();
+			}
+
+
 		}
 		
 
@@ -104,10 +140,17 @@ namespace com.rmc.projects.triple_match.mvc.view
 		protected void Start () 
 		{
 			
-			
 		}
 
-		
+
+		/// <summary>
+		/// Update this instance.
+		/// </summary>
+		override protected void Update () 
+		{
+			iTween.PutOnPath(_spark_gameobject, _waypoint_transforms, _sparksPercentageThroughPath_float);	
+		}
+
 		/// <summary>
 		/// Raises the destroy event.
 		/// </summary>
@@ -116,7 +159,17 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 			_model.OnTimeLeftInRoundChanged -= _OnTimeLeftInRoundChanged;
 			_model.OnTimeLeftInRoundExpired -= _OnTimeLeftInRoundExpired;
+			_model.OnGameResetted			-= _OnGameResetted;
 
+		}
+
+		/// <summary>
+		/// Raises the draw gizmos event.
+		/// </summary>
+		public void OnDrawGizmos()
+		{
+			//Visual. Not used in movement
+			iTween.DrawPath(_waypoint_transforms);
 		}
 		
 		
@@ -139,9 +192,13 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// _s the on time left in round changed.
 		/// </summary>
 		/// <param name="timeLeft_int">Time left_int.</param>
-		private void _OnTimeLeftInRoundChanged (int timeLeft_int)
+		private void _OnTimeLeftInRoundChanged (int timeLeft_int, int timeTotal_int)
 		{
-
+			//Calculate % as... 0 (at round start) to 1 (at round complete) and keep result in proper range
+			_sparksPercentageThroughPath_float = 1 - (float)timeLeft_int / (float)timeTotal_int;
+			_sparksPercentageThroughPath_float = Mathf.Max (_sparksPercentageThroughPath_float, 0);
+			_sparksPercentageThroughPath_float = Mathf.Min (_sparksPercentageThroughPath_float, 1);
+			//Debug.Log ("OK: ("+timeLeft_int+"/"+timeTotal_int+")" + _sparksPercentageThroughPath_float);
 
 		}
 		
@@ -152,7 +209,29 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		private void _OnTimeLeftInRoundExpired ()
 		{
+			//
+			_spark_gameobject.gameObject.SetActive (false);
+
+			//
+			foreach (ParticleSystem particleSystemInstance in _dynamite_gameobject.GetComponentsInChildren<ParticleSystem>())
+			{
+				particleSystemInstance.Play();
+			}
+
 			
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_DYNAMITE_EXPLOSION_AUDIO);
+			}
+
+		}
+
+		/// <summary>
+		/// _s the on time left in round expired.
+		/// </summary>
+		private void _OnGameResetted ()
+		{
+			_spark_gameobject.gameObject.SetActive (true);
 		}
 
 

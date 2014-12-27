@@ -290,7 +290,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// _s the on time left in round changed.
 		/// </summary>
 		/// <param name="timeLeft_int">Time left_int.</param>
-		private void _OnTimeLeftInRoundChanged (int timeLeft_int)
+		private void _OnTimeLeftInRoundChanged (int timeLeft_int,  int timeTotalInRound_int)
 		{
 			_RenderTimeText (timeLeft_int);	
 		}
@@ -344,7 +344,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <param name="newScore_int">New score_int.</param>
 		private void _OnScoreChangedUpdated (int newScore_int)
 		{
-			Debug.Log ("update " + newScore_int);
 			_currentScore_int = newScore_int;
 			_RenderScoreTextFromCurrentScore ();	
 

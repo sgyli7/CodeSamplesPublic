@@ -46,19 +46,34 @@ namespace com.rmc.projects.triple_match
 	//--------------------------------------
 	//  Class Attributes
 	//--------------------------------------
-	
-	
+
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
 	public class TripleMatchConstants 
 	{ 
 
+
+
+		public enum Frequency
+		{
+			Always,
+			Sometimes,
+			Never
+			
+		}
 		
+
+
+
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
-		
+
+		//
+		public static Frequency SETTING_GAMEPLAY_WILL_ALLOW_INSTANT_MATCHES_ON_GAME_RESET = Frequency.Sometimes; //TODO: setting to false 'works' but not well.
+
+
 		// 	PUBLIC
 		
 		public const int MAX_ROWS = 8; //For Production, 8
@@ -70,8 +85,6 @@ namespace com.rmc.projects.triple_match
 		//
 		public static float ROW_SIZE = 0.4f;
 		public static float COLUMN_SIZE = 0.4f;
-		//
-		public static bool SETTING_GAMEPLAY_WILL_ALLOW_INSTANT_MATCHES_ON_GAME_RESET = true; //TODO: setting to false 'works' but not well.
 
 		//
 		public static float DURATION_DELAY_TO_START_GAME = 0.25f;
@@ -84,7 +97,7 @@ namespace com.rmc.projects.triple_match
 		public static float DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED = 2f;
 		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1.25f;
 		//
-		public static int DURATION_TIME_LEFT_IN_ROUND_MAX  = 60;	//For Production: Use 60 SECONDS
+		public static int DURATION_TIME_TOTAL_IN_ROUND  = 60;	//For Production: Use 60 SECONDS
 		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = 1; //easily accelerate time for debugging
 		public static float TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK = 1;//easily accelerate time for debugging
 		//
@@ -121,7 +134,7 @@ namespace com.rmc.projects.triple_match
 		public static string PATH_SCORE_INCREASE_AUDIO = "Audio/SoundEffects/ScoreIncrease01";
 		public static string PATH_GEM_SWAP_AUDIO = "Audio/SoundEffects/GemSwap01";
 		public static string PATH_GEM_EXPLOSION_AUDIO = "Audio/SoundEffects/GemExit01";
-
+		public static string PATH_DYNAMITE_EXPLOSION_AUDIO = "Audio/SoundEffects/DynamiteExplosion01";
 		public static string PATH_TIME_LEFT_IN_ROUND_EXPIRED_AUDIO = "Audio/SoundEffects/TimeLeftInRoundExpired01";
 
 
@@ -229,6 +242,17 @@ namespace com.rmc.projects.triple_match
 
 			return colorByGemVO;
 
+		}
+
+		/// <summary>
+		/// Initializes the particle system for unity4.6.x.
+		/// 	FOR (UNITY'S NATIVE) SHURIKEN PARTICLE EFFECTS ON TOP OF UNITY 4.6.X 2D, WE MUST ADJUST SORTING
+		/// </summary>
+		/// <param name="particlesystem">Particlesystem.</param>
+		public static void InitializeParticleSystemForUnity46X (ParticleSystem particlesystem)
+		{
+			particlesystem.renderer.sortingLayerName = TripleMatchConstants.SORTING_LAYER_PARTICLE_EFFECTS;
+			particlesystem.renderer.sortingOrder = 1;
 		}
 	}
 

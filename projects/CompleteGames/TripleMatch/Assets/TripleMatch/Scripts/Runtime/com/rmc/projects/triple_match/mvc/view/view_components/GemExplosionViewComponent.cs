@@ -121,10 +121,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 					_particleSystem.startColor = TripleMatchConstants.GetGemColorByGemVO (_gemVO);
 				}
 
-				//	FOR SHURIKEN PARTICLE EFFECTS ON TOP OF UNITY 4.6.X 2D, WE MUST ADJUST THE SORTING LAYER
-				_particleSystem.renderer.sortingLayerName = TripleMatchConstants.SORTING_LAYER_PARTICLE_EFFECTS;
-				_particleSystem.renderer.sortingOrder = 1;
-
+				TripleMatchConstants.InitializeParticleSystemForUnity46X (_particleSystem);
 				particleSystemPrefabIndex_int++;
 			}
 
