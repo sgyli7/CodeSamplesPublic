@@ -149,7 +149,6 @@ namespace com.rmc.templates
 		/// <param name="message_string">Message_string.</param>
 		public void _OnEventOccurred (string message_string) 
 		{
-			Debug.Log ("_OnEventOccurred(): " + message_string);
 			
 		}
 	}

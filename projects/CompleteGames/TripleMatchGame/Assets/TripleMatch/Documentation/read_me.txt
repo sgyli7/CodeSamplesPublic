@@ -1,17 +1,19 @@
 /**
- * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
- * code [at] RivelloMultimediaConsulting [dot] com               
+ • Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
+ • code [at] RivelloMultimediaConsulting [dot] com               
  */
 // Marks the right margin of code ************************************************************************************
 
 /*
+
 //--------------------------------------------------------------------------------------------------------------------
 //  I. OVERVIEW
 //--------------------------------------------------------------------------------------------------------------------
 • The 'Triple Match' game is complete. There are no warnings/errors at compiletime nor runtime. 
 • Target resolution is 755 x 600.
-* Playing? Entry point is the Scene "TripleMatchFullGame.unity"
-* CodeReview? Entry point is the class ("com.rmc.projects.triple_match.mvc.TripleMatchCore.cs").
+• Playing? Entry point is the Scene "TripleMatchFullGame.unity"
+• CodeReview? Entry point is the class ("com.rmc.projects.triple_match.mvc.TripleMatchCore.cs").
+
 
 //--------------------------------------------------------------------------------------------------------------------
 //  II. CODE OWNERSHIP
@@ -20,6 +22,7 @@
 • Folder (/Assets/TripleMatch/) - All non-code (assets) were given by assigner or found by Sam Rivello
 • Folder (/Assets/Standard Assets/) - All contents provided by Unity Technologies via Asset Store
 • Folder (/Assets/Community Assets/) - All contents provided by 3rd Parties via Asset Store
+
 
 //--------------------------------------------------------------------------------------------------------------------
 //  III. FEATURES REQUIRED: By Assigners' Documentation
@@ -37,6 +40,7 @@
 --
 • Submitting: Please send the test back as a .zip file or package to a Google doc link, [Sam: Done! I used Dropbox links.]
 • Timeframe: 7 days, or request time via email. [Sam: Done! I'd requested 8 days (Dec 20 to 28, 2014) of part-time effort.]
+
 
 //--------------------------------------------------------------------------------------------------------------------
 //  IV. FEATURES NOT-REQUIRED: Added For Fun
@@ -58,25 +62,26 @@
 //--------------------------------------------------------------------------------------------------------------------
 //  V. TODO: Before Submission
 //--------------------------------------------------------------------------------------------------------------------
-* Nothing.
-look for todo in the code
+• Nothing else.
 
-* Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
 
-// DO THIS LAST
-* add comment to every class. Fit within 3 lines of overview; model, view, controller
-* Update 100% of comments
 
 //--------------------------------------------------------------------------------------------------------------------
 //  VI. TODO: Theoretical Future-Features, These items have not been attempted nor completed.
 //--------------------------------------------------------------------------------------------------------------------
-* Architecture: I'd like to recode the game and try out uFrame Architecture (https://www.assetstore.unity3d.com/en/#!/content/14381)
-* Production: Replace 100% of art. Just to revisit the views flexibility to handle different size, layouts, (# of gemtypes), etc...
-* Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start for reuse.
-* Gameplay: Show a hint to user of what match is best to make next
-* Gameplay: End the game if there are no possible matches that can be made via swap
-* Gameplay: Add a 'combo meter' that drains slowly, but gains with each match made. A 100% meter will reward bonus for next matches
-* Gameplay: Add 'com.rmc.core.grid_system.GridSystem.Frequency.Never' and allow game to initially render with zero matches.
-* View: Handle common screen layouts (iPhone 6, 4, etc...) without simply resizing gracefully as currently happens.
+• Architecture: I'd like to recode the game and try out uFrame Architecture (https://www.assetstore.unity3d.com/en/#!/content/14381)
+• Production: Replace 100% of art. Just to revisit the views flexibility to handle different size, layouts, (# of gemtypes), etc...
+• Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start for reuse.
+• Gameplay: Show a hint to user of what match is best to make next
+• Gameplay: End the game if there are no possible matches that can be made via swap
+• Gameplay: Add a 'combo meter' that drains slowly, but gains with each match made. A 100% meter will reward bonus for next matches
+• Gameplay: Add 'com.rmc.core.grid_system.GridSystem.Frequency.Never' and allow game to initially render with zero matches.
+• View: Handle common screen layouts (iPhone 6, 4, etc...) without simply resizing gracefully as currently happens.
+
+
+
+
+
+
 
 */

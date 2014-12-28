@@ -50,6 +50,9 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// This prefab rises above just-matched gems and shows '100 points' or such messaging.
+	/// </summary>
 	public class FloatingScoreViewComponent : MonoBehaviour
 	{
 		
@@ -154,7 +157,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		/// </summary>
 		private void _OnTweenToNewPositionCompleted ()
 		{
-			//Debug.Log ("_OnTweenToNewPositionCompleted()");
 			Destroy (gameObject);
 
 

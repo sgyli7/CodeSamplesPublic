@@ -86,9 +86,9 @@ namespace com.rmc.projects.triple_match.mvc.controller
 		
 			
 		/// <summary>
-		/// Initialize the specified instance.
+		/// Initialize the specified model.
 		/// </summary>
-		/// <param name="instance">Instance.</param>
+		/// <param name="model">Model.</param>
 		public void Initialize (Model model)
 		{
 			_model = model;
@@ -97,26 +97,6 @@ namespace com.rmc.projects.triple_match.mvc.controller
 		//--------------------------------------
 		//  Unity Methods
 		//--------------------------------------
-		
-		///<summary>
-		///	Use this for initialization
-		///</summary>
-		protected void Start () 
-		{
-			
-			
-		}
-		
-		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		protected void Update () 
-		{
-			
-			
-		}
-		
 		
 		//--------------------------------------
 		//  Methods
@@ -155,6 +135,10 @@ namespace com.rmc.projects.triple_match.mvc.controller
 
 		/// <summary>
 		/// Sets the score.
+		/// 
+		/// NOTE: We coordinate score sending through the view to faciliate timing issues.
+		/// 	  On a larger scale project, its recommended to determine/evaluate/update score within the model
+		/// 
 		/// </summary>
 		/// <param name="score_int">Score_int.</param>
 		/// <param name="delayUntilSet_float">Delay until set_float.</param>
@@ -189,7 +173,7 @@ namespace com.rmc.projects.triple_match.mvc.controller
 	
 		
 		/// <summary>
-		/// Selecteds the gem V.
+		/// Selecteds the gem
 		/// </summary>
 		public GemVO SelectedGemVO 
 		{

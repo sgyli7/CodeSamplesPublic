@@ -133,14 +133,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		//	Unity Methods
 		//--------------------------------------
 		
-		/// <summary>
-		/// Raises the destroy event.
-		/// </summary>
-		protected void OnDestroy () 
-		{
-
-		}
-		
 		
 		//--------------------------------------
 		// 	Methods
@@ -155,11 +147,9 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		{
 			Destroy (gameObject, 0);
 		}
-
-		
 		
 		/// <summary>
-		/// Tweens to new position.
+		/// Tweens: When gem enters the screen for the first time.
 		/// </summary>
 		public void TweenToNewPositionEntry ()
 		{
@@ -169,7 +159,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		}
 
 		/// <summary>
-		/// Tweens to new position.
+		/// Tweens: When gem swaps position with another gem
 		/// </summary>
 		public void TweenToNewPositionSwap (float delayToStart_float)
 		{
@@ -178,7 +168,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		}
 
 		/// <summary>
-		/// Tweens to new position.
+		/// Tweens: When gem drops down to fill gap
 		/// </summary>
 		public void TweenToNewPositionDrop (float delayToStart_float)
 		{
@@ -188,7 +178,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 
 
 		/// <summary>
-		/// Tweens to new position exit.
+		/// Tweens: When gem explodes
 		/// </summary>
 		public void TweenToNewPositionExit ()
 		{
@@ -206,7 +196,8 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 
 
 		//	PRIVATE
-
+		/// <summary>
+		/// </summary>
 		private void _ShrinkAndExplode ()
 		{
 
@@ -228,7 +219,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		}
 
 		/// <summary>
-		/// Tweens to new position.
 		/// </summary>
 		private void _TweenToNewPosition (float durationGemTweenDelay_float, Vector3 targetPosition_vector3, 
 		                                  string onTweenCompletedFunctionName_string )
@@ -285,7 +275,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		
 		
 		/// <summary>
-		/// _s the get target position.
 		/// </summary>
 		private Vector3 _GetTargetPosition ()
 		{
@@ -321,7 +310,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		}
 
 		/// <summary>
-		/// _s the on tween to new position swap completed.
 		/// </summary>
 		public void _OnTweenToNewPositionSwapCompleted ()
 		{
@@ -330,7 +318,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		}
 
 		/// <summary>
-		/// _s the on tween to new position Drop completed.
 		/// </summary>
 		public void _OnTweenToNewPositionDropCompleted ()
 		{

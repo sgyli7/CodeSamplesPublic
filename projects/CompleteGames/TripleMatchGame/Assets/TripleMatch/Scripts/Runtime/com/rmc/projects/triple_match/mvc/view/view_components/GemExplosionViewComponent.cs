@@ -49,6 +49,9 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// This prefab is attached on just-matched gems. Its a puff of smoke and maybe some other particle effects. We'll see.
+	/// </summary>
 	public class GemExplosionViewComponent : MonoBehaviour
 	{
 

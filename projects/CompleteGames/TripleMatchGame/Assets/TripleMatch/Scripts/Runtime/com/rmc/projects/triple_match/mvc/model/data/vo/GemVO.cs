@@ -48,6 +48,9 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// VO = Value Object. These are purposefully dumb parts of MVC which hold nfo and get sent around as needed between MVC.
+	/// </summary>
 	public class GemVO : object, IGridSpot
 	{
 		
@@ -65,7 +68,13 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 		public int TypeIndex {get; set;}
 
 
-		//
+		/// <summary>
+		/// 
+		/// NOTE: In our case, this is the same as another property, always. 
+		/// 		However its reasonable that thew view/model could splinter. Ex. have multiple 'red' gems for cosmetic use only.
+		/// 
+		/// </summary>
+		/// <value>The index of the gem type.</value>
 		public int GemTypeIndex
 		{
 			get
