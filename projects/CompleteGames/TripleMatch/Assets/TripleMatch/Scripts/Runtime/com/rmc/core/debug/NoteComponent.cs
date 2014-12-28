@@ -49,6 +49,9 @@ namespace com.rmc.core.debug
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// This class simply allows the developer to put a note (for documentation) in the inspector of a GameObject.
+	/// </summary>
 	public class NoteComponent : MonoBehaviour 
 	{
 		
@@ -60,9 +63,6 @@ namespace com.rmc.core.debug
 		// 	GETTER / SETTER
 		
 		// 	PUBLIC
-		/// <summary>
-		/// This class simply allows the developer to put a note (for documentation) in the inspector of a GameObject.
-		/// </summary>
 		[SerializeField]
 		public string _note;
 		

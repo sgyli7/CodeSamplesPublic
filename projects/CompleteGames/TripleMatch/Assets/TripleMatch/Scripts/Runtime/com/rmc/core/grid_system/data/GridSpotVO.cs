@@ -61,9 +61,9 @@ namespace com.rmc.core.grid_system.data
 		
 		
 		// 	PUBLIC
-		public int RowIndex;
-		public int ColumnIndex;
-		public int TypeIndex;
+		public int RowIndex {get; set;}
+		public int ColumnIndex {get; set;}
+		public int TypeIndex {get; set;}
 		
 		// 	PRIVATE
 		

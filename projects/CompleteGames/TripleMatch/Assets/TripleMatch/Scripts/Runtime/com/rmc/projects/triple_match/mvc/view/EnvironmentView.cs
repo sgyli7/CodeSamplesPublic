@@ -283,7 +283,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//	SOUND FOR SWAP #1
 			if (AudioManager.IsInstantiated())
 			{
-				CoroutineManager.Instance.WaitForSecondsToCall (_AudioManagerPlayGemSwap, 0);
+				CoroutineManager.Instance.WaitForSecondsToCall (_AudioManagerPlayGemSwap, TripleMatchConstants.DURATION_GEM_TWEEN_SWAP/2);
 			}
 
 
@@ -298,14 +298,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 			if (!_model.IsThereAMatchContainingEitherGemVO(gemVO1, gemVO2))
 			{
 
-				//local variable used for code-readability
-				float delayToStart_float = TripleMatchConstants.DURATION_GEM_TWEEN_SWAP;
+				//local variables used for code-readability
+				float delayToStartGemTween_float = TripleMatchConstants.DURATION_GEM_TWEEN_SWAP;
+				float delayToStartGemSound_float = delayToStartGemTween_float * 1.5f;
 
 				
 				//	SOUND FOR SWAP #2
 				if (AudioManager.IsInstantiated())
 				{
-					CoroutineManager.Instance.WaitForSecondsToCall (_AudioManagerPlayGemSwap, delayToStart_float);
+					CoroutineManager.Instance.WaitForSecondsToCall (_AudioManagerPlayGemSwap, delayToStartGemSound_float);
 				}
 
 
@@ -313,8 +314,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 				_model.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
 				
 				//SWAP THE VISUALS (OVER X SECONDS)
-				_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap(delayToStart_float);
-				_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap(delayToStart_float);
+				_GetGemViewForGemVo (gemVO1).TweenToNewPositionSwap(delayToStartGemTween_float);
+				_GetGemViewForGemVo (gemVO2).TweenToNewPositionSwap(delayToStartGemTween_float);
 			}
 			else 
 			{
@@ -363,8 +364,11 @@ namespace com.rmc.projects.triple_match.mvc.view
 				}
 			}
 
-			//	TODO: find center point of all 3+ gems
-			Vector3 centerPointOfMatch_vector3 = gemViews[0].gameObject.transform.position;
+			//	Find centerpoints from the GameObjects of the GemViewComponents.
+			Vector3 centerPointOfMatch_vector3 = TripleMatchConstants.GetCenterPointVector3FromGameObjectsList 
+					(
+						gemViews.Select (gvc => gvc.gameObject).ToList<GameObject>()
+					);
 
 
 			//	CREATE AND REPARENT
@@ -389,9 +393,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 			}
 
 			
-			
-			
 			_controller.SetIsInputEnabledToFalse();
+
 			//local variable for readability
 			bool willAllowConcurrentCalls_bool = false;
 			CoroutineManager.Instance.WaitForSecondsToCall (_controller.SetIsInputEnabledToTrue, TripleMatchConstants.DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED, willAllowConcurrentCalls_bool);
@@ -528,14 +531,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <param name="gemView">Gem view.</param>
 		private void _OnGemViewClicked (GemViewComponent gemView)
 		{
-
-
-
 			//
 			if (_model.GameState == GameState.PLAYING && _model.IsInputEnabled)
 			{
-
-				Debug.Log ("clicked: " + gemView.GemVO);
 
 				if (_model.SelectedGemVO == null)
 				{

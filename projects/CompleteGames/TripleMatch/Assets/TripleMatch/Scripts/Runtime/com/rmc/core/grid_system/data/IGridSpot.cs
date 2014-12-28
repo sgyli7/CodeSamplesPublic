@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,80 +28,33 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using com.rmc.core.grid_system.data;
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.projects.triple_match.mvc.model.data.vo
+namespace com.rmc.core.grid_system.data
 {
 	
 	//--------------------------------------
-	//  Namespace Properties
+	//  Interface
 	//--------------------------------------
-	
-	
-	//--------------------------------------
-	//  Class Attributes
-	//--------------------------------------
-	
-	
-	//--------------------------------------
-	//  Class
-	//--------------------------------------
-	public class GemVO : GridSpotVO, IGridSpot
+	public interface IGridSpot 
 	{
 		
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
+		int RowIndex {get; set;}
+		int ColumnIndex {get; set;}
+		int TypeIndex {get; set;}
 		
-		// GETTER / SETTER
-		
-		
-		// 	PUBLIC
-		public int GemTypeIndex
-		{
-			get
-			{
-				return TypeIndex;
-			}
-
-		}
-		
-		// 	PRIVATE
-		
-		
-		//--------------------------------------
-		// 	Constructor / Creation
-		//--------------------------------------	
-
-		public GemVO ()
-		{
-			//parameterless to assist generics
-		}
-		
-
 		//--------------------------------------
 		// 	Methods
 		//--------------------------------------
 		
-		
-		// 	PUBLIC
-		
-		/// <summary>
-		/// Show nice debuggable output
-		/// </summary>
-		override public string ToString ()
-		{
-			return "[GemVO (r="+RowIndex+", c="+ColumnIndex+", gti="+GemTypeIndex+")]";
-			
-		}
-		
-		
-		//	PRIVATE
-		
+		void Initialize (int rowIndex, int columnIndex, int typeIndex);
 		
 		//--------------------------------------
 		// 	Event Handlers

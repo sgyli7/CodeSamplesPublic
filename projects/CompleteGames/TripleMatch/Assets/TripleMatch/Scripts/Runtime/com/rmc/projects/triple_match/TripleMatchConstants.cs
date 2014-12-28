@@ -34,6 +34,9 @@ using com.rmc.core.grid_system;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
+using System.Collections.Generic;
+
+
 namespace com.rmc.projects.triple_match
 {
 
@@ -79,14 +82,19 @@ namespace com.rmc.projects.triple_match
 		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1f; //lower = 'tweens' faster
 		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = 1; //easily accelerate time for debugging
 		public static float TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK = 1;//easily accelerate time for debugging
-		//
 		public static float DURATION_DELAY_TO_START_GAME = 0.25f;
-		public static float DURATION_DELAY_BEFORE_CHECK_FOR_MATCHES = 0.25f;
-		public static float DURATION_DELAY_BEFORE_FILL_GAPS_IN_GEMS = 0.25f;
-		public static float DURATION_GEM_TWEEN_SWAP = 0.5f;
-		public static float DURATION_GEM_TWEEN_ENTRY = 0.5f;
-		public static float DURATION_GEM_TWEEN_EXIT = 0.5f;
 		public static float DURATION_FLOATING_SCORE_EXIT = 0.75f;
+		//
+		//
+		//***********
+		private static float _DURATION_ANIMATION_MULTIPLIER = 0.5f; //Easy! Decrease this and the overall 'gem speed' is increased.
+		//***********
+		public static float DURATION_DELAY_BEFORE_CHECK_FOR_MATCHES = 0.125f * _DURATION_ANIMATION_MULTIPLIER;
+		public static float DURATION_DELAY_BEFORE_FILL_GAPS_IN_GEMS = 0.125f * _DURATION_ANIMATION_MULTIPLIER;
+		public static float DURATION_GEM_TWEEN_SWAP = 0.5f * _DURATION_ANIMATION_MULTIPLIER;
+		public static float DURATION_GEM_TWEEN_ENTRY = 0.5f * _DURATION_ANIMATION_MULTIPLIER;
+		public static float DURATION_GEM_TWEEN_EXIT = 0.5f * _DURATION_ANIMATION_MULTIPLIER;
+
 
 
 
@@ -165,6 +173,22 @@ namespace com.rmc.projects.triple_match
 			//GIVES REWARDS OF 150, 400, 750, ...
 			int scoreRewardForMatchOfLength_int = TripleMatchConstants.SCORE_POINTS_PER_GEM * gemCount_int * (gemCount_int - 2);
 			return scoreRewardForMatchOfLength_int;
+		}
+
+		/// <summary>
+		/// Gets the center point vector3 from game objects.
+		/// </summary>
+		/// <returns>The center point vector3 from game objects.</returns>
+		/// <param name="gameObjectList">Game object list.</param>
+		public static Vector3 GetCenterPointVector3FromGameObjectsList (List<GameObject> gameObjectList)
+		{
+			Vector3 centerPoint_vector3 = new Vector3 (0,0, 0);
+			foreach (GameObject gameObject in gameObjectList)
+			{
+				centerPoint_vector3 += gameObject.transform.position;
+			}
+			centerPoint_vector3 /= gameObjectList.Count;
+			return centerPoint_vector3;
 		}
 
 		/// <summary>
