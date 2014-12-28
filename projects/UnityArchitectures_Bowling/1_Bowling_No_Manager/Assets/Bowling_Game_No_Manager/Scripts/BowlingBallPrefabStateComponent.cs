@@ -95,9 +95,9 @@ namespace com.rmc.projects.bowling_game_no_manager
 				
 				//	TURN OFF 'PHYSICS' DURING AIMING
 				if (_bowlingBallState == BowlingBallState.PRE_GAME_AIM_MODE) {
-					rigidbody.isKinematic = true;
+					GetComponent<Rigidbody>().isKinematic = true;
 				} else if (_bowlingBallState == BowlingBallState.MOVING_GAME_MODE) {
-					rigidbody.isKinematic = false;
+					GetComponent<Rigidbody>().isKinematic = false;
 				}
 				
 			}
@@ -167,7 +167,7 @@ namespace com.rmc.projects.bowling_game_no_manager
 			if (_bowlingBallState == BowlingBallState.MOVING_GAME_MODE) {
 						
 				//	ADD PHYSICS SPIN TO THE LEFT
-				rigidbody.AddTorque (new Vector3 (0, 0, 1200f * rigidbody.mass), ForceMode.Acceleration);	
+				GetComponent<Rigidbody>().AddTorque (new Vector3 (0, 0, 1200f * GetComponent<Rigidbody>().mass), ForceMode.Acceleration);	
 			}
 			
 		}
@@ -182,11 +182,11 @@ namespace com.rmc.projects.bowling_game_no_manager
 			bowlingBallState = BowlingBallState.MOVING_GAME_MODE;
 			
 			//	START MOVING WITH PHYSICS TOWARD PINS (AND UP IN THE AIR A LITTLE BIT)
-			rigidbody.AddForce (new Vector3 (0, 100f, 600f * rigidbody.mass), ForceMode.Force);
+			GetComponent<Rigidbody>().AddForce (new Vector3 (0, 100f, 600f * GetComponent<Rigidbody>().mass), ForceMode.Force);
 			
 			
 			//	ADD PHYSICS PUSH TO THE LEFT
-			rigidbody.AddForce (new Vector3 (-20f * rigidbody.mass, 0, 0), ForceMode.Force);
+			GetComponent<Rigidbody>().AddForce (new Vector3 (-20f * GetComponent<Rigidbody>().mass, 0, 0), ForceMode.Force);
 			
 
 		}

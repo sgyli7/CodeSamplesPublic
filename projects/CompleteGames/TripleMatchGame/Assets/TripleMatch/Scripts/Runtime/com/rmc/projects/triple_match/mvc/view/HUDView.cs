@@ -160,16 +160,16 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// Rewards the one match.
 		/// </summary>
-		public void RewardOneMatch (int score_int, Vector3 initialPosition_vector3)
+		public void RewardOneMatch (int amountScoreToAdd_int, Vector3 initialPosition_vector3)
 		{
 
 			GameObject floatingScoreViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_FLOATING_SCORE_VIEW_PREFAB)) as GameObject;;
 			floatingScoreViewPrefab.gameObject.transform.SetParent (_floatingScoreParent.transform);
 			FloatingScoreViewComponent floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreViewComponent>();
-			floatingScoreView.Initialize (score_int, initialPosition_vector3);
+			floatingScoreView.Initialize (amountScoreToAdd_int, initialPosition_vector3);
 
 			//	NOTE: WE ASSIGN SCORE HERE (FROM VIEW) TO ASSIST WITH TIMING ISSUES...
-			_controller.SetScore (_model.Score + score_int, TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT);
+			_controller.AddToScore (amountScoreToAdd_int, TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT);
 
 		}
 
@@ -313,7 +313,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//		OPTIONAL: REPLACE STATIC CONST WITH STATIC METHOD TO ADD LOCALIZATION BY SPOKEN LANGUAGE
 			_RenderGameResetText (TripleMatchConstants.TEXT_GAME_RESET_TEXT);
 			_RenderTitleText (TripleMatchConstants.TEXT_TITLE );
-			_currentScore_int = 0;
+			_OnScoreChanged (0);
 			_RenderScoreTextFromCurrentScore ();
 			_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_ENABLED);
 			
@@ -381,9 +381,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		private void _OnScoreChanged (int targetScore_int)
 		{
+
 			if (targetScore_int > 0)
 			{
-				//	SET TO POSITIVE SCORE?, DO THAT WITH TWEEN!
 				iTween.ValueTo
 					(gameObject, 
 					 iTween.Hash
@@ -397,13 +397,12 @@ namespace com.rmc.projects.triple_match.mvc.view
 						iT.ValueTo.onupdate, "_OnScoreChangedUpdated"
 						)
 					 );
-			}
+				}
 			else
 			{
-				//SET TO ZERO SCORE? 
-				_OnScoreChangedUpdated (targetScore_int);
-
+				_OnScoreChangedUpdated (0); //don't tween. Change instantly to 0
 			}
+
 		}
 
 

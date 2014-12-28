@@ -134,17 +134,16 @@ namespace com.rmc.projects.triple_match.mvc.controller
 
 
 		/// <summary>
-		/// Sets the score.
 		/// 
 		/// NOTE: We coordinate score sending through the view to faciliate timing issues.
 		/// 	  On a larger scale project, its recommended to determine/evaluate/update score within the model
 		/// 
 		/// </summary>
-		/// <param name="score_int">Score_int.</param>
+		/// <param name="amountScoreToAdd_int">Amount score to add_int.</param>
 		/// <param name="delayUntilSet_float">Delay until set_float.</param>
-		public void SetScore (int score_int, float delayUntilSet_float)
+		public void AddToScore (int amountScoreToAdd_int, float delayUntilSet_float)
 		{
-			_model.SetScore (score_int, delayUntilSet_float);
+			_model.AddToScore (amountScoreToAdd_int, delayUntilSet_float);
 		}
 
 
