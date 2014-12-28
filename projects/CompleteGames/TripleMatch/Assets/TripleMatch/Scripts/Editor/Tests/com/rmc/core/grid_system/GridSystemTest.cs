@@ -29,7 +29,6 @@
 //--------------------------------------
 using NUnit.Framework;
 using System;
-using System.Threading;
 
 //--------------------------------------
 //  Namespace
@@ -37,6 +36,9 @@ using System.Threading;
 using UnityEngine;
 using com.rmc.projects.triple_match.mvc.model.data.vo;
 using com.rmc.projects.triple_match;
+using com.rmc.core.grid_system.data;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace com.rmc.core.grid_system
@@ -94,6 +96,9 @@ namespace com.rmc.core.grid_system
 		//  SampleTests
 		//--------------------------------------
 		[Test]
+		/// <summary>
+		/// The instance will not be null after Initialization
+		/// </summary>
 		public void InstantiationTest ()
 		{
 
@@ -101,26 +106,185 @@ namespace com.rmc.core.grid_system
 		}
 
 		[Test]
+		/// <summary>
+		/// After Reset we will have x*y gridspots in an x by y grid
+		/// </summary>
 		public void GameResetTest ()
 		{
 			_gridSystem.Reset(Frequency.Sometimes);
 			int expectedValue = TripleMatchConstants.MAX_ROWS * TripleMatchConstants.MAX_COLUMNS;
-			int actualValue = _gridSystem.GridSpotVOList().Count;
+			int actualValue = _gridSystem.GridSpotVOList().Count (gemVO => gemVO != null);
 			Assert.AreEqual (expectedValue, actualValue);
 		}
 
 		[Test]
+		/// <summary>
+		/// If we want to ALWAYS have a match at reset, then we will.
+		/// </summary>
 		public void FindMatchesAlwaysWithSuccessTest ()
 		{
 			_gridSystem.Reset(Frequency.Always);
 
 			//	REPEATING X TIMES IS A GOOD TEST FOR FREQUENCY
-			for (var i=0; i < 10; i++)
+			int totalIterations_int = 10;
+			for (var i=0; i < totalIterations_int; i++)
 			{
 				int expectedValue = 0; //we expect one or more matches
 				int actualValue = _gridSystem.GetMatches().Count;
 				Assert.Greater (actualValue, expectedValue);
 			}
+		}
+
+		[Test]
+		/// <summary>
+		/// If we want to SOMETIMES have a match at reset, then BY AVERAGE we will NOT always have a 1+ matches and NOT have 0 matches.
+		/// </summary>
+		public void FindMatchesSometimesWithSuccessTest ()
+		{
+
+			
+			//	REPEATING X TIMES IS A GOOD TEST FOR FREQUENCY
+			int totalIterations_int = 1000;
+			int foundAMatchCount_int = 0;
+			for (var i=0; i < totalIterations_int; i++)
+			{
+				_gridSystem.Reset(Frequency.Sometimes);
+				if (_gridSystem.GetMatches().Count > 0)
+				{
+					foundAMatchCount_int++;
+				}
+			}
+
+			//	IF WE ITERATE 100 TIMES WE EXPECT TO FIND **BETWEEN** 0 AND 100 (EXCLUSIVE) MATCHES
+			int actualValue = foundAMatchCount_int;
+			int expectedValueMax = totalIterations_int; 
+			int expectedValueMin = 0; 
+			Assert.Less (actualValue, expectedValueMax);
+			Assert.Greater (actualValue, expectedValueMin);
+		}
+
+
+
+		/// <summary>
+		/// NOT A TEST. Just a helper. Its 'methodized' for resuse in 2+ tests
+		/// </summary>
+		private void _ResetAndRemoveMatches ()
+		{
+			
+			//	WE MUST HAVE MATCHES
+			_gridSystem.Reset(Frequency.Always);
+			
+			//	FIND MATCHES AND MARK THEM FOR DELETION
+			List<List<GemVO>> matchingGridSpotVOsListOfLists = _gridSystem.GetMatches();
+			_gridSystem.DoMarkGemVOsForDeletion (matchingGridSpotVOsListOfLists);
+			
+		}
+		
+
+
+		[Test]
+		/// <summary>
+		/// If we ALWAYS have a match upon reset, and then we remove those matches, we should have < x*y non-null gridspots
+		/// </summary>
+		public void RemoveMatchesTest ()
+		{
+
+			_ResetAndRemoveMatches();
+
+			//	WE WILL HAVE LESS THAN X*Y NON-NULL GRIDSPOTS
+			int expectedValueMax = TripleMatchConstants.MAX_ROWS * TripleMatchConstants.MAX_COLUMNS;
+			int actualValue = _gridSystem.GridSpotVOList().Count (gemVO => gemVO != null);
+			Assert.Less ( actualValue, expectedValueMax);
+		}
+
+
+
+
+		[Test]
+		/// <summary>
+		/// If we remove matches, then fill them, we should have x*y not-null GridSpots again
+		/// </summary>
+		public void RemoveMatchesAndFillGapsTest ()
+		{
+
+			//	REMOVE
+			_ResetAndRemoveMatches();
+
+			//	REGAIN SOME FOR 100% TOTAL
+			_gridSystem.DoFillGapsInGems__ShiftDown();
+			_gridSystem.DoFillGapsInGems__DropNewFromAbove();
+
+			
+			//	WE WILL HAVE EQUAL TO X*Y NON-NULL GRIDSPOTS
+			int expectedValue = TripleMatchConstants.MAX_ROWS * TripleMatchConstants.MAX_COLUMNS;
+			int actualValue = _gridSystem.GridSpotVOList().Count (gemVO => gemVO != null);
+			Assert.AreEqual ( actualValue, expectedValue);
+		}
+
+		
+		[Test]
+		/// <summary>
+		/// Any time we will have a match, we 'IsThereAMatchContainingEitherGemVO()' will equal true at LEAST once. 
+		/// 
+		/// NOTE: 	When we have x 'matches' in total, we don't expect 'IsThereAMatchContainingEitherGemVO()' to be true x times. 
+		/// 		That is not logical and we don't test for it.
+		/// 
+		/// </summary>
+		public void IsThereAMatchContainingEitherGemVOTest	 ()
+		{
+
+			bool isThereAMatchAtLeastOneTime_bool = false;
+
+
+			//	WE MUST HAVE MATCHES
+			_gridSystem.Reset(Frequency.Always);
+
+			//	CHECK EVERY SINGLE GRIDSPOT AGAINST EVERY GRIDSPOT (INCLUDING SELF VS SELF)
+			//		1. WE SHOULD HAVE AT LEAST ONE MATCH (SINCE WE SET TO 'ALWAYS' ABOVE
+			GemVO gemVO1;
+			GemVO gemVO2;
+			for (int rowIndex1_int = 0; rowIndex1_int < _gridSystem.GridSpotVOArray.GetLength(0); rowIndex1_int++) 
+			{
+				for (int columnIndex1_int = 0; columnIndex1_int < _gridSystem.GridSpotVOArray.GetLength(1); columnIndex1_int++) 
+				{
+
+					//	CHOOSE A GRIDSPOT
+					gemVO1 = _gridSystem.GridSpotVOArray[rowIndex1_int, columnIndex1_int];
+
+					for (int rowIndex2_int = 0; rowIndex2_int < _gridSystem.GridSpotVOArray.GetLength(0); rowIndex2_int++) 
+					{
+						for (int columnIndex2_int = 0; columnIndex2_int < _gridSystem.GridSpotVOArray.GetLength(1); columnIndex2_int++) 
+						{
+
+							//	CHOOSE ANOTHER (OR SAME!) GRIDSPOT
+							gemVO2 = _gridSystem.GridSpotVOArray[rowIndex2_int, columnIndex2_int];
+
+							if (_gridSystem.IsThereAMatchContainingEitherGridSpotVO (gemVO1, gemVO2))
+							{
+								isThereAMatchAtLeastOneTime_bool = true;
+
+								//
+								//
+								//	ELEGANT TRICK TO BREAK OUT OF ALL FOUR LOOPS (FYI, 'break;' only exits inner loop)
+								columnIndex2_int = _gridSystem.GridSpotVOArray.GetLength(1);
+								rowIndex2_int = _gridSystem.GridSpotVOArray.GetLength(0);
+								rowIndex1_int = _gridSystem.GridSpotVOArray.GetLength(0);
+								columnIndex1_int = _gridSystem.GridSpotVOArray.GetLength(1);
+								break;//unecessary, but VERY helpful to catch the human eye and inform on what is happening
+								//
+								//
+								//
+							}
+						}
+					}
+				}
+			}
+
+			
+			//	WE WILL HAVE TRUE, 100%
+			bool actualValue = isThereAMatchAtLeastOneTime_bool;
+			Assert.IsTrue ( actualValue );
+			
 		}
 
 		

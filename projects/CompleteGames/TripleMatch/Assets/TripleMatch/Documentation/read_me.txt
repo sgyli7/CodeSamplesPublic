@@ -23,14 +23,32 @@
  */
 // Marks the right margin of code *******************************************************************
 
-//--------------------------------------
+
+
+//------------------------------------------------------------------------------
+//  FEATURES REQUIRED: By Documentation
+//------------------------------------------------------------------------------
+
+
+
+
+//------------------------------------------------------------------------------
+//  FEATURES NOT-REQUIRED: Added For Fun
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+//  CODE OWNERSHIP
+//------------------------------------------------------------------------------
+* Folder (/Assets/TripleMatch/) - All code is by Sam Rivello 
+* Folder (/Assets/TripleMatch/) - All non-code (assets) were given by assigner or found by Sam Rivello
+* Folder (/Assets/Standard Assets/) - Code provided by Unity Technologies
+* Folder (/Assets/Standard Assets/) - Code provided by Unity Technologies
+
+//------------------------------------------------------------------------------
 //  TODO: Before Submission
-//--------------------------------------
-* Update 100% of comments
-* Move all ‘usings’ to the // IMPORT section (some are a few lines below
-* Remove 100% of warnings and errors
-* Update diagram
-* replace 100% of art? Maybe not.
+//------------------------------------------------------------------------------
+
 * Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
 * remove pooling library or not?
 * Revisit all commented out Debug.log statements. Keep some? Wrap some in a special debug log? Remove all? TBD
@@ -43,9 +61,17 @@
 * show users all time high score
 * make a 'bonk' noise if you click a gem but the gem cannot accept a move (like when the matches are blowing up)
 
-//--------------------------------------
-//  TODO: Theoretical Features For AFTER Submission
-//--------------------------------------
+// DO THIS LAST
+* Update 100% of comments
+* Move all ‘usings’ to the // IMPORT section (some are a few lines below
+* Remove 100% of warnings and errors
+* Update diagram
+
+
+//------------------------------------------------------------------------------
+//  TODO: Theoretical Future-Features That Are Not Yet Added 
+//------------------------------------------------------------------------------
+* Replace 100% of art. Just to revisit the views flexibliity to handle different size, shapes, layouts, (# of gemtypes), etc...
 * Show a hint to user of what match is best to make next
 * End the game if there are no possible matches that can be made via swap
 * Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start and then never create/destroy more.

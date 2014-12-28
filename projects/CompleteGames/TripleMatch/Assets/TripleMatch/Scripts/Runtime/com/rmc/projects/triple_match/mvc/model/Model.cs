@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -396,6 +396,16 @@ namespace com.rmc.projects.triple_match.mvc.model
 		
 
 		
+		
+		public void DoInstantlySwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
+		{
+			_gridSystem.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
+		}
+		
+		public bool IsThereAMatchContainingEitherGemVO (GemVO gemVO1, GemVO gemVO2)
+		{
+			return _gridSystem.IsThereAMatchContainingEitherGridSpotVO (gemVO1, gemVO2);
+		}
 
 		
 		/// <summary>
@@ -422,14 +432,14 @@ namespace com.rmc.projects.triple_match.mvc.model
 			//todo: Remove this 
 			//3. Count the gaps. This is for debugging only
 			//
-			int totalAmountRemoved = _gridSystem.DoFillGapsInGems();
+			int totalAmountRemoved = _gridSystem.DoFillGapsInGems_Overall();
 			
 			//Debug.Log ("totalAmountRemoved: " + totalAmountRemoved);
 			
 			if (totalAmountRemoved > 0)
 			{
-				_DoShiftGemsDownToFillGaps();
-				_DoAddNewGemsToFillGaps();
+				_DoFillGapsInGems__ShiftDown();
+				_DoFillGapsInGems__DropNewFromAbove();
 
 			}
 
@@ -437,16 +447,6 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 
 
-		public void DoInstantlySwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
-		{
-			_gridSystem.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
-		}
-
-		public bool IsThereAMatchContainingEitherGemVO (GemVO gemVO1, GemVO gemVO2)
-		{
-			return _gridSystem.IsThereAMatchContainingEitherGemVO (gemVO1, gemVO2);
-		}
-		
 		
 		//	PRIVATE
 
@@ -472,10 +472,10 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// <summary>
 		/// _s the do shift gems down to fill gaps.
 		/// </summary>
-		private void _DoShiftGemsDownToFillGaps ()
+		private void _DoFillGapsInGems__ShiftDown ()
 		{
 
-			List<GemVO> gemVOsMarkedForShiftingDownChanged = _gridSystem.DoShiftGemsDownToFillGaps();
+			List<GemVO> gemVOsMarkedForShiftingDownChanged = _gridSystem.DoFillGapsInGems__ShiftDown();
 
 			//Debug.Log ("Marked for shift: " + gemVOsMarkedForShiftingDownChanged.Count);
 
@@ -488,10 +488,10 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// <summary>
 		/// _s the do add new gems to fill gaps.
 		/// </summary>
-		private void _DoAddNewGemsToFillGaps ()
+		private void _DoFillGapsInGems__DropNewFromAbove ()
 		{
 
-			List<GemVO> gemVOsAddedToFillGapsChanged = _gridSystem.DoAddNewGemsToFillGaps();
+			List<GemVO> gemVOsAddedToFillGapsChanged = _gridSystem.DoFillGapsInGems__DropNewFromAbove();
 			
 			//Debug.Log ("Marked for add: " + gemVOsAddedToFillGapsChanged.Count);
 			

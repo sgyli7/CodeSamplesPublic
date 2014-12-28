@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -257,7 +257,6 @@ namespace com.rmc.core.grid_system
 
 			if (_frequencyOfInstantMatchesUponReset == Frequency.Always && !HasMatches())
 			{
-				Debug.Log ("Reset Set for 'Always' Matches and HasMatches=" + HasMatches());
 				PopulateGrid();
 			}
 
@@ -271,7 +270,7 @@ namespace com.rmc.core.grid_system
 		/// otherwise, <c>false</c>.</returns>
 		/// <param name="gridSpotVO1">Grid spot V o1.</param>
 		/// <param name="gridSpotVO2">Grid spot V o2.</param>
-		public bool IsThereAMatchContainingEitherGemVO (T gridSpotVO1, T gridSpotVO2)
+		public bool IsThereAMatchContainingEitherGridSpotVO (T gridSpotVO1, T gridSpotVO2)
 		{
 			
 			bool isThereAMatchContainingEitherGemVO = false;
@@ -344,39 +343,7 @@ namespace com.rmc.core.grid_system
 		}
 
 		
-		/// <summary>
-		/// Adds the gems to fill gaps.
-		/// </summary>
-		public int DoFillGapsInGems ()
-		{
-			
-			
-			//todo: Remove this 
-			//3. Count the gaps. This is for debugging only
-			//
-			int totalAmountRemoved = 0;
-			for (int rowIndex_int = 0; rowIndex_int < _maxRows_int; rowIndex_int++)
-			{
-				for (int columnIndex_int = 0; columnIndex_int < _maxColumns_int; columnIndex_int++)
-				{
-					
-					if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == null)
-					{
-						totalAmountRemoved++;
-					};
-					
-				}
-			}
-			
-			//Debug.Log ("totalAmountRemoved: " + totalAmountRemoved);
-			
-			return totalAmountRemoved;
-			
-			
-		}
 		
-		
-
 		
 		/// <summary>
 		/// _s the do mark gem V os for deletion.
@@ -407,14 +374,48 @@ namespace com.rmc.core.grid_system
 			}
 			
 		}
+
+
 		
+		/// <summary>
+		/// Adds the gems to fill gaps.
+		/// </summary>
+		public int DoFillGapsInGems_Overall ()
+		{
+			
+			
+			//todo: Remove this 
+			//3. Count the gaps. This is for debugging only
+			//
+			int totalAmountRemoved = 0;
+			for (int rowIndex_int = 0; rowIndex_int < _maxRows_int; rowIndex_int++)
+			{
+				for (int columnIndex_int = 0; columnIndex_int < _maxColumns_int; columnIndex_int++)
+				{
+					
+					if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == null)
+					{
+						totalAmountRemoved++;
+					};
+					
+				}
+			}
+			
+			//Debug.Log ("totalAmountRemoved: " + totalAmountRemoved);
+			
+			return totalAmountRemoved;
+			
+			
+		}
+		
+
 		//	PRIVATE
 
 		
 		/// <summary>
 		/// _s the do shift gems down to fill gaps.
 		/// </summary>
-		public List<T>  DoShiftGemsDownToFillGaps ()
+		public List<T> DoFillGapsInGems__ShiftDown ()
 		{
 			
 			List<T> gemVOsMarkedForShiftingDownChanged = new List<T>();
@@ -453,7 +454,7 @@ namespace com.rmc.core.grid_system
 							}
 							
 						}
-					};
+					}
 					
 				}
 			}
@@ -464,7 +465,7 @@ namespace com.rmc.core.grid_system
 		/// <summary>
 		/// _s the do add new gems to fill gaps.
 		/// </summary>
-		public List<T> DoAddNewGemsToFillGaps ()
+		public List<T> DoFillGapsInGems__DropNewFromAbove ()
 		{
 			
 			List<T> gemVOsAddedToFillGapsChanged = new List<T>();

@@ -155,6 +155,9 @@ namespace com.rmc.projects.triple_match.mvc.controller
 
 		/// <summary>
 		/// Sets the is input enabled to false.
+		/// 
+		/// NOTE: Its parameterless to work with the (current) limits of the very young CoroutineManager.
+		/// 
 		/// </summary>
 		public void SetIsInputEnabledToFalse()
 		{
@@ -164,6 +167,9 @@ namespace com.rmc.projects.triple_match.mvc.controller
 		
 		/// <summary>
 		/// Sets the is input enabled to false.
+		/// 
+		/// NOTE: Its parameterless to work with the (current) limits of the very young CoroutineManager
+		/// 
 		/// </summary>
 		public void SetIsInputEnabledToTrue()
 		{
