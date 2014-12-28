@@ -71,7 +71,7 @@ namespace com.rmc.core.grid_system
 
 
 		/// <summary>
-		/// The _gem V os.
+		/// The GRID SPOT VO.
 		/// 
 		/// NOTE: We keep them as 2-dimensional array for 'check my neighbor' type grid-checking
 		/// 
@@ -223,9 +223,9 @@ namespace com.rmc.core.grid_system
 		public void PopulateGrid ()
 		{
 			
-			//	CREATE ALL NEW GEMS
+			//	CREATE ALL NEW GRID SPOT
 			T nextGridSpotVO;
-			int nextGemTypeIndex_int;
+			int nextGridSpotTypeIndex_int;
 			
 			//
 			//
@@ -240,10 +240,10 @@ namespace com.rmc.core.grid_system
 					//	DUE TO THE GRID SIZE (64 DEFAULT) AND THE GRID SPOT VARIETY (5 TYPES)...
 					//		1. IT IS LIKELY THAT There will be a match
 					//
-					//	choose 'any' gem type and don't worry if it matches a neighbor
-					nextGemTypeIndex_int = Random.Range (0, _maxGridSpotTypeIndex_int);
+					//	choose 'any' gridSpot type and don't worry if it matches a neighbor
+					nextGridSpotTypeIndex_int = Random.Range (0, _maxGridSpotTypeIndex_int);
 					nextGridSpotVO = new T ();
-					nextGridSpotVO.Initialize(rowIndex_int, columnIndex_int, nextGemTypeIndex_int);
+					nextGridSpotVO.Initialize(rowIndex_int, columnIndex_int, nextGridSpotTypeIndex_int);
 					_gridSpotVO_array[rowIndex_int, columnIndex_int] = nextGridSpotVO;
 					
 					
@@ -264,42 +264,42 @@ namespace com.rmc.core.grid_system
 
 
 		/// <summary>
-		/// Determines whether this instance is there A match containing either gem V the specified gridSpotVO1 gridSpotVO2.
+		/// Determines whether this instance is there A match containing either grid spot V the specified gridSpotVO1 gridSpotVO2.
 		/// </summary>
-		/// <returns><c>true</c> if this instance is there A match containing either gem V the specified gridSpotVO1 gridSpotVO2;
+		/// <returns><c>true</c> if this instance is there A match containing either grid spot V the specified gridSpotVO1 gridSpotVO2;
 		/// otherwise, <c>false</c>.</returns>
 		/// <param name="gridSpotVO1">Grid spot V o1.</param>
 		/// <param name="gridSpotVO2">Grid spot V o2.</param>
 		public bool IsThereAMatchContainingEitherGridSpotVO (T gridSpotVO1, T gridSpotVO2)
 		{
 			
-			bool isThereAMatchContainingEitherGemVO = false;
+			bool isThereAMatchContainingEitherGridSpotVO = false;
 			
 			//	1. BUILD LIST OF MATCHES
-			List<List<T>> gemVOsMatchingInAllChecksListOfLists = GetMatches();
+			List<List<T>> gridSpotVOsMatchingInAllChecksListOfLists = GetMatches();
 			
-			foreach (List<T> gemVOList in gemVOsMatchingInAllChecksListOfLists)
+			foreach (List<T> gridSpotVOList in gridSpotVOsMatchingInAllChecksListOfLists)
 			{
-				if (gemVOList.Contains (gridSpotVO1) || gemVOList.Contains (gridSpotVO2))
+				if (gridSpotVOList.Contains (gridSpotVO1) || gridSpotVOList.Contains (gridSpotVO2))
 				{
 					
-					isThereAMatchContainingEitherGemVO = true;
+					isThereAMatchContainingEitherGridSpotVO = true;
 					break;
 				}
 				
 			}
 			
-			return isThereAMatchContainingEitherGemVO;
+			return isThereAMatchContainingEitherGridSpotVO;
 		}
 
 		
 		
 		/// <summary>
-		/// Dos the instantly swap two gem V os.
+		/// Dos the instantly swap two grid spot V os.
 		/// </summary>
-		/// <param name="gemVO1">Gem V o1.</param>
-		/// <param name="gemV02">Gem v02.</param>
-		public void DoInstantlySwapTwoGemVOs (T gridSpotVO1, T gridSpotVO2)
+		/// <param name="gridSpotVO1">Grid spot V o1.</param>
+		/// <param name="gridSpotVO2">Grid spot V o2.</param>
+		public void DoInstantlySwapTwoGridSpotVOs (T gridSpotVO1, T gridSpotVO2)
 		{
 			
 			//	1. SWAP INTERNAL DATA
@@ -335,10 +335,10 @@ namespace com.rmc.core.grid_system
 		/// <returns>The matches.</returns>
 		public List<List<T>> GetMatches ()
 		{
-			List<List<T>> gemVOsMatchingInAllChecksListOfLists = new List<List<T>>();
-			gemVOsMatchingInAllChecksListOfLists.AddRange (_GetMatchesHorizontal());
-			gemVOsMatchingInAllChecksListOfLists.AddRange (_GetMatchesVertical());
-			return gemVOsMatchingInAllChecksListOfLists;
+			List<List<T>> gridSpotVOsMatchingInAllChecksListOfLists = new List<List<T>>();
+			gridSpotVOsMatchingInAllChecksListOfLists.AddRange (_GetMatchesHorizontal());
+			gridSpotVOsMatchingInAllChecksListOfLists.AddRange (_GetMatchesVertical());
+			return gridSpotVOsMatchingInAllChecksListOfLists;
 
 		}
 
@@ -346,16 +346,16 @@ namespace com.rmc.core.grid_system
 		
 		
 		/// <summary>
-		/// _s the do mark gem V os for deletion.
+		/// Dos the mark grid spot V os for deletion.
 		/// </summary>
-		/// <param name="gemVOsMatchingInAllChecksListOfLists">Gem V os matching in all checks list of lists.</param>
-		public void DoMarkGemVOsForDeletion (List<List<T>> gemVOsMatchingInAllChecksListOfLists)
+		/// <param name="gridSpotVOsMatchingListOfLists">Grid spot V os matching list of lists.</param>
+		public void DoMarkGridSpotVOsForDeletion (List<List<T>> gridSpotVOsMatchingListOfLists)
 		{
 			
 			//	1. REMOVE FROM MASTER LIST, NOW THE MODEL HAS NO RECORD OF THEM ANYMORE. THAT IS OK, JUST REMEMBER THAT
-			foreach (List<T> gemVOList in gemVOsMatchingInAllChecksListOfLists)
+			foreach (List<T> gridVOList in gridSpotVOsMatchingListOfLists)
 			{
-				foreach (T gemVO in gemVOList)
+				foreach (T gridSpot in gridVOList)
 				{
 					//
 					for (int rowIndex_int = 0; rowIndex_int < _maxRows_int; rowIndex_int++)
@@ -363,9 +363,8 @@ namespace com.rmc.core.grid_system
 						for (int columnIndex_int = 0; columnIndex_int < _maxColumns_int; columnIndex_int++)
 						{
 							
-							if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == gemVO)
+							if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == gridSpot)
 							{
-								//Debug.Log ("FOUND: " + gemVO + " replaced with null");
 								_gridSpotVO_array[rowIndex_int, columnIndex_int] = null;
 							};
 						}
@@ -378,9 +377,10 @@ namespace com.rmc.core.grid_system
 
 		
 		/// <summary>
-		/// Adds the gems to fill gaps.
+		/// Dos the fill gaps in grid spots_ overall.
 		/// </summary>
-		public int DoFillGapsInGems_Overall ()
+		/// <returns>The fill gaps in grid spots_ overall.</returns>
+		public int DoFillGapsInGridSpots_Overall ()
 		{
 			
 			
@@ -413,12 +413,13 @@ namespace com.rmc.core.grid_system
 
 		
 		/// <summary>
-		/// _s the do shift gems down to fill gaps.
+		/// Dos the fill gaps in grid spots__ shift down.
 		/// </summary>
-		public List<T> DoFillGapsInGems__ShiftDown ()
+		/// <returns>The fill gaps in grid spots__ shift down.</returns>
+		public List<T> DoFillGapsInGridSpots__ShiftDown ()
 		{
 			
-			List<T> gemVOsMarkedForShiftingDownChanged = new List<T>();
+			List<T> gridSpotVOsMarkedForShiftingDownChanged = new List<T>();
 			
 			// START AT THE BOTTOM ROW
 			for (int rowIndexToCheck_int = _maxRows_int -1; rowIndexToCheck_int >= 0; rowIndexToCheck_int--)
@@ -428,10 +429,8 @@ namespace com.rmc.core.grid_system
 				{
 					
 					//IS A SPOT NULL?
-					//Debug.Log ("found : " + _gemVOs[rowIndexToCheck_int, columnIndexToCheck_int]);
 					if (_gridSpotVO_array[rowIndexToCheck_int, columnIndexToCheck_int] == null)
 					{
-						//Debug.Log ("1found null: " + rowIndexToCheck_int + "," +  columnIndexToCheck_int);
 						//...THEN CHECK EACH SPOT ABOVE
 						for (int rowIndexToFind_int = rowIndexToCheck_int; rowIndexToFind_int >= 0; rowIndexToFind_int--)
 						{
@@ -439,11 +438,10 @@ namespace com.rmc.core.grid_system
 							if (_gridSpotVO_array[rowIndexToFind_int, columnIndexToCheck_int] != null)
 							{
 								
-								//Debug.Log ("2found NOT null: " + rowIndexToCheck_int + " , " +  columnIndexToCheck_int);
 								
 								//COPY THE OLD TO THE NEW
 								_gridSpotVO_array[rowIndexToCheck_int, columnIndexToCheck_int] = _gridSpotVO_array[rowIndexToFind_int, columnIndexToCheck_int];
-								gemVOsMarkedForShiftingDownChanged.Add (_gridSpotVO_array[rowIndexToCheck_int, columnIndexToCheck_int]);
+								gridSpotVOsMarkedForShiftingDownChanged.Add (_gridSpotVO_array[rowIndexToCheck_int, columnIndexToCheck_int]);
 								_gridSpotVO_array[rowIndexToFind_int, columnIndexToCheck_int] = null; //CLEAR OUT THE OLD 
 								
 								//UPDATE THE PROPERTIES WITHIN THE NEW, SO THE VIEW CAN TWEEN TO NEW POSITION
@@ -459,18 +457,19 @@ namespace com.rmc.core.grid_system
 				}
 			}
 			
-			return gemVOsMarkedForShiftingDownChanged;
+			return gridSpotVOsMarkedForShiftingDownChanged;
 		}
 		
 		/// <summary>
-		/// _s the do add new gems to fill gaps.
+		/// Dos the fill gaps in grid spots__ drop new from above.
 		/// </summary>
-		public List<T> DoFillGapsInGems__DropNewFromAbove ()
+		/// <returns>The fill gaps in grid spots__ drop new from above.</returns>
+		public List<T> DoFillGapsInGridSpots__DropNewFromAbove ()
 		{
 			
-			List<T> gemVOsAddedToFillGapsChanged = new List<T>();
-			T nextGemVO;
-			int nextGemTypeIndex_int;
+			List<T> gridSpotVOsAddedToFillGapsChanged = new List<T>();
+			T nextGridSpot;
+			int nextGridSpotTypeIndex_int;
 			
 			// START AT THE BOTTOM ROW
 			for (int rowIndex_int = _maxRows_int -1; rowIndex_int >= 0; rowIndex_int--)
@@ -481,18 +480,18 @@ namespace com.rmc.core.grid_system
 					if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == null)
 					{
 						//	SET INDEX (THIS MEANS THE COLOR)
-						nextGemTypeIndex_int = Random.Range (0, _maxGridSpotTypeIndex_int);
+						nextGridSpotTypeIndex_int = Random.Range (0, _maxGridSpotTypeIndex_int);
 						
-						//	CREATE 1 NEW GEM
-						nextGemVO = new T();
-						nextGemVO.Initialize(rowIndex_int, columnIndex_int, nextGemTypeIndex_int);
-						_gridSpotVO_array[rowIndex_int, columnIndex_int] = nextGemVO;
-						gemVOsAddedToFillGapsChanged.Add (nextGemVO);
+						//	CREATE 1 NEW GRID SPOT
+						nextGridSpot = new T();
+						nextGridSpot.Initialize(rowIndex_int, columnIndex_int, nextGridSpotTypeIndex_int);
+						_gridSpotVO_array[rowIndex_int, columnIndex_int] = nextGridSpot;
+						gridSpotVOsAddedToFillGapsChanged.Add (nextGridSpot);
 					}
 				}
 			}
 			
-			return gemVOsAddedToFillGapsChanged;
+			return gridSpotVOsAddedToFillGapsChanged;
 			
 		}
 
@@ -511,15 +510,14 @@ namespace com.rmc.core.grid_system
 		{
 
 			
-			List<List<T>> gemVOsMatchingInAllChecksListOfLists = new List<List<T>>();
+			List<List<T>> gridSpotVOsMatchingInAllChecksListOfLists = new List<List<T>>();
 			//HORIZONTAL
 			for (int rowIndex_int = 0; rowIndex_int < _gridSpotVO_array.GetLength(0); rowIndex_int += 1) 
 			{
 
 				//clear matches
-				List<T> gemVOsMatchingInCurrentCheck = new List<T>();
+				List<T> gridSpotVOsMatchingInCurrentCheck = new List<T>();
 				
-				//Debug.Log ("CHECK: " + _gemVOs.GetLength(1));
 				//VERTICAL
 				for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength(1); columnIndex_int += 1) 
 				{
@@ -527,46 +525,45 @@ namespace com.rmc.core.grid_system
 					
 					
 					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
-					T nextGemVO = _gridSpotVO_array[rowIndex_int, columnIndex_int];
+					T gridSpotVO = _gridSpotVO_array[rowIndex_int, columnIndex_int];
 					
 					//NOTE: WE DO A NUL CHECK, BECAUSE WE ALSO RUN HasMatches() before the grid is completely drawn in.
-					if (nextGemVO != null)
+					if (gridSpotVO != null)
 					{
 						//	FIRST CHECK IN THIS AXIS?, ADD IT!
-						if (gemVOsMatchingInCurrentCheck.Count == 0)
+						if (gridSpotVOsMatchingInCurrentCheck.Count == 0)
 						{
-							gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+							gridSpotVOsMatchingInCurrentCheck.Add (gridSpotVO);
 						}
 						//	NOT THE FIRST CHECK IN THIS AXIS?, CHECK FOR MATCHING TYPE!
-						else if (gemVOsMatchingInCurrentCheck[0].TypeIndex == nextGemVO.TypeIndex)
+						else if (gridSpotVOsMatchingInCurrentCheck[0].TypeIndex == gridSpotVO.TypeIndex)
 						{
-							gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+							gridSpotVOsMatchingInCurrentCheck.Add (gridSpotVO);
 							
 						}
 						
 						
 						//	NEXT DOESN'T MATCH PREVIOUS,...
 						//	OR END OF THE AXIS?
-						if (gemVOsMatchingInCurrentCheck[0].TypeIndex != nextGemVO.TypeIndex ||
+						if (gridSpotVOsMatchingInCurrentCheck[0].TypeIndex != gridSpotVO.TypeIndex ||
 						    columnIndex_int == _gridSpotVO_array.GetLength(1) -1)
 						{
 							//	DO WE HAVE ENOUGH TO MAKE A REWARD?
-							if (gemVOsMatchingInCurrentCheck.Count >= _minMatchesForRewardHorizontal_int)
+							if (gridSpotVOsMatchingInCurrentCheck.Count >= _minMatchesForRewardHorizontal_int)
 							{
-								//Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
-								gemVOsMatchingInAllChecksListOfLists.Add (gemVOsMatchingInCurrentCheck);
+								gridSpotVOsMatchingInAllChecksListOfLists.Add (gridSpotVOsMatchingInCurrentCheck);
 							}
 
 							//	CLEAR OUT CURRENT LIST
-							gemVOsMatchingInCurrentCheck = new List<T>();
-							gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+							gridSpotVOsMatchingInCurrentCheck = new List<T>();
+							gridSpotVOsMatchingInCurrentCheck.Add (gridSpotVO);
 						}
 					}
 					
 				}
 			}
 			
-			return gemVOsMatchingInAllChecksListOfLists;
+			return gridSpotVOsMatchingInAllChecksListOfLists;
 		}
 		
 		
@@ -576,56 +573,52 @@ namespace com.rmc.core.grid_system
 		private List<List<T>> _GetMatchesVertical()
 		{
 			
-			List<List<T>> gemVOsMatchingInAllChecksListOfLists = new List<List<T>>();
+			List<List<T>> gridSpotVOsMatchingInAllChecksListOfLists = new List<List<T>>();
 			
 			//VERTICAL
 			for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength(1); columnIndex_int += 1) 
 			{
 
 				//clear matches
-				List<T> gemVOsMatchingInCurrentCheck = new List<T>();
+				List<T> gridSpotVOsMatchingInCurrentCheck = new List<T>();
 				
-				//Debug.Log ("CHECK: " + _gemVOs.GetLength(1));
 				//HORIZONTAL
 				for (int rowIndex_int = 0; rowIndex_int < _gridSpotVO_array.GetLength(0); rowIndex_int += 1) 
 				{
 
 					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
-					T nextGemVO = _gridSpotVO_array[rowIndex_int, columnIndex_int];
+					T nextGridSpotVO = _gridSpotVO_array[rowIndex_int, columnIndex_int];
 					//NOTE: WE DO A NUL CHECK, BECAUSE WE ALSO RUN HasMatches() before the grid is completely drawn in.
-					if (nextGemVO != null)
+					if (nextGridSpotVO != null)
 					{
-						//Debug.Log ("	... [" + nextGemVO);
 						
 						//	FIRST CHECK IN THIS AXIS?, ADD IT!
-						if (gemVOsMatchingInCurrentCheck.Count == 0)
+						if (gridSpotVOsMatchingInCurrentCheck.Count == 0)
 						{
-							gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+							gridSpotVOsMatchingInCurrentCheck.Add (nextGridSpotVO);
 						}
 						//	NOT THE FIRST CHECK IN THIS AXIS?, CHECK FOR MATCHING TYPE!
-						else if (gemVOsMatchingInCurrentCheck[0].TypeIndex == nextGemVO.TypeIndex)
+						else if (gridSpotVOsMatchingInCurrentCheck[0].TypeIndex == nextGridSpotVO.TypeIndex)
 						{
-							gemVOsMatchingInCurrentCheck.Add (nextGemVO);
-							//Debug.Log ("\tMatches last t=" + nextGemVO.GemTypeIndex  + " C=" + gemVOsMatchingInCurrentCheck.Count);
+							gridSpotVOsMatchingInCurrentCheck.Add (nextGridSpotVO);
 							
 						}
 						
 						
 						//	NEXT DOESN'T MATCH PREVIOUS,...
 						//	OR END OF THE AXIS?
-						if (gemVOsMatchingInCurrentCheck[0].TypeIndex != nextGemVO.TypeIndex ||
+						if (gridSpotVOsMatchingInCurrentCheck[0].TypeIndex != nextGridSpotVO.TypeIndex ||
 						    rowIndex_int == _gridSpotVO_array.GetLength(0) -1)
 						{
 							//	DO WE HAVE ENOUGH TO MAKE A REWARD?
-							if (gemVOsMatchingInCurrentCheck.Count >= _minMatchesForRewardVertical_int)
+							if (gridSpotVOsMatchingInCurrentCheck.Count >= _minMatchesForRewardVertical_int)
 							{
-								//Debug.Log ("Single Match : " + gemVOsMatchingInCurrentCheck.Count);
-								gemVOsMatchingInAllChecksListOfLists.Add (gemVOsMatchingInCurrentCheck);
+								gridSpotVOsMatchingInAllChecksListOfLists.Add (gridSpotVOsMatchingInCurrentCheck);
 							}
 							
 							//	CLEAR OUT CURRENT LIST
-							gemVOsMatchingInCurrentCheck = new List<T>();
-							gemVOsMatchingInCurrentCheck.Add (nextGemVO);
+							gridSpotVOsMatchingInCurrentCheck = new List<T>();
+							gridSpotVOsMatchingInCurrentCheck.Add (nextGridSpotVO);
 							
 						}
 					}
@@ -633,7 +626,7 @@ namespace com.rmc.core.grid_system
 				}
 			}
 			
-			return gemVOsMatchingInAllChecksListOfLists;
+			return gridSpotVOsMatchingInAllChecksListOfLists;
 			
 		}	
 

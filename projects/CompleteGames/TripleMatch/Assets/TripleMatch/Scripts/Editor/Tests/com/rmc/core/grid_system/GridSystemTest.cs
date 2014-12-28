@@ -176,7 +176,7 @@ namespace com.rmc.core.grid_system
 			
 			//	FIND MATCHES AND MARK THEM FOR DELETION
 			List<List<GemVO>> matchingGridSpotVOsListOfLists = _gridSystem.GetMatches();
-			_gridSystem.DoMarkGemVOsForDeletion (matchingGridSpotVOsListOfLists);
+			_gridSystem.DoMarkGridSpotVOsForDeletion (matchingGridSpotVOsListOfLists);
 			
 		}
 		
@@ -211,8 +211,8 @@ namespace com.rmc.core.grid_system
 			_ResetAndRemoveMatches();
 
 			//	REGAIN SOME FOR 100% TOTAL
-			_gridSystem.DoFillGapsInGems__ShiftDown();
-			_gridSystem.DoFillGapsInGems__DropNewFromAbove();
+			_gridSystem.DoFillGapsInGridSpots__ShiftDown();
+			_gridSystem.DoFillGapsInGridSpots__DropNewFromAbove();
 
 			
 			//	WE WILL HAVE EQUAL TO X*Y NON-NULL GRIDSPOTS

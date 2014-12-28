@@ -399,7 +399,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		
 		public void DoInstantlySwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
 		{
-			_gridSystem.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
+			_gridSystem.DoInstantlySwapTwoGridSpotVOs (gemVO1, gemVO2);
 		}
 		
 		public bool IsThereAMatchContainingEitherGemVO (GemVO gemVO1, GemVO gemVO2)
@@ -432,7 +432,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			//todo: Remove this 
 			//3. Count the gaps. This is for debugging only
 			//
-			int totalAmountRemoved = _gridSystem.DoFillGapsInGems_Overall();
+			int totalAmountRemoved = _gridSystem.DoFillGapsInGridSpots_Overall();
 			
 			//Debug.Log ("totalAmountRemoved: " + totalAmountRemoved);
 			
@@ -458,7 +458,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		private void _DoMarkGemVOsForDeletion (List<List<GemVO>> gemVOsMatchingInAllChecksListOfLists)
 		{
 			
-			_gridSystem.DoMarkGemVOsForDeletion (gemVOsMatchingInAllChecksListOfLists);
+			_gridSystem.DoMarkGridSpotVOsForDeletion (gemVOsMatchingInAllChecksListOfLists);
 			
 			//	2. SEND SMALL COPIED LIST TO VIEW FOR DELETION
 			if (OnGemVOsMarkedForRewardAndRemovalChanged != null)
@@ -475,7 +475,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		private void _DoFillGapsInGems__ShiftDown ()
 		{
 
-			List<GemVO> gemVOsMarkedForShiftingDownChanged = _gridSystem.DoFillGapsInGems__ShiftDown();
+			List<GemVO> gemVOsMarkedForShiftingDownChanged = _gridSystem.DoFillGapsInGridSpots__ShiftDown();
 
 			//Debug.Log ("Marked for shift: " + gemVOsMarkedForShiftingDownChanged.Count);
 
@@ -491,7 +491,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		private void _DoFillGapsInGems__DropNewFromAbove ()
 		{
 
-			List<GemVO> gemVOsAddedToFillGapsChanged = _gridSystem.DoFillGapsInGems__DropNewFromAbove();
+			List<GemVO> gemVOsAddedToFillGapsChanged = _gridSystem.DoFillGapsInGridSpots__DropNewFromAbove();
 			
 			//Debug.Log ("Marked for add: " + gemVOsAddedToFillGapsChanged.Count);
 			
