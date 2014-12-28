@@ -4,6 +4,7 @@
  */
 // Marks the right margin of code ************************************************************************************
 
+/*
 //--------------------------------------------------------------------------------------------------------------------
 //  I. OVERVIEW
 //--------------------------------------------------------------------------------------------------------------------
@@ -52,12 +53,6 @@
 • Added: Dynamic Instruction Text for better UX and to tease user's personal 'high score'
 • Added: Ex. UnitTest. Open Unity->Menu->UnityTesting->UnitTestRunner! (See 'com.rmc.core.grid_system.GridSystemTest.cs')
 • Added: Easy-to-edit text and gameplay/animation settings... (See 'com.rmc.projects.triple_match.TripleMatchConstants.cs')
-• Added: 
-• Added: 
-• Added: 
-• Added: 
-• Added: 
-
 
 
 //--------------------------------------------------------------------------------------------------------------------
@@ -84,3 +79,4 @@
 * Gameplay: Add a 'combo meter' that drains slowly, but gains with each match made. A 100% meter will reward bonus for next matches
 * View: Handle common screen layouts (iPhone 6, 4, etc...) without simply resizing gracefully as currently happens.
 
+*/

@@ -240,6 +240,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 		}
 
+		/// <summary>
+		/// _s the state of the update game button enabled depending on.
+		/// </summary>
+		private void _UpdateGameButtonEnabledDependingOnState ()
+		{
+			_gameResetButton.interactable = _model.IsInputEnabled || _model.GameState == GameState.GAME_OVER;
+		}
+
 		
 		
 		//--------------------------------------
@@ -306,6 +314,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 		}
 
+
+
 		/// <summary>
 		/// _ons the game resetted.
 		/// </summary>
@@ -313,7 +323,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			_RenderInstructionsTextDependingOnState();
 
-			_gameResetButton.interactable = isInputEnabled;
+			_UpdateGameButtonEnabledDependingOnState();
+
+
 			
 		}
 
@@ -342,11 +354,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_TIME_LEFT_IN_ROUND_EXPIRED_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
 			}
 
+
+			//	ORDER MATTERS
+			//	#1
+			_UpdateGameButtonEnabledDependingOnState();
+			_RenderInstructionsTextDependingOnState();
+
+			//	#2
 			//	SHOW GLOW ON RESTART BUTTON TO ATTRACT USER ATTENTION
 			gameObject.GetComponent<Animator>().SetBool ("IsGameOver", true);
-
-			//	
-			_RenderInstructionsTextDependingOnState();
 
 
 		}
@@ -368,7 +384,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 						iT.ValueTo.to, targetScore_int,
 						iT.ValueTo.delay, 0,
 						iT.ValueTo.time, TripleMatchConstants.DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE,
-						iT.ValueTo.easetype, iTween.EaseType.easeInExpo,
+						iT.ValueTo.easetype, iTween.EaseType.easeOutExpo,
 						iT.ValueTo.onupdatetarget, gameObject,
 						iT.ValueTo.onupdate, "_OnScoreChangedUpdated"
 						)

@@ -3,6 +3,11 @@
 ##and modified it.
 ######################
 
+# RMC Excludes This… #
+###################
+Documentation_Source/
+
+
 # Compiled source #
 ###################
 *.com
@@ -57,6 +62,7 @@ Obj/
 UnityGenerated/
 Library/
 target/
+
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #

@@ -219,12 +219,18 @@ namespace com.rmc.projects.triple_match.mvc.model
 			}
 			private set
 			{
-				_score_int = value;
 
-				_highestScoreEverThisSession = Mathf.Max (_score_int, _highestScoreEverThisSession);
-				if (OnScoreChanged != null)
+				//only update score if we are playing (or resetting to zero)
+				if (_score_int == 0 || GameState == GameState.PLAYING)
 				{
-					OnScoreChanged (_score_int);
+					_score_int = value;
+					_highestScoreEverThisSession = Mathf.Max (_score_int, _highestScoreEverThisSession);
+
+					//
+					if (OnScoreChanged != null)
+					{
+						OnScoreChanged (_score_int);
+					}
 				}
 			}
 		}

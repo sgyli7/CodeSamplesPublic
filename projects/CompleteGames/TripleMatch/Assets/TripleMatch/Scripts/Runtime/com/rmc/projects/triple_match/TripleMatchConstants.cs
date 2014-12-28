@@ -75,7 +75,7 @@ namespace com.rmc.projects.triple_match
 		//--------------------------------------
 		//  Timing
 		//--------------------------------------
-		public static int DURATION_TIME_TOTAL_IN_ROUND  = 60;	//For Production: Use 60 SECONDS
+		public static int DURATION_TIME_TOTAL_IN_ROUND  = 10;	//For Production: Use 60 SECONDS
 		public static float DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED = 2f;
 		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1f; //lower = 'tweens' faster
 		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = 1; //easily accelerate time for debugging
