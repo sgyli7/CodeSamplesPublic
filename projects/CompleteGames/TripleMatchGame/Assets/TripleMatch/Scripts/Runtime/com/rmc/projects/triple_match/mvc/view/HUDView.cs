@@ -179,9 +179,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// <summary>
 		/// _renders the time text.
 		/// </summary>
-		private void _RenderTimeText (int time_int)
+		private void _RenderTimeText (float time_float)
 		{
-			_timeText.text = string.Format (TripleMatchConstants.TEXT_TIME_TOKEN, time_int);
+			_timeText.text = string.Format (TripleMatchConstants.TEXT_TIME_TOKEN, Mathf.CeilToInt(time_float));
 		}
 
 		/// <summary>
@@ -268,7 +268,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 			if (AudioManager.IsInstantiated())
 			{
-				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_BUTTON_CLICK_AUDIO);
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_BUTTON_CLICK_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
 			}
 
 
@@ -336,9 +336,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// _s the on time left in round changed.
 		/// </summary>
 		/// <param name="timeLeft_int">Time left_int.</param>
-		private void _OnTimeLeftInRoundChanged (int timeLeft_int,  int timeTotalInRound_int)
+		private void _OnTimeLeftInRoundChanged (float timeLeft_float,  float timeTotalInRound_float)
 		{
-			_RenderTimeText (timeLeft_int);	
+			_RenderTimeText (timeLeft_float);	
 		}
 
 
@@ -384,7 +384,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 						iT.ValueTo.to, targetScore_int,
 						iT.ValueTo.delay, 0,
 						iT.ValueTo.time, TripleMatchConstants.DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE,
-						iT.ValueTo.easetype, iTween.EaseType.easeOutExpo,
+						iT.ValueTo.easetype, iTween.EaseType.linear,
 						iT.ValueTo.onupdatetarget, gameObject,
 						iT.ValueTo.onupdate, "_OnScoreChangedUpdated"
 						)

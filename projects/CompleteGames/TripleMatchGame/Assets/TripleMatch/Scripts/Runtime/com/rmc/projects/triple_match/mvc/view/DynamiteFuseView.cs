@@ -190,10 +190,10 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// _s the on time left in round changed.
 		/// </summary>
 		/// <param name="timeLeft_int">Time left_int.</param>
-		private void _OnTimeLeftInRoundChanged (int timeLeft_int, int timeTotal_int)
+		private void _OnTimeLeftInRoundChanged (float timeLeft_float, float timeTotal_float)
 		{
 			//Calculate % as... 0 (at round start) to 1 (at round complete) and keep result in proper range
-			_sparksPercentageThroughPath_float = 1 - (float)timeLeft_int / (float)timeTotal_int;
+			_sparksPercentageThroughPath_float = 1 - (float)timeLeft_float / (float)timeTotal_float;
 			_sparksPercentageThroughPath_float = Mathf.Max (_sparksPercentageThroughPath_float, 0);
 			_sparksPercentageThroughPath_float = Mathf.Min (_sparksPercentageThroughPath_float, 1);
 			//Debug.Log ("OK: ("+timeLeft_int+"/"+timeTotal_int+")" + _sparksPercentageThroughPath_float);

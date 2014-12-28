@@ -280,21 +280,21 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// </summary>
 		public delegate void OnTimeLeftInRoundExpiredDelegate ();
 		public OnTimeLeftInRoundExpiredDelegate OnTimeLeftInRoundExpired;
-		public delegate void OnTimeLeftInRoundChangedDelegate (int timeLeftInRound_int, int timeTotalInRound_int);
+		public delegate void OnTimeLeftInRoundChangedDelegate (float timeLeftInRound_float, float timeTotalInRound_float);
 		public OnTimeLeftInRoundChangedDelegate OnTimeLeftInRoundChanged;
-		private int _timeLeftInRound_int;
-		public int TimeLeftInRound
+		private float _timeLeftInRound_float;
+		public float TimeLeftInRound
 		{
 			get
 			{
-				return _timeLeftInRound_int;
+				return _timeLeftInRound_float;
 			}
 			private set
 			{
-				_timeLeftInRound_int = value;
+				_timeLeftInRound_float = value;
 				if (OnTimeLeftInRoundChanged != null)
 				{
-					OnTimeLeftInRoundChanged (_timeLeftInRound_int, TripleMatchConstants.DURATION_TIME_TOTAL_IN_ROUND);
+					OnTimeLeftInRoundChanged (_timeLeftInRound_float, TripleMatchConstants.DURATION_TIME_TOTAL_IN_ROUND);
 				}
 			}
 		}
@@ -542,16 +542,16 @@ namespace com.rmc.projects.triple_match.mvc.model
 		{
 
 			//	TIMING ON 'SECONDS' IS LESS ACCURATE THAN FIXED UPDATE, BUT THIS IS ACCEPTABLE FOR DEMO USE
-			yield return new WaitForSeconds (TripleMatchConstants.DURATION_TIME_LEFT_IN_ROUND_TICK);
-			int nextTimeLeftInRound_int = Mathf.CeilToInt(TimeLeftInRound - TripleMatchConstants.TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK);
+			yield return new WaitForSeconds (TripleMatchConstants.DURATION_TIME_TICK);
+			float nextTimeLeftInRound_float = TimeLeftInRound - TripleMatchConstants.TIME_DECREMENT_PER_TICK;
 
 			//	CORRECT NEGATIVE TIME WITHOUT DISPATCHING DELEGATE
-			if (nextTimeLeftInRound_int <= 0) 
+			if (nextTimeLeftInRound_float <= 0) 
 			{
-				nextTimeLeftInRound_int = 0;
+				nextTimeLeftInRound_float = 0;
 			}
 
-			TimeLeftInRound = nextTimeLeftInRound_int;
+			TimeLeftInRound = nextTimeLeftInRound_float;
 
 			if (TimeLeftInRound == 0)
 			{

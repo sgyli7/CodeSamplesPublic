@@ -508,7 +508,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 				if (AudioManager.IsInstantiated())
 				{
-					AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_CLICK_FAIL_AUDIO);
+					AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_CLICK_FAIL_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_2);
 				}
 
 			}
