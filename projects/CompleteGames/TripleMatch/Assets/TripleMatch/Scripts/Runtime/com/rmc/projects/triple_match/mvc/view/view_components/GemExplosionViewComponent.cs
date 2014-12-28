@@ -33,8 +33,6 @@ using System.Collections.Generic;
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.triple_match.mvc.model.data.vo;
-
 namespace com.rmc.projects.triple_match.mvc.view.view_components
 {
 	

@@ -28,14 +28,12 @@
 //--------------------------------------
 using UnityEngine;
 using com.rmc.core.grid_system.data;
+using System.Collections.Generic;
+
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using System.Collections.Generic;
-using com.rmc.core.exceptions;
-
-
 namespace com.rmc.core.grid_system
 {
 	

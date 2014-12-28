@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -28,116 +28,38 @@
 //  Imports
 //--------------------------------------
 using UnityEngine;
-using UnityEditor;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-namespace com.rmc.core.debug
+namespace com.rmc.templates
 {
 	
 	//--------------------------------------
-	//  Namespace Properties
+	//  Interface
 	//--------------------------------------
-	
-	
-	//--------------------------------------
-	//  Class Attributes
-	//--------------------------------------
-	
-	
-	//--------------------------------------
-	//  Class
-	//--------------------------------------
-	/// <summary>
-	/// This class is the editor for the NoteComponent class. 
-	/// The NoteComponent class simply allows the developer to put a note (for documentation) in the inspector of a GameObject.
-	/// 
-	/// NOTE: Is a simple, fun example of an editor script.
-	/// 
-	/// </summary>
-	[CustomEditor(typeof(NoteComponent))]
-	public class NoteComponentEditor : Editor 
+	public interface ITemplateInterface 
 	{
-		
 		
 		//--------------------------------------
 		//  Properties
 		//--------------------------------------
-		
-		// GETTER / SETTER
-		
-		// 	PUBLIC
-		/// <summary>
-		/// The _note serialized property.
-		/// </summary>
-		public SerializedProperty _noteSerializedProperty;
-		
-		// 	PRIVATE
-		
-		
-		//--------------------------------------
-		// 	Constructor / Creation
-		//--------------------------------------	
-		
-		
-		//--------------------------------------
-		// 	Unity Methods
-		//--------------------------------------
-		
-		///<summary>
-		///	Use this for initialization
-		///</summary>
-		protected void Start () 
-		{
-			
-			
-		}
-
-		/// <summary>
-		/// Raises the enable event.
-		/// </summary>
-		protected void OnEnable () 
-		{
-			_noteSerializedProperty = serializedObject.FindProperty ("_note");
-			
-		}
-		
-		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		protected void Update () 
-		{
-			
-			
-		}
-
-		/// <summary>
-		/// Raises the inspector GUI event.
-		/// </summary>
-		public override void OnInspectorGUI() 
-		{
-			serializedObject.Update ();
-			_noteSerializedProperty.stringValue = EditorGUILayout.TextArea( _noteSerializedProperty.stringValue, GUILayout.MaxHeight(75) );
-			serializedObject.ApplyModifiedProperties ();
-		}
-
+		int SampleProperty {get; set;}
 		
 		//--------------------------------------
 		// 	Methods
 		//--------------------------------------
-		
-		
-		// 	PUBLIC
-		
-		
-		//	PRIVATE
-		
+		void SampleMethod (int argument_int);
 		
 		//--------------------------------------
-		// 	Event Handlers
+		// 	Event Handlers / Public Delegates
 		//--------------------------------------
+		
+		
 	}
 }
+
+
+
+

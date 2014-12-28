@@ -30,13 +30,11 @@ using com.rmc.projects.triple_match.mvc.model.data.vo;
 using UnityEngine;
 using com.rmc.core.exceptions;
 using com.rmc.core.grid_system;
+using System.Collections.Generic;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using System.Collections.Generic;
-
-
 namespace com.rmc.projects.triple_match
 {
 
@@ -87,7 +85,7 @@ namespace com.rmc.projects.triple_match
 		//
 		//
 		//***********
-		private static float _DURATION_ANIMATION_MULTIPLIER = 0.5f; //Easy! Decrease this and the overall 'gem speed' is increased.
+		private static float _DURATION_ANIMATION_MULTIPLIER = 0.75f; //Easy! Increase this and the overall 'gem speed' is increased.
 		//***********
 		public static float DURATION_DELAY_BEFORE_CHECK_FOR_MATCHES = 0.125f * _DURATION_ANIMATION_MULTIPLIER;
 		public static float DURATION_DELAY_BEFORE_FILL_GAPS_IN_GEMS = 0.125f * _DURATION_ANIMATION_MULTIPLIER;
@@ -108,13 +106,13 @@ namespace com.rmc.projects.triple_match
 		//--------------------------------------
 		public static string TEXT_EMPTY = ""; //for easy programmatic search, when debugging
 		public static string TEXT_TITLE 						= "Triple Match";
-		public static string TEXT_GAME_RESET_TEXT 				= "Reset";
+		public static string TEXT_GAME_RESET_TEXT 				= "Reset Game";
 		public static string TEXT_SCORE_TOKEN 					= "Score: {0}";
 		public static string TEXT_TIME_TOKEN 					= "Time: {0}";
 		public static string TEXT_POINTS_TOKEN 					= "{0} Pts";
 		public static string TEXT_INSTRUCTIONS_INPUT_ENABLED	= "Click 2 adjacent gems to swap. Enjoy!";
 		public static string TEXT_INSTRUCTIONS_INPUT_DISABLED	= "Rewarding Points! Please Wait...";
-		public static string TEXT_INSTRUCTIONS_GAME_OVER		= "Your best score: '{0}' pts. Click '"+ 
+		public static string TEXT_INSTRUCTIONS_GAME_OVER		= "Best score: {0}! Click '"+ 
 																  TripleMatchConstants.TEXT_GAME_RESET_TEXT+"!'";
 
 

@@ -25,14 +25,6 @@
 
 
 //--------------------------------------
-//  Error Suppression Needed?
-// #pragma warning disable xxxx
-// #pragma warning restore xxxx
-//--------------------------------------
-
-
-
-//--------------------------------------
 //  Imports
 //--------------------------------------
 using UnityEngine;
@@ -57,6 +49,9 @@ namespace com.rmc.templates
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// Template component.
+	/// </summary>
 	public class TemplateComponent : MonoBehaviour 
 	{
 		

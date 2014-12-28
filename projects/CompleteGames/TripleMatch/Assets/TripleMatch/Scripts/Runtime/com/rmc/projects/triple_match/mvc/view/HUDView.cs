@@ -31,17 +31,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using com.rmc.projects.triple_match.mvc.model;
 using com.rmc.projects.triple_match.mvc.controller;
-
+using com.rmc.projects.triple_match.mvc.view.view_components;
+using com.rmc.core.managers;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.projects.triple_match.mvc.view.view_components;
-using com.rmc.core.managers;
-using System;
-
-
 namespace com.rmc.projects.triple_match.mvc.view
 {
 	
@@ -68,33 +64,30 @@ namespace com.rmc.projects.triple_match.mvc.view
 		
 		// GETTER / SETTER
 
-		
 		// 	PUBLIC
 
-		[SerializeField]
-		public GameObject _floatingScoreParent;
-
-		[SerializeField]
-		public Text _titleText;
-
-		[SerializeField]
-		public Text _timeText;
-
-		[SerializeField]
-		public Text _scoreText;
-
-		[SerializeField]
-		public Text _instructionsText;
-		
-		[SerializeField]
-		public Text _gameResetText;
-
-		
 		// 	PRIVATE
 
-		/// <summary>
-		/// The _current score_int.
-		/// </summary>
+		[SerializeField]
+		private GameObject _floatingScoreParent;
+
+		[SerializeField]
+		private Text _titleText;
+
+		[SerializeField]
+		private Text _timeText;
+
+		[SerializeField]
+		private Text _scoreText;
+
+		[SerializeField]
+		private Text _instructionsText;
+
+		[SerializeField]
+		private Button _gameResetButton;
+
+		private Text _gameResetText;
+
 		private int _currentScore_int = 0;
 
 		
@@ -124,7 +117,17 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//--------------------------------------
 		// 	Unity Methods
 		//--------------------------------------
-		
+
+
+
+		override protected void Start () 
+		{
+			if (_gameResetButton != null)
+			{
+				_gameResetText = _gameResetButton.GetComponentInChildren<Text>();
+			}
+		}
+
 		/// <summary>
 		/// Raises the destroy event.
 		/// </summary>
@@ -309,6 +312,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 		private void _OnIsInputEnabledChanged (bool isInputEnabled)
 		{
 			_RenderInstructionsTextDependingOnState();
+
+			_gameResetButton.interactable = isInputEnabled;
 			
 		}
 
@@ -352,19 +357,29 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		private void _OnScoreChanged (int targetScore_int)
 		{
-			iTween.ValueTo
-				(gameObject, 
-				 iTween.Hash
-				 	(
-					iT.ValueTo.from, _currentScore_int,
-					iT.ValueTo.to, targetScore_int,
-					iT.ValueTo.delay, 0,
-					iT.ValueTo.time, TripleMatchConstants.DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE,
-					iT.ValueTo.easetype, iTween.EaseType.easeInExpo,
-					iT.ValueTo.onupdatetarget, gameObject,
-					iT.ValueTo.onupdate, "_OnScoreChangedUpdated"
-					)
-				 );
+			if (targetScore_int > 0)
+			{
+				//	SET TO POSITIVE SCORE?, DO THAT WITH TWEEN!
+				iTween.ValueTo
+					(gameObject, 
+					 iTween.Hash
+					 	(
+						iT.ValueTo.from, _currentScore_int,
+						iT.ValueTo.to, targetScore_int,
+						iT.ValueTo.delay, 0,
+						iT.ValueTo.time, TripleMatchConstants.DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE,
+						iT.ValueTo.easetype, iTween.EaseType.easeInExpo,
+						iT.ValueTo.onupdatetarget, gameObject,
+						iT.ValueTo.onupdate, "_OnScoreChangedUpdated"
+						)
+					 );
+			}
+			else
+			{
+				//SET TO ZERO SCORE? 
+				_OnScoreChangedUpdated (targetScore_int);
+
+			}
 		}
 
 

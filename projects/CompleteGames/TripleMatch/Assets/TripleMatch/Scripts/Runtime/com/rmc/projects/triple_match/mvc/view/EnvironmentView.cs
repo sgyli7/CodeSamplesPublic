@@ -32,19 +32,14 @@ using com.rmc.projects.triple_match.mvc.model;
 using com.rmc.projects.triple_match.mvc.controller;
 using com.rmc.projects.triple_match.mvc.model.data.vo;
 using System.Collections.Generic;
-
+using System.Linq;
+using com.rmc.projects.triple_match.mvc.view.view_components;
+using com.rmc.core.managers;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using System.Linq;
-using com.rmc.projects.triple_match.mvc.view.view_components;
-using System.Collections;
-using System;
-using com.rmc.core.managers;
-
-
 namespace com.rmc.projects.triple_match.mvc.view
 {
 	
@@ -567,6 +562,12 @@ namespace com.rmc.projects.triple_match.mvc.view
 			if (gemVOListOfLists.Count > 0)
 			{
 				CoroutineManager.Instance.WaitForSecondsToCall (_controller.DoFillGapsInGems, TripleMatchConstants.DURATION_DELAY_BEFORE_FILL_GAPS_IN_GEMS);
+
+			}
+			else
+			{
+				//NO MATCHES? ENABLE PLAY
+				_model.IsInputEnabled = true;
 
 			}
 		}

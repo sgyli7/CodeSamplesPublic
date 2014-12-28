@@ -33,6 +33,15 @@ using System;
 using System.Collections;
 
 
+//--------------------------------------
+//  Private Class
+//--------------------------------------
+/// <summary>
+/// WaitForSecondsToCallArguments. Main purpose;
+/// 
+/// 	1. Pack together data payload into one instance. 
+/// 
+/// </summary>
 class WaitForSecondsToCallArguments
 {
 	public Action Callback_action ;

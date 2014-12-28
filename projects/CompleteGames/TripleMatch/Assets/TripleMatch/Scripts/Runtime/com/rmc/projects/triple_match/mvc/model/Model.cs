@@ -32,14 +32,11 @@ using com.rmc.projects.triple_match.mvc.model.data.vo;
 using System.Collections.Generic;
 using System.Collections;
 using com.rmc.core.support;
+using com.rmc.core.grid_system;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.managers;
-using com.rmc.core.grid_system;
-
-
 namespace com.rmc.projects.triple_match.mvc.model
 {
 	

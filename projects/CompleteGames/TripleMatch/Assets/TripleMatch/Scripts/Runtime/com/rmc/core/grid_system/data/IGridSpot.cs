@@ -53,12 +53,13 @@ namespace com.rmc.core.grid_system.data
 		//--------------------------------------
 		// 	Methods
 		//--------------------------------------
-		
 		void Initialize (int rowIndex, int columnIndex, int typeIndex);
 		
 		//--------------------------------------
-		// 	Event Handlers
+		// 	Event Handlers / Public Delegates
 		//--------------------------------------
+
+
 	}
 }
 

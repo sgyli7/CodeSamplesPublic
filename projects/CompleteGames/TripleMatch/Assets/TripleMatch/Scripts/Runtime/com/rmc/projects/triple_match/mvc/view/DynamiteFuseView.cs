@@ -30,14 +30,12 @@
 using UnityEngine;
 using com.rmc.projects.triple_match.mvc.model;
 using com.rmc.projects.triple_match.mvc.controller;
+using com.rmc.core.managers;
 
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.managers;
-
-
 namespace com.rmc.projects.triple_match.mvc.view
 {
 	

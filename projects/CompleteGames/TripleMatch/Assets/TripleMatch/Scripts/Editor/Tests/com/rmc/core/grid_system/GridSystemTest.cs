@@ -29,18 +29,14 @@
 //--------------------------------------
 using NUnit.Framework;
 using System;
+using com.rmc.projects.triple_match.mvc.model.data.vo;
+using com.rmc.projects.triple_match;
+using System.Collections.Generic;
+using System.Linq;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using UnityEngine;
-using com.rmc.projects.triple_match.mvc.model.data.vo;
-using com.rmc.projects.triple_match;
-using com.rmc.core.grid_system.data;
-using System.Collections.Generic;
-using System.Linq;
-
-
 namespace com.rmc.core.grid_system
 {
 	
@@ -92,9 +88,12 @@ namespace com.rmc.core.grid_system
 		}
 
 
+
 		//--------------------------------------
-		//  SampleTests
+		//  Tests
 		//--------------------------------------
+
+
 		[Test]
 		/// <summary>
 		/// The instance will not be null after Initialization
@@ -104,6 +103,7 @@ namespace com.rmc.core.grid_system
 
 			Assert.NotNull (_gridSystem);
 		}
+
 
 		[Test]
 		/// <summary>
@@ -116,6 +116,7 @@ namespace com.rmc.core.grid_system
 			int actualValue = _gridSystem.GridSpotVOList().Count (gemVO => gemVO != null);
 			Assert.AreEqual (expectedValue, actualValue);
 		}
+
 
 		[Test]
 		/// <summary>
@@ -134,6 +135,7 @@ namespace com.rmc.core.grid_system
 				Assert.Greater (actualValue, expectedValue);
 			}
 		}
+
 
 		[Test]
 		/// <summary>
@@ -164,24 +166,6 @@ namespace com.rmc.core.grid_system
 		}
 
 
-
-		/// <summary>
-		/// NOT A TEST. Just a helper. Its 'methodized' for resuse in 2+ tests
-		/// </summary>
-		private void _ResetAndRemoveMatches ()
-		{
-			
-			//	WE MUST HAVE MATCHES
-			_gridSystem.Reset(Frequency.Always);
-			
-			//	FIND MATCHES AND MARK THEM FOR DELETION
-			List<List<GemVO>> matchingGridSpotVOsListOfLists = _gridSystem.GetMatches();
-			_gridSystem.DoMarkGridSpotVOsForDeletion (matchingGridSpotVOsListOfLists);
-			
-		}
-		
-
-
 		[Test]
 		/// <summary>
 		/// If we ALWAYS have a match upon reset, and then we remove those matches, we should have < x*y non-null gridspots
@@ -196,7 +180,6 @@ namespace com.rmc.core.grid_system
 			int actualValue = _gridSystem.GridSpotVOList().Count (gemVO => gemVO != null);
 			Assert.Less ( actualValue, expectedValueMax);
 		}
-
 
 
 
@@ -224,7 +207,7 @@ namespace com.rmc.core.grid_system
 		
 		[Test]
 		/// <summary>
-		/// Any time we will have a match, we 'IsThereAMatchContainingEitherGemVO()' will equal true at LEAST once. 
+		/// Any time we will have a match, the 'IsThereAMatchContainingEitherGemVO()' will equal true at least once. 
 		/// 
 		/// NOTE: 	When we have x 'matches' in total, we don't expect 'IsThereAMatchContainingEitherGemVO()' to be true x times. 
 		/// 		That is not logical and we don't test for it.
@@ -281,103 +264,41 @@ namespace com.rmc.core.grid_system
 			}
 
 			
-			//	WE WILL HAVE TRUE, 100%
+			//	WE EXPECT TRUE, ALWAYS
 			bool actualValue = isThereAMatchAtLeastOneTime_bool;
 			Assert.IsTrue ( actualValue );
 			
 		}
 
+
+
+		
+		
 		
 		//--------------------------------------
-		//  More Tests
+		//  Methods
 		//--------------------------------------
-		/*
-		[Test]
-		public void ExceptionTest ()
-		{
-			throw new Exception ("Exception throwing test");
-		}
+
 		
-		[Test]
-		[Ignore ("Ignored test")]
-		public void IgnoredTest ()
+		/// <summary>
+		/// NOT A TEST. Just a helper. Its 'methodized' for resuse in 2+ tests
+		/// </summary>
+		private void _ResetAndRemoveMatches ()
 		{
-			throw new Exception ("Ignored this test");
-		}
-		
-		[Test]
-		[MaxTime (100)]
-		public void SlowTest ()
-		{
-			Thread.Sleep (200);
-		}
-		
-		[Test]
-		public void FailingTest ()
-		{
-			Assert.Fail ();
-		}
-		
-		[Test]
-		public void InconclusiveTest ()
-		{
-			Assert.Inconclusive();
-		}
-		
-		[Test]
-		public void PassingTest ()
-		{
-			Assert.Pass ();
-		}
-		
-		[Test]
-		public void ParameterizedTest ([Values (1, 2, 3)] int a)
-		{
-			Assert.Pass ();
-		}
-		
-		[Test]
-		public void RangeTest ( [Range (1, 10, 3)] int x )
-		{
-			Assert.Pass ();
-		}
-		
-		[Test]
-		[Culture ("pl-PL")]
-		public void CultureSpecificTest ()
-		{
-		}
-		
-		[Test]
-		[ExpectedException (typeof (ArgumentException), ExpectedMessage = "expected message")]
-		public void ExpectedExceptionTest ()
-		{
-			throw new ArgumentException ("expected message");
-		}
-		
-		[Datapoint]
-		public double zero = 0;
-		[Datapoint]
-		public double positive = 1;
-		[Datapoint]
-		public double negative = -1;
-		[Datapoint]
-		public double max = double.MaxValue;
-		[Datapoint]
-		public double infinity = double.PositiveInfinity;
-		
-		[Theory]
-		public void SquareRootDefinition ( double num )
-		{
-			Assume.That (num >= 0.0 && num < double.MaxValue);
 			
-			var sqrt = Math.Sqrt (num);
+			//	WE MUST HAVE MATCHES
+			_gridSystem.Reset(Frequency.Always);
 			
-			Assert.That (sqrt >= 0.0);
-			Assert.That (sqrt * sqrt, Is.EqualTo (num).Within (0.000001));
+			//	FIND MATCHES AND MARK THEM FOR DELETION
+			List<List<GemVO>> matchingGridSpotVOsListOfLists = _gridSystem.GetMatches();
+			_gridSystem.DoMarkGridSpotVOsForDeletion (matchingGridSpotVOsListOfLists);
+			
 		}
 		
-		*/
+
+
+
+		
 		//--------------------------------------
 		//  Events
 		//--------------------------------------

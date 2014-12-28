@@ -30,12 +30,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 using com.rmc.projects.triple_match.mvc.model.data.vo;
+using com.rmc.core.managers;
+
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.managers;
-
-
 namespace com.rmc.projects.triple_match.mvc.view.view_components
 {
 

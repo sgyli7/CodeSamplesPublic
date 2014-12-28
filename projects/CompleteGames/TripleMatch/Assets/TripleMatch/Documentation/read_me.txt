@@ -5,15 +5,15 @@
 // Marks the right margin of code ************************************************************************************
 
 //--------------------------------------------------------------------------------------------------------------------
-//  OVERVIEW
+//  I. OVERVIEW
 //--------------------------------------------------------------------------------------------------------------------
-• The 'Triple Match' game is complete
+• The 'Triple Match' game is complete. There are no warnings/errors at compiletime nor runtime. 
 • Target resolution is 755 x 600.
 * Playing? Entry point is the Scene "TripleMatchFullGame.unity"
 * CodeReview? Entry point is the class ("com.rmc.projects.triple_match.mvc.TripleMatchCore.cs").
 
 //--------------------------------------------------------------------------------------------------------------------
-//  CODE OWNERSHIP
+//  II. CODE OWNERSHIP
 //--------------------------------------------------------------------------------------------------------------------
 • Folder (/Assets/TripleMatch/) - All code is by Sam Rivello. Created from scratch for this project.
 • Folder (/Assets/TripleMatch/) - All non-code (assets) were given by assigner or found by Sam Rivello
@@ -21,7 +21,7 @@
 • Folder (/Assets/Community Assets/) - All contents provided by 3rd Parties via Asset Store
 
 //--------------------------------------------------------------------------------------------------------------------
-//  FEATURES REQUIRED: By Assigners' Documentation
+//  III. FEATURES REQUIRED: By Assigners' Documentation
 //--------------------------------------------------------------------------------------------------------------------
 --
 • 8x8 grid of objects - [Sam: Done!]
@@ -34,22 +34,24 @@
 • Drag or click objects to swap [Sam: Done, via click.!]
 • Use a game like Midas Miner for reference (www.king.com) [Sam: Done!]
 --
-• Submitting: Please send the test back as a .zip file or package to a Google doc link, [Sam: Done!]
-• Timeframe: Complete in 7 days, or request time via email. [Sam: Done! I requested 8 days (Dec 20 to 28, 2014)]
+• Submitting: Please send the test back as a .zip file or package to a Google doc link, [Sam: Done! I used Dropbox links.]
+• Timeframe: 7 days, or request time via email. [Sam: Done! I'd requested 8 days (Dec 20 to 28, 2014) of part-time effort.]
 
 //--------------------------------------------------------------------------------------------------------------------
-//  FEATURES NOT-REQUIRED: Added For Fun
+//  IV. FEATURES NOT-REQUIRED: Added For Fun
 //--------------------------------------------------------------------------------------------------------------------
-• Added: MVC (Model-View-Controller) framework. I created it as a playful, custom architecture for prototyping   :)
-• Added: MVC Project Diagram in Folder (/Assets/TripleMatch/Documentation/). I call it "Loose MVC"   :)
-• Added: Particle effects added
-• Added: Sound effects added
+• Added: MVC (Model-View-Controller) framework. I created it as a playful, custom architecture for prototyping :)
+• Added: MVC Project Diagram in Folder (/Assets/TripleMatch/Documentation/). I call it "Loose MVC" :)
+• Added: Particle effects 
+• Added: Sound effects
+• Added: Programmatic Animation (using 3rd party iTween)
+• Added: Timeline Animation (using Native Animator/Animation)
 • Added: Unity 4.3.x Sprites for all gameplay elements 
 • Added: Unity 4.6.x 'New' Unity UI for all GUI elements 
 • Added: Suspensful visual 'timer' of fuse, dynamite explosion 
 • Added: Dynamic Instruction Text for better UX and to tease user's personal 'high score'
 • Added: Ex. UnitTest. Open Unity->Menu->UnityTesting->UnitTestRunner! (See 'com.rmc.core.grid_system.GridSystemTest.cs')
-• Added: Centralized text, settings, animation durations,... (See 'com.rmc.projects.triple_match.TripleMatchConstants.cs')
+• Added: Easy-to-edit text and gameplay/animation settings... (See 'com.rmc.projects.triple_match.TripleMatchConstants.cs')
 • Added: 
 • Added: 
 • Added: 
@@ -59,33 +61,26 @@
 
 
 //--------------------------------------------------------------------------------------------------------------------
-//  TODO: Before Submission
+//  V. TODO: Before Submission
 //--------------------------------------------------------------------------------------------------------------------
+* Nothing.
+
 * Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
-* Change GridSpotVO to iGridSpotVO interface. Nice! Remove 'gemtype' or not since it depends on the view (vice versa?)
-* Vector3 centerPointOfMatch_vector3 = gemViews[0].gameObject.transform.position;
 
 // DO THIS LAST
-If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
-If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
-If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
-If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
 * add comment to every class. Fit within 3 lines of overview; model, view, controller
 * Update 100% of comments
-* Move all ‘usings’ to the // IMPORT section (some are a few lines below
-* Remove 100% of warnings and errors
 * Update diagram
 * Folder (/Assets/TripleMatch/Documentation/) includes simple 2-minute overview of gameplay and gamecode.
-• Added: Dynamic Instruction Text for better UX and to tease user's personal 'high score'
 
 //--------------------------------------------------------------------------------------------------------------------
-//  TODO: Theoretical Future-Features That Are Not Yet Added 
+//  VI. TODO: Theoretical Future-Features, These items have not been attempted nor completed.
 //--------------------------------------------------------------------------------------------------------------------
+* Architecture: I'd like to recode the game and try out uFrame Architecture (https://www.assetstore.unity3d.com/en/#!/content/14381)
 * Production: Replace 100% of art. Just to revisit the views flexibility to handle different size, layouts, (# of gemtypes), etc...
-* View: Handle common screen layouts (iPhone 6, 4, etc...) without simply resizing gracefully as currently happens.
+* Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start for reuse.
 * Gameplay: Show a hint to user of what match is best to make next
 * Gameplay: End the game if there are no possible matches that can be made via swap
 * Gameplay: Add a 'combo meter' that drains slowly, but gains with each match made. A 100% meter will reward bonus for next matches
-* Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start for reuse.
-
+* View: Handle common screen layouts (iPhone 6, 4, etc...) without simply resizing gracefully as currently happens.
 
