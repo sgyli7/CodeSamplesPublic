@@ -51,6 +51,15 @@ namespace com.rmc.projects.triple_match.mvc.controller
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// Loose MVC: This is a Controller.
+	/// 
+	/// TYPICAL ROLES
+	/// 		1. (M)odel - Store Data, State
+	/// 		2. (V)iew - Handle Input, Visuals, Sounds
+	/// 		3. (C)ontroller - Process Input / Coordinate interactions
+	/// 
+	/// </summary>
 	public class Controller: SingletonMonobehavior<Controller>
 	{
 		

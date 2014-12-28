@@ -76,11 +76,18 @@ namespace com.rmc.core.managers
 	//  Class
 	//--------------------------------------
 	/// <summary>
-	/// Coroutine manager. Main purpose;
-	/// 
+	/// GOALS;
 	/// 	1. Allow non-monobehavior classes to call coroutines easily
 	/// 	2. Allow monobehavior classes to call methods after a delay (with less boilerplate code)
 	/// 	
+	/// WHAT'S GREAT?
+	/// 		1. Centralize 'call-this-after-2-seconds' type routines here. Instead of throughout codebase.
+	/// 		2. Quickly create delayed method calls.
+	/// 		2. This freedom empower devs to tweak/polish the UX of animations/delays/loading/messaging easily.
+	/// 
+	/// WHAT'S NOT? 
+	///			1. Doesn't accept parameters to pass along with the method-to-be-called after the delay. That's a TODO item.  
+	///
 	/// 
 	/// </summary>
 	public class CoroutineManager : SingletonMonobehavior<CoroutineManager> 
@@ -97,7 +104,6 @@ namespace com.rmc.core.managers
 		
 		// 	PUBLIC STATIC
 		
-		
 		// 	PRIVATE
 		
 		// 	PRIVATE STATIC
@@ -112,31 +118,9 @@ namespace com.rmc.core.managers
 		//  Unity Methods
 		//--------------------------------------
 		
-		///<summary>
-		///	Use this for initialization
-		///</summary>
-		void Start () 
-		{
-			
-		}
-		
-		
-		
-		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		void Update () 
-		{
-			
-		}
-		
-		
 		//--------------------------------------
 		//  Methods
 		//--------------------------------------
-
-
 		/// <summary>
 		/// Waits for seconds to call.
 		/// </summary>

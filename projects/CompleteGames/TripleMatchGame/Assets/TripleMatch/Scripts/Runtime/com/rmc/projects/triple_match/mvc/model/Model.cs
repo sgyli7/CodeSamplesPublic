@@ -61,6 +61,15 @@ namespace com.rmc.projects.triple_match.mvc.model
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// Loose MVC: This is a Model.
+	/// 
+	/// TYPICAL ROLES
+	/// 		1. (M)odel - Store Data, State
+	/// 		2. (V)iew - Handle Input, Visuals, Sounds
+	/// 		3. (C)ontroller - Process Input / Coordinate interactions
+	/// 
+	/// </summary>
 	public class Model: SingletonMonobehavior<Model>
 	{
 		
@@ -172,7 +181,9 @@ namespace com.rmc.projects.triple_match.mvc.model
 			}
 		}
 		
-		//
+		/// <summary>
+		/// The on game resetted.
+		/// </summary>
 		public delegate void OnGameResettedDelegate ();
 		public OnGameResettedDelegate OnGameResetted;
 
@@ -189,9 +200,16 @@ namespace com.rmc.projects.triple_match.mvc.model
 		public delegate void OnGemVOsMarkedForRemovalChangedDelegate (List<GemVO> gemVOs);
 		public OnGemVOsMarkedForRemovalChangedDelegate OnGemVOsMarkedForRemovalChanged;
 
+
+		/// <summary>
+		/// The on gem V os marked for shifting down changed.
+		/// </summary>
 		public delegate void OnGemVOsMarkedForShiftingDownChangedDelegate (List<GemVO> gemVOs);
 		public OnGemVOsMarkedForShiftingDownChangedDelegate OnGemVOsMarkedForShiftingDownChanged;
 
+		/// <summary>
+		/// The on gem V os added to fill gaps changed.
+		/// </summary>
 		public delegate void OnGemVOsAddedToFillGapsChangedDelegate (List<GemVO> gemVOs);
 		public OnGemVOsAddedToFillGapsChangedDelegate OnGemVOsAddedToFillGapsChanged;
 		
@@ -299,6 +317,13 @@ namespace com.rmc.projects.triple_match.mvc.model
 			}
 		}
 
+
+		/// <summary>
+		/// Ares the gem V os swappable.
+		/// </summary>
+		/// <returns><c>true</c>, if gem V os swappable was ared, <c>false</c> otherwise.</returns>
+		/// <param name="gemVO1">Gem V o1.</param>
+		/// <param name="gemVO2">Gem V o2.</param>
 		public static bool AreGemVOsSwappable (GemVO gemVO1, GemVO gemVO2)
 		{
 			
@@ -357,17 +382,6 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 
 
-
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		protected void Update () 
-		{
-
-			
-		}
-		
-		
 		//--------------------------------------
 		// 	Methods
 		//--------------------------------------
@@ -422,12 +436,23 @@ namespace com.rmc.projects.triple_match.mvc.model
 		
 
 		
-		
+		/// <summary>
+		/// Dos the instantly swap two gem V os.
+		/// </summary>
+		/// <param name="gemVO1">Gem V o1.</param>
+		/// <param name="gemVO2">Gem V o2.</param>
 		public void DoInstantlySwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
 		{
 			_gridSystem.DoInstantlySwapTwoGridSpotVOs (gemVO1, gemVO2);
 		}
-		
+
+
+		/// <summary>
+		/// Determines whether this instance is there A match containing either gem V the specified gemVO1 gemVO2.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is there A match containing either gem V the specified gemVO1 gemVO2; otherwise, <c>false</c>.</returns>
+		/// <param name="gemVO1">Gem V o1.</param>
+		/// <param name="gemVO2">Gem V o2.</param>
 		public bool IsThereAMatchContainingEitherGemVO (GemVO gemVO1, GemVO gemVO2)
 		{
 			return _gridSystem.IsThereAMatchContainingEitherGridSpotVO (gemVO1, gemVO2);
@@ -435,7 +460,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 		
 		/// <summary>
-		/// _s the check for matches.
+		/// Checks for matches.
 		/// </summary>
 		public void CheckForMatches ()
 		{
@@ -449,7 +474,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 
 		/// <summary>
-		/// Adds the gems to fill gaps.
+		/// Dos the fill gaps in gems.
 		/// </summary>
 		public void DoFillGapsInGems ()
 		{
@@ -497,7 +522,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 
 		/// <summary>
-		/// _s the do shift gems down to fill gaps.
+		/// _s the do fill gaps in gems__ shift down.
 		/// </summary>
 		private void _DoFillGapsInGems__ShiftDown ()
 		{
@@ -513,7 +538,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 		
 		/// <summary>
-		/// _s the do add new gems to fill gaps.
+		/// _s the do fill gaps in gems__ drop new from above.
 		/// </summary>
 		private void _DoFillGapsInGems__DropNewFromAbove ()
 		{
@@ -535,9 +560,9 @@ namespace com.rmc.projects.triple_match.mvc.model
 		//--------------------------------------
 
 		/// <summary>
-		/// Times the left in round decrement_ coroutine.
+		/// _s the time left in round decrement_ coroutine.
 		/// </summary>
-		/// <returns>The left in round decrement_ coroutine.</returns>
+		/// <returns>The time left in round decrement_ coroutine.</returns>
 		private IEnumerator _TimeLeftInRoundDecrement_Coroutine ()
 		{
 

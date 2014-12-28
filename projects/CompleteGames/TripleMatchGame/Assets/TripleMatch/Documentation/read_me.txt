@@ -59,14 +59,13 @@
 //  V. TODO: Before Submission
 //--------------------------------------------------------------------------------------------------------------------
 * Nothing.
+look for todo in the code
 
 * Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
 
 // DO THIS LAST
 * add comment to every class. Fit within 3 lines of overview; model, view, controller
 * Update 100% of comments
-* Update diagram
-* Folder (/Assets/TripleMatch/Documentation/) includes simple 2-minute overview of gameplay and gamecode.
 
 //--------------------------------------------------------------------------------------------------------------------
 //  VI. TODO: Theoretical Future-Features, These items have not been attempted nor completed.
@@ -77,6 +76,7 @@
 * Gameplay: Show a hint to user of what match is best to make next
 * Gameplay: End the game if there are no possible matches that can be made via swap
 * Gameplay: Add a 'combo meter' that drains slowly, but gains with each match made. A 100% meter will reward bonus for next matches
+* Gameplay: Add 'com.rmc.core.grid_system.GridSystem.Frequency.Never' and allow game to initially render with zero matches.
 * View: Handle common screen layouts (iPhone 6, 4, etc...) without simply resizing gracefully as currently happens.
 
 */

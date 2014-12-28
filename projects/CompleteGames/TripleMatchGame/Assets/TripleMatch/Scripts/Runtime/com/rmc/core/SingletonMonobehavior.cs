@@ -48,6 +48,9 @@ namespace com.rmc.core.support
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// GOALS: Easily allow a Singleton to be added to hierarchy at runtime with full MonoBehavior access and predictable lifecycle.
+	/// </summary>
 	public abstract class SingletonMonobehavior<T> : MonoBehaviour where T : MonoBehaviour
 	{
 		
@@ -60,9 +63,11 @@ namespace com.rmc.core.support
 		/// <summary>
 		/// Do not call this from another scope within OnDestroy(). Instead use IsInstantiated()
 		/// </summary>
-		private static T _Instance; //harmless warning
+		private static T _Instance; //Harmless 'suggestion' appears here in some code-editors. Known issue.
 		public static T Instance
 		{
+
+			//NOTE: Its recommended to wrap any calls to this getter with a IsInstanced() to prevent undesired instantiation. Optional.
 			get
 			{
 				if (!IsInstantiated())
@@ -81,7 +86,9 @@ namespace com.rmc.core.support
 
 				
 		/// <summary>
-		/// Determines if is instantiated.
+		/// 
+		/// NOTE: Calling this will NEVER instantiate a new instance. That is useful and safe to call in any destructors / OnDestroy()
+		/// 
 		/// </summary>
 		/// <returns><c>true</c> if is instantiated; otherwise, <c>false</c>.</returns>
 		public static bool IsInstantiated()
@@ -108,7 +115,12 @@ namespace com.rmc.core.support
 
 		
 		/// <summary>
-		/// Instantiate this instance. Creates new model
+		/// Instantiate this instance. 
+		/// 
+		/// 	1. Creates GameObject with name of subclass
+		/// 	2. Persists by default (optional)
+		/// 	3. Predictable life-cycle.
+		/// 
 		/// </summary>
 		public static T Instantiate ()
 		{
@@ -127,6 +139,7 @@ namespace com.rmc.core.support
 			}
 			return _Instance;
 		}
+
 
 		/// <summary>
 		/// Destroys all memory/references associated with the instance
@@ -157,9 +170,6 @@ namespace com.rmc.core.support
 		
 		
 		//	PRIVATE
-		
-		
-		
 		
 		
 		//--------------------------------------

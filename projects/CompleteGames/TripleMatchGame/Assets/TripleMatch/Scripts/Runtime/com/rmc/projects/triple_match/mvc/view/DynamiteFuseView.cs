@@ -52,6 +52,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// Loose MVC: This is a View. See superclass for more info.
+	/// 
+	/// GOALS:
+	/// 		1. Match the fuse spark animation to the Model's clock timer.
+	/// 		2. Explode the dynamite when time is out
+	/// 
+	/// </summary>
 	public class DynamiteFuseView : AbstractView
 	{
 		

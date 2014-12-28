@@ -56,6 +56,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// Loose MVC: This is a View. See superclass for more info.
+	/// 
+	/// GOALS:
+	/// 		1. Accept user input
+	/// 		2. Render gems with sound and graphics. 
+	/// 		3. Handle animation and overal game timing.
+	/// 
+	/// </summary>
 	public class EnvironmentView : AbstractView
 	{
 		

@@ -54,6 +54,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// Loose MVC: This is a View. See superclass for more info.
+	/// 
+	/// GOALS:
+	/// 		1. Accept user input
+	/// 		2. Render text information (score, time, etc...)
+	/// 
+	/// </summary>
 	public class HUDView : AbstractView 
 	{
 		

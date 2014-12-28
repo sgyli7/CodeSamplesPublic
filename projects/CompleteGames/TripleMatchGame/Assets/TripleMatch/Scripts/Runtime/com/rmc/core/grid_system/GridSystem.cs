@@ -40,6 +40,10 @@ namespace com.rmc.core.grid_system
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
+
+	/// <summary>
+	/// Frequency determines "How often will we have 1 or more matches upon 'Reset Game'?"
+	/// </summary>
 	public enum Frequency
 	{
 		Always,
@@ -57,6 +61,15 @@ namespace com.rmc.core.grid_system
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// The logic for rendering, adding, removing, matching gridspots is isolated here.
+	/// 
+	/// PURPOSE:
+	/// 			1. Reuse
+	/// 			2. Unit Testability (isolated from Unity-specific code (e.g. MonoBehaviors and Coroutines)
+	/// 
+	/// 
+	/// </summary>
 	public class GridSystem<T> : Object where T : IGridSpot, new()
 	{
 
@@ -100,9 +113,9 @@ namespace com.rmc.core.grid_system
 
 		
 		/// <summary>
-		/// The _frequency of instant matches upon reset.
+		/// Frequency determines "How often will we have 1 or more matches upon 'Reset Game'?"
 		/// </summary>
-		private Frequency _frequencyOfInstantMatchesUponReset;  //Frequency.Sometimes; //keep this default. Set From Model for production before Use
+		private Frequency _frequencyOfInstantMatchesUponReset;  
 
 		//	PUBLIC
 
@@ -110,10 +123,10 @@ namespace com.rmc.core.grid_system
 		// 	PUBLIC STATIC
 		
 		/// <summary>
-		/// Gets the list from grid spot V os.
+		/// We do conversions on the complete gridSpotArray sometimes, and also on partial arrays sometimes.
 		/// </summary>
-		/// <returns>The list from grid spot V os.</returns>
-		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		/// <returns>The grid spot VO array to list.</returns>
+		/// <param name="gridSpotVO_array">Grid spot V o_array.</param>
 		public static List<T> ConvertGridSpotVOArrayToList (T[,] gridSpotVO_array)
 		{
 			List<T> gridSpotVOList = new List <T>();
@@ -132,7 +145,6 @@ namespace com.rmc.core.grid_system
 		
 		
 		// 	PRIVATE
-		
 		private int _maxRows_int;
 		private int _maxColumns_int;
 		private int _maxGridSpotTypeIndex_int;	
@@ -146,8 +158,13 @@ namespace com.rmc.core.grid_system
 		//--------------------------------------	
 		
 		/// <summary>
-		/// Initializes a new instance of the <see cref="com.rmc.core.grid_system.GridSystem"/> class.
+		/// Initializes a new instance of the <see cref="com.rmc.core.grid_system.GridSystem`1"/> class.
 		/// </summary>
+		/// <param name="maxRows_int">Max rows_int.</param>
+		/// <param name="maxColumns_int">Max columns_int.</param>
+		/// <param name="minMatchesForRewardHorizontal_int">Minimum matches for reward horizontal_int.</param>
+		/// <param name="minMatchesForRewardVertical_int">Minimum matches for reward vertical_int.</param>
+		/// <param name="maxGridSpotTypeIndex_int">Max grid spot type index_int.</param>
 		public GridSystem 
 			(
 				int maxRows_int, 
@@ -182,8 +199,9 @@ namespace com.rmc.core.grid_system
 		//--------------------------------------
 
 		/// <summary>
-		/// Reset this instance.
+		/// Reset the grid. This happens upon game launch and upon clicking 'Reset Game'.
 		/// </summary>
+		/// <param name="frequencyOfInstantMatchesUponReset">Frequency of instant matches upon reset.</param>
 		public void Reset (Frequency frequencyOfInstantMatchesUponReset)
 		{
 			_gridSpotVO_array = new T[_maxRows_int, _maxColumns_int];
@@ -195,8 +213,9 @@ namespace com.rmc.core.grid_system
 
 		
 		/// <summary>
-		/// Show nice debuggable output
+		/// In early testing of the art, this was helpful to ensure that the data model matches the GridSpot-art used.
 		/// </summary>
+		/// <returns>A <see cref="System.String"/> that represents the current <see cref="com.rmc.core.grid_system.GridSystem`1"/>.</returns>
 		override public string ToString ()
 		{
 			string s = "";
@@ -262,7 +281,7 @@ namespace com.rmc.core.grid_system
 
 
 		/// <summary>
-		/// Determines whether this instance is there A match containing either grid spot V the specified gridSpotVO1 gridSpotVO2.
+		/// Just after swapping 2 GridSpots, this determines if the swapped GridSpots are part of a match. If not, we'll swap them back.
 		/// </summary>
 		/// <returns><c>true</c> if this instance is there A match containing either grid spot V the specified gridSpotVO1 gridSpotVO2;
 		/// otherwise, <c>false</c>.</returns>
@@ -293,7 +312,7 @@ namespace com.rmc.core.grid_system
 		
 		
 		/// <summary>
-		/// Dos the instantly swap two grid spot V os.
+		/// Swaps the data instantly. This is not the tweening of the view GridSpots, only the data.
 		/// </summary>
 		/// <param name="gridSpotVO1">Grid spot V o1.</param>
 		/// <param name="gridSpotVO2">Grid spot V o2.</param>
@@ -319,8 +338,8 @@ namespace com.rmc.core.grid_system
 		
 		
 		/// <summary>
-		/// _s the check for matches.
 		/// </summary>
+		/// <returns><c>true</c> if this instance has matches; otherwise, <c>false</c>.</returns>
 		public bool HasMatches ()
 		{
 			return GetMatches().Count > 0;
@@ -328,7 +347,6 @@ namespace com.rmc.core.grid_system
 
 		
 		/// <summary>
-		/// Gets the matches.
 		/// </summary>
 		/// <returns>The matches.</returns>
 		public List<List<T>> GetMatches ()
@@ -344,7 +362,7 @@ namespace com.rmc.core.grid_system
 		
 		
 		/// <summary>
-		/// Dos the mark grid spot V os for deletion.
+		/// We sweep through the core data and mark data for (visual, animated) deletion in the view.
 		/// </summary>
 		/// <param name="gridSpotVOsMatchingListOfLists">Grid spot V os matching list of lists.</param>
 		public void DoMarkGridSpotVOsForDeletion (List<List<T>> gridSpotVOsMatchingListOfLists)
@@ -377,6 +395,9 @@ namespace com.rmc.core.grid_system
 		
 		/// <summary>
 		/// Dos the fill gaps in grid spots_ overall.
+		/// 
+		/// NOTE: This is step 1 of 3 for 'filling'.
+		/// 
 		/// </summary>
 		/// <returns>The fill gaps in grid spots_ overall.</returns>
 		public int DoFillGapsInGridSpots_Overall ()
@@ -412,7 +433,10 @@ namespace com.rmc.core.grid_system
 
 		
 		/// <summary>
-		/// Dos the fill gaps in grid spots__ shift down.
+		/// Existing GridSpots drop into empty spaces
+		/// 
+		/// NOTE: This is step 2 of 3 for 'filling'.
+		/// 
 		/// </summary>
 		/// <returns>The fill gaps in grid spots__ shift down.</returns>
 		public List<T> DoFillGapsInGridSpots__ShiftDown ()
@@ -461,7 +485,10 @@ namespace com.rmc.core.grid_system
 		}
 		
 		/// <summary>
-		/// Dos the fill gaps in grid spots__ drop new from above.
+		/// New Gridspots are created and fall into the empty spaces. These empty spaces have nothing above them at the moment.
+		/// 
+		/// NOTE: This is step 3 of 3 for 'filling'.
+		/// 
 		/// </summary>
 		/// <returns>The fill gaps in grid spots__ drop new from above.</returns>
 		public List<T> DoFillGapsInGridSpots__DropNewFromAbove ()
@@ -501,11 +528,25 @@ namespace com.rmc.core.grid_system
 
 
 
-
+		//------------------------------------------------------------------------------
+		//
+		//
+		//  FINDING MATCHES - This is one of the core routines of the game logic.
+		//
+		//
+		//	NOTES:
+		//			1. 	Horizontally and Vertically are handled separately
+		//			2. 	This allows readability and testability (axis-specifically)
+		//			3. 	Admittadly its a duplication of code and 'doubles?' the 
+		//					maintainability of this area. That is ok for this demo.
+		//
+		//
+		//------------------------------------------------------------------------------
 
 		/// <summary>
-		/// _s the check for matches horizontal.
+		/// _s the get matches horizontal.
 		/// </summary>
+		/// <returns>The get matches horizontal.</returns>
 		private List<List<T>> _GetMatchesHorizontal ()
 		{
 
@@ -522,9 +563,6 @@ namespace com.rmc.core.grid_system
 				for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength(1); columnIndex_int += 1) 
 				{
 					
-					
-					
-					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
 					T gridSpotVO = _gridSpotVO_array[rowIndex_int, columnIndex_int];
 					
 					//NOTE: WE DO A NUL CHECK, BECAUSE WE ALSO RUN HasMatches() before the grid is completely drawn in.
@@ -568,8 +606,9 @@ namespace com.rmc.core.grid_system
 		
 		
 		/// <summary>
-		/// _s the check for matches vertical.
+		/// _s the get matches vertical.
 		/// </summary>
+		/// <returns>The get matches vertical.</returns>
 		private List<List<T>> _GetMatchesVertical()
 		{
 			
@@ -586,7 +625,6 @@ namespace com.rmc.core.grid_system
 				for (int rowIndex_int = 0; rowIndex_int < _gridSpotVO_array.GetLength(0); rowIndex_int += 1) 
 				{
 
-					//TODO: MOVE DELCARATION OUTSIDE OF FOR/FOR
 					T nextGridSpotVO = _gridSpotVO_array[rowIndex_int, columnIndex_int];
 					//NOTE: WE DO A NUL CHECK, BECAUSE WE ALSO RUN HasMatches() before the grid is completely drawn in.
 					if (nextGridSpotVO != null)

@@ -52,6 +52,15 @@ namespace com.rmc.core.managers
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
+	/// <summary>
+	/// GOAL: Allow for easy sound setup and fucntionality (play, stop, volume)
+	/// 
+	/// STEPS TO ADD NEW SOUND
+	/// 		1. Add sound file to project window within 'Resources' folder
+	/// 		2. Call PlayAudioResourcePath("path/to/file/within/resources/folder/without/file/extension")
+	/// 		3. Done!
+	/// 
+	/// </summary>
 	public class AudioManager : SingletonMonobehavior<AudioManager> 
 	{
 		
