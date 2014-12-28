@@ -70,9 +70,7 @@ If you click reset and DO NOT have any matches automatically on the fresh board 
 If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
 If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
 If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
-* initialize everything in start (not in declaration). Is that a good readability upgrade?
 * add comment to every class. Fit within 3 lines of overview; model, view, controller
-* Revisit all commented out Debug.log statements. Keep some? Wrap some in a special debug log? Remove all? TBD
 * Update 100% of comments
 * Move all ‘usings’ to the // IMPORT section (some are a few lines below
 * Remove 100% of warnings and errors

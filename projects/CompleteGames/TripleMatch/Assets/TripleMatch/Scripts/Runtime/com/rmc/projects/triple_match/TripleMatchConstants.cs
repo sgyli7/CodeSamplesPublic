@@ -257,8 +257,9 @@ namespace com.rmc.projects.triple_match
 				default:
 					#pragma warning disable 0162
 					throw new SwitchStatementException ();
-					#pragma warning restore 0162
 					break;
+					#pragma warning restore 0162
+
 
 				}
 			}

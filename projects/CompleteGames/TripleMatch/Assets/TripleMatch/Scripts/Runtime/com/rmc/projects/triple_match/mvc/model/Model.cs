@@ -405,7 +405,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			_gridSystem.Reset(TripleMatchConstants.FREQUENCY_OF_INSTANT_MATCHES_UPON_RESET);
 
 			
-			Debug.Log (this);
+			Debug.Log (_gridSystem.ToString());
 			
 			if (OnGameResetted != null)
 			{

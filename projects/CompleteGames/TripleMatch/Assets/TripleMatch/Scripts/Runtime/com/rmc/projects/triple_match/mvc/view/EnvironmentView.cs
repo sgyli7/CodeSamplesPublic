@@ -125,54 +125,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 		//--------------------------------------
 		// 	Unity Methods
 		//--------------------------------------
-		
-		///<summary>
-		///	Use this for initialization
-		///</summary>
-		protected void Start () 
-		{
-			
-			
-		}
-
-
-		/// <summary>
-		/// Debug only
-		/// TODO: REmove this
-		/// </summary>
-		private bool _debugging_HasFilledGapsWithGems = false;
-		
-
-		
-		///<summary>
-		///	Called once per frame
-		///</summary>
-		protected void Update () 
-		{
-			
-	
-			if (_model.GameState == GameState.PLAYING)
-			{
-				
-				//TODO: REMOVE THIS DEBUGGING INPUT
-				if (Input.GetKeyDown (KeyCode.Space))
-				{
-					if (!_debugging_HasFilledGapsWithGems)
-					{
-					//	_controller.DoFillGapsInGems();
-					}
-					else
-					{
-						
-					}
-					
-				}
-			}
-				
-
-
-
-		}
 
 		/// <summary>
 		/// Raises the destroy event.
@@ -232,10 +184,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 			
 			//
 			GemVO nextGemVO;
-			GameObject nextGemViewPrefab;
-			GemViewComponent nextGemView;
-			Vector3 spawnPointForGemsVector3;
-			//
 			for (int rowIndex_int = 0; rowIndex_int < gemVOs.GetLength(0); rowIndex_int += 1) 
 			{
 				for (int columnIndex_int = 0; columnIndex_int < gemVOs.GetLength(1); columnIndex_int += 1) 

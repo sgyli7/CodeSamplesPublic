@@ -67,10 +67,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 
 		
 		// 	PRIVATE
-		/// <summary>
-		/// The _gem V.
-		/// </summary>
-		private GemVO _gemVO;
 
 		/// <summary>
 		/// Add one or more particle system prefabs. Each will be added upon start. EXPLODE!!!
@@ -82,16 +78,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		//--------------------------------------
 		// 	Constructor / Creation
 		//--------------------------------------
-		/// <summary>
-		/// Initialize the specified gemVO.
-		/// </summary>
-		/// <param name="gemVO">Gem V.</param>
-		public void Initialize (GemVO gemVO)
-		{
-			_gemVO = gemVO;
-
-
-		}
 		
 		//--------------------------------------
 		//	Unity Methods

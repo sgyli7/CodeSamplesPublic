@@ -59,7 +59,7 @@ namespace com.rmc.core.grid_system
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class GridSystem<T> : Object where T : GridSpotVO, new()
+	public class GridSystem<T> : Object where T : IGridSpot, new()
 	{
 
 
@@ -202,7 +202,7 @@ namespace com.rmc.core.grid_system
 		override public string ToString ()
 		{
 			string s = "";
-			s+= "[Model] (Single Click Here For Grid Output)";
+			s+= "[GridSystem] (Single Click Here For Grid Type Output)";
 			s+= "\n";
 			for (int rowIndex_int = 0; rowIndex_int < _gridSpotVO_array.GetLength(0); rowIndex_int += 1) 
 			{
@@ -362,10 +362,11 @@ namespace com.rmc.core.grid_system
 					{
 						for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength (1); columnIndex_int++)
 						{
-							
-							if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == gridSpot)
+
+							if (_gridSpotVO_array[rowIndex_int, columnIndex_int] != null &&
+							    _gridSpotVO_array[rowIndex_int, columnIndex_int].Equals (gridSpot))
 							{
-								_gridSpotVO_array[rowIndex_int, columnIndex_int] = null;
+								_gridSpotVO_array[rowIndex_int, columnIndex_int] = default(T);
 							};
 						}
 					}
@@ -443,7 +444,7 @@ namespace com.rmc.core.grid_system
 								//COPY THE OLD TO THE NEW
 								_gridSpotVO_array[rowIndexToCheck_int, columnIndexToCheck_int] = _gridSpotVO_array[rowIndexToFind_int, columnIndexToCheck_int];
 								gridSpotVOsMarkedForShiftingDownChanged.Add (_gridSpotVO_array[rowIndexToCheck_int, columnIndexToCheck_int]);
-								_gridSpotVO_array[rowIndexToFind_int, columnIndexToCheck_int] = null; //CLEAR OUT THE OLD 
+								_gridSpotVO_array[rowIndexToFind_int, columnIndexToCheck_int] = default(T); //CLEAR OUT THE OLD 
 								
 								//UPDATE THE PROPERTIES WITHIN THE NEW, SO THE VIEW CAN TWEEN TO NEW POSITION
 								_gridSpotVO_array[rowIndexToCheck_int, columnIndexToCheck_int].RowIndex = rowIndexToCheck_int;

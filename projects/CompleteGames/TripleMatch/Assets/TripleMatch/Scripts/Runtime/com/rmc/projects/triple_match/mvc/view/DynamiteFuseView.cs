@@ -137,7 +137,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		///<summary>
 		///	Use this for initialization
 		///</summary>
-		protected void Start () 
+		override protected void Start () 
 		{
 			
 		}

@@ -49,7 +49,7 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 	//--------------------------------------
 	//  Class
 	//--------------------------------------
-	public class GemVO : GridSpotVO, IGridSpot
+	public class GemVO : object, IGridSpot
 	{
 		
 		
@@ -61,13 +61,18 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 		
 		
 		// 	PUBLIC
+		public int RowIndex {get; set;}
+		public int ColumnIndex {get; set;}
+		public int TypeIndex {get; set;}
+
+
+		//
 		public int GemTypeIndex
 		{
 			get
 			{
 				return TypeIndex;
 			}
-
 		}
 		
 		// 	PRIVATE
@@ -76,12 +81,31 @@ namespace com.rmc.projects.triple_match.mvc.model.data.vo
 		//--------------------------------------
 		// 	Constructor / Creation
 		//--------------------------------------	
-
+		
+		/// <summary>
+		/// Initializes a new instance of the <see cref="com.rmc.projects.triple_match.mvc.model.data.vo.GemVO"/> class.
+		/// </summary>
 		public GemVO ()
 		{
 			//parameterless to assist generics
 		}
 		
+		/// <summary>
+		/// Initialize the specified rowIndex, columnIndex and typeIndex.
+		/// </summary>
+		/// <param name="rowIndex">Row index.</param>
+		/// <param name="columnIndex">Column index.</param>
+		/// <param name="typeIndex">Type index.</param>
+		public void Initialize (int rowIndex, int columnIndex, int typeIndex)
+		{
+			
+			RowIndex = rowIndex;
+			ColumnIndex = columnIndex;
+			TypeIndex = typeIndex;
+			
+			//
+			//Debug.Log (this);
+		}
 
 		//--------------------------------------
 		// 	Methods
