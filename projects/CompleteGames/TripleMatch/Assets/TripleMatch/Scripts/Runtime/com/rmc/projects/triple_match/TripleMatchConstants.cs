@@ -88,7 +88,7 @@ namespace com.rmc.projects.triple_match
 		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1.25f;
 		//
 		public static int DURATION_TIME_TOTAL_IN_ROUND  = 60;	//For Production: Use 60 SECONDS
-		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = 1; //easily accelerate time for debugging
+		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = .01f; //easily accelerate time for debugging
 		public static float TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK = 1;//easily accelerate time for debugging
 		//
 		public static string SORTING_LAYER_PARTICLE_EFFECTS = "ParticleEffectsSortingLayer";
@@ -97,7 +97,7 @@ namespace com.rmc.projects.triple_match
 
 		public static string TEXT_EMPTY = ""; //easy programmatic search for references for debugging
 		public static string TEXT_TITLE = "Triple Match";
-		public static string TEXT_GAME_RESET_TEXT = "Reset Game!";
+		public static string TEXT_GAME_RESET_TEXT = "Reset";
 		public static string TEXT_SCORE_TOKEN = "Score: {0}";
 		public static string TEXT_TIME_TOKEN = "Time: {0}";
 		public static string TEXT_POINTS_TOKEN = "{0} Pts";
@@ -106,7 +106,7 @@ namespace com.rmc.projects.triple_match
 		public static string TEXT_INSTRUCTIONS_INPUT_DISABLED = "Rewarding Points! Please Wait...";
 
 
-		public static string TEXT_INSTRUCTIONS_GAME_OVER = "Click '"+ TripleMatchConstants.TEXT_GAME_RESET_TEXT+"' to try again.";
+		public static string TEXT_INSTRUCTIONS_GAME_OVER = "Your best score: '{0}' pts. Click '"+ TripleMatchConstants.TEXT_GAME_RESET_TEXT+"'";
 
 
 

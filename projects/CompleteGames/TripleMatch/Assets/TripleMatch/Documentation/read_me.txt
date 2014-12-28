@@ -5,6 +5,13 @@
 // Marks the right margin of code ************************************************************************************
 
 
+//--------------------------------------------------------------------------------------------------------------------
+//  CODE OWNERSHIP
+//--------------------------------------------------------------------------------------------------------------------
+• Folder (/Assets/TripleMatch/) - All code is by Sam Rivello. Created from scratch for this project.
+• Folder (/Assets/TripleMatch/) - All non-code (assets) were given by assigner or found by Sam Rivello
+• Folder (/Assets/Standard Assets/) - All contents provided by Unity Technologies via Asset Store
+• Folder (/Assets/Community Assets/) - All contents provided by 3rd Parties via Asset Store
 
 //--------------------------------------------------------------------------------------------------------------------
 //  FEATURES REQUIRED: By Assigners' Documentation
@@ -30,25 +37,26 @@
 • Added: MVC Project Diagram in Folder (/Assets/TripleMatch/Documentation/). I call it "Loose MVC"   :)
 • Added: Particle effects added
 • Added: Sound effects added
-• Added: Ex. UnitTest ('com.rmc.core.grid_system.GridSystemTest.cs'). Open Unity->Menu->UnityTesting->UnitTestRunner!
+• Added: Unity 4.3.x Sprites for all gameplay elements 
+• Added: Unity 4.6.x 'New' Unity UI for all GUI elements 
+• Added: Suspensful visual 'timer' of fuse, dynamite explosion 
+• Added: Dynamic Instruction Text for better UX and to tease user's personal 'high score'
+• Added: Ex. UnitTest. Open Unity->Menu->UnityTesting->UnitTestRunner! (See 'com.rmc.core.grid_system.GridSystemTest.cs')
+• Added: Centralized text, settings, animation durations,... (See 'com.rmc.projects.triple_match.TripleMatchConstants.cs')
+• Added: 
+• Added: 
+• Added: 
+• Added: 
+• Added: 
 
 
-//--------------------------------------------------------------------------------------------------------------------
-//  CODE OWNERSHIP
-//--------------------------------------------------------------------------------------------------------------------
-* Folder (/Assets/TripleMatch/) - All code is by Sam Rivello 
-* Folder (/Assets/TripleMatch/) - All non-code (assets) were given by assigner or found by Sam Rivello
-* Folder (/Assets/Standard Assets/) - All contents provided by Unity Technologies via Asset Store
-* Folder (/Assets/Community Assets/) - All contents provided by 3rd Parties via Asset Store
 
 //--------------------------------------------------------------------------------------------------------------------
 //  TODO: Before Submission
 //--------------------------------------------------------------------------------------------------------------------
-
 * Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
 * Change GridSpotVO to iGridSpotVO interface. Nice! Remove 'gemtype' or not since it depends on the view (vice versa?)
 * use maxrows/maxcolums ONLY when creting grid. otherwise use getlength()
-* show users all time high score
 * make a 'bonk' noise if you click a gem but the gem cannot accept a move (like when the matches are blowing up)
 
 // DO THIS LAST
@@ -60,13 +68,14 @@
 * Remove 100% of warnings and errors
 * Update diagram
 * Folder (/Assets/TripleMatch/Documentation/) includes simple 2-minute overview of gameplay and gamecode.
+• Added: Dynamic Instruction Text for better UX and to tease user's personal 'high score'
 
 //--------------------------------------------------------------------------------------------------------------------
 //  TODO: Theoretical Future-Features That Are Not Yet Added 
 //--------------------------------------------------------------------------------------------------------------------
-* Replace 100% of art. Just to revisit the views flexibliity to handle different size, layouts, (# of gemtypes), etc...
-* Show a hint to user of what match is best to make next
-* End the game if there are no possible matches that can be made via swap
+* Production: Replace 100% of art. Just to revisit the views flexibility to handle different size, layouts, (# of gemtypes), etc...
+* Gameplay: Show a hint to user of what match is best to make next
+* Gameplay: End the game if there are no possible matches that can be made via swap
 * Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start for reuse.
 
 

@@ -72,7 +72,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		// 	PUBLIC
 
 		[SerializeField]
-		public Canvas _canvas;
+		public GameObject _floatingScoreParent;
 
 		[SerializeField]
 		public Text _titleText;
@@ -153,7 +153,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 
 			GameObject floatingScoreViewPrefab = Instantiate (Resources.Load (TripleMatchConstants.PATH_FLOATING_SCORE_VIEW_PREFAB)) as GameObject;;
-			floatingScoreViewPrefab.gameObject.transform.SetParent (_canvas.gameObject.transform);
+			floatingScoreViewPrefab.gameObject.transform.SetParent (_floatingScoreParent.transform);
 			FloatingScoreViewComponent floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreViewComponent>();
 			floatingScoreView.Initialize (score_int, initialPosition_vector3);
 			_controller.SetScore (_model.Score + score_int, TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT);
@@ -205,8 +205,37 @@ namespace com.rmc.projects.triple_match.mvc.view
 		}
 
 
-		
+
 		//	PRIVATE
+		/// <summary>
+		/// _s the state of the render instructions text depending on.
+		/// </summary>
+		private void _RenderInstructionsTextDependingOnState ()
+		{
+			
+			//	WHILE PLAYING WE TOGGLE BETWEEN A FEW PHRASES
+			if (_model.GameState == GameState.GAME_OVER)
+			{
+				
+				//
+				string gameOver_string = string.Format (TripleMatchConstants.TEXT_INSTRUCTIONS_GAME_OVER, _model.Score);
+				_RenderInstructionsText (gameOver_string);
+			}
+			else
+			{
+				if (_model.IsInputEnabled)
+				{
+					
+					_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_ENABLED);
+				}
+				else
+				{
+					_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_DISABLED);
+				}
+			}
+
+		}
+
 		
 		
 		//--------------------------------------
@@ -271,19 +300,11 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		private void _OnIsInputEnabledChanged (bool isInputEnabled)
 		{
-
-			if (isInputEnabled)
-			{
-				_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_ENABLED);
-			}
-			else
-			{
-				_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_DISABLED);
-			}
+			_RenderInstructionsTextDependingOnState();
 			
 		}
 
-
+	
 
 
 		/// <summary>
@@ -311,8 +332,9 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//	SHOW GLOW ON RESTART BUTTON TO ATTRACT USER ATTENTION
 			gameObject.GetComponent<Animator>().SetBool ("IsGameOver", true);
 
-			//
-			_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_GAME_OVER);
+			//	
+			_RenderInstructionsTextDependingOnState();
+
 
 		}
 
@@ -346,6 +368,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 		{
 			_currentScore_int = newScore_int;
 			_RenderScoreTextFromCurrentScore ();	
+			_RenderInstructionsTextDependingOnState();
 
 		}
 
