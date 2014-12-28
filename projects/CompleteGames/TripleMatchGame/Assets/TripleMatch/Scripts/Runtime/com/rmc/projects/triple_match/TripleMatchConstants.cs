@@ -69,17 +69,23 @@ namespace com.rmc.projects.triple_match
 		//--------------------------------------
 		//  Difficulty
 		//--------------------------------------
-		public static int SCORE_POINTS_PER_GEM = 50;
+		public static int SCORE_POINTS_PER_GEM = 5;
 		
 
 		//--------------------------------------
-		//  Timing
+		//  Timing - Clock
 		//--------------------------------------
-		//CLOCK
 		public static int DURATION_TIME_TOTAL_IN_ROUND  = 60;	//For Production: Use 60 SECONDS
-		public static float DURATION_TIME_TICK = 0.25f; //easily accelerate time for debugging
-		public static float TIME_DECREMENT_PER_TICK = .25f;//easily accelerate time for debugging
-		//
+
+		//TIME TICKING - I WAS USING 1 AND 1 FOR THESE, THEN I CREATED THE FUSE ANIMATION THAT NEEDS 
+		//MUCH FASTER TIME 'TICKING' TO HAPPEN. Optional: Run this on fixedUpdate instead of ticking manually in a Coroutine.
+		public static float DURATION_TIME_TICK = 0.125f; //easily accelerate time for debugging
+		public static float TIME_DECREMENT_PER_TICK = .125f;//easily accelerate time for debugging
+
+
+		//--------------------------------------
+		//  Timing - Others
+		//--------------------------------------
 		public static float DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED = 2f;
 		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1f; //lower = 'tweens' faster
 		public static float DURATION_DELAY_TO_START_GAME = 0.25f;
