@@ -239,7 +239,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			{
 
 				//only update score if we are playing (or resetting to zero)
-				if (_score_int == 0 || GameState == GameState.PLAYING)
+				if (value == 0 || GameState == GameState.PLAYING)
 				{
 					_score_int = value;
 					_highestScoreEverThisSession = Mathf.Max (_score_int, _highestScoreEverThisSession);
@@ -257,20 +257,20 @@ namespace com.rmc.projects.triple_match.mvc.model
 		/// <summary>
 		/// Sets the score.
 		/// </summary>
-		public void SetScore (int score_int, float delayUntilSet_float = 0)
+		public void AddToScore (int amountScoreToAdd_int, float delayUntilSet_float = 0)
 		{
-			StartCoroutine (ScoreScore_Coroutine(score_int, delayUntilSet_float));
+			StartCoroutine (AddToScore_Coroutine(amountScoreToAdd_int, delayUntilSet_float));
 		}
 
 		/// <summary>
 		/// Scores the score WITH DELAY
 		/// </summary>
-		private IEnumerator ScoreScore_Coroutine (int score_int, float delayUntilSet_float)
+		private IEnumerator AddToScore_Coroutine (int amountScoreToAdd_int, float delayUntilSet_float)
 		{
 			yield return new WaitForSeconds (delayUntilSet_float);
 
 			//
-			Score = score_int;
+			Score = _score_int + amountScoreToAdd_int;
 		}
 
 
