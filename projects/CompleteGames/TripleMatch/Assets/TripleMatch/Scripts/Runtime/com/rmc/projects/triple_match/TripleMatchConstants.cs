@@ -29,14 +29,11 @@
 using com.rmc.projects.triple_match.mvc.model.data.vo;
 using UnityEngine;
 using com.rmc.core.exceptions;
-
+using com.rmc.core.grid_system;
 
 //--------------------------------------
 //  Namespace
 //--------------------------------------
-using com.rmc.core.grid_system;
-
-
 namespace com.rmc.projects.triple_match
 {
 
@@ -44,7 +41,6 @@ namespace com.rmc.projects.triple_match
 	//--------------------------------------
 	//  Namespace Properties
 	//--------------------------------------
-	
 	
 	//--------------------------------------
 	//  Class Attributes
@@ -57,25 +53,32 @@ namespace com.rmc.projects.triple_match
 	{ 
 
 		//--------------------------------------
-		//  Properties
+		//  Main Settings
 		//--------------------------------------
-
 		//
-		public static Frequency FREQUENCY_OF_INSTANT_MATCHES_UPON_RESET = Frequency.Sometimes; //TODO: setting to false 'works' but not well.
+		public static Frequency FREQUENCY_OF_INSTANT_MATCHES_UPON_RESET = Frequency.Sometimes; 
 
-
-		// 	PUBLIC
-		
 		public const int MAX_ROWS = 8; //For Production, 8
 		public const int MAX_COLUMNS = 8; //For Production, 8
 		public const int MAX_GEM_TYPE_INDEX = 5; //For Production, 5
-		public const int MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD = 3; //For Production, 3, axis-specific for easy debugging
-		public const int MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD = 3; //For Production, 3, axis-specific for easy debugging
+		public const int MIN_GEMS_PER_VERTICAL_AXIS_MATCH_REWARD = 3; //For Production, 3, axis-specific for easy debugging
+		public const int MIN_GEMS_PER_HORIZONTAL_AXIS_MATCH_REWARD = 3; //For Production, 3, axis-specific for easy debugging
 
-		//
-		public static float ROW_SIZE = 0.4f;
-		public static float COLUMN_SIZE = 0.4f;
+		
+		//--------------------------------------
+		//  Difficulty
+		//--------------------------------------
+		public static int SCORE_POINTS_PER_GEM = 50;
+		
 
+		//--------------------------------------
+		//  Timing
+		//--------------------------------------
+		public static int DURATION_TIME_TOTAL_IN_ROUND  = 60;	//For Production: Use 60 SECONDS
+		public static float DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED = 2f;
+		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1f; //lower = 'tweens' faster
+		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = 1; //easily accelerate time for debugging
+		public static float TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK = 1;//easily accelerate time for debugging
 		//
 		public static float DURATION_DELAY_TO_START_GAME = 0.25f;
 		public static float DURATION_DELAY_BEFORE_CHECK_FOR_MATCHES = 0.25f;
@@ -83,64 +86,68 @@ namespace com.rmc.projects.triple_match
 		public static float DURATION_GEM_TWEEN_SWAP = 0.5f;
 		public static float DURATION_GEM_TWEEN_ENTRY = 0.5f;
 		public static float DURATION_GEM_TWEEN_EXIT = 0.5f;
-		public static float DURATION_FLOATING_SCORE_EXIT = 0.5f;
-		public static float DURATION_DELAY_AFTER_MATCH_FOUND_BEFORE_INPUT_ENABLED = 2f;
-		public static float DURATION_SCORE_NUMBER_CHANGES_OVER_TIME_TO_TARGET_VALUE = 1.25f;
-		//
-		public static int DURATION_TIME_TOTAL_IN_ROUND  = 60;	//For Production: Use 60 SECONDS
-		public static float DURATION_TIME_LEFT_IN_ROUND_TICK = .01f; //easily accelerate time for debugging
-		public static float TIME_LEFT_IN_ROUND_DECREMENT_PER_TICK = 1;//easily accelerate time for debugging
-		//
+		public static float DURATION_FLOATING_SCORE_EXIT = 0.75f;
+
+
+
+		//--------------------------------------
+		//  Layers
+		//--------------------------------------
 		public static string SORTING_LAYER_PARTICLE_EFFECTS = "ParticleEffectsSortingLayer";
 
+		//--------------------------------------
+		//  Text / Localization
+		//--------------------------------------
+		public static string TEXT_EMPTY = ""; //for easy programmatic search, when debugging
+		public static string TEXT_TITLE 						= "Triple Match";
+		public static string TEXT_GAME_RESET_TEXT 				= "Reset";
+		public static string TEXT_SCORE_TOKEN 					= "Score: {0}";
+		public static string TEXT_TIME_TOKEN 					= "Time: {0}";
+		public static string TEXT_POINTS_TOKEN 					= "{0} Pts";
+		public static string TEXT_INSTRUCTIONS_INPUT_ENABLED	= "Click 2 adjacent gems to swap. Enjoy!";
+		public static string TEXT_INSTRUCTIONS_INPUT_DISABLED	= "Rewarding Points! Please Wait...";
+		public static string TEXT_INSTRUCTIONS_GAME_OVER		= "Your best score: '{0}' pts. Click '"+ 
+																  TripleMatchConstants.TEXT_GAME_RESET_TEXT+"!'";
+
+
+		//--------------------------------------
+		//  Prefabs
+		//--------------------------------------
+		public static string PATH_GEM_VIEW_PREFAB 				= "Prefabs/GemViewPrefab";
+		public static string PATH_GEM_EXPLOSION_PREFAB 			= "Prefabs/GemExplosionPrefab";
+		public static string PATH_FLOATING_SCORE_VIEW_PREFAB 	= "Prefabs/FloatingScoreViewPrefab";
+
+		
+		//--------------------------------------
+		//  Graphics
+		//--------------------------------------
+		public static float ROW_SIZE = 0.4f;
+		public static float COLUMN_SIZE = 0.4f;
+		public static float POSITION_Y_OFFSET_FLOATING_SCORE_PIXELS = 60;
+
+
+		//--------------------------------------
+		//  Audio
+		//--------------------------------------
+		public static string PATH_BACKGROUND_MUSIC_AUDIO 			= "Audio/Music/BackgroundMusic01";
 		//
-
-		public static string TEXT_EMPTY = ""; //easy programmatic search for references for debugging
-		public static string TEXT_TITLE = "Triple Match";
-		public static string TEXT_GAME_RESET_TEXT = "Reset";
-		public static string TEXT_SCORE_TOKEN = "Score: {0}";
-		public static string TEXT_TIME_TOKEN = "Time: {0}";
-		public static string TEXT_POINTS_TOKEN = "{0} Pts";
+		public static string PATH_BUTTON_CLICK_AUDIO 				= "Audio/SoundEffects/ButtonClick01";
+		public static string PATH_GEM_CLICK_FAIL_AUDIO 				= "Audio/SoundEffects/ButtonClickFail01";
+		public static string PATH_GAME_RESET_AUDIO 					= "Audio/SoundEffects/GameStart01";
+		public static string PATH_SCORE_INCREASE_AUDIO 				= "Audio/SoundEffects/ScoreIncrease01";
+		public static string PATH_GEM_SWAP_AUDIO 					= "Audio/SoundEffects/GemSwap01";
+		public static string PATH_GEM_EXPLOSION_AUDIO 				= "Audio/SoundEffects/GemExit01";
+		public static string PATH_GEM_DROP_IN_AUDIO 				= "Audio/SoundEffects/GemDropIn01";
+		public static string PATH_DYNAMITE_EXPLOSION_AUDIO 			= "Audio/SoundEffects/DynamiteExplosion01";
+		public static string PATH_TIME_LEFT_IN_ROUND_EXPIRED_AUDIO 	= "Audio/SoundEffects/TimeLeftInRoundExpired01";
 		//
-		public static string TEXT_INSTRUCTIONS_INPUT_ENABLED = "Click 2 adjacent gems to swap. Enjoy!";
-		public static string TEXT_INSTRUCTIONS_INPUT_DISABLED = "Rewarding Points! Please Wait...";
-
-
-		public static string TEXT_INSTRUCTIONS_GAME_OVER = "Your best score: '{0}' pts. Click '"+ TripleMatchConstants.TEXT_GAME_RESET_TEXT+"'";
-
-
-
-		//PATH REQUIRED FOR Instantiate() calls. Those are deprecated in this game.
-		//NAME REQUIRED FOR PoolingSystem calls.
-		public static string PATH_GEM_VIEW_PREFAB = "Prefabs/GemViewPrefab";
-		public static string PATH_GEM_EXPLOSION_PREFAB = "Prefabs/GemExplosionPrefab";
-		public static string PATH_FLOATING_SCORE_VIEW_PREFAB = "Prefabs/FloatingScoreViewPrefab";
-		//
-		//
-		public static string PATH_BACKGROUND_MUSIC_AUDIO = "Audio/Music/BackgroundMusic01";
-		//
-		public static string PATH_BUTTON_CLICK_AUDIO = "Audio/SoundEffects/ButtonClick01";
-		public static string PATH_GAME_RESET_AUDIO = "Audio/SoundEffects/GameStart01";
-		public static string PATH_SCORE_INCREASE_AUDIO = "Audio/SoundEffects/ScoreIncrease01";
-		public static string PATH_GEM_SWAP_AUDIO = "Audio/SoundEffects/GemSwap01";
-		public static string PATH_GEM_EXPLOSION_AUDIO = "Audio/SoundEffects/GemExit01";
-		public static string PATH_DYNAMITE_EXPLOSION_AUDIO = "Audio/SoundEffects/DynamiteExplosion01";
-		public static string PATH_TIME_LEFT_IN_ROUND_EXPIRED_AUDIO = "Audio/SoundEffects/TimeLeftInRoundExpired01";
-
-
-
-		//
-
-		public static float VOLUME_SCALE_SFX_1 = 0.25f;
+		public static float VOLUME_SCALE_SFX_1 = 0.25f; //louder
 		public static float VOLUME_SCALE_SFX_2 = 0.05f; //quieter
-		public static float VOLUME_SCALE_MUSIC = 0.10f;
+		public static float VOLUME_SCALE_MUSIC = 0.10f; 
 
-		//
-		public static float POSITION_OFFSET_FLOATING_SCORE_VIEW_Y = 30;
 
-		//
-		public static int SCORE_POINTS_PER_GEM = 50;
-		public static int SCORE_MULTIPLYER_PER_GEM = 2;
+
+
 
 
 		//--------------------------------------
@@ -155,7 +162,9 @@ namespace com.rmc.projects.triple_match
 		/// </summary>
 		public static int GetScoreRewardForMatchOfLength (int gemCount_int)
 		{
-			return gemCount_int * TripleMatchConstants.SCORE_POINTS_PER_GEM * TripleMatchConstants.SCORE_MULTIPLYER_PER_GEM;
+			//GIVES REWARDS OF 150, 400, 750, ...
+			int scoreRewardForMatchOfLength_int = TripleMatchConstants.SCORE_POINTS_PER_GEM * gemCount_int * (gemCount_int - 2);
+			return scoreRewardForMatchOfLength_int;
 		}
 
 		/// <summary>

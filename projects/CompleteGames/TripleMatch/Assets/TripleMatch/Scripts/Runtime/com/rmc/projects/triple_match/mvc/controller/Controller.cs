@@ -139,6 +139,7 @@ namespace com.rmc.projects.triple_match.mvc.controller
 		public void DoFillGapsInGems ()
 		{
 			_model.DoFillGapsInGems();
+
 		}
 
 

@@ -91,7 +91,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 			Vector3 targetPositionPixels_vector3 = new Vector3 
 				(
 					initialPositionPixels_vector3.x, 
-					initialPositionPixels_vector3.y + TripleMatchConstants.POSITION_OFFSET_FLOATING_SCORE_VIEW_Y, 
+					initialPositionPixels_vector3.y + TripleMatchConstants.POSITION_Y_OFFSET_FLOATING_SCORE_PIXELS, 
 					initialPositionPixels_vector3.z
 				);
 			TweenToNewPosition(targetPositionPixels_vector3);
@@ -132,7 +132,7 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 				(
 				iT.MoveTo.x, 		targetPosition_vector3.x,
 				iT.MoveTo.y,		targetPosition_vector3.y,
-				iT.MoveTo.easetype, iTween.EaseType.easeInOutExpo,
+				iT.MoveTo.easetype, iTween.EaseType.easeOutQuad,
 				iT.MoveTo.time,		TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT,
 				iT.MoveTo.islocal,	 false,
 				iT.MoveTo.oncomplete, "_OnTweenToNewPositionCompleted",

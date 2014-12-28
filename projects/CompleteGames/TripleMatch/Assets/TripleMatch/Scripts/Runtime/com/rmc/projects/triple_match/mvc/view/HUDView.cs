@@ -156,6 +156,8 @@ namespace com.rmc.projects.triple_match.mvc.view
 			floatingScoreViewPrefab.gameObject.transform.SetParent (_floatingScoreParent.transform);
 			FloatingScoreViewComponent floatingScoreView = floatingScoreViewPrefab.GetComponent<FloatingScoreViewComponent>();
 			floatingScoreView.Initialize (score_int, initialPosition_vector3);
+
+			//	NOTE: WE ASSIGN SCORE HERE (FROM VIEW) TO ASSIST WITH TIMING ISSUES...
 			_controller.SetScore (_model.Score + score_int, TripleMatchConstants.DURATION_FLOATING_SCORE_EXIT);
 
 		}
@@ -218,14 +220,13 @@ namespace com.rmc.projects.triple_match.mvc.view
 			{
 				
 				//
-				string gameOver_string = string.Format (TripleMatchConstants.TEXT_INSTRUCTIONS_GAME_OVER, _model.Score);
+				string gameOver_string = string.Format (TripleMatchConstants.TEXT_INSTRUCTIONS_GAME_OVER, _model.GetHighestScoreEverThisSession());
 				_RenderInstructionsText (gameOver_string);
 			}
 			else
 			{
 				if (_model.IsInputEnabled)
 				{
-					
 					_RenderInstructionsText (TripleMatchConstants.TEXT_INSTRUCTIONS_INPUT_ENABLED);
 				}
 				else
@@ -252,6 +253,13 @@ namespace com.rmc.projects.triple_match.mvc.view
 
 			//This Animator State Machine will call OnCoverFadeInComplete()
 			gameObject.GetComponent<Animator>().SetTrigger ("StartGameTrigger");
+
+			
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_BUTTON_CLICK_AUDIO);
+			}
+
 
 
 		}

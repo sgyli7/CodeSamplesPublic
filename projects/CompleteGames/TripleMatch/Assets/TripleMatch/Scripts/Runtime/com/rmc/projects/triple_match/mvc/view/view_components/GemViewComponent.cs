@@ -176,11 +176,14 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		{
 			_TweenToNewPosition (delayToStart_float, _GetTargetPosition(), "_OnTweenToNewPositionSwapCompleted");
 
-			//	SOUND
-			if (AudioManager.IsInstantiated())
-			{
-				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_SWAP_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
-			}
+		}
+
+		/// <summary>
+		/// Tweens to new position.
+		/// </summary>
+		public void TweenToNewPositionDrop (float delayToStart_float)
+		{
+			_TweenToNewPosition (delayToStart_float, _GetTargetPosition(), "_OnTweenToNewPositionDropCompleted");
 			
 		}
 
@@ -307,6 +310,12 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		/// </summary>
 		public void _OnTweenToNewPositionEntryCompleted ()
 		{
+			//	SOUND
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_DROP_IN_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_2);
+			}
+
 			if (OnTweenToNewPositionEntryCompleted != null)
 			{
 				OnTweenToNewPositionEntryCompleted (this);
@@ -318,7 +327,22 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 		/// </summary>
 		public void _OnTweenToNewPositionSwapCompleted ()
 		{
+			//TODO: Dispatch something? or play a sound? Optional: later.
+
+		}
+
+		/// <summary>
+		/// _s the on tween to new position Drop completed.
+		/// </summary>
+		public void _OnTweenToNewPositionDropCompleted ()
+		{
 			//TODO: Dispatch something?
+			
+			//	SOUND
+			if (AudioManager.IsInstantiated())
+			{
+				AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_DROP_IN_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_2);
+			}
 		}
 
 

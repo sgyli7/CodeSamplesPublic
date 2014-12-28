@@ -4,6 +4,13 @@
  */
 // Marks the right margin of code ************************************************************************************
 
+//--------------------------------------------------------------------------------------------------------------------
+//  OVERVIEW
+//--------------------------------------------------------------------------------------------------------------------
+• The 'Triple Match' game is complete
+• Target resolution is 755 x 600.
+* Playing? Entry point is the Scene "TripleMatchFullGame.unity"
+* CodeReview? Entry point is the class ("com.rmc.projects.triple_match.mvc.TripleMatchCore.cs").
 
 //--------------------------------------------------------------------------------------------------------------------
 //  CODE OWNERSHIP
@@ -56,10 +63,13 @@
 //--------------------------------------------------------------------------------------------------------------------
 * Change all model delegates to consistent form of OnGemAdded(), OnGemPositionUpdated(), OnGemRemoved...
 * Change GridSpotVO to iGridSpotVO interface. Nice! Remove 'gemtype' or not since it depends on the view (vice versa?)
-* use maxrows/maxcolums ONLY when creting grid. otherwise use getlength()
-* make a 'bonk' noise if you click a gem but the gem cannot accept a move (like when the matches are blowing up)
+* Vector3 centerPointOfMatch_vector3 = gemViews[0].gameObject.transform.position;
 
 // DO THIS LAST
+If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
+If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
+If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
+If you click reset and DO NOT have any matches automatically on the fresh board (happens rarely) then the gems are not clickable. That is a bug I will fix.
 * initialize everything in start (not in declaration). Is that a good readability upgrade?
 * add comment to every class. Fit within 3 lines of overview; model, view, controller
 * Revisit all commented out Debug.log statements. Keep some? Wrap some in a special debug log? Remove all? TBD
@@ -74,8 +84,10 @@
 //  TODO: Theoretical Future-Features That Are Not Yet Added 
 //--------------------------------------------------------------------------------------------------------------------
 * Production: Replace 100% of art. Just to revisit the views flexibility to handle different size, layouts, (# of gemtypes), etc...
+* View: Handle common screen layouts (iPhone 6, 4, etc...) without simply resizing gracefully as currently happens.
 * Gameplay: Show a hint to user of what match is best to make next
 * Gameplay: End the game if there are no possible matches that can be made via swap
+* Gameplay: Add a 'combo meter' that drains slowly, but gains with each match made. A 100% meter will reward bonus for next matches
 * Optimization: Use 'pooling' to create between 64 and 128 Gem prefab instances upon game-start for reuse.
 
 

@@ -279,6 +279,14 @@ namespace com.rmc.projects.triple_match.mvc.view
 		/// </summary>
 		private void _AttemptSwapTwoGemVOs (GemVO gemVO1, GemVO gemVO2)
 		{
+
+			//	SOUND FOR SWAP #1
+			if (AudioManager.IsInstantiated())
+			{
+				CoroutineManager.Instance.WaitForSecondsToCall (_AudioManagerPlayGemSwap, 0);
+			}
+
+
 			//SWAP THE DATA MODEL (INSTANT)
 			_model.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
 
@@ -290,10 +298,16 @@ namespace com.rmc.projects.triple_match.mvc.view
 			if (!_model.IsThereAMatchContainingEitherGemVO(gemVO1, gemVO2))
 			{
 
-				//Debug.Log ("there is no MATCH between those 2, but hasmatch : " + _model.HasMatches());
-
 				//local variable used for code-readability
 				float delayToStart_float = TripleMatchConstants.DURATION_GEM_TWEEN_SWAP;
+
+				
+				//	SOUND FOR SWAP #2
+				if (AudioManager.IsInstantiated())
+				{
+					CoroutineManager.Instance.WaitForSecondsToCall (_AudioManagerPlayGemSwap, delayToStart_float);
+				}
+
 
 				//SWAP THE DATA MODEL (INSTANT)
 				_model.DoInstantlySwapTwoGemVOs (gemVO1, gemVO2);
@@ -312,6 +326,17 @@ namespace com.rmc.projects.triple_match.mvc.view
 		}
 
 		/// <summary>
+		/// Call a sound with a needed delay. Delay not otherwise supported by the very young 'AudioManager', yet.
+		/// </summary>
+		private void _AudioManagerPlayGemSwap ()
+		{
+			AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_SWAP_AUDIO, TripleMatchConstants.VOLUME_SCALE_SFX_1);
+		}
+
+		
+
+
+		/// <summary>
 		/// Reward one match.
 		/// </summary>
 		private void _RewardOneMatchFromGemVOList (List<GemVO> gemVOs)
@@ -323,6 +348,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 			foreach (GemVO gemVO in gemVOs)
 			{
 				nextGemView = _GetGemViewForGemVo (gemVO);
+
+				//	The null-check is because
+				//	some match shapes like...
+				//				M
+				//			   MMM
+				//				M
+				//	...will destroy 3 horizontally, THEN just 2 vertically (or vice versa), 
+				//		Instead of 3 then 3. This is ok.
+				//
 				if (nextGemView != null)
 				{
 					gemViews.Add (nextGemView);
@@ -336,7 +370,10 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//	CREATE AND REPARENT
 			_hudView.RewardOneMatch 
 				(
-					TripleMatchConstants.GetScoreRewardForMatchOfLength (gemViews.Count), 
+					//NOTE: its important to NOT use the gemView count since some are being destroy 
+					//		in arbitrary order during this time-frame
+					//		and their count may not be accurate. So we use gemVOs.count. Good!
+					TripleMatchConstants.GetScoreRewardForMatchOfLength (gemVOs.Count), 
 					centerPointOfMatch_vector3
 				);
 
@@ -525,6 +562,15 @@ namespace com.rmc.projects.triple_match.mvc.view
 				}
 
 			}
+			else
+			{
+
+				if (AudioManager.IsInstantiated())
+				{
+					AudioManager.Instance.PlayAudioResourcePath (TripleMatchConstants.PATH_GEM_CLICK_FAIL_AUDIO);
+				}
+
+			}
 		}
 		
 		/// <summary>
@@ -560,14 +606,12 @@ namespace com.rmc.projects.triple_match.mvc.view
 			//	1. deselect all
 			foreach (GemViewComponent gemView in _gemViews)
 			{
-				
 				gemView.SetIsHighlighted (false);
 			}
 
 			//	2. select some
 			foreach (List<GemVO> gemVOList in gemVOListOfLists)
 			{
-
 				//3. Inside here, also removes each from _gemViews
 				_RewardOneMatchFromGemVOList (gemVOList);
 			}
@@ -577,7 +621,6 @@ namespace com.rmc.projects.triple_match.mvc.view
 			if (gemVOListOfLists.Count > 0)
 			{
 				CoroutineManager.Instance.WaitForSecondsToCall (_controller.DoFillGapsInGems, TripleMatchConstants.DURATION_DELAY_BEFORE_FILL_GAPS_IN_GEMS);
-
 
 			}
 		}
@@ -615,7 +658,7 @@ namespace com.rmc.projects.triple_match.mvc.view
 			foreach (GemVO gemVO in gemVOs)
 			{
 				delayBeforeTweening_float = (TripleMatchConstants.MAX_ROWS - gemVO.RowIndex) * 0.1f;
-				_GetGemViewForGemVo (gemVO).TweenToNewPositionSwap (delayBeforeTweening_float);
+				_GetGemViewForGemVo (gemVO).TweenToNewPositionDrop (delayBeforeTweening_float);
 			}
 		}
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (C) 2005-2015 by Rivello Multimedia Consulting (RMC).                    
  * code [at] RivelloMultimediaConsulting [dot] com                                                  
  *                                                                      
@@ -75,8 +75,8 @@ namespace com.rmc.core.grid_system
 				(
 					TripleMatchConstants.MAX_ROWS, 
 					TripleMatchConstants.MAX_COLUMNS,
-					TripleMatchConstants.MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD,
-					TripleMatchConstants.MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD,
+					TripleMatchConstants.MIN_GEMS_PER_HORIZONTAL_AXIS_MATCH_REWARD,
+					TripleMatchConstants.MIN_GEMS_PER_VERTICAL_AXIS_MATCH_REWARD,
 					TripleMatchConstants.MAX_GEM_TYPE_INDEX
 				);
 			

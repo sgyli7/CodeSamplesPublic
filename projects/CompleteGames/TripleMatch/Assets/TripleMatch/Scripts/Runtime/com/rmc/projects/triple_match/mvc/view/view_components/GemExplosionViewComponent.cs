@@ -106,6 +106,8 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 			ParticleSystem _particleSystem;
 			GameObject particleSystemPrefabInstance;
 			int particleSystemPrefabIndex_int = 0;
+
+			//	SETUP FOR 1 OR EVEN MORE PARTICLES TO WORK CONCURRENTLY...
 			foreach (GameObject particleSystemPrefab in _particleSystemPrefabs)
 			{
 				particleSystemPrefabInstance = Instantiate (particleSystemPrefab) as GameObject;
@@ -115,12 +117,6 @@ namespace com.rmc.projects.triple_match.mvc.view.view_components
 				//
 				_particleSystem = particleSystemPrefabInstance.GetComponent<ParticleSystem>();
 				
-				//	COLOR EFFECT TO MATCH GEM, DON'T RECOLOR THE FIRST PREFAB (THE SMOKE)
-				if (particleSystemPrefabIndex_int > 0)
-				{
-					_particleSystem.startColor = TripleMatchConstants.GetGemColorByGemVO (_gemVO);
-				}
-
 				TripleMatchConstants.InitializeParticleSystemForUnity46X (_particleSystem);
 				particleSystemPrefabIndex_int++;
 			}

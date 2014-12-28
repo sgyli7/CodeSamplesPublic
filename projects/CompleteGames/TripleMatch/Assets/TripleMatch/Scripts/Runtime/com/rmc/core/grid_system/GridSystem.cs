@@ -230,10 +230,10 @@ namespace com.rmc.core.grid_system
 			//
 			//
 			//	TOP TO BOTTOM
-			for (int rowIndex_int = 0; rowIndex_int < _maxRows_int; rowIndex_int++)
+			for (int rowIndex_int = 0; rowIndex_int < _gridSpotVO_array.GetLength (0); rowIndex_int++)
 			{
 				//	LEFT TO RIGHT
-				for (int columnIndex_int = 0; columnIndex_int < _maxColumns_int; columnIndex_int++)
+				for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength (1); columnIndex_int++)
 				{
 
 
@@ -358,9 +358,9 @@ namespace com.rmc.core.grid_system
 				foreach (T gridSpot in gridVOList)
 				{
 					//
-					for (int rowIndex_int = 0; rowIndex_int < _maxRows_int; rowIndex_int++)
+					for (int rowIndex_int = 0; rowIndex_int < _gridSpotVO_array.GetLength (0); rowIndex_int++)
 					{
-						for (int columnIndex_int = 0; columnIndex_int < _maxColumns_int; columnIndex_int++)
+						for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength (1); columnIndex_int++)
 						{
 							
 							if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == gridSpot)
@@ -388,9 +388,9 @@ namespace com.rmc.core.grid_system
 			//3. Count the gaps. This is for debugging only
 			//
 			int totalAmountRemoved = 0;
-			for (int rowIndex_int = 0; rowIndex_int < _maxRows_int; rowIndex_int++)
+			for (int rowIndex_int = 0; rowIndex_int < _gridSpotVO_array.GetLength(0); rowIndex_int++)
 			{
-				for (int columnIndex_int = 0; columnIndex_int < _maxColumns_int; columnIndex_int++)
+				for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength(1); columnIndex_int++)
 				{
 					
 					if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == null)
@@ -422,10 +422,11 @@ namespace com.rmc.core.grid_system
 			List<T> gridSpotVOsMarkedForShiftingDownChanged = new List<T>();
 			
 			// START AT THE BOTTOM ROW
-			for (int rowIndexToCheck_int = _maxRows_int -1; rowIndexToCheck_int >= 0; rowIndexToCheck_int--)
+			//TODO: WHY -1 here?
+			for (int rowIndexToCheck_int = _gridSpotVO_array.GetLength(0) -1; rowIndexToCheck_int >= 0; rowIndexToCheck_int--)
 			{
 				//	CHECK LEFT TO RIGHT
-				for (int columnIndexToCheck_int = 0; columnIndexToCheck_int < _maxColumns_int; columnIndexToCheck_int++)
+				for (int columnIndexToCheck_int = 0; columnIndexToCheck_int < _gridSpotVO_array.GetLength(1); columnIndexToCheck_int++)
 				{
 					
 					//IS A SPOT NULL?
@@ -472,10 +473,10 @@ namespace com.rmc.core.grid_system
 			int nextGridSpotTypeIndex_int;
 			
 			// START AT THE BOTTOM ROW
-			for (int rowIndex_int = _maxRows_int -1; rowIndex_int >= 0; rowIndex_int--)
+			for (int rowIndex_int = _gridSpotVO_array.GetLength(0) -1; rowIndex_int >= 0; rowIndex_int--)
 			{
 				//	CHECK LEFT TO RIGHT
-				for (int columnIndex_int = 0; columnIndex_int < _maxColumns_int; columnIndex_int++)
+				for (int columnIndex_int = 0; columnIndex_int < _gridSpotVO_array.GetLength(1); columnIndex_int++)
 				{
 					if (_gridSpotVO_array[rowIndex_int, columnIndex_int] == null)
 					{

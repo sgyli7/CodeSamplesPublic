@@ -113,7 +113,7 @@ namespace com.rmc.projects.triple_match.mvc.model
 			{
 				_gameState = value;
 
-				Debug.Log ("_gameState: " + _gameState);
+				//Debug.Log ("_gameState: " + _gameState);
 				//Option: Dispatch delegate? Not needed for demo, but will help when scaling up the project
 				
 			}
@@ -223,23 +223,46 @@ namespace com.rmc.projects.triple_match.mvc.model
 			private set
 			{
 				_score_int = value;
+
+				_highestScoreEverThisSession = Mathf.Max (_score_int, _highestScoreEverThisSession);
 				if (OnScoreChanged != null)
 				{
 					OnScoreChanged (_score_int);
 				}
 			}
 		}
+
+
+		/// <summary>
+		/// Sets the score.
+		/// </summary>
 		public void SetScore (int score_int, float delayUntilSet_float = 0)
 		{
 			StartCoroutine (ScoreScore_Coroutine(score_int, delayUntilSet_float));
 		}
+
+		/// <summary>
+		/// Scores the score WITH DELAY
+		/// </summary>
 		private IEnumerator ScoreScore_Coroutine (int score_int, float delayUntilSet_float)
 		{
 			yield return new WaitForSeconds (delayUntilSet_float);
 
 			//
 			Score = score_int;
+		}
 
+
+		/// <summary>
+		/// Stored until game closes, and shown through UI to tease user to replay the game
+		/// 
+		/// Optional: In the future, we could store persistently between sessions too.
+		/// 
+		/// </summary>
+		private int _highestScoreEverThisSession = 0;
+		public int GetHighestScoreEverThisSession()
+		{
+			return _highestScoreEverThisSession;
 		}
 
 
@@ -321,8 +344,8 @@ namespace com.rmc.projects.triple_match.mvc.model
 				(
 					TripleMatchConstants.MAX_ROWS, 
 				    TripleMatchConstants.MAX_COLUMNS,
-					TripleMatchConstants.MIN_MATCHES_PER_HORIZONTAL_AXIS_FOR_REWARD,
-					TripleMatchConstants.MIN_MATCHES_PER_VERTICAL_AXIS_FOR_REWARD,
+					TripleMatchConstants.MIN_GEMS_PER_HORIZONTAL_AXIS_MATCH_REWARD,
+					TripleMatchConstants.MIN_GEMS_PER_VERTICAL_AXIS_MATCH_REWARD,
 					TripleMatchConstants.MAX_GEM_TYPE_INDEX
 				);
 
@@ -468,7 +491,8 @@ namespace com.rmc.projects.triple_match.mvc.model
 		}
 		
 
-		
+
+
 		/// <summary>
 		/// _s the do shift gems down to fill gaps.
 		/// </summary>
@@ -528,10 +552,9 @@ namespace com.rmc.projects.triple_match.mvc.model
 
 			if (TimeLeftInRound == 0)
 			{
+				_OnGameOver();
 				if (OnTimeLeftInRoundExpired != null)
 				{
-
-					GameState = GameState.GAME_OVER;
 					OnTimeLeftInRoundExpired();
 				}
 
@@ -550,6 +573,15 @@ namespace com.rmc.projects.triple_match.mvc.model
 		//--------------------------------------
 		// 	Event Handlers
 		//--------------------------------------
+		/// <summary>
+		/// Handle GameOver
+		/// </summary>
+		public void _OnGameOver ()
+		{
+			GameState = GameState.GAME_OVER;
+			IsInputEnabled = false;
+			SelectedGemVO = null;
+		}
 	}
 }
 

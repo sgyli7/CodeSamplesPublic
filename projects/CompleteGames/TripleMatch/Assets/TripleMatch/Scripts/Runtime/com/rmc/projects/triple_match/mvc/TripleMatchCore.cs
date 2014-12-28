@@ -97,17 +97,26 @@ namespace com.rmc.projects.triple_match.mvc
 		protected void Start () 
 		{
 
-			//	MANAGERS
+			//	MANAGERS (order matters)
+			//	#1
 			AudioManager.OnInstantiateCompleted += _OnAudioManagerInstantiateCompleted;
+			//	#2
 			AudioManager.Instantiate();
-			
+
+
+
+
 			//	MODEL
 			Model.Instantiate();
-			
+
+
+
 			//	CONTROLLER
 			Controller.Instantiate();
 			Controller.Instance.Initialize (Model.Instance);
-			
+
+
+
 			
 			//	VIEW
 			//	- WE SET THE VIEWS THROUGH THE INSPECTOR FOR MORE FLEXIBILITIES
